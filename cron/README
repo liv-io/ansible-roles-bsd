@@ -1,0 +1,122 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : cron
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : sys-process
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages cron.
+
+Cronie contains the standard UNIX daemon crond that runs specified programs at
+scheduled times and related tools. It is a fork of the original vixie-cron and
+has security and configuration enhancements like the ability to use pam and
+SELinux.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: cron
+       cron_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+     - role: cron
+       cron_state: 'enable'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: cron
+       cron_state: 'disable'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: cron
+       cron_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  cron_state
+    Specify predetermined 'cron_state' variable (string).
+
+    Install: 'true' | 'yes' | 'install'
+    Enable : 'start' | 'on' | 'enable'
+    Disable: 'stop' | 'off' | 'disable'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'enable'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  cronie: >= 1.4
+    CentOS, RedHat, Gentoo
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
