@@ -1,0 +1,70 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible default file
+#  | [_] [_] |   Role   : bash
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# bash_state
+bash_state: 'install'
+
+# bash_color_prompt
+bash_color_prompt: 'enable'
+
+# bash_color_support
+bash_color_support: 'enable'
+
+# bash_history
+bash_history: 'enable'
+
+# bash_history_readonly
+bash_history_readonly: 'enable'
+
+# bash_histsize
+bash_histsize: '262144'
+
+# bash_histfilesize
+bash_histfilesize: '262144'
+
+# bash_histtimeformat
+bash_histtimeformat: '%F %T  '
+
+# bash_histignore
+bash_histignore: ''
+
+# bash_histcontrol
+bash_histcontrol: ''
+
+# bash_ls_time_style
+bash_ls_time_style: '+%Y-%m-%d %H:%M:%S'
+
+# bash_safety
+bash_safety: 'enable'
+
+# bash_bash_sh_template
+bash_bash_sh_template: 'main'
+
+# bash_session_readonly
+bash_session_readonly: 'enable'
+
+# bash_tmout
+bash_tmout: '1800'
+
+# bash_z_bash_sh_template
+bash_z_bash_sh_template: 'main'
