@@ -1,0 +1,30 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : cryptcat
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not (cryptcat_state == 'false') and not (cryptcat_state == 'no') and not (cryptcat_state == 'remove')
+
+- name: task include remove
+  include: remove.yml
+  when: (cryptcat_state == 'false') or (cryptcat_state == 'no') or (cryptcat_state == 'remove')
