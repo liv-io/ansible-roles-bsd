@@ -1,0 +1,32 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : allowed-hosts
+#  |  _   _  |   Type   : denyhosts configuration file
+#  | [_] [_] |   Role   : denyhosts
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# We mustn't block localhost
+{% if not (denyhosts_allowed_hosts == None) and not (denyhosts_allowed_hosts == '') and not (denyhosts_allowed_hosts == []) %}
+{% for allowed_hosts in denyhosts_allowed_hosts %}
+{{allowed_hosts}}
+{% endfor %}
+{% endif %}

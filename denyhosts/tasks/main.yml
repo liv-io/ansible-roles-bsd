@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : denyhosts
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not (denyhosts_state == 'false') and not (denyhosts_state == 'no') and not (denyhosts_state == 'remove')
+
+- name: task include enable
+  include: enable.yml
+  when: (denyhosts_state == 'start') or (denyhosts_state == 'on') or (denyhosts_state == 'enable')
+
+- name: task include disable
+  include: disable.yml
+  when: (denyhosts_state == 'stop') or (denyhosts_state == 'off') or (denyhosts_state == 'disable')
+
+- name: task include remove
+  include: remove.yml
+  when: (denyhosts_state == 'false') or (denyhosts_state == 'no') or (denyhosts_state == 'remove')

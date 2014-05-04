@@ -1,0 +1,310 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : denyhosts
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : app-admin
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages denyhosts.
+
+DenyHosts is a Python script that analyzes the sshd server log messages to
+determine which hosts are attempting to hack into your system. It also
+determines what user accounts are being targeted. It keeps track of the
+frequency of attempts from each host and, upon discovering a repeated attack
+host, updates the /etc/hosts.deny file to prevent future break-in attempts from
+that host. Email reports can be sent to a system admin.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: denyhosts
+       denyhosts_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+     - role: denyhosts
+       denyhosts_state: 'enable'
+       admin_email: 'root'
+       allowed_hosts:
+        - '127.0.0.1'
+        - '192.168.1.*'
+        - '192.168.2.*'
+       block_service: 'sshd'
+       deny_threshold_invalid: '3'
+       deny_threshold_valid: '5'
+       reset_on_success: 'disable'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: denyhosts
+       denyhosts_state: 'disable'
+       admin_email: 'root'
+       allowed_hosts:
+        - '127.0.0.1'
+        - '192.168.1.*'
+        - '192.168.2.*'
+       block_service: 'sshd'
+       deny_threshold_invalid: '3'
+       deny_threshold_valid: '5'
+       reset_on_success: 'disable'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: denyhosts
+       denyhosts_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  denyhosts_state
+    Specify predetermined 'denyhosts_state' variable (string).
+
+    Install: 'true' | 'yes' | 'install'
+    Enable : 'start' | 'on' | 'enable'
+    Disable: 'stop' | 'off' | 'disable'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'enable'
+
+  denyhosts_admin_email
+    Specify arbitrary 'denyhosts_admin_email' variable (string).
+
+    Examples: 'user' | 'user@localhost' | 'user.domain.tld'
+    Default : 'root'
+
+  denyhosts_age_reset_invalid
+    Specify arbitrary 'denyhosts_age_reset_invalid' variable (string).
+
+    Examples: '10d' | '15d'
+    Disable : 'false' | 'no' | 'disable'
+    Default : 'disable'
+
+  denyhosts_age_reset_restricted
+    Specify arbitrary 'denyhosts_age_reset_restricted' variable (string).
+
+    Examples: '20d' | '25d'
+    Disable : 'false' | 'no' | 'disable'
+    Default : 'disable'
+
+  denyhosts_age_reset_root
+    Specify arbitrary 'denyhosts_age_reset_root' variable (string).
+
+    Examples: '20d' | '25d'
+    Disable : 'false' | 'no' | 'disable'
+    Default : 'disable'
+
+  denyhosts_age_reset_valid
+    Specify arbitrary 'denyhosts_age_reset_valid' variable (string).
+
+    Examples: '5d' | '10d'
+    Disable : 'false' | 'no' | 'disable'
+    Default : 'disable'
+
+  denyhosts_allowed_hosts
+    Specify arbitrary 'denyhosts_allowed_hosts' variable (array).
+
+    Examples: ['127.0.0.1', '192.168.1.*', '192.168.2.*'] |
+              ['127.0.0.1', '192.168.3.*']
+    Default : ['127.0.0.1']
+
+  denyhosts_allowed_hosts_template
+    Specify arbitrary 'denyhosts_allowed_hosts_template' variable (string).
+    Any value other than 'main' requires a Jinja2 file to be created.
+    The custom Jinja2 file for an example configuration called 'example' needs
+    to be placed as follows: 'denyhosts/templates/example/allowed-hosts.j2'
+
+    Examples: 'example' | 'environment' | 'hostname'
+    Default : 'main'
+
+  denyhosts_block_service
+    Specify predetermined 'denyhosts_block_service' variable (string).
+
+    ALL    : 'all' | 'ALL' | 'any' | 'ANY'
+    SSH    : 'sshd' | 'SSHD' | 'ssh' | 'SSH'
+    Default: 'sshd'
+
+  denyhosts_daemon_sleep
+    Specify arbitrary 'denyhosts_daemon_sleep' variable (string).
+
+    Examples: '50s' | '120s'
+    Default : '30s'
+
+  denyhosts_daemon_purge
+    Specify arbitrary 'denyhosts_daemon_purge' variable (string).
+
+    Examples: '2h' | '3h'
+    Default : '1h'
+
+  denyhosts_denyhosts_conf_template
+    Specify arbitrary 'denyhosts_denyhosts_conf_template' variable (string).
+    Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be created.
+    The custom Jinja2 file for an example configuration called 'example' needs
+    to be placed as follows: 'denyhosts/templates/example/denyhosts.conf.j2'
+
+    Examples: 'example' | 'environment' | 'hostname'
+    Default : "{{ansible_os_family}}"
+
+  denyhosts_deny_threshold_invalid
+    Specify arbitrary 'denyhosts_deny_threshold_invalid' variable (integer).
+
+    Examples: '3' | '4'
+    Default : '2'
+
+  denyhosts_deny_threshold_restricted
+    Specify arbitrary 'denyhosts_deny_threshold_restricted' variable (integer).
+
+    Examples: '1' | '2'
+    Default : '2'
+
+  denyhosts_deny_threshold_root
+    Specify arbitrary 'denyhosts_deny_threshold_root' variable (integer).
+
+    Examples: '2' | '3'
+    Default : '2'
+
+  denyhosts_deny_threshold_valid
+    Specify arbitrary 'denyhosts_deny_threshold_valid' variable (integer).
+
+    Examples: '4' | '5'
+    Default : '2'
+
+  denyhosts_hostname_lookup
+    Specify predetermined 'denyhosts_hostname_lookup' status (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'disable'
+
+  denyhosts_purge_deny
+    Specify arbitrary 'denyhosts_purge_deny' variable (string).
+
+    Examples: '30m' | '1h' | '2d' | '3w' | '4y'
+    Disable : 'false' | 'no' | 'disable' | 'never'
+    Default : 'disable'
+
+  denyhosts_reset_on_success
+    Specify predetermined 'denyhosts_reset_on_success' status (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'enable'
+
+  denyhosts_smtp_host
+    Specify arbitrary 'denyhosts_smtp_host' variable (string).
+
+    Examples: 'localhost' | 'host' | 'host@domain.tld'
+    Default : 'localhost'
+
+  denyhosts_smtp_from
+    Specify arbitrary 'denyhosts_smtp_from' variable (string).
+
+    Examples: 'Comment <user>' | 'Comment <user@localhost>' | 'Comment <user@domain.tld>'
+    Default : 'DenyHosts <nobody@localhost>'
+
+  denyhosts_smtp_password
+    Specify arbitrary 'denyhosts_smtp_password' variable (string).
+
+    Examples: '$uP_3rp-@$5.WoR!d'
+    Disable : 'false' | 'no' | 'disable'
+    Default : 'disable'
+
+  denyhosts_smtp_port
+    Specify arbitrary 'denyhosts_smtp_port' variable (integer).
+
+    Examples: '25' | '465'
+    Default : '25'
+
+  denyhosts_smtp_subject
+    Specify arbitrary 'denyhosts_smtp_subject' variable (string).
+
+    Examples: 'DenyHost' | 'DenyHosts Alert'
+    Default : "{{ansible_hostname}}: DenyHosts Report"
+
+  denyhosts_smtp_username
+    Specify arbitrary 'denyhosts_smtp_username' variable (string).
+
+    Examples: 'username' | 'username@domain.tld'
+    Disable : 'false' | 'no' | 'disable'
+    Default : 'disable'
+
+  denyhosts_syslog_report
+    Specify predetermined 'denyhosts_syslog_report' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'disable'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  denyhosts: >= 2.6
+    CentOS, RedHat, Gentoo
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

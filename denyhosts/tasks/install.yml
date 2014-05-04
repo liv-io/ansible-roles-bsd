@@ -1,0 +1,83 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : install.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : denyhosts
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../vars/{{ansible_os_family}}.yml"
+   - "../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package install denyhosts
+  yum:
+   state: 'installed'
+   name: "{{package_name_denyhosts}}"
+  when: ansible_os_family == 'RedHat'
+  tags:
+   - packaging
+   - install
+   - denyhosts
+
+- name: package install denyhosts
+  portage:
+   state: 'installed'
+   sync: "{{portage_sync}}"
+   name: "{{package_name_denyhosts}}"
+  when: ansible_os_family == 'Gentoo'
+  tags:
+   - packaging
+   - install
+   - denyhosts
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create allowed-hosts
+  template:
+   src: "{{file_src_allowed_hosts}}"
+   dest: "{{file_path_allowed_hosts}}"
+   mode: "{{file_mode_allowed_hosts}}"
+   owner: "{{file_owner_allowed_hosts}}"
+   group: "{{file_group_allowed_hosts}}"
+  notify: service restart denyhosts
+  tags:
+   - files
+   - install
+   - denyhosts
+
+- name: template create denyhosts.conf
+  template:
+   src: "{{file_src_denyhosts_conf}}"
+   dest: "{{file_path_denyhosts_conf}}"
+   mode: "{{file_mode_denyhosts_conf}}"
+   owner: "{{file_owner_denyhosts_conf}}"
+   group: "{{file_group_denyhosts_conf}}"
+  notify: service restart denyhosts
+  tags:
+   - files
+   - install
+   - denyhosts
