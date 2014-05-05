@@ -1,0 +1,114 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : nmap
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : net-analyzer
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages nmap.
+
+Nmap is a utility for network exploration or security auditing. It supports ping
+scanning (determine which hosts are up), many port scanning techniques
+(determine what services the hosts are offering), and TCP/IP fingerprinting
+(remote host operating system identification). Nmap also offers flexible target
+and port specification, decoy scanning, determination of TCP sequence
+predictability characteristics, reverse-identd scanning, and more. In addition
+to the classic command-line nmap executable, the Nmap suite includes a flexible
+data transfer, redirection, and debugging tool (netcat utility ncat), a utility
+for comparing scan results (ndiff), and a packet generation and response analysis
+tool (nping).
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: nmap
+       nmap_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: nmap
+       nmap_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  nmap_state
+    Specify predetermined 'nmap_state' variable (string).
+
+    Install: 'true' | 'yes' | 'install'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'install'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  nmap: >= 5.51
+    CentOS, RedHat, Gentoo
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
