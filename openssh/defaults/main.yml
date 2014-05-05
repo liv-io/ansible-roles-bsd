@@ -56,7 +56,7 @@ openssh_kerberos_authentication: 'no'
 
 # openssh_listen_address
 openssh_listen_address:
-  - '0.0.0.0'
+ - '0.0.0.0'
 
 # openssh_password_authentication
 openssh_password_authentication: 'yes'
@@ -65,7 +65,8 @@ openssh_password_authentication: 'yes'
 openssh_permit_root_login: 'no'
 
 # openssh_port
-openssh_port: '22'
+openssh_port:
+ - '22'
 
 # openssh_print_motd
 openssh_print_motd: 'no'

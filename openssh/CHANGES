@@ -14,5 +14,8 @@ CHANGES
     (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2014-05-05)
+F: Add support for running OpenSSH on multiple ports
+
 * Version 0.1.0 (2014-04-28)
 F: Initial release

@@ -36,7 +36,13 @@
 # possible, but leave them commented.  Uncommented options override the
 # default value.
 
-Port {% if not (openssh_port == None) and not (openssh_port == '') %}{{openssh_port}}{% else %}22{% endif %}
+{% if not (openssh_port == None) and not (openssh_port == '') and not (openssh_port == []) %}
+{% for port in openssh_port %}
+Port {{port}}
+{% endfor %}
+{% else %}
+Port 22
+{% endif %}
 
 {% if (openssh_address_family == 'any') or (openssh_address_family == 'ANY') or (openssh_address_family == 'all') or (openssh_address_family == 'ALL') %}
 AddressFamily any
@@ -226,7 +232,7 @@ PermitRootLogin {% if (openssh_permit_root_login == 'true') or (openssh_permit_r
 
 
 # Login is disallowed for user names that match one of the patterns.
-{% if not (openssh_deny_users == None) and not (openssh_deny_users == '') and not (openssh_deny_users == [])%}
+{% if not (openssh_deny_users == None) and not (openssh_deny_users == '') and not (openssh_deny_users == []) %}
 DenyUsers {% for deny_users in openssh_deny_users %}{{deny_users}} {% endfor %}
 
 {% else %}

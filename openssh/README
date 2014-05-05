@@ -184,10 +184,10 @@ ROLE
     Default: 'no'
 
   openssh_port
-    Specify arbitrary 'openssh_port' variable (string).
+    Specify arbitrary 'openssh_port' variable (array).
 
-    Examples: '22' | '222' | '8022'
-    Default : '22'
+    Examples: ['22'] | ['22', '222'] | ['22', '8022']
+    Default : ['22']
 
   openssh_print_motd
     Specify predetermined 'openssh_print_motd' variable (string).
