@@ -1,0 +1,77 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible variable file
+#  | [_] [_] |   Role   : ntp
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# ntp_driftfile
+ntp_driftfile: '/var/lib/ntp/drift'
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# ntp
+package_name_ntp: 'ntp'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# ntp.conf
+file_src_ntp_conf: "{{ntp_ntp_conf_template}}/ntp.conf.j2"
+file_path_ntp_conf: '/etc/ntp.conf'
+file_mode_ntp_conf: '0644'
+file_owner_ntp_conf: 'root'
+file_group_ntp_conf: 'root'
+
+# ntp-script.dir
+file_path_ntp_script_dir: '/opt/script/ntp/'
+file_mode_ntp_script_dir: '0750'
+file_owner_ntp_script_dir: 'root'
+file_group_ntp_script_dir: 'root'
+
+# ntp_update-time.bash
+file_src_ntp_update_time_bash: "{{ntp_ntp_update_time_bash_template}}/ntp_update-time.bash.j2"
+file_path_ntp_update_time_bash: '/opt/script/ntp/ntp_update-time.bash'
+file_mode_ntp_update_time_bash: '0750'
+file_owner_ntp_update_time_bash: 'root'
+file_group_ntp_update_time_bash: 'root'
+
+# ntp_update-time.cron
+file_src_ntp_update_time_cron: "{{ntp_ntp_update_time_cron_template}}/ntp_update-time.cron.j2"
+file_path_ntp_update_time_cron: '/etc/cron.d/ntp_update-time'
+file_mode_ntp_update_time_cron: '0640'
+file_owner_ntp_update_time_cron: 'root'
+file_group_ntp_update_time_cron: 'root'
+
+# step-tickers
+file_src_step_tickers: "{{ntp_step_tickers_template}}/step-tickers.j2"
+file_path_step_tickers: '/etc/ntp/step-tickers'
+file_mode_step_tickers: '0644'
+file_owner_step_tickers: 'root'
+file_group_step_tickers: 'root'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# ntpd
+service_name_ntpd: 'ntpd'

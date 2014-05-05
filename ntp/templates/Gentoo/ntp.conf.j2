@@ -1,0 +1,97 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : ntp.conf
+#  |  _   _  |   Type   : ntp configuration file
+#  | [_] [_] |   Role   : ntp
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# NOTES:
+# DHCP clients can append or replace NTP configuration files.
+# You should consult your DHCP client documentation about its
+# default behaviour and how to change it.
+
+# Name of the servers ntpd should sync with
+# Please respect the access policy as stated by the responsible person.
+#server		ntp.example.tld		iburst
+
+# Common pool for random people
+#server pool.ntp.org
+
+# Pools for Gentoo users
+#server 0.gentoo.pool.ntp.org
+#server 1.gentoo.pool.ntp.org
+#server 2.gentoo.pool.ntp.org
+#server 3.gentoo.pool.ntp.org
+
+
+##
+# A list of available servers can be found here:
+# http://www.pool.ntp.org/
+# http://www.pool.ntp.org/#use
+# A good way to get servers for your machine is:
+# netselect -s 3 pool.ntp.org
+##
+
+# you should not need to modify the following paths
+#driftfile	/var/lib/ntp/ntp.drift
+
+driftfile {{ntp_driftfile}}
+
+
+#server ntplocal.example.com prefer 
+#server timeserver.example.org 
+
+{% if not (ntp_server == None) and not (ntp_server == '') and not (ntp_server == []) %}
+{% for server in ntp_server %}
+server {{server}} {% for option in ntp_option %}{{option}} {% endfor %}
+{% endfor %}
+{% endif %}
+
+
+# Warning: Using default NTP settings will leave your NTP
+# server accessible to all hosts on the Internet.
+
+# If you want to deny all machines (including your own)
+# from accessing the NTP server, uncomment:
+#restrict default ignore
+
+
+# Default configuration:
+# - Allow only time queries, at a limited rate, sending KoD when in excess.
+# - Allow all local queries (IPv4, IPv6)
+#restrict default nomodify nopeer noquery limited kod
+#restrict 127.0.0.1
+#restrict [::1]
+
+{% if not (ntp_restrict == None) and not (ntp_restrict == '') and not (ntp_restrict == []) %}
+{% for restrict in ntp_restrict %}
+restrict {{restrict}}
+{% endfor %}
+{% endif %}
+
+
+# To allow machines within your network to synchronize
+# their clocks with your server, but ensure they are
+# not allowed to configure the server or used as peers
+# to synchronize against, uncomment this line.
+#
+#restrict 192.168.0.0 mask 255.255.255.0 nomodify nopeer notrap

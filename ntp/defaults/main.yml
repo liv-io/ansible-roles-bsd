@@ -1,0 +1,59 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible default file
+#  | [_] [_] |   Role   : ntp
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# ntp_state
+ntp_state: 'enable'
+
+# ntp_ntp_conf_template
+ntp_ntp_conf_template: "{{ansible_os_family}}"
+
+# ntp_ntp_update_time_bash_template
+ntp_ntp_update_time_bash_template: 'main'
+
+# ntp_ntp_update_time_cron_template
+ntp_ntp_update_time_cron_template: 'main'
+
+# ntp_option
+ntp_option:
+ - 'burst'
+ - 'prefer'
+ - 'minpoll 4'
+ - 'maxpoll 6'
+
+# ntp_restrict
+ntp_restrict:
+ - 'default kod nomodify notrap nopeer noquery'
+ - '-6 default kod nomodify notrap nopeer noquery'
+ - '127.0.0.1'
+ - '-6 ::1'
+
+# ntp_server
+ntp_server:
+ - "ntp.{{ansible_domain}}"
+
+# ntp_step_ticker
+ntp_step_ticker:
+ - "ntp.{{ansible_domain}}"
+
+# ntp_step_tickers_template
+ntp_step_tickers_template: 'main'

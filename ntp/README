@@ -1,0 +1,209 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : ntp
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : net-misc
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages ntp.
+
+The Network Time Protocol (NTP) is used to synchronize a computer's time with
+another reference time source. This package includes ntpd (a daemon which
+continuously adjusts system time) and utilities used to query and configure the
+ntpd daemon.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: ntp
+       ntp_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+     - role: ntp
+       ntp_state: 'enable'
+       ntp_option: ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
+       ntp_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
+       ntp_step_ticker: ['ntp01.domain.tld', 'ntp02.domain.tld']
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: ntp
+       ntp_state: 'disable'
+       ntp_option: ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
+       ntp_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
+       ntp_step_ticker: ['ntp01.domain.tld', 'ntp02.domain.tld']
+
+CRONJOB
+  - hosts: all
+    roles:
+     - role: ntp
+       ntp_state: 'cronjob'
+       ntp_option: ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
+       ntp_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: ntp
+       ntp_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  ntp_state
+    Specify predetermined 'ntp_state' variable (string).
+
+    Install: 'true' | 'yes' | 'install'
+    Enable : 'start' | 'on' | 'enable'
+    Disable: 'stop' | 'off' | 'disable'
+    Cronjob: 'cron' | 'cronjob'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'enable'
+
+  ntp_ntp_conf_template
+    Specify arbitrary 'ntp_ntp_conf_template' variable (string).
+    Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be created.
+    The custom Jinja2 file for an example configuration called 'example' needs
+    to be placed as follows: 'ntp/templates/example/ntp.conf.j2'
+
+    Examples: 'example' | 'environment' | 'hostname'
+    Default : "{{ansible_os_family}}"
+
+  ntp_ntp_update_time_bash_template
+    Specify arbitrary 'ntp_ntp_update_time_bash_template' variable (string).
+    Any value other than 'main' requires a Jinja2 file to be created.
+    The custom Jinja2 file for an example configuration called 'example' needs
+    to be placed as follows: 'ntp/templates/example/ntp_update-time.bash.j2'
+
+    Examples: 'example' | 'environment' | 'hostname'
+    Default : 'main'
+
+  ntp_ntp_update_time_cron_template
+    Specify arbitrary 'ntp_ntp_update_time_cron_template' variable (string).
+    Any value other than 'main' requires a Jinja2 file to be created.
+    The custom Jinja2 file for an example configuration called 'example' needs
+    to be placed as follows: 'ntp/templates/example/ntp_update-time.cron.j2'
+
+    Examples: 'example' | 'environment' | 'hostname'
+    Default : 'main'
+
+  ntp_option
+    Specify arbitrary 'ntp_option' variable (array).
+
+    Examples: ['burst', 'prefer', 'minpoll 4', 'maxpoll 6'] |
+              ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
+    None    : []
+    Default : ['burst', 'prefer', 'minpoll 4', 'maxpoll 6']
+
+  ntp_restrict
+    Specify arbitrary 'ntp_restrict' variable (array).
+
+    Examples: ['192.168.1.0 mask 255.255.255.0 nomodify notrap',
+               '192.168.2.0 mask 255.255.255.0 nomodify notrap'] |
+              ['2001:0db8:85a3:08d3:1319:8a2e:0370:7347 nomodify notrap',
+               '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458 nomodify notrap']
+    None    : []
+    Default : ['default kod nomodify notrap nopeer noquery',
+               '-6 default kod nomodify notrap nopeer noquery',
+               '127.0.0.1', '-6 ::1']
+
+  ntp_server
+    Specify arbitrary 'ntp_server' variable (array).
+
+    Examples: ['ntp.domain.tld'] | ['ntp01.domain.tld', 'ntp02.domain.tld'] |
+              ['ntp01.domain.tld', 'ntp02.domain.tld', 'ntp03.domain.tld']
+    Default : ["ntp.{{ansible_domain}}"]
+
+  ntp_step_ticker
+    Specify arbitrary 'ntp_step_ticker' variable (array).
+
+    Examples: ['ntp.domain.tld'] | ['ntp01.domain.tld', 'ntp02.domain.tld'] |
+              ['ntp01.domain.tld', 'ntp02.domain.tld', 'ntp03.domain.tld']
+    None    : []
+    Default : ["ntp.{{ansible_domain}}"]
+
+  ntp_step_tickers_template
+    Specify arbitrary 'ntp_step_tickers_template' variable (string).
+    Any value other than 'main' requires a Jinja2 file to be created.
+    The custom Jinja2 file for an example configuration called 'example' needs
+    to be placed as follows: 'ntp/templates/example/step-tickers.j2'
+
+    Examples: 'example' | 'environment' | 'hostname'
+    Default : 'main'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  ntp: >= 4.2
+    CentOS, RedHat, Gentoo
+
+ROLES
+  ntpdate
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

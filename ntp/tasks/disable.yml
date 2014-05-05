@@ -1,0 +1,102 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : disable.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : ntp
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../vars/{{ansible_os_family}}.yml"
+   - "../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create ntp.conf
+  template:
+   src: "{{file_src_ntp_conf}}"
+   dest: "{{file_path_ntp_conf}}"
+   mode: "{{file_mode_ntp_conf}}"
+   owner: "{{file_owner_ntp_conf}}"
+   group: "{{file_group_ntp_conf}}"
+  tags:
+   - files
+   - disable
+   - ntp
+
+- name: template create step-tickers
+  template:
+   src: "{{file_src_step_tickers}}"
+   dest: "{{file_path_step_tickers}}"
+   mode: "{{file_mode_step_tickers}}"
+   owner: "{{file_owner_step_tickers}}"
+   group: "{{file_group_step_tickers}}"
+  when: ansible_os_family == 'RedHat'
+  tags:
+   - files
+   - disable
+   - ntp
+
+- name: file remove ntp_update-time.bash
+  template:
+   state: 'absent'
+   path: "{{file_path_ntp_update_time_bash}}"
+  tags:
+   - files
+   - disable
+   - ntp
+
+- name: file remove ntp_update-time.cron
+  file:
+   state: 'absent'
+   path: "{{file_path_ntp_update_time_cron}}"
+  tags:
+   - files
+   - disable
+   - ntp
+
+#-------------------------------------------------------------------------------
+# SYSTEM 
+#-------------------------------------------------------------------------------
+   
+- name: service stop ntpd
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   name: "{{service_name_ntpd}}"
+  when: ansible_os_family == 'RedHat'
+  tags:
+   - system
+   - disable
+   - ntp
+  
+- name: service stop ntpd
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   runlevel: 'default'
+   name: "{{service_name_ntpd}}"
+  when: ansible_os_family == 'Gentoo'
+  tags:
+   - system
+   - disable
+   - ntp

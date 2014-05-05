@@ -1,0 +1,82 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : cronjob.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : ntp
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../vars/{{ansible_os_family}}.yml"
+   - "../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create ntp_update-time.bash
+  template:
+   src: "{{file_src_ntp_update_time_bash}}"
+   dest: "{{file_path_ntp_update_time_bash}}"
+   mode: "{{file_mode_ntp_update_time_bash}}"
+   owner: "{{file_owner_ntp_update_time_bash}}"
+   group: "{{file_group_ntp_update_time_bash}}"
+  tags:
+   - files
+   - cronjob
+   - ntp
+
+- name: template create ntp_update-time.cron
+  template:
+   src: "{{file_src_ntp_update_time_cron}}"
+   dest: "{{file_path_ntp_update_time_cron}}"
+   mode: "{{file_mode_ntp_update_time_cron}}"
+   owner: "{{file_owner_ntp_update_time_cron}}"
+   group: "{{file_group_ntp_update_time_cron}}"
+  tags:
+   - files
+   - cronjob
+   - ntp
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: service stop ntpd
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   name: "{{service_name_ntpd}}"
+  when: ansible_os_family == 'RedHat'
+  tags:
+   - system
+   - cronjob
+   - ntp
+
+- name: service stop ntpd
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   name: "{{service_name_ntpd}}"
+  when: ansible_os_family == 'Gentoo'
+  tags:
+   - system
+   - cronjob
+   - ntp
