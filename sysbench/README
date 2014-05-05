@@ -1,0 +1,121 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : sysbench
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : app-benchmarks
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages sysbench.
+
+SysBench is a modular, cross-platform and multi-threaded benchmark tool for
+evaluating OS parameters that are important for a system running a database
+under intensive load.
+
+The idea of this benchmark suite is to quickly get an impression about system
+performance without setting up complex database benchmarks or even without
+installing a database at all. Current features allow to test the following
+system parameters:
+ - file I/O performance
+ - scheduler performance
+ - memory allocation and transfer speed
+ - POSIX threads implementation performance
+ - database server performance (OLTP benchmark)
+
+Primarily written for MySQL server benchmarking, SysBench will be further
+extended to support multiple database backends, distributed benchmarks and
+third-party plug-in modules.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: sysbench
+       sysbench_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: sysbench
+       sysbench_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  sysbench_state
+    Specify predetermined 'sysbench_state' variable (string).
+
+    Install: 'true' | 'yes' | 'install'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'install'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  sysbench: >= 0.4
+    CentOS, RedHat, Gentoo
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
