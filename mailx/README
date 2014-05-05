@@ -1,0 +1,115 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : mailx
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : mail-client
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages mailx.
+
+Mailx is an enhanced mail command, which provides the functionality of the
+POSIX mailx command, as well as SysV mail and Berkeley Mail (from which it is
+derived). Additionally to the POSIX features, mailx can work with Maildir/e-mail
+storage format (as well as mailboxes), supports IMAP, POP3 and SMTP procotols
+(including over SSL) to operate with remote hosts, handles mime types and
+different charsets. There are a lot of other useful features, see mailx. And
+as its ancient analogues, mailx can be used as a mail script language, both for
+sending and receiving mail.
+Besides the "mailx" command, this package provides "mail" and "Mail"
+(which should be compatible with its predecessors from the mailx-8.x source),
+as well as "nail" (the initial name of this project).
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: mailx
+       mailx_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: mailx
+       mailx_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  mailx_state
+    Specify predetermined 'mailx_state' variable (string).
+
+    Install: 'true' | 'yes' | 'install'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'install'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  mailx: >= 8.1
+    CentOS, RedHat, Gentoo
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
