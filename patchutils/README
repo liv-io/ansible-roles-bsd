@@ -1,0 +1,108 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : patchutils
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : dev-util
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages patchutils.
+
+This is a collection of programs that can manipulate patch files in a variety of
+ways, such as interpolating between two pre-patches, combining two incremental
+patches, fixing line numbers in hand-edited patches, and simply listing the
+files modified by a patch.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: patchutils
+       patchutils_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: patchutils
+       patchutils_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  patchutils_state
+    Specify predetermined 'patchutils_state' variable (string).
+
+    Install: 'true' | 'yes' | 'install'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'install'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  patchutils: >= 0.3
+    CentOS, RedHat, Gentoo
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
