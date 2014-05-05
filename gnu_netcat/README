@@ -1,0 +1,110 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : gnu_netcat
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : net-analyzer
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages gnu_netcat.
+
+Netcat is a featured networking utility which reads and writes data across
+network connections, using the TCP/IP protocol. It is designed to be a reliable
+"back-end" tool that can be used directly or easily driven by other programs
+and scripts. At the same time, it is a feature-rich network debugging and
+exploration tool, since it can create almost any kind of connection you would
+need and has several interesting built-in capabilities.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: gnu_netcat
+       gnu_netcat_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: gnu_netcat
+       gnu_netcat_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  gnu_netcat_state
+    Specify predetermined 'gnu_netcat_state' variable (string).
+
+    Install: 'true' | 'yes' | 'install'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'install'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  gnu-netcat: >= 0.7
+    Gentoo
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Unsupported
+
+  CentOS 6: Unsupported
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
