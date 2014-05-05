@@ -1,0 +1,110 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : vlock
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : app-misc
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages vlock.
+
+The vlock program locks one or more sessions on the console. Vlock can lock the
+current terminal (local or remote) or the entire virtual console system, which
+completely disables all console access. The vlock program unlocks when either
+the password of the user who started vlock or the root password is typed.
+Install vlock if you need to disable access to one console or to all virtual
+consoles.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: vlock
+       vlock_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: vlock
+       vlock_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  vlock_state
+    Specify predetermined 'vlock_state' variable (string).
+
+    Install: 'true' | 'yes' | 'install'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'install'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  vlock: >= 1.3
+    CentOS, RedHat, Gentoo
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
