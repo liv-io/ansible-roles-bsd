@@ -1,0 +1,40 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible default file
+#  | [_] [_] |   Role   : motd
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# motd_state
+motd_state: 'install'
+
+# motd_env_color
+motd_env_color: '1;31m'
+
+# motd_env_name
+motd_env_name: 'Production'
+
+# motd_host_description
+motd_host_description: ''
+
+# motd_motd_template
+motd_motd_template: 'robomon'
+
+# motd_os_color
+motd_os_color: '0;37m'

@@ -1,0 +1,179 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : motd
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : sys-core
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages motd.
+
+The contents of '/etc/motd' are displayed by login after a successful login but
+just before it executes the login shell.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: motd
+       motd_state: 'install'
+       motd_env_color: '1;31m'
+       motd_env_name: 'Testing'
+       motd_host_description: 'Test Host'
+       motd_motd_template: 'robomon'
+       motd_os_color: '0;37m'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: motd
+       motd_state: 'disable'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  motd_state
+    Specify predetermined 'motd_state' variable (string).
+    Notice: 'motd' is a core file and can therefore not be removed.
+
+    Install: 'true' | 'yes' | 'install'
+    Disable: 'stop' | 'off' | 'disable'
+    Default: 'install'
+
+  motd_env_color
+    Specify predetermined 'motd_env_color' variable (string).
+    The following colors codes are compatible with Bourne Again Shell (BASH).
+    The codes represent both the regular (R) and bold (B) font style.
+
+    Black (R) : '0;30m'
+    Black (B) : '1;30m'
+    Red (R)   : '0;31m'
+    Red (B)   : '1;31m'
+    Green (R) : '0;32m'
+    Green (B) : '1;32m'
+    Yellow (R): '0;33m'
+    Yellow (B): '1;33m'
+    Blue (R)  : '0;34m'
+    Blue (B)  : '1;34m'
+    Purple (R): '0;35m'
+    Purple (B): '1;35m'
+    Cyan (R)  : '0;36m'
+    Cyan (B)  : '1;36m'
+    White (R) : '0;37m'
+    White (B) : '1;37m'
+    Default   : '1;31m'
+
+  motd_env_name
+    Specify arbitrary 'motd_env_name' variable (string).
+
+    Examples: 'Production' | 'Integration' | 'Testing' | 'Development'
+    None    : ''
+    Default : 'Production'
+
+  motd_host_description
+    Specify arbitrary 'motd_host_description' variable (string).
+
+    Examples: 'Backup Server' | 'Database Server' | 'Mail Server' | 'Web Server'
+    None    : ''
+    Default : ''
+
+  motd_motd_template
+    Specify arbitrary 'motd_motd_template' variable (string).
+    Any value other than 'main' requires a Jinja2 file to be created.
+    The custom Jinja2 file for an example configuration called 'example' needs
+    to be placed as follows: 'motd/templates/example/motd.j2'
+
+    Examples: 'example' | 'environment' | 'hostname'
+    Default : 'robomon'
+
+  motd_os_color
+    Specify predetermined 'motd_os_color' variable (string). 
+    The following colors codes are compatible with Bourne Again Shell (BASH).
+    The codes represent both the regular (R) and bold (B) font style.
+
+    Black (R) : '0;30m'
+    Black (B) : '1;30m'
+    Red (R)   : '0;31m'
+    Red (B)   : '1;31m'
+    Green (R) : '0;32m'
+    Green (B) : '1;32m'
+    Yellow (R): '0;33m'
+    Yellow (B): '1;33m'
+    Blue (R)  : '0;34m'
+    Blue (B)  : '1;34m'
+    Purple (R): '0;35m'
+    Purple (B): '1;35m'
+    Cyan (R)  : '0;36m'
+    Cyan (B)  : '1;36m'
+    White (R) : '0;37m'
+    White (B) : '1;37m'
+    Default   : '1;31m'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

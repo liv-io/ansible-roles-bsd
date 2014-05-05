@@ -1,0 +1,15 @@
+
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Hostname        : [0m[1;33m{{ansible_hostname}}[0m
+  |  _   _  |   Description     : [0m[1;33m{{motd_host_description}}[0m
+  | [_] [_] |   Environment     : [0m[{% if not (motd_env_color == None) and not (motd_env_color == '') %}{{motd_env_color}}{% else %}1;31m{% endif %}{{motd_env_name}}[0m
+  |____~____|
+     ___\\__    Operating System: [0m[{% if not (motd_os_color == None) and not (motd_os_color == '') %}{{motd_os_color}}{% else %}0;37m{% endif %}{{ansible_distribution}} {{ansible_distribution_version}} ({{ansible_machine}})[0m
+  \\/|     |\   Processor Count : [0m[0;31m{{ansible_processor_vcpus}}[0m
+   \/|_____|\\  Memory Size     : [0;31m{{ansible_memtotal_mb}} MB[0m
+     _|| ||_//
+    (__| |__)
+--------------------------------------------------------------------------------
+
