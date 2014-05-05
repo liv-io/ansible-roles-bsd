@@ -1,0 +1,95 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible default file
+#  | [_] [_] |   Role   : openssh
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# openssh_state
+openssh_state: 'enable'
+
+# openssh_address_family
+openssh_address_family: ''
+
+# openssh_allow_groups
+openssh_allow_groups: []
+
+# openssh_allow_users
+openssh_allow_users: []
+
+# openssh_banner
+openssh_banner: 'enable'
+
+# openssh_banner_template
+openssh_banner_template: 'main'
+
+# openssh_compression
+openssh_compression: ''
+
+# openssh_deny_groups
+openssh_deny_groups: []
+
+# openssh_deny_users
+openssh_deny_users: []
+
+# openssh_gssapi_authentication
+openssh_gssapi_authentication: 'no'
+
+# openssh_kerberos_authentication
+openssh_kerberos_authentication: 'no'
+
+# openssh_listen_address
+openssh_listen_address:
+  - '0.0.0.0'
+
+# openssh_password_authentication
+openssh_password_authentication: 'yes'
+
+# openssh_permit_root_login
+openssh_permit_root_login: 'no'
+
+# openssh_port
+openssh_port: '22'
+
+# openssh_print_motd
+openssh_print_motd: 'no'
+
+# openssh_print_last_log
+openssh_print_last_log: 'yes'
+
+# openssh_pubkey_authentication
+openssh_pubkey_authentication: 'yes'
+
+# openssh_rsa_authentication
+openssh_rsa_authentication: 'yes'
+
+# openssh_ssh_config_template
+openssh_ssh_config_template: "{{ansible_os_family}}"
+
+# openssh_sshd_config_template
+openssh_sshd_config_template: "{{ansible_os_family}}"
+
+# openssh_tcp_keep_alive
+openssh_tcp_keep_alive: 'yes'
+
+# openssh_x11_forwarding
+openssh_x11_forwarding: 'no'
+
+# openssh_x11_use_localhost
+openssh_x11_use_localhost: 'yes'

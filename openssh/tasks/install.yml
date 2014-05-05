@@ -1,0 +1,106 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : install.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : openssh
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../vars/{{ansible_os_family}}.yml"
+   - "../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package install openssh
+  yum:
+   state: 'installed'
+   name: "{{package_name_openssh}}"
+  when: ansible_os_family == 'RedHat'
+  tags:
+   - packaging
+   - install
+   - openssh
+
+- name: package install openssh-server
+  yum:
+   state: 'installed'
+   name: "{{package_name_openssh_server}}"
+  when: ansible_os_family == 'RedHat'
+  tags:
+   - packaging
+   - install
+   - openssh
+
+- name: package install openssh
+  portage:
+   state: 'installed'
+   sync: "{{portage_sync}}"
+   name: "{{package_name_openssh}}"
+  when: ansible_os_family == 'Gentoo'
+  tags:
+   - packaging
+   - install
+   - openssh
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create banner
+  template:
+   src: "{{file_src_banner}}"
+   dest: "{{file_path_banner}}"
+   mode: "{{file_mode_banner}}"
+   owner: "{{file_owner_banner}}"
+   group: "{{file_group_banner}}"
+  notify: service reload openssh
+  tags:
+   - files
+   - install
+   - openssh
+
+- name: template create ssh_config
+  template:
+   src: "{{file_src_ssh_config}}"
+   dest: "{{file_path_ssh_config}}"
+   mode: "{{file_mode_ssh_config}}"
+   owner: "{{file_owner_ssh_config}}"
+   group: "{{file_group_ssh_config}}"
+  notify: service reload openssh
+  tags:
+   - files
+   - install
+   - openssh
+
+- name: template create sshd_config
+  template:
+   src: "{{file_src_sshd_config}}"
+   dest: "{{file_path_sshd_config}}"
+   mode: "{{file_mode_sshd_config}}"
+   owner: "{{file_owner_sshd_config}}"
+   group: "{{file_group_sshd_config}}"
+  notify: service reload openssh
+  tags:
+   - files
+   - install
+   - openssh

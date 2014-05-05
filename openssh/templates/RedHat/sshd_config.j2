@@ -1,0 +1,246 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : sshd_config
+#  |  _   _  |   Type   : openssh configuration file
+#  | [_] [_] |   Role   : openssh
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#	$OpenBSD: sshd_config,v 1.80 2008/07/02 02:24:18 djm Exp $
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/local/bin:/bin:/usr/bin
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options change a
+# default value.
+
+Port {% if not (openssh_port == None) and not (openssh_port == '') %}{{openssh_port}}{% else %}22{% endif %}
+
+{% if (openssh_address_family == 'any') or (openssh_address_family == 'ANY') or (openssh_address_family == 'all') or (openssh_address_family == 'ALL') %}
+AddressFamily any
+{% elif (openssh_address_family == 'inet') or (openssh_address_family == 'ipv4') %}
+AddressFamily inet
+{% elif (openssh_address_family == 'inet6') or (openssh_address_family == 'ipv6') %}
+AddressFamily inet6
+{% else %}
+#AddressFamily
+{% endif %}
+
+{% if not (openssh_listen_address == None) and not (openssh_listen_address == '') and not (openssh_listen_address == []) %}
+{% for listen_address in openssh_listen_address %}
+ListenAddress {{listen_address}}
+{% endfor %}
+{% else %}
+#ListenAddress 0.0.0.0
+#ListenAddress ::
+{% endif %}
+
+# Disable legacy (protocol version 1) support in the server for new
+# installations. In future the default will change to require explicit
+# activation of protocol 1
+Protocol 2
+
+# HostKey for protocol version 1
+#HostKey /etc/ssh/ssh_host_key
+# HostKeys for protocol version 2
+#HostKey /etc/ssh/ssh_host_rsa_key
+#HostKey /etc/ssh/ssh_host_dsa_key
+
+# Lifetime and size of ephemeral version 1 server key
+#KeyRegenerationInterval 1h
+#ServerKeyBits 1024
+
+# Logging
+# obsoletes QuietMode and FascistLogging
+#SyslogFacility AUTH
+SyslogFacility AUTHPRIV
+#LogLevel INFO
+
+# Authentication:
+
+#LoginGraceTime 2m
+#PermitRootLogin no
+#StrictModes yes
+#MaxAuthTries 6
+#MaxSessions 10
+
+RSAAuthentication {% if (openssh_rsa_authentication == 'false') or (openssh_rsa_authentication == 'no') or (openssh_rsa_authentication == 'disable') %}no{% else %}yes{% endif %}
+
+PubkeyAuthentication {% if (openssh_pubkey_authentication == 'false') or (openssh_pubkey_authentication == 'no') or (openssh_pubkey_authentication == 'disable') %}no{% else %}yes{% endif %}
+
+#AuthorizedKeysFile	.ssh/authorized_keys
+#AuthorizedKeysCommand none
+#AuthorizedKeysCommandRunAs nobody
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#RhostsRSAAuthentication no
+# similar for protocol version 2
+#HostbasedAuthentication no
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# RhostsRSAAuthentication and HostbasedAuthentication
+#IgnoreUserKnownHosts no
+# Don't read the user's ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to no here!
+PermitEmptyPasswords no
+PasswordAuthentication {% if (openssh_password_authentication == 'false') or (openssh_password_authentication == 'no') or (openssh_password_authentication == 'disable') %}no{% else %}yes{% endif %}
+
+# Change to no to disable s/key passwords
+#ChallengeResponseAuthentication yes
+ChallengeResponseAuthentication no
+
+# Kerberos options
+KerberosAuthentication {% if (openssh_kerberos_authentication == 'true') or (openssh_kerberos_authentication == 'yes') or (openssh_kerberos_authentication == 'enable') %}yes{% else %}no{% endif %}
+
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+#KerberosUseKuserok yes
+
+# GSSAPI options
+GSSAPIAuthentication {% if (openssh_gssapi_authentication == 'true') or (openssh_gssapi_authentication == 'yes') or (openssh_gssapi_authentication == 'enable') %}yes{% else %}no{% endif %}
+
+#GSSAPICleanupCredentials yes
+GSSAPICleanupCredentials yes
+#GSSAPIStrictAcceptorCheck yes
+#GSSAPIKeyExchange no
+
+# Set this to 'yes' to enable PAM authentication, account processing, 
+# and session processing. If this is enabled, PAM authentication will 
+# be allowed through the ChallengeResponseAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via ChallengeResponseAuthentication may bypass
+# the setting of "PermitRootLogin without-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and ChallengeResponseAuthentication to 'no'.
+#UsePAM no
+UsePAM yes
+
+# Accept locale-related environment variables
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+AcceptEnv XMODIFIERS
+
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+#X11Forwarding no
+
+X11Forwarding {% if (openssh_x11_forwarding == 'true') or (openssh_x11_forwarding == 'yes') or (openssh_x11_forwarding == 'enable') %}yes{% else %}no{% endif %}
+
+{% if (openssh_x11_forwarding == 'true') or (openssh_x11_forwarding == 'yes') or (openssh_x11_forwarding == 'enable') %}
+#X11DisplayOffset 10
+X11UseLocalhost {% if (openssh_x11_use_localhost == 'true') or (openssh_x11_use_localhost == 'yes') or (openssh_x11_use_localhost == 'enable') %}yes{% else %}no{% endif %}
+
+{% endif %}
+
+PrintMotd {% if (openssh_print_motd == 'true') or (openssh_print_motd == 'yes') or (openssh_print_motd == 'enable') %}yes{% else %}no{% endif %}
+
+PrintLastLog {% if (openssh_print_last_log == 'false') or (openssh_print_last_log == 'no') or (openssh_print_last_log == 'disable') %}no{% else %}yes{% endif %}
+
+TCPKeepAlive {% if (openssh_tcp_keep_alive == 'false') or (openssh_tcp_keep_alive == 'no') or (openssh_tcp_keep_alive == 'disable') %}no{% else %}yes{% endif %}
+
+#UseLogin no
+#UsePrivilegeSeparation yes
+#PermitUserEnvironment no
+{% if not (openssh_compression == None) and not (openssh_compression == '') %}
+Compression {{openssh_compression}}
+{% else %}
+#Compression delayed
+{% endif %}
+
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+#ShowPatchLevel no
+#UseDNS yes
+#PidFile /var/run/sshd.pid
+#MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+
+# no default banner path
+{% if (openssh_banner == 'false') or (openssh_banner == 'no') or (openssh_banner == 'disable') %}
+Banner none
+{% else %}
+Banner {{file_path_banner}}
+{% endif %}
+
+# override default of no subsystems
+Subsystem	sftp	/usr/libexec/openssh/sftp-server
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#	X11Forwarding no
+#	AllowTcpForwarding no
+#	ForceCommand cvs server
+
+#-------------------------------------------------------------------------------
+# ACCESS RESTRICTION
+#-------------------------------------------------------------------------------
+
+# Specifies whether root can log in using ssh.
+PermitRootLogin {% if (openssh_permit_root_login == 'true') or (openssh_permit_root_login == 'yes') or (openssh_permit_root_login == 'enable') %}yes{% else %}no{% endif %}
+
+
+# Login is disallowed for user names that match one of the patterns.
+{% if not (openssh_deny_users == None) and not (openssh_deny_users == '') and not (openssh_deny_users == [])%}
+DenyUsers {% for deny_users in openssh_deny_users %}{{deny_users}} {% endfor %}
+
+{% else %}
+#DenyUsers
+
+{% endif %}
+
+# Login is allowed only for user names that match one of the patterns.
+{% if not (openssh_allow_users == None) and not (openssh_allow_users == '') and not (openssh_allow_users == []) %}
+AllowUsers {% for allow_users in openssh_allow_users %}{{allow_users}} {% endfor %}
+
+{% else %}
+#AllowUsers
+
+{% endif %}
+
+# Login is disallowed for users whose primary group or
+# supplementary group list matches one of the patterns.
+{% if not (openssh_deny_groups == None) and not (openssh_deny_groups == '') and not (openssh_deny_groups == []) %}
+DenyGroups {% for deny_groups in openssh_deny_groups %}{{deny_groups}} {% endfor %}
+
+{% else %}
+#DenyGroups
+
+{% endif %}
+
+# Login is allowed only for users whose primary group or
+# supplementary group list matches one of the patterns.
+{% if not (openssh_allow_groups == None) and not (openssh_allow_groups == '') and not (openssh_allow_groups == []) %}
+AllowGroups {% for allow_groups in openssh_allow_groups %}{{allow_groups}} {% endfor %}
+
+{% else %}
+#AllowGroups
+
+{% endif %}

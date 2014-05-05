@@ -1,0 +1,64 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible variable file
+#  | [_] [_] |   Role   : openssh
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# openssh
+package_name_openssh: 'openssh'
+
+# openssh-server
+package_name_openssh_server: 'openssh-server'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# banner
+file_src_banner: "{{openssh_banner_template}}/banner.j2"
+file_path_banner: '/etc/ssh/banner'
+file_mode_banner: '0644'
+file_owner_banner: 'root'
+file_group_banner: 'root'
+
+# ssh_config
+file_src_ssh_config: "{{openssh_ssh_config_template}}/ssh_config.j2"
+file_path_ssh_config: '/etc/ssh/ssh_config'
+file_mode_ssh_config: '0644'
+file_owner_ssh_config: 'root'
+file_group_ssh_config: 'root'
+
+# sshd_config
+file_src_sshd_config: "{{openssh_sshd_config_template}}/sshd_config.j2"
+file_path_sshd_config: '/etc/ssh/sshd_config'
+file_mode_sshd_config: '0600'
+file_owner_sshd_config: 'root'
+file_group_sshd_config: 'root'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# sshd
+service_name_openssh: 'sshd'

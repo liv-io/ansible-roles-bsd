@@ -1,0 +1,313 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : openssh
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : net-misc
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages openssh.
+
+OpenSSH is a free version of SSH (Secure SHell), a program for logging into and
+executing commands on a remote machine. This package contains the secure shell
+daemon (sshd). The sshd daemon allows SSH clients to securely connect to your
+SSH server.
+
+OpenSSH is OpenBSD's version of the last free version of SSH, bringing it up to
+date in terms of security and features.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: openssh
+       openssh_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+     - role: openssh
+       openssh_state: 'enable'
+       openssh_allow_users:
+        - 'user01'
+        - 'user02'
+        - 'user03'
+       openssh_password_authentication: 'no'
+       openssh_listen_address:
+        - '0.0.0.0'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: openssh
+       openssh_state: 'disable'
+       openssh_state: 'enable'
+       openssh_allow_users:
+        - 'user01'
+        - 'user02'
+        - 'user03'
+       openssh_password_authentication: 'no'
+       openssh_listen_address:
+        - '0.0.0.0'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: openssh
+       openssh_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  openssh_state
+    Specify predetermined 'openssh_state' variable (string).
+    Notice : 'openssh' is a core package and can therefore not be removed.
+    Warning: 'openssh' is a core service and should therefore not be disabled.
+
+    Install: 'true' | 'yes' | 'install'
+    Enable : 'start' | 'on' | 'enable'
+    Disable: 'stop' | 'off' | 'disable'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'enable'
+
+  openssh_address_family
+    Specify predetermined 'openssh_address_family' variable (string).
+
+    Any        : 'any' | 'ANY' | 'all' | 'ALL'
+    IPv4 only  : 'inet' | 'ipv4'
+    IPv6 only  : 'inet6' | 'ipv6'
+    App default: '' | None
+    Default    : ''
+
+  openssh_allow_groups
+    Specify arbitrary 'openssh_allow_groups' variable (array).
+
+    Examples: ['group1', 'group2', 'group3']
+    None    : []
+    Default : []
+
+  openssh_allow_users
+    Specify arbitrary 'openssh_allow_users' variable (array).
+
+    Examples: ['user1', 'user2', 'user3']
+    None    : []
+    Default : []
+
+  openssh_banner
+    Specify predetermined 'openssh_banner' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'enable'
+
+  openssh_banner_template
+    Specify arbitrary 'openssh_banner_template' variable (string).
+    Any value other than 'main' requires a Jinja2 file to be created.
+    The custom Jinja2 file for an example configuration called 'example' needs
+    to be placed as follows: 'openssh/templates/example/banner.j2'
+
+    Examples: 'example' | 'environment' | 'hostname'
+    Default : 'main'
+
+  openssh_compression
+    Specify arbitrary 'openssh_compression' variable (string).
+
+    Examples   : 'yes' | 'no' | 'delayed'
+    App default: '' | None
+    Default    : ''
+
+  openssh_deny_groups
+    Specify arbitrary 'openssh_deny_groups' variable (array).
+
+    Examples: ['group1', 'group2', 'group3']
+    None    : []
+    Default : []
+
+  openssh_deny_users
+    Specify arbitrary 'openssh_deny_users' variable (array).
+
+    Examples: ['user1', 'user2', 'user3']
+    None    : []
+    Default : []
+
+  openssh_gssapi_authentication
+    Specify predetermined 'openssh_gssapi_authentication' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'no'
+
+  openssh_kerberos_authentication
+    Specify predetermined 'openssh_kerberos_authentication' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'no'
+
+  openssh_listen_address
+    Specify arbitrary 'openssh_listen_address' variable (array).
+    Examples   : ['0.0.0.0' | '127.0.0.1', '::', '::1'] |
+                 ['192.168.1.2', '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458']
+    App default: [] | None
+    Default    : ['0.0.0.0']
+
+  openssh_password_authentication
+    Specify predetermined 'openssh_password_authentication' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'yes'
+
+  openssh_permit_root_login
+    Specify predetermined 'openssh_permit_root_login' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'no'
+
+  openssh_port
+    Specify arbitrary 'openssh_port' variable (string).
+
+    Examples: '22' | '222' | '8022'
+    Default : '22'
+
+  openssh_print_motd
+    Specify predetermined 'openssh_print_motd' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'no'
+
+  openssh_print_last_log
+    Specify predetermined 'openssh_print_last_log' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'yes'
+
+  openssh_pubkey_authentication
+    Specify predetermined 'openssh_pubkey_authentication' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'yes'
+
+  openssh_rsa_authentication
+    Specify predetermined 'openssh_rsa_authentication' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'yes'
+
+  openssh_ssh_config_template
+    Specify arbitrary 'openssh_ssh_config_template' variable (string).
+    Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be created.
+    The custom Jinja2 file for an example configuration called 'example' needs
+    to be placed as follows: 'openssh/templates/example/ssh_config.j2'
+
+    Examples: 'example' | 'environment' | 'hostname'
+    Default : "{{ansible_os_family}}"
+
+  openssh_sshd_config_template
+    Specify arbitrary 'openssh_sshd_config_template' variable (string).
+    Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be created.
+    The custom Jinja2 file for an example configuration called 'example' needs
+    to be placed as follows: 'openssh/templates/example/sshd_config.j2'
+
+    Examples: 'example' | 'environment' | 'hostname'
+    Default : "{{ansible_os_family}}"
+
+  openssh_tcp_keep_alive
+    Specify predetermined 'openssh_tcp_keep_alive' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'yes'
+
+  openssh_x11_forwarding
+    Specify predetermined 'openssh_x11_forwarding' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'no'
+
+  openssh_x11_use_localhost
+    Specify predetermined 'openssh_x11_use_localhost' variable (string).
+
+    Enable : 'true' | 'yes' | 'enable'
+    Disable: 'false' | 'no' | 'disable'
+    Default: 'yes'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  openssh: >= 5.3
+    CentOS, RedHat, Gentoo
+
+  openssh-server: >= 5.3
+    RedHat, CentOS
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
