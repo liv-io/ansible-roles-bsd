@@ -1,0 +1,22 @@
+--------------------------------------------------------------------------------
+CREDITS
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   This file lists people that have contributed to the Ansible
+  |  _   _  |   role. The content is sorted by name and formatted to allow
+  | [_] [_] |   easy util_linuxping by scripts.
+  |____~____|
+     ___\\__    The fields are:
+  \\/|     |\   N: name                        P: PGP key ID and fingerprint
+   \/|_____|\\  E: e-mail                      D: description
+     _|| ||_//  W: webpage                     S: snail-mail address
+    (__| |__)
+--------------------------------------------------------------------------------
+
+N: lk
+E: lk@robomon.org
+W: http://www.robomon.org/
+P: 4096R/BC948B8A 47B1 A95A 5A19 93BD EA40 B291 EBBE 3BB0 BC94 8B8A
+D: Original author
+S: (ask for current address)
