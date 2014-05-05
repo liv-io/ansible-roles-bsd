@@ -1,0 +1,30 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : netsniff_ng
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not (netsniff_ng_state == 'false') and not (netsniff_ng_state == 'no') and not (netsniff_ng_state == 'remove')
+
+- name: task include remove
+  include: remove.yml
+  when: (netsniff_ng_state == 'false') or (netsniff_ng_state == 'no') or (netsniff_ng_state == 'remove')
