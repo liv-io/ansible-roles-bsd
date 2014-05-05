@@ -1,0 +1,118 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : iptraf_ng
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : net-analyzer
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages iptraf_ng.
+
+IPTraf-ng is a console-based network monitoring utility. IPTraf gathers data
+like TCP connection packet and byte counts, interface statistics and activity
+indicators, TCP/UDP traffic breakdowns, and LAN station packet and byte counts.
+IPTraf-ng features include an IP traffic monitor which shows TCP flag
+information, packet and byte counts, ICMP details, OSPF packet types, and
+oversized IP packet warnings; interface statistics showing IP, TCP, UDP, ICMP,
+non-IP and other IP packet counts, IP checksum errors, interface activity and
+packet size counts; a TCP and UDP service monitor showing counts of incoming and
+outgoing packets for common TCP and UDP application ports, a LAN statistics
+module that discovers active hosts and displays statistics about their activity;
+TCP, UDP and other protocol display filters so you can view just the traffic you
+want; logging; support for Ethernet, FDDI, ISDN, SLIP, PPP, and loopback
+interfaces; and utilization of the built-in raw socket interface of the Linux
+kernel, so it can be used on a wide variety of supported network cards.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: iptraf_ng
+       iptraf_ng_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: iptraf_ng
+       iptraf_ng_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  iptraf_ng_state
+    Specify predetermined 'iptraf_ng_state' variable (string).
+
+    Install: 'true' | 'yes' | 'install'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'install'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  iptraf-ng: >= 1.1
+    CentOS, RedHat, Gentoo
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
