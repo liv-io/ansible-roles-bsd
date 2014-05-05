@@ -1,0 +1,71 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible variable file
+#  | [_] [_] |   Role   : iptables
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# iptables
+package_name_iptables: 'iptables'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# iptables
+file_src_iptables: "{{iptables_iptables_template}}/iptables.j2"
+file_path_iptables: '/etc/sysconfig/iptables'
+file_mode_iptables: '0600'
+file_owner_iptables: 'root'
+file_group_iptables: 'root'
+
+# iptables-config
+file_src_iptables_config: "{{iptables_iptables_config_template}}/iptables-config.j2"
+file_path_iptables_config: '/etc/sysconfig/iptables-config'
+file_mode_iptables_config: '0600'
+file_owner_iptables_config: 'root'
+file_group_iptables_config: 'root'
+
+# ip6tables
+file_src_ip6tables: "{{iptables_ip6tables_template}}/ip6tables.j2"
+file_path_ip6tables: '/etc/sysconfig/ip6tables'
+file_mode_ip6tables: '0600'
+file_owner_ip6tables: 'root'
+file_group_ip6tables: 'root'
+
+# ip6tables-config
+file_src_ip6tables_config: "{{iptables_ip6tables_config_template}}/ip6tables-config.j2"
+file_path_ip6tables_config: '/etc/sysconfig/ip6tables-config'
+file_mode_ip6tables_config: '0600'
+file_owner_ip6tables_config: 'root'
+file_group_ip6tables_config: 'root'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# iptables
+service_name_iptables: 'iptables'
+
+# iptables
+service_name_ip6tables: 'ip6tables'

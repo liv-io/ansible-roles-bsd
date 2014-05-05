@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : iptables
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not (iptables_state == 'false') and not (iptables_state == 'no') and not (iptables_state == 'remove')
+
+- name: task include enable
+  include: enable.yml
+  when: (iptables_state == 'start') or (iptables_state == 'on') or (iptables_state == 'enable')
+
+- name: task include disable
+  include: disable.yml
+  when: (iptables_state == 'stop') or (iptables_state == 'off') or (iptables_state == 'disable')
+
+- name: task include remove
+  include: remove.yml
+  when: (iptables_state == 'false') or (iptables_state == 'no') or (iptables_state == 'remove')

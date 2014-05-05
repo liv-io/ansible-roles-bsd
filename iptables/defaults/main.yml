@@ -1,0 +1,237 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible default file
+#  | [_] [_] |   Role   : iptables
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# iptables_state
+iptables_state: 'enable'
+
+# iptables_filter_forward_v4_custom
+iptables_filter_forward_v4_custom: []
+
+# iptables_filter_forward_v4_default
+iptables_filter_forward_v4_default: []
+
+# iptables_filter_forward_v4_icmp
+iptables_filter_forward_v4_icmp:
+ - '#-A FORWARD -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"'
+ - '#-A FORWARD -p icmp -m icmp --icmp-type 3/0 -j ACCEPT -m comment --comment "destination-unreachable/network-unreachable (ICMP type 3 code 0)"'
+ - '#-A FORWARD -p icmp -m icmp --icmp-type 3/1 -j ACCEPT -m comment --comment "destination-unreachable/host-unreachable (ICMP type 3 code 1)"'
+ - '#-A FORWARD -p icmp -m icmp --icmp-type 3/2 -j ACCEPT -m comment --comment "destination-unreachable/protocol-unreachable (ICMP type 3 code 2)"'
+ - '#-A FORWARD -p icmp -m icmp --icmp-type 3/3 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMP type 3 code 3)"'
+ - '#-A FORWARD -p icmp -m icmp --icmp-type 3/4 -j ACCEPT -m comment --comment "destination-unreachable/fragmentation-needed (ICMP type 3 code 4)"'
+ - '#-A FORWARD -p icmp -m icmp --icmp-type 4 -j ACCEPT -m comment --comment "source-quench (ICMP type 4)"'
+ - '#-A FORWARD -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"'
+ - '#-A FORWARD -p icmp -m icmp --icmp-type 11/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMP type 11 code 0)"'
+ - '#-A FORWARD -p icmp -m icmp --icmp-type 11/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMP type 11 code 1)"'
+
+# iptables_filter_forward_v4_policy
+iptables_filter_forward_v4_policy: 'DROP'
+
+# iptables_filter_forward_v6_custom
+iptables_filter_forward_v6_custom: []
+
+# iptables_filter_forward_v6_default
+iptables_filter_forward_v6_default: []
+
+# iptables_filter_forward_v6_icmp
+iptables_filter_forward_v6_icmp:
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 1/0 -j ACCEPT -m comment --comment "destination-unreachable/no-route (ICMPv6 type 1 code 0)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 1/1 -j ACCEPT -m comment --comment "destination-unreachable/communication-prohibited (ICMPv6 type 1 code 1)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 1/3 -j ACCEPT -m comment --comment "destination-unreachable/address-unreachable (ICMPv6 type 1 code 3)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 1/4 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMPv6 type 1 code 4)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 2 -j ACCEPT -m comment --comment "packet-too-big (ICMPv6 type 2)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 3/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMPv6 type 3 code 0)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 3/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMPv6 type 3 code 1)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 4/0 -j ACCEPT -m comment --comment "parameter-problem/bad-header (ICMPv6 type 4 code 0)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 4/1 -j ACCEPT -m comment --comment "parameter-problem/unknown-header-type (ICMPv6 type 4 code 1)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 4/2 -j ACCEPT -m comment --comment "parameter-problem/unknown-option (ICMPv6 type 4 code 2)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 133 -j ACCEPT -m comment --comment "router-solicitation (ICMPv6 type 133)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 134 -j ACCEPT -m comment --comment "router-advertisement (ICMPv6 type 134)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 135 -j ACCEPT -m comment --comment "neighbour-solicitation (ICMPv6 type 135)"'
+ - '#-A FORWARD -p icmpv6 --icmpv6-type 136 -j ACCEPT -m comment --comment "neighbour-advertisement (ICMPv6 type 136)"'
+
+# iptables_filter_forward_v6_policy
+iptables_filter_forward_v6_policy: 'DROP'
+
+# iptables_filter_input_v4_custom
+iptables_filter_input_v4_custom: []
+
+# iptables_filter_input_v4_default
+iptables_filter_input_v4_default:
+ - '-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 22 -j ACCEPT -m comment --comment "SSH - from Private Address Space (RFC 1918)"'
+ - '-A INPUT -m state --state NEW -m tcp -p tcp -s 172.16.0.0/12 --dport 22 -j ACCEPT -m comment --comment "SSH - from Private Address Space (RFC 1918)"'
+ - '-A INPUT -m state --state NEW -m tcp -p tcp -s 10.0.0.0/8 --dport 22 -j ACCEPT -m comment --comment "SSH - from Private Address Space (RFC 1918)"'
+
+# iptables_filter_input_v4_icmp
+iptables_filter_input_v4_icmp:
+ - '#-A INPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"'
+ - '#-A INPUT -p icmp -m icmp --icmp-type 3/0 -j ACCEPT -m comment --comment "destination-unreachable/network-unreachable (ICMP type 3 code 0)"'
+ - '#-A INPUT -p icmp -m icmp --icmp-type 3/1 -j ACCEPT -m comment --comment "destination-unreachable/host-unreachable (ICMP type 3 code 1)"'
+ - '#-A INPUT -p icmp -m icmp --icmp-type 3/2 -j ACCEPT -m comment --comment "destination-unreachable/protocol-unreachable (ICMP type 3 code 2)"'
+ - '#-A INPUT -p icmp -m icmp --icmp-type 3/3 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMP type 3 code 3)"'
+ - '-A INPUT -p icmp -m icmp --icmp-type 3/4 -j ACCEPT -m comment --comment "destination-unreachable/fragmentation-needed (ICMP type 3 code 4)"'
+ - '#-A INPUT -p icmp -m icmp --icmp-type 4 -j ACCEPT -m comment --comment "source-quench (ICMP type 4)"'
+ - '#-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"'
+ - '#-A INPUT -p icmp -m icmp --icmp-type 11/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMP type 11 code 0)"'
+ - '#-A INPUT -p icmp -m icmp --icmp-type 11/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMP type 11 code 1)"'
+
+# iptables_filter_input_v4_policy
+iptables_filter_input_v4_policy: 'DROP'
+
+# iptables_filter_input_v6_custom
+iptables_filter_input_v6_custom: []
+
+# iptables_filter_input_v6_default
+iptables_filter_input_v6_default: []
+
+# iptables_filter_input_v6_icmp
+iptables_filter_input_v6_icmp:
+ - '#-A INPUT -p icmpv6 --icmpv6-type 1/0 -j ACCEPT -m comment --comment "destination-unreachable/no-route (ICMPv6 type 1 code 0)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 1/1 -j ACCEPT -m comment --comment "destination-unreachable/communication-prohibited (ICMPv6 type 1 code 1)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 1/3 -j ACCEPT -m comment --comment "destination-unreachable/address-unreachable (ICMPv6 type 1 code 3)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 1/4 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMPv6 type 1 code 4)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 2 -j ACCEPT -m comment --comment "packet-too-big (ICMPv6 type 2)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 3/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMPv6 type 3 code 0)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 3/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMPv6 type 3 code 1)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 4/0 -j ACCEPT -m comment --comment "parameter-problem/bad-header (ICMPv6 type 4 code 0)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 4/1 -j ACCEPT -m comment --comment "parameter-problem/unknown-header-type (ICMPv6 type 4 code 1)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 4/2 -j ACCEPT -m comment --comment "parameter-problem/unknown-option (ICMPv6 type 4 code 2)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 133 -j ACCEPT -m comment --comment "router-solicitation (ICMPv6 type 133)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 134 -j ACCEPT -m comment --comment "router-advertisement (ICMPv6 type 134)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 135 -j ACCEPT -m comment --comment "neighbour-solicitation (ICMPv6 type 135)"'
+ - '#-A INPUT -p icmpv6 --icmpv6-type 136 -j ACCEPT -m comment --comment "neighbour-advertisement (ICMPv6 type 136)"'
+
+# iptables_filter_input_v6_policy
+iptables_filter_input_v6_policy: 'DROP'
+
+# iptables_filter_output_v4_custom
+iptables_filter_output_v4_custom: []
+
+# iptables_filter_output_v4_default
+iptables_filter_output_v4_default:
+ - '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"'
+ - '-A OUTPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"'
+ - '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT -m comment --comment "HTTP - to any"'
+ - '-A OUTPUT -m state --state NEW -m udp -p udp --dport 123 -j ACCEPT -m comment --comment "NTP - to any"'
+ - '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT -m comment --comment "HTTPS - to any"'
+
+# iptables_filter_output_v4_icmp
+iptables_filter_output_v4_icmp:
+ - '#-A OUTPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"'
+ - '#-A OUTPUT -p icmp -m icmp --icmp-type 3/0 -j ACCEPT -m comment --comment "destination-unreachable/network-unreachable (ICMP type 3 code 0)"'
+ - '#-A OUTPUT -p icmp -m icmp --icmp-type 3/1 -j ACCEPT -m comment --comment "destination-unreachable/host-unreachable (ICMP type 3 code 1)"'
+ - '#-A OUTPUT -p icmp -m icmp --icmp-type 3/2 -j ACCEPT -m comment --comment "destination-unreachable/protocol-unreachable (ICMP type 3 code 2)"'
+ - '#-A OUTPUT -p icmp -m icmp --icmp-type 3/3 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMP type 3 code 3)"'
+ - '-A OUTPUT -p icmp -m icmp --icmp-type 3/4 -j ACCEPT -m comment --comment "destination-unreachable/fragmentation-needed (ICMP type 3 code 4)"'
+ - '#-A OUTPUT -p icmp -m icmp --icmp-type 4 -j ACCEPT -m comment --comment "source-quench (ICMP type 4)"'
+ - '-A OUTPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"'
+ - '#-A OUTPUT -p icmp -m icmp --icmp-type 11/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMP type 11 code 0)"'
+ - '#-A OUTPUT -p icmp -m icmp --icmp-type 11/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMP type 11 code 1)"'
+
+# iptables_filter_output_v4_policy
+iptables_filter_output_v4_policy: 'DROP'
+
+# iptables_filter_output_v6_custom
+iptables_filter_output_v6_custom: []
+
+# iptables_filter_output_v6_default
+iptables_filter_output_v6_default: []
+
+# iptables_filter_output_v6_icmp
+iptables_filter_output_v6_icmp:
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 1/0 -j ACCEPT -m comment --comment "destination-unreachable/no-route (ICMPv6 type 1 code 0)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 1/1 -j ACCEPT -m comment --comment "destination-unreachable/communication-prohibited (ICMPv6 type 1 code 1)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 1/3 -j ACCEPT -m comment --comment "destination-unreachable/address-unreachable (ICMPv6 type 1 code 3)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 1/4 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMPv6 type 1 code 4)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 2 -j ACCEPT -m comment --comment "packet-too-big (ICMPv6 type 2)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 3/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMPv6 type 3 code 0)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 3/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMPv6 type 3 code 1)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 4/0 -j ACCEPT -m comment --comment "parameter-problem/bad-header (ICMPv6 type 4 code 0)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 4/1 -j ACCEPT -m comment --comment "parameter-problem/unknown-header-type (ICMPv6 type 4 code 1)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 4/2 -j ACCEPT -m comment --comment "parameter-problem/unknown-option (ICMPv6 type 4 code 2)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 133 -j ACCEPT -m comment --comment "router-solicitation (ICMPv6 type 133)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 134 -j ACCEPT -m comment --comment "router-advertisement (ICMPv6 type 134)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 135 -j ACCEPT -m comment --comment "neighbour-solicitation (ICMPv6 type 135)"'
+ - '#-A OUTPUT -p icmpv6 --icmpv6-type 136 -j ACCEPT -m comment --comment "neighbour-advertisement (ICMPv6 type 136)"'
+
+# iptables_filter_output_v6_policy
+iptables_filter_output_v6_policy: 'DROP'
+
+# iptables_ip6tables_config_template
+iptables_ip6tables_config_template: 'main'
+
+# iptables_ip6tables_template
+iptables_ip6tables_template: 'main'
+
+# iptables_iptables_config_template
+iptables_iptables_config_template: 'main'
+
+# iptables_iptables_template
+iptables_iptables_template: 'main'
+
+# iptables_mangle_forward_v4
+iptables_mangle_forward_v4: []
+
+# iptables_mangle_forward_v4_policy
+iptables_mangle_forward_v4_policy: 'ACCEPT'
+
+# iptables_mangle_input_v4
+iptables_mangle_input_v4: []
+
+# iptables_mangle_input_v4_policy
+iptables_mangle_input_v4_policy: 'ACCEPT'
+
+# iptables_mangle_output_v4
+iptables_mangle_output_v4: []
+
+# iptables_mangle_output_v4_policy
+iptables_mangle_output_v4_policy: 'ACCEPT'
+
+# iptables_mangle_postrouting_v4
+iptables_mangle_postrouting_v4: []
+
+# iptables_mangle_postrouting_v4_policy
+iptables_mangle_postrouting_v4_policy: 'ACCEPT'
+
+# iptables_mangle_prerouting_v4
+iptables_mangle_prerouting_v4: []
+
+# iptables_mangle_prerouting_v4_policy
+iptables_mangle_prerouting_v4_policy: 'ACCEPT'
+
+# iptables_nat_postrouting_v4
+iptables_nat_postrouting_v4: []
+
+# iptables_nat_postrouting_v4_policy
+iptables_nat_postrouting_v4_policy: 'ACCEPT'
+
+# iptables_nat_prerouting_v4
+iptables_nat_prerouting_v4: []
+
+# iptables_nat_prerouting_v4_policy
+iptables_nat_prerouting_v4_policy: 'ACCEPT'

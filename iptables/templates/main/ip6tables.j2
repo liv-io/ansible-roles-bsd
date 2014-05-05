@@ -1,0 +1,130 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : ip6tables
+#  |  _   _  |   Type   : iptables configuration file
+#  | [_] [_] |   Role   : iptables
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+# This file defines ip6tables rules.
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILTER
+#-------------------------------------------------------------------------------
+
+*filter
+
+# Set the default policy and zero the packet and byte counters
+:INPUT {% if (iptables_filter_input_v6_policy == 'accept') or (iptables_filter_input_v6_policy == 'ACCEPT') %}ACCEPT{% else %}DROP{% endif %} [0:0]
+:FORWARD {% if (iptables_filter_forward_v6_policy == 'drop') or (iptables_filter_forward_v6_policy == 'DROP') %}DROP{% else %}ACCEPT{% endif %} [0:0]
+:OUTPUT {% if (iptables_filter_output_v6_policy == 'drop') or (iptables_filter_output_v6_policy == 'DROP') %}DROP{% else %}ACCEPT{% endif %} [0:0]
+
+#-------------------------------------------------------------------------------
+# INPUT
+#-------------------------------------------------------------------------------
+
+# Established and related connections
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT -m comment --comment "Incoming established and related connections"
+-A INPUT -i lo -j ACCEPT -m comment --comment "Incoming loopback connections"
+
+# ICMP rules
+{% if not (iptables_filter_input_v6_icmp == None) and not (iptables_filter_input_v6_icmp == '') and not (iptables_filter_input_v6_icmp == []) %}
+{% for filter_input_v6_icmp in iptables_filter_input_v6_icmp %}
+{{filter_input_v6_icmp}}
+{% endfor %}
+{% endif %}
+
+# Default rules
+{% if not (iptables_filter_input_v6_default == None) and not (iptables_filter_input_v6_default == '') and not (iptables_filter_input_v6_default == []) %}
+{% for filter_input_v6_default in iptables_filter_input_v6_default %}
+{{filter_input_v6_default}}
+{% endfor %}
+{% endif %}
+
+# Custom rules
+{% if not (iptables_filter_input_v6_custom == None) and not (iptables_filter_input_v6_custom == '') and not (iptables_filter_input_v6_custom == []) %}
+{% for filter_input_v6_custom in iptables_filter_input_v6_custom %}
+{{filter_input_v6_custom}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# FORWARD
+#-------------------------------------------------------------------------------
+
+# Established and related connections
+-A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT -m comment --comment "established and related connections"
+-A FORWARD -i lo -j ACCEPT -m comment --comment "loopback connections"
+
+# ICMP rules
+{% if not (iptables_filter_forward_v6_icmp == None) and not (iptables_filter_forward_v6_icmp == '') and not (iptables_filter_forward_v6_icmp == []) %}
+{% for filter_forward_v6_icmp in iptables_filter_forward_v6_icmp %}
+{{filter_forward_v6_icmp}}
+{% endfor %}
+{% endif %}
+
+# Default rules
+{% if not (iptables_filter_forward_v6_default == None) and not (iptables_filter_forward_v6_default == '') and not (iptables_filter_forward_v6_default == []) %}
+{% for filter_forward_v6_default in iptables_filter_forward_v6_default %}
+{{filter_forward_v6_default}}
+{% endfor %}
+{% endif %}
+
+# Custom rules
+{% if not (iptables_filter_forward_v6_custom == None) and not (iptables_filter_forward_v6_custom == '') and not (iptables_filter_forward_v6_custom == []) %}
+{% for filter_forward_v6_custom in iptables_filter_forward_v6_custom %}
+{{filter_forward_v6_custom}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# OUTPUT
+#-------------------------------------------------------------------------------
+
+# Established and related connections
+-A OUTPUT -m state --state ESTABLISHED,RELATED -j ACCEPT -m comment --comment "established and related connections"
+-A OUTPUT -o lo -j ACCEPT -m comment --comment "loopback connections"
+
+# ICMP rules
+{% if not (iptables_filter_output_v6_icmp == None) and not (iptables_filter_output_v6_icmp == '') and not (iptables_filter_output_v6_icmp == []) %}
+{% for filter_output_v6_icmp in iptables_filter_output_v6_icmp %}
+{{filter_output_v6_icmp}}
+{% endfor %}
+{% endif %}
+
+# Default rules
+{% if not (iptables_filter_output_v6_default == None) and not (iptables_filter_output_v6_default == '') and not (iptables_filter_output_v6_default == []) %}
+{% for filter_output_v6_default in iptables_filter_output_v6_default %}
+{{filter_output_v6_default}}
+{% endfor %}
+{% endif %}
+
+# Custom rules
+{% if not (iptables_filter_output_v6_custom == None) and not (iptables_filter_output_v6_custom == '') and not (iptables_filter_output_v6_custom == []) %}
+{% for filter_output_v6_custom in iptables_filter_output_v6_custom %}
+{{filter_output_v6_custom}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# COMMIT
+#-------------------------------------------------------------------------------
+
+# Commit *filter
+COMMIT
