@@ -1,0 +1,30 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : multitail
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not (multitail_state == 'false') and not (multitail_state == 'no') and not (multitail_state == 'remove')
+
+- name: task include remove
+  include: remove.yml
+  when: (multitail_state == 'false') or (multitail_state == 'no') or (multitail_state == 'remove')
