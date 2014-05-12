@@ -4,7 +4,7 @@ README
        o
    ____|____
   |         |   Name   : ansible-roles
-  |  _   _  |   Type   : git repository
+  |  _   _  |   Type   : ansible roles
   | [_] [_] |   Summary: robomon - ansible roles
   |____~____|
      ___\\__    Authors: robomon community
