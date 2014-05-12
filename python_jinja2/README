@@ -1,0 +1,114 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : python_jinja2
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : dev-python
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages python_jinja2.
+
+Jinja2 is a template engine written in pure Python. It provides a Django
+inspired non-XML syntax but supports inline expressions and an optional
+sandboxed environment.
+If you have any exposure to other text-based template languages, such as Smarty
+or Django, you should feel right at home with Jinja2. It's both designer and
+developer friendly by sticking to Python's principles and adding functionality
+useful for templating environments.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: python_jinja2
+       python_jinja2_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: python_jinja2
+       python_jinja2_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  python_jinja2_state
+    Specify predetermined 'python_jinja2_state' variable (string).
+
+    Install: 'true' | 'yes' | 'install'
+    Remove : 'false' | 'no' | 'remove'
+    Default: 'install'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  python-jinja2: >= 2.2
+    RedHat, CentOS
+
+  jinja: >= 2.7
+    Gentoo
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible: >= 1.6
+
+  Python: >= 2.4
+
+  Python-Crypto: >= 2.0
+
+  Python-Jinja2: >= 2.0
+
+  Python-Paramiko: >= 1.0
+
+  Python-YAML: >= 3.0
+
+  sshpass: >= 1.0
+
+MANAGED NODE
+  Python: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat 6: Testing
+
+  CentOS 6: Testing
+
+  Gentoo: Testing
+
+--------------------------------------------------------------------------------
+NOTICE
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
