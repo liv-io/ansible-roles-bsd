@@ -41,7 +41,7 @@
    - remove
    - bind_utils
 
-- name: package remove bind-tools
+- name: package remove bind-utils
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

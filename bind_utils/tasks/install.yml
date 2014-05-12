@@ -41,7 +41,7 @@
    - install
    - bind_utils
 
-- name: package install bind-tools
+- name: package install bind-utils
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"
