@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   diffstat: >= 1.5
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

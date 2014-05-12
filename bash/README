@@ -163,7 +163,7 @@ DEPENDENCIES
 
 PACKAGES
   bash: >= 4.0
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

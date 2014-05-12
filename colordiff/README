@@ -57,7 +57,7 @@ DEPENDENCIES
 
 PACKAGES
   colordiff: >= 1.0
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

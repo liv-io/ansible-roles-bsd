@@ -62,7 +62,7 @@ DEPENDENCIES
 
 PACKAGES
   scrub: >= 2.2
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

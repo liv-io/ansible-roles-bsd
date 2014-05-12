@@ -62,7 +62,7 @@ DEPENDENCIES
 
 PACKAGES
   lshw: >= 02.14
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

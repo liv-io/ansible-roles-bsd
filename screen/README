@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   screen: >= 4.0
-    CentOS, RedHat
+    RedHat, CentOS
 
   app-misc/screen: >= 4.0
     Gentoo

@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   stress: >= 1.0
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

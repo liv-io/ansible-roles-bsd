@@ -73,7 +73,7 @@ DEPENDENCIES
 
 PACKAGES
   sysbench: >= 0.4
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

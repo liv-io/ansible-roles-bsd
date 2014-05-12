@@ -58,7 +58,7 @@ DEPENDENCIES
 
 PACKAGES
   ncdu: >= 1.7
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

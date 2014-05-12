@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   net-tools: >= 1.60
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

@@ -63,7 +63,7 @@ DEPENDENCIES
 
 PACKAGES
   ssldump: >= 0.9
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

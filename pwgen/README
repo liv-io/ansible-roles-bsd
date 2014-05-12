@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   pwgen: >= 2.06
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

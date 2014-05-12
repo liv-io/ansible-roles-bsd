@@ -262,7 +262,7 @@ DEPENDENCIES
 
 PACKAGES
   openssh: >= 5.3
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
   openssh-server: >= 5.3
     RedHat, CentOS

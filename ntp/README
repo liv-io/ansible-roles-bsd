@@ -160,7 +160,7 @@ DEPENDENCIES
 
 PACKAGES
   ntp: >= 4.2
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
   ntpdate

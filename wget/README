@@ -64,7 +64,7 @@ DEPENDENCIES
 
 PACKAGES
   wget: >= 1.12
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

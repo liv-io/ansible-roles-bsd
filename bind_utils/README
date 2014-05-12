@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   bind-utils: >= 9.8
-    CentOS, RedHat
+    RedHat, CentOS
 
   bind-tools: >= 9.9
     Gentoo

@@ -58,7 +58,7 @@ DEPENDENCIES
 
 PACKAGES
   coreutils: >= 8.2
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

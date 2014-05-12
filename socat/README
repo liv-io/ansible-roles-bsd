@@ -62,7 +62,7 @@ DEPENDENCIES
 
 PACKAGES
   socat: >= 1.7.2.3
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

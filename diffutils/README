@@ -65,7 +65,7 @@ DEPENDENCIES
 
 PACKAGES
   diffutils: >= 3.3
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

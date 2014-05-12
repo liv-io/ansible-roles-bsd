@@ -63,7 +63,7 @@ DEPENDENCIES
 
 PACKAGES
   unzip: >= 6.0
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

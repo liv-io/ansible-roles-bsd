@@ -59,7 +59,7 @@ DEPENDENCIES
 
 PACKAGES
   gzip: >= 1.3
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

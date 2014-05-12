@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   splint: >= 3.1
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

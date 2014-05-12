@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   dstat: >= 0.7
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

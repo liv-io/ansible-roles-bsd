@@ -61,7 +61,7 @@ DEPENDENCIES
 
 PACKAGES
   strace: >= 4.5
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

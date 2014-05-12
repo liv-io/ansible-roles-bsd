@@ -61,7 +61,7 @@ DEPENDENCIES
 
 PACKAGES
   iputils: >= 20071127
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

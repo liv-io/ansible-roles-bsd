@@ -81,7 +81,7 @@ DEPENDENCIES
 
 PACKAGES
   atop: >= 1.27
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

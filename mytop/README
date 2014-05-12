@@ -58,7 +58,7 @@ DEPENDENCIES
 
 PACKAGES
   mytop: >= 1.6
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

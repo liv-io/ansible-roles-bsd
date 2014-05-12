@@ -63,7 +63,7 @@ DEPENDENCIES
 
 PACKAGES
   ngrep: >= 1.45
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

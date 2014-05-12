@@ -62,7 +62,7 @@ DEPENDENCIES
 
 PACKAGES
   findutils: >= 4.4
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

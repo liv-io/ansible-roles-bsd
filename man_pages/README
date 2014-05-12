@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   man-pages: >= 3.22
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

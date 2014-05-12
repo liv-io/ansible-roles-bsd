@@ -63,7 +63,7 @@ DEPENDENCIES
 
 PACKAGES
   ltrace: >= 0.5
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

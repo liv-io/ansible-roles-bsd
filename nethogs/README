@@ -62,7 +62,7 @@ DEPENDENCIES
 
 PACKAGES
   nethogs: >= 0.8
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

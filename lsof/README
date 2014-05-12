@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   lsof: >= 4.8
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

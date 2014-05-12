@@ -69,7 +69,7 @@ DEPENDENCIES
 
 PACKAGES
   multitail: >= 5.2
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

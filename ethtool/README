@@ -61,7 +61,7 @@ DEPENDENCIES
 
 PACKAGES
   ethtool: >= 3.12
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

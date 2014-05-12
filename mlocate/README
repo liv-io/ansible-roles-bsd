@@ -61,7 +61,7 @@ DEPENDENCIES
 
 PACKAGES
   mlocate: >= 0.22
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

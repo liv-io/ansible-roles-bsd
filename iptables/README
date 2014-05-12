@@ -533,7 +533,7 @@ DEPENDENCIES
 
 PACKAGES
   iptables: >= 1.4
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

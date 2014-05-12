@@ -61,7 +61,7 @@ DEPENDENCIES
 
 PACKAGES
   iproute: >= 2.6
-    CentOS, RedHat
+    RedHat, CentOS
 
   iproute2: >= 3.8
     Gentoo

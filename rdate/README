@@ -59,7 +59,7 @@ DEPENDENCIES
 
 PACKAGES
   rdate: >= 1.4
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

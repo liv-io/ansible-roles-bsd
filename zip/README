@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   zip: >= 3.0
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

@@ -72,7 +72,7 @@ DEPENDENCIES
 
 PACKAGES
   moreutils: >= 0.40
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

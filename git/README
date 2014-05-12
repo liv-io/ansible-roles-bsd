@@ -59,7 +59,7 @@ DEPENDENCIES
 
 PACKAGES
   git: >= 1.7
-    CentOS, RedHat
+    RedHat, CentOS
 
   dev-vcs/git: >= 1.8
     Gentoo

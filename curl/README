@@ -61,7 +61,7 @@ DEPENDENCIES
 
 PACKAGES
   curl: >= 7.19
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

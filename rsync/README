@@ -64,7 +64,7 @@ DEPENDENCIES
 
 PACKAGES
   rsync: >= 3.0.6
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

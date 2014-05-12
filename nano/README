@@ -57,7 +57,7 @@ DEPENDENCIES
 
 PACKAGES
   nano: >= 2.0
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

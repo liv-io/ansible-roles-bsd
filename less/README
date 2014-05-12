@@ -61,7 +61,7 @@ DEPENDENCIES
 
 PACKAGES
   less: >= 436
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

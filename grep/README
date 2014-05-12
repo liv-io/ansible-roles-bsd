@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   grep: >= 2.6
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

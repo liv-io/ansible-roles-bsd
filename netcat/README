@@ -62,7 +62,7 @@ DEPENDENCIES
 
 PACKAGES
   nc: >= 1.84
-    CentOS, RedHat
+    RedHat, CentOS
 
   netcat: >= 1.10
     Gentoo

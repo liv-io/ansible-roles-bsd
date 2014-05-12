@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   hping3: >= 20051105
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

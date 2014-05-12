@@ -60,7 +60,7 @@ DEPENDENCIES
 
 PACKAGES
   fping: >= 2.4
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

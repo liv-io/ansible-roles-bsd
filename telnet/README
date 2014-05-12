@@ -58,7 +58,7 @@ DEPENDENCIES
 
 PACKAGES
   telnet: >= 0.17
-    CentOS, RedHat
+    RedHat, CentOS
 
   telnet-bsd: >= 1.2
     Gentoo

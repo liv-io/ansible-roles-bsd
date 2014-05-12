@@ -62,7 +62,7 @@ DEPENDENCIES
 
 PACKAGES
   traceroute: >= 2.0
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 

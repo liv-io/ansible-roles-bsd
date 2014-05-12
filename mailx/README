@@ -67,7 +67,7 @@ DEPENDENCIES
 
 PACKAGES
   mailx: >= 8.1
-    CentOS, RedHat, Gentoo
+    RedHat, CentOS, Gentoo
 
 ROLES
 
