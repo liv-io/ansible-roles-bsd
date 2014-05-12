@@ -38,7 +38,9 @@
    mode: "{{file_mode_iptables}}"
    owner: "{{file_owner_iptables}}"
    group: "{{file_group_iptables}}"
-  notify: service restart iptables
+  notify:
+   - service start iptables
+   - service reload iptables
   when: ansible_os_family == 'RedHat'
   tags:
    - files
@@ -68,7 +70,9 @@
    mode: "{{file_mode_iptables_config}}"
    owner: "{{file_owner_iptables_config}}"
    group: "{{file_group_iptables_config}}"
-  notify: service restart iptables
+  notify:
+   - service start iptables
+   - service reload iptables
   when: not (ansible_os_family == 'Gentoo')
   tags:
    - files
@@ -82,7 +86,9 @@
    mode: "{{file_mode_ip6tables}}"
    owner: "{{file_owner_ip6tables}}"
    group: "{{file_group_ip6tables}}"
-  notify: service restart ip6tables
+  notify:
+   - service start ip6tables
+   - service reload ip6tables
   when: ansible_os_family == 'RedHat'
   tags:
    - files
@@ -112,7 +118,9 @@
    mode: "{{file_mode_ip6tables_config}}"
    owner: "{{file_owner_ip6tables_config}}"
    group: "{{file_group_ip6tables_config}}"
-  notify: service restart ip6tables
+  notify:
+   - service start ip6tables
+   - service reload ip6tables
   when: not (ansible_os_family == 'Gentoo')
   tags:
    - files

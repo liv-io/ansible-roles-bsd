@@ -41,16 +41,6 @@
    state: 'reloaded'
    name: "{{service_name_ip6tables}}"
 
-- name: service restart iptables
-  service:
-   state: 'restarted'
-   name: "{{service_name_iptables}}"
-
-- name: service restart ip6tables
-  service:
-   state: 'restarted'
-   name: "{{service_name_ip6tables}}"
-
 - name: service start iptables
   service:
    state: 'started'

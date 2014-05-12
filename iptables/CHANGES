@@ -14,5 +14,8 @@ CHANGES
     (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2014-05-10)
+B: Fix issue with reloading IPtables rules
+
 * Version 0.1.0 (2014-04-26)
 F: Initial release
