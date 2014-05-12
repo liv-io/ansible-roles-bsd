@@ -63,6 +63,7 @@ restrict {{restrict}}
 {% if not (ntp_server == None) and not (ntp_server == '') and not (ntp_server == []) %}
 {% for server in ntp_server %}
 server {{server}} {% for option in ntp_option %}{{option}} {% endfor %}
+
 {% endfor %}
 {% endif %}
 
