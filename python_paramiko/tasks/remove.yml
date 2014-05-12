@@ -1,0 +1,53 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : remove.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : python_paramiko
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../vars/{{ansible_os_family}}.yml"
+   - "../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package remove python-paramiko
+  yum:
+   state: 'removed'
+   name: "{{package_name_python_paramiko}}"
+  when: ansible_os_family == 'RedHat'
+  tags:
+   - packaging
+   - remove
+   - python_paramiko
+
+- name: package remove python-paramiko
+  portage:
+   state: 'removed'
+   sync: "{{portage_sync}}"
+   name: "{{package_name_python_paramiko}}"
+  when: ansible_os_family == 'Gentoo'
+  tags:
+   - packaging
+   - remove
+   - python_paramiko
