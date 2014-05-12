@@ -31,7 +31,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package install util_linux
+- name: package install util-linux
   yum:
    state: 'installed'
    name: "{{package_name_util_linux}}"
@@ -41,7 +41,7 @@
    - install
    - file
 
-- name: package install util_linux
+- name: package install util-linux
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"
