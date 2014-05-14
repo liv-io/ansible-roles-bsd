@@ -27,3 +27,6 @@
 
 # portage
 portage_sync: 'web'
+
+# hping
+package_name_hping3: 'hping'
