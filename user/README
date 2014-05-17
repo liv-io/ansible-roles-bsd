@@ -1,0 +1,338 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : user
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : sys-core
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages user.
+
+Create, update and delete user accounts with this role. In addition it helps to
+manage the user's 'authorized keys'.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: user
+       user_state: 'enable'
+       user_password_default: '!'
+       user_shell_default: '/bin/bash'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: user
+       user_state: 'disable'
+
+CREATE USER
+  user:
+   - state: 'true'
+     name: 'user01'
+     comment: 'Example User'
+     uid: '1001'
+     groups: ['group01', 'group02']
+     groups_append: 'true'
+     password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
+     password_update: 'true'
+     shell: '/bin/bash'
+     authorized_key:
+      - state: 'true'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAqAJMzq+BmNh+rkQiV64pKahfS2JQKYCruyoEmUMRJ7iLNmYs1xYuAcDwinxV6G39X6DMPLyPrV/e6ZECQKdcgg/8+GJ2CPWTCGC/6eyOdq1/iLgAuovMv32/t4sIZbNfKWAgVSkrcLHln6Scdh7hGHEk85o4eubzArWZRwRjvDtyiozl1LUDWnoJo8YZAb8ABg/NMyEcprVLNtZ3ZlgNk8SHiih5dARvPAPZXNKax3SCQx9S0ZSHRGmjlLVclTxC1kDn0vaPRqnFN6opEnd9F15Dmb+VHc1pvKVEFa1ukMOTzeNvQZrhhRjVuaWpiJrjAIGTk6wsGxoHathPEf2X4w== user01'
+     authorized_key:
+      - state: 'true'
+        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAylF0+CUcLIiVcZNG3psSLzu5f4qS1yjMEPJhCiI9TCD7Vc3j+Z+o5J5SO7jt5FKzhx7vVndVMtASmTQppZ5L7d+qCNDO3rFwcM/VKKO7I8gU24tO4WKGK/3f8ACIxrfNHRslNJLjt6TFYc20ZU+60JF7objO/uN7Dh3BOhUKO8ZK8M9Tk5EnYQqm1jicfix/kozcHqzIKEM7+m3Uxq3t1sA6yRo3/R6RzTydWmvzX85852i0MBNTYM6SCy727aEJNZDPr3/rFCVd5Ai2j+z3vMjbkczNyNeifd8kCojdeDjkYEv4VQ3fG/0EsBXsXyVdzRHCAt31Yh77OlPWIR/2MQ== user01'
+
+REMOVE USER
+  user:
+   - state: 'false'
+     name: 'user03'
+     uid: '1003'
+     home_remove: 'true'
+     home_force: 'true'
+     authorized_key: []
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+CONFIG (user)
+  state
+    Description: Control the state of the user.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Create: 'true' | 'yes' | 'create'
+      Remove: 'false' | 'no' | 'remove'
+
+  name
+    Description: Define the name of the user.
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : None
+    Options    :
+      Examples: 'user01' | 'user02' | 'user03'
+
+  comment
+    Description: Define a comment for the user.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : <user.name>
+    Options    :
+      Examples: 'Example User' | 'Test User' | 'Service User'
+
+  uid
+    Description: Set the UID of the user.
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : None
+    Options    :
+      Examples: '1001' | '1002' | '1003'
+
+  groups
+    Description: Define the groups of the user.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['group01'] |
+                ['group01', 'group02'] |
+                ['group01', 'group02', 'group03']
+
+  groups_append
+    Description: Control whether to append or overwrite the group membership.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  home_create
+    Description: Control whether to create the home directory.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  home_move
+    Description: Control whether to move the home directory.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  home_remove
+    Description: Control whether to remove the home directory when removing the
+                 user.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  home_force
+    Description: Control whether to force the removal of the home directory when
+                 removing the user.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  password
+    Description: Define the password for the user.
+    Required   : False
+    Value      : Arbitrary SHA-512 cryptographic hash
+    Type       : String
+    Default    : '!'
+    Options    :
+      Examples: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1' |
+                '$6$Dgjf366H$mpoaFpK8rIaGSpaxhpJIu5AvinfCOLK2WQhnfm3UTwLNBfyCU494fXEYPsrUobsQ7hCcbv8GqwiJjmuhoGqL00' |
+                '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
+
+  password_update
+    Description: Control whether to initially set or continuously update the
+                 password.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  system
+    Description: Control whether to create a system user.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+CONFIG (authorized_key)
+  state
+    Description: Control the state of the authorized_key.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Create: 'true' | 'yes' | 'create'
+      Remove: 'false' | 'no' | 'remove'
+
+  user
+    Description: Define the user of the authorized_key.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : <user.name>
+    Options    :
+      Examples: 'user01' | 'user02' | 'user03'
+
+  key
+    Description: Define the authorized_key of the user.
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA5Qg4nV3Jh9kqnCs3YAoVbTCN5DV3vrOPzf1eLp514TE+QC2IDNEV6c8hWUD5VZZF0FS7MfGhsYx3pcd+7OiSvkRtIomNG+GuDJWhD5nCRuvYotrEUGh/P+mm7eLmQUBmZuMBvwUZn9W92zqic8F+uCrOMOqNcxsVp6oHUZSfZUkEoRnJxdBfd4UsLxinwM1fLCm0qYNAAHRjIycXEkAp37gx+6k6qulvf8c3oS/+akZ3xV0hAu7Ce5K1e7dC5iLS0GahMfr16grx+qqK4BHhsN4i7Xg2f1/eMyxsubzH3OkPrzAhoUJbhLUnaaURGhIrMB+JYN0Jo0XMvIavgqcYcQ== user01'
+
+  key_options
+    Description: Define the options for the authorized_key.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'command="command"' | 'no-agent-forwarding' | 'no-port-forwarding'
+
+ROLE
+  user_state
+    Description: Control the state of the role.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Disable: 'false' | 'no' | 'disable'
+
+  user_password_default
+    Description: Define the default password for the user.
+    Required   : False
+    Value      : Arbitrary SHA-512 cryptographic hash
+    Type       : String
+    Default    : '!'
+    Options    :
+      Examples: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1' |
+                '$6$Dgjf366H$mpoaFpK8rIaGSpaxhpJIu5AvinfCOLK2WQhnfm3UTwLNBfyCU494fXEYPsrUobsQ7hCcbv8GqwiJjmuhoGqL00' |
+                '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
+
+  user_shell_default
+    Description: Define the default shell for the user.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/bin/bash'
+    Options    :
+      Examples: '/bin/bash' | '/bin/sh' | '/bin/false' | '/sbin/nologin'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+  passwd
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat
+    Version: 6
+      Status: Development
+
+  CentOS
+    Version: 6
+      Status: Development
+
+  Gentoo:
+    Version: 2
+      Status: Development
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
