@@ -50,19 +50,26 @@ VARIABLES
 
 ROLE
   vlock_state
-    Specify predetermined 'vlock_state' variable (string).
-
-    Install: 'true' | 'yes' | 'install'
-    Remove : 'false' | 'no' | 'remove'
-    Default: 'install'
+    Description: Control the state of the role.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Remove : 'false' | 'no' | 'remove'
 
 --------------------------------------------------------------------------------
 DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  vlock: >= 1.3
-    RedHat, CentOS, Gentoo
+  vlock
+    Version: >= 1.3
+    Name   :
+      RedHat 6: 'vlock'
+      CentOS 6: 'vlock'
+      Gentoo 2: 'vlock'
 
 ROLES
 
@@ -73,37 +80,47 @@ REQUIREMENTS
 --------------------------------------------------------------------------------
 
 CONTROL MACHINE
-  Ansible: >= 1.6
+  Ansible
+    Version: >= 1.6
 
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
-  Python-Crypto: >= 2.0
+  Python-Crypto
+    Version: >= 2.0
 
-  Python-Jinja2: >= 2.0
+  Python-Jinja2
+    Version: >= 2.0
 
-  Python-Paramiko: >= 1.0
+  Python-Paramiko
+    Version: >= 1.0
 
-  Python-YAML: >= 3.0
+  Python-YAML
+    Version: >= 3.0
 
-  sshpass: >= 1.0
+  sshpass
+    Version: >= 1.0
 
 MANAGED NODE
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
 --------------------------------------------------------------------------------
 SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat 6: Testing
+  RedHat
+    Version: 6
+      Status: Testing
 
-  CentOS 6: Testing
+  CentOS
+    Version: 6
+      Status: Testing
 
-  Gentoo: Testing
-
---------------------------------------------------------------------------------
-NOTICE
---------------------------------------------------------------------------------
+  Gentoo:
+    Version: 2
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER

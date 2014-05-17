@@ -47,20 +47,27 @@ VARIABLES
 
 ROLE
   net_tools_state
-    Specify predetermined 'net_tools_state' variable (string).
-    Notice: 'net-tools' is a core package and can therefore not be removed.
-
-    Install: 'true' | 'yes' | 'install'
-    Remove : 'false' | 'no' | 'remove'
-    Default: 'install'
+    Description: Control the state of the role. 'net-tools' is a core package
+                 and can therefore not be removed.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Remove : 'false' | 'no' | 'remove'
 
 --------------------------------------------------------------------------------
 DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  net-tools: >= 1.60
-    RedHat, CentOS, Gentoo
+  net-tools
+    Version: >= 1.60
+    Name   :
+      RedHat 6: 'net-tools'
+      CentOS 6: 'net-tools'
+      Gentoo 2: 'net-tools'
 
 ROLES
 
@@ -71,37 +78,47 @@ REQUIREMENTS
 --------------------------------------------------------------------------------
 
 CONTROL MACHINE
-  Ansible: >= 1.6
+  Ansible
+    Version: >= 1.6
 
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
-  Python-Crypto: >= 2.0
+  Python-Crypto
+    Version: >= 2.0
 
-  Python-Jinja2: >= 2.0
+  Python-Jinja2
+    Version: >= 2.0
 
-  Python-Paramiko: >= 1.0
+  Python-Paramiko
+    Version: >= 1.0
 
-  Python-YAML: >= 3.0
+  Python-YAML
+    Version: >= 3.0
 
-  sshpass: >= 1.0
+  sshpass
+    Version: >= 1.0
 
 MANAGED NODE
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
 --------------------------------------------------------------------------------
 SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat 6: Testing
+  RedHat
+    Version: 6
+      Status: Testing
 
-  CentOS 6: Testing
+  CentOS
+    Version: 6
+      Status: Testing
 
-  Gentoo: Testing
-
---------------------------------------------------------------------------------
-NOTICE
---------------------------------------------------------------------------------
+  Gentoo:
+    Version: 2
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER

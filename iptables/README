@@ -93,447 +93,584 @@ VARIABLES
 
 ROLE
   iptables_state
-    Specify predetermined 'iptables_state' variable (string).
-    Notice: 'iptables' is a core package on RedHat and CentOS based systems and
-    can therefore not be removed.
-
-    Install: 'true' | 'yes' | 'install'
-    Enable : 'start' | 'on' | 'enable'
-    Disable: 'stop' | 'off' | 'disable'
-    Remove : 'false' | 'no' | 'remove'
-    Default: 'enable'
+    Description: Control the state of the role. 'iptables' is a core package on
+                 RedHat and CentOS based systems and can therefore not be
+                 removed.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Enable : 'start' | 'on' | 'enable'
+      Disable: 'stop' | 'off' | 'disable'
+      Remove : 'false' | 'no' | 'remove'
 
   iptables_filter_forward_v4_custom
-    Specify arbitrary 'iptables_filter_forward_v4_custom' variable (array).
-
-    Examples: ['-A FORWARD -m state --state NEW -m tcp -p tcp --dport 80 -m comment --comment "HTTP - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 443 -m comment --comment "HTTPS - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8080 -m comment --comment "HTTP - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8443 -m comment --comment "HTTPS - from any to any" -j ACCEPT']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_filter_forward_v4_custom' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A FORWARD -m state --state NEW -m tcp -p tcp --dport 80 -m comment --comment "HTTP - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 443 -m comment --comment "HTTPS - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8080 -m comment --comment "HTTP - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8443 -m comment --comment "HTTPS - from any to any" -j ACCEPT']
+      None    : []
 
   iptables_filter_forward_v4_default
-    Specify arbitrary 'iptables_filter_forward_v4_default' variable (array).
-
-    Examples: ['-A FORWARD -m state --state NEW -m tcp -p tcp --dport 80 -m comment --comment "HTTP - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 443 -m comment --comment "HTTPS - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8080 -m comment --comment "HTTP - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8443 -m comment --comment "HTTPS - from any to any" -j ACCEPT']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_filter_forward_v4_default' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A FORWARD -m state --state NEW -m tcp -p tcp --dport 80 -m comment --comment "HTTP - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 443 -m comment --comment "HTTPS - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8080 -m comment --comment "HTTP - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8443 -m comment --comment "HTTPS - from any to any" -j ACCEPT']
+      None    : []
 
   iptables_filter_forward_v4_icmp
-    Specify arbitrary 'iptables_filter_forward_v4_icmp' variable (array).
-
-    Examples: ['-A FORWARD -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
-               '-A FORWARD -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"']
-    None    : []
-    Default : ['#-A FORWARD -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
-               '#-A FORWARD -p icmp -m icmp --icmp-type 3/0 -j ACCEPT -m comment --comment "destination-unreachable/network-unreachable (ICMP type 3 code 0)"',
-               '#-A FORWARD -p icmp -m icmp --icmp-type 3/1 -j ACCEPT -m comment --comment "destination-unreachable/host-unreachable (ICMP type 3 code 1)"',
-               '#-A FORWARD -p icmp -m icmp --icmp-type 3/2 -j ACCEPT -m comment --comment "destination-unreachable/protocol-unreachable (ICMP type 3 code 2)"',
-               '#-A FORWARD -p icmp -m icmp --icmp-type 3/3 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMP type 3 code 3)"',
-               '#-A FORWARD -p icmp -m icmp --icmp-type 3/4 -j ACCEPT -m comment --comment "destination-unreachable/fragmentation-needed (ICMP type 3 code 4)"',
-               '#-A FORWARD -p icmp -m icmp --icmp-type 4 -j ACCEPT -m comment --comment "source-quench (ICMP type 4)"',
-               '#-A FORWARD -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"',
-               '#-A FORWARD -p icmp -m icmp --icmp-type 11/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMP type 11 code 0)"',
-               '#-A FORWARD -p icmp -m icmp --icmp-type 11/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMP type 11 code 1)"']
+    Description: Define the 'iptables_filter_forward_v4_icmp' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['#-A FORWARD -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
+                  '#-A FORWARD -p icmp -m icmp --icmp-type 3/0 -j ACCEPT -m comment --comment "destination-unreachable/network-unreachable (ICMP type 3 code 0)"',
+                  '#-A FORWARD -p icmp -m icmp --icmp-type 3/1 -j ACCEPT -m comment --comment "destination-unreachable/host-unreachable (ICMP type 3 code 1)"',
+                  '#-A FORWARD -p icmp -m icmp --icmp-type 3/2 -j ACCEPT -m comment --comment "destination-unreachable/protocol-unreachable (ICMP type 3 code 2)"',
+                  '#-A FORWARD -p icmp -m icmp --icmp-type 3/3 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMP type 3 code 3)"',
+                  '#-A FORWARD -p icmp -m icmp --icmp-type 3/4 -j ACCEPT -m comment --comment "destination-unreachable/fragmentation-needed (ICMP type 3 code 4)"',
+                  '#-A FORWARD -p icmp -m icmp --icmp-type 4 -j ACCEPT -m comment --comment "source-quench (ICMP type 4)"',
+                  '#-A FORWARD -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"',
+                  '#-A FORWARD -p icmp -m icmp --icmp-type 11/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMP type 11 code 0)"',
+                  '#-A FORWARD -p icmp -m icmp --icmp-type 11/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMP type 11 code 1)"']
+    Options    :
+      Examples: ['-A FORWARD -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
+                 '-A FORWARD -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"']
+      None    : []
 
   iptables_filter_forward_v4_policy
-    Specify predetermined 'iptables_filter_forward_v4_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'DROP'
+    Description: Control the 'iptables_filter_forward_v4_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'DROP'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_filter_forward_v6_custom
-    Specify arbitrary 'iptables_filter_forward_v6_custom' variable (array).
-
-    Examples: ['-A FORWARD -m state --state NEW -m tcp -p tcp --dport 80 -m comment --comment "HTTP - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 443 -m comment --comment "HTTPS - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8080 -m comment --comment "HTTP - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8443 -m comment --comment "HTTPS - from any to any" -j ACCEPT']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_filter_forward_v6_custom' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A FORWARD -m state --state NEW -m tcp -p tcp --dport 80 -m comment --comment "HTTP - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 443 -m comment --comment "HTTPS - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8080 -m comment --comment "HTTP - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8443 -m comment --comment "HTTPS - from any to any" -j ACCEPT']
+      None    : []
 
   iptables_filter_forward_v6_default
-    Specify arbitrary 'iptables_filter_forward_v6_default' variable (array).
-
-    Examples: ['-A FORWARD -m state --state NEW -m tcp -p tcp --dport 80 -m comment --comment "HTTP - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 443 -m comment --comment "HTTPS - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8080 -m comment --comment "HTTP - from any to any" -j ACCEPT',
-               '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8443 -m comment --comment "HTTPS - from any to any" -j ACCEPT']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_filter_forward_v6_default' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A FORWARD -m state --state NEW -m tcp -p tcp --dport 80 -m comment --comment "HTTP - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 443 -m comment --comment "HTTPS - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8080 -m comment --comment "HTTP - from any to any" -j ACCEPT',
+                 '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8443 -m comment --comment "HTTPS - from any to any" -j ACCEPT']
+      None    : []
 
   iptables_filter_forward_v6_icmp
-    Specify arbitrary 'iptables_filter_forward_v6_icmp' variable (array).
-
-    Examples: ['-A FORWARD -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
-               '-A FORWARD -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"']
-    None    : []
-    Default : ['#-A FORWARD -p icmpv6 --icmpv6-type 1/0 -j ACCEPT -m comment --comment "destination-unreachable/no-route (ICMPv6 type 1 code 0)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 1/1 -j ACCEPT -m comment --comment "destination-unreachable/communication-prohibited (ICMPv6 type 1 code 1)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 1/3 -j ACCEPT -m comment --comment "destination-unreachable/address-unreachable (ICMPv6 type 1 code 3)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 1/4 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMPv6 type 1 code 4)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 2 -j ACCEPT -m comment --comment "packet-too-big (ICMPv6 type 2)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 3/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMPv6 type 3 code 0)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 3/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMPv6 type 3 code 1)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 4/0 -j ACCEPT -m comment --comment "parameter-problem/bad-header (ICMPv6 type 4 code 0)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 4/1 -j ACCEPT -m comment --comment "parameter-problem/unknown-header-type (ICMPv6 type 4 code 1)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 4/2 -j ACCEPT -m comment --comment "parameter-problem/unknown-option (ICMPv6 type 4 code 2)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 133 -j ACCEPT -m comment --comment "router-solicitation (ICMPv6 type 133)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 134 -j ACCEPT -m comment --comment "router-advertisement (ICMPv6 type 134)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 135 -j ACCEPT -m comment --comment "neighbour-solicitation (ICMPv6 type 135)"',
-               '#-A FORWARD -p icmpv6 --icmpv6-type 136 -j ACCEPT -m comment --comment "neighbour-advertisement (ICMPv6 type 136)"']
+    Description: Define the 'iptables_filter_forward_v6_icmp' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['#-A FORWARD -p icmpv6 --icmpv6-type 1/0 -j ACCEPT -m comment --comment "destination-unreachable/no-route (ICMPv6 type 1 code 0)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 1/1 -j ACCEPT -m comment --comment "destination-unreachable/communication-prohibited (ICMPv6 type 1 code 1)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 1/3 -j ACCEPT -m comment --comment "destination-unreachable/address-unreachable (ICMPv6 type 1 code 3)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 1/4 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMPv6 type 1 code 4)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 2 -j ACCEPT -m comment --comment "packet-too-big (ICMPv6 type 2)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 3/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMPv6 type 3 code 0)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 3/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMPv6 type 3 code 1)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 4/0 -j ACCEPT -m comment --comment "parameter-problem/bad-header (ICMPv6 type 4 code 0)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 4/1 -j ACCEPT -m comment --comment "parameter-problem/unknown-header-type (ICMPv6 type 4 code 1)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 4/2 -j ACCEPT -m comment --comment "parameter-problem/unknown-option (ICMPv6 type 4 code 2)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 133 -j ACCEPT -m comment --comment "router-solicitation (ICMPv6 type 133)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 134 -j ACCEPT -m comment --comment "router-advertisement (ICMPv6 type 134)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 135 -j ACCEPT -m comment --comment "neighbour-solicitation (ICMPv6 type 135)"',
+                  '#-A FORWARD -p icmpv6 --icmpv6-type 136 -j ACCEPT -m comment --comment "neighbour-advertisement (ICMPv6 type 136)"']
+    Options    :
+      Examples: ['-A FORWARD -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
+                 '-A FORWARD -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"']
+      None    : []
 
   iptables_filter_forward_v6_policy
-    Specify predetermined 'iptables_filter_forward_v6_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'DROP'
+    Description: Control the 'iptables_filter_forward_v6_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'DROP'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_filter_input_v4_custom
-    Specify arbitrary 'iptables_filter_input_v4_custom' variable (array).
-
-    Examples: ['-A INPUT -m state --state NEW -m tcp -p tcp --dport 25 -m comment -j ACCEPT --comment "SMTP - from any"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp --dport 53 -m comment -j ACCEPT --comment "DNS - from any"',
-               '-A INPUT -m state --state NEW -m udp -p udp --dport 53 -m comment -j ACCEPT --comment "DNS - from any"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -m comment -j ACCEPT --comment "HTTP - from any"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp --dport 443 -m comment -j ACCEPT --comment "HTTPS - from any"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp --dport 465 -m comment -j ACCEPT --comment "SMTPS - from any"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp --dport 993 -m comment -j ACCEPT --comment "IMAPS - from any"']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_filter_input_v4_custom' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A INPUT -m state --state NEW -m tcp -p tcp --dport 25 -m comment -j ACCEPT --comment "SMTP - from any"',
+                 '-A INPUT -m state --state NEW -m tcp -p tcp --dport 53 -m comment -j ACCEPT --comment "DNS - from any"',
+                 '-A INPUT -m state --state NEW -m udp -p udp --dport 53 -m comment -j ACCEPT --comment "DNS - from any"',
+                 '-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -m comment -j ACCEPT --comment "HTTP - from any"',
+                 '-A INPUT -m state --state NEW -m tcp -p tcp --dport 443 -m comment -j ACCEPT --comment "HTTPS - from any"',
+                 '-A INPUT -m state --state NEW -m tcp -p tcp --dport 465 -m comment -j ACCEPT --comment "SMTPS - from any"',
+                 '-A INPUT -m state --state NEW -m tcp -p tcp --dport 993 -m comment -j ACCEPT --comment "IMAPS - from any"']
+      None    : []
 
   iptables_filter_input_v4_default
-    Specify arbitrary 'iptables_filter_input_v4_default' variable (array).
-    Warning: SSH (22/TCP) is a core port and should therefore not be disabled. 
-
-    Examples: ['-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/24 --dport 22 -j ACCEPT -m comment --comment "SSH - from internal network"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp -s 172.16.0.0/24 --dport 22 -j ACCEPT -m comment --comment "SSH - from internal network"']
-    None    : []
-    Default : ['-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 22 -j ACCEPT -m comment --comment "SSH - from Private Address Space (RFC 1918)"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp -s 172.16.0.0/12 --dport 22 -j ACCEPT -m comment --comment "SSH - from Private Address Space (RFC 1918)"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp -s 10.0.0.0/8 --dport 22 -j ACCEPT -m comment --comment "SSH - from Private Address Space (RFC 1918)"']
+    Description:  Define the 'iptables_filter_input_v4_default' option.
+                  SSH (22/TCP) is a core port and should therefore not be disabled.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 22 -j ACCEPT -m comment --comment "SSH - from Private Address Space (RFC 1918)"',
+                  '-A INPUT -m state --state NEW -m tcp -p tcp -s 172.16.0.0/12 --dport 22 -j ACCEPT -m comment --comment "SSH - from Private Address Space (RFC 1918)"',
+                  '-A INPUT -m state --state NEW -m tcp -p tcp -s 10.0.0.0/8 --dport 22 -j ACCEPT -m comment --comment "SSH - from Private Address Space (RFC 1918)"']
+    Options    :
+      Examples: ['-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/24 --dport 22 -j ACCEPT -m comment --comment "SSH - from internal network"',
+                 '-A INPUT -m state --state NEW -m tcp -p tcp -s 172.16.0.0/24 --dport 22 -j ACCEPT -m comment --comment "SSH - from internal network"']
+      None    : []
 
   iptables_filter_input_v4_icmp
-    Specify arbitrary 'iptables_filter_input_v4_icmp' variable (array).
-
-    Examples: ['-A INPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
-               '-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"']
-    None    : []
-    Default : ['#-A INPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
-               '#-A INPUT -p icmp -m icmp --icmp-type 3/0 -j ACCEPT -m comment --comment "destination-unreachable/network-unreachable (ICMP type 3 code 0)"',
-               '#-A INPUT -p icmp -m icmp --icmp-type 3/1 -j ACCEPT -m comment --comment "destination-unreachable/host-unreachable (ICMP type 3 code 1)"',
-               '#-A INPUT -p icmp -m icmp --icmp-type 3/2 -j ACCEPT -m comment --comment "destination-unreachable/protocol-unreachable (ICMP type 3 code 2)"',
-               '#-A INPUT -p icmp -m icmp --icmp-type 3/3 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMP type 3 code 3)"',
-               '-A INPUT -p icmp -m icmp --icmp-type 3/4 -j ACCEPT -m comment --comment "destination-unreachable/fragmentation-needed (ICMP type 3 code 4)"',
-               '#-A INPUT -p icmp -m icmp --icmp-type 4 -j ACCEPT -m comment --comment "source-quench (ICMP type 4)"',
-               '#-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"',
-               '#-A INPUT -p icmp -m icmp --icmp-type 11/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMP type 11 code 0)"',
-               '#-A INPUT -p icmp -m icmp --icmp-type 11/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMP type 11 code 1)"']
+    Description: Define the 'iptables_filter_input_v4_icmp' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['#-A INPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
+                  '#-A INPUT -p icmp -m icmp --icmp-type 3/0 -j ACCEPT -m comment --comment "destination-unreachable/network-unreachable (ICMP type 3 code 0)"',
+                  '#-A INPUT -p icmp -m icmp --icmp-type 3/1 -j ACCEPT -m comment --comment "destination-unreachable/host-unreachable (ICMP type 3 code 1)"',
+                  '#-A INPUT -p icmp -m icmp --icmp-type 3/2 -j ACCEPT -m comment --comment "destination-unreachable/protocol-unreachable (ICMP type 3 code 2)"',
+                  '#-A INPUT -p icmp -m icmp --icmp-type 3/3 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMP type 3 code 3)"',
+                  '-A INPUT -p icmp -m icmp --icmp-type 3/4 -j ACCEPT -m comment --comment "destination-unreachable/fragmentation-needed (ICMP type 3 code 4)"',
+                  '#-A INPUT -p icmp -m icmp --icmp-type 4 -j ACCEPT -m comment --comment "source-quench (ICMP type 4)"',
+                  '#-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"',
+                  '#-A INPUT -p icmp -m icmp --icmp-type 11/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMP type 11 code 0)"',
+                  '#-A INPUT -p icmp -m icmp --icmp-type 11/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMP type 11 code 1)"']
+    Options    :
+      Examples: ['-A INPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
+                 '-A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"']
+      None    : []
 
   iptables_filter_input_v4_policy
-    Specify predetermined 'iptables_filter_input_v4_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'DROP'
+    Description: Control the 'iptables_filter_input_v4_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'DROP'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_filter_input_v6_custom
-    Specify arbitrary 'iptables_filter_input_v6_custom' variable (array).
-
-    Examples: ['-A INPUT -m state --state NEW -m tcp -p tcp --dport 25 -m comment -j ACCEPT --comment "SMTP - from any"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp --dport 53 -m comment -j ACCEPT --comment "DNS - from any"',
-               '-A INPUT -m state --state NEW -m udp -p udp --dport 53 -m comment -j ACCEPT --comment "DNS - from any"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -m comment -j ACCEPT --comment "HTTP - from any"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp --dport 443 -m comment -j ACCEPT --comment "HTTPS - from any"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp --dport 465 -m comment -j ACCEPT --comment "SMTPS - from any"',
-               '-A INPUT -m state --state NEW -m tcp -p tcp --dport 993 -m comment -j ACCEPT --comment "IMAPS - from any"']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_filter_input_v6_custom' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A INPUT -m state --state NEW -m tcp -p tcp --dport 25 -m comment -j ACCEPT --comment "SMTP - from any"',
+                 '-A INPUT -m state --state NEW -m tcp -p tcp --dport 53 -m comment -j ACCEPT --comment "DNS - from any"',
+                 '-A INPUT -m state --state NEW -m udp -p udp --dport 53 -m comment -j ACCEPT --comment "DNS - from any"',
+                 '-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -m comment -j ACCEPT --comment "HTTP - from any"',
+                 '-A INPUT -m state --state NEW -m tcp -p tcp --dport 443 -m comment -j ACCEPT --comment "HTTPS - from any"',
+                 '-A INPUT -m state --state NEW -m tcp -p tcp --dport 465 -m comment -j ACCEPT --comment "SMTPS - from any"',
+                 '-A INPUT -m state --state NEW -m tcp -p tcp --dport 993 -m comment -j ACCEPT --comment "IMAPS - from any"']
+      None    : []
 
   iptables_filter_input_v6_default
-    Specify arbitrary 'iptables_filter_input_v6_default' variable (array).
-    Warning: SSH (22/TCP) is a core port and should therefore not be disabled.
-
-    Examples: ['-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT -m comment --comment "SSH - from any"']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_filter_input_v6_default' option.
+                 SSH (22/TCP) is a core port and should therefore not be disabled.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A INPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT -m comment --comment "SSH - from any"']
+      None    : []
 
   iptables_filter_input_v6_icmp
-    Specify arbitrary 'iptables_filter_input_v6_icmp' variable (array).
-
-    Examples: ['-A INPUT -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
-               '-A INPUT -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"']
-    None    : []
-    Default : ['#-A INPUT -p icmpv6 --icmpv6-type 1/0 -j ACCEPT -m comment --comment "destination-unreachable/no-route (ICMPv6 type 1 code 0)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 1/1 -j ACCEPT -m comment --comment "destination-unreachable/communication-prohibited (ICMPv6 type 1 code 1)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 1/3 -j ACCEPT -m comment --comment "destination-unreachable/address-unreachable (ICMPv6 type 1 code 3)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 1/4 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMPv6 type 1 code 4)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 2 -j ACCEPT -m comment --comment "packet-too-big (ICMPv6 type 2)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 3/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMPv6 type 3 code 0)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 3/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMPv6 type 3 code 1)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 4/0 -j ACCEPT -m comment --comment "parameter-problem/bad-header (ICMPv6 type 4 code 0)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 4/1 -j ACCEPT -m comment --comment "parameter-problem/unknown-header-type (ICMPv6 type 4 code 1)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 4/2 -j ACCEPT -m comment --comment "parameter-problem/unknown-option (ICMPv6 type 4 code 2)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 133 -j ACCEPT -m comment --comment "router-solicitation (ICMPv6 type 133)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 134 -j ACCEPT -m comment --comment "router-advertisement (ICMPv6 type 134)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 135 -j ACCEPT -m comment --comment "neighbour-solicitation (ICMPv6 type 135)"',
-               '#-A INPUT -p icmpv6 --icmpv6-type 136 -j ACCEPT -m comment --comment "neighbour-advertisement (ICMPv6 type 136)"']
+    Description: Define the 'iptables_filter_input_v6_icmp' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['#-A INPUT -p icmpv6 --icmpv6-type 1/0 -j ACCEPT -m comment --comment "destination-unreachable/no-route (ICMPv6 type 1 code 0)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 1/1 -j ACCEPT -m comment --comment "destination-unreachable/communication-prohibited (ICMPv6 type 1 code 1)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 1/3 -j ACCEPT -m comment --comment "destination-unreachable/address-unreachable (ICMPv6 type 1 code 3)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 1/4 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMPv6 type 1 code 4)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 2 -j ACCEPT -m comment --comment "packet-too-big (ICMPv6 type 2)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 3/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMPv6 type 3 code 0)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 3/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMPv6 type 3 code 1)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 4/0 -j ACCEPT -m comment --comment "parameter-problem/bad-header (ICMPv6 type 4 code 0)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 4/1 -j ACCEPT -m comment --comment "parameter-problem/unknown-header-type (ICMPv6 type 4 code 1)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 4/2 -j ACCEPT -m comment --comment "parameter-problem/unknown-option (ICMPv6 type 4 code 2)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 133 -j ACCEPT -m comment --comment "router-solicitation (ICMPv6 type 133)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 134 -j ACCEPT -m comment --comment "router-advertisement (ICMPv6 type 134)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 135 -j ACCEPT -m comment --comment "neighbour-solicitation (ICMPv6 type 135)"',
+                  '#-A INPUT -p icmpv6 --icmpv6-type 136 -j ACCEPT -m comment --comment "neighbour-advertisement (ICMPv6 type 136)"']
+    Options    :
+      Examples: ['-A INPUT -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
+                 '-A INPUT -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"']
+      None    : []
 
   iptables_filter_input_v6_policy
-    Specify predetermined 'iptables_filter_input_v6_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'DROP'
+    Description: Control the 'iptables_filter_input_v6_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'DROP'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_filter_output_v4_custom
-    Specify arbitrary 'iptables_filter_output_v4_custom' variable (array).
-
-    Examples: ['-A OUTPUT -m state --state NEW -m tcp -p tcp -d 192.168.1.0/24 --dport 22 -j ACCEPT -m comment --comment "SSH - to internal network"',
-               '-A OUTPUT -m state --state NEW -m tcp -p tcp -d 192.168.1.0/24 --dport 514 -j ACCEPT -m comment --comment "SYSLOG - to internal network"']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_filter_output_v4_custom' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A OUTPUT -m state --state NEW -m tcp -p tcp -d 192.168.1.0/24 --dport 22 -j ACCEPT -m comment --comment "SSH - to internal network"',
+                 '-A OUTPUT -m state --state NEW -m tcp -p tcp -d 192.168.1.0/24 --dport 514 -j ACCEPT -m comment --comment "SYSLOG - to internal network"']
+      None    : []
 
   iptables_filter_output_v4_default
-    Specify arbitrary 'iptables_filter_output_v4_default' variable (array).
-
-    Examples: ['-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
-               '-A OUTPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
-               '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT -m comment --comment "HTTP - to any"',
-               '-A OUTPUT -m state --state NEW -m udp -p udp --dport 123 -j ACCEPT -m comment --comment "NTP - to any"',
-               '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT -m comment --comment "HTTPS - to any"']
-    None    : []
-    Default : ['-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
-               '-A OUTPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
-               '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT -m comment --comment "HTTP - to any"',
-               '-A OUTPUT -m state --state NEW -m udp -p udp --dport 123 -j ACCEPT -m comment --comment "NTP - to any"',
-               '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT -m comment --comment "HTTPS - to any"']
+    Description: Define the 'iptables_filter_output_v4_default' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
+                  '-A OUTPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
+                  '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT -m comment --comment "HTTP - to any"',
+                  '-A OUTPUT -m state --state NEW -m udp -p udp --dport 123 -j ACCEPT -m comment --comment "NTP - to any"',
+                  '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT -m comment --comment "HTTPS - to any"']
+    Options    :
+      Examples: ['-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
+                 '-A OUTPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
+                 '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT -m comment --comment "HTTP - to any"',
+                 '-A OUTPUT -m state --state NEW -m udp -p udp --dport 123 -j ACCEPT -m comment --comment "NTP - to any"',
+                 '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT -m comment --comment "HTTPS - to any"']
+      None    : []
 
   iptables_filter_output_v4_icmp
-    Specify arbitrary 'iptables_filter_output_v4_icmp' variable (array).
-
-    Examples: ['-A OUTPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
-               '-A OUTPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"']
-    None    : []
-    Default : ['#-A OUTPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
-               '#-A OUTPUT -p icmp -m icmp --icmp-type 3/0 -j ACCEPT -m comment --comment "destination-unreachable/network-unreachable (ICMP type 3 code 0)"',
-               '#-A OUTPUT -p icmp -m icmp --icmp-type 3/1 -j ACCEPT -m comment --comment "destination-unreachable/host-unreachable (ICMP type 3 code 1)"',
-               '#-A OUTPUT -p icmp -m icmp --icmp-type 3/2 -j ACCEPT -m comment --comment "destination-unreachable/protocol-unreachable (ICMP type 3 code 2)"',
-               '#-A OUTPUT -p icmp -m icmp --icmp-type 3/3 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMP type 3 code 3)"',
-               '-A OUTPUT -p icmp -m icmp --icmp-type 3/4 -j ACCEPT -m comment --comment "destination-unreachable/fragmentation-needed (ICMP type 3 code 4)"',
-               '#-A OUTPUT -p icmp -m icmp --icmp-type 4 -j ACCEPT -m comment --comment "source-quench (ICMP type 4)"',
-               '-A OUTPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"',
-               '#-A OUTPUT -p icmp -m icmp --icmp-type 11/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMP type 11 code 0)"',
-               '#-A OUTPUT -p icmp -m icmp --icmp-type 11/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMP type 11 code 1)"']
+    Description: Define the 'iptables_filter_output_v4_icmp' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['#-A OUTPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
+                  '#-A OUTPUT -p icmp -m icmp --icmp-type 3/0 -j ACCEPT -m comment --comment "destination-unreachable/network-unreachable (ICMP type 3 code 0)"',
+                  '#-A OUTPUT -p icmp -m icmp --icmp-type 3/1 -j ACCEPT -m comment --comment "destination-unreachable/host-unreachable (ICMP type 3 code 1)"',
+                  '#-A OUTPUT -p icmp -m icmp --icmp-type 3/2 -j ACCEPT -m comment --comment "destination-unreachable/protocol-unreachable (ICMP type 3 code 2)"',
+                  '#-A OUTPUT -p icmp -m icmp --icmp-type 3/3 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMP type 3 code 3)"',
+                  '-A OUTPUT -p icmp -m icmp --icmp-type 3/4 -j ACCEPT -m comment --comment "destination-unreachable/fragmentation-needed (ICMP type 3 code 4)"',
+                  '#-A OUTPUT -p icmp -m icmp --icmp-type 4 -j ACCEPT -m comment --comment "source-quench (ICMP type 4)"',
+                  '-A OUTPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"',
+                  '#-A OUTPUT -p icmp -m icmp --icmp-type 11/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMP type 11 code 0)"',
+                  '#-A OUTPUT -p icmp -m icmp --icmp-type 11/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMP type 11 code 1)"']
+    Options    :
+      Examples: ['-A OUTPUT -p icmp -m icmp --icmp-type 0 -j ACCEPT -m comment --comment "echo-reply (ICMP type 0)"',
+                 '-A OUTPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"']
+      None    : []
 
   iptables_filter_output_v4_policy
-    Specify predetermined 'iptables_filter_output_v4_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'DROP'
+    Description: Control the 'iptables_filter_output_v4_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'DROP'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_filter_output_v6_custom
-    Specify arbitrary 'iptables_filter_output_v6_custom' variable (array).
-
-    Examples: ['-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT -m comment --comment "SSH - to any"']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_filter_output_v6_custom' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT -m comment --comment "SSH - to any"']
+      None    : []
 
   iptables_filter_output_v6_default
-    Specify arbitrary 'iptables_filter_output_v6_default' variable (array).
-
-    Examples: ['-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
-               '-A OUTPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
-               '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT -m comment --comment "HTTP - to any"',
-               '-A OUTPUT -m state --state NEW -m udp -p udp --dport 123 -j ACCEPT -m comment --comment "NTP - to any"',
-               '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT -m comment --comment "HTTPS - to any"']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_filter_output_v6_default' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
+                 '-A OUTPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT -m comment --comment "DNS - to any"',
+                 '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT -m comment --comment "HTTP - to any"',
+                 '-A OUTPUT -m state --state NEW -m udp -p udp --dport 123 -j ACCEPT -m comment --comment "NTP - to any"',
+                 '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT -m comment --comment "HTTPS - to any"']
+      None    : []
 
   iptables_filter_output_v6_icmp
-    Specify arbitrary 'iptables_filter_output_v6_icmp' variable (array).
-
-    Examples: ['-A OUTPUT -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
-               '-A OUTPUT -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"']
-    None    : []
-    Default : ['#-A OUTPUT -p icmpv6 --icmpv6-type 1/0 -j ACCEPT -m comment --comment "destination-unreachable/no-route (ICMPv6 type 1 code 0)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 1/1 -j ACCEPT -m comment --comment "destination-unreachable/communication-prohibited (ICMPv6 type 1 code 1)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 1/3 -j ACCEPT -m comment --comment "destination-unreachable/address-unreachable (ICMPv6 type 1 code 3)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 1/4 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMPv6 type 1 code 4)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 2 -j ACCEPT -m comment --comment "packet-too-big (ICMPv6 type 2)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 3/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMPv6 type 3 code 0)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 3/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMPv6 type 3 code 1)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 4/0 -j ACCEPT -m comment --comment "parameter-problem/bad-header (ICMPv6 type 4 code 0)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 4/1 -j ACCEPT -m comment --comment "parameter-problem/unknown-header-type (ICMPv6 type 4 code 1)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 4/2 -j ACCEPT -m comment --comment "parameter-problem/unknown-option (ICMPv6 type 4 code 2)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 133 -j ACCEPT -m comment --comment "router-solicitation (ICMPv6 type 133)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 134 -j ACCEPT -m comment --comment "router-advertisement (ICMPv6 type 134)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 135 -j ACCEPT -m comment --comment "neighbour-solicitation (ICMPv6 type 135)"',
-               '#-A OUTPUT -p icmpv6 --icmpv6-type 136 -j ACCEPT -m comment --comment "neighbour-advertisement (ICMPv6 type 136)"']
+    Description: Define the 'iptables_filter_output_v6_icmp' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['#-A OUTPUT -p icmpv6 --icmpv6-type 1/0 -j ACCEPT -m comment --comment "destination-unreachable/no-route (ICMPv6 type 1 code 0)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 1/1 -j ACCEPT -m comment --comment "destination-unreachable/communication-prohibited (ICMPv6 type 1 code 1)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 1/3 -j ACCEPT -m comment --comment "destination-unreachable/address-unreachable (ICMPv6 type 1 code 3)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 1/4 -j ACCEPT -m comment --comment "destination-unreachable/port-unreachable (ICMPv6 type 1 code 4)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 2 -j ACCEPT -m comment --comment "packet-too-big (ICMPv6 type 2)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 3/0 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-transit (ICMPv6 type 3 code 0)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 3/1 -j ACCEPT -m comment --comment "time-exceeded/ttl-zero-during-reassembly (ICMPv6 type 3 code 1)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 4/0 -j ACCEPT -m comment --comment "parameter-problem/bad-header (ICMPv6 type 4 code 0)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 4/1 -j ACCEPT -m comment --comment "parameter-problem/unknown-header-type (ICMPv6 type 4 code 1)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 4/2 -j ACCEPT -m comment --comment "parameter-problem/unknown-option (ICMPv6 type 4 code 2)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 133 -j ACCEPT -m comment --comment "router-solicitation (ICMPv6 type 133)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 134 -j ACCEPT -m comment --comment "router-advertisement (ICMPv6 type 134)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 135 -j ACCEPT -m comment --comment "neighbour-solicitation (ICMPv6 type 135)"',
+                  '#-A OUTPUT -p icmpv6 --icmpv6-type 136 -j ACCEPT -m comment --comment "neighbour-advertisement (ICMPv6 type 136)"']
+    Options    :
+      Examples: ['-A OUTPUT -p icmpv6 --icmpv6-type 128 -j ACCEPT -m comment --comment "echo-request (ICMPv6 type 128)"',
+                 '-A OUTPUT -p icmpv6 --icmpv6-type 129 -j ACCEPT -m comment --comment "echo-reply (ICMPv6 type 129)"']
+      None    : []
 
   iptables_filter_output_v6_policy
-    Specify predetermined 'iptables_filter_output_v6_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'DROP'
+    Description: Control the 'iptables_filter_output_v6_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'DROP'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_ip6tables_config_template
-    Specify arbitrary 'iptables_ip6tables_config_template' variable (string).
-    Any value other than 'main' requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'iptables/templates/example/ip6tables-config.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : 'main'
+    Description: Define the template source for 'ip6tables-config.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'iptables/templates/example/ip6tables-config.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   iptables_ip6tables_template
-    Specify arbitrary 'iptables_ip6tables_template' variable (string).
-    Any value other than 'main' requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'iptables/templates/example/ip6tables.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : 'main'
+    Description: Define the template source for 'ip6tables.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'iptables/templates/example/ip6tables.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   iptables_iptables_config_template
-    Specify arbitrary 'iptables_iptables_config_template' variable (string).
-    Any value other than 'main' requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'iptables/templates/example/iptables-config.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : 'main'
+    Description: Define the template source for 'iptables-config.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'iptables/templates/example/iptables-config.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   iptables_iptables_template
-    Specify arbitrary 'iptables_iptables_template' variable (string).
-    Any value other than 'main' requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'iptables/templates/example/iptables.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : 'main'
+    Description: Define the template source for 'iptables.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'iptables/templates/example/iptables.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   iptables_mangle_forward_v4
-    Specify arbitrary 'iptables_mangle_forward_v4' variable (array).
-
-    Examples: []
-    None    : []
-    Default : []
+    Description: Define the 'iptables_mangle_forward_v4' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: []
+      None    : []
 
   iptables_mangle_forward_v4_policy
-    Specify predetermined 'iptables_mangle_forward_v4_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'ACCEPT'
+    Description: Control the 'iptables_mangle_forward_v4_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'ACCEPT'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_mangle_input_v4
-    Specify arbitrary 'iptables_mangle_input_v4' variable (array).
-
-    Examples: []
-    None    : []
-    Default : []
+    Description: Define the 'iptables_mangle_input_v4' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: []
+      None    : []
 
   iptables_mangle_input_v4_policy
-    Specify predetermined 'iptables_mangle_input_v4_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'ACCEPT'
+    Description: Control the 'iptables_mangle_input_v4_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'ACCEPT'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_mangle_output_v4
-    Specify arbitrary 'iptables_mangle_output_v4' variable (array).
-
-    Examples: []
-    None    : []
-    Default : []
+    Description: Define the 'iptables_mangle_output_v4' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: []
+      None    : []
 
   iptables_mangle_output_v4_policy
-    Specify predetermined 'iptables_mangle_output_v4_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'ACCEPT'
+    Description: Control the 'iptables_mangle_output_v4_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'ACCEPT'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_mangle_postrouting_v4
-    Specify arbitrary 'iptables_mangle_postrouting_v4' variable (array).
-
-    Examples: []
-    None    : []
-    Default : []
+    Description: Define the 'iptables_mangle_postrouting_v4' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: []
+      None    : []
 
   iptables_mangle_postrouting_v4_policy
-    Specify predetermined 'iptables_mangle_postrouting_v4_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'ACCEPT'
+    Description: Control the 'iptables_mangle_postrouting_v4_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'ACCEPT'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_mangle_prerouting_v4
-    Specify arbitrary 'iptables_mangle_prerouting_v4' variable (array).
-
-    Examples: []
-    None    : []
-    Default : []
+    Description: Define the 'iptables_mangle_prerouting_v4' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: []
+      None    : []
 
   iptables_mangle_prerouting_v4_policy
-    Specify predetermined 'iptables_mangle_prerouting_v4_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'ACCEPT'
+    Description: Control the 'iptables_mangle_prerouting_v4_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'ACCEPT'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_nat_postrouting_v4
-    Specify arbitrary 'iptables_nat_postrouting_v4' variable (array).
-
-    Examples: ['-A POSTROUTING -s 192.168.1.1/32 -m comment --comment "SNAT - DNS - host01 via host02" -j SNAT --to-source 192.168.2.1',
-               '-A POSTROUTING -s 192.168.2.0/24 -m comment --comment "SNAT - ALL - dmz network via host03" -j SNAT --to-source 192.168.3.1']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_nat_postrouting_v4' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A POSTROUTING -s 192.168.1.1/32 -m comment --comment "SNAT - DNS - host01 via host02" -j SNAT --to-source 192.168.2.1',
+                 '-A POSTROUTING -s 192.168.2.0/24 -m comment --comment "SNAT - ALL - dmz network via host03" -j SNAT --to-source 192.168.3.1']
+      None    : []
 
   iptables_nat_postrouting_v4_policy
-    Specify predetermined 'iptables_nat_postrouting_v4_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'ACCEPT'
+    Description: Control the 'iptables_nat_postrouting_v4_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'ACCEPT'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
   iptables_nat_prerouting_v4
-    Specify arbitrary 'iptables_nat_prerouting_v4' variable (array).
-
-    Examples: ['-A PREROUTING -d 192.168.1.1 -m state --state NEW -m tcp -p tcp --dport 80 -m comment --comment "DNAT - HTTP - any via host02" -j DNAT --to-destination 192.168.2.1',
-               '-A PREROUTING -d 192.168.1.1 -m state --state NEW -m tcp -p tcp --dport 443 -m comment --comment "DNAT - HTTPS - any via host02" -j DNAT --to-destination 192.168.2.1']
-    None    : []
-    Default : []
+    Description: Define the 'iptables_nat_prerouting_v4' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['-A PREROUTING -d 192.168.1.1 -m state --state NEW -m tcp -p tcp --dport 80 -m comment --comment "DNAT - HTTP - any via host02" -j DNAT --to-destination 192.168.2.1',
+                 '-A PREROUTING -d 192.168.1.1 -m state --state NEW -m tcp -p tcp --dport 443 -m comment --comment "DNAT - HTTPS - any via host02" -j DNAT --to-destination 192.168.2.1']
+      None    : []
 
   iptables_nat_prerouting_v4_policy
-    Specify predetermined 'iptables_nat_prerouting_v4_policy' variable (string).
-
-    Accept : 'accept' | 'ACCEPT'
-    Drop   : 'drop' | 'DROP'
-    Default: 'ACCEPT'
+    Description: Control the 'iptables_nat_prerouting_v4_policy' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'ACCEPT'
+    Options    :
+      Accept : 'accept' | 'ACCEPT'
+      Drop   : 'drop' | 'DROP'
 
 --------------------------------------------------------------------------------
 DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  iptables: >= 1.4
-    RedHat, CentOS, Gentoo
+  iptables
+    Version: >= 1.4
+    Name   :
+      RedHat 6: 'iptables'
+      CentOS 6: 'iptables'
+      Gentoo 2: 'iptables'
 
 ROLES
 
@@ -544,37 +681,47 @@ REQUIREMENTS
 --------------------------------------------------------------------------------
 
 CONTROL MACHINE
-  Ansible: >= 1.6
+  Ansible
+    Version: >= 1.6
 
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
-  Python-Crypto: >= 2.0
+  Python-Crypto
+    Version: >= 2.0
 
-  Python-Jinja2: >= 2.0
+  Python-Jinja2
+    Version: >= 2.0
 
-  Python-Paramiko: >= 1.0
+  Python-Paramiko
+    Version: >= 1.0
 
-  Python-YAML: >= 3.0
+  Python-YAML
+    Version: >= 3.0
 
-  sshpass: >= 1.0
+  sshpass
+    Version: >= 1.0
 
 MANAGED NODE
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
 --------------------------------------------------------------------------------
 SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat 6: Testing
+  RedHat
+    Version: 6
+      Status: Testing
 
-  CentOS 6: Testing
+  CentOS
+    Version: 6
+      Status: Testing
 
-  Gentoo: Testing
-
---------------------------------------------------------------------------------
-NOTICE
---------------------------------------------------------------------------------
+  Gentoo:
+    Version: 2
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER

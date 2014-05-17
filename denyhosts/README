@@ -80,189 +80,274 @@ VARIABLES
 
 ROLE
   denyhosts_state
-    Specify predetermined 'denyhosts_state' variable (string).
-
-    Install: 'true' | 'yes' | 'install'
-    Enable : 'start' | 'on' | 'enable'
-    Disable: 'stop' | 'off' | 'disable'
-    Remove : 'false' | 'no' | 'remove'
-    Default: 'enable'
+    Description: Control the state of the role.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Enable : 'start' | 'on' | 'enable'
+      Disable: 'stop' | 'off' | 'disable'
+      Remove : 'false' | 'no' | 'remove'
 
   denyhosts_admin_email
-    Specify arbitrary 'denyhosts_admin_email' variable (string).
-
-    Examples: 'user' | 'user@localhost' | 'user.domain.tld'
-    Default : 'root'
+    Description: Define the 'denyhosts_admin_email' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'root'
+    Options    :
+      Examples: 'user' | 'user@localhost' | 'user.domain.tld'
 
   denyhosts_age_reset_invalid
-    Specify arbitrary 'denyhosts_age_reset_invalid' variable (string).
-
-    Examples: '10d' | '15d'
-    Disable : 'false' | 'no' | 'disable'
-    Default : 'disable'
+    Description: Set the 'denyhosts_age_reset_invalid' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'disable'
+    Options    :
+      Examples: '10d' | '15d'
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_age_reset_restricted
-    Specify arbitrary 'denyhosts_age_reset_restricted' variable (string).
-
-    Examples: '20d' | '25d'
-    Disable : 'false' | 'no' | 'disable'
-    Default : 'disable'
+    Description: Set the 'denyhosts_age_reset_restricted' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'disable'
+    Options    :
+      Examples: '20d' | '25d'
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_age_reset_root
-    Specify arbitrary 'denyhosts_age_reset_root' variable (string).
-
-    Examples: '20d' | '25d'
-    Disable : 'false' | 'no' | 'disable'
-    Default : 'disable'
+    Description: Set the 'denyhosts_age_reset_root' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'disable'
+    Options    :
+      Examples: '20d' | '25d'
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_age_reset_valid
-    Specify arbitrary 'denyhosts_age_reset_valid' variable (string).
-
-    Examples: '5d' | '10d'
-    Disable : 'false' | 'no' | 'disable'
-    Default : 'disable'
+    Description: Set the 'denyhosts_age_reset_valid' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'disable'
+    Options    :
+      Examples: '5d' | '10d'
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_allowed_hosts
-    Specify arbitrary 'denyhosts_allowed_hosts' variable (array).
-
-    Examples: ['127.0.0.1', '192.168.1.*', '192.168.2.*'] |
-              ['127.0.0.1', '192.168.3.*']
-    Default : ['127.0.0.1']
+    Description: Define the 'denyhosts_allowed_hosts' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ['127.0.0.1']
+    Options    :
+      Examples: ['127.0.0.1', '192.168.1.*', '192.168.2.*'] |
+                ['127.0.0.1', '192.168.3.*']
+      None    : []
 
   denyhosts_allowed_hosts_template
-    Specify arbitrary 'denyhosts_allowed_hosts_template' variable (string).
-    Any value other than 'main' requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'denyhosts/templates/example/allowed-hosts.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : 'main'
+    Description: Define the template source for 'allowed-hosts.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'denyhosts/templates/example/allowed-hosts.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   denyhosts_block_service
-    Specify predetermined 'denyhosts_block_service' variable (string).
-
-    ALL    : 'all' | 'ALL' | 'any' | 'ANY'
-    SSH    : 'sshd' | 'SSHD' | 'ssh' | 'SSH'
-    Default: 'sshd'
+    Description: Control the 'denyhosts_block_service' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'sshd'
+    Options    :
+      ALL    : 'all' | 'ALL' | 'any' | 'ANY'
+      SSH    : 'sshd' | 'SSHD' | 'ssh' | 'SSH'
 
   denyhosts_daemon_sleep
-    Specify arbitrary 'denyhosts_daemon_sleep' variable (string).
-
-    Examples: '50s' | '120s'
-    Default : '30s'
+    Description: Set the 'denyhosts_daemon_sleep' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '30s'
+    Options    :
+      Examples: '50s' | '120s'
 
   denyhosts_daemon_purge
-    Specify arbitrary 'denyhosts_daemon_purge' variable (string).
-
-    Examples: '2h' | '3h'
-    Default : '1h'
+    Description: Set the 'denyhosts_daemon_purge' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '1h'
+    Options    :
+      Examples: '2h' | '3h'
 
   denyhosts_denyhosts_conf_template
-    Specify arbitrary 'denyhosts_denyhosts_conf_template' variable (string).
-    Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'denyhosts/templates/example/denyhosts.conf.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : "{{ansible_os_family}}"
+    Description: Define the template source for 'denyhosts.conf.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'denyhosts/templates/example/denyhosts.conf.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   denyhosts_deny_threshold_invalid
-    Specify arbitrary 'denyhosts_deny_threshold_invalid' variable (integer).
-
-    Examples: '3' | '4'
-    Default : '2'
+    Description: Set the 'denyhosts_deny_threshold_invalid' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '2'
+    Options    :
+      Examples: '3' | '4'
 
   denyhosts_deny_threshold_restricted
-    Specify arbitrary 'denyhosts_deny_threshold_restricted' variable (integer).
-
-    Examples: '1' | '2'
-    Default : '2'
+    Description: Set the 'denyhosts_deny_threshold_restricted' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '2'
+    Options    :
+      Examples: '1' | '2'
 
   denyhosts_deny_threshold_root
-    Specify arbitrary 'denyhosts_deny_threshold_root' variable (integer).
-
-    Examples: '2' | '3'
-    Default : '2'
+    Description: Set the 'denyhosts_deny_threshold_root' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '2'
+    Options    :
+      Examples: '2' | '3'
 
   denyhosts_deny_threshold_valid
-    Specify arbitrary 'denyhosts_deny_threshold_valid' variable (integer).
-
-    Examples: '4' | '5'
-    Default : '2'
+    Description: Set the 'denyhosts_deny_threshold_valid' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '2'
+    Options    :
+      Examples: '4' | '5'
 
   denyhosts_hostname_lookup
-    Specify predetermined 'denyhosts_hostname_lookup' status (string).
-
-    Enable : 'true' | 'yes' | 'enable'
-    Disable: 'false' | 'no' | 'disable'
-    Default: 'disable'
+    Description: Control the 'denyhosts_hostname_lookup' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'disable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   denyhosts_purge_deny
-    Specify arbitrary 'denyhosts_purge_deny' variable (string).
-
-    Examples: '30m' | '1h' | '2d' | '3w' | '4y'
-    Disable : 'false' | 'no' | 'disable' | 'never'
-    Default : 'disable'
+    Description: Set the 'denyhosts_purge_deny' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'disable'
+    Options    :
+      Examples: '30m' | '1h' | '2d' | '3w' | '4y'
+      Disable : 'false' | 'no' | 'disable' | 'never'
 
   denyhosts_reset_on_success
-    Specify predetermined 'denyhosts_reset_on_success' status (string).
-
-    Enable : 'true' | 'yes' | 'enable'
-    Disable: 'false' | 'no' | 'disable'
-    Default: 'enable'
+    Description: Control the 'denyhosts_reset_on_success' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   denyhosts_smtp_host
-    Specify arbitrary 'denyhosts_smtp_host' variable (string).
-
-    Examples: 'localhost' | 'host' | 'host@domain.tld'
-    Default : 'localhost'
+    Description: Define the 'denyhosts_smtp_host' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'localhost'
+    Options    :
+      Examples: 'localhost' | 'host' | 'host@domain.tld'
 
   denyhosts_smtp_from
-    Specify arbitrary 'denyhosts_smtp_from' variable (string).
-
-    Examples: 'Comment <user>' | 'Comment <user@localhost>' | 'Comment <user@domain.tld>'
-    Default : 'DenyHosts <nobody@localhost>'
+    Description: Define the 'denyhosts_smtp_from' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'DenyHosts <nobody@localhost>'
+    Options    :
+      Examples: 'Comment <user>' | 'Comment <user@localhost>' | 'Comment <user@domain.tld>'
 
   denyhosts_smtp_password
-    Specify arbitrary 'denyhosts_smtp_password' variable (string).
-
-    Examples: '$uP_3rp-@$5.WoR!d'
-    Disable : 'false' | 'no' | 'disable'
-    Default : 'disable'
+    Description: Define the 'denyhosts_smtp_password' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'disable'
+    Options    :
+      Examples: '$uP_3rp-@$5.WoR!d'
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_smtp_port
-    Specify arbitrary 'denyhosts_smtp_port' variable (integer).
-
-    Examples: '25' | '465'
-    Default : '25'
+    Description: Set the 'denyhosts_smtp_port' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '25'
+    Options    :
+      Examples: '25' | '465'
 
   denyhosts_smtp_subject
-    Specify arbitrary 'denyhosts_smtp_subject' variable (string).
-
-    Examples: 'DenyHost' | 'DenyHosts Alert'
-    Default : "{{ansible_hostname}}: DenyHosts Report"
+    Description: Define the 'denyhosts_smtp_subject' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_hostname}}: DenyHosts Report"
+    Options    :
+      Examples: 'DenyHost' | 'DenyHosts Alert'
 
   denyhosts_smtp_username
-    Specify arbitrary 'denyhosts_smtp_username' variable (string).
-
-    Examples: 'username' | 'username@domain.tld'
-    Disable : 'false' | 'no' | 'disable'
-    Default : 'disable'
+    Description: Define the 'denyhosts_smtp_username' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'disable'
+    Options    :
+      Examples: 'username' | 'username@domain.tld'
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_syslog_report
-    Specify predetermined 'denyhosts_syslog_report' variable (string).
-
-    Enable : 'true' | 'yes' | 'enable'
-    Disable: 'false' | 'no' | 'disable'
-    Default: 'disable'
+    Description: Control the 'denyhosts_syslog_report' option.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'disable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
 --------------------------------------------------------------------------------
 DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  denyhosts: >= 2.6
-    RedHat, CentOS, Gentoo
+  denyhosts
+    Version: >= 2.6
+    Name   :
+      RedHat 6: 'denyhosts'
+      CentOS 6: 'denyhosts'
+      Gentoo 2: 'denyhosts'
 
 ROLES
 
@@ -273,37 +358,47 @@ REQUIREMENTS
 --------------------------------------------------------------------------------
 
 CONTROL MACHINE
-  Ansible: >= 1.6
+  Ansible
+    Version: >= 1.6
 
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
-  Python-Crypto: >= 2.0
+  Python-Crypto
+    Version: >= 2.0
 
-  Python-Jinja2: >= 2.0
+  Python-Jinja2
+    Version: >= 2.0
 
-  Python-Paramiko: >= 1.0
+  Python-Paramiko
+    Version: >= 1.0
 
-  Python-YAML: >= 3.0
+  Python-YAML
+    Version: >= 3.0
 
-  sshpass: >= 1.0
+  sshpass
+    Version: >= 1.0
 
 MANAGED NODE
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
 --------------------------------------------------------------------------------
 SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat 6: Testing
+  RedHat
+    Version: 6
+      Status: Testing
 
-  CentOS 6: Testing
+  CentOS
+    Version: 6
+      Status: Testing
 
-  Gentoo: Testing
-
---------------------------------------------------------------------------------
-NOTICE
---------------------------------------------------------------------------------
+  Gentoo:
+    Version: 2
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER

@@ -48,122 +48,177 @@ VARIABLES
 
 ROLE
   bash_state
-    Specify predetermined 'bash_state' variable (string).
-    Notice: 'gzip' is a core package and can therefore not be removed.
-
-    Install: 'true' | 'yes' | 'install'
-    Remove : 'false' | 'no' | 'remove'
-    Default: 'install'
+    Description: Control the state of the role. 'bash' is a core package and can
+                 therefore not be removed.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Remove : 'false' | 'no' | 'remove'
 
   bash_color_prompt
-    Specify predetermined 'bash_color_prompt' variable (string).
-
-    Enable : 'true' | 'yes' | 'enable'
-    Disable: 'false' | 'no' | 'disable'
-    Default: 'enable'
+    Description: Control the state of a colored 'bash' prompt.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   bash_color_support
-    Specify predetermined 'bash_color_support' variable (string).
-
-    Enable : 'true' | 'yes' | 'enable'
-    Disable: 'false' | 'no' | 'disable'
-    Default: 'enable'
+    Description: Control the state of colored 'bash' commands.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   bash_history_readonly
-    Specify predetermined 'bash_history_readonly' variable (string).
-
-    Enable : 'true' | 'yes' | 'enable'
-    Disable: 'false' | 'no' | 'disable'
-    Default: 'enable'
+    Description: Control the readonly state of the 'bash' history variable.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   bash_histsize
-    Specify arbitrary 'bash_histsize' variable (integer).
-
-    Examples: '32768' | '65536' | '131072' | '262144'
-    Disable : 'false' | 'no' | 'disable'
-    Default : '262144'
+    Description: Set the size of the 'bash' history variable.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '262144'
+    Options    :
+      Examples: '32768' | '65536' | '131072' | '262144'
+      Disable : 'false' | 'no' | 'disable'
 
   bash_histfilesize
-    Specify arbitrary 'bash_histfilesize' variable (integer).
-
-    Examples: '32768' | '65536' | '131072' | '262144'
-    Disable : 'false' | 'no' | 'disable'
-    Default : '262144'
+    Description: Set the size of the 'bash' history file.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '262144'
+    Options    :
+      Examples: '32768' | '65536' | '131072' | '262144'
+      Disable : 'false' | 'no' | 'disable'
 
   bash_histtimeformat
-    Specify arbitrary 'bash_histtimeformat' variable (string).
-
-    Examples: '%F %T  '
-    Disable : 'false' | 'no' | 'disable'
-    Default : '%F %T  '
+    Description: Define the time format of the 'bash' history.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '%F %T  '
+    Options    :
+      Examples: '%F %T  '
+      Disable : 'false' | 'no' | 'disable'
 
   bash_histignore
-    Specify arbitrary 'bash_histignore' variable (string).
-
-    Examples: ''
-    Disable : 'false' | 'no' | 'disable'
-    Default : ''
+    Description: Define patterns to decide which command lines should be saved
+                 in the 'bash' history.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: ''
+      Disable : 'false' | 'no' | 'disable'
 
   bash_histcontrol
-    Specify arbitrary 'bash_histcontrol' variable (string).
-
-    Examples: ''
-    Disable : 'false' | 'no' | 'disable'
-    Default : ''
+    Description: Define values to control how commands are saved in the 'bash'
+                 history.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: ''
+      Disable : 'false' | 'no' | 'disable'
 
   bash_ls_time_style
-    Specify arbitrary 'bash_ls_time_style' variable (string).
-
-    Examples: '+%Y-%m-%d %H:%M:%S'
-    Disable : 'false' | 'no' | 'disable'
-    Default : '+%Y-%m-%d %H:%M:%S'
+    Description: Define the time format of the 'ls' command.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '+%Y-%m-%d %H:%M:%S'
+    Options    :
+      Examples: '+%Y-%m-%d %H:%M:%S'
+      Disable : 'false' | 'no' | 'disable'
 
   bash_safety
-    Specify predetermined 'bash_safety' variable (string).
-
-    Enable : 'true' | 'yes' | 'enable'
-    Disable: 'false' | 'no' | 'disable'
-    Default: 'enable'
+    Description: Control the safety of various bash commands
+                 (chmod, chown, ln, mv, rm...).
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   bash_bash_sh_template
-    Specify arbitrary 'bash_bash_sh_template' variable (string).
-    Any value other than 'main' requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'bash/templates/example/bash.sh.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : 'main'
+    Description: Define the template source for 'bash.sh.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'bash/templates/example/bash.sh.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   bash_session_readonly
-    Specify predetermined 'bash_session_readonly' variable (string).
-
-    Enable : 'true' | 'yes' | 'enable'
-    Disable: 'false' | 'no' | 'disable'
-    Default: 'enable'
+    Description: Control the readonly state of the 'bash' session variable.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   bash_tmout
-    Specify arbitrary 'bash_tmout' variable (integer).
-
-    Examples: '300' | '600' | '1200' | '1800'
-    Disable : 'false' | 'no' | 'disable'
-    Default : '1800'
+    Description: Set the number of seconds after 'bash' terminates its session
+                 if no input arrives.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '1800'
+    Options    :
+      Examples: '300' | '600' | '1200' | '1800'
+      Disable : 'false' | 'no' | 'disable'
 
   bash_z_bash_sh_template
-    Specify arbitrary 'bash_z_bash_sh_template' variable (string).
-    Any value other than 'main' requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'bash/templates/example/z_bash.sh.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : 'main'
+    Description: Define the template source for 'z_bash.sh.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'bash/templates/example/z_bash.sh.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
 --------------------------------------------------------------------------------
 DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  bash: >= 4.0
-    RedHat, CentOS, Gentoo
+  bash
+    Version: >= 4.0
+    Name   :
+      RedHat 6: 'bash'
+      CentOS 6: 'bash'
+      Gentoo 2: 'bash'
 
 ROLES
 
@@ -174,37 +229,47 @@ REQUIREMENTS
 --------------------------------------------------------------------------------
 
 CONTROL MACHINE
-  Ansible: >= 1.6
+  Ansible
+    Version: >= 1.6
 
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
-  Python-Crypto: >= 2.0
+  Python-Crypto
+    Version: >= 2.0
 
-  Python-Jinja2: >= 2.0
+  Python-Jinja2
+    Version: >= 2.0
 
-  Python-Paramiko: >= 1.0
+  Python-Paramiko
+    Version: >= 1.0
 
-  Python-YAML: >= 3.0
+  Python-YAML
+    Version: >= 3.0
 
-  sshpass: >= 1.0
+  sshpass
+    Version: >= 1.0
 
 MANAGED NODE
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
 --------------------------------------------------------------------------------
 SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat 6: Testing
+  RedHat
+    Version: 6
+      Status: Testing
 
-  CentOS 6: Testing
+  CentOS
+    Version: 6
+      Status: Testing
 
-  Gentoo: Testing
-
---------------------------------------------------------------------------------
-NOTICE
---------------------------------------------------------------------------------
+  Gentoo:
+    Version: 2
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER

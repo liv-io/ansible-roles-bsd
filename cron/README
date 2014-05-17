@@ -60,21 +60,28 @@ VARIABLES
 
 ROLE
   cron_state
-    Specify predetermined 'cron_state' variable (string).
-
-    Install: 'true' | 'yes' | 'install'
-    Enable : 'start' | 'on' | 'enable'
-    Disable: 'stop' | 'off' | 'disable'
-    Remove : 'false' | 'no' | 'remove'
-    Default: 'enable'
+    Description: Control the state of the role.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Enable : 'start' | 'on' | 'enable'
+      Disable: 'stop' | 'off' | 'disable'
+      Remove : 'false' | 'no' | 'remove'
 
 --------------------------------------------------------------------------------
 DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  cronie: >= 1.4
-    RedHat, CentOS, Gentoo
+  cronie
+    Version: >= 1.4
+    Name   :
+      RedHat 6: 'cronie'
+      CentOS 6: 'cronie'
+      Gentoo 2: 'cronie'
 
 ROLES
 
@@ -85,37 +92,47 @@ REQUIREMENTS
 --------------------------------------------------------------------------------
 
 CONTROL MACHINE
-  Ansible: >= 1.6
+  Ansible
+    Version: >= 1.6
 
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
-  Python-Crypto: >= 2.0
+  Python-Crypto
+    Version: >= 2.0
 
-  Python-Jinja2: >= 2.0
+  Python-Jinja2
+    Version: >= 2.0
 
-  Python-Paramiko: >= 1.0
+  Python-Paramiko
+    Version: >= 1.0
 
-  Python-YAML: >= 3.0
+  Python-YAML
+    Version: >= 3.0
 
-  sshpass: >= 1.0
+  sshpass
+    Version: >= 1.0
 
 MANAGED NODE
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
 --------------------------------------------------------------------------------
 SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat 6: Testing
+  RedHat
+    Version: 6
+      Status: Testing
 
-  CentOS 6: Testing
+  CentOS
+    Version: 6
+      Status: Testing
 
-  Gentoo: Testing
-
---------------------------------------------------------------------------------
-NOTICE
---------------------------------------------------------------------------------
+  Gentoo:
+    Version: 2
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER

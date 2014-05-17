@@ -74,93 +74,129 @@ VARIABLES
 
 ROLE
   ntp_state
-    Specify predetermined 'ntp_state' variable (string).
-
-    Install: 'true' | 'yes' | 'install'
-    Enable : 'start' | 'on' | 'enable'
-    Disable: 'stop' | 'off' | 'disable'
-    Cronjob: 'cron' | 'cronjob'
-    Remove : 'false' | 'no' | 'remove'
-    Default: 'enable'
+    Description: Control the state of the role.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Enable : 'start' | 'on' | 'enable'
+      Disable: 'stop' | 'off' | 'disable'
+      Cronjob: 'cron' | 'cronjob'
+      Remove : 'false' | 'no' | 'remove'
 
   ntp_ntp_conf_template
-    Specify arbitrary 'ntp_ntp_conf_template' variable (string).
-    Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'ntp/templates/example/ntp.conf.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : "{{ansible_os_family}}"
+    Description: Define the template source for 'ntp.conf.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'ntp/templates/example/ntp.conf.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   ntp_ntp_update_time_bash_template
-    Specify arbitrary 'ntp_ntp_update_time_bash_template' variable (string).
-    Any value other than 'main' requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'ntp/templates/example/ntp_update-time.bash.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : 'main'
+    Description: Define the template source for 'ntp_update-time.bash.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'ntp/templates/example/ntp_update-time.bash.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   ntp_ntp_update_time_cron_template
-    Specify arbitrary 'ntp_ntp_update_time_cron_template' variable (string).
-    Any value other than 'main' requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'ntp/templates/example/ntp_update-time.cron.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : 'main'
+    Description: Define the template source for 'ntp_update-time.cron.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'ntp/templates/example/ntp_update-time.cron.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   ntp_option
-    Specify arbitrary 'ntp_option' variable (array).
-
-    Examples: ['burst', 'prefer', 'minpoll 4', 'maxpoll 6'] |
-              ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
-    None    : []
-    Default : ['burst', 'prefer', 'minpoll 4', 'maxpoll 6']
+    Description: Define the 'ntp_option' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['burst', 'prefer', 'minpoll 4', 'maxpoll 6']
+    Options    :
+      Examples: ['burst', 'prefer', 'minpoll 4', 'maxpoll 6'] |
+                ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
+      None    : []
 
   ntp_restrict
-    Specify arbitrary 'ntp_restrict' variable (array).
-
-    Examples: ['192.168.1.0 mask 255.255.255.0 nomodify notrap',
-               '192.168.2.0 mask 255.255.255.0 nomodify notrap'] |
-              ['2001:0db8:85a3:08d3:1319:8a2e:0370:7347 nomodify notrap',
-               '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458 nomodify notrap']
-    None    : []
-    Default : ['default kod nomodify notrap nopeer noquery',
+    Description: Define the 'ntp_restrict' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['default kod nomodify notrap nopeer noquery',
                '-6 default kod nomodify notrap nopeer noquery',
                '127.0.0.1', '-6 ::1']
+    Options    :
+      Examples: ['192.168.1.0 mask 255.255.255.0 nomodify notrap',
+                 '192.168.2.0 mask 255.255.255.0 nomodify notrap'] |
+                ['2001:0db8:85a3:08d3:1319:8a2e:0370:7347 nomodify notrap',
+                 '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458 nomodify notrap']
+      None    : []
 
   ntp_server
-    Specify arbitrary 'ntp_server' variable (array).
-
-    Examples: ['ntp.domain.tld'] | ['ntp01.domain.tld', 'ntp02.domain.tld'] |
-              ['ntp01.domain.tld', 'ntp02.domain.tld', 'ntp03.domain.tld']
-    Default : ["ntp.{{ansible_domain}}"]
+    Description: Define the 'ntp_server' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ["ntp.{{ansible_domain}}"]
+    Options    :
+      Examples: ['ntp.domain.tld'] | ['ntp01.domain.tld', 'ntp02.domain.tld'] |
+                ['ntp01.domain.tld', 'ntp02.domain.tld', 'ntp03.domain.tld']
+      None    : []
 
   ntp_step_ticker
-    Specify arbitrary 'ntp_step_ticker' variable (array).
-
-    Examples: ['ntp.domain.tld'] | ['ntp01.domain.tld', 'ntp02.domain.tld'] |
-              ['ntp01.domain.tld', 'ntp02.domain.tld', 'ntp03.domain.tld']
-    None    : []
-    Default : ["ntp.{{ansible_domain}}"]
+    Description: Define the 'ntp_step_ticker' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ["ntp.{{ansible_domain}}"]
+    Options    :
+      Examples: ['ntp.domain.tld'] | ['ntp01.domain.tld', 'ntp02.domain.tld'] |
+                ['ntp01.domain.tld', 'ntp02.domain.tld', 'ntp03.domain.tld']
+      None    : []
 
   ntp_step_tickers_template
-    Specify arbitrary 'ntp_step_tickers_template' variable (string).
-    Any value other than 'main' requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'ntp/templates/example/step-tickers.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : 'main'
+    Description: Define the template source for 'step-tickers.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'ntp/templates/example/step-tickers.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
 --------------------------------------------------------------------------------
 DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  ntp: >= 4.2
-    RedHat, CentOS, Gentoo
+  ntp
+    Version: >= 4.2
+    Name   :
+      RedHat 6: 'ntp'
+      CentOS 6: 'ntp'
+      Gentoo 2: 'ntp'
 
 ROLES
   ntpdate
@@ -172,37 +208,47 @@ REQUIREMENTS
 --------------------------------------------------------------------------------
 
 CONTROL MACHINE
-  Ansible: >= 1.6
+  Ansible
+    Version: >= 1.6
 
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
-  Python-Crypto: >= 2.0
+  Python-Crypto
+    Version: >= 2.0
 
-  Python-Jinja2: >= 2.0
+  Python-Jinja2
+    Version: >= 2.0
 
-  Python-Paramiko: >= 1.0
+  Python-Paramiko
+    Version: >= 1.0
 
-  Python-YAML: >= 3.0
+  Python-YAML
+    Version: >= 3.0
 
-  sshpass: >= 1.0
+  sshpass
+    Version: >= 1.0
 
 MANAGED NODE
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
 --------------------------------------------------------------------------------
 SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat 6: Testing
+  RedHat
+    Version: 6
+      Status: Testing
 
-  CentOS 6: Testing
+  CentOS
+    Version: 6
+      Status: Testing
 
-  Gentoo: Testing
-
---------------------------------------------------------------------------------
-NOTICE
---------------------------------------------------------------------------------
+  Gentoo:
+    Version: 2
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER

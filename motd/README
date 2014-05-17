@@ -51,81 +51,100 @@ VARIABLES
 
 ROLE
   motd_state
-    Specify predetermined 'motd_state' variable (string).
-    Notice: 'motd' is a core file and can therefore not be removed.
-
-    Install: 'true' | 'yes' | 'install'
-    Disable: 'stop' | 'off' | 'disable'
-    Default: 'install'
+    Description: Control the state of the role. 'motd' is a core file and can
+                 therefore not be removed.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Disable: 'false' | 'no' | 'disable'
 
   motd_env_color
-    Specify predetermined 'motd_env_color' variable (string).
-    The following colors codes are compatible with Bourne Again Shell (BASH).
-    The codes represent both the regular (R) and bold (B) font style.
-
-    Black (R) : '0;30m'
-    Black (B) : '1;30m'
-    Red (R)   : '0;31m'
-    Red (B)   : '1;31m'
-    Green (R) : '0;32m'
-    Green (B) : '1;32m'
-    Yellow (R): '0;33m'
-    Yellow (B): '1;33m'
-    Blue (R)  : '0;34m'
-    Blue (B)  : '1;34m'
-    Purple (R): '0;35m'
-    Purple (B): '1;35m'
-    Cyan (R)  : '0;36m'
-    Cyan (B)  : '1;36m'
-    White (R) : '0;37m'
-    White (B) : '1;37m'
-    Default   : '1;31m'
+    Description: Set the 'motd_env_color' option.
+                 The following colors codes are compatible with Bourne Again Shell (BASH).
+                 The codes represent both the regular (R) and bold (B) font style.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : '1;31m'
+    Options    :
+      Black (R) : '0;30m'
+      Black (B) : '1;30m'
+      Red (R)   : '0;31m'
+      Red (B)   : '1;31m'
+      Green (R) : '0;32m'
+      Green (B) : '1;32m'
+      Yellow (R): '0;33m'
+      Yellow (B): '1;33m'
+      Blue (R)  : '0;34m'
+      Blue (B)  : '1;34m'
+      Purple (R): '0;35m'
+      Purple (B): '1;35m'
+      Cyan (R)  : '0;36m'
+      Cyan (B)  : '1;36m'
+      White (R) : '0;37m'
+      White (B) : '1;37m'
 
   motd_env_name
-    Specify arbitrary 'motd_env_name' variable (string).
-
-    Examples: 'Production' | 'Integration' | 'Testing' | 'Development'
-    None    : ''
-    Default : 'Production'
+    Description: Define the 'motd_env_name' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'Production'
+    Options    :
+      Examples: 'Production' | 'Integration' | 'Testing' | 'Development'
+      None    : ''
 
   motd_host_description
-    Specify arbitrary 'motd_host_description' variable (string).
-
-    Examples: 'Backup Server' | 'Database Server' | 'Mail Server' | 'Web Server'
-    None    : ''
-    Default : ''
+    Description: Define the 'motd_host_description' option.
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'Backup Server' | 'Database Server' | 'Mail Server' | 'Web Server'
+      None    : ''
 
   motd_motd_template
-    Specify arbitrary 'motd_motd_template' variable (string).
-    Any value other than 'main' requires a Jinja2 file to be created.
-    The custom Jinja2 file for an example configuration called 'example' needs
-    to be placed as follows: 'motd/templates/example/motd.j2'
-
-    Examples: 'example' | 'environment' | 'hostname'
-    Default : 'robomon'
+    Description: Define the template source for 'motd.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'motd/templates/example/motd.j2'
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'robomon'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   motd_os_color
-    Specify predetermined 'motd_os_color' variable (string). 
-    The following colors codes are compatible with Bourne Again Shell (BASH).
-    The codes represent both the regular (R) and bold (B) font style.
-
-    Black (R) : '0;30m'
-    Black (B) : '1;30m'
-    Red (R)   : '0;31m'
-    Red (B)   : '1;31m'
-    Green (R) : '0;32m'
-    Green (B) : '1;32m'
-    Yellow (R): '0;33m'
-    Yellow (B): '1;33m'
-    Blue (R)  : '0;34m'
-    Blue (B)  : '1;34m'
-    Purple (R): '0;35m'
-    Purple (B): '1;35m'
-    Cyan (R)  : '0;36m'
-    Cyan (B)  : '1;36m'
-    White (R) : '0;37m'
-    White (B) : '1;37m'
-    Default   : '1;31m'
+    Description: Set the 'motd_os_color' option.
+                 The following colors codes are compatible with Bourne Again Shell (BASH).
+                 The codes represent both the regular (R) and bold (B) font style.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : '1;31m'
+    Options    :
+      Black (R) : '0;30m'
+      Black (B) : '1;30m'
+      Red (R)   : '0;31m'
+      Red (B)   : '1;31m'
+      Green (R) : '0;32m'
+      Green (B) : '1;32m'
+      Yellow (R): '0;33m'
+      Yellow (B): '1;33m'
+      Blue (R)  : '0;34m'
+      Blue (B)  : '1;34m'
+      Purple (R): '0;35m'
+      Purple (B): '1;35m'
+      Cyan (R)  : '0;36m'
+      Cyan (B)  : '1;36m'
+      White (R) : '0;37m'
+      White (B) : '1;37m'
 
 --------------------------------------------------------------------------------
 DEPENDENCIES
@@ -142,37 +161,47 @@ REQUIREMENTS
 --------------------------------------------------------------------------------
 
 CONTROL MACHINE
-  Ansible: >= 1.6
+  Ansible
+    Version: >= 1.6
 
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
-  Python-Crypto: >= 2.0
+  Python-Crypto
+    Version: >= 2.0
 
-  Python-Jinja2: >= 2.0
+  Python-Jinja2
+    Version: >= 2.0
 
-  Python-Paramiko: >= 1.0
+  Python-Paramiko
+    Version: >= 1.0
 
-  Python-YAML: >= 3.0
+  Python-YAML
+    Version: >= 3.0
 
-  sshpass: >= 1.0
+  sshpass
+    Version: >= 1.0
 
 MANAGED NODE
-  Python: >= 2.4
+  Python
+    Version: >= 2.4
 
 --------------------------------------------------------------------------------
 SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat 6: Testing
+  RedHat
+    Version: 6
+      Status: Testing
 
-  CentOS 6: Testing
+  CentOS
+    Version: 6
+      Status: Testing
 
-  Gentoo: Testing
-
---------------------------------------------------------------------------------
-NOTICE
---------------------------------------------------------------------------------
+  Gentoo:
+    Version: 2
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER
