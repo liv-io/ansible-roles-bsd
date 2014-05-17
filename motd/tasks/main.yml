@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not (motd_state == 'false') and not (motd_state == 'no') and not (motd_state == 'remove')
+  when: not (motd_state == 'false') and not (motd_state == 'no') and not (motd_state == 'disable')
