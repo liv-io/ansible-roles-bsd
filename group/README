@@ -1,0 +1,172 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : group
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : sys-core
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages group.
+
+Create, update and delete group accounts with this role. In addition it helps to
+manage the group's 'authorized keys'.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: group
+       group_state: 'install'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: group
+       group_state: 'disable'
+
+CREATE GROUP
+  group:
+   - name: 'group01'
+     state: 'true'
+     gid: '2001'
+
+   - name: 'group02'
+     state: 'true'
+     gid: '2002'
+
+REMOVE GROUP
+  group:
+   - state: 'false'
+     name: 'group03'
+     gid: '2003'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+CONFIG
+  state
+    Description: Control the state of the group.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Create: 'true' | 'yes' | 'create'
+      Remove: 'false' | 'no' | 'remove'
+
+  name
+    Description: Define the name of the group.
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : None
+    Options    :
+      Examples: 'group01' | 'group02' | 'group03'
+
+  gid
+    Description: Set the GID of the group.
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : None
+    Options    :
+      Examples: '2001' | '2002' | '2003'
+
+  system
+    Description: Control whether to create a system group.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+ROLE
+  group_state
+    Description: Control the state of the role.
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Disable: 'false' | 'no' | 'disable'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat
+    Version: 6
+      Status: Development
+
+  CentOS
+    Version: 6
+      Status: Development
+
+  Gentoo:
+    Version: 2
+      Status: Development
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
