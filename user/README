@@ -44,9 +44,9 @@ DISABLE
 
 CREATE USER
   user:
-   - state: 'true'
-     name: 'user01'
-     comment: 'Example User'
+   - name: 'user01'
+     state: 'true'
+     comment: 'Example User 01'
      uid: '1001'
      groups: ['group01', 'group02']
      groups_append: 'true'
@@ -60,10 +60,21 @@ CREATE USER
       - state: 'true'
         key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAylF0+CUcLIiVcZNG3psSLzu5f4qS1yjMEPJhCiI9TCD7Vc3j+Z+o5J5SO7jt5FKzhx7vVndVMtASmTQppZ5L7d+qCNDO3rFwcM/VKKO7I8gU24tO4WKGK/3f8ACIxrfNHRslNJLjt6TFYc20ZU+60JF7objO/uN7Dh3BOhUKO8ZK8M9Tk5EnYQqm1jicfix/kozcHqzIKEM7+m3Uxq3t1sA6yRo3/R6RzTydWmvzX85852i0MBNTYM6SCy727aEJNZDPr3/rFCVd5Ai2j+z3vMjbkczNyNeifd8kCojdeDjkYEv4VQ3fG/0EsBXsXyVdzRHCAt31Yh77OlPWIR/2MQ== user01'
 
+   - name: 'user02'
+     state: 'true'
+     comment: 'Example User 02'
+     uid: '1002'
+     groups: ['group02']
+     groups_append: 'true'
+     password: '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
+     password_update: 'true'
+     shell: '/bin/bash'
+     authorized_key: []
+
 REMOVE USER
   user:
-   - state: 'false'
-     name: 'user03'
+   - name: 'user03'
+     state: 'false'
      uid: '1003'
      home_remove: 'true'
      home_force: 'true'
