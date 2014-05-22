@@ -31,6 +31,31 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: template create ntp.conf
+  template:
+   src: "{{file_src_ntp_conf}}"
+   dest: "{{file_path_ntp_conf}}"
+   mode: "{{file_mode_ntp_conf}}"
+   owner: "{{file_owner_ntp_conf}}"
+   group: "{{file_group_ntp_conf}}"
+  tags:
+   - files
+   - cronjob
+   - ntp
+
+- name: template create step-tickers
+  template:
+   src: "{{file_src_step_tickers}}"
+   dest: "{{file_path_step_tickers}}"
+   mode: "{{file_mode_step_tickers}}"
+   owner: "{{file_owner_step_tickers}}"
+   group: "{{file_group_step_tickers}}"
+  when: ansible_os_family == 'RedHat'
+  tags:
+   - files
+   - cronjob
+   - ntp
+
 - name: template create ntp_update-time.bash
   template:
    src: "{{file_src_ntp_update_time_bash}}"
