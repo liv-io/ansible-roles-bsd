@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not (procps_state == 'false') and not (procps_state == 'no') and not (procps_state == 'remove')
+  when: not ((procps_state == 'false') or (procps_state == 'no') or (procps_state == 'remove'))

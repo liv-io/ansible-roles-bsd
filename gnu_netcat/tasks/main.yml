@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (gnu_netcat_state == 'false') and not (gnu_netcat_state == 'no') and not (gnu_netcat_state == 'remove')
+  when: not ((gnu_netcat_state == 'false') or (gnu_netcat_state == 'no') or (gnu_netcat_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

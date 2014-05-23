@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not (psmisc_state == 'false') and not (psmisc_state == 'no') and not (psmisc_state == 'remove')
+  when: not ((psmisc_state == 'false') or (psmisc_state == 'no') or (psmisc_state == 'remove'))

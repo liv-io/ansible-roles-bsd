@@ -24,71 +24,71 @@
 #
 #-------------------------------------------------------------------------------
 
-{% if not (bash_histsize == None) and not (bash_histsize == '') and not (bash_histsize == 'false') and not (bash_histsize == 'no') and not (bash_histsize == 'disable') %}
+{% if not ((bash_histsize == None) or (bash_histsize == '') or (bash_histsize == 'false') or (bash_histsize == 'no') or (bash_histsize == 'disable')) %}
 # Bash history - HISTSIZE
 HISTSIZE={{bash_histsize}}
-{% if not (bash_history_readonly == 'false') and not (bash_history_readonly == 'no') and not (bash_history_readonly == 'disable') %}
+{% if not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
 readonly HISTSIZE
 {% endif %}
 export HISTSIZE
 {% endif %}
 
-{% if not (bash_histfilesize == None) and not (bash_histfilesize == '') and not (bash_histfilesize == 'false') and not (bash_histfilesize == 'no') and not (bash_histfilesize == 'disable') %}
+{% if not ((bash_histfilesize == None) or (bash_histfilesize == '') or (bash_histfilesize == 'false') or (bash_histfilesize == 'no') or (bash_histfilesize == 'disable')) %}
 # Bash history - HISTFILESIZE
 HISTFILESIZE={{bash_histfilesize}}
-{% if not (bash_history_readonly == 'false') and not (bash_history_readonly == 'no') and not (bash_history_readonly == 'disable') %}
+{% if not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
 readonly HISTFILESIZE
 {% endif %}
 export HISTFILESIZE
 {% endif %}
 
-{% if not (bash_histignore == None) and not (bash_histignore == 'false') and not (bash_histignore == 'no') and not (bash_histignore == 'disable') %}
+{% if not ((bash_histignore == None) or (bash_histignore == 'false') or (bash_histignore == 'no') or (bash_histignore == 'disable')) %}
 # Bash history - HISTIGNORE
 HISTIGNORE='{{bash_histignore}}'
-{% if not (bash_history_readonly == 'false') and not (bash_history_readonly == 'no') and not (bash_history_readonly == 'disable') %}
+{% if not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
 readonly HISTIGNORE
 {% endif %}
 export HISTIGNORE
 {% endif %}
 
-{% if not (bash_histcontrol == None) and not (bash_histcontrol == 'false') and not (bash_histcontrol == 'no') and not (bash_histcontrol == 'disable') %}
+{% if not ((bash_histcontrol == None) or (bash_histcontrol == 'false') or (bash_histcontrol == 'no') or (bash_histcontrol == 'disable')) %}
 # Bash history - HISTCONTROL
 HISTCONTROL='{{bash_histcontrol}}'
-{% if not (bash_history_readonly == 'false') and not (bash_history_readonly == 'no') and not (bash_history_readonly == 'disable') %}
+{% if not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
 readonly HISTCONTROL
 {% endif %}
 export HISTCONTROL
 {% endif %}
 
-{% if not (bash_histtimeformat == None) and not (bash_histtimeformat == 'false') and not (bash_histtimeformat == 'no') and not (bash_histtimeformat == 'disable') %}
+{% if not ((bash_histtimeformat == None) or (bash_histtimeformat == 'false') or (bash_histtimeformat == 'no') or (bash_histtimeformat == 'disable')) %}
 # Bash history - HISTTIMEFORMAT
 HISTTIMEFORMAT='{{bash_histtimeformat}}'
 {% endif %}
 
-{% if not (bash_tmout == None) and not (bash_tmout == '') and not (bash_tmout == 'false') and not (bash_tmout == 'no') and not (bash_tmout == 'disable') %}
+{% if not ((bash_tmout == None) or (bash_tmout == '') or (bash_tmout == 'false') or (bash_tmout == 'no') or (bash_tmout == 'disable')) %}
 # Bash session
 TMOUT={{bash_tmout}}
-{% if not (bash_session_readonly == 'false') and not (bash_session_readonly == 'no') and not (bash_session_readonly == 'disable') %}
+{% if not ((bash_session_readonly == 'false') or (bash_session_readonly == 'no') or (bash_session_readonly == 'disable')) %}
 readonly TMOUT
 {% endif %}
 export TMOUT
 {% endif %}
 
-{% if not (bash_color_prompt == None) and not (bash_color_prompt == 'false') and not (bash_color_prompt == 'no') and not (bash_color_prompt == 'disable') %}
+{% if not ((bash_color_prompt == None) or (bash_color_prompt == 'false') or (bash_color_prompt == 'no') or (bash_color_prompt == 'disable')) %}
 # Bash color prompt
 PS1='\[\033[1;36m\]\u\[\033[1;37m\]@\[\033[1;33m\]\h\[\033[1;37m\]:\[\033[1;31m\]\w \[\033[1;36m\]\$ \[\033[0m\]'
 echo -n -e '\033%G'
 {% endif %}
 
-{% if not (bash_color_support == None) and not (bash_color_support == 'false') and not (bash_color_support == 'no') and not (bash_color_support == 'disable') %}
+{% if not ((bash_color_support == None) or (bash_color_support == 'false') or (bash_color_support == 'no') or (bash_color_support == 'disable')) %}
 # Bash color support
 if [ -x /usr/bin/dircolors ]; then
-  alias ls='ls --color=auto {% if not (bash_ls_time_style == None) and not (bash_ls_time_style == '') and not (bash_ls_time_style == 'false') and not (bash_ls_time_style == 'no') and not (bash_ls_time_style == 'disable') %}--time-style="{{bash_ls_time_style}}"{% endif %}'
-  alias la='ls -la --color=auto {% if not (bash_ls_time_style == None) and not (bash_ls_time_style == '') and not (bash_ls_time_style == 'false') and not (bash_ls_time_style == 'no') and not (bash_ls_time_style == 'disable') %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, list all files
-  alias ll='ls -l --color=auto {% if not (bash_ls_time_style == None) and not (bash_ls_time_style == '') and not (bash_ls_time_style == 'false') and not (bash_ls_time_style == 'no') and not (bash_ls_time_style == 'disable') %}--time-style="{{bash_ls_time_style}}"{% endif %}'  # long listing
-  alias lr='ls -lR --color=auto {% if not (bash_ls_time_style == None) and not (bash_ls_time_style == '') and not (bash_ls_time_style == 'false') and not (bash_ls_time_style == 'no') and not (bash_ls_time_style == 'disable') %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, list subdirectories recursively
-  alias lt='ls -lt --color=auto {% if not (bash_ls_time_style == None) and not (bash_ls_time_style == '') and not (bash_ls_time_style == 'false') and not (bash_ls_time_style == 'no') and not (bash_ls_time_style == 'disable') %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, sort by modification time
-  alias lz='ls -lZ --color=auto {% if not (bash_ls_time_style == None) and not (bash_ls_time_style == '') and not (bash_ls_time_style == 'false') and not (bash_ls_time_style == 'no') and not (bash_ls_time_style == 'disable') %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, show SELinux security context
+  alias ls='ls --color=auto {% if not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}'
+  alias la='ls -la --color=auto {% if not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, list all files
+  alias ll='ls -l --color=auto {% if not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}'  # long listing
+  alias lr='ls -lR --color=auto {% if not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, list subdirectories recursively
+  alias lt='ls -lt --color=auto {% if not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, sort by modification time
+  alias lz='ls -lZ --color=auto {% if not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, show SELinux security context
 
   alias dir='dir --color=auto'
   alias vdir='vdir --color=auto'
@@ -99,7 +99,7 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 {% endif %}
 
-{% if not (bash_safety == None) and not (bash_safety == 'false') and not (bash_safety == 'no') and not (bash_safety == 'disable') %}
+{% if not ((bash_safety == None) or (bash_safety == 'false') or (bash_safety == 'no') or (bash_safety == 'disable')) %}
 # Bash safety
 alias cp='cp -i'
 alias mv='mv -i'

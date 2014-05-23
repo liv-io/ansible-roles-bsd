@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (tcpdump_state == 'false') and not (tcpdump_state == 'no') and not (tcpdump_state == 'remove')
+  when: not ((tcpdump_state == 'false') or (tcpdump_state == 'no') or (tcpdump_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

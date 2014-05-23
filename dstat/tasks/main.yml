@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (dstat_state == 'false') and not (dstat_state == 'no') and not (dstat_state == 'remove')
+  when: not ((dstat_state == 'false') or (dstat_state == 'no') or (dstat_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

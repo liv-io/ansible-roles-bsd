@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (siege_state == 'false') and not (siege_state == 'no') and not (siege_state == 'remove')
+  when: not ((siege_state == 'false') or (siege_state == 'no') or (siege_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

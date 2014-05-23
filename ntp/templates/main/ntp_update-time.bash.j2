@@ -91,7 +91,7 @@ severity='Debug'
 message='Please check log files for more information.'
 
 # List of NTP servers
-ntp_servers='{% if not (ntp_server == None) and not (ntp_server == '') and not (ntp_server == []) %}{% for server in ntp_server %}{{server}} {% endfor %}{% else %}ntp.{{ansible_domain}}{% endif %}'
+ntp_servers='{% if not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}{% for server in ntp_server %}{{server}} {% endfor %}{% else %}ntp.{{ansible_domain}}{% endif %}'
 
 #-------------------------------------------------------------------------------
 # FUNCTIONS

@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (python_paramiko_state == 'false') and not (python_paramiko_state == 'no') and not (python_paramiko_state == 'remove')
+  when: not ((python_paramiko_state == 'false') or (python_paramiko_state == 'no') or (python_paramiko_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

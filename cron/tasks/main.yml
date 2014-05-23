@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (cron_state == 'false') and not (cron_state == 'no') and not (cron_state == 'remove')
+  when: not ((cron_state == 'false') or (cron_state == 'no') or (cron_state == 'remove'))
 
 - name: task include enable
   include: enable.yml

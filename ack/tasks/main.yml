@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (ack_state == 'false') and not (ack_state == 'no') and not (ack_state == 'remove')
+  when: not ((ack_state == 'false') or (ack_state == 'no') or (ack_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

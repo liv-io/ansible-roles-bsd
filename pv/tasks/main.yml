@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (pv_state == 'false') and not (pv_state == 'no') and not (pv_state == 'remove')
+  when: not ((pv_state == 'false') or (pv_state == 'no') or (pv_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

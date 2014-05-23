@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (iperf_state == 'false') and not (iperf_state == 'no') and not (iperf_state == 'remove')
+  when: not ((iperf_state == 'false') or (iperf_state == 'no') or (iperf_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

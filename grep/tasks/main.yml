@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not (grep_state == 'false') and not (grep_state == 'no') and not (grep_state == 'remove')
+  when: not ((grep_state == 'false') or (grep_state == 'no') or (grep_state == 'remove'))

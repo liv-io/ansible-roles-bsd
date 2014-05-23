@@ -26,7 +26,7 @@
 
 # List of servers used for initial synchronization.
 
-{% if not (ntp_step_ticker == None) and not (ntp_step_ticker == '') and not (ntp_step_ticker == []) %}
+{% if not ((ntp_step_ticker == None) or (ntp_step_ticker == '') or (ntp_step_ticker == [])) %}
 {% for step_ticker in ntp_step_ticker %}
 {{step_ticker}}
 {% endfor %}

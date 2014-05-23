@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not (diffutils_state == 'false') and not (diffutils_state == 'no') and not (diffutils_state == 'remove')
+  when: not ((diffutils_state == 'false') or (diffutils_state == 'no') or (diffutils_state == 'remove'))

@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not (gzip_state == 'false') and not (gzip_state == 'no') and not (gzip_state == 'remove')
+  when: not ((gzip_state == 'false') or (gzip_state == 'no') or (gzip_state == 'remove'))

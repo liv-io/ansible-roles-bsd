@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (atop_state == 'false') and not (atop_state == 'no') and not (atop_state == 'remove')
+  when: not ((atop_state == 'false') or (atop_state == 'no') or (atop_state == 'remove'))
 
 - name: task include enable
   include: enable.yml

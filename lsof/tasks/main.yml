@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (lsof_state == 'false') and not (lsof_state == 'no') and not (lsof_state == 'remove')
+  when: not ((lsof_state == 'false') or (lsof_state == 'no') or (lsof_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

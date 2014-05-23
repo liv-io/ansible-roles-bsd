@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (ethtool_state == 'false') and not (ethtool_state == 'no') and not (ethtool_state == 'remove')
+  when: not ((ethtool_state == 'false') or (ethtool_state == 'no') or (ethtool_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

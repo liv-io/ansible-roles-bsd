@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (createrepo_state == 'false') and not (createrepo_state == 'no') and not (createrepo_state == 'remove')
+  when: not ((createrepo_state == 'false') or (createrepo_state == 'no') or (createrepo_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

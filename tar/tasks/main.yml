@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not (tar_state == 'false') and not (tar_state == 'no') and not (tar_state == 'remove')
+  when: not ((tar_state == 'false') or (tar_state == 'no') or (tar_state == 'remove'))

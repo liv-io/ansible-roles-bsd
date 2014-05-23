@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not (less_state == 'false') and not (less_state == 'no') and not (less_state == 'remove')
+  when: not ((less_state == 'false') or (less_state == 'no') or (less_state == 'remove'))

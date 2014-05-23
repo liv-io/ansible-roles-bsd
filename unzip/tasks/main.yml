@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (unzip_state == 'false') and not (unzip_state == 'no') and not (unzip_state == 'remove')
+  when: not ((unzip_state == 'false') or (unzip_state == 'no') or (unzip_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (rsync_state == 'false') and not (rsync_state == 'no') and not (rsync_state == 'remove')
+  when: not ((rsync_state == 'false') or (rsync_state == 'no') or (rsync_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

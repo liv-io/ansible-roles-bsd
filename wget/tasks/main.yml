@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (wget_state == 'false') and not (wget_state == 'no') and not (wget_state == 'remove')
+  when: not ((wget_state == 'false') or (wget_state == 'no') or (wget_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

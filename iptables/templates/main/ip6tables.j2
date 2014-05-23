@@ -44,21 +44,21 @@
 -A INPUT -i lo -j ACCEPT -m comment --comment "Incoming loopback connections"
 
 # ICMP rules
-{% if not (iptables_filter_input_v6_icmp == None) and not (iptables_filter_input_v6_icmp == '') and not (iptables_filter_input_v6_icmp == []) %}
+{% if not ((iptables_filter_input_v6_icmp == None) or (iptables_filter_input_v6_icmp == '') or (iptables_filter_input_v6_icmp == [])) %}
 {% for filter_input_v6_icmp in iptables_filter_input_v6_icmp %}
 {{filter_input_v6_icmp}}
 {% endfor %}
 {% endif %}
 
 # Default rules
-{% if not (iptables_filter_input_v6_default == None) and not (iptables_filter_input_v6_default == '') and not (iptables_filter_input_v6_default == []) %}
+{% if not ((iptables_filter_input_v6_default == None) or (iptables_filter_input_v6_default == '') or (iptables_filter_input_v6_default == [])) %}
 {% for filter_input_v6_default in iptables_filter_input_v6_default %}
 {{filter_input_v6_default}}
 {% endfor %}
 {% endif %}
 
 # Custom rules
-{% if not (iptables_filter_input_v6_custom == None) and not (iptables_filter_input_v6_custom == '') and not (iptables_filter_input_v6_custom == []) %}
+{% if not ((iptables_filter_input_v6_custom == None) or (iptables_filter_input_v6_custom == '') or (iptables_filter_input_v6_custom == [])) %}
 {% for filter_input_v6_custom in iptables_filter_input_v6_custom %}
 {{filter_input_v6_custom}}
 {% endfor %}
@@ -73,21 +73,21 @@
 -A FORWARD -i lo -j ACCEPT -m comment --comment "loopback connections"
 
 # ICMP rules
-{% if not (iptables_filter_forward_v6_icmp == None) and not (iptables_filter_forward_v6_icmp == '') and not (iptables_filter_forward_v6_icmp == []) %}
+{% if not ((iptables_filter_forward_v6_icmp == None) or (iptables_filter_forward_v6_icmp == '') or (iptables_filter_forward_v6_icmp == [])) %}
 {% for filter_forward_v6_icmp in iptables_filter_forward_v6_icmp %}
 {{filter_forward_v6_icmp}}
 {% endfor %}
 {% endif %}
 
 # Default rules
-{% if not (iptables_filter_forward_v6_default == None) and not (iptables_filter_forward_v6_default == '') and not (iptables_filter_forward_v6_default == []) %}
+{% if not ((iptables_filter_forward_v6_default == None) or (iptables_filter_forward_v6_default == '') or (iptables_filter_forward_v6_default == [])) %}
 {% for filter_forward_v6_default in iptables_filter_forward_v6_default %}
 {{filter_forward_v6_default}}
 {% endfor %}
 {% endif %}
 
 # Custom rules
-{% if not (iptables_filter_forward_v6_custom == None) and not (iptables_filter_forward_v6_custom == '') and not (iptables_filter_forward_v6_custom == []) %}
+{% if not ((iptables_filter_forward_v6_custom == None) or (iptables_filter_forward_v6_custom == '') or (iptables_filter_forward_v6_custom == [])) %}
 {% for filter_forward_v6_custom in iptables_filter_forward_v6_custom %}
 {{filter_forward_v6_custom}}
 {% endfor %}
@@ -102,21 +102,21 @@
 -A OUTPUT -o lo -j ACCEPT -m comment --comment "loopback connections"
 
 # ICMP rules
-{% if not (iptables_filter_output_v6_icmp == None) and not (iptables_filter_output_v6_icmp == '') and not (iptables_filter_output_v6_icmp == []) %}
+{% if not ((iptables_filter_output_v6_icmp == None) or (iptables_filter_output_v6_icmp == '') or (iptables_filter_output_v6_icmp == [])) %}
 {% for filter_output_v6_icmp in iptables_filter_output_v6_icmp %}
 {{filter_output_v6_icmp}}
 {% endfor %}
 {% endif %}
 
 # Default rules
-{% if not (iptables_filter_output_v6_default == None) and not (iptables_filter_output_v6_default == '') and not (iptables_filter_output_v6_default == []) %}
+{% if not ((iptables_filter_output_v6_default == None) or (iptables_filter_output_v6_default == '') or (iptables_filter_output_v6_default == [])) %}
 {% for filter_output_v6_default in iptables_filter_output_v6_default %}
 {{filter_output_v6_default}}
 {% endfor %}
 {% endif %}
 
 # Custom rules
-{% if not (iptables_filter_output_v6_custom == None) and not (iptables_filter_output_v6_custom == '') and not (iptables_filter_output_v6_custom == []) %}
+{% if not ((iptables_filter_output_v6_custom == None) or (iptables_filter_output_v6_custom == '') or (iptables_filter_output_v6_custom == [])) %}
 {% for filter_output_v6_custom in iptables_filter_output_v6_custom %}
 {{filter_output_v6_custom}}
 {% endfor %}

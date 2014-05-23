@@ -43,7 +43,7 @@ driftfile {{ntp_driftfile}}
 #restrict 127.0.0.1 
 #restrict -6 ::1
 
-{% if not (ntp_restrict == None) and not (ntp_restrict == '') and not (ntp_restrict == []) %}
+{% if not ((ntp_restrict == None) or (ntp_restrict == '') or (ntp_restrict == [])) %}
 {% for restrict in ntp_restrict %}
 restrict {{restrict}}
 {% endfor %}
@@ -60,7 +60,7 @@ restrict {{restrict}}
 #server 2.centos.pool.ntp.org iburst
 #server 3.centos.pool.ntp.org iburst
 
-{% if not (ntp_server == None) and not (ntp_server == '') and not (ntp_server == []) %}
+{% if not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}
 {% for server in ntp_server %}
 server {{server}} {% for option in ntp_option %}{{option}} {% endfor %}
 

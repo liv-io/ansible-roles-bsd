@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (ncdu_state == 'false') and not (ncdu_state == 'no') and not (ncdu_state == 'remove')
+  when: not ((ncdu_state == 'false') or (ncdu_state == 'no') or (ncdu_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

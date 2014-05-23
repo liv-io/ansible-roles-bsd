@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (cryptcat_state == 'false') and not (cryptcat_state == 'no') and not (cryptcat_state == 'remove')
+  when: not ((cryptcat_state == 'false') or (cryptcat_state == 'no') or (cryptcat_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

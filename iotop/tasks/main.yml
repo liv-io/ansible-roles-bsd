@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (iotop_state == 'false') and not (iotop_state == 'no') and not (iotop_state == 'remove')
+  when: not ((iotop_state == 'false') or (iotop_state == 'no') or (iotop_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (tmux_state == 'false') and not (tmux_state == 'no') and not (tmux_state == 'remove')
+  when: not ((tmux_state == 'false') or (tmux_state == 'no') or (tmux_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

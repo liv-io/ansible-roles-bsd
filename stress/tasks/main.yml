@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (stress_state == 'false') and not (stress_state == 'no') and not (stress_state == 'remove')
+  when: not ((stress_state == 'false') or (stress_state == 'no') or (stress_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

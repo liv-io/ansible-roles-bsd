@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (sshpass_state == 'false') and not (sshpass_state == 'no') and not (sshpass_state == 'remove')
+  when: not ((sshpass_state == 'false') or (sshpass_state == 'no') or (sshpass_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

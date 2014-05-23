@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (iptables_state == 'false') and not (iptables_state == 'no') and not (iptables_state == 'remove')
+  when: not ((iptables_state == 'false') or (iptables_state == 'no') or (iptables_state == 'remove'))
 
 - name: task include enable
   include: enable.yml

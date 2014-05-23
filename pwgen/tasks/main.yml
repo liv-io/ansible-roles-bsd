@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (pwgen_state == 'false') and not (pwgen_state == 'no') and not (pwgen_state == 'remove')
+  when: not ((pwgen_state == 'false') or (pwgen_state == 'no') or (pwgen_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

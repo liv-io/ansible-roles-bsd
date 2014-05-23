@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (nmap_state == 'false') and not (nmap_state == 'no') and not (nmap_state == 'remove')
+  when: not ((nmap_state == 'false') or (nmap_state == 'no') or (nmap_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

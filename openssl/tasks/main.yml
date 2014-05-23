@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not (openssl_state == 'false') and not (openssl_state == 'no') and not (openssl_state == 'remove')
+  when: not ((openssl_state == 'false') or (openssl_state == 'no') or (openssl_state == 'remove'))

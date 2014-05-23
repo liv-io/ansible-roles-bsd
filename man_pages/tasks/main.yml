@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (man_pages_state == 'false') and not (man_pages_state == 'no') and not (man_pages_state == 'remove')
+  when: not ((man_pages_state == 'false') or (man_pages_state == 'no') or (man_pages_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

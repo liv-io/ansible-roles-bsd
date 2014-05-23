@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (screen_state == 'false') and not (screen_state == 'no') and not (screen_state == 'remove')
+  when: not ((screen_state == 'false') or (screen_state == 'no') or (screen_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

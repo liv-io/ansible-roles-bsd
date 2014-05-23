@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not (findutils_state == 'false') and not (findutils_state == 'no') and not (findutils_state == 'remove')
+  when: not ((findutils_state == 'false') or (findutils_state == 'no') or (findutils_state == 'remove'))

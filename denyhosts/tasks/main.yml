@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (denyhosts_state == 'false') and not (denyhosts_state == 'no') and not (denyhosts_state == 'remove')
+  when: not ((denyhosts_state == 'false') or (denyhosts_state == 'no') or (denyhosts_state == 'remove'))
 
 - name: task include enable
   include: enable.yml

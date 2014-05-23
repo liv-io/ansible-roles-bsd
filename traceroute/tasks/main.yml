@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (traceroute_state == 'false') and not (traceroute_state == 'no') and not (traceroute_state == 'remove')
+  when: not ((traceroute_state == 'false') or (traceroute_state == 'no') or (traceroute_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

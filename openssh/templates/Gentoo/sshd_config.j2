@@ -36,7 +36,7 @@
 # possible, but leave them commented.  Uncommented options override the
 # default value.
 
-{% if not (openssh_port == None) and not (openssh_port == '') and not (openssh_port == []) %}
+{% if not ((openssh_port == None) or (openssh_port == '') or (openssh_port == [])) %}
 {% for port in openssh_port %}
 Port {{port}}
 {% endfor %}
@@ -54,7 +54,7 @@ AddressFamily inet6
 #AddressFamily
 {% endif %}
 
-{% if not (openssh_listen_address == None) and not (openssh_listen_address == '') and not (openssh_listen_address == []) %}
+{% if not ((openssh_listen_address == None) or (openssh_listen_address == '') or (openssh_listen_address == [])) %}
 {% for listen_address in openssh_listen_address %}
 ListenAddress {{listen_address}}
 {% endfor %}
@@ -170,7 +170,7 @@ TCPKeepAlive {% if (openssh_tcp_keep_alive == 'false') or (openssh_tcp_keep_aliv
 #UseLogin no
 UsePrivilegeSeparation sandbox		# Default for new installations.
 #PermitUserEnvironment no
-{% if not (openssh_compression == None) and not (openssh_compression == '') %}
+{% if not ((openssh_compression == None) or (openssh_compression == '')) %}
 Compression {{openssh_compression}}
 {% else %}
 #Compression delayed
@@ -232,7 +232,7 @@ PermitRootLogin {% if (openssh_permit_root_login == 'true') or (openssh_permit_r
 
 
 # Login is disallowed for user names that match one of the patterns.
-{% if not (openssh_deny_users == None) and not (openssh_deny_users == '') and not (openssh_deny_users == []) %}
+{% if not ((openssh_deny_users == None) or (openssh_deny_users == '') or (openssh_deny_users == [])) %}
 DenyUsers {% for deny_users in openssh_deny_users %}{{deny_users}} {% endfor %}
 
 {% else %}
@@ -241,7 +241,7 @@ DenyUsers {% for deny_users in openssh_deny_users %}{{deny_users}} {% endfor %}
 {% endif %}
 
 # Login is allowed only for user names that match one of the patterns.
-{% if not (openssh_allow_users == None) and not (openssh_allow_users == '') and not (openssh_allow_users == []) %}
+{% if not ((openssh_allow_users == None) or (openssh_allow_users == '') or (openssh_allow_users == [])) %}
 AllowUsers {% for allow_users in openssh_allow_users %}{{allow_users}} {% endfor %}
 
 {% else %}
@@ -251,7 +251,7 @@ AllowUsers {% for allow_users in openssh_allow_users %}{{allow_users}} {% endfor
 
 # Login is disallowed for users whose primary group or
 # supplementary group list matches one of the patterns.
-{% if not (openssh_deny_groups == None) and not (openssh_deny_groups == '') and not (openssh_deny_groups == []) %}
+{% if not ((openssh_deny_groups == None) or (openssh_deny_groups == '') or (openssh_deny_groups == [])) %}
 DenyGroups {% for deny_groups in openssh_deny_groups %}{{deny_groups}} {% endfor %}
 
 {% else %}
@@ -261,7 +261,7 @@ DenyGroups {% for deny_groups in openssh_deny_groups %}{{deny_groups}} {% endfor
 
 # Login is allowed only for users whose primary group or
 # supplementary group list matches one of the patterns.
-{% if not (openssh_allow_groups == None) and not (openssh_allow_groups == '') and not (openssh_allow_groups == []) %}
+{% if not ((openssh_allow_groups == None) or (openssh_allow_groups == '') or (openssh_allow_groups == [])) %}
 AllowGroups {% for allow_groups in openssh_allow_groups %}{{allow_groups}} {% endfor %}
 
 {% else %}

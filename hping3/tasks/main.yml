@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not (hping3_state == 'false') and not (hping3_state == 'no') and not (hping3_state == 'remove')
+  when: not ((hping3_state == 'false') or (hping3_state == 'no') or (hping3_state == 'remove'))
 
 - name: task include remove
   include: remove.yml

@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not (iputils_state == 'false') and not (iputils_state == 'no') and not (iputils_state == 'remove')
+  when: not ((iputils_state == 'false') or (iputils_state == 'no') or (iputils_state == 'remove'))
