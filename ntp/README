@@ -199,6 +199,8 @@ PACKAGES
       Gentoo 2: 'ntp'
 
 ROLES
+  common
+
   ntpdate
 
 VARIABLES
