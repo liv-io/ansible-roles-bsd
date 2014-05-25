@@ -31,7 +31,7 @@
    name: "{{item.name}}"
    comment: "{{item.comment if (item.comment is defined) else item.name}}"
    uid: "{{item.uid}}"
-   group: "{{item.group if (item.group is defined) else user_group_default}}"
+   group: "{{item.group if (item.group is defined) and not ((item.group == None) or (item.group == '')) else user_group_default}}"
    groups: "{{item.groups|join(',') if (item.groups is defined) else user_groups_default}}"
    append: "{{'yes' if (item.groups_append is defined) and ((item.groups_append == 'true') or (item.groups_append == 'yes') or (item.groups_append == 'enable')) else 'no'}}"
    createhome: "{{'no' if (item.home_create is defined) and ((item.home_create == 'false') or (item.home_create == 'no') or (item.home_create == 'disable')) else 'yes'}}"
