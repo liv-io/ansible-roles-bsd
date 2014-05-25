@@ -1,0 +1,134 @@
+--------------------------------------------------------------------------------
+TODO
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : todo
+  |  _   _  |   Type   : ansible roles
+  | [_] [_] |   Summary: robomon - ansible roles
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This file lists pending tasks for this repository.
+
+--------------------------------------------------------------------------------
+BUGS
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+IMPROVEMENTS
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+FEATURES
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+ROLES
+--------------------------------------------------------------------------------
+
+ - acarm
+ - amavisd-new
+ - apache / httpd
+ - bind
+ - bro
+ - bugzilla
+ - capistrano
+ - clamav
+ - common
+ - controltier
+ - corosync
+ - crmsh
+ - dokuwiki
+ - dovecot
+ - fabric
+ - freeipa
+ - func
+ - git
+ - gitweb
+ - gnu gatekeeper
+ - graylog2
+ - greensql
+ - honeyd
+ - hosts
+ - incron
+ - loganalyzer
+ - logstash
+ - mariadb
+ - mina
+ - modsecurity
+ - moinmoinwiki
+ - mumble
+ - mysql
+ - nginx
+ - nscd
+ - observium
+ - pacemaker
+ - pallet
+ - pedrino
+ - perl
+ - php
+ - portage
+ - postfix
+ - postfixadmin
+ - postgresql
+ - postgrey
+ - prelude
+ - pulp
+ - relayd
+ - request tracker
+ - roundcube
+ - rsnapshot
+ - rundeck
+ - rusers-server
+ - samhain
+ - sinatra
+ - snort
+ - spamassassin
+ - sprinkle
+ - sqlite
+ - squid
+ - sudo
+ - suricata
+ - sysctl
+ - syslog-ng
+ - trac
+ - varnish
+ - yum
+ - zabbix
+ - zenoss
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
+
+ - awstats 
+ - grinder
+ - innotop
+ - ipvsadm
+ - jwhois
+ - logwatch
+ - monit
+ - netdisco-common
+ - nfdump
+ - ntsysv
+ - omping
+ - oprofile
+ - perf
+ - pgfouine
+ - pinfo
+ - rdist
+ - readline
+ - rng-tools
+ - rsh
+ - rsnapshot
+ - rssh
+ - rusers-server
+ - wrk
