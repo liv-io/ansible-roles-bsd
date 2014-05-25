@@ -47,6 +47,7 @@ ROLE
   passwd_state
     Description: Control the state of the role. 'passwd' is a core file and can
                  therefore not be removed.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String

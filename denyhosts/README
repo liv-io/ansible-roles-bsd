@@ -81,6 +81,7 @@ VARIABLES
 ROLE
   denyhosts_state
     Description: Control the state of the role.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -93,6 +94,7 @@ ROLE
 
   denyhosts_admin_email
     Description: Define the 'denyhosts_admin_email' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -102,6 +104,7 @@ ROLE
 
   denyhosts_age_reset_invalid
     Description: Set the 'denyhosts_age_reset_invalid' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -112,6 +115,7 @@ ROLE
 
   denyhosts_age_reset_restricted
     Description: Set the 'denyhosts_age_reset_restricted' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -122,6 +126,7 @@ ROLE
 
   denyhosts_age_reset_root
     Description: Set the 'denyhosts_age_reset_root' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -132,6 +137,7 @@ ROLE
 
   denyhosts_age_reset_valid
     Description: Set the 'denyhosts_age_reset_valid' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -142,6 +148,7 @@ ROLE
 
   denyhosts_allowed_hosts
     Description: Define the 'denyhosts_allowed_hosts' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -157,6 +164,7 @@ ROLE
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'denyhosts/templates/example/allowed-hosts.j2'
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -166,6 +174,7 @@ ROLE
 
   denyhosts_block_service
     Description: Control the 'denyhosts_block_service' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -176,6 +185,7 @@ ROLE
 
   denyhosts_daemon_sleep
     Description: Set the 'denyhosts_daemon_sleep' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -185,6 +195,7 @@ ROLE
 
   denyhosts_daemon_purge
     Description: Set the 'denyhosts_daemon_purge' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -194,10 +205,11 @@ ROLE
 
   denyhosts_denyhosts_conf_template
     Description: Define the template source for 'denyhosts.conf.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'denyhosts/templates/example/denyhosts.conf.j2'
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -207,6 +219,7 @@ ROLE
 
   denyhosts_deny_threshold_invalid
     Description: Set the 'denyhosts_deny_threshold_invalid' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -216,6 +229,7 @@ ROLE
 
   denyhosts_deny_threshold_restricted
     Description: Set the 'denyhosts_deny_threshold_restricted' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -225,6 +239,7 @@ ROLE
 
   denyhosts_deny_threshold_root
     Description: Set the 'denyhosts_deny_threshold_root' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -234,6 +249,7 @@ ROLE
 
   denyhosts_deny_threshold_valid
     Description: Set the 'denyhosts_deny_threshold_valid' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -243,6 +259,7 @@ ROLE
 
   denyhosts_hostname_lookup
     Description: Control the 'denyhosts_hostname_lookup' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -253,6 +270,7 @@ ROLE
 
   denyhosts_purge_deny
     Description: Set the 'denyhosts_purge_deny' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -263,6 +281,7 @@ ROLE
 
   denyhosts_reset_on_success
     Description: Control the 'denyhosts_reset_on_success' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -273,6 +292,7 @@ ROLE
 
   denyhosts_smtp_host
     Description: Define the 'denyhosts_smtp_host' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -282,6 +302,7 @@ ROLE
 
   denyhosts_smtp_from
     Description: Define the 'denyhosts_smtp_from' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -291,6 +312,7 @@ ROLE
 
   denyhosts_smtp_password
     Description: Define the 'denyhosts_smtp_password' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -301,6 +323,7 @@ ROLE
 
   denyhosts_smtp_port
     Description: Set the 'denyhosts_smtp_port' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -310,6 +333,7 @@ ROLE
 
   denyhosts_smtp_subject
     Description: Define the 'denyhosts_smtp_subject' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -319,6 +343,7 @@ ROLE
 
   denyhosts_smtp_username
     Description: Define the 'denyhosts_smtp_username' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -329,6 +354,7 @@ ROLE
 
   denyhosts_syslog_report
     Description: Control the 'denyhosts_syslog_report' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String

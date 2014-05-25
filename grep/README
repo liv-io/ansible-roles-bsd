@@ -49,6 +49,7 @@ ROLE
   grep_state
     Description: Control the state of the role. 'grep' is a core package and can
                  therefore not be removed.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String

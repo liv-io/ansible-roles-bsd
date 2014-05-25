@@ -75,6 +75,7 @@ VARIABLES
 ROLE
   ntp_state
     Description: Control the state of the role.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -88,10 +89,11 @@ ROLE
 
   ntp_ntp_conf_template
     Description: Define the template source for 'ntp.conf.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'ntp/templates/example/ntp.conf.j2'
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -105,6 +107,7 @@ ROLE
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'ntp/templates/example/ntp_update-time.bash.j2'
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -118,6 +121,7 @@ ROLE
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'ntp/templates/example/ntp_update-time.cron.j2'
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -127,6 +131,7 @@ ROLE
 
   ntp_option
     Description: Define the 'ntp_option' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -138,6 +143,7 @@ ROLE
 
   ntp_restrict
     Description: Define the 'ntp_restrict' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -153,6 +159,7 @@ ROLE
 
   ntp_server
     Description: Define the 'ntp_server' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -164,6 +171,7 @@ ROLE
 
   ntp_step_ticker
     Description: Define the 'ntp_step_ticker' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -179,6 +187,7 @@ ROLE
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'ntp/templates/example/step-tickers.j2'
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String

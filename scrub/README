@@ -51,6 +51,7 @@ VARIABLES
 ROLE
   scrub_state
     Description: Control the state of the role.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String

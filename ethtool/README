@@ -50,6 +50,7 @@ ROLE
     Description: Control the state of the role. 'ethtool' is a core package on
                  RedHat and CentOS based systems and can therefore not be
                  removed.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String

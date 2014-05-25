@@ -81,6 +81,7 @@ ROLE
     Description: Control the state of the state of the role. 'openssh' is a core package and
                  can therefore not be removed. 'openssh' is a core service and
                  should therefore not be disabled.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -93,6 +94,7 @@ ROLE
 
   openssh_address_family
     Description: Set the 'openssh_address_family' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -105,6 +107,7 @@ ROLE
 
   openssh_allow_groups
     Description: Define the 'openssh_allow_groups' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -115,6 +118,7 @@ ROLE
 
   openssh_allow_users
     Description: Define the 'openssh_allow_users' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -125,6 +129,7 @@ ROLE
 
   openssh_banner
     Description: Control the state of the state of the 'openssh_banner'.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -139,6 +144,7 @@ ROLE
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openssh/templates/example/banner.j2'
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -148,6 +154,7 @@ ROLE
 
   openssh_compression
     Description: Control the state of the 'openssh_compression' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -158,6 +165,7 @@ ROLE
 
   openssh_deny_groups
     Description: Define the 'openssh_deny_groups' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -168,6 +176,7 @@ ROLE
 
   openssh_deny_users
     Description: Define the 'openssh_deny_users' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -179,6 +188,7 @@ ROLE
   openssh_gssapi_authentication
     Description: Control the state of the 'openssh_gssapi_authentication'
                  option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -190,6 +200,7 @@ ROLE
   openssh_kerberos_authentication
     Description: Control the state of the 'openssh_kerberos_authentication'
                  option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -200,6 +211,7 @@ ROLE
 
   openssh_listen_address
     Description: Define the 'openssh_listen_address' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -212,6 +224,7 @@ ROLE
   openssh_password_authentication
     Description: Control the state of the 'openssh_password_authentication'
                  option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -222,6 +235,7 @@ ROLE
 
   openssh_permit_root_login
     Description: Control the state of the 'openssh_permit_root_login' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -232,6 +246,7 @@ ROLE
 
   openssh_port
     Description: Define the 'openssh_port' option.
+    Implemented: 0.2
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -241,6 +256,7 @@ ROLE
 
   openssh_print_motd
     Description: Control the state of the 'openssh_print_motd' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -251,6 +267,7 @@ ROLE
 
   openssh_print_last_log
     Description: Control the state of the 'openssh_print_last_log' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -262,6 +279,7 @@ ROLE
   openssh_pubkey_authentication
     Description: Control the state of the 'openssh_pubkey_authentication'
                  option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -272,6 +290,7 @@ ROLE
 
   openssh_rsa_authentication
     Description: Control the state of the 'openssh_rsa_authentication' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -282,10 +301,11 @@ ROLE
 
   openssh_ssh_config_template
     Description: Define the template source for 'ssh_config.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openssh/templates/example/ssh_config.j2'
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -295,10 +315,11 @@ ROLE
 
   openssh_sshd_config_template
     Description: Define the template source for 'sshd_config.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openssh/templates/example/sshd_config.j2'
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -308,6 +329,7 @@ ROLE
 
   openssh_tcp_keep_alive
     Description: Control the state of the 'openssh_tcp_keep_alive' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -318,6 +340,7 @@ ROLE
 
   openssh_x11_forwarding
     Description: Control the state of the 'openssh_x11_forwarding' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -328,6 +351,7 @@ ROLE
 
   openssh_x11_use_localhost
     Description: Control the state of the 'openssh_x11_use_localhost' option.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String

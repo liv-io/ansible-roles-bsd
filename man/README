@@ -52,6 +52,7 @@ ROLE
   man_state
     Description: Control the state of the role. 'man' is a core package on
                  Gentoo based systems and can therefore not be removed.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String

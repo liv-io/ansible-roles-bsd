@@ -52,6 +52,7 @@ ROLE
   rsync_state
     Description: Control the state of the role. 'rsync' is a core package on
                  Gentoo based systems and can therefore ot be removed.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String

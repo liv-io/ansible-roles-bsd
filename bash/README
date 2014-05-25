@@ -50,6 +50,7 @@ ROLE
   bash_state
     Description: Control the state of the role. 'bash' is a core package and can
                  therefore not be removed.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -60,6 +61,7 @@ ROLE
 
   bash_color_prompt
     Description: Control the state of a colored 'bash' prompt.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -70,6 +72,7 @@ ROLE
 
   bash_color_support
     Description: Control the state of colored 'bash' commands.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -80,6 +83,7 @@ ROLE
 
   bash_history_readonly
     Description: Control the readonly state of the 'bash' history variable.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -90,6 +94,7 @@ ROLE
 
   bash_histsize
     Description: Set the size of the 'bash' history variable.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -100,6 +105,7 @@ ROLE
 
   bash_histfilesize
     Description: Set the size of the 'bash' history file.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -110,6 +116,7 @@ ROLE
 
   bash_histtimeformat
     Description: Define the time format of the 'bash' history.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -121,6 +128,7 @@ ROLE
   bash_histignore
     Description: Define patterns to decide which command lines should be saved
                  in the 'bash' history.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -132,6 +140,7 @@ ROLE
   bash_histcontrol
     Description: Define values to control how commands are saved in the 'bash'
                  history.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -142,6 +151,7 @@ ROLE
 
   bash_ls_time_style
     Description: Define the time format of the 'ls' command.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -153,6 +163,7 @@ ROLE
   bash_safety
     Description: Control the safety of various bash commands
                  (chmod, chown, ln, mv, rm...).
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -167,6 +178,7 @@ ROLE
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'bash/templates/example/bash.sh.j2'
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -176,6 +188,7 @@ ROLE
 
   bash_session_readonly
     Description: Control the readonly state of the 'bash' session variable.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -187,6 +200,7 @@ ROLE
   bash_tmout
     Description: Set the number of seconds after 'bash' terminates its session
                  if no input arrives.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -201,6 +215,7 @@ ROLE
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'bash/templates/example/z_bash.sh.j2'
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String

@@ -63,6 +63,7 @@ VARIABLES
 CONFIG
   state
     Description: Control the state of the group.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -73,6 +74,7 @@ CONFIG
 
   name
     Description: Define the name of the group.
+    Implemented: 0.1
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -82,6 +84,7 @@ CONFIG
 
   gid
     Description: Set the GID of the group.
+    Implemented: 0.1
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -91,6 +94,7 @@ CONFIG
 
   system
     Description: Control whether to create a system group.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -102,6 +106,7 @@ CONFIG
 ROLE
   group_state
     Description: Control the state of the role.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String

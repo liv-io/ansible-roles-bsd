@@ -47,6 +47,7 @@ ROLE
   shadow_state
     Description: Control the state of the role. 'shadow' is a core file and can
                  therefore not be removed.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String

@@ -87,6 +87,7 @@ VARIABLES
 CONFIG (user)
   state
     Description: Control the state of the user.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -97,6 +98,7 @@ CONFIG (user)
 
   name
     Description: Define the name of the user.
+    Implemented: 0.1
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -106,6 +108,7 @@ CONFIG (user)
 
   comment
     Description: Define a comment for the user.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -115,6 +118,7 @@ CONFIG (user)
 
   uid
     Description: Set the UID of the user.
+    Implemented: 0.1
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -124,10 +128,11 @@ CONFIG (user)
 
   groups
     Description: Define the groups of the user.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : []
+    Default    : ['nobody']
     Options    :
       Examples: ['group01'] |
                 ['group01', 'group02'] |
@@ -135,6 +140,7 @@ CONFIG (user)
 
   groups_append
     Description: Control whether to append or overwrite the group membership.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -145,6 +151,7 @@ CONFIG (user)
 
   home_create
     Description: Control whether to create the home directory.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -155,6 +162,7 @@ CONFIG (user)
 
   home_move
     Description: Control whether to move the home directory.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -166,6 +174,7 @@ CONFIG (user)
   home_remove
     Description: Control whether to remove the home directory when removing the
                  user.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -177,6 +186,7 @@ CONFIG (user)
   home_force
     Description: Control whether to force the removal of the home directory when
                  removing the user.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -187,6 +197,7 @@ CONFIG (user)
 
   password
     Description: Define the password for the user.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary SHA-512 cryptographic hash
     Type       : String
@@ -199,6 +210,7 @@ CONFIG (user)
   password_update
     Description: Control whether to initially set or continuously update the
                  password.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -209,6 +221,7 @@ CONFIG (user)
 
   system
     Description: Control whether to create a system user.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -220,6 +233,7 @@ CONFIG (user)
 CONFIG (authorized_key)
   state
     Description: Control the state of the authorized_key.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -230,6 +244,7 @@ CONFIG (authorized_key)
 
   user
     Description: Define the user of the authorized_key.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -239,6 +254,7 @@ CONFIG (authorized_key)
 
   key
     Description: Define the authorized_key of the user.
+    Implemented: 0.1
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -248,6 +264,7 @@ CONFIG (authorized_key)
 
   key_options
     Description: Define the options for the authorized_key.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -258,6 +275,7 @@ CONFIG (authorized_key)
 ROLE
   user_state
     Description: Control the state of the role.
+    Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -268,6 +286,7 @@ ROLE
 
   user_password_default
     Description: Define the default password for the user.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary SHA-512 cryptographic hash
     Type       : String
@@ -279,6 +298,7 @@ ROLE
 
   user_shell_default
     Description: Define the default shell for the user.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
