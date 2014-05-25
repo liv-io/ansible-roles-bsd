@@ -33,6 +33,7 @@ INSTALL
     roles:
      - role: user
        user_state: 'enable'
+       user_groups_default: ['nobody']
        user_password_default: '!'
        user_shell_default: '/bin/bash'
 
@@ -126,9 +127,20 @@ CONFIG (user)
     Options    :
       Examples: '1001' | '1002' | '1003'
 
+  group
+    Description: Define the primary group of the user.
+                 Ensure the group exists before specifing
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'nobody'
+    Options    :
+      Examples: 'group01' | 'group02' | 'group03'
+
   groups
     Description: Define the groups of the user.
-    Implemented: 0.1
+    Implemented: 0.2
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -140,7 +152,7 @@ CONFIG (user)
 
   groups_append
     Description: Control whether to append or overwrite the group membership.
-    Implemented: 0.1
+    Implemented: 0.2
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -283,6 +295,18 @@ ROLE
     Options    :
       Install: 'true' | 'yes' | 'install'
       Disable: 'false' | 'no' | 'disable'
+
+  user_groups_default
+    Description: Define the default groups for the user.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['nobody']
+    Options    :
+      Examples: ['group01'] |
+                ['group01', 'group02'] |
+                ['group01', 'group02', 'group03']
 
   user_password_default
     Description: Define the default password for the user.
