@@ -4,7 +4,7 @@
    ____|____
   |         |   Hostname        : [0m[1;33m{{ansible_hostname}}[0m
   |  _   _  |   Description     : [0m[1;33m{{motd_host_description}}[0m
-  | [_] [_] |   Environment     : [0m[{% if not ((motd_env_color == None) or (motd_env_color == '')) %}{{motd_env_color}}{% else %}1;31m{% endif %}{{motd_env_name}}[0m
+  | [_] [_] |   Environment     : [0m[{% if (motd_env_name == 'Production') or (motd_env_name == 'production') or (motd_env_name == 'Prod') or (motd_env_name == 'prod') %}1;31m{% elif (motd_env_name == 'Test') or (motd_env_name == 'test') or (motd_env_name == 'Testing') or (motd_env_name == 'testing') %}1;32m{% else %}0;33m{% endif %}{{motd_env_name}}[0m
   |____~____|
      ___\\__    Operating System: [0m[{% if not ((motd_os_color == None) or (motd_os_color == '')) %}{{motd_os_color}}{% else %}0;37m{% endif %}{{ansible_distribution}} {{ansible_distribution_version}} ({{ansible_machine}})[0m
   \\/|     |\   Processor Count : [0m[0;31m{{ansible_processor_vcpus}}[0m
