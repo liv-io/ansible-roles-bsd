@@ -65,7 +65,7 @@
    group: "{{file_group_bash_sh}}"
   tags:
    - files
-   - install 
+   - install
    - bash
 
 - name: template create z_bash.sh
