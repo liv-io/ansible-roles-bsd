@@ -14,5 +14,8 @@ CHANGES
     (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2014-05-26)
+B: Move file configuration from 'install' to 'enable' task
+
 * Version 0.1.0 (2014-04-06)
 F: Initial release
