@@ -261,6 +261,8 @@ ROLE
     Value      : Predetermined
     Type       : String
     Default    : 'yes'
+      Gentoo : 'no'
+      Default: 'yes'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
