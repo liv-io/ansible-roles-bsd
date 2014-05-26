@@ -69,7 +69,7 @@ openssh_port:
  - '22'
 
 # openssh_print_motd
-openssh_print_motd: 'no'
+openssh_print_motd: 'yes'
 
 # openssh_print_last_log
 openssh_print_last_log: 'yes'

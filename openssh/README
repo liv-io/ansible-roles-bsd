@@ -260,7 +260,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'no'
+    Default    : 'yes'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'

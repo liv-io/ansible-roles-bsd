@@ -165,7 +165,7 @@ X11UseLocalhost {% if (openssh_x11_use_localhost == 'true') or (openssh_x11_use_
 
 {% endif %}
 
-PrintMotd {% if (openssh_print_motd == 'true') or (openssh_print_motd == 'yes') or (openssh_print_motd == 'enable') %}yes{% else %}no{% endif %}
+PrintMotd {% if (openssh_print_motd == 'false') or (openssh_print_motd == 'no') or (openssh_print_motd == 'disable') %}no{% else %}yes{% endif %}
 
 PrintLastLog {% if (openssh_print_last_log == 'false') or (openssh_print_last_log == 'no') or (openssh_print_last_log == 'disable') %}no{% else %}yes{% endif %}
 
