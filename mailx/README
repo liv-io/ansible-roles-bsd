@@ -78,6 +78,7 @@ PACKAGES
       Gentoo 2: 'mailx'
 
 ROLES
+  postfix
 
 VARIABLES
 
