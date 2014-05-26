@@ -28,6 +28,32 @@
    - "../vars/main.yml"
 
 #-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: service stop ntpd
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   name: "{{service_name_ntpd}}"
+  when: ansible_os_family == 'RedHat'
+  tags:
+   - system
+   - cronjob
+   - ntp
+
+- name: service stop ntpd
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   name: "{{service_name_ntpd}}"
+  when: ansible_os_family == 'Gentoo'
+  tags:
+   - system
+   - cronjob
+   - ntp
+
+#-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
@@ -77,31 +103,5 @@
    group: "{{file_group_ntp_update_time_cron}}"
   tags:
    - files
-   - cronjob
-   - ntp
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
-
-- name: service stop ntpd
-  service:
-   state: 'stopped'
-   enabled: 'no'
-   name: "{{service_name_ntpd}}"
-  when: ansible_os_family == 'RedHat'
-  tags:
-   - system
-   - cronjob
-   - ntp
-
-- name: service stop ntpd
-  service:
-   state: 'stopped'
-   enabled: 'no'
-   name: "{{service_name_ntpd}}"
-  when: ansible_os_family == 'Gentoo'
-  tags:
-   - system
    - cronjob
    - ntp

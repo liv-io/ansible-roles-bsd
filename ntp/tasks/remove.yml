@@ -56,9 +56,28 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: file remove ntp_update-time.bash
+  file:
+   state: 'absent'
+   path: "{{file_path_ntp_update_time_bash}}"
+  tags:
+   - files
+   - remove
+   - ntp
+
+- name: file remove ntp_update-time.cron
+  file:
+   state: 'absent'
+   path: "{{file_path_ntp_update_time_cron}}"
+  tags:
+   - files
+   - remove
+   - ntp
+
 - name: file remove ntp-script.dir
   file:
    state: 'absent'
+   recurse: 'yes'
    path: "{{file_path_ntp_script_dir}}"
   tags:
    - files
@@ -79,24 +98,6 @@
    state: 'absent'
    path: "{{file_path_step_tickers}}"
   when: ansible_os_family == 'RedHat'
-  tags:
-   - files
-   - remove
-   - ntp
-
-- name: file remove ntp_update-time.bash
-  file:
-   state: 'absent'
-   path: "{{file_path_ntp_update_time_bash}}"
-  tags:
-   - files
-   - remove
-   - ntp
-
-- name: file remove ntp_update-time.cron
-  file:
-   state: 'absent'
-   path: "{{file_path_ntp_update_time_cron}}"
   tags:
    - files
    - remove
