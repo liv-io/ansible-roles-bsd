@@ -24,6 +24,18 @@
 # ntp_state
 ntp_state: 'enable'
 
+# ntp_monitor_mail_recipient
+ntp_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
+
+# ntp_monitor_mail_sender
+ntp_monitor_mail_sender: "root@{{ansible_domain}}"
+
+# ntp_monitor_mail_state
+ntp_monitor_mail_state: 'false'
+
+# ntp_monitor_mail_subject
+ntp_monitor_mail_subject: "{{ansible_hostname}}: NTP - Update Time - Error"
+
 # ntp_ntp_conf_template
 ntp_ntp_conf_template: "{{ansible_os_family}}"
 

@@ -22,5 +22,6 @@
 #-------------------------------------------------------------------------------
 
 dependencies:
- - { role: common }
- - { role: ntpdate, when: ansible_os_family == 'RedHat' }
+ - { role: common, when: (ntp_state == 'cron') or (ntp_state == 'cronjob') }
+ - { role: mailx, when: (ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable') }
+ - { role: ntpdate, when: ansible_os_family == 'RedHat' and ((ntp_state == 'cron') or (ntp_state == 'cronjob')) }

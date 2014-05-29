@@ -14,6 +14,10 @@ CHANGES
     (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.4.0 (2014-05-29)
+F: Add mail monitoring options
+I: Improve script overall
+
 * Version 0.3.1 (2014-05-26)
 B: Move file configuration from 'install' to 'enable' task
 

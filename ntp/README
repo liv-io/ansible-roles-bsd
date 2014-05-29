@@ -87,6 +87,48 @@ ROLE
       Cronjob: 'cron' | 'cronjob'
       Remove : 'false' | 'no' | 'remove'
 
+  ntp_monitor_mail_recipient
+    Description: Define the 'ntp_monitor_mail_recipient' option.
+    Implemented: 0.4
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ["admin@{{ansible_domain}}"]
+    Options    :
+      Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
+                ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
+
+  ntp_monitor_mail_sender
+    Description: Define the 'ntp_monitor_mail_sender' option.
+    Implemented: 0.4
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "root@{{ansible_domain}}"
+    Options    :
+      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
+
+  ntp_monitor_mail_state
+    Description: Control the 'ntp_monitor_mail_state' option.
+    Implemented: 0.4
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  ntp_monitor_mail_subject
+    Description: Define the 'ntp_monitor_mail_subject' option.
+    Implemented: 0.4
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_hostname}}: NTP - Update Time - Error"
+    Options    :
+      Examples: 'NTP: Update Time - ERROR'
+
   ntp_ntp_conf_template
     Description: Define the template source for 'ntp.conf.j2'.
                  Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
