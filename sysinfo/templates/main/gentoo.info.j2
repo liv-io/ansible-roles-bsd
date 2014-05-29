@@ -1,0 +1,95 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : gentoo.info
+#  |  _   _  |   Type   : information file
+#  | [_] [_] |   Role   : sysinfo
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+# This file holds information on how to patch a Gentoo system.
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# KERNEL UPDATE
+#-------------------------------------------------------------------------------
+
+emerge-webrsync
+emerge --ask --verbose --update --deep --with-bdeps=y --newuse gentoo-sources
+dispatch-conf
+etc-update
+cp -a /usr/src/linux/.config /usr/src/linux-<new-version>-gentoo/
+eselect kernel list
+eselect kernel set <new-version>
+eselect kernel list
+cd /usr/src/linux
+make oldconfig
+diff /usr/src/linux/.config /usr/src/linux-<old-version>-gentoo/.config
+make && make modules_install
+
+mv /boot/kernel-* /root/
+mv /boot/initramfs-* /root/
+mv /boot/grub/grub.cfg /root/
+cp -a arch/x86/boot/bzImage /boot/kernel-<new-version>-gentoo
+genkernel --lvm --install initramfs
+grub2-mkconfig -o /boot/grub/grub.cfg
+ls -l /boot/kernel-* /boot/initramfs-* /boot/grub/grub.cfg
+shutdown -r now
+
+uname -a
+\rm /root/kernel-*
+\rm /root/initramfs-*
+\rm /root/grub/grub.cfg
+
+emerge --ask --verbose --depclean
+emerge --ask --verbose @preserved-rebuild
+revdep-rebuild --verbose
+python-updater --verbose
+perl-cleaner --reallyall --verbose
+eclean --verbose distfiles
+
+#-------------------------------------------------------------------------------
+# GCC UPDATE
+#-------------------------------------------------------------------------------
+
+emerge-webrsync
+emerge --ask --verbose --update --deep --with-bdeps=y --newuse gcc
+gcc-config -l
+gcc-config <new-version-number>
+gcc-config <new-version-name>
+env-update && source /etc/profile
+emerge --ask --verbose --oneshot libtool
+emerge --ask --verbose --emptytree --pretend world
+emerge --ask --verbose --emptytree --pretend system
+emerge --ask --verbose --emptytree world
+emerge --ask --verbose --emptytree system
+
+#-------------------------------------------------------------------------------
+# SYSTEM UPDATE
+#-------------------------------------------------------------------------------
+
+emerge-webrsync
+emerge --ask --verbose --update --deep --with-bdeps=y --newuse @world
+emerge --ask --verbose --update --deep --with-bdeps=y --newuse @system
+dispatch-conf
+etc-update
+emerge --ask --verbose --depclean
+emerge --ask --verbose @preserved-rebuild
+revdep-rebuild --verbose
+python-updater --verbose
+perl-cleaner --reallyall --verbose
+eclean --verbose distfiles

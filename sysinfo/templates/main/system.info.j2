@@ -1,0 +1,77 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : system.info
+#  |  _   _  |   Type   : information file
+#  | [_] [_] |   Role   : sysinfo
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+# This file holds information about this system.
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+Hostname: {{ansible_hostname}}
+FQDN    : {{ansible_fqdn}}
+
+#-------------------------------------------------------------------------------
+# OPERATING SYSTEM
+#-------------------------------------------------------------------------------
+
+Type        : {{ansible_system}}
+Family      : {{ansible_os_family}}
+Distribution: {{ansible_distribution}}
+Version     : {{ansible_distribution_version}}
+Architecture: {{ansible_architecture}}
+
+#-------------------------------------------------------------------------------
+# KERNEL
+#-------------------------------------------------------------------------------
+
+Type   : {{ansible_system}}
+Version: {{ansible_kernel}}
+
+#-------------------------------------------------------------------------------
+# USERLAND
+#-------------------------------------------------------------------------------
+
+Type          : {% if not ((sysinfo_userland_type == None) or (sysinfo_userland_type == '')) %}{{sysinfo_userland_type}}{% endif %}
+
+Achitecture   : {{ansible_userspace_architecture}}
+Python Version: {{ansible_python_version}}
+
+#-------------------------------------------------------------------------------
+# NETWORK
+#-------------------------------------------------------------------------------
+
+IPv4 Interface: {{ansible_default_ipv4.interface}}
+IPv4 Address  : {{ansible_default_ipv4.address}}
+IPv4 Netmask  : {{ansible_default_ipv4.netmask}}
+IPv4 Network  : {{ansible_default_ipv4.network}}
+IPv4 Gateway  : {{ansible_default_ipv4.gateway}}
+
+#-------------------------------------------------------------------------------
+# HARDWARE
+#-------------------------------------------------------------------------------
+
+Hardware Vendor: {{ansible_system_vendor}}
+Processor Count: {{ansible_processor_count}}
+Processor Cores: {{ansible_processor_cores}}
+Memory Size    : {{ansible_memtotal_mb}} MB

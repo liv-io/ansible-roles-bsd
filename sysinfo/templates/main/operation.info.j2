@@ -1,0 +1,76 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : operation.info
+#  |  _   _  |   Type   : information file
+#  | [_] [_] |   Role   : sysinfo
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+# This file holds information on how to operate this system.
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# GENERAL
+#-------------------------------------------------------------------------------
+
+# General information about this system:
+{{sysinfo_general|wordwrap(width=80)}}
+
+#-------------------------------------------------------------------------------
+# SERVICES
+#-------------------------------------------------------------------------------
+
+# The following services are installed and running on this system:
+{% if not ((sysinfo_services == None) or (sysinfo_services == '') or (sysinfo_services == [])) %}
+{% for operation_services in sysinfo_services %}
+ - {{operation_services}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# ADMINISTRATION
+#-------------------------------------------------------------------------------
+
+# Be aware of the following facts when administrating this system:
+{% if not ((sysinfo_administration == None) or (sysinfo_administration == '') or (sysinfo_administration == [])) %}
+{% for operation_administration in sysinfo_administration %}
+{{operation_administration}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# PATCHING
+#-------------------------------------------------------------------------------
+
+# Stick to the following procedure to patch this system:
+{% if not ((sysinfo_patching == None) or (sysinfo_patching == '') or (sysinfo_patching == [])) %}
+{% for operation_patching in sysinfo_patching %}
+{{operation_patching}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# OTHER
+#-------------------------------------------------------------------------------
+
+# Additional information about this system:
+{% if not ((sysinfo_other == None) or (sysinfo_other == '') or (sysinfo_other == [])) %}
+{% for operation_other in sysinfo_other %}
+{{operation_other}}
+{% endfor %}
+{% endif %}

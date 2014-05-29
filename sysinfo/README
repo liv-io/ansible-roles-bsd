@@ -1,0 +1,228 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : sysinfo
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : app-admin
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages sysinfo.
+
+Use this role provide general information about the managed node.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: sysinfo
+       sysinfo_state: 'install'
+       sysinfo_general: 'Data - Active/Passive Cluster'
+       sysinfo_administration: ['This system is part of an active/passive cluster.',
+                                'Please bear in mind that switching roles causes short service interrupts.',
+                                'To get health information about the cluster, use the following commands:',
+                                'corosync-cfgtool -s',
+                                'crm status',
+                                'drbdadm role <drbd-resource>',
+                                'drbdadm dstate <drbd-resource>',
+                                'cat /proc/drbd',
+                                "ps -efH | grep -v grep | grep -iE 'corosync|drbd|pacemaker|httpd'",
+                                'service corosync status',
+                                'service drbd status',
+                                'service pacemaker status']
+       sysinfo_services: ['Corosync (TCP/5404, TCP/5405)',
+                          'DRBD/Kernel (TCP/7789)',
+                          'Pacemaker',
+                          'Floating service IP address (IPv4, IPv6)',
+                          'MySQL DB Server (TCP/3306)',
+                          'Apache HTTP Server (TCP/80, TCP/443)']
+       sysinfo_patching: ['crm node standby <host.domain.tld>',
+                          'yum update',
+                          "wall 'WARNING: Reboot is required. System will reboot in 1 minute.'",
+                          'shutdown -r +1',
+                          "crm node online <host.domain.tld>"]
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: sysinfo
+       sysinfo_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  sysinfo_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Remove : 'false' | 'no' | 'remove'
+
+  sysinfo_administration
+    Description: Define the 'sysinfo_administration' option.
+                 Use this variable to define important facts to be considered
+                 while administrating the managed node.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['This system is part of an active/passive cluster.',
+                 'Please bear in mind that switching roles causes short service interrupts.',
+                 'To get health information about the cluster, use the following commands:',
+                 'corosync-cfgtool -s',
+                 'crm status',
+                 'drbdadm role <drbd-resource>',
+                 'drbdadm dstate <drbd-resource>',
+                 'cat /proc/drbd',
+                 "ps -efH | grep -v grep | grep -iE 'corosync|drbd|pacemaker|httpd'",
+                 'service corosync status',
+                 'service drbd status',
+                 'service pacemaker status']
+      None    : []
+
+  sysinfo_general
+    Description: Define the 'sysinfo_general' option.
+                 Use this variable to define the general purpose of the managed
+                 node.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'This system is the primary nameserver.'
+      None    : ''
+
+  sysinfo_other
+    Description: Define the 'sysinfo_other' option.
+                 Use this variable to define any other information about the
+                 managed node.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['Some additional information about this system.',
+                 'Please consult the wiki for more information.']
+      None    : []
+
+  sysinfo_patching
+    Description: Define the 'sysinfo_patching' option.
+                 Use this variable to define the procedure to patch the managed
+                 node.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['crm node standby <host.domain.tld>',
+                 'yum update',
+                 "wall 'WARNING: Reboot is required. System will reboot in 1 minute.'",
+                 'shutdown -r +1',
+                 "crm node online <host.domain.tld>"]
+      None    : []
+
+  sysinfo_services
+    Description: Define the 'sysinfo_services' option.
+                 Use this variable to define the services installed and running
+                 on the managed node.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['Corosync (TCP/5404, TCP/5405)',
+                 'DRBD/Kernel (TCP/7789)',
+                 'Pacemaker',
+                 'Floating service IP address (IPv4, IPv6)',
+                 'MySQL DB Server (TCP/3306)',
+                 'Apache HTTP Server (TCP/80, TCP/443)']
+      None    : []
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+  common
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat
+    Version: 6
+      Status: Testing
+
+  CentOS
+    Version: 6
+      Status: Testing
+
+  Gentoo:
+    Version: 2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

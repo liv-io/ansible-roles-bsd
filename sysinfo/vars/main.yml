@@ -1,0 +1,57 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible variable file
+#  | [_] [_] |   Role   : sysinfo
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# common-info.dir
+file_path_common_info_dir: "/{{common_info_dir_partition}}/{{common_root_dir_name}}/{{common_info_dir_name}}/"
+
+# ansible.info
+file_src_ansible_info: "main/ansible.info.j2"
+file_path_ansible_info: "{{file_path_common_info_dir}}/ansible.info"
+file_mode_ansible_info: '0644'
+file_owner_ansible_info: 'root'
+file_group_ansible_info: 'root'
+
+# operation.info
+file_src_operation_info: "main/operation.info.j2"
+file_path_operation_info: "{{file_path_common_info_dir}}/operation.info"
+file_mode_operation_info: '0644'
+file_owner_operation_info: 'root'
+file_group_operation_info: 'root'
+
+# gentoo.info
+file_src_gentoo_info: "main/gentoo.info.j2"
+file_path_gentoo_info: "{{file_path_common_info_dir}}/gentoo.info"
+file_mode_gentoo_info: '0644'
+file_owner_gentoo_info: 'root'
+file_group_gentoo_info: 'root'
+
+# system.info
+file_src_system_info: "main/system.info.j2"
+file_path_system_info: "{{file_path_common_info_dir}}/system.info"
+file_mode_system_info: '0644'
+file_owner_system_info: 'root'
+file_group_system_info: 'root'

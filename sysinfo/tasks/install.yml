@@ -1,0 +1,81 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : install.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : sysinfo
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../vars/{{ansible_os_family}}.yml"
+   - "../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create ansible.info
+  template:
+   src: "{{file_src_ansible_info}}"
+   dest: "{{file_path_ansible_info}}"
+   mode: "{{file_mode_ansible_info}}"
+   owner: "{{file_owner_ansible_info}}"
+   group: "{{file_group_ansible_info}}"
+  tags:
+   - files
+   - install
+   - sysinfo
+
+- name: template create operation.info
+  template:
+   src: "{{file_src_operation_info}}"
+   dest: "{{file_path_operation_info}}"
+   mode: "{{file_mode_operation_info}}"
+   owner: "{{file_owner_operation_info}}"
+   group: "{{file_group_operation_info}}"
+  tags:
+   - files
+   - install
+   - sysinfo
+
+- name: template create gentoo.info
+  template:
+   src: "{{file_src_gentoo_info}}"
+   dest: "{{file_path_gentoo_info}}"
+   mode: "{{file_mode_gentoo_info}}"
+   owner: "{{file_owner_gentoo_info}}"
+   group: "{{file_group_gentoo_info}}"
+  when: ansible_os_family == 'Gentoo'
+  tags:
+   - files
+   - install
+   - sysinfo
+
+- name: template create system.info
+  template:
+   src: "{{file_src_system_info}}"
+   dest: "{{file_path_system_info}}"
+   mode: "{{file_mode_system_info}}"
+   owner: "{{file_owner_system_info}}"
+   group: "{{file_group_system_info}}"
+  tags:
+   - files
+   - install
+   - sysinfo
