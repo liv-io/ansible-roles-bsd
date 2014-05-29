@@ -1,0 +1,231 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : common
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : app-admin
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages common.
+
+Use this role to create environment specific directories.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: common
+       common_state: 'install'
+       common_info_dir_name: 'information'
+       common_root_dir_name: 'robomon'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: common
+       common_state: 'remove'
+       common_info_dir_name: 'information'
+       common_root_dir_name: 'robomon'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  common_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Remove : 'false' | 'no' | 'remove'
+
+  common_backup_dir_name
+    Description: Define the 'common_backup_dir_name' option.
+                 This directory holds any backup files such as database dumps,
+                 archives and any other type of backups.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'backup'
+    Options    :
+      Examples: 'backup' | 'backups'
+
+  common_backup_dir_partition
+    Description: Define the 'common_backup_dir_partition' option.
+                 This directory holds any backup files such as database dumps,
+                 archives and any other type of backups.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'opt'
+    Options    :
+      Examples: 'opt' | 'var' | 'data'
+
+  common_info_dir_name
+    Description: Define the 'common_info_dir_name' option.
+                 This directory holds any information about this system such as
+                 manuals, documentations, user guides and any other type of
+                 information.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'backup'
+    Options    :
+      Examples: 'info' | 'information'
+
+  common_info_dir_partition
+    Description: Define the 'common_info_dir_partition' option.
+                 This directory holds any backup files such as database dumps,
+                 archives and any other type of backups.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'opt'
+    Options    :
+      Examples: 'opt' | 'var' | 'data'
+
+  common_root_dir_name
+    Description: Define the 'common_root_dir_name' option.
+                 This directory holds any scripts such as maintenance tasks,
+                 cleanup jobs, database tools and any other type of scripts.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'common'
+    Options    :
+      Examples: 'domain-label' | 'company-name' | 'example'
+
+  common_script_dir_name
+    Description: Define the 'common_script_dir_name' option.
+                 This directory holds any system related data such as ISO
+                 images, setup files, installation logs and any other type of
+                 system files.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'script'
+    Options    :
+      Examples: 'script' | 'scripts'
+
+  common_script_dir_partition
+    Description: Define the 'common_script_dir_partition' option.
+                 This directory holds any backup files such as database dumps,
+                 archives and any other type of backups.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'opt'
+    Options    :
+      Examples: 'opt' | 'var' | 'data'
+
+  common_system_dir_name
+    Description: Define the 'common_system_dir_name' option.
+                 This variable controls the name of the following directory:
+                 '/opt/<common_root_dir_name>/<common_system_dir_name>/'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'system'
+    Options    :
+      Examples: 'system' | 'sys'
+
+  common_system_dir_partition
+    Description: Define the 'common_system_dir_partition' option.
+                 This directory holds any backup files such as database dumps,
+                 archives and any other type of backups.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'opt'
+    Options    : 
+      Examples: 'opt' | 'var' | 'data'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat
+    Version: 6
+      Status: Testing
+
+  CentOS
+    Version: 6
+      Status: Testing
+
+  Gentoo:
+    Version: 2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

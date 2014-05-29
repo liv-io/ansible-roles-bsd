@@ -1,0 +1,63 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible variable file
+#  | [_] [_] |   Role   : common
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# common-backup.dir
+file_path_common_backup_dir: "/{{common_backup_dir_partition}}/{{common_root_dir_name}}/{{common_backup_dir_name}}/"
+file_mode_common_backup_dir: '0755'
+file_owner_common_backup_dir: 'root'
+file_group_common_backup_dir: 'root'
+
+# common-info.dir
+file_path_common_info_dir: "/{{common_info_dir_partition}}/{{common_root_dir_name}}/{{common_info_dir_name}}/"
+file_mode_common_info_dir: '0755'
+file_owner_common_info_dir: 'root'
+file_group_common_info_dir: 'root'
+
+# common-root.dir
+file_path_common_root_dir: "/opt/{{common_root_dir_name}}/"
+file_mode_common_root_dir: '0755'
+file_owner_common_root_dir: 'root'
+file_group_common_root_dir: 'root'
+
+# common-script.dir
+file_path_common_script_dir: "/{{common_script_dir_partition}}/{{common_root_dir_name}}/{{common_script_dir_name}}/"
+file_mode_common_script_dir: '0755'
+file_owner_common_script_dir: 'root'
+file_group_common_script_dir: 'root'
+
+# common-system.dir
+file_path_common_system_dir: "/{{common_system_dir_partition}}/{{common_root_dir_name}}/{{common_system_dir_name}}/"
+file_mode_common_system_dir: '0755'
+file_owner_common_system_dir: 'root'
+file_group_common_system_dir: 'root'
+
+# README
+file_src_readme: "main/README.j2"
+file_path_readme: "{{file_path_common_root_dir}}/README"
+file_mode_readme: '0644'
+file_owner_readme: 'root'
+file_group_readme: 'root'

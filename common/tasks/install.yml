@@ -1,0 +1,104 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : install.yml
+#  |  _   _  |   Type   : ansible task file
+#  | [_] [_] |   Role   : common
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../vars/{{ansible_os_family}}.yml"
+   - "../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: file create common-root.dir
+  file:
+   state: 'directory'
+   path: "{{file_path_common_root_dir}}"
+   mode: "{{file_mode_common_root_dir}}"
+   owner: "{{file_owner_common_root_dir}}"
+   group: "{{file_group_common_root_dir}}"
+  tags:
+   - files
+   - install
+   - common
+
+- name: file create common-backup.dir
+  file:
+   state: 'directory'
+   path: "{{file_path_common_backup_dir}}"
+   mode: "{{file_mode_common_backup_dir}}"
+   owner: "{{file_owner_common_backup_dir}}"
+   group: "{{file_group_common_backup_dir}}"
+  tags:
+   - files
+   - install
+   - common
+
+- name: file create common-info.dir
+  file:
+   state: 'directory'
+   path: "{{file_path_common_info_dir}}"
+   mode: "{{file_mode_common_info_dir}}"
+   owner: "{{file_owner_common_info_dir}}"
+   group: "{{file_group_common_info_dir}}"
+  tags:
+   - files
+   - install
+   - common
+
+- name: file create common-script.dir
+  file:
+   state: 'directory'
+   path: "{{file_path_common_script_dir}}"
+   mode: "{{file_mode_common_script_dir}}"
+   owner: "{{file_owner_common_script_dir}}"
+   group: "{{file_group_common_script_dir}}"
+  tags:
+   - files
+   - install
+   - common
+
+- name: file create common-system.dir
+  file:
+   state: 'directory'
+   path: "{{file_path_common_system_dir}}"
+   mode: "{{file_mode_common_system_dir}}"
+   owner: "{{file_owner_common_system_dir}}"
+   group: "{{file_group_common_system_dir}}"
+  tags:
+   - files
+   - install
+   - common
+
+- name: template create README
+  template:
+   src: "{{file_src_readme}}"
+   dest: "{{file_path_readme}}"
+   mode: "{{file_mode_readme}}"
+   owner: "{{file_owner_readme}}"
+   group: "{{file_group_readme}}"
+  tags:
+   - files
+   - install
+   - common
