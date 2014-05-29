@@ -1,0 +1,263 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+       o
+   ____|____
+  |         |   Name   : postfix
+  |  _   _  |   Type   : ansible role
+  | [_] [_] |   Group  : mail-mta
+  |____~____|
+     ___\\__    Authors: robomon community
+  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+   \/|_____|\\
+     _|| ||_//  Webpage: http://www.robomon.org/
+    (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages postfix.
+
+Postfix is a Mail Transport Agent (MTA), supporting LDAP, SMTP AUTH (SASL), TLS.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: postfix
+       postfix_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+     - role: postfix
+       postfix_state: 'enable'
+       postfix_fallback_relay: 'mx02.domain.tld'
+       postfix_inet_protocols: 'ipv4'
+       postfix_relayhost: 'mx01.domain.tld'
+       postfix_root_mail_address: 'root@domain.tld'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: postfix
+       postfix_state: 'disable'
+       postfix_fallback_relay: 'mx02.domain.tld'
+       postfix_inet_protocols: 'ipv4'
+       postfix_relayhost: 'mx01.domain.tld'
+       postfix_root_mail_address: 'root@domain.tld'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: postfix
+       postfix_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  postfix_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Enable : 'start' | 'on' | 'enable'
+      Disable: 'stop' | 'off' | 'disable'
+      Remove : 'false' | 'no' | 'remove'
+
+  postfix_aliases_template
+    Description: Define the template source for 'aliases.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'postfix/templates/example/aliases.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  postfix_custom_options
+    Description: Define the 'postfix_custom_options' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['mynetworks = 168.100.189.0/28, 127.0.0.0/8',
+                 'mydestination = $myhostname, localhost.$mydomain, localhost']
+      None    : []
+
+  postfix_fallback_relay
+    Description: Define the 'postfix_fallback_relay' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "mx02.{{ansible_domain}}"
+    Options    :
+      Examples: 'mx02.domain.tld' | 'mail02.domain.tld'
+
+  postfix_inet_interfaces
+    Description: Define the 'postfix_inet_interfaces' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['localhost']
+    Options    :
+      Examples: ['localhost'] | ['all'] ['$myhostname', 'localhost']
+
+  postfix_inet_protocols
+    Description: Set the 'postfix_inet_protocols' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    :
+      RedHat: 'all'
+      Gentoo: 'ipv4'
+    Options    :
+      Any      : 'any' | 'ANY' | 'all' | 'ALL'
+      IPv4 only: 'inet' | 'ipv4'
+      IPv6 only: 'inet6' | 'ipv6'
+
+  postfix_main_cf_template
+    Description: Define the template source for 'main.cf.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'postfix/templates/example/main.cf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  postfix_master_cf_template
+    Description: Define the template source for 'master.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'postfix/templates/example/master.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  postfix_myhostname
+    Description: Define the 'postfix_myhostname' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_fqdn}}"
+    Options    :
+      Examples: 'hostname.domain.tld' | 'host.domain.tld'
+
+  postfix_relayhost
+    Description: Define the 'postfix_relayhost' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "mx01.{{ansible_domain}}"
+    Options    :
+      Examples: 'mx01.domain.tld' | 'mail01.domain.tld'
+
+  postfix_root_mail_address
+    Description: Define the 'postfix_root_mail_address' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "root@{{ansible_domain}}"
+    Options    :
+      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  postfix
+    Version: >= 2.6
+    Name   :
+      RedHat 6: 'postfix'
+      CentOS 6: 'postfix'
+      Gentoo 2: 'postfix'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat
+    Version: 6
+      Status: Development
+
+  CentOS
+    Version: 6
+      Status: Development
+
+  Gentoo:
+    Version: 2
+      Status: Development
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

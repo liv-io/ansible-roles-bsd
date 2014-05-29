@@ -1,0 +1,68 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#       o
+#   ____|____
+#  |         |   Name   : main.yml
+#  |  _   _  |   Type   : ansible variable file
+#  | [_] [_] |   Role   : postfix
+#  |____~____|
+#     ___\\__    Authors: robomon community
+#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
+#   \/|_____|\\
+#     _|| ||_//  Webpage: http://www.robomon.org/
+#    (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# postfix
+package_name_postfix: 'postfix'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# aliases
+file_src_aliases: "{{postfix_aliases_template}}/aliases.j2"
+file_path_aliases: '/etc/aliases'
+file_mode_aliases: '0644'
+file_owner_aliases: 'root'
+file_group_aliases: 'root'
+
+# main.cf
+file_src_main_cf: "{{postfix_main_cf_template}}/main.cf.j2"
+file_path_main_cf: '/etc/postfix/main.cf'
+file_mode_main_cf: '0644'
+file_owner_main_cf: 'root'
+file_group_main_cf: 'root'
+
+# master.cf
+file_src_master_cf: "{{postfix_master_cf_template}}/master.cf.j2"
+file_path_master_cf: '/etc/postfix/master.cf'
+file_mode_master_cf: '0644'
+file_owner_master_cf: 'root'
+file_group_master_cf: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# newaliases
+command_command_newaliases: 'newaliases'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# postfix
+service_name_postfix: 'postfix'
