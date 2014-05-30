@@ -107,7 +107,7 @@ mail_sender='{% if not ((ntp_monitor_mail_sender == None) or (ntp_monitor_mail_s
 mail_recipient='{% if not ((ntp_monitor_mail_recipient == None) or (ntp_monitor_mail_recipient == '') or (ntp_monitor_mail_recipient == [])) %}{% for mail_recipient in ntp_monitor_mail_recipient %}{{mail_recipient}},{% endfor %}{% else %}admin@{{ansible_domain}}{% endif %}'
 
 # Define the mail subject
-mail_subject='{% if not ((ntp_monitor_mail_subject == None) or (ntp_monitor_mail_subject == '')) %}{{ntp_monitor_mail_subject}}{% else %}"{{ansible_hostname}}: NTP - Update Time - Error"{% endif %}'
+mail_subject='{% if not ((ntp_monitor_mail_subject == None) or (ntp_monitor_mail_subject == '')) %}{{ntp_monitor_mail_subject}}{% else %}"NTP: Update Time - Error ({{ansible_hostname}})"{% endif %}'
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -123,17 +123,6 @@ mail_error () {
   message=$4
   # Define the mail body
   mail_body="--------------------------------------------------------------------------------
-$mail_subject
---------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------
-SYSTEM
---------------------------------------------------------------------------------
-
-Hostname    : {{ansible_hostname}}
-FQDN        : {{ansible_fqdn}}
-
---------------------------------------------------------------------------------
 ERROR
 --------------------------------------------------------------------------------
 
@@ -149,6 +138,13 @@ SCRIPT
 Name        : ntp_update-time.bash
 Type        : bash script
 PID         : $$
+
+--------------------------------------------------------------------------------
+SYSTEM
+--------------------------------------------------------------------------------
+
+Hostname    : {{ansible_hostname}}
+FQDN        : {{ansible_fqdn}}
 
 --------------------------------------------------------------------------------
 OPERATING SYSTEM
@@ -168,10 +164,18 @@ Type        : {{ansible_system}}
 Version     : {{ansible_kernel}}
 
 --------------------------------------------------------------------------------
-$script: $($date '+%Y-%m-%dT%H:%M:%S%:z')
---------------------------------------------------------------------------------"
+MAIL
+--------------------------------------------------------------------------------
 
+Sender      : $mail_sender
+Recipient   : $mail_recipient
+Subject     : $mail_subject"
+
+{% if (ansible_os_family == 'Gentoo') %}
+  $echo "$mail_body" | $mailx -a "From: "$mail_sender"" -s "$mail_subject" "$mail_recipient" > /dev/null 2>&1
+{% else %}
   $echo "$mail_body" | $mailx -r "$mail_sender" -s "$mail_subject" "$mail_recipient" > /dev/null 2>&1
+{% endif %}
 }
 {% endif %}
 
@@ -183,8 +187,8 @@ log_and_exit_if_error () {
   message=$4
   if [ "$retval" -ne '0' ]; then
     $rm -f $lockfile
-    $echo "$($date '+%Y-%m-%dT%H:%M:%S%:z') - $host - $script: "$severity "($code)": $message""
-    $logger -t $script "$severity '($code)': $message"
+    $echo "$($date '+%Y-%m-%dT%H:%M:%S%:z') - $host - $script: "$severity: $code - $message""
+    $logger -t $script "$severity: $code - $message"
 {% if (ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable') %}
     mail_error "$retval" "$code" "$severity" "$message"
 {% endif %}

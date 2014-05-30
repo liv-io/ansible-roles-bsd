@@ -14,6 +14,11 @@ CHANGES
     (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.5.0 (2014-05-30)
+F: Add interval option for the cronjob
+B: Fix usage of 'from address' (sender) option of mailx
+I: Improve information contained in mail subject and body
+
 * Version 0.4.0 (2014-05-29)
 F: Add mail monitoring options
 I: Improve script overall

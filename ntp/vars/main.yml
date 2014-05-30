@@ -43,7 +43,7 @@ file_owner_ntp_conf: 'root'
 file_group_ntp_conf: 'root'
 
 # ntp-script.dir
-file_path_ntp_script_dir: "/{{common_script_dir_partition}}/{{common_root_dir_name}}/{{common_script_dir_name}}/ntp/"
+file_path_ntp_script_dir: "/{{common_script_dir_partition}}/{{common_root_dir_name}}/{{common_script_dir_name}}/ntp"
 file_mode_ntp_script_dir: '0750'
 file_owner_ntp_script_dir: 'root'
 file_group_ntp_script_dir: 'root'

@@ -61,6 +61,7 @@ CRONJOB
        ntp_state: 'cronjob'
        ntp_option: ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
        ntp_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
+       ntp_ntp_update_time_interval: 15
 
 REMOVE
   - hosts: all
@@ -125,9 +126,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : "{{ansible_hostname}}: NTP - Update Time - Error"
+    Default    : "NTP: Update Time - Error ({{ansible_hostname}})"
     Options    :
-      Examples: 'NTP: Update Time - ERROR'
+      Examples: 'NTP: Update Time Error'
 
   ntp_ntp_conf_template
     Description: Define the template source for 'ntp.conf.j2'.
@@ -170,6 +171,17 @@ ROLE
     Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
+
+  ntp_ntp_update_time_interval
+    Description: Set the 'ntp_ntp_update_time_interval' option.
+                 Specify a value between 1-59.
+    Implemented: 0.5
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 10
+    Options    :
+      Examples: 5 | 11 | 15 | 20 | 23
 
   ntp_option
     Description: Define the 'ntp_option' option.
