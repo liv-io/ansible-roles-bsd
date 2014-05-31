@@ -26,7 +26,7 @@
 #-------------------------------------------------------------------------------
 
 # common-info.dir
-file_path_common_info_dir: "/{{common_info_dir_partition}}/{{common_root_dir_name}}/{{common_info_dir_name}}/"
+file_path_common_info_dir: "/{{common_info_dir_partition}}/{{common_root_dir_name}}/{{common_info_dir_name}}"
 
 # ansible.info
 file_src_ansible_info: "main/ansible.info.j2"
