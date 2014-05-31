@@ -22,4 +22,4 @@
 #-------------------------------------------------------------------------------
 
 dependencies:
- - { role: common }
+ - { role: postfix, when: not ((mailx_state == 'false') or (mailx_state == 'no') or (mailx_state == 'remove')) }
