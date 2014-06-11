@@ -264,6 +264,8 @@ PACKAGES
 ROLES
   common
 
+  mailx
+
   ntpdate
 
 VARIABLES
