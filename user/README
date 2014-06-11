@@ -382,9 +382,15 @@ OPERATING SYSTEMS
     Version: 6
       Status: Development
 
+    Version: 7
+      Status: Planned
+
   CentOS
     Version: 6
       Status: Development
+
+    Version: 7
+      Status: Planned
 
   Gentoo:
     Version: 2

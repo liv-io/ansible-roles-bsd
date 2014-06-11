@@ -113,8 +113,14 @@ OPERATING SYSTEMS
     Version: 6
       Status: Unsupported
 
+    Version: 7
+      Status: Planned
+
   CentOS
     Version: 6
+      Status: Unsupported
+
+    Version: 7
       Status: Unsupported
 
   Gentoo:
