@@ -1,17 +1,17 @@
 --------------------------------------------------------------------------------
 README
 --------------------------------------------------------------------------------
-       o
-   ____|____
-  |         |   Name   : splint
-  |  _   _  |   Type   : ansible role
-  | [_] [_] |   Group  : dev-util
-  |____~____|
-     ___\\__    Authors: robomon community
-  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
-   \/|_____|\\
-     _|| ||_//  Webpage: http://www.robomon.org/
-    (__| |__)
+        o
+    ____|____
+   |         |  Name   : splint
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : dev-util
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: GNU General Public License version 2 (GPLv2)
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------

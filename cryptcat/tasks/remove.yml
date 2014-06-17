@@ -2,17 +2,17 @@
 #-------------------------------------------------------------------------------
 # INFORMATION
 #-------------------------------------------------------------------------------
-#       o
-#   ____|____
-#  |         |   Name   : remove.yml
-#  |  _   _  |   Type   : ansible task file
-#  | [_] [_] |   Role   : cryptcat
-#  |____~____|
-#     ___\\__    Authors: robomon community
-#  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
-#   \/|_____|\\
-#     _|| ||_//  Webpage: http://www.robomon.org/
-#    (__| |__)
+#        o
+#    ____|____
+#   |         |  Name   : remove.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : cryptcat
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
 #-------------------------------------------------------------------------------
 # DESCRIPTION
 #-------------------------------------------------------------------------------

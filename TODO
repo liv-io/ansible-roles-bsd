@@ -1,17 +1,17 @@
 --------------------------------------------------------------------------------
 TODO
 --------------------------------------------------------------------------------
-       o
-   ____|____
-  |         |   Name   : todo
-  |  _   _  |   Type   : ansible roles
-  | [_] [_] |   Summary: robomon - ansible roles
-  |____~____|
-     ___\\__    Authors: robomon community
-  \\/|     |\   License: GNU General Public License version 2 (GPLv2)
-   \/|_____|\\
-     _|| ||_//  Webpage: http://www.robomon.org/
-    (__| |__)
+        o
+    ____|____
+   |         |  Name   : todo
+   |  _   _  |  Type   : ansible roles
+   | [_] [_] |  Summary: robomon - ansible roles
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: GNU General Public License version 2 (GPLv2)
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------

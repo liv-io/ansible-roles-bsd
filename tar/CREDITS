@@ -1,17 +1,17 @@
 --------------------------------------------------------------------------------
 CREDITS
 --------------------------------------------------------------------------------
-       o
-   ____|____
-  |         |   This file lists people that have contributed to the Ansible
-  |  _   _  |   role. The content is sorted by name and formatted to allow
-  | [_] [_] |   easy tarping by scripts.
-  |____~____|
-     ___\\__    The fields are:
-  \\/|     |\   N: name                        P: PGP key ID and fingerprint
-   \/|_____|\\  E: e-mail                      D: description
-     _|| ||_//  W: webpage                     S: snail-mail address
-    (__| |__)
+        o
+    ____|____
+   |         |  This file lists people that have contributed to the Ansible
+   |  _   _  |  role. The content is sorted by name and formatted to allow
+   | [_] [_] |  easy tarping by scripts.
+   |____~____|
+    ___//__//   The fields are:
+   /|     |/    N: name                        P: PGP key ID and fingerprint
+  //|_____|     E: e-mail                      D: description
+    _|| ||_     W: webpage                     S: snail-mail address
+   (__| |__)
 --------------------------------------------------------------------------------
 
 N: lk
