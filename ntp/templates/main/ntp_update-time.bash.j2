@@ -37,21 +37,20 @@ PATH='/sbin:/bin:/usr/sbin:/usr/bin'
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-which='/usr/bin/which'
-
-basename=$($which basename) || exit 0100
-hwclock=$($which hwclock) || exit 0101
-date=$($which date) || exit 0102
-echo=$($which echo) || exit 0103
-expr=$($which expr) || exit 0104
-hostname=$($which hostname) || exit 0105
-logger=$($which logger) || exit 0106
+which='/usr/bin/which' && [[ -x $which ]] || exit 0100
+basename=$($which basename) || exit 0101
+hwclock=$($which hwclock) || exit 0102
+date=$($which date) || exit 0103
+echo=$($which echo) || exit 0104
+expr=$($which expr) || exit 0105
+hostname=$($which hostname) || exit 0106
+logger=$($which logger) || exit 0107
 {% if (ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable') %}
-mailx=$($which mailx) || exit 0107
+mailx=$($which mailx) || exit 0108
 {% endif %}
-rm=$($which rm) || exit 0108
-touch=$($which touch) || exit 0109
-whoami=$($which whoami) || exit 0110
+rm=$($which rm) || exit 0109
+touch=$($which touch) || exit 0110
+whoami=$($which whoami) || exit 0111
 
 # Determine available NTP command
 if [ -x "$($which sntp 2> /dev/null)" ]; then
@@ -59,7 +58,7 @@ if [ -x "$($which sntp 2> /dev/null)" ]; then
 elif [ -x "$($which ntpdate 2> /dev/null)" ]; then
   ntp_command='ntpdate -s'
 else
-  exit 0111
+  exit 0112
 fi
 
 #-------------------------------------------------------------------------------
@@ -67,15 +66,15 @@ fi
 #-------------------------------------------------------------------------------
 
 # Get short host name
-host=$($hostname -s)
+host=$($hostname -s) || exit 0200
 
 # Get scriptname and PID
-script="$($basename $0)[$$]"
+script="$($basename $0)[$$]" || exit 0201
 
 # Get start date and time
 date_start=$($date '+%Y-%m-%dT%H:%M:%S%:z')
 
-# Get start instant (seconds since 1970-01-01 00:00:00 UTC)
+# Get start instant (seconds since 1970-01-01T00:00:00+00:00)
 instant_start=$($date '+%s')
 
 # Specify script user
@@ -85,10 +84,10 @@ user='{{file_owner_ntp_update_time_bash}}'
 lockfile='{{file_path_ntp_script_dir}}/ntp_update-time.lock'
 
 # Set initial return value
-retval='0'
+retval=0
 
 # Set initial exit code
-code='0000'
+code=0000
 
 # Set initial log severity
 severity='Debug'
@@ -185,12 +184,12 @@ log_and_exit_if_error () {
   code=$2
   severity=$3
   message=$4
-  if [ "$retval" -ne '0' ]; then
+  if [ $retval -ne 0 ]; then
     $rm -f $lockfile
     $echo "$($date '+%Y-%m-%dT%H:%M:%S%:z') - $host - $script: "$severity: $code - $message""
     $logger -t $script "$severity: $code - $message"
 {% if (ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable') %}
-    mail_error "$retval" "$code" "$severity" "$message"
+    mail_error $retval $code "$severity" "$message"
 {% endif %}
     exit $retval
   fi
@@ -202,7 +201,7 @@ log_and_exit_if_error () {
 
 # Check if script is running as correct user
 if [ "$($whoami)" != "$user" ]; then
-  code='0200'
+  code=0300
   severity='Error'
   message="Please run script as user '$user'"
   $echo "$($date '+%Y-%m-%dT%H:%M:%S%:z') - $host - $script: "$severity "($code)": $message""
@@ -215,9 +214,9 @@ fi
 
 # Create lockfile
 if [ ! -e $lockfile ]; then
-  $touch $lockfile || log_and_exit_if_error "$?" '0300' 'Warning' 'Could not create lockfile. Please investigate.'
+  $touch $lockfile || log_and_exit_if_error "$?" '0400' 'Warning' 'Could not create lockfile. Please investigate.'
 else
-  log_and_exit_if_error "$?" '0301' 'Warning' 'Lockfile does already exist. Please investigate.'
+  log_and_exit_if_error "$?" '0401' 'Warning' 'Lockfile does already exist. Please investigate.'
 fi
 
 #-------------------------------------------------------------------------------
@@ -227,12 +226,12 @@ fi
 # Update the system time by polling NTP servers to determine the correct time
 for ntp_server in $ntp_servers ; do
   $ntp_command $ntp_server > /dev/null 2>&1
-  log_and_exit_if_error "$?" '0400' 'Error' 'Unable to update the system time.'
+  log_and_exit_if_error "$?" '0500' 'Error' 'Unable to update the system time.'
 done
 
 # Update the hardware clock to the system time
 $hwclock -w
-log_and_exit_if_error "$?" '0401' 'Error' 'Unable to update the hardware clock.'
+log_and_exit_if_error "$?" '0501' 'Error' 'Unable to update the hardware clock.'
 
 #-------------------------------------------------------------------------------
 # LOCKFILE
@@ -240,9 +239,9 @@ log_and_exit_if_error "$?" '0401' 'Error' 'Unable to update the hardware clock.'
 
 # Delete lockfile
 if [ -e $lockfile ]; then
-  $rm -f $lockfile || log_and_exit_if_error "$?" '0302' 'Warning' 'Could not delete lockfile. Please investigate.'
+  $rm -f $lockfile || log_and_exit_if_error "$?" '0402' 'Warning' 'Could not delete lockfile. Please investigate.'
 else
-  log_and_exit_if_error "$?" '0304' 'Warning' 'Lockfile did not exist. Please investigate.'
+  log_and_exit_if_error "$?" '0403' 'Warning' 'Lockfile did not exist. Please investigate.'
 fi
 
 #-------------------------------------------------------------------------------
@@ -252,7 +251,7 @@ fi
 # Get end date and time
 date_end=$($date '+%Y-%m-%dT%H:%M:%S%:z')
 
-# Get end instant (seconds since 1970-01-01 00:00:00 UTC)
+# Get end instant (seconds since 1970-01-01T00:00:00+00:00)
 instant_end=$($date '+%s')
 
 # Calculate execution time
@@ -262,8 +261,8 @@ exec_calc=$($expr $instant_end - $instant_start)
 exec_time=$($date -d "1970-01-01 $exec_calc sec" '+%H:%M:%S')
 
 # Logging and alerting
-retval='0'
-code='0000'
+retval=0
+code=0000
 severity='Informational'
 message='System time and hardware clock updated.'
 $logger -t $script "$severity: $message"
