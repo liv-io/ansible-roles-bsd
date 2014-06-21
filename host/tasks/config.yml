@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : config.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : host
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: host config <host>
+  lineinfile:
+   state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
+   line: "{{item.ip}} {{item.name}} {{item.aliases|join(' ') if (item.aliases is defined) else ''}} # {{item.comment if (item.comment is defined) else item.name}} | Ansible: {{item.ip|md5}}"
+   regexp: '{{item.ip|md5}}$'
+   dest: "{{item.path if (item.path is defined) and not (item.path == '') else host_path_default}}"
+  with_items: host
+  tags:
+   - files
+   - config
+   - host

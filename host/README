@@ -1,0 +1,220 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : host
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : sys-core
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: GNU General Public License version 2 (GPLv2)
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages host.
+
+'/etc/hosts' is a simple text file that associates IP addresses with hostnames,
+one line per IP address.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - host: all
+    roles:
+     - role: host
+       host_state: 'enable'
+       host_path_default: '/bin/bash'
+
+DISABLE
+  - host: all
+    roles:
+     - role: host
+       host_state: 'disable'
+
+CREATE HOST
+  host:
+   - name: 'host01.domain.tld'
+     state: 'true'
+     ip: '192.168.1.1'
+     aliases: ['host01', 'hostname01.domain.tld', 'hostname01']
+     comment: 'host01'
+
+   - name: 'host02.domain.tld'
+     state: 'true'
+     ip: '192.168.1.2'
+     aliases: ['host02', 'hostname02.domain.tld', 'hostname02']
+     comment: 'host02'
+
+REMOVE HOST
+   - name: 'host03.domain.tld'
+     state: 'false'
+     ip: '192.168.1.3'
+     aliases: ['host03', 'hostname03.domain.tld', 'hostname03']
+     comment: 'host03'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+CONFIG
+  state
+    Description: Control the state of the hosts entry.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Create: 'true' | 'yes' | 'create'
+      Remove: 'false' | 'no' | 'remove'
+
+  name
+    Description: Define the hostname of the hosts entry.
+    Implemented: 0.1
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : None
+    Options    :
+      Examples: 'host01' | 'host02' | 'host03'
+
+  aliases
+    Description: Define the aliases for the hosts entry.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['alias01'] |
+                ['alias01', 'alias02'] |
+                ['alias01', 'alias02', 'alias03']
+
+  comment
+    Description: Define a comment for the hosts entry.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : <host.name>
+    Options    :
+      Examples: 'Example Host' | 'Test Host' | 'Service Host'
+
+  ip
+    Description: Define the ip of the hosts entry.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : None
+    Options    :
+      Examples: '192.168.1.1' | '192.168.1.2' | '192.168.1.3'
+
+  path
+    Description: Define the path of the hosts file.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/etc/hosts'
+    Options    :
+      Examples: '/etc/hosts'
+
+ROLE
+  host_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Disable: 'false' | 'no' | 'disable'
+
+  host_path_default
+    Description: Define the default path of the hosts file.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/etc/hosts'
+    Options    :
+      Examples: '/etc/hosts'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat
+    Version: 6
+      Status: Testing
+
+    Version: 7
+      Status: Planned
+
+  CentOS
+    Version: 6
+      Status: Testing
+
+    Version: 7
+      Status: Planned
+
+  Gentoo:
+    Version: 2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
