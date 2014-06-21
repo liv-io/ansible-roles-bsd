@@ -218,7 +218,7 @@ ROLE
     Default    : ['0.0.0.0']
     Options    :
       Examples   : ['0.0.0.0' | '127.0.0.1', '::', '::1'] |
-                   ['192.168.1.2', '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458']
+                   ['192.168.1.1', '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458']
       App default: [] | None
 
   openssh_password_authentication
