@@ -14,6 +14,10 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.2.2 (2014-06-21)
+B: Remove ansible variable directory
+B: Correct mistake in documentation
+
 * Version 0.2.1 (2014-05-25)
 B: Fix 'group' option
 
