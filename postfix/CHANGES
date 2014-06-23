@@ -14,5 +14,8 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2014-06-23)
+B: Add pattern for Postfix service to fix issue on Gentoo
+
 * Version 0.1.0 (2014-05-26)
 F: Initial release

@@ -66,3 +66,4 @@ command_command_newaliases: 'newaliases'
 
 # postfix
 service_name_postfix: 'postfix'
+service_pattern_postfix: 'postfix/master'

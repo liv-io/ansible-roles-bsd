@@ -93,6 +93,7 @@
    enabled: 'yes'
    runlevel: 'default'
    name: "{{service_name_postfix}}"
+   pattern: "{{service_pattern_postfix}}"
   when: ansible_os_family == 'Gentoo'
   tags:
    - system
