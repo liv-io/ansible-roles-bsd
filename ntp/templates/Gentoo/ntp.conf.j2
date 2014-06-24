@@ -29,6 +29,11 @@
 # You should consult your DHCP client documentation about its
 # default behaviour and how to change it.
 
+# Monitoring facility.
+# See the ntpdc(8) program and the monlist command or further information.
+{% if (ntp_monitor == 'true') or (ntp_monitor == 'yes') or (ntp_monitor == 'enable') %}enable{% else %}disable{% endif %} monitor
+
+
 # Name of the servers ntpd should sync with
 # Please respect the access policy as stated by the responsible person.
 #server		ntp.example.tld		iburst

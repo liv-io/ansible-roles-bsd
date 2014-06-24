@@ -24,6 +24,9 @@
 # ntp_state
 ntp_state: 'enable'
 
+# ntp_monitor
+ntp_monitor: 'false'
+
 # ntp_monitor_mail_recipient
 ntp_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
 

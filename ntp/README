@@ -88,6 +88,17 @@ ROLE
       Cronjob: 'cron' | 'cronjob'
       Remove : 'false' | 'no' | 'remove'
 
+  ntp_monitor
+    Description: Control the 'ntp_monitor' option.
+    Implemented: 0.6
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   ntp_monitor_mail_recipient
     Description: Define the 'ntp_monitor_mail_recipient' option.
     Implemented: 0.4
