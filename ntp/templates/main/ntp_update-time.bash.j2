@@ -56,7 +56,7 @@ whoami=$($which whoami) || exit 0111
 if [ -x "$($which sntp 2> /dev/null)" ]; then
   ntp_command='sntp --settod --syslog'
 elif [ -x "$($which ntpdate 2> /dev/null)" ]; then
-  ntp_command='ntpdate -s'
+  ntp_command='ntpdate -s -b'
 else
   exit 0112
 fi
