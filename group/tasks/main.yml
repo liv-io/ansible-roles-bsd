@@ -27,4 +27,4 @@
 
 - name: task include config
   include: config.yml
-  when: not ((group_state == 'false') or (group_state == 'no') or (group_state == 'disable')
+  when: not ((group_state == 'false') or (group_state == 'no') or (group_state == 'disable'))
