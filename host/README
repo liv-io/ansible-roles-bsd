@@ -106,7 +106,7 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : <host.name>
+    Default    : {{host.name}}
     Options    :
       Examples: 'Example Host' | 'Test Host' | 'Service Host'
 
@@ -126,7 +126,7 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '/etc/hosts'
+    Default    : {{host_path_default}}
     Options    :
       Examples: '/etc/hosts'
 

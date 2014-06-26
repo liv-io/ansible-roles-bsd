@@ -112,7 +112,7 @@ CONFIG (user)
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : <user.name>
+    Default    : {{user.name}}
     Options    :
       Examples: 'Example User' | 'Test User' | 'Service User'
 
@@ -259,7 +259,7 @@ CONFIG (authorized_key)
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : <user.name>
+    Default    : {{user.name}}
     Options    :
       Examples: 'user01' | 'user02' | 'user03'
 
