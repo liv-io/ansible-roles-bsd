@@ -38,9 +38,7 @@
    mode: "{{file_mode_iptables}}"
    owner: "{{file_owner_iptables}}"
    group: "{{file_group_iptables}}"
-  notify:
-   - service start iptables
-   - service reload iptables
+  register: register_redhat_iptables
   when: ansible_os_family == 'RedHat'
   tags:
    - files
@@ -54,9 +52,7 @@
    mode: "{{file_mode_iptables}}"
    owner: "{{file_owner_iptables}}"
    group: "{{file_group_iptables}}"
-  notify:
-   - service start iptables
-   - service reload iptables
+  register: register_gentoo_iptables
   when: ansible_os_family == 'Gentoo'
   tags:
    - files
@@ -70,9 +66,7 @@
    mode: "{{file_mode_iptables_config}}"
    owner: "{{file_owner_iptables_config}}"
    group: "{{file_group_iptables_config}}"
-  notify:
-   - service start iptables
-   - service reload iptables
+  register: register_redhat_iptables_config
   when: not (ansible_os_family == 'Gentoo')
   tags:
    - files
@@ -86,9 +80,7 @@
    mode: "{{file_mode_ip6tables}}"
    owner: "{{file_owner_ip6tables}}"
    group: "{{file_group_ip6tables}}"
-  notify:
-   - service start ip6tables
-   - service reload ip6tables
+  register: register_redhat_ip6tables
   when: ansible_os_family == 'RedHat'
   tags:
    - files
@@ -102,9 +94,7 @@
    mode: "{{file_mode_ip6tables}}"
    owner: "{{file_owner_ip6tables}}"
    group: "{{file_group_ip6tables}}"
-  notify:
-   - service start ip6tables
-   - service reload ip6tables
+  register: register_gentoo_ip6tables
   when: ansible_os_family == 'Gentoo'
   tags:
    - files
@@ -118,9 +108,7 @@
    mode: "{{file_mode_ip6tables_config}}"
    owner: "{{file_owner_ip6tables_config}}"
    group: "{{file_group_ip6tables_config}}"
-  notify:
-   - service start ip6tables
-   - service reload ip6tables
+  register: register_redhat_ip6tables_config
   when: not (ansible_os_family == 'Gentoo')
   tags:
    - files
@@ -172,6 +160,50 @@
    runlevel: 'default'
    name: "{{service_name_ip6tables}}"
   when: ansible_os_family == 'Gentoo'
+  tags:
+   - system
+   - enable
+   - iptables
+
+#-------------------------------------------------------------------------------
+# HANDLERS
+#-------------------------------------------------------------------------------
+
+- name: service reload iptables
+  service:
+   state: 'reloaded'
+   name: "{{service_name_iptables}}"
+  when: (register_gentoo_iptables|changed) or (register_redhat_iptables|changed)
+  tags:
+   - system
+   - enable
+   - iptables
+
+- name: service reload ip6tables
+  service:
+   state: 'reloaded'
+   name: "{{service_name_ip6tables}}"
+  when: (register_gentoo_ip6tables|changed) or (register_redhat_ip6tables|changed)
+  tags:
+   - system
+   - enable
+   - iptables
+
+- name: service reload iptables
+  service:
+   state: 'reloaded'
+   name: "{{service_name_iptables}}"
+  when: register_redhat_iptables_config|changed
+  tags:
+   - system
+   - enable
+   - iptables
+
+- name: service reload ip6tables
+  service:
+   state: 'reloaded'
+   name: "{{service_name_ip6tables}}"
+  when: register_redhat_ip6tables_config|changed
   tags:
    - system
    - enable
