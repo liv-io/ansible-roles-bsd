@@ -42,22 +42,22 @@ ROLES
  - bugzilla
  - capistrano
  - clamav
- - common
  - controltier
  - corosync
  - crmsh
  - dokuwiki
  - dovecot
+ - example
  - fabric
  - freeipa
  - func
- - git
+ - gcc
+ - gcc_cpp
  - gitweb
  - gnu gatekeeper
  - graylog2
  - greensql
  - honeyd
- - hosts
  - incron
  - loganalyzer
  - logstash
@@ -82,11 +82,15 @@ ROLES
  - postgrey
  - prelude
  - pulp
+ - python
  - relayd
  - request tracker
+ - resolver
  - roundcube
  - rsnapshot
+ - rsyslog
  - rundeck
+ - ruby
  - rusers-server
  - samhain
  - sinatra
@@ -95,12 +99,11 @@ ROLES
  - sprinkle
  - sqlite
  - squid
- - sudo
  - suricata
- - sysctl
  - syslog-ng
  - trac
  - varnish
+ - vim
  - yum
  - zabbix
  - zenoss
@@ -109,10 +112,12 @@ ROLES
 OTHER
 --------------------------------------------------------------------------------
 
- - awstats 
+ - awstats
+ - goaccess 
  - grinder
  - innotop
  - ipvsadm
+ - irssi
  - jwhois
  - logwatch
  - monit
@@ -131,4 +136,7 @@ OTHER
  - rsnapshot
  - rssh
  - rusers-server
+ - tidy
+ - tmpwatch
+ - trickle
  - wrk
