@@ -185,7 +185,7 @@ ROLE
 
   sysctl_sysctl_config_template
     Description: Define the template source for 'sysctl-config.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'sysctl/templates/example/sysctl-config.j2'
