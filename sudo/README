@@ -1,0 +1,287 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : sudo
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : sys-core
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: GNU General Public License version 2 (GPLv2)
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages sudo.
+
+Sudo (superuser do) allows a system administrator to give certain users
+(or groups of users) the ability to run some (or all) commands as root while
+logging all commands and arguments. Sudo operates on a per-command basis.
+It is not a replacement for the shell. Features include: the ability to
+restrict what commands a user may run on a per-host basis, copious logging of
+each command (providing a clear audit trail of who did what), a configurable
+timeout of the sudo command, and the ability to use the same configuration file
+(sudoers) on many different machines.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - sudo: all
+    roles:
+     - role: sudo
+       sudo_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: sudo
+       sudo_state: 'remove'
+
+CONFIG
+  sudoers_default:
+   - name: 'core'
+     state: 'true'
+     order: '10'
+     comment: 'Core Sudoers'
+     sudo:
+      - 'root ALL=(ALL) ALL'
+  
+   - name: 'ansible'
+     state: 'true'
+     order: '20'
+     comment: 'Ansible Configuration Management'
+     sudo:
+      - 'ansible ALL=(root) NOPASSWD: ALL'
+
+   - name: 'obsolete'
+     state: 'false'
+     order: '23'
+  
+  sudo_custom:
+   - name: 'sysadmin'
+     state: 'true'
+     order: '50'
+     comment: 'System Administrators'
+     sudo: ['%sysadmin ALL=(ALL) ALL']
+
+   - name: 'dbadmin'
+     state: 'true'
+     order: '51'
+     comment: 'Database Administrators'
+     sudo: ['%dbadmin ALL=(root) service mysqld restart, service mysql restart'] 
+
+   - name: 'appadmin'
+     state: 'true'
+     order: '52'
+     comment: 'Application Administrators'
+     sudo: ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
+
+   - name: 'obsolete'
+     state: 'false'
+     order: '42'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+CONFIG
+  state
+    Description: Control the 'state' of the sudo file.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Create: 'true' | 'yes' | 'create'
+      Remove: 'false' | 'no' | 'remove'
+
+  name
+    Description: Define the 'name' of the sudo file.
+                 For more details see 'man sudo' or 'sudo --help'.
+    Implemented: 0.1
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{sudo_name_default}}"
+    Options    :
+      Examples: 'sysadmin' | 'dbadmin' | 'appadmin'
+
+  comment
+    Description: Define a 'comment' for the sudo file.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{sudo_comment_default}}"
+    Options    :
+      Examples: 'System Administrators' | 'Database Administrators' |
+                'Application Administrators'
+      None    : ''
+
+  order
+    Description: Define the 'order' of the sudo file.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : ''
+    Options    :
+      Examples: '05' | '23' | '42' | '55'
+      None    : ''
+
+  sudo
+    Description: Define the 'sudo' entry/entries.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['%sysadmin ALL=(ALL) ALL'] |
+                ['%dbadmin ALL=(root) service mysqld restart, service mysql restart'] |
+                ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
+      None    : []
+
+ROLE
+  sudo_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Disable: 'false' | 'no' | 'remove'
+
+  sudo_comment_default
+    Description: Define the 'sudo_comment_default' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'Default comment'
+    Options    :
+      Examples: 'Dummy comment' | 'Example comment'
+      None    : ''
+
+  sudo_name_default
+    Description: Define the 'sudo_name_default' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'default'
+    Options    :
+      Examples: 'dummy' | 'example'
+
+  sudo_sudo_config_template
+    Description: Define the template source for 'sudo-config.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'sudo/templates/example/sudo-config.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  sudo_sudoers_template
+    Description: Define the template source for 'sudoers.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'sudo/templates/example/sudoers.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  sudo
+    Version: >= 1.8
+    Name   :
+      RedHat 6: 'sudo'
+      CentOS 6: 'sudo'
+      Gentoo 2: 'sudo'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat
+    Version: 6
+      Status: Testing
+
+    Version: 7
+      Status: Planned
+
+  CentOS
+    Version: 6
+      Status: Testing
+
+    Version: 7
+      Status: Planned
+
+  Gentoo:
+    Version: 2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

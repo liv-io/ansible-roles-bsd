@@ -1,0 +1,37 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : sudo
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# sudo_state
+sudo_state: 'install'
+
+# sudo_comment_default
+sudo_comment_default: 'Default comment'
+
+# sudo_name_default
+sudo_name_default: 'default'
+
+# sudo_sudo_config_template
+sudo_sudo_config_template: 'main'
+
+# sudo_sudoers_template
+sudo_sudoers_template: "{{ansible_os_family}}"

@@ -1,0 +1,31 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : sudo-config
+#   |  _   _  |  Type   : sudo configuration file
+#   | [_] [_] |  Role   : sudo
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+# {{item.comment if (item.comment is defined) and not (item.comment == None) else sudo_comment_default}}
+#
+#-------------------------------------------------------------------------------
+
+{% if (item.sudo is defined) and not ((item.sudo == None) or (item.sudo == '') or (item.sudo == [])) %}
+{% for sudo in item.sudo %}
+{{sudo}}
+{% endfor %}
+{% endif %}
