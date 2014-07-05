@@ -1,0 +1,265 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : sysctl
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : sys-core
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: GNU General Public License version 2 (GPLv2)
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages sysctl.
+
+'sysctl' is used to modify kernel parameters at runtime. The parameters
+available are those listed under /proc/sys/. Procfs is required for sysctl
+support in Linux. You can use sysctl to both read and write sysctl data.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - sysctl: all
+    roles:
+     - role: sysctl
+       sysctl_state: 'install'
+
+DISABLE
+  - sysctl: all
+    roles:
+     - role: sysctl
+       sysctl_state: 'disable'
+
+CONFIG
+  sysctl_default:
+   - name: 'default'
+     state: 'true'
+     order: '10'
+     comment: 'Default Parameters'
+     sysctl:
+      - '# Disables packet forwarding'
+      - 'net.ipv4.ip_forward = 0'
+      - '# Enables source route verification'
+      - 'net.ipv4.conf.default.rp_filter = 1'
+      - '# Enable reverse path'
+      - 'net.ipv4.conf.all.rp_filter = 1'
+
+   - name: 'obsolete'
+     state: 'false'
+     order: '23'
+
+  sysctl_custom:
+   - name: 'network'
+     state: 'true'
+     order: '20'
+     comment: 'Network Parameters'
+     sysctl:
+      - '# Enable IPv4 Forwarding'
+      - 'net.ipv4.conf.all.forwarding = 1'
+      - '# Network: Enable IPv6 Forwarding'
+      - 'net.ipv6.conf.all.forwarding = 1'
+
+   - name: 'obsolete'
+     state: 'false'
+     order: '42'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+CONFIG
+  state
+    Description: Control the 'state' of the sysctl file.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Create: 'true' | 'yes' | 'create'
+      Remove: 'false' | 'no' | 'remove'
+
+  name
+    Description: Define the 'name' of the sysctl file.
+                 For more details see 'man sysctl' or 'sysctl --help'.
+    Implemented: 0.1
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{sysctl_name_default}}"
+    Options    :
+      Examples: 'default' | 'network' | 'firewall'
+
+  comment
+    Description: Define a 'comment' for the sysctl file.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{sysctl_comment_default}}"
+    Options    :
+      Examples: 'Default Parameters' | 'Network Parameters' | 'Firewall Parameters'
+      None    : ''
+
+  order
+    Description: Define the 'order' of the sysctl file.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : ''
+    Options    :
+      Examples: '05' | '23' | '42' | '55'
+      None    : ''
+
+  sysctl
+    Description: Define the 'sysctl' option(s).
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['# Enable TCP SYN cookies', 'net.ipv4.tcp_syncookies = 1'] |
+                ['# Enable IPv4 Forwarding', 'net.ipv4.conf.all.forwarding = 1'] |
+                ['# Network: Enable IPv6 Forwarding', 'net.ipv6.conf.all.forwarding = 1']
+      None    : []
+
+ROLE
+  sysctl_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Disable: 'false' | 'no' | 'disable'
+
+  sysctl_comment_default
+    Description: Define the 'sysctl_comment_default' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'Default comment'
+    Options    :
+      Examples: 'Dummy comment' | 'Example comment'
+      None    : ''
+
+  sysctl_name_default
+    Description: Define the 'sysctl_name_default' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'default'
+    Options    :
+      Examples: 'dummy' | 'example'
+
+  sysctl_sysctl_conf_template
+    Description: Define the template source for 'sysctl.conf.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'sysctl/templates/example/sysctl.conf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  sysctl_sysctl_config_template
+    Description: Define the template source for 'sysctl-config.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'sysctl/templates/example/sysctl-config.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat
+    Version: 6
+      Status: Testing
+
+    Version: 7
+      Status: Planned
+
+  CentOS
+    Version: 6
+      Status: Testing
+
+    Version: 7
+      Status: Planned
+
+  Gentoo:
+    Version: 2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

@@ -1,0 +1,31 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : sysctl-config
+#   |  _   _  |  Type   : sysctl configuration file
+#   | [_] [_] |  Role   : sysctl
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+# {{item.comment if (item.comment is defined) and not (item.comment == None) else sysctl_comment_default}}
+#
+#-------------------------------------------------------------------------------
+
+{% if (item.sysctl is defined) and not ((item.sysctl == None) or (item.sysctl == '') or (item.sysctl == [])) %}
+{% for sysctl in item.sysctl %}
+{{sysctl}}
+{% endfor %}
+{% endif %}

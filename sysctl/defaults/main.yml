@@ -1,0 +1,37 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : sysctl
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# sysctl_state
+sysctl_state: 'install'
+
+# sysctl_comment_default
+sysctl_comment_default: 'Default comment'
+
+# sysctl_name_default
+sysctl_name_default: 'default'
+
+# sysctl_sysctl_conf_template
+sysctl_sysctl_conf_template: "{{ansible_os_family}}"
+
+# sysctl_sysctl_config_template
+sysctl_sysctl_config_template: 'main'
