@@ -114,7 +114,7 @@ CONFIG
   ip
     Description: Define the ip of the hosts entry.
     Implemented: 0.1
-    Required   : False
+    Required   : True
     Value      : Arbitrary
     Type       : String
     Default    : None
