@@ -52,15 +52,13 @@ CONFIG
      state: 'true'
      order: '10'
      comment: 'Core Sudoers'
-     sudo:
-      - 'root ALL=(ALL) ALL'
+     sudo: ['root ALL=(ALL) ALL']
   
    - name: 'ansible'
      state: 'true'
      order: '20'
      comment: 'Ansible Configuration Management'
-     sudo:
-      - 'ansible ALL=(root) NOPASSWD: ALL'
+     sudo: ['ansible ALL=(root) NOPASSWD: ALL']
 
    - name: 'obsolete'
      state: 'false'
