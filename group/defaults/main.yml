@@ -23,3 +23,7 @@
 
 # group_state
 group_state: 'install'
+
+group:
+ - name: ''
+   state: 'false'

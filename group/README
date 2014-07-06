@@ -40,7 +40,7 @@ DISABLE
      - role: group
        group_state: 'disable'
 
-CREATE GROUP
+CONFIG
   group:
    - name: 'group01'
      state: 'true'
@@ -50,8 +50,6 @@ CREATE GROUP
      state: 'true'
      gid: '2002'
 
-REMOVE GROUP
-  group:
    - state: 'false'
      name: 'group03'
      gid: '2003'
@@ -162,21 +160,21 @@ SUPPORT
 OPERATING SYSTEMS
   RedHat
     Version: 6
-      Status: Development
+      Status: Testing
 
     Version: 7
       Status: Planned
 
   CentOS
     Version: 6
-      Status: Development
+      Status: Testing
 
     Version: 7
       Status: Planned
 
   Gentoo:
     Version: 2
-      Status: Development
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER
