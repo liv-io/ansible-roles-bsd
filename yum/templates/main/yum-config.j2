@@ -1,0 +1,35 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : yum-config
+#   |  _   _  |  Type   : yum configuration file
+#   | [_] [_] |  Role   : yum
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+# {{item.comment if (item.comment is defined) and not (item.comment == None) else yum_comment_default}}
+#
+#-------------------------------------------------------------------------------
+
+[{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else yum_name_default}}]
+name={{item.description if (item.description is defined) and not (item.description == None) else yum_description_default}}
+baseurl={{item.baseurl if (item.baseurl is defined) and not ((item.baseurl == None) or (item.baseurl == '')) else yum_baseurl_default}}
+enabled={{0 if (item.enabled is defined) and ((item.enabled == 'false') or (item.enabled == 'no') or (item.enabled == 'remove') or (item.enabled == 0)) else 1}}
+gpgcheck={{0 if (item.gpgcheck is defined) and ((item.gpgcheck == 'false') or (item.gpgcheck == 'no') or (item.gpgcheck == 'remove') or (item.gpgcheck == 0)) else 1}}
+gpgkey={{item.gpgkey if (item.gpgkey is defined) and not (item.gpgkey == None) else yum_gpgkey_default}}
+priority={% if (item.priority is defined) and (item.priority|int(1)) > 99 %}99{% elif (item.priority is defined) and (item.priority|int(1)) < 1 %}1{% else %}{{item.priority|int(1)}}{% endif %}
+
+{% if (item.exclude is defined) and not ((item.exclude == None) or (item.exclude == '') or (item.exclude == [])) %}exclude={% for exclude in item.exclude %}{{exclude}} {% endfor %}{% endif %}

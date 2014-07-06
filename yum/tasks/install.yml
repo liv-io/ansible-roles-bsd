@@ -1,0 +1,60 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : install.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : yum
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../vars/{{ansible_distribution}}.yml"
+   - "../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create yum.conf
+  template:
+   src: "{{file_src_yum_conf}}"
+   dest: "{{file_path_yum_conf}}"
+   mode: "{{file_mode_yum_conf}}"
+   owner: "{{file_owner_yum_conf}}"
+   group: "{{file_group_yum_conf}}"
+  notify: command run yum-clean-all
+  when: (ansible_os_family == 'RedHat')
+  tags:
+   - files
+   - install
+   - yum
+
+- name: file create yum.repos.d
+  file:
+   state: 'directory'
+   path: "{{file_path_yum_repos_d}}"
+   mode: "{{file_mode_yum_repos_d}}"
+   owner: "{{file_owner_yum_repos_d}}"
+   group: "{{file_group_yum_repos_d}}"
+  notify: command run yum-clean-all
+  when: (ansible_os_family == 'RedHat')
+  tags:
+   - files
+   - install
+   - yum

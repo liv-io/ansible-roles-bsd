@@ -1,0 +1,92 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : default.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : yum
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create <yum-default.repo>
+  template:
+   src: "{{file_src_yum_config}}"
+   dest: "{{file_path_yum_repos_d}}/{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else yum_name_default}}.repo"
+   mode: "{{file_mode_yum_config}}"
+   owner: "{{file_owner_yum_config}}"
+   group: "{{file_group_yum_config}}"
+  with_items: yum_default
+  notify: command run yum-clean-all
+  when: (ansible_os_family == 'RedHat') and (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  tags:
+   - files
+   - default
+   - config
+   - yum
+
+- name: file remove <yum-default.repo>
+  file:
+   state: 'absent'
+   path: "{{file_path_yum_repos_d}}/{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else yum_name_default}}.repo"
+  with_items: yum_default
+  notify: command run yum-clean-all
+  when: (ansible_os_family == 'RedHat') and (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  tags:
+   - files
+   - default
+   - config
+   - yum
+
+- name: file create <yum-default.key>
+  copy:
+   src: "{{file_src_key_config}}/{{item.1.source if (item.1.source is defined) and not ((item.1.source == None) or (item.1.source == '')) else 'main'}}/{{item.1.name if (item.1.name is defined) and not ((item.1.name == None) or (item.1.name == '')) else yum_name_default}}"
+   dest: "{{file_path_rpm_gpg}}/{{item.1.name if (item.1.name is defined) and not ((item.1.name == None) or (item.1.name == '')) else yum_name_default}}"
+   mode: "{{file_mode_key_config}}"
+   owner: "{{file_owner_key_config}}"
+   group: "{{file_group_key_config}}"
+  with_subelements:
+   - yum_default
+   - key
+  when: (ansible_os_family == 'RedHat') and (item.1.state is defined) and not ((item.1.state == None) or (item.1.state == '') or (item.1.state == 'false') or (item.1.state == 'no') or (item.1.state == 'remove'))
+  tags:
+   - files
+   - default
+   - config
+   - yum
+
+- name: file remove <yum-default.key>
+  file:
+   state: 'absent'
+   path: "{{file_path_rpm_gpg}}/{{item.1.name if (item.1.name is defined) and not ((item.1.name == None) or (item.1.name == '')) else yum_name_default}}"
+  with_subelements:
+   - yum_default
+   - key
+  when: (ansible_os_family == 'RedHat') and (item.1.state is defined) and ((item.1.state == 'false') or (item.1.state == 'no') or (item.1.state == 'remove'))
+  tags:
+   - files
+   - default
+   - config
+   - yum

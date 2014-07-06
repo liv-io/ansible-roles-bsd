@@ -1,0 +1,26 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible meta file
+#   | [_] [_] |  Role   : yum
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+dependencies:
+ - { role: yum_plugin_security, when: not ((yum_state == 'false') or (yum_state == 'no') or (yum_state == 'disable')) }
+ - { role: yum_utils, when: not ((yum_state == 'false') or (yum_state == 'no') or (yum_state == 'disable')) }

@@ -1,0 +1,65 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : yum
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# yum-clean-all
+command_cmd_yum_clean_all: 'yum clean all'
+command_cwd_yum_clean_all: '/root'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# key-config
+file_src_key_config: "../../files"
+file_mode_key_config: '0644'
+file_owner_key_config: 'root'
+file_group_key_config: 'root'
+
+# rpm-gpg
+file_path_rpm_gpg: '/etc/pki/rpm-gpg'
+file_mode_rpm_gpg: '0755'
+file_owner_rpm_gpg: 'root'
+file_group_rpm_gpg: 'root'
+
+# yum.conf
+file_src_yum_conf: "{{yum_yum_conf_template}}/yum.conf.j2"
+file_path_yum_conf: '/etc/yum.conf'
+file_mode_yum_conf: '0644'
+file_owner_yum_conf: 'root'
+file_group_yum_conf: 'root'
+
+# yum-config
+file_src_yum_config: "../../templates/{{yum_yum_config_template}}/yum-config.j2"
+file_mode_yum_config: '0644'
+file_owner_yum_config: 'root'
+file_group_yum_config: 'root'
+
+# yum.repos.d
+file_path_yum_repos_d: '/etc/yum.repos.d'
+file_mode_yum_repos_d: '0755'
+file_owner_yum_repos_d: 'root'
+file_group_yum_repos_d: 'root'

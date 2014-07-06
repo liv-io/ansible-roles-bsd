@@ -1,0 +1,61 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : yum
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# yum_state
+yum_state: 'install'
+
+# yum_baseurl_default
+yum_baseurl_default: ''
+
+# yum_comment_default
+yum_comment_default: 'Default comment'
+
+# yum_custom
+yum_custom:
+ - state: ''
+   key:
+    - state: ''
+
+# yum_default
+yum_default:
+ - state: ''
+   key:
+    - state: ''
+
+# yum_description_default
+yum_description_default: 'Default description'
+
+# yum_gpgkey_default
+yum_gpgkey_default: ''
+
+# yum_key_config_file
+yum_key_config_file: 'main'
+
+# yum_name_default
+yum_name_default: 'default'
+
+# yum_yum_conf_template
+yum_yum_conf_template: "{{ansible_os_family}}"
+
+# yum_yum_config_template
+yum_yum_config_template: 'main'
