@@ -33,7 +33,7 @@ INSTALL
     roles:
      - role: host
        host_state: 'enable'
-       host_path_default: '/bin/bash'
+       host_path_default: '/etc/hosts'
 
 DISABLE
   - host: all
@@ -41,7 +41,7 @@ DISABLE
      - role: host
        host_state: 'disable'
 
-CREATE HOST
+CONFIG
   host:
    - name: 'host01.domain.tld'
      state: 'true'
@@ -55,7 +55,6 @@ CREATE HOST
      aliases: ['host02', 'hostname02.domain.tld', 'hostname02']
      comment: 'host02'
 
-REMOVE HOST
    - name: 'host03.domain.tld'
      state: 'false'
      ip: '192.168.1.3'
@@ -99,6 +98,7 @@ CONFIG
       Examples: ['alias01'] |
                 ['alias01', 'alias02'] |
                 ['alias01', 'alias02', 'alias03']
+      None    : []
 
   comment
     Description: Define a comment for the hosts entry.
@@ -109,6 +109,7 @@ CONFIG
     Default    : {{host.name}}
     Options    :
       Examples: 'Example Host' | 'Test Host' | 'Service Host'
+      None    : ''
 
   ip
     Description: Define the ip of the hosts entry.

@@ -24,5 +24,12 @@
 # host_state
 host_state: 'install'
 
+# host
+host:
+ - name: ''
+   state: 'false'
+   ip: ''
+   aliases: []
+
 # host_path_default
 host_path_default: '/etc/hosts'
