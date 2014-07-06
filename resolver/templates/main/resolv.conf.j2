@@ -1,0 +1,40 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : resolv.conf
+#   |  _   _  |  Type   : resolver configuration file
+#   | [_] [_] |  Role   : resolver
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# Local domain name
+{% if not ((resolver_domain == None) or (resolver_domain == '')) %}domain {{resolver_domain}}{% endif %}
+
+
+# Search list for host-name lookup
+{% if not ((resolver_search == None) or (resolver_search == '') or (resolver_search == [])) %}search {% for search in resolver_search %}{{search}} {% endfor %}{% endif %}
+
+
+# Name server IP address
+{% if not ((resolver_nameserver == None) or (resolver_nameserver == '') or (resolver_nameserver == [])) %}
+{% for nameserver in resolver_nameserver %}
+nameserver {{nameserver}}
+{% endfor %}
+{% endif %}

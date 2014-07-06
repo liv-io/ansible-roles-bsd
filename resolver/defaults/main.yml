@@ -1,0 +1,37 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : resolver
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# resolver_state
+resolver_state: 'install'
+
+# resolver_domain
+resolver_domain: "{{ansible_domain}}"
+
+# resolver_nameserver
+resolver_nameserver: ['127.0.0.1']
+
+# resolver_search
+resolver_search: ["{{ansible_domain}}"]
+
+# resolver_resolv_conf_template
+resolver_resolv_conf_template: 'main'

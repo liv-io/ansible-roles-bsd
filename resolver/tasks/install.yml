@@ -1,0 +1,44 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : install.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : resolver
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../vars/{{ansible_distribution}}.yml"
+   - "../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create resolv.conf
+  template:
+   src: "{{file_src_resolv_conf}}"
+   dest: "{{file_path_resolv_conf}}"
+   mode: "{{file_mode_resolv_conf}}"
+   owner: "{{file_owner_resolv_conf}}"
+   group: "{{file_group_resolv_conf}}"
+  tags:
+   - files
+   - install
+   - resolver
