@@ -175,7 +175,7 @@
    name: "{{service_name_iptables}}"
   when: (register_gentoo_iptables|changed) or (register_redhat_iptables|changed)
   tags:
-   - system
+   - handlers
    - enable
    - iptables
 
@@ -185,7 +185,7 @@
    name: "{{service_name_ip6tables}}"
   when: (register_gentoo_ip6tables|changed) or (register_redhat_ip6tables|changed)
   tags:
-   - system
+   - handlers
    - enable
    - iptables
 
@@ -195,7 +195,7 @@
    name: "{{service_name_iptables}}"
   when: register_redhat_iptables_config|changed
   tags:
-   - system
+   - handlers
    - enable
    - iptables
 
@@ -205,6 +205,6 @@
    name: "{{service_name_ip6tables}}"
   when: register_redhat_ip6tables_config|changed
   tags:
-   - system
+   - handlers
    - enable
    - iptables
