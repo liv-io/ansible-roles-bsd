@@ -5,7 +5,7 @@ README
     ____|____
    |         |  Name   : sudo
    |  _   _  |  Type   : ansible role
-   | [_] [_] |  Group  : sys-core
+   | [_] [_] |  Group  : app-admin
    |____~____|
     ___//__//   Authors: robomon community
    /|     |/    License: GNU General Public License version 2 (GPLv2)
