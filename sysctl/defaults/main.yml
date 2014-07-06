@@ -27,6 +27,16 @@ sysctl_state: 'install'
 # sysctl_comment_default
 sysctl_comment_default: 'Default comment'
 
+# sysctl_custom
+sysctl_custom:
+ - name: ''
+   state: 'false'
+
+# sysctl_default
+sysctl_default:
+ - name: ''
+   state: 'false'
+
 # sysctl_name_default
 sysctl_name_default: 'default'
 
