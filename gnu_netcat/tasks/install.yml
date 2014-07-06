@@ -36,7 +36,7 @@
    state: 'installed'
    sync: "{{portage_sync}}"
    name: "{{package_name_gnu_netcat}}"
-  when: ansible_os_family == 'Gentoo'
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - packaging
    - install

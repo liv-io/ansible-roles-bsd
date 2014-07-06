@@ -39,7 +39,7 @@
    owner: "{{file_owner_iptables}}"
    group: "{{file_group_iptables}}"
   register: register_redhat_iptables
-  when: ansible_os_family == 'RedHat'
+  when: (ansible_os_family == 'RedHat')
   tags:
    - files
    - enable
@@ -53,7 +53,7 @@
    owner: "{{file_owner_iptables}}"
    group: "{{file_group_iptables}}"
   register: register_gentoo_iptables
-  when: ansible_os_family == 'Gentoo'
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - files
    - enable
@@ -81,7 +81,7 @@
    owner: "{{file_owner_ip6tables}}"
    group: "{{file_group_ip6tables}}"
   register: register_redhat_ip6tables
-  when: ansible_os_family == 'RedHat'
+  when: (ansible_os_family == 'RedHat')
   tags:
    - files
    - enable
@@ -95,7 +95,7 @@
    owner: "{{file_owner_ip6tables}}"
    group: "{{file_group_ip6tables}}"
   register: register_gentoo_ip6tables
-  when: ansible_os_family == 'Gentoo'
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - files
    - enable
@@ -124,7 +124,7 @@
    state: 'started'
    enabled: 'yes'
    name: "{{service_name_iptables}}"
-  when: ansible_os_family == 'RedHat'
+  when: (ansible_os_family == 'RedHat')
   tags:
    - system
    - enable
@@ -136,7 +136,7 @@
    enabled: 'yes'
    runlevel: 'default'
    name: "{{service_name_iptables}}"
-  when: ansible_os_family == 'Gentoo'
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - system
    - enable
@@ -147,7 +147,7 @@
    state: 'started'
    enabled: 'yes'
    name: "{{service_name_ip6tables}}"
-  when: ansible_os_family == 'RedHat'
+  when: (ansible_os_family == 'RedHat')
   tags:
    - system
    - enable
@@ -159,7 +159,7 @@
    enabled: 'yes'
    runlevel: 'default'
    name: "{{service_name_ip6tables}}"
-  when: ansible_os_family == 'Gentoo'
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - system
    - enable
@@ -193,7 +193,7 @@
   service:
    state: 'reloaded'
    name: "{{service_name_iptables}}"
-  when: register_redhat_iptables_config|changed
+  when: (register_redhat_iptables_config|changed)
   tags:
    - handlers
    - enable
@@ -203,7 +203,7 @@
   service:
    state: 'reloaded'
    name: "{{service_name_ip6tables}}"
-  when: register_redhat_ip6tables_config|changed
+  when: (register_redhat_ip6tables_config|changed)
   tags:
    - handlers
    - enable

@@ -62,7 +62,7 @@
    mode: "{{file_mode_gentoo_info}}"
    owner: "{{file_owner_gentoo_info}}"
    group: "{{file_group_gentoo_info}}"
-  when: ansible_os_family == 'Gentoo'
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - files
    - install

@@ -35,7 +35,7 @@
   yum:
    state: 'installed'
    name: "{{package_name_openssh}}"
-  when: ansible_os_family == 'RedHat'
+  when: (ansible_os_family == 'RedHat')
   tags:
    - packaging
    - install
@@ -45,7 +45,7 @@
   yum:
    state: 'installed'
    name: "{{package_name_openssh_server}}"
-  when: ansible_os_family == 'RedHat'
+  when: (ansible_os_family == 'RedHat')
   tags:
    - packaging
    - install
@@ -56,7 +56,7 @@
    state: 'installed'
    sync: "{{portage_sync}}"
    name: "{{package_name_openssh}}"
-  when: ansible_os_family == 'Gentoo'
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - packaging
    - install

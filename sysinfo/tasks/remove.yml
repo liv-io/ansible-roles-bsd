@@ -53,7 +53,7 @@
   file:
    state: 'absent'
    path: "{{file_path_gentoo_info}}"
-  when: ansible_os_family == 'Gentoo'
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - files
    - remove

@@ -36,7 +36,7 @@
    state: 'removed'
    sync: "{{portage_sync}}"
    name: "{{package_name_cryptcat}}"
-  when: ansible_os_family == 'Gentoo'
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - packaging
    - remove

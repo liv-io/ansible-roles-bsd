@@ -35,7 +35,7 @@
   yum:
    state: 'removed'
    name: "{{package_name_ifstatus}}"
-  when: ansible_os_family == 'RedHat'
+  when: (ansible_os_family == 'RedHat')
   tags:
    - packaging
    - remove
@@ -46,7 +46,7 @@
    state: 'removed'
    sync: "{{portage_sync}}"
    name: "{{package_name_ifstatus}}"
-  when: ansible_os_family == 'Gentoo'
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - packaging
    - remove

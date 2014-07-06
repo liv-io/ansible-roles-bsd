@@ -36,7 +36,7 @@
    state: 'started'
    enabled: 'yes'
    name: "{{service_name_atop}}"
-  when: ansible_os_family == 'RedHat'
+  when: (ansible_os_family == 'RedHat')
   tags:
    - system
    - enable
@@ -49,7 +49,7 @@
    runlevel: 'default'
    name: "{{service_name_atop}}"
    pattern: "{{service_pattern_atop}}"
-  when: ansible_os_family == 'Gentoo'
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - system
    - enable
