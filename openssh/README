@@ -153,7 +153,7 @@ ROLE
       Examples: 'example' | 'environment' | 'hostname'
 
   openssh_compression
-    Description: Control the state of the 'openssh_compression' option.
+    Description: Control the 'openssh_compression' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -186,7 +186,7 @@ ROLE
       None    : []
 
   openssh_gssapi_authentication
-    Description: Control the state of the 'openssh_gssapi_authentication'
+    Description: Control the 'openssh_gssapi_authentication'
                  option.
     Implemented: 0.1
     Required   : False
@@ -198,7 +198,7 @@ ROLE
       Disable: 'false' | 'no' | 'disable'
 
   openssh_kerberos_authentication
-    Description: Control the state of the 'openssh_kerberos_authentication'
+    Description: Control the 'openssh_kerberos_authentication'
                  option.
     Implemented: 0.1
     Required   : False
@@ -222,7 +222,7 @@ ROLE
       App default: [] | None
 
   openssh_password_authentication
-    Description: Control the state of the 'openssh_password_authentication'
+    Description: Control the 'openssh_password_authentication'
                  option.
     Implemented: 0.1
     Required   : False
@@ -234,7 +234,7 @@ ROLE
       Disable: 'false' | 'no' | 'disable'
 
   openssh_permit_root_login
-    Description: Control the state of the 'openssh_permit_root_login' option.
+    Description: Control the 'openssh_permit_root_login' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -255,7 +255,7 @@ ROLE
       Examples: ['22'] | ['22', '222'] | ['22', '8022']
 
   openssh_print_motd
-    Description: Control the state of the 'openssh_print_motd' option.
+    Description: Control the 'openssh_print_motd' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -268,7 +268,7 @@ ROLE
       Disable: 'false' | 'no' | 'disable'
 
   openssh_print_last_log
-    Description: Control the state of the 'openssh_print_last_log' option.
+    Description: Control the 'openssh_print_last_log' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -279,7 +279,7 @@ ROLE
       Disable: 'false' | 'no' | 'disable'
 
   openssh_pubkey_authentication
-    Description: Control the state of the 'openssh_pubkey_authentication'
+    Description: Control the 'openssh_pubkey_authentication'
                  option.
     Implemented: 0.1
     Required   : False
@@ -291,7 +291,7 @@ ROLE
       Disable: 'false' | 'no' | 'disable'
 
   openssh_rsa_authentication
-    Description: Control the state of the 'openssh_rsa_authentication' option.
+    Description: Control the 'openssh_rsa_authentication' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -330,7 +330,7 @@ ROLE
       Examples: 'example' | 'environment' | 'hostname'
 
   openssh_tcp_keep_alive
-    Description: Control the state of the 'openssh_tcp_keep_alive' option.
+    Description: Control the 'openssh_tcp_keep_alive' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -341,7 +341,7 @@ ROLE
       Disable: 'false' | 'no' | 'disable'
 
   openssh_use_dns
-    Description: Control the state of the 'openssh_use_dns' option.
+    Description: Control the 'openssh_use_dns' option.
     Implemented: 0.3
     Required   : False
     Value      : Predetermined
@@ -352,7 +352,7 @@ ROLE
       Disable: 'false' | 'no' | 'disable'
 
   openssh_x11_forwarding
-    Description: Control the state of the 'openssh_x11_forwarding' option.
+    Description: Control the 'openssh_x11_forwarding' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -363,7 +363,7 @@ ROLE
       Disable: 'false' | 'no' | 'disable'
 
   openssh_x11_use_localhost
-    Description: Control the state of the 'openssh_x11_use_localhost' option.
+    Description: Control the 'openssh_x11_use_localhost' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
