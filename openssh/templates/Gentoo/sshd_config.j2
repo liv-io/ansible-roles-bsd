@@ -178,7 +178,8 @@ Compression {{openssh_compression}}
 
 #ClientAliveInterval 0
 #ClientAliveCountMax 3
-#UseDNS yes
+UseDNS {% if (openssh_use_dns == 'false') or (openssh_use_dns == 'no') or (openssh_use_dns == 'disable') %}no{% else %}yes{% endif %}
+
 #PidFile /var/run/sshd.pid
 #MaxStartups 10:30:100
 #PermitTunnel no

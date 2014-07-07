@@ -340,6 +340,17 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+  openssh_use_dns
+    Description: Control the state of the 'openssh_use_dns' option.
+    Implemented: 0.3
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'no'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   openssh_x11_forwarding
     Description: Control the state of the 'openssh_x11_forwarding' option.
     Implemented: 0.1

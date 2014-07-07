@@ -89,6 +89,9 @@ openssh_sshd_config_template: "{{ansible_os_family}}"
 # openssh_tcp_keep_alive
 openssh_tcp_keep_alive: 'yes'
 
+# openssh_use_dns
+openssh_use_dns: 'no'
+
 # openssh_x11_forwarding
 openssh_x11_forwarding: 'no'
 
