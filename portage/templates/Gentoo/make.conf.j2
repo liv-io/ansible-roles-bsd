@@ -1,0 +1,131 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : make.conf
+#   |  _   _  |  Type   : portage configuration file
+#   | [_] [_] |  Role   : portage
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# BUILD-TIME FUNCTIONALITY
+#-------------------------------------------------------------------------------
+
+{% if not ((portage_use == None) or (portage_use == '') or (portage_use == [])) %}
+USE="{% for use in portage_use %}{{use}} {% endfor %}"
+{% else %}
+USE="bindist mmx sse sse2"
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# HOST SETTING
+#-------------------------------------------------------------------------------
+
+{% if (portage_chost is defined) and not ((portage_chost == None) or (portage_chost == '')) %}
+CHOST="{{portage_chost}}"
+{% else %}
+CHOST="x86_64-pc-linux-gnu"
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# HOST AND OPTIMIZATION SETTINGS
+#-------------------------------------------------------------------------------
+
+{% if (portage_cflags is defined) and not ((portage_cflags == None) or (portage_cflags == '')) %}
+CFLAGS="{% for cflags in portage_cflags %}{{cflags}} {% endfor %}"
+{% else %}
+CFLAGS="-O2 -pipe"
+{% endif %}
+
+{% if (portage_cxxflags is defined) and not ((portage_cxxflags == None) or (portage_cxxflags == '')) %}
+CXXFLAGS="{% for cxxflags in portage_cxxflags %}{{cxxflags}} {% endfor %}"
+{% else %}
+CXXFLAGS="${CFLAGS}"
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# ADVANCED FEATURES
+#-------------------------------------------------------------------------------
+
+{% if (portage_makeopts is defined) and not ((portage_makeopts == None) or (portage_makeopts == '') or (portage_makeopts == 'false') or (portage_makeopts == 'no') or (portage_makeopts == 'disable')) %}
+MAKEOPTS="{% for makeopts in portage_makeopts %}{{makeopts}} {% endfor %}"
+{% else %}
+#MAKEOPTS="{{portage_makeopts}}"
+{% endif %}
+
+{% if not ((portage_features == None) or (portage_features == '') or (portage_features == []) or (portage_features == 'false') or (portage_features == 'no') or (portage_features == 'disable')) %}
+FEATURES="{% for features in portage_features %}{{features}} {% endfor %}" 
+{% else %}
+#FEATURES=""
+{% endif %}
+
+{% if (portage_video_cards is defined) and not ((portage_video_cards == None) or (portage_video_cards == '') or (portage_video_cards == 'false') or (portage_video_cards == 'no') or (portage_video_cards == 'disable')) %}
+VIDEO_CARDS="{% for video_cards in portage_video_cards %}{{video_cards}} {% endfor %}"
+{% else %}
+#VIDEO_CARDS=""
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# CUSTOM OPTIONS
+#-------------------------------------------------------------------------------
+
+{% if (portage_custom_options is defined) and not ((portage_custom_options == None) or (portage_custom_options == '') or (portage_custom_options == 'false') or (portage_custom_options == 'no') or (portage_custom_options == 'disable')) %}
+{% for custom_options in portage_custom_options %}
+{{custom_options}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# SYNCHRONIZING PORTAGE
+#-------------------------------------------------------------------------------
+
+{% if (portage_gentoo_mirrors is defined) and not ((portage_gentoo_mirrors == None) or (portage_gentoo_mirrors == '')) %}
+GENTOO_MIRRORS="{{portage_gentoo_mirrors}}"
+{% else %}
+GENTOO_MIRRORS="http://mirror.switch.ch/ftp/mirror/gentoo/"
+{% endif %}
+
+{% if (portage_sync is defined) and not ((portage_sync == None) or (portage_sync == '')) %}
+SYNC="{{portage_sync}}"
+{% else %}
+SYNC="rsync://rsync.de.gentoo.org/gentoo-portage"
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# PORTAGE DIRECTORIES
+#-------------------------------------------------------------------------------
+
+{% if (portage_portdir is defined) and not ((portage_portdir == None) or (portage_portdir == '')) %}
+PORTDIR="{{portage_portdir}}"
+{% else %}
+PORTDIR="/usr/portage"
+{% endif %}
+
+{% if (portage_distdir is defined) and not ((portage_distdir == None) or (portage_distdir == '')) %}
+DISTDIR=""
+{% else %}
+DISTDIR="${PORTDIR}/distfiles"
+{% endif %}
+
+{% if (portage_pkgdir is defined) and not ((portage_pkgdir == None) or (portage_pkgdir == '')) %}
+PKGDIR="{{portage_pkgdir}}"
+{% else %}
+PKGDIR="${PORTDIR}/packages"
+{% endif %}

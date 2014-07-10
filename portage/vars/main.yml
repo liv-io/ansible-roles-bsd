@@ -1,0 +1,61 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : portage
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# portage
+package_name_portage: 'portage'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# make.conf
+file_src_make_conf: "{{portage_make_conf_template}}/make.conf.j2"
+file_path_make_conf: '/etc/portage/make.conf'
+file_mode_make_conf: '0644'
+file_owner_make_conf: 'root'
+file_group_make_conf: 'root'
+
+# package.accept_keywords
+file_src_package_accept_keywords: "{{portage_package_accept_keywords_template}}/package.accept_keywords.j2"
+file_path_package_accept_keywords: '/etc/portage/package.accept_keywords'
+file_mode_package_accept_keywords: '0644'
+file_owner_package_accept_keywords: 'root'
+file_group_package_accept_keywords: 'root'
+
+# package.license
+file_src_package_license: "{{portage_package_license_template}}/package.license.j2"
+file_path_package_license: '/etc/portage/package.license'
+file_mode_package_license: '0644'
+file_owner_package_license: 'root'
+file_group_package_license: 'root'
+
+# package.use
+file_src_package_use: "{{portage_package_use_template}}/package.use.j2"
+file_path_package_use: '/etc/portage/package.use'
+file_mode_package_use: '0644'
+file_owner_package_use: 'root'
+file_group_package_use: 'root'

@@ -1,0 +1,31 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : package.license
+#   |  _   _  |  Type   : portage configuration file
+#   | [_] [_] |  Role   : portage
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+{% if not ((portage_package_license == None) or (portage_package_license == '') or (portage_package_license == []) or (portage_package_license == 'false') or (portage_package_license == 'no') or (portage_package_license == 'disable')) %}
+{% for package_accept_keywords in portage_package_license %}
+{{package_accept_keywords}}
+{% endfor %}
+{% endif %}

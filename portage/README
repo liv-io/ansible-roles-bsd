@@ -1,0 +1,361 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : portage
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : sys-apps
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: GNU General Public License version 2 (GPLv2)
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages portage.
+
+Portage is the package management and distribution system for Gentoo.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: portage
+       portage_state: 'install'
+       portage_makeopts: ['-j5', '-l5']
+       portage_package_use:
+        - 'sys-cluster/drbd pacemaker'
+       portage_package_accept_keywords:
+        - 'sys-cluster/libcman ~amd64'
+        - 'sys-fs/ocfs2-tools ~amd64'
+        - 'sys-cluster/crmsh ~amd64'
+        - 'sys-cluster/libqb ~amd64'
+        - 'sys-cluster/pacemaker ~amd64'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: portage
+       portage_state: 'disable'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  portage_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Disable: 'false' | 'no' | 'disable'
+
+  portage_cflags
+    Description: Define the 'portage_cflags' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['-O2', '-pipe']
+    Options    :
+      Examples: ['-O2', '-pipe'] | ['-march=core2', '-O2', '-pipe']
+
+  portage_chost
+    Description: Define the 'portage_chost' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'x86_64-pc-linux-gnu'
+    Options    :
+      Examples: 'x86_64-pc-linux-gnu' | 'i686-pc-linux-gnu'
+
+  portage_custom_options
+    Description: Define the 'portage_custom_options' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: [''] | ['', ''] | ['', '', '']
+      None    : 'false' | 'no' | 'disable' | []
+
+  portage_cxxflags
+    Description: Define the 'portage_cxxflags' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['${CFLAGS}']
+    Options    :
+      Examples: ['${CFLAGS}']
+
+  portage_distdir
+    Description: Define the 'portage_distdir' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '${PORTDIR}/distfiles'
+    Options    :
+      Examples: '${PORTDIR}/distfiles'
+
+  portage_features
+    Description: Define the 'portage_features' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['distcc']
+      None    : 'false' | 'no' | 'disable' | []
+
+  portage_gentoo_mirrors
+    Description: Define the 'portage_gentoo_mirrors' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'http://mirror.switch.ch/ftp/mirror/gentoo/'
+    Options    :
+      Examples: 'http://mirror.switch.ch/ftp/mirror/gentoo/'
+
+  portage_make_conf_template
+    Description: Define the template source for 'make.conf.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'portage/templates/example/make.conf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  portage_makeopts
+    Description: Define the 'portage_makeopts' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['-j2', '-l2']
+    Options    :
+      Examples: ['-j2', '-l2'] | ['-j9', '-l9']
+      None    : 'false' | 'no' | 'disable' | []
+
+  portage_package_accept_keywords
+    Description: Define the 'portage_package_accept_keywords' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['sys-fs/ocfs2-tools ~amd64', 'sys-cluster/crmsh ~amd64',
+                 'sys-cluster/libqb ~amd64', 'sys-cluster/pacemaker ~amd64']
+      None    : 'false' | 'no' | 'disable' | []
+
+  portage_package_accept_keywords_template
+    Description: Define the template source for 'package.accept_keywords.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'portage/templates/example/package.accept_keywords.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  portage_package_license
+    Description: Define the 'portage_package_license' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['app-emulation/virtualbox-bin PUEL']
+      None    : 'false' | 'no' | 'disable' | []
+
+  portage_package_license_template
+    Description: Define the template source for 'package.license.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'portage/templates/example/package.license.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  portage_package_use
+    Description: Define the 'portage_package_use' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['sys-cluster/drbd pacemaker']
+      None    : 'false' | 'no' | 'disable' | []
+
+  portage_package_use_template
+    Description: Define the template source for 'package.use.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'portage/templates/example/package.use.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  portage_pkgdir
+    Description: Define the 'portage_pkgdir' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '${PORTDIR}/packages'
+    Options    :
+      Examples: '${PORTDIR}/packages'
+
+  portage_portdir
+    Description: Define the 'portage_portdir' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/usr/portage'
+    Options    :
+      Examples: '/usr/portage'
+
+  portage_sync
+    Description: Define the 'portage_sync' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'rsync://rsync.de.gentoo.org/gentoo-portage'
+    Options    :
+      Examples: 'rsync://rsync.de.gentoo.org/gentoo-portage'
+
+  portage_use
+    Description: Define the 'portage_use' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['bindist', 'mmx', 'sse', 'sse2']
+    Options    :
+      Examples: ['-avahi', '-bluetooth', '-gnome', '-gpm', '-gtk', 'ipv6'
+                 '-java', '-pulseaudio', '-systemd', '-zeroconf']
+
+  portage_video_cards
+    Description: Define the 'portage_video_cards' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['intel'] | ['nouveau']
+      None    : 'false' | 'no' | 'disable' | []
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  portage
+    Version: >= 2.2
+    Name   :
+      Gentoo 2: 'portage'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  RedHat
+    Version: 6
+      Status: Unsupported
+
+    Version: 7
+      Status: Unsupported
+
+  CentOS
+    Version: 6
+      Status: Unsupported
+
+    Version: 7
+      Status: Unsupported
+
+  Gentoo:
+    Version: 2
+      Status: Development
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

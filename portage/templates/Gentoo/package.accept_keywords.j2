@@ -1,0 +1,31 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : package.accept_keywords
+#   |  _   _  |  Type   : portage configuration file
+#   | [_] [_] |  Role   : portage
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+{% if not ((portage_package_accept_keywords == None) or (portage_package_accept_keywords == '') or (portage_package_accept_keywords == []) or (portage_package_accept_keywords == 'false') or (portage_package_accept_keywords == 'no') or (portage_package_accept_keywords == 'disable')) %}
+{% for package_accept_keywords in portage_package_accept_keywords %}
+{{package_accept_keywords}}
+{% endfor %}
+{% endif %}

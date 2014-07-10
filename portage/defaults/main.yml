@@ -1,0 +1,85 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : portage
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# portage_state
+portage_state: 'enable'
+
+# portage_cflags
+portage_cflags: ['-O2', '-pipe']
+
+# portage_chost
+portage_chost: 'x86_64-pc-linux-gnu'
+
+# portage_custom_options
+portage_custom_options: []
+
+# portage_cxxflags
+portage_cxxflags: ['${CFLAGS}']
+
+# portage_distdir
+portage_distdir: '${PORTDIR}/distfiles'
+
+# portage_features
+portage_features: []
+
+# portage_gentoo_mirrors
+portage_gentoo_mirrors: 'http://mirror.switch.ch/ftp/mirror/gentoo/'
+
+# portage_make_conf_template
+portage_make_conf_template: "{{ansible_os_family}}"
+
+# portage_makeopts
+portage_makeopts: ['-j2', '-l2']
+
+# portage_package_accept_keywords
+portage_package_accept_keywords: []
+
+# portage_package_accept_keywords_template
+portage_package_accept_keywords_template: "{{ansible_os_family}}"
+
+# portage_package_license
+portage_package_license: []
+
+# portage_package_license_template
+portage_package_license_template: "{{ansible_os_family}}"
+
+# portage_package_use
+portage_package_use: []
+
+# portage_package_use_template
+portage_package_use_template: "{{ansible_os_family}}"
+
+# portage_pkgdir
+portage_pkgdir: '${PORTDIR}/packages'
+
+# portage_portdir
+portage_portdir: '/usr/portage'
+
+# portage_sync
+portage_sync: 'rsync://rsync.de.gentoo.org/gentoo-portage'
+
+# portage_use
+portage_use: ['bindist', 'mmx', 'sse', 'sse2']
+
+# portage_video_cards
+portage_video_cards: []
