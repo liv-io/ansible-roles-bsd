@@ -151,7 +151,7 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : String
+    Type       : Array
     Default    : ['127.0.0.1']
     Options    :
       Examples: ['127.0.0.1', '192.168.1.*', '192.168.2.*'] |
