@@ -320,13 +320,13 @@ SMTP_PORT = {{denyhosts_smtp_port}}
 # SMTP_USERNAME and SMTP_PASSWORD: set these parameters if your 
 # smtp email server requires authentication
 #
-{% if not ((denyhosts_smtp_username == None) or (denyhosts_smtp_username == '')) %}
+{% if not ((denyhosts_smtp_username == None) or (denyhosts_smtp_username == '') or (denyhosts_smtp_username == 'false') or (denyhosts_smtp_username == 'no') or (denyhosts_smtp_username == 'disable')) %}
 SMTP_USERNAME={{denyhosts_smtp_username}}
 {% else %}
 #SMTP_USERNAME=foo
 {% endif %}
 #
-{% if not ((denyhosts_smtp_password == None) or (denyhosts_smtp_password == '')) %}
+{% if not ((denyhosts_smtp_password == None) or (denyhosts_smtp_password == '') or (denyhosts_smtp_password == 'false') or (denyhosts_smtp_password == 'no') or (denyhosts_smtp_password == 'disable')) %}
 SMTP_PASSWORD={{denyhosts_smtp_password}}
 {% else %}
 #SMTP_PASSWORD=bar

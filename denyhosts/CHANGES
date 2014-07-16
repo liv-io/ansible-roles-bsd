@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.1.2 (2014-07-09)
+B: Fix conditional statement in template
+
 * Version 0.1.1 (2014-05-26)
 B: Move file configuration from 'install' to 'enable' task
 
