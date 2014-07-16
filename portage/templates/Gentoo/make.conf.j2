@@ -119,7 +119,7 @@ PORTDIR="/usr/portage"
 {% endif %}
 
 {% if (portage_distdir is defined) and not ((portage_distdir == None) or (portage_distdir == '')) %}
-DISTDIR=""
+DISTDIR="{{portage_distdir}}"
 {% else %}
 DISTDIR="${PORTDIR}/distfiles"
 {% endif %}
