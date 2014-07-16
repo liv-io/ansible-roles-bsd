@@ -188,7 +188,7 @@ ROLE
                  Specify a value between 1-59.
     Implemented: 0.5
     Required   : False
-    Value      : Arbitrary
+    Value      : Arbitrary (1-59)
     Type       : Integer
     Default    : 10
     Options    :

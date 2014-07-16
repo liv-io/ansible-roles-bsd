@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.6.2 (2014-07-16)
+I: Improve filter for interval option
+
 * Version 0.6.1 (2014-06-24)
 I: Improve 'ntpdate' options
 

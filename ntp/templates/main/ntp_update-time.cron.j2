@@ -36,4 +36,4 @@ MAILTO='{{file_owner_ntp_update_time_bash}}'
 # CRONJOB
 #-------------------------------------------------------------------------------
 
-*/{% if ((ntp_ntp_update_time_interval|int(10)) > 59) or ((ntp_ntp_update_time_interval|int(10)) < 1) %}10{% else %}{{ntp_ntp_update_time_interval|int(10)}}{% endif %} * * * * {{file_owner_ntp_update_time_bash}} {{file_path_ntp_update_time_bash}}
+*/{% if (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) > 59) %}59{% elif (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntp_ntp_update_time_interval|int(10))}}{% endif %} * * * * {{file_owner_ntp_update_time_bash}} {{file_path_ntp_update_time_bash}}
