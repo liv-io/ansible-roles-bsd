@@ -354,8 +354,6 @@ unknown_local_recipient_reject_code = 550
 #relayhost = [mailserver.isp.tld]
 #relayhost = uucphost
 #relayhost = [an.ip.add.ress]
-#relayhost = [mail.xrun.org]
-#fallback_relay = [mail.xrun.org]
 
 {% if not ((postfix_relayhost == None) or (postfix_relayhost == '')) %}
 relayhost = {{postfix_relayhost}}
