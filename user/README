@@ -43,8 +43,8 @@ DISABLE
      - role: user
        user_state: 'disable'
 
-CREATE USER
-  user:
+CONFIG
+  user_default:
    - name: 'user01'
      state: 'true'
      comment: 'Example User 01'
@@ -71,11 +71,21 @@ CREATE USER
      shell: '/bin/bash'
      authorized_key: []
 
-REMOVE USER
-  user:
+  user_custom:
    - name: 'user03'
-     state: 'false'
+     state: 'true'
+     comment: 'Example User 03'
      uid: '1003'
+     groups: ['group03']
+     groups_append: 'true'
+     password: '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
+     password_update: 'true'
+     shell: '/bin/bash'
+     authorized_key: []
+
+   - name: 'user04'
+     state: 'false'
+     uid: '1004'
      home_remove: 'true'
      home_force: 'true'
      authorized_key: []

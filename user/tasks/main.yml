@@ -21,6 +21,10 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include config
-  include: config.yml
+- name: task include config-custom
+  include: config/custom.yml
+  when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable'))
+
+- name: task include config-default
+  include: config/default.yml
   when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable'))

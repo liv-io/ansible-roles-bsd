@@ -22,5 +22,5 @@
 #-------------------------------------------------------------------------------
 
 dependencies:
- - { role: passwd }
- - { role: shadow }
+ - { role: passwd, when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable')) }
+ - { role: shadow, when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable')) }

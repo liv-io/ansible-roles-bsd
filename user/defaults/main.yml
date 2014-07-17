@@ -24,14 +24,56 @@
 # user_state
 user_state: 'install'
 
+# FIXME: define default 'user_custom'
+
+# user_custom
+#user_custom:
+# - name: ''
+#   state: 'false'
+#   comment: ''
+#   uid: ''
+#   group: ''
+#   groups: ['']
+#   groups_append: 'true'
+#   password: '!'
+#   password_update: 'true'
+#   shell: '/bin/false'
+#   authorized_key:
+#    - state: 'false'
+#      key: ''
+
+# FIXME: define default 'user_default'
+
+# user_default
+#user_default:
+# - name: ''
+#   state: 'false'
+#   comment: ''
+#   uid: ''
+#   group: ''
+#   groups: ['']
+#   groups_append: 'true'
+#   password: '!'
+#   password_update: 'true'
+#   shell: '/bin/false'
+#   authorized_key:
+#    - state: 'false'
+#      key: ''
+
 # user_group_default
 user_group_default: 'nobody'
 
 # user_groups_default
 user_groups_default: ['nobody']
 
+# user_name_default
+user_name_default: ''
+
 # user_password_default
 user_password_default: '!'
 
 # user_shell_default
 user_shell_default: '/bin/bash'
+
+# user_uid_default
+user_uid_default: ''
