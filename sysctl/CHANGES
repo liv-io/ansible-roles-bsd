@@ -14,6 +14,10 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.1.2 (2014-07-17)
+B: Fix wrong variable name
+I: Improve 'sysctl-load' command
+
 * Version 0.1.1 (2014-07-06)
 B: Add missing default variables
 

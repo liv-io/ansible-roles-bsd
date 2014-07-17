@@ -27,7 +27,7 @@
 
 # sysctl
 raw_cwd_sysctl: '/root'
-raw_cmd_sysctl: 'sysctl -q -e -p /etc/sysctl.conf ; sysctl -q -e -p /etc/sysctl.d/*.conf'
+raw_cmd_sysctl: 'sysctl -q -e -p /etc/sysctl.conf ; test -f /etc/sysctl.d/*.conf && sysctl -q -e -p /etc/sysctl.d/*.conf || true'
 
 #-------------------------------------------------------------------------------
 # FILES
