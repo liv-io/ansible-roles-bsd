@@ -58,6 +58,7 @@
   with_subelements:
    - user_custom
    - authorized_key
+  when: (item.1.key is defined) and not ((item.1.key == None) or (item.1.key == ''))
   tags:
    - system
    - custom
