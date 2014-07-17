@@ -25,14 +25,15 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: group config <group>
+- name: group config <group-default>
   group:
    state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
    name: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}"
    gid: "{{item.gid if (item.gid is defined) and not ((item.gid == None) or (item.gid == '')) else ''}}"
    system: "{{'yes' if (item.system is defined) and ((item.system == 'true') or (item.system == 'yes') or (item.system == 'enable')) else 'no'}}"
-  with_items: group
+  with_items: group_default
   tags:
    - system
+   - default
    - config
    - group

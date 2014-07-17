@@ -1,0 +1,39 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : config.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : group
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: group config <group-custom>
+  group:
+   state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
+   name: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}"
+   gid: "{{item.gid if (item.gid is defined) and not ((item.gid == None) or (item.gid == '')) else ''}}"
+   system: "{{'yes' if (item.system is defined) and ((item.system == 'true') or (item.system == 'yes') or (item.system == 'enable')) else 'no'}}"
+  with_items: group_custom
+  tags:
+   - system
+   - custom
+   - config
+   - group

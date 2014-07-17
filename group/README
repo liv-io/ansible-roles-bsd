@@ -41,7 +41,7 @@ DISABLE
        group_state: 'disable'
 
 CONFIG
-  group:
+  group_default:
    - name: 'group01'
      state: 'true'
      gid: '2001'
@@ -53,6 +53,19 @@ CONFIG
    - state: 'false'
      name: 'group03'
      gid: '2003'
+
+  group_custom:
+   - name: 'group04'
+     state: 'true'
+     gid: '2004'
+
+   - name: 'group05'
+     state: 'true'
+     gid: '2005'
+
+   - state: 'false'
+     name: 'group06'
+     gid: '2006'
 
 --------------------------------------------------------------------------------
 VARIABLES
