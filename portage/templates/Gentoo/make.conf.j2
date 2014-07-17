@@ -71,7 +71,7 @@ MAKEOPTS="{% for makeopts in portage_makeopts %}{{makeopts}} {% endfor %}"
 {% endif %}
 
 {% if not ((portage_features == None) or (portage_features == '') or (portage_features == []) or (portage_features == 'false') or (portage_features == 'no') or (portage_features == 'disable')) %}
-FEATURES="{% for features in portage_features %}{{features}} {% endfor %}" 
+FEATURES="{% for features in portage_features %}{{features}} {% endfor %}"
 {% else %}
 #FEATURES=""
 {% endif %}

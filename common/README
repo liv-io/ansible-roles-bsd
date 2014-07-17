@@ -166,7 +166,7 @@ ROLE
     Value      : Arbitrary
     Type       : String
     Default    : 'opt'
-    Options    : 
+    Options    :
       Examples: 'opt' | 'var' | 'data'
 
 --------------------------------------------------------------------------------

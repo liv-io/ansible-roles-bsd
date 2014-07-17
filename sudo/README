@@ -53,7 +53,7 @@ CONFIG
      order: '10'
      comment: 'Core Sudoers'
      sudo: ['root ALL=(ALL) ALL']
-  
+
    - name: 'ansible'
      state: 'true'
      order: '20'
@@ -63,7 +63,7 @@ CONFIG
    - name: 'obsolete'
      state: 'false'
      order: '23'
-  
+
   sudo_custom:
    - name: 'sysadmin'
      state: 'true'
@@ -75,7 +75,7 @@ CONFIG
      state: 'true'
      order: '51'
      comment: 'Database Administrators'
-     sudo: ['%dbadmin ALL=(root) service mysqld restart, service mysql restart'] 
+     sudo: ['%dbadmin ALL=(root) service mysqld restart, service mysql restart']
 
    - name: 'appadmin'
      state: 'true'

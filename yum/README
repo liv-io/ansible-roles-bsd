@@ -55,7 +55,7 @@ CONFIG
      key:
       - name: 'RPM-GPG-KEY-CentOS-6'
         state: 'true'
-  
+
    - name: 'centos-updates'
      state: 'true'
      comment: 'CentOS - Updates'
@@ -68,27 +68,27 @@ CONFIG
      key:
       - name: 'RPM-GPG-KEY-CentOS-6'
         state: 'true'
-  
+
    - name: 'CentOS-Base'
      state: 'false'
      key:
       - state: 'false'
-  
+
    - name: 'CentOS-Debuginfo'
      state: 'false'
      key:
       - state: 'false'
-  
+
    - name: 'CentOS-Media'
      state: 'false'
      key:
       - state: 'false'
-  
+
    - name: 'CentOS-Vault'
      state: 'false'
      key:
       - state: 'false'
-  
+
   yum_custom:
    - name: 'epel-stable'
      state: 'true'
@@ -102,12 +102,12 @@ CONFIG
      key:
       - name: 'RPM-GPG-KEY-EPEL-6'
         state: 'true'
-  
+
    - name: 'epel'
      state: 'false'
      key:
       - state: 'false'
-  
+
    - name: 'epel-testing'
      state: 'false'
      key:
@@ -203,7 +203,7 @@ CONFIG (yum)
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
-    Type       : Integer, String 
+    Type       : Integer, String
     Default    : 1
     Options    :
       Enable : 'true' | 'yes' | 'enable' | 1

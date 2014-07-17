@@ -357,7 +357,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'no' 
+    Default    : 'no'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'

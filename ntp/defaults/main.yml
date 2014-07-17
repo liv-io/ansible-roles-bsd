@@ -49,7 +49,7 @@ ntp_ntp_update_time_bash_template: 'main'
 ntp_ntp_update_time_cron_template: 'main'
 
 # ntp_ntp_update_time_interval
-ntp_ntp_update_time_interval: 10 
+ntp_ntp_update_time_interval: 10
 
 # ntp_option
 ntp_option:

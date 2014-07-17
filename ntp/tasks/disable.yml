@@ -41,9 +41,9 @@
    - ntp
 
 #-------------------------------------------------------------------------------
-# SYSTEM 
+# SYSTEM
 #-------------------------------------------------------------------------------
-   
+
 - name: service stop ntpd
   service:
    state: 'stopped'
@@ -54,7 +54,7 @@
    - system
    - disable
    - ntp
-  
+
 - name: service stop ntpd
   service:
    state: 'stopped'
