@@ -24,8 +24,15 @@
 # host_state
 host_state: 'install'
 
-# host
-host:
+# host_custom
+host_custom:
+ - name: ''
+   state: 'false'
+   ip: ''
+   aliases: []
+
+# host_default
+host_default:
  - name: ''
    state: 'false'
    ip: ''
