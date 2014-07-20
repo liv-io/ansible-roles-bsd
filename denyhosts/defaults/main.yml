@@ -83,7 +83,7 @@ denyhosts_reset_on_success: 'enable'
 denyhosts_smtp_host: 'localhost'
 
 # denyhosts_smtp_from
-denyhosts_smtp_from: 'DenyHosts <nobody@localhost>'
+denyhosts_smtp_from: "root@{{ansible_domain}}"
 
 # denyhosts_smtp_password
 denyhosts_smtp_password: 'disable'

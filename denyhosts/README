@@ -306,9 +306,10 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'DenyHosts <nobody@localhost>'
+    Default    : "root@{{ansible_domain}}"
     Options    :
-      Examples: 'Comment <user>' | 'Comment <user@localhost>' | 'Comment <user@domain.tld>'
+      Examples: 'Comment user' | 'Comment user@localhost' |
+                'Comment user@domain.tld' | 'user@domain.tld'
 
   denyhosts_smtp_password
     Description: Define the 'denyhosts_smtp_password' option.
