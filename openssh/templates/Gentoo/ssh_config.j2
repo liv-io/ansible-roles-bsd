@@ -73,5 +73,8 @@
 #   ProxyCommand ssh -q -W %h:%p gateway.example.com
 #   RekeyLimit 1G 1h
 
+Host *
+  Protocol 2
+
 # Send locale environment variables #367017
 SendEnv LANG LC_*
