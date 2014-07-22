@@ -77,7 +77,6 @@
 - name: file remove ntp-script.dir
   file:
    state: 'absent'
-   recurse: 'yes'
    path: "{{file_path_ntp_script_dir}}"
   tags:
    - files
