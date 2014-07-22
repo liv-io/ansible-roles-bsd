@@ -59,7 +59,6 @@
 - name: file remove sudoers.d
   file:
    state: 'absent'
-   recurse: 'yes'
    path: "{{file_path_sudoers_d}}"
   tags:
    - files

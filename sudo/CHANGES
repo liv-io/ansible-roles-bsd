@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.1.3 (2014-07-22)
+B: Remove 'recurse' argument from directory remove task
+
 * Version 0.1.2 (2014-07-08)
 B: Fix wrong variable name
 
