@@ -31,7 +31,6 @@
 emerge-webrsync
 emerge --ask --verbose --update --deep --with-bdeps=y --newuse gentoo-sources
 dispatch-conf
-etc-update
 cp -a /usr/src/linux/.config /usr/src/linux-<new-version>-gentoo/
 eselect kernel list
 eselect kernel set <new-version>
@@ -86,7 +85,6 @@ emerge-webrsync
 emerge --ask --verbose --update --deep --with-bdeps=y --newuse @world
 emerge --ask --verbose --update --deep --with-bdeps=y --newuse @system
 dispatch-conf
-etc-update
 emerge --ask --verbose --depclean
 emerge --ask --verbose @preserved-rebuild
 revdep-rebuild --verbose
