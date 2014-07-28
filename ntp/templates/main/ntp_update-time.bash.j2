@@ -65,34 +65,34 @@ fi
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-# Get short host name
+# Get the short host name
 host=$($hostname -s) || exit 0200
 
-# Get scriptname and PID
+# Get the script name and PID
 script="$($basename $0)[$$]" || exit 0201
 
-# Get start date and time
+# Get the start date and time
 date_start=$($date '+%Y-%m-%dT%H:%M:%S%:z')
 
-# Get start instant (seconds since 1970-01-01T00:00:00+00:00)
+# Get the start instant (seconds since 1970-01-01T00:00:00+00:00)
 instant_start=$($date '+%s')
 
-# Specify script user
+# Define the script user
 user='{{file_owner_ntp_update_time_bash}}'
 
-# Specify lockfile location
+# Define the lockfile location
 lockfile='{{file_path_ntp_script_dir}}/ntp_update-time.lock'
 
-# Set initial return value
+# Set the initial return value
 retval=0
 
-# Set initial exit code
-code=0000
+# Set the initial exit code
+code='0000'
 
-# Set initial log severity
+# Set the initial log severity
 severity='Debug'
 
-# Set initial log message
+# Set the initial log message
 message='Please check log files for more information.'
 
 # List of NTP servers
@@ -106,7 +106,7 @@ mail_sender='{% if not ((ntp_monitor_mail_sender == None) or (ntp_monitor_mail_s
 mail_recipient='{% if not ((ntp_monitor_mail_recipient == None) or (ntp_monitor_mail_recipient == '') or (ntp_monitor_mail_recipient == [])) %}{% for mail_recipient in ntp_monitor_mail_recipient %}{{mail_recipient}},{% endfor %}{% else %}admin@{{ansible_domain}}{% endif %}'
 
 # Define the mail subject
-mail_subject='{% if not ((ntp_monitor_mail_subject == None) or (ntp_monitor_mail_subject == '')) %}{{ntp_monitor_mail_subject}}{% else %}"NTP: Update Time - Error ({{ansible_hostname}})"{% endif %}'
+mail_subject='{% if not ((ntp_monitor_mail_subject == None) or (ntp_monitor_mail_subject == '')) %}{{ntp_monitor_mail_subject}}{% else %}NTP: Update Time - Error ({{ansible_hostname}}){% endif %}'
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -201,7 +201,7 @@ log_and_exit_if_error () {
 
 # Check if script is running as correct user
 if [ "$($whoami)" != "$user" ]; then
-  code=0300
+  code='0300'
   severity='Error'
   message="Please run script as user '$user'"
   $echo "$($date '+%Y-%m-%dT%H:%M:%S%:z') - $host - $script: "$severity "($code)": $message""
@@ -248,10 +248,10 @@ fi
 # LOGGING
 #-------------------------------------------------------------------------------
 
-# Get end date and time
+# Get the end date and time
 date_end=$($date '+%Y-%m-%dT%H:%M:%S%:z')
 
-# Get end instant (seconds since 1970-01-01T00:00:00+00:00)
+# Get the end instant (seconds since 1970-01-01T00:00:00+00:00)
 instant_end=$($date '+%s')
 
 # Calculate execution time
@@ -262,7 +262,7 @@ exec_time=$($date -d "1970-01-01 $exec_calc sec" '+%H:%M:%S')
 
 # Logging and alerting
 retval=0
-code=0000
+code='0000'
 severity='Informational'
 message='System time and hardware clock updated.'
 $logger -t $script "$severity: $message"
