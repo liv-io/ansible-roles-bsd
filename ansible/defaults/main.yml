@@ -1,0 +1,109 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : ansible
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# ansible_state
+ansible_state: 'enable'
+
+# ansible_mode
+ansible_mode: 'client'
+
+# ansible_ansible_dir_name
+ansible_ansible_dir_name: 'ansible'
+
+# ansible_ansible_run_playbook_bash_template
+ansible_ansible_run_playbook_bash_template: 'main'
+
+# ansible_ansible_run_playbook_cron_template
+ansible_ansible_run_playbook_cron_template: 'main'
+
+# ansible_authorized_key
+ansible_authorized_key: ''
+
+# ansible_gid
+ansible_gid: '800'
+
+# ansible_groups
+ansible_groups: ['wheel']
+
+# ansible_log_dir_name
+ansible_log_dir_name: 'ansible'
+
+# ansible_log_group
+ansible_log_group: 'ansible'
+
+# ansible_log_owner
+ansible_log_owner: 'ansible'
+
+# ansible_monitor_mail_recipient
+ansible_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
+
+# ansible_monitor_mail_sender
+ansible_monitor_mail_sender: "ansible@{{ansible_domain}}"
+
+# ansible_monitor_mail_state
+ansible_monitor_mail_state: 'false'
+
+# ansible_monitor_mail_subject
+ansible_monitor_mail_subject: "Ansible: Run Playbook - Error ({{ansible_hostname}})"
+
+# ansible_password
+ansible_password: '!'
+
+# ansible_playbooks
+ansible_playbooks: []
+
+# ansible_playbooks_dir_group
+ansible_playbooks_dir_group: 'ansible'
+
+# ansible_playbooks_dir_name
+ansible_playbooks_dir_name: 'playbooks'
+
+# ansible_playbooks_dir_owner
+ansible_playbooks_dir_owner: 'ansible'
+
+# ansible_purge_log_period
+ansible_purge_log_period: 30
+
+# ansible_roles_dir_group
+ansible_roles_dir_group: 'ansible'
+
+# ansible_roles_dir_name
+ansible_roles_dir_name: 'roles'
+
+# ansible_roles_dir_owner
+ansible_roles_dir_owner: 'ansible'
+
+# ansible_root_dir_name
+ansible_root_dir_name: 'ansible'
+
+# ansible_root_dir_partition
+ansible_root_dir_partition: 'opt'
+
+# ansible_run_playbook_cron_hour
+ansible_run_playbook_cron_hour: 6
+
+# ansible_run_playbook_cron_minute
+ansible_run_playbook_cron_minute: 45
+
+# ansible_uid
+ansible_uid: '800'
