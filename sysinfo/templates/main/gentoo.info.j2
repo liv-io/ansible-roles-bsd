@@ -50,15 +50,14 @@ ls -l /boot/kernel-* /boot/initramfs-* /boot/grub/grub.cfg
 shutdown -r now
 
 uname -a
-\rm /root/kernel-*
-\rm /root/initramfs-*
-\rm /root/grub/grub.cfg
+rm -f /root/kernel-*
+rm -f /root/initramfs-*
+rm -f /root/grub/grub.cfg
+rm -rf /usr/src/linux-<old-version>-gentoo
 
 emerge --ask --verbose --depclean
 emerge --ask --verbose @preserved-rebuild
 revdep-rebuild --verbose
-python-updater --verbose
-perl-cleaner --reallyall --verbose
 eclean --verbose distfiles
 
 #-------------------------------------------------------------------------------
