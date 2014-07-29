@@ -65,7 +65,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'install'
+    Default    : 'enable'
     Options    :
       Install: 'true' | 'yes' | 'install'
       Enable : 'start' | 'on' | 'enable'
