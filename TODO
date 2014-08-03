@@ -116,6 +116,7 @@ ROLES
  - sprinkle
  - sqlite
  - squid
+ - sshfs-fuse
  - suricata
  - syslog-ng
  - trac
@@ -132,6 +133,7 @@ OTHER
  - awstats
  - csync2
  - eudev
+ - ddisk
  - goaccess
  - grinder
  - grub
