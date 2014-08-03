@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((postfix_state == 'false') or (postfix_state == 'no') or (postfix_state == 'remove'))
+  when: not ((postfix_state == 'false') or (postfix_state == 'no') or (postfix_state == 'remove') or (postfix_state == 'quiesce') or (postfix_state == 'inactive'))
 
 - name: task include enable
   include: enable.yml

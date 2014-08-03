@@ -76,6 +76,7 @@ ROLE
       Enable : 'start' | 'on' | 'enable'
       Disable: 'stop' | 'off' | 'disable'
       Remove : 'false' | 'no' | 'remove'
+      Quiesce: 'quiesce' | 'inactive'
 
   postfix_aliases_template
     Description: Define the template source for 'aliases.j2'.
