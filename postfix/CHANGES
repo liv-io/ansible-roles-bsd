@@ -15,7 +15,7 @@ CHANGES
 --------------------------------------------------------------------------------
 
 * Version 0.2.0 (2014-08-03)
-F: Add 'quiesce' (e.g. inactive) state
+F: Add 'quiesce' (i.e. inactive) state
 
 * Version 0.1.1 (2014-06-23)
 B: Add pattern for Postfix service to fix issue on Gentoo
