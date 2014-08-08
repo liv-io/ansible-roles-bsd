@@ -338,9 +338,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : "{{ansible_hostname}}: DenyHosts Report"
+    Default    : "DenyHosts: Report ({{ansible_hostname}})"
     Options    :
-      Examples: 'DenyHost' | 'DenyHosts Alert'
+      Examples: 'DenyHost' | 'DenyHosts Report'
 
   denyhosts_smtp_username
     Description: Define the 'denyhosts_smtp_username' option.
