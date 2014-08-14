@@ -46,7 +46,7 @@ echo=$($which echo) || exit 0105
 expr=$($which expr) || exit 0106
 hostname=$($which hostname) || exit 0107
 logger=$($which logger) || exit 0108
-{% if (ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable') %}
+{% if (ansible_monitor_mail_state is defined) and ((ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable')) %}
 mailx=$($which mailx) || exit 0109
 {% endif %}
 rm=$($which rm) || exit 0110
@@ -112,12 +112,12 @@ playbooks_dir='{{file_path_ansible_playbooks_dir}}'
 roles_dir='{{file_path_ansible_roles_dir}}'
 
 # Define the Ansible playbooks
-playbooks='{% if not ((ansible_playbooks == None) or (ansible_playbooks == '') or (ansible_playbooks == [])) %}{% for playbook in ansible_playbooks %}{{playbook}} {% endfor %}{% endif %}'
+playbooks='{% if (ansible_playbooks is defined) and not ((ansible_playbooks == None) or (ansible_playbooks == '') or (ansible_playbooks == [])) %}{% for playbook in ansible_playbooks %}{{playbook}} {% endfor %}{% endif %}'
 
 # Set the period (days) after purging log files
 purge_period='{% if (ansible_purge_log_period is defined) and not ((ansible_purge_log_period == None) or (ansible_purge_log_period == '')) %}{{ansible_purge_log_period|int(30)}}{% else %}30{% endif %}'
 
-{% if (ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable') %}
+{% if (ansible_monitor_mail_state is defined) and ((ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable')) %}
 # Define the mail sender
 mail_sender='{% if (ansible_monitor_mail_sender is defined) and not ((ansible_monitor_mail_sender == None) or (ansible_monitor_mail_sender == '')) %}{{ansible_monitor_mail_sender}}{% else %}root@{{ansible_domain}}{% endif %}'
 
@@ -132,7 +132,7 @@ mail_subject='{% if (ansible_monitor_mail_subject is defined) and not ((ansible_
 # FUNCTIONS
 #-------------------------------------------------------------------------------
 
-{% if (ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable') %}
+{% if (ansible_monitor_mail_state is defined) and ((ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable')) %}
 # Mail monitoring
 mail_error () {
   retval=$1
@@ -207,7 +207,7 @@ log_and_exit_if_error () {
     $rm -f $lockfile
     $echo "$($date '+%Y-%m-%dT%H:%M:%S%:z') - $host - $script: "$severity: $code - $message""
     $logger -t $script "$severity: $code - $message"
-{% if (ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable') %}
+{% if (ansible_monitor_mail_state is defined) and ((ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable')) %}
     mail_error $retval $code "$severity" "$message"
 {% endif %}
     exit $retval

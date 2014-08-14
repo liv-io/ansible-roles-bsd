@@ -42,14 +42,14 @@ package_name_denyhosts: 'denyhosts'
 #-------------------------------------------------------------------------------
 
 # allowed-hosts
-file_src_allowed_hosts: "{{denyhosts_allowed_hosts_template}}/allowed-hosts.j2"
+file_src_allowed_hosts: "{{denyhosts_allowed_hosts_template if (denyhosts_allowed_hosts_template is defined) and not ((denyhosts_allowed_hosts_template == None) or (denyhosts_allowed_hosts_template == '')) else 'main'}}/allowed-hosts.j2"
 file_path_allowed_hosts: '/var/lib/denyhosts/allowed-hosts'
 file_mode_allowed_hosts: '0644'
 file_owner_allowed_hosts: 'root'
 file_group_allowed_hosts: 'root'
 
 # denyhosts.conf
-file_src_denyhosts_conf: "{{denyhosts_denyhosts_conf_template}}/denyhosts.conf.j2"
+file_src_denyhosts_conf: "{{denyhosts_denyhosts_conf_template if (denyhosts_denyhosts_conf_template is defined) and not ((denyhosts_denyhosts_conf_template == None) or (denyhosts_denyhosts_conf_template == '')) else ansible_os_family}}/denyhosts.conf.j2"
 file_path_denyhosts_conf: '/etc/denyhosts.conf'
 file_mode_denyhosts_conf: '0600'
 file_owner_denyhosts_conf: 'root'

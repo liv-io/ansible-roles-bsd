@@ -24,7 +24,7 @@
 #
 #-------------------------------------------------------------------------------
 
-{% if not ((portage_package_license == None) or (portage_package_license == '') or (portage_package_license == []) or (portage_package_license == 'false') or (portage_package_license == 'no') or (portage_package_license == 'disable')) %}
+{% if (portage_package_license is defined) and not ((portage_package_license == None) or (portage_package_license == '') or (portage_package_license == []) or (portage_package_license == 'false') or (portage_package_license == 'no') or (portage_package_license == 'disable')) %}
 {% for package_accept_keywords in portage_package_license %}
 {{package_accept_keywords}}
 {% endfor %}

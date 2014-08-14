@@ -119,4 +119,4 @@ support:	postmaster
 decode:		root
 
 # Person who should get root's mail
-{% if not ((postfix_root_mail_address == None) or (postfix_root_mail_address == '')) %}root: {{postfix_root_mail_address}}{% else %}#root:	marc{% endif %}
+{% if (postfix_root_mail_address is defined) and not ((postfix_root_mail_address == None) or (postfix_root_mail_address == '')) %}root: {{postfix_root_mail_address}}{% else %}#root:	marc{% endif %}

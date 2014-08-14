@@ -52,7 +52,7 @@ Version: {{ansible_kernel}}
 # USERLAND
 #-------------------------------------------------------------------------------
 
-Type          : {% if not ((sysinfo_userland_type == None) or (sysinfo_userland_type == '')) %}{{sysinfo_userland_type}}{% endif %}
+Type          : {% if (sysinfo_userland_type is defined) and not ((sysinfo_userland_type == None) or (sysinfo_userland_type == '')) %}{{sysinfo_userland_type}}{% endif %}
 
 Achitecture   : {{ansible_userspace_architecture}}
 Python Version: {{ansible_python_version}}

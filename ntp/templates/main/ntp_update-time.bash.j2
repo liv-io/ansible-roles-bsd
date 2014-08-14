@@ -45,7 +45,7 @@ echo=$($which echo) || exit 0104
 expr=$($which expr) || exit 0105
 hostname=$($which hostname) || exit 0106
 logger=$($which logger) || exit 0107
-{% if (ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable') %}
+{% if (ntp_monitor_mail_state is defined) and ((ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable')) %}
 mailx=$($which mailx) || exit 0108
 {% endif %}
 rm=$($which rm) || exit 0109
@@ -96,24 +96,24 @@ severity='Debug'
 message='Please check log files for more information.'
 
 # List of NTP servers
-ntp_servers='{% if not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}{% for server in ntp_server %}{{server}} {% endfor %}{% else %}ntp.{{ansible_domain}}{% endif %}'
+ntp_servers='{% if (ntp_server is defined) and not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}{% for server in ntp_server %}{{server}} {% endfor %}{% else %}ntp.{{ansible_domain}}{% endif %}'
 
-{% if (ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable') %}
+{% if (ntp_monitor_mail_state is defined) and ((ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable')) %}
 # Define the mail sender
-mail_sender='{% if not ((ntp_monitor_mail_sender == None) or (ntp_monitor_mail_sender == '')) %}{{ntp_monitor_mail_sender}}{% else %}root@{{ansible_domain}}{% endif %}'
+mail_sender='{% if (ntp_monitor_mail_sender is defined) and not ((ntp_monitor_mail_sender == None) or (ntp_monitor_mail_sender == '')) %}{{ntp_monitor_mail_sender}}{% else %}root@{{ansible_domain}}{% endif %}'
 
 # Define the mail recipient
-mail_recipient='{% if not ((ntp_monitor_mail_recipient == None) or (ntp_monitor_mail_recipient == '') or (ntp_monitor_mail_recipient == [])) %}{% for mail_recipient in ntp_monitor_mail_recipient %}{{mail_recipient}},{% endfor %}{% else %}admin@{{ansible_domain}}{% endif %}'
+mail_recipient='{% if (ntp_monitor_mail_recipient is defined) and not ((ntp_monitor_mail_recipient == None) or (ntp_monitor_mail_recipient == '') or (ntp_monitor_mail_recipient == [])) %}{% for mail_recipient in ntp_monitor_mail_recipient %}{{mail_recipient}},{% endfor %}{% else %}admin@{{ansible_domain}}{% endif %}'
 
 # Define the mail subject
-mail_subject='{% if not ((ntp_monitor_mail_subject == None) or (ntp_monitor_mail_subject == '')) %}{{ntp_monitor_mail_subject}}{% else %}NTP: Update Time - Error ({{ansible_hostname}}){% endif %}'
+mail_subject='{% if (ntp_monitor_mail_subject is defined) and not ((ntp_monitor_mail_subject == None) or (ntp_monitor_mail_subject == '')) %}{{ntp_monitor_mail_subject}}{% else %}NTP: Update Time - Error ({{ansible_hostname}}){% endif %}'
 {% endif %}
 
 #-------------------------------------------------------------------------------
 # FUNCTIONS
 #-------------------------------------------------------------------------------
 
-{% if (ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable') %}
+{% if (ntp_monitor_mail_state is defined) and ((ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable')) %}
 # Mail monitoring
 mail_error () {
   retval=$1
@@ -188,7 +188,7 @@ log_and_exit_if_error () {
     $rm -f $lockfile
     $echo "$($date '+%Y-%m-%dT%H:%M:%S%:z') - $host - $script: "$severity: $code - $message""
     $logger -t $script "$severity: $code - $message"
-{% if (ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable') %}
+{% if (ntp_monitor_mail_state is defined) and ((ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable')) %}
     mail_error $retval $code "$severity" "$message"
 {% endif %}
     exit $retval

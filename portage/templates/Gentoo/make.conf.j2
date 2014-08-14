@@ -28,7 +28,7 @@
 # BUILD-TIME FUNCTIONALITY
 #-------------------------------------------------------------------------------
 
-{% if not ((portage_use == None) or (portage_use == '') or (portage_use == [])) %}
+{% if (portage_use is defined) and not ((portage_use == None) or (portage_use == '') or (portage_use == [])) %}
 USE="{% for use in portage_use %}{{use}} {% endfor %}"
 {% else %}
 USE="bindist mmx sse sse2"
@@ -70,7 +70,7 @@ MAKEOPTS="{% for makeopts in portage_makeopts %}{{makeopts}} {% endfor %}"
 #MAKEOPTS="{{portage_makeopts}}"
 {% endif %}
 
-{% if not ((portage_features == None) or (portage_features == '') or (portage_features == []) or (portage_features == 'false') or (portage_features == 'no') or (portage_features == 'disable')) %}
+{% if (portage_features is defined) and not ((portage_features == None) or (portage_features == '') or (portage_features == []) or (portage_features == 'false') or (portage_features == 'no') or (portage_features == 'disable')) %}
 FEATURES="{% for features in portage_features %}{{features}} {% endfor %}"
 {% else %}
 #FEATURES=""

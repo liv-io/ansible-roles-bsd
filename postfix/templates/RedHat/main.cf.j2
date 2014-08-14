@@ -100,7 +100,7 @@ mail_owner = postfix
 #
 #myhostname = host.domain.tld
 #myhostname = virtual.domain.tld
-{% if not ((postfix_myhostname == None) or (postfix_myhostname == '')) %}
+{% if (postfix_myhostname is defined) and not ((postfix_myhostname == None) or (postfix_myhostname == '')) %}
 myhostname = {{postfix_myhostname}}
 {% endif %}
 
@@ -142,16 +142,16 @@ myhostname = {{postfix_myhostname}}
 #inet_interfaces = all
 #inet_interfaces = $myhostname
 #inet_interfaces = $myhostname, localhost
-{% if not ((postfix_inet_interfaces == None) or (postfix_inet_interfaces == '') or (postfix_inet_interfaces == [])) %}
+{% if (postfix_inet_interfaces is defined) and not ((postfix_inet_interfaces == None) or (postfix_inet_interfaces == '') or (postfix_inet_interfaces == [])) %}
 inet_interfaces = {% for inet_interfaces in postfix_inet_interfaces %}{{inet_interfaces}}, {% endfor %}
 {% else %}
 inet_interfaces = localhost
 {% endif %}
 
 # Enable IPv4, and IPv6 if supported
-{% if (postfix_inet_protocols == 'inet') or (postfix_inet_protocols == 'ipv4') %}
+{% if (postfix_inet_protocols is defined) and ((postfix_inet_protocols == 'inet') or (postfix_inet_protocols == 'ipv4')) %}
 inet_protocols = ipv4
-{% elif (postfix_inet_protocols == 'inet6') or (postfix_inet_protocols == 'ipv6') %}
+{% elif (postfix_inet_protocols is defined) and ((postfix_inet_protocols == 'inet6') or (postfix_inet_protocols == 'ipv6')) %}
 inet_protocols = ipv6
 {% else %}
 inet_protocols = all
@@ -355,11 +355,11 @@ unknown_local_recipient_reject_code = 550
 #relayhost = uucphost
 #relayhost = [an.ip.add.ress]
 
-{% if not ((postfix_relayhost == None) or (postfix_relayhost == '')) %}
+{% if (postfix_relayhost is defined) and not ((postfix_relayhost == None) or (postfix_relayhost == '')) %}
 relayhost = {{postfix_relayhost}}
 {% endif %}
 
-{% if not ((postfix_fallback_relay == None) or (postfix_fallback_relay == '')) %}
+{% if (postfix_fallback_relay is defined) and not ((postfix_fallback_relay == None) or (postfix_fallback_relay == '')) %}
 fallback_relay = {{postfix_fallback_relay}}
 {% endif %}
 
@@ -726,7 +726,7 @@ readme_directory = /usr/share/doc/postfix-2.6.6/README_FILES
 # CUSTOM OPTIONS
 #-------------------------------------------------------------------------------
 
-{% if not ((postfix_custom_options == None) or (postfix_custom_options == '') or (postfix_custom_options == [])) %}
+{% if (postfix_custom_options is defined) and not ((postfix_custom_options == None) or (postfix_custom_options == '') or (postfix_custom_options == [])) %}
 {% for custom_options in postfix_custom_options %}
 {{custom_options}}
 {% endfor %}

@@ -24,7 +24,7 @@
 #
 #-------------------------------------------------------------------------------
 
-{% if not ((portage_package_use == None) or (portage_package_use == '') or (portage_package_use == []) or (portage_package_use == 'false') or (portage_package_use == 'no') or (portage_package_use == 'disable')) %}
+{% if (portage_package_use is defined) and not ((portage_package_use == None) or (portage_package_use == '') or (portage_package_use == []) or (portage_package_use == 'false') or (portage_package_use == 'no') or (portage_package_use == 'disable')) %}
 {% for package_accept_keywords in portage_package_use %}
 {{package_accept_keywords}}
 {% endfor %}

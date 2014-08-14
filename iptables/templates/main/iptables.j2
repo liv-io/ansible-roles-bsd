@@ -29,14 +29,14 @@
 #-------------------------------------------------------------------------------
 
 *nat
-:PREROUTING {% if (iptables_nat_prerouting_v4_policy == 'drop') or (iptables_nat_prerouting_v4_policy == 'DROP') %}DROP{% else %}ACCEPT{% endif %} [0:0]
-:POSTROUTING {% if (iptables_nat_postrouting_v4_policy == 'drop') or (iptables_nat_postrouting_v4_policy == 'DROP') %}DROP{% else %}ACCEPT{% endif %} [0:0]
+:PREROUTING {% if (iptables_nat_prerouting_v4_policy is defined) and ((iptables_nat_prerouting_v4_policy == 'drop') or (iptables_nat_prerouting_v4_policy == 'DROP')) %}DROP{% else %}ACCEPT{% endif %} [0:0]
+:POSTROUTING {% if (iptables_nat_postrouting_v4_policy is defined) and ((iptables_nat_postrouting_v4_policy == 'drop') or (iptables_nat_postrouting_v4_policy == 'DROP')) %}DROP{% else %}ACCEPT{% endif %} [0:0]
 
 #-------------------------------------------------------------------------------
 # PREROUTING
 #-------------------------------------------------------------------------------
 
-{% if not ((iptables_nat_prerouting_v4 == None) or (iptables_nat_prerouting_v4 == '') or (iptables_nat_prerouting_v4 == [])) %}
+{% if (iptables_nat_prerouting_v4 is defined) and not ((iptables_nat_prerouting_v4 == None) or (iptables_nat_prerouting_v4 == '') or (iptables_nat_prerouting_v4 == [])) %}
 {% for nat_prerouting_v4 in iptables_nat_prerouting_v4 %}
 {{nat_prerouting_v4}}
 {% endfor %}
@@ -46,7 +46,7 @@
 # POSTROUTING
 #-------------------------------------------------------------------------------
 
-{% if not ((iptables_nat_postrouting_v4 == None) or (iptables_nat_postrouting_v4 == '') or (iptables_nat_postrouting_v4 == [])) %}
+{% if (iptables_nat_postrouting_v4 is defined) and not ((iptables_nat_postrouting_v4 == None) or (iptables_nat_postrouting_v4 == '') or (iptables_nat_postrouting_v4 == [])) %}
 {% for nat_postrouting_v4 in iptables_nat_postrouting_v4 %}
 {{nat_postrouting_v4}}
 {% endfor %}
@@ -64,17 +64,17 @@ COMMIT
 #-------------------------------------------------------------------------------
 
 *mangle
-:PREROUTING {% if (iptables_mangle_prerouting_v4_policy == 'drop') or (iptables_mangle_prerouting_v4_policy == 'DROP') %}DROP{% else %}ACCEPT{% endif %} [0:0]
-:INPUT {% if (iptables_mangle_input_v4_policy == 'drop') or (iptables_mangle_input_v4_policy == 'DROP') %}DROP{% else %}ACCEPT{% endif %} [0:0]
-:FORWARD {% if (iptables_mangle_forward_v4_policy == 'drop') or (iptables_mangle_forward_v4_policy == 'DROP') %}DROP{% else %}ACCEPT{% endif %} [0:0]
-:OUTPUT {% if (iptables_mangle_output_v4_policy == 'drop') or (iptables_mangle_output_v4_policy == 'DROP') %}DROP{% else %}ACCEPT{% endif %} [0:0]
-:POSTROUTING {% if (iptables_mangle_postrouting_v4_policy == 'drop') or (iptables_mangle_postrouting_v4_policy == 'DROP') %}DROP{% else %}ACCEPT{% endif %} [0:0]
+:PREROUTING {% if (iptables_mangle_prerouting_v4_policy is defined) and ((iptables_mangle_prerouting_v4_policy == 'drop') or (iptables_mangle_prerouting_v4_policy == 'DROP')) %}DROP{% else %}ACCEPT{% endif %} [0:0]
+:INPUT {% if (iptables_mangle_input_v4_policy is defined) and ((iptables_mangle_input_v4_policy == 'drop') or (iptables_mangle_input_v4_policy == 'DROP')) %}DROP{% else %}ACCEPT{% endif %} [0:0]
+:FORWARD {% if (iptables_mangle_forward_v4_policy is defined) and ((iptables_mangle_forward_v4_policy == 'drop') or (iptables_mangle_forward_v4_policy == 'DROP')) %}DROP{% else %}ACCEPT{% endif %} [0:0]
+:OUTPUT {% if (iptables_mangle_output_v4_policy is defined) and ((iptables_mangle_output_v4_policy == 'drop') or (iptables_mangle_output_v4_policy == 'DROP')) %}DROP{% else %}ACCEPT{% endif %} [0:0]
+:POSTROUTING {% if (iptables_mangle_postrouting_v4_policy is defined) and ((iptables_mangle_postrouting_v4_policy == 'drop') or (iptables_mangle_postrouting_v4_policy == 'DROP')) %}DROP{% else %}ACCEPT{% endif %} [0:0]
 
 #-------------------------------------------------------------------------------
 # PREROUTING
 #-------------------------------------------------------------------------------
 
-{% if not ((iptables_mangle_prerouting_v4 == None) or (iptables_mangle_prerouting_v4 == '') or (iptables_mangle_prerouting_v4 == [])) %}
+{% if (iptables_mangle_prerouting_v4 is defined) and not ((iptables_mangle_prerouting_v4 == None) or (iptables_mangle_prerouting_v4 == '') or (iptables_mangle_prerouting_v4 == [])) %}
 {% for mangle_prerouting_v4 in iptables_mangle_prerouting_v4 %}
 {{mangle_prerouting_v4}}
 {% endfor %}
@@ -84,7 +84,7 @@ COMMIT
 # INPUT
 #-------------------------------------------------------------------------------
 
-{% if not ((iptables_mangle_input_v4 == None) or (iptables_mangle_input_v4 == '') or (iptables_mangle_input_v4 == [])) %}
+{% if (iptables_mangle_input_v4 is defined) and not ((iptables_mangle_input_v4 == None) or (iptables_mangle_input_v4 == '') or (iptables_mangle_input_v4 == [])) %}
 {% for mangle_input_v4 in iptables_mangle_input_v4 %}
 {{mangle_input_v4}}
 {% endfor %}
@@ -94,7 +94,7 @@ COMMIT
 # FORWARD
 #-------------------------------------------------------------------------------
 
-{% if not ((iptables_mangle_forward_v4 == None) or (iptables_mangle_forward_v4 == '') or (iptables_mangle_forward_v4 == [])) %}
+{% if (iptables_mangle_forward_v4 is defined) and not ((iptables_mangle_forward_v4 == None) or (iptables_mangle_forward_v4 == '') or (iptables_mangle_forward_v4 == [])) %}
 {% for mangle_forward_v4 in iptables_mangle_forward_v4 %}
 {{mangle_forward_v4}}
 {% endfor %}
@@ -104,7 +104,7 @@ COMMIT
 # OUTPUT
 #-------------------------------------------------------------------------------
 
-{% if not ((iptables_mangle_output_v4 == None) or (iptables_mangle_output_v4 == '') or (iptables_mangle_output_v4 == [])) %}
+{% if (iptables_mangle_output_v4 is defined) and not ((iptables_mangle_output_v4 == None) or (iptables_mangle_output_v4 == '') or (iptables_mangle_output_v4 == [])) %}
 {% for mangle_output_v4 in iptables_mangle_output_v4 %}
 {{mangle_output_v4}}
 {% endfor %}
@@ -114,7 +114,7 @@ COMMIT
 # POSTROUTING
 #-------------------------------------------------------------------------------
 
-{% if not ((iptables_mangle_postrouting_v4 == None) or (iptables_mangle_postrouting_v4 == '') or (iptables_mangle_postrouting_v4 == [])) %}
+{% if (iptables_mangle_postrouting_v4 is defined) and not ((iptables_mangle_postrouting_v4 == None) or (iptables_mangle_postrouting_v4 == '') or (iptables_mangle_postrouting_v4 == [])) %}
 {% for mangle_postrouting_v4 in iptables_mangle_postrouting_v4 %}
 {{mangle_postrouting_v4}}
 {% endfor %}
@@ -134,9 +134,9 @@ COMMIT
 *filter
 
 # Set the default policy and zero the packet and byte counters
-:INPUT {% if (iptables_filter_input_v4_policy == 'accept') or (iptables_filter_input_v4_policy == 'ACCEPT') %}ACCEPT{% else %}DROP{% endif %} [0:0]
-:FORWARD {% if (iptables_filter_forward_v4_policy == 'drop') or (iptables_filter_forward_v4_policy == 'DROP') %}DROP{% else %}ACCEPT{% endif %} [0:0]
-:OUTPUT {% if (iptables_filter_output_v4_policy == 'drop') or (iptables_filter_output_v4_policy == 'DROP') %}DROP{% else %}ACCEPT{% endif %} [0:0]
+:INPUT {% if (iptables_filter_input_v4_policy is defined) and ((iptables_filter_input_v4_policy == 'accept') or (iptables_filter_input_v4_policy == 'ACCEPT')) %}ACCEPT{% else %}DROP{% endif %} [0:0]
+:FORWARD {% if (iptables_filter_forward_v4_policy is defined) and ((iptables_filter_forward_v4_policy == 'drop') or (iptables_filter_forward_v4_policy == 'DROP')) %}DROP{% else %}ACCEPT{% endif %} [0:0]
+:OUTPUT {% if (iptables_filter_output_v4_policy is defined) and ((iptables_filter_output_v4_policy == 'drop') or (iptables_filter_output_v4_policy == 'DROP')) %}DROP{% else %}ACCEPT{% endif %} [0:0]
 
 #-------------------------------------------------------------------------------
 # INPUT
@@ -147,21 +147,21 @@ COMMIT
 -A INPUT -i lo -j ACCEPT -m comment --comment "Incoming loopback connections"
 
 # ICMP rules
-{% if not ((iptables_filter_input_v4_icmp == None) or (iptables_filter_input_v4_icmp == '') or (iptables_filter_input_v4_icmp == [])) %}
+{% if (iptables_filter_input_v4_icmp is defined) and not ((iptables_filter_input_v4_icmp == None) or (iptables_filter_input_v4_icmp == '') or (iptables_filter_input_v4_icmp == [])) %}
 {% for filter_input_v4_icmp in iptables_filter_input_v4_icmp %}
 {{filter_input_v4_icmp}}
 {% endfor %}
 {% endif %}
 
 # Default rules
-{% if not ((iptables_filter_input_v4_default == None) or (iptables_filter_input_v4_default == '') or (iptables_filter_input_v4_default == [])) %}
+{% if (iptables_filter_input_v4_default is defined) and not ((iptables_filter_input_v4_default == None) or (iptables_filter_input_v4_default == '') or (iptables_filter_input_v4_default == [])) %}
 {% for filter_input_v4_default in iptables_filter_input_v4_default %}
 {{filter_input_v4_default}}
 {% endfor %}
 {% endif %}
 
 # Custom rules
-{% if not ((iptables_filter_input_v4_custom == None) or (iptables_filter_input_v4_custom == '') or (iptables_filter_input_v4_custom == [])) %}
+{% if (iptables_filter_input_v4_custom is defined) and not ((iptables_filter_input_v4_custom == None) or (iptables_filter_input_v4_custom == '') or (iptables_filter_input_v4_custom == [])) %}
 {% for filter_input_v4_custom in iptables_filter_input_v4_custom %}
 {{filter_input_v4_custom}}
 {% endfor %}
@@ -176,21 +176,21 @@ COMMIT
 -A FORWARD -i lo -j ACCEPT -m comment --comment "loopback connections"
 
 # ICMP rules
-{% if not ((iptables_filter_forward_v4_icmp == None) or (iptables_filter_forward_v4_icmp == '') or (iptables_filter_forward_v4_icmp == [])) %}
+{% if (iptables_filter_forward_v4_icmp is defined) and not ((iptables_filter_forward_v4_icmp == None) or (iptables_filter_forward_v4_icmp == '') or (iptables_filter_forward_v4_icmp == [])) %}
 {% for filter_forward_v4_icmp in iptables_filter_forward_v4_icmp %}
 {{filter_forward_v4_icmp}}
 {% endfor %}
 {% endif %}
 
 # Default rules
-{% if not ((iptables_filter_forward_v4_default == None) or (iptables_filter_forward_v4_default == '') or (iptables_filter_forward_v4_default == [])) %}
+{% if (iptables_filter_forward_v4_default is defined) and not ((iptables_filter_forward_v4_default == None) or (iptables_filter_forward_v4_default == '') or (iptables_filter_forward_v4_default == [])) %}
 {% for filter_forward_v4_default in iptables_filter_forward_v4_default %}
 {{filter_forward_v4_default}}
 {% endfor %}
 {% endif %}
 
 # Custom rules
-{% if not ((iptables_filter_forward_v4_custom == None) or (iptables_filter_forward_v4_custom == '') or (iptables_filter_forward_v4_custom == [])) %}
+{% if (iptables_filter_forward_v4_custom is defined) and not ((iptables_filter_forward_v4_custom == None) or (iptables_filter_forward_v4_custom == '') or (iptables_filter_forward_v4_custom == [])) %}
 {% for filter_forward_v4_custom in iptables_filter_forward_v4_custom %}
 {{filter_forward_v4_custom}}
 {% endfor %}
@@ -205,21 +205,21 @@ COMMIT
 -A OUTPUT -o lo -j ACCEPT -m comment --comment "loopback connections"
 
 # ICMP rules
-{% if not ((iptables_filter_output_v4_icmp == None) or (iptables_filter_output_v4_icmp == '') or (iptables_filter_output_v4_icmp == [])) %}
+{% if (iptables_filter_output_v4_icmp is defined) and not ((iptables_filter_output_v4_icmp == None) or (iptables_filter_output_v4_icmp == '') or (iptables_filter_output_v4_icmp == [])) %}
 {% for filter_output_v4_icmp in iptables_filter_output_v4_icmp %}
 {{filter_output_v4_icmp}}
 {% endfor %}
 {% endif %}
 
 # Default rules
-{% if not ((iptables_filter_output_v4_default == None) or (iptables_filter_output_v4_default == '') or (iptables_filter_output_v4_default == [])) %}
+{% if (iptables_filter_output_v4_default is defined) and not ((iptables_filter_output_v4_default == None) or (iptables_filter_output_v4_default == '') or (iptables_filter_output_v4_default == [])) %}
 {% for filter_output_v4_default in iptables_filter_output_v4_default %}
 {{filter_output_v4_default}}
 {% endfor %}
 {% endif %}
 
 # Custom rules
-{% if not ((iptables_filter_output_v4_custom == None) or (iptables_filter_output_v4_custom == '') or (iptables_filter_output_v4_custom == [])) %}
+{% if (iptables_filter_output_v4_custom is defined) and not ((iptables_filter_output_v4_custom == None) or (iptables_filter_output_v4_custom == '') or (iptables_filter_output_v4_custom == [])) %}
 {% for filter_output_v4_custom in iptables_filter_output_v4_custom %}
 {{filter_output_v4_custom}}
 {% endfor %}

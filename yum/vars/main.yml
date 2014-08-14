@@ -46,14 +46,14 @@ file_owner_rpm_gpg: 'root'
 file_group_rpm_gpg: 'root'
 
 # yum.conf
-file_src_yum_conf: "{{yum_yum_conf_template}}/yum.conf.j2"
+file_src_yum_conf: "{{yum_yum_conf_template if (yum_yum_conf_template is defined) and not ((yum_yum_conf_template == None) or (yum_yum_conf_template == '')) else ansible_os_family}}/yum.conf.j2"
 file_path_yum_conf: '/etc/yum.conf'
 file_mode_yum_conf: '0644'
 file_owner_yum_conf: 'root'
 file_group_yum_conf: 'root'
 
 # yum-config
-file_src_yum_config: "../../templates/{{yum_yum_config_template}}/yum-config.j2"
+file_src_yum_config: "../../templates/{{yum_yum_config_template if (yum_yum_config_template is defined) and not ((yum_yum_config_template == None) or (yum_yum_config_template == '')) else 'main'}}/yum-config.j2"
 file_mode_yum_config: '0644'
 file_owner_yum_config: 'root'
 file_group_yum_config: 'root'

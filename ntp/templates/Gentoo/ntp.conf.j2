@@ -31,7 +31,7 @@
 
 # Monitoring facility.
 # See the ntpdc(8) program and the monlist command or further information.
-{% if (ntp_monitor == 'true') or (ntp_monitor == 'yes') or (ntp_monitor == 'enable') %}enable{% else %}disable{% endif %} monitor
+{% if (ntp_monitor is defined) and ((ntp_monitor == 'true') or (ntp_monitor == 'yes') or (ntp_monitor == 'enable')) %}enable{% else %}disable{% endif %} monitor
 
 
 # Name of the servers ntpd should sync with
@@ -65,7 +65,7 @@ driftfile {{ntp_driftfile}}
 #server ntplocal.example.com prefer 
 #server timeserver.example.org 
 
-{% if not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}
+{% if (ntp_server is defined) and not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}
 {% for server in ntp_server %}
 server {{server}} {% for option in ntp_option %}{{option}} {% endfor %}
 
@@ -88,7 +88,7 @@ server {{server}} {% for option in ntp_option %}{{option}} {% endfor %}
 #restrict 127.0.0.1
 #restrict [::1]
 
-{% if not ((ntp_restrict == None) or (ntp_restrict == '') or (ntp_restrict == [])) %}
+{% if (ntp_restrict is defined) and not ((ntp_restrict == None) or (ntp_restrict == '') or (ntp_restrict == [])) %}
 {% for restrict in ntp_restrict %}
 restrict {{restrict}}
 {% endfor %}

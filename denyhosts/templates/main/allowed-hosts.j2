@@ -25,7 +25,7 @@
 #-------------------------------------------------------------------------------
 
 # We mustn't block localhost
-{% if not ((denyhosts_allowed_hosts == None) or (denyhosts_allowed_hosts == '') or (denyhosts_allowed_hosts == [])) %}
+{% if (denyhosts_allowed_hosts is defined) and not ((denyhosts_allowed_hosts == None) or (denyhosts_allowed_hosts == '') or (denyhosts_allowed_hosts == [])) %}
 {% for allowed_hosts in denyhosts_allowed_hosts %}
 {{allowed_hosts}}
 {% endfor %}
