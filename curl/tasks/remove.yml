@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove curl
-  yum:
-   state: 'removed'
-   name: "{{package_name_curl}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - curl
-
-- name: package remove curl
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

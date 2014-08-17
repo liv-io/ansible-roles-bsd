@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove mtr
-  yum:
-   state: 'removed'
-   name: "{{package_name_mtr}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - mtr
-
-- name: package remove mtr
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

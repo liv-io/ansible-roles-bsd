@@ -27,13 +27,3 @@
 
 # portage
 portage_sync: 'web'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
-# iptables
-file_path_iptables: '/var/lib/iptables/rules-save'
-
-# ip6tables
-file_path_ip6tables: '/var/lib/ip6tables/rules-save'

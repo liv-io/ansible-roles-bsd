@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove lshw
-  yum:
-   state: 'removed'
-   name: "{{package_name_lshw}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - lshw
-
-- name: package remove lshw
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

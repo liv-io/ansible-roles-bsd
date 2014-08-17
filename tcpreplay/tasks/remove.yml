@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove tcpreplay
-  yum:
-   state: 'removed'
-   name: "{{package_name_tcpreplay}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - tcpreplay
-
-- name: package remove tcpreplay
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

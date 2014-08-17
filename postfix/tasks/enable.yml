@@ -80,17 +80,6 @@
   service:
    state: 'started'
    enabled: 'yes'
-   name: "{{service_name_postfix}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - system
-   - enable
-   - postfix
-
-- name: service start postfix
-  service:
-   state: 'started'
-   enabled: 'yes'
    runlevel: 'default'
    name: "{{service_name_postfix}}"
    pattern: "{{service_pattern_postfix}}"

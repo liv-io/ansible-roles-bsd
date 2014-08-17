@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove multitail
-  yum:
-   state: 'removed'
-   name: "{{package_name_multitail}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - multitail
-
-- name: package remove multitail
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

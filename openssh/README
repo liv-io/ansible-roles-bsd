@@ -185,30 +185,6 @@ ROLE
       Examples: ['user1', 'user2', 'user3']
       None    : []
 
-  openssh_gssapi_authentication
-    Description: Control the 'openssh_gssapi_authentication'
-                 option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'no'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
-  openssh_kerberos_authentication
-    Description: Control the 'openssh_kerberos_authentication'
-                 option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'no'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
   openssh_listen_address
     Description: Define the 'openssh_listen_address' option.
     Implemented: 0.1
@@ -381,15 +357,7 @@ PACKAGES
   openssh
     Version: >= 5.3
     Name   :
-      RedHat 6: 'openssh'
-      CentOS 6: 'openssh'
       Gentoo 2: 'openssh'
-
-  openssh-server
-    Version: >= 5.3
-    Name   :
-      RedHat 6: 'openssh-server'
-      CentOS 6: 'openssh-server'
 
 ROLES
 
@@ -430,20 +398,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

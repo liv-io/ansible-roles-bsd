@@ -79,8 +79,6 @@ PACKAGES
   procps
     Version: >= 3.2
     Name   :
-      RedHat 6: 'procps'
-      CentOS 6: 'procps'
       Gentoo 2: 'procps'
 
 ROLES
@@ -122,20 +120,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

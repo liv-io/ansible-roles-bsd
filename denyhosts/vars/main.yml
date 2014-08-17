@@ -25,10 +25,10 @@
 denyhosts_daemon_log: '/var/log/denyhosts'
 
 # denyhosts_lock_file
-denyhosts_lock_file: '/var/lock/subsys/denyhosts'
+denyhosts_lock_file: '/var/run/denyhosts.pid'
 
 # denyhosts_secure_log
-denyhosts_secure_log: '/var/log/secure'
+denyhosts_secure_log: '/var/log/auth.log'
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -51,7 +51,7 @@ file_group_allowed_hosts: 'root'
 # denyhosts.conf
 file_src_denyhosts_conf: "{{denyhosts_denyhosts_conf_template if (denyhosts_denyhosts_conf_template is defined) and not ((denyhosts_denyhosts_conf_template == None) or (denyhosts_denyhosts_conf_template == '')) else ansible_os_family}}/denyhosts.conf.j2"
 file_path_denyhosts_conf: '/etc/denyhosts.conf'
-file_mode_denyhosts_conf: '0600'
+file_mode_denyhosts_conf: '0640'
 file_owner_denyhosts_conf: 'root'
 file_group_denyhosts_conf: 'root'
 

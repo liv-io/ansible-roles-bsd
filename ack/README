@@ -63,8 +63,6 @@ PACKAGES
   ack
     Version: >= 1.9
     Name   :
-      RedHat 6: 'ack'
-      CentOS 6: 'ack'
       Gentoo 2: 'ack'
 
 ROLES
@@ -106,20 +104,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove tcpdump
-  yum:
-   state: 'removed'
-   name: "{{package_name_tcpdump}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - tcpdump
-
-- name: package remove tcpdump
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

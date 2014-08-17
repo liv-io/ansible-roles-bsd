@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install ntp
-  yum:
-   state: 'installed'
-   name: "{{package_name_ntp}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - ntp
-
-- name: package install ntp
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install ifstatus
-  yum:
-   state: 'installed'
-   name: "{{package_name_ifstatus}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - ifstatus
-
-- name: package install ifstatus
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

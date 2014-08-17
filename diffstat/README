@@ -66,8 +66,6 @@ PACKAGES
   diffstat
     Version: >= 1.5
     Name   :
-      RedHat 6: 'diffstat'
-      CentOS 6: 'diffstat'
       Gentoo 2: 'diffstat'
 
 ROLES
@@ -109,20 +107,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

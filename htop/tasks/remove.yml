@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove htop
-  yum:
-   state: 'removed'
-   name: "{{package_name_htop}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - htop
-
-- name: package remove htop
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install strace
-  yum:
-   state: 'installed'
-   name: "{{package_name_strace}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - strace
-
-- name: package install strace
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

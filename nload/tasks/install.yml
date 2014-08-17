@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install nload
-  yum:
-   state: 'installed'
-   name: "{{package_name_nload}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - nload
-
-- name: package install nload
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

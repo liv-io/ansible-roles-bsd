@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install postfix
-  yum:
-   state: 'installed'
-   name: "{{package_name_postfix}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - postfix
-
-- name: package install postfix
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

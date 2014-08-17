@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove iotop
-  yum:
-   state: 'removed'
-   name: "{{package_name_iotop}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - iotop
-
-- name: package remove iotop
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

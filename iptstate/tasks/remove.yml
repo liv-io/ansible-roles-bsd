@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove iptstate
-  yum:
-   state: 'removed'
-   name: "{{package_name_iptstate}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - iptstate
-
-- name: package remove iptstate
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

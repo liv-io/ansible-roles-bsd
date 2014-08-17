@@ -79,8 +79,6 @@ PACKAGES
   iptstate
     Version: >= 2.2
     Name   :
-      RedHat 6: 'iptstate'
-      CentOS 6: 'iptstate'
       Gentoo 2: 'iptstate'
 
 ROLES
@@ -122,20 +120,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

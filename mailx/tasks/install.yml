@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install mailx
-  yum:
-   state: 'installed'
-   name: "{{package_name_mailx}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - mailx
-
-- name: package install mailx
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

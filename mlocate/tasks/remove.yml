@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove mlocate
-  yum:
-   state: 'removed'
-   name: "{{package_name_mlocate}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - mlocate
-
-- name: package remove mlocate
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

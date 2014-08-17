@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install python-yaml
-  yum:
-   state: 'installed'
-   name: "{{package_name_python_yaml}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - python_yaml
-
-- name: package install python-yaml
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

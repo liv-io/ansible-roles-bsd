@@ -68,10 +68,3 @@ ntp_restrict:
 # ntp_server
 ntp_server:
  - "ntp.{{ansible_domain}}"
-
-# ntp_step_ticker
-ntp_step_ticker:
- - "ntp.{{ansible_domain}}"
-
-# ntp_step_tickers_template
-ntp_step_tickers_template: 'main'

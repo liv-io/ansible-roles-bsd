@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove netcat
-  yum:
-   state: 'removed'
-   name: "{{package_name_netcat}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - netcat
-
-- name: package remove netcat
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

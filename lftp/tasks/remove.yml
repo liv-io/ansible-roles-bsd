@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove lftp
-  yum:
-   state: 'removed'
-   name: "{{package_name_lftp}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - lftp
-
-- name: package remove lftp
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

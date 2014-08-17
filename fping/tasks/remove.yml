@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove fping
-  yum:
-   state: 'removed'
-   name: "{{package_name_fping}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - fping
-
-- name: package remove fping
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

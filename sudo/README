@@ -219,8 +219,6 @@ PACKAGES
   sudo
     Version: >= 1.8
     Name   :
-      RedHat 6: 'sudo'
-      CentOS 6: 'sudo'
       Gentoo 2: 'sudo'
 
 ROLES
@@ -262,20 +260,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

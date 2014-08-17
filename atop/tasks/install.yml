@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install atop
-  yum:
-   state: 'installed'
-   name: "{{package_name_atop}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - atop
-
-- name: package install atop
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

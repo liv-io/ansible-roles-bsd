@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install multitail
-  yum:
-   state: 'installed'
-   name: "{{package_name_multitail}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - multitail
-
-- name: package install multitail
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

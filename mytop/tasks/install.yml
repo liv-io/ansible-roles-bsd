@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install mytop
-  yum:
-   state: 'installed'
-   name: "{{package_name_mytop}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - mytop
-
-- name: package install mytop
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

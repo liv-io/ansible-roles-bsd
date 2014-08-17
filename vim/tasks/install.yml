@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install vim
-  yum:
-   state: 'installed'
-   name: "{{package_name_vim}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - vim
-
-- name: package install vim
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

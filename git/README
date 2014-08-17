@@ -65,8 +65,6 @@ PACKAGES
   git
     Version: >= 1.7
     Name   :
-      RedHat 6: 'git'
-      CentOS 6: 'git'
       Gentoo 2: 'dev-vcs/git'
 
 ROLES
@@ -108,20 +106,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

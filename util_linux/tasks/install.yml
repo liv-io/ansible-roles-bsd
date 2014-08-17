@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install util-linux
-  yum:
-   state: 'installed'
-   name: "{{package_name_util_linux}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - file
-
-- name: package install util-linux
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

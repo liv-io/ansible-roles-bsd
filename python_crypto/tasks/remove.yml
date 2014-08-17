@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove python-crypto
-  yum:
-   state: 'removed'
-   name: "{{package_name_python_crypto}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - python_crypto
-
-- name: package remove python-crypto
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

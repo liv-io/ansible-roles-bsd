@@ -87,8 +87,6 @@ PACKAGES
   atop
     Version: >= 1.27
     Name   :
-      RedHat 6: 'atop'
-      CentOS 6: 'atop'
       Gentoo 2: 'atop'
 
 ROLES
@@ -130,20 +128,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

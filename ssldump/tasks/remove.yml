@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove ssldump
-  yum:
-   state: 'removed'
-   name: "{{package_name_ssldump}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - ssldump
-
-- name: package remove ssldump
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

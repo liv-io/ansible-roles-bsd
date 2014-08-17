@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove patchutils
-  yum:
-   state: 'removed'
-   name: "{{package_name_patchutils}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - patchutils
-
-- name: package remove patchutils
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

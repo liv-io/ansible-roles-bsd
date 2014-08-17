@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove telnet
-  yum:
-   state: 'removed'
-   name: "{{package_name_telnet}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - telnet
-
-- name: package remove telnet
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove sshpass
-  yum:
-   state: 'removed'
-   name: "{{package_name_sshpass}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - sshpass
-
-- name: package remove sshpass
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install rsync
-  yum:
-   state: 'installed'
-   name: "{{package_name_rsync}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - rsync
-
-- name: package install rsync
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install sshpass
-  yum:
-   state: 'installed'
-   name: "{{package_name_sshpass}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - sshpass
-
-- name: package install sshpass
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

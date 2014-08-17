@@ -66,8 +66,6 @@ PACKAGES
   openssl
     Version: >= 1.0
     Name   :
-      RedHat 6: 'openssl'
-      CentOS 6: 'openssl'
       Gentoo 2: 'openssl'
 
 ROLES
@@ -109,20 +107,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

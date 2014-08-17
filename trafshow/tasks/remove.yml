@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove trafshow
-  yum:
-   state: 'removed'
-   name: "{{package_name_trafshow}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - trafshow
-
-- name: package remove trafshow
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

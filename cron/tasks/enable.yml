@@ -35,17 +35,6 @@
   service:
    state: 'started'
    enabled: 'yes'
-   name: "{{service_name_cron}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - system
-   - enable
-   - cron
-
-- name: service start cron
-  service:
-   state: 'started'
-   enabled: 'yes'
    runlevel: 'default'
    name: "{{service_name_cron}}"
   when: (ansible_os_family == 'Gentoo')

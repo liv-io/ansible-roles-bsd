@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install man-pages
-  yum:
-   state: 'installed'
-   name: "{{package_name_man_pages}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - man_pages
-
-- name: package install man-pages
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

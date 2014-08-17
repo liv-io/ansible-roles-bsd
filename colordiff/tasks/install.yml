@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install colordiff
-  yum:
-   state: 'installed'
-   name: "{{package_name_colordiff}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - colordiff
-
-- name: package install colordiff
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

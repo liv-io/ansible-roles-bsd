@@ -35,17 +35,6 @@
   service:
    state: 'started'
    enabled: 'yes'
-   name: "{{service_name_atop}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - system
-   - enable
-   - atop
-
-- name: service start atop
-  service:
-   state: 'started'
-   enabled: 'yes'
    runlevel: 'default'
    name: "{{service_name_atop}}"
    pattern: "{{service_pattern_atop}}"

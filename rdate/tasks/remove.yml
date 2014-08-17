@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove rdate
-  yum:
-   state: 'removed'
-   name: "{{package_name_rdate}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - rdate
-
-- name: package remove rdate
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

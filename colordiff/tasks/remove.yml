@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove colordiff
-  yum:
-   state: 'removed'
-   name: "{{package_name_colordiff}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - colordiff
-
-- name: package remove colordiff
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

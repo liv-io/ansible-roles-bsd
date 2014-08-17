@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove traceroute
-  yum:
-   state: 'removed'
-   name: "{{package_name_traceroute}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - traceroute
-
-- name: package remove traceroute
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

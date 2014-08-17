@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove powertop
-  yum:
-   state: 'removed'
-   name: "{{package_name_powertop}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - powertop
-
-- name: package remove powertop
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

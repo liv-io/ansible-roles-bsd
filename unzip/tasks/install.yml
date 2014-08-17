@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install unzip
-  yum:
-   state: 'installed'
-   name: "{{package_name_unzip}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - unzip
-
-- name: package install unzip
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install splint
-  yum:
-   state: 'installed'
-   name: "{{package_name_splint}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - splint
-
-- name: package install splint
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

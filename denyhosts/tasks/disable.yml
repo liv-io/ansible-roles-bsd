@@ -35,17 +35,6 @@
   service:
    state: 'stopped'
    enabled: 'no'
-   name: "{{service_name_denyhosts}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - system
-   - disable
-   - denyhosts
-
-- name: service stop denyhosts
-  service:
-   state: 'stopped'
-   enabled: 'no'
    runlevel: 'default'
    name: "{{service_name_denyhosts}}"
   when: (ansible_os_family == 'Gentoo')

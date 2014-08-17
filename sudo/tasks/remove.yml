@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove sudo
-  yum:
-   state: 'removed'
-   name: "{{package_name_sudo}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - sudo
-
-- name: package remove sudo
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

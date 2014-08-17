@@ -47,9 +47,7 @@ VARIABLES
 
 ROLE
   ethtool_state
-    Description: Control the state of the role. 'ethtool' is a core package on
-                 RedHat and CentOS based systems and can therefore not be
-                 removed.
+    Description: Control the state of the role.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -67,8 +65,6 @@ PACKAGES
   ethtool
     Version: >= 3.12
     Name   :
-      RedHat 6: 'ethtool'
-      CentOS 6: 'ethtool'
       Gentoo 2: 'ethtool'
 
 ROLES
@@ -110,20 +106,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

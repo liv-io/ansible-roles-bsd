@@ -27,7 +27,3 @@
 
 # portage
 portage_sync: 'web'
-
-# util-linux
-package_name_util_linux: 'util-linux'
-

@@ -48,12 +48,6 @@ openssh_deny_groups: []
 # openssh_deny_users
 openssh_deny_users: []
 
-# openssh_gssapi_authentication
-openssh_gssapi_authentication: 'no'
-
-# openssh_kerberos_authentication
-openssh_kerberos_authentication: 'no'
-
 # openssh_listen_address
 openssh_listen_address:
  - '0.0.0.0'

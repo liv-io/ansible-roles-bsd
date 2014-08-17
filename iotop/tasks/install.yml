@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install iotop
-  yum:
-   state: 'installed'
-   name: "{{package_name_iotop}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - iotop
-
-- name: package install iotop
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

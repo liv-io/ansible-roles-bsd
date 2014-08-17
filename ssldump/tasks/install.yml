@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install ssldump
-  yum:
-   state: 'installed'
-   name: "{{package_name_ssldump}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - ssldump
-
-- name: package install ssldump
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

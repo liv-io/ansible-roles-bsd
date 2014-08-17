@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove ack
-  yum:
-   state: 'removed'
-   name: "{{package_name_ack}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - ack
-
-- name: package remove ack
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

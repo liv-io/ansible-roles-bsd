@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install wget
-  yum:
-   state: 'installed'
-   name: "{{package_name_wget}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - wget
-
-- name: package install wget
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

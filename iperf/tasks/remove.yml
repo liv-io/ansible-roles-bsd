@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove iperf
-  yum:
-   state: 'removed'
-   name: "{{package_name_iperf}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - iperf
-
-- name: package remove iperf
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

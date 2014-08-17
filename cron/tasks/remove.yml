@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove cron
-  yum:
-   state: 'removed'
-   name: "{{package_name_cron}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - cron
-
-- name: package remove cron
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

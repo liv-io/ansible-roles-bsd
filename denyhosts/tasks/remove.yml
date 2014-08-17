@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove denyhosts
-  yum:
-   state: 'removed'
-   name: "{{package_name_denyhosts}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - denyhosts
-
-- name: package remove denyhosts
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

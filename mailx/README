@@ -73,8 +73,6 @@ PACKAGES
   mailx
     Version: >= 8.1
     Name   :
-      RedHat 6: 'mailx'
-      CentOS 6: 'mailx'
       Gentoo 2: 'mailx'
 
 ROLES
@@ -117,20 +115,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

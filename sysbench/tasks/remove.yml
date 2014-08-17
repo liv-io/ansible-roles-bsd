@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove sysbench
-  yum:
-   state: 'removed'
-   name: "{{package_name_sysbench}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - sysbench
-
-- name: package remove sysbench
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

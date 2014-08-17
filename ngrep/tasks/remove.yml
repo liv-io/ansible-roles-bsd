@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove ngrep
-  yum:
-   state: 'removed'
-   name: "{{package_name_ngrep}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - ngrep
-
-- name: package remove ngrep
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

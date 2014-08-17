@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install netsniff-ng
-  yum:
-   state: 'installed'
-   name: "{{package_name_netsniff_ng}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - netsniff_ng
-
-- name: package install netsniff-ng
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

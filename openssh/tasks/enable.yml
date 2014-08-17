@@ -78,17 +78,6 @@
   service:
    state: 'started'
    enabled: 'yes'
-   name: "{{service_name_openssh}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - system
-   - enable
-   - openssh
-
-- name: service start openssh
-  service:
-   state: 'started'
-   enabled: 'yes'
    runlevel: 'default'
    name: "{{service_name_openssh}}"
   when: (ansible_os_family == 'Gentoo')

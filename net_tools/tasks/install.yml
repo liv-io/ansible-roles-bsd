@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install net-tools
-  yum:
-   state: 'installed'
-   name: "{{package_name_net_tools}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - file
-
-- name: package install net-tools
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

@@ -105,20 +105,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Unsupported
-
-    Version: 7
-      Status: Unsupported
-
-  CentOS
-    Version: 6
-      Status: Unsupported
-
-    Version: 7
-      Status: Unsupported
-
   Gentoo:
     Version: 2
       Status: Testing

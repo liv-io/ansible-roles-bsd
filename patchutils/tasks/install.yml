@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install patchutils
-  yum:
-   state: 'installed'
-   name: "{{package_name_patchutils}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - patchutils
-
-- name: package install patchutils
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

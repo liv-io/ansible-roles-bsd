@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install git
-  yum:
-   state: 'installed'
-   name: "{{package_name_git}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - git
-
-- name: package install git
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

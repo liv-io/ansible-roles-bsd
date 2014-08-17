@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install tcpdump
-  yum:
-   state: 'installed'
-   name: "{{package_name_tcpdump}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - tcpdump
-
-- name: package install tcpdump
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

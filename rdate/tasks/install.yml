@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install rdate
-  yum:
-   state: 'installed'
-   name: "{{package_name_rdate}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - rdate
-
-- name: package install rdate
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

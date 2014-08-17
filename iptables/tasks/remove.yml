@@ -35,31 +35,9 @@
   service:
    state: 'stopped'
    enabled: 'no'
-   name: "{{service_name_iptables}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - system
-   - remove
-   - iptables
-
-- name: service stop iptables
-  service:
-   state: 'stopped'
-   enabled: 'no'
    runlevel: 'default'
    name: "{{service_name_iptables}}"
   when: (ansible_os_family == 'Gentoo')
-  tags:
-   - system
-   - remove
-   - iptables
-
-- name: service stop ip6tables
-  service:
-   state: 'stopped'
-   enabled: 'no'
-   name: "{{service_name_ip6tables}}"
-  when: (ansible_os_family == 'RedHat')
   tags:
    - system
    - remove

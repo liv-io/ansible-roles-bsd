@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install pydf
-  yum:
-   state: 'installed'
-   name: "{{package_name_pydf}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - pydf
-
-- name: package install pydf
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

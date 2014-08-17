@@ -34,7 +34,7 @@ package_name_postfix: 'postfix'
 
 # aliases
 file_src_aliases: "{{postfix_aliases_template if (postfix_aliases_template is defined) and not ((postfix_aliases_template == None) or (postfix_aliases_template == '')) else ansible_os_family}}/aliases.j2"
-file_path_aliases: '/etc/aliases'
+file_path_aliases: '/etc/mail/aliases'
 file_mode_aliases: '0644'
 file_owner_aliases: 'root'
 file_group_aliases: 'root'

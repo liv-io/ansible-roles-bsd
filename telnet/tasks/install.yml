@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install telnet
-  yum:
-   state: 'installed'
-   name: "{{package_name_telnet}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - telnet
-
-- name: package install telnet
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

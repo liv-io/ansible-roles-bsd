@@ -66,8 +66,6 @@ PACKAGES
   zip
     Version: >= 3.0
     Name   :
-      RedHat 6: 'zip'
-      CentOS 6: 'zip'
       Gentoo 2: 'zip'
 
 ROLES
@@ -109,20 +107,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

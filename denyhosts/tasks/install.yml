@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install denyhosts
-  yum:
-   state: 'installed'
-   name: "{{package_name_denyhosts}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - denyhosts
-
-- name: package install denyhosts
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

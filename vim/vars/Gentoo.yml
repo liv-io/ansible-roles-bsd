@@ -27,7 +27,3 @@
 
 # portage
 portage_sync: 'web'
-
-# vim
-package_name_vim: 'vim'
-

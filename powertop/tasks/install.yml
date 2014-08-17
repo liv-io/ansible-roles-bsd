@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install powertop
-  yum:
-   state: 'installed'
-   name: "{{package_name_powertop}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - powertop
-
-- name: package install powertop
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

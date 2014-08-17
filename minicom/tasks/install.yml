@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install minicom
-  yum:
-   state: 'installed'
-   name: "{{package_name_minicom}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - minicom
-
-- name: package install minicom
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

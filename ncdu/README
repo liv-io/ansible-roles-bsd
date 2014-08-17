@@ -64,8 +64,6 @@ PACKAGES
   ncdu
     Version: >= 1.7
     Name   :
-      RedHat 6: 'ncdu'
-      CentOS 6: 'ncdu'
       Gentoo 2: 'ncdu'
 
 ROLES
@@ -107,20 +105,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

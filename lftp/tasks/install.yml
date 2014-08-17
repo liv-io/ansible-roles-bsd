@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install lftp
-  yum:
-   state: 'installed'
-   name: "{{package_name_lftp}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - lftp
-
-- name: package install lftp
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

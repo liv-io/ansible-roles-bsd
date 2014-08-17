@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install nmap
-  yum:
-   state: 'installed'
-   name: "{{package_name_nmap}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - nmap
-
-- name: package install nmap
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

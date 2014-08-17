@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove ltrace
-  yum:
-   state: 'removed'
-   name: "{{package_name_ltrace}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - ltrace
-
-- name: package remove ltrace
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

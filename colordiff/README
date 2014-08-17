@@ -63,8 +63,6 @@ PACKAGES
   colordiff
     Version: >= 1.0
     Name   :
-      RedHat 6: 'colordiff'
-      CentOS 6: 'colordiff'
       Gentoo 2: 'colordiff'
 
 ROLES
@@ -106,20 +104,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

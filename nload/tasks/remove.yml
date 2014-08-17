@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove nload
-  yum:
-   state: 'removed'
-   name: "{{package_name_nload}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - nload
-
-- name: package remove nload
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

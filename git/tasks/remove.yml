@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove git
-  yum:
-   state: 'removed'
-   name: "{{package_name_git}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - git
-
-- name: package remove git
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

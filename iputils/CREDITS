@@ -5,7 +5,7 @@ CREDITS
     ____|____
    |         |  This file lists people that have contributed to the Ansible
    |  _   _  |  role. The content is sorted by name and formatted to allow
-   | [_] [_] |  easy iputilsping by scripts.
+   | [_] [_] |  easy grepping by scripts.
    |____~____|
     ___//__//   The fields are:
    /|     |/    N: name                        P: PGP key ID and fingerprint

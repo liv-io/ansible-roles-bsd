@@ -64,8 +64,6 @@ PACKAGES
   coreutils
     Version: >= 8.2
     Name   :
-      RedHat 6: 'coreutils'
-      CentOS 6: 'coreutils'
       Gentoo 2: 'coreutils'
 
 ROLES
@@ -107,20 +105,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

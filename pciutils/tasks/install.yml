@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install pciutils
-  yum:
-   state: 'installed'
-   name: "{{package_name_pciutils}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - pciutils
-
-- name: package install pciutils
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

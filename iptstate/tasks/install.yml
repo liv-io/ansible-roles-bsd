@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install iptstate
-  yum:
-   state: 'installed'
-   name: "{{package_name_iptstate}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - iptstate
-
-- name: package install iptstate
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

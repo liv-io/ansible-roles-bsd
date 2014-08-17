@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove screen
-  yum:
-   state: 'removed'
-   name: "{{package_name_screen}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - screen
-
-- name: package remove screen
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

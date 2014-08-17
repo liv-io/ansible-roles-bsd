@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove nmap
-  yum:
-   state: 'removed'
-   name: "{{package_name_nmap}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - nmap
-
-- name: package remove nmap
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

@@ -65,17 +65,6 @@
   service:
    state: 'started'
    enabled: 'yes'
-   name: "{{service_name_denyhosts}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - system
-   - enable
-   - denyhosts
-
-- name: service start denyhosts
-  service:
-   state: 'started'
-   enabled: 'yes'
    runlevel: 'default'
    name: "{{service_name_denyhosts}}"
   when: (ansible_os_family == 'Gentoo')

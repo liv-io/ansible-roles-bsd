@@ -65,8 +65,6 @@ PACKAGES
   pciutils
     Version: >= 3.1
     Name   :
-      RedHat 6: 'pciutils'
-      CentOS 6: 'pciutils'
       Gentoo 2: 'pciutils'
 
 ROLES
@@ -108,20 +106,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

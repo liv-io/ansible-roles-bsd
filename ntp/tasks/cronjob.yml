@@ -36,17 +36,6 @@
    state: 'stopped'
    enabled: 'no'
    name: "{{service_name_ntpd}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - system
-   - cronjob
-   - ntp
-
-- name: service stop ntpd
-  service:
-   state: 'stopped'
-   enabled: 'no'
-   name: "{{service_name_ntpd}}"
   when: (ansible_os_family == 'Gentoo')
   tags:
    - system
@@ -64,19 +53,6 @@
    mode: "{{file_mode_ntp_conf}}"
    owner: "{{file_owner_ntp_conf}}"
    group: "{{file_group_ntp_conf}}"
-  tags:
-   - files
-   - cronjob
-   - ntp
-
-- name: template create step-tickers
-  template:
-   src: "{{file_src_step_tickers}}"
-   dest: "{{file_path_step_tickers}}"
-   mode: "{{file_mode_step_tickers}}"
-   owner: "{{file_owner_step_tickers}}"
-   group: "{{file_group_step_tickers}}"
-  when: (ansible_os_family == 'RedHat')
   tags:
    - files
    - cronjob

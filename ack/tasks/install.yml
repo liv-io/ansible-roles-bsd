@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install ack
-  yum:
-   state: 'installed'
-   name: "{{package_name_ack}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - ack
-
-- name: package install ack
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

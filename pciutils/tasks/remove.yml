@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove pciutils
-  yum:
-   state: 'removed'
-   name: "{{package_name_pciutils}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - pciutils
-
-- name: package remove pciutils
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

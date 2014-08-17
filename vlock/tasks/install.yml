@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install vlock
-  yum:
-   state: 'installed'
-   name: "{{package_name_vlock}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - vlock
-
-- name: package install vlock
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

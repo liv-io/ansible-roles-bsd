@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove dstat
-  yum:
-   state: 'removed'
-   name: "{{package_name_dstat}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - dstat
-
-- name: package remove dstat
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

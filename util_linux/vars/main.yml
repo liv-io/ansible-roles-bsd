@@ -25,5 +25,5 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-# util-linux-ng
-package_name_util_linux: 'util-linux-ng'
+# util-linux
+package_name_util_linux: 'util-linux'

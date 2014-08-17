@@ -131,7 +131,6 @@ ROLE
     Value      : Arbitrary
     Type       : String
     Default    :
-      RedHat: 'all'
       Gentoo: 'ipv4'
     Options    :
       Any      : 'any' | 'ANY' | 'all' | 'ALL'
@@ -204,8 +203,6 @@ PACKAGES
   postfix
     Version: >= 2.6
     Name   :
-      RedHat 6: 'postfix'
-      CentOS 6: 'postfix'
       Gentoo 2: 'postfix'
 
 ROLES
@@ -247,20 +244,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Development
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Development
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Development

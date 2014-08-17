@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install dstat
-  yum:
-   state: 'installed'
-   name: "{{package_name_dstat}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - dstat
-
-- name: package install dstat
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

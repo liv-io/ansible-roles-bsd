@@ -66,8 +66,6 @@ PACKAGES
   dstat
     Version: >= 0.7
     Name   :
-      RedHat 6: 'dstat'
-      CentOS 6: 'dstat'
       Gentoo 2: 'dstat'
 
 ROLES
@@ -109,20 +107,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

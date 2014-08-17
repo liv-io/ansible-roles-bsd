@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove iptraf-ng
-  yum:
-   state: 'removed'
-   name: "{{package_name_iptraf_ng}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - iptraf_ng
-
-- name: package remove iptraf-ng
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

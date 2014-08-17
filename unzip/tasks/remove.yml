@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove unzip
-  yum:
-   state: 'removed'
-   name: "{{package_name_unzip}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - unzip
-
-- name: package remove unzip
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

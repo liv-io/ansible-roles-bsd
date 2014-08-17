@@ -62,12 +62,6 @@ DEPENDENCIES
 
 PACKAGES
   telnet
-    Version: >= 0.17
-    Name   :
-      RedHat 6: 'telnet'
-      CentOS 6: 'telnet'
-
-  telnet-bsd
     Version: >= 1.2
     Name   :
       Gentoo 2: 'telnet-bsd'
@@ -111,20 +105,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

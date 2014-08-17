@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove zip
-  yum:
-   state: 'removed'
-   name: "{{package_name_zip}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - zip
-
-- name: package remove zip
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

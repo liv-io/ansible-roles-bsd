@@ -65,8 +65,6 @@ PACKAGES
   sshpass
     Version: >= 1.05
     Name   :
-      RedHat 6: 'sshpass'
-      CentOS 6: 'sshpass'
       Gentoo 2: 'sshpass'
 
 ROLES
@@ -108,20 +106,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

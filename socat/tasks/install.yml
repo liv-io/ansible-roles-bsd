@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install socat
-  yum:
-   state: 'installed'
-   name: "{{package_name_socat}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - socat
-
-- name: package install socat
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

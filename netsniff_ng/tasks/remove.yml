@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove netsniff-ng
-  yum:
-   state: 'removed'
-   name: "{{package_name_netsniff_ng}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - netsniff_ng
-
-- name: package remove netsniff-ng
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

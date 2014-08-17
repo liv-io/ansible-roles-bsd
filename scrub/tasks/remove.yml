@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove scrub
-  yum:
-   state: 'removed'
-   name: "{{package_name_scrub}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - scrub
-
-- name: package remove scrub
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

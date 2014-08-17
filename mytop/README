@@ -64,8 +64,6 @@ PACKAGES
   mytop
     Version: >= 1.6
     Name   :
-      RedHat 6: 'mytop'
-      CentOS 6: 'mytop'
       Gentoo 2: 'mytop'
 
 ROLES
@@ -107,20 +105,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

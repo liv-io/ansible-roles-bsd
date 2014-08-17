@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install mtr
-  yum:
-   state: 'installed'
-   name: "{{package_name_mtr}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - mtr
-
-- name: package install mtr
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

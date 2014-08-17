@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove mytop
-  yum:
-   state: 'removed'
-   name: "{{package_name_mytop}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - mytop
-
-- name: package remove mytop
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

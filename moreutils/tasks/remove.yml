@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove moreutils
-  yum:
-   state: 'removed'
-   name: "{{package_name_moreutils}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - moreutils
-
-- name: package remove moreutils
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

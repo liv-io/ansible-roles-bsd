@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install mlocate
-  yum:
-   state: 'installed'
-   name: "{{package_name_mlocate}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - mlocate
-
-- name: package install mlocate
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

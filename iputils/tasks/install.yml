@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install iputils
-  yum:
-   state: 'installed'
-   name: "{{package_name_iputils}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - file
-
-- name: package install iputils
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

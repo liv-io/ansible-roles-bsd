@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install lshw
-  yum:
-   state: 'installed'
-   name: "{{package_name_lshw}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - lshw
-
-- name: package install lshw
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

@@ -69,8 +69,6 @@ PACKAGES
   rsync
     Version: >= 3.0.6
     Name   :
-      RedHat 6: 'rsync'
-      CentOS 6: 'rsync'
       Gentoo 2: 'rsync'
 
 ROLES
@@ -112,20 +110,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

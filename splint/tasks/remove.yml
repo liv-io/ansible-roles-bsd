@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove splint
-  yum:
-   state: 'removed'
-   name: "{{package_name_splint}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - splint
-
-- name: package remove splint
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

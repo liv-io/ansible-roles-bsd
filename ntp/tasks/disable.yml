@@ -48,17 +48,6 @@
   service:
    state: 'stopped'
    enabled: 'no'
-   name: "{{service_name_ntpd}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - system
-   - disable
-   - ntp
-
-- name: service stop ntpd
-  service:
-   state: 'stopped'
-   enabled: 'no'
    runlevel: 'default'
    name: "{{service_name_ntpd}}"
   when: (ansible_os_family == 'Gentoo')

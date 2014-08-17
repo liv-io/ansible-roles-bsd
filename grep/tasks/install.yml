@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install grep
-  yum:
-   state: 'installed'
-   name: "{{package_name_grep}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - file
-
-- name: package install grep
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

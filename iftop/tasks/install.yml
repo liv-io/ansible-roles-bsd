@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install iftop
-  yum:
-   state: 'installed'
-   name: "{{package_name_iftop}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - iftop
-
-- name: package install iftop
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

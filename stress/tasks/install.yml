@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install stress
-  yum:
-   state: 'installed'
-   name: "{{package_name_stress}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - stress
-
-- name: package install stress
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

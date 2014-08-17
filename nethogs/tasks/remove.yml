@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove nethogs
-  yum:
-   state: 'removed'
-   name: "{{package_name_nethogs}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - nethogs
-
-- name: package remove nethogs
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install diffstat
-  yum:
-   state: 'installed'
-   name: "{{package_name_diffstat}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - diffstat
-
-- name: package install diffstat
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

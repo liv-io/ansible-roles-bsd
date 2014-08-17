@@ -93,9 +93,7 @@ VARIABLES
 
 ROLE
   iptables_state
-    Description: Control the state of the role. 'iptables' is a core package on
-                 RedHat and CentOS based systems and can therefore not be
-                 removed.
+    Description: Control the state of the role.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -711,8 +709,6 @@ PACKAGES
   iptables
     Version: >= 1.4
     Name   :
-      RedHat 6: 'iptables'
-      CentOS 6: 'iptables'
       Gentoo 2: 'iptables'
 
 ROLES
@@ -754,20 +750,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install sudo
-  yum:
-   state: 'installed'
-   name: "{{package_name_sudo}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - sudo
-
-- name: package install sudo
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

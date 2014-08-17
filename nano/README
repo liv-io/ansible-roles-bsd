@@ -63,8 +63,6 @@ PACKAGES
   nano
     Version: >= 2.0
     Name   :
-      RedHat 6: 'nano'
-      CentOS 6: 'nano'
       Gentoo 2: 'nano'
 
 ROLES
@@ -106,20 +104,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

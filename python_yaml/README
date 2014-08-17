@@ -71,8 +71,6 @@ PACKAGES
   python-yaml
     Version: >= 3.10
     Name   :
-      RedHat 6: 'PyYAML'
-      CentOS 6: 'PyYAML'
       Gentoo 2: 'pyyaml'
 
 ROLES
@@ -114,20 +112,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

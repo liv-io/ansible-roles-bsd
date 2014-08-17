@@ -43,7 +43,6 @@ ENABLE
        ntp_state: 'enable'
        ntp_option: ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
        ntp_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
-       ntp_step_ticker: ['ntp01.domain.tld', 'ntp02.domain.tld']
 
 DISABLE
   - hosts: all
@@ -52,7 +51,6 @@ DISABLE
        ntp_state: 'disable'
        ntp_option: ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
        ntp_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
-       ntp_step_ticker: ['ntp01.domain.tld', 'ntp02.domain.tld']
 
 CRONJOB
   - hosts: all
@@ -234,32 +232,6 @@ ROLE
                 ['ntp01.domain.tld', 'ntp02.domain.tld', 'ntp03.domain.tld']
       None    : []
 
-  ntp_step_ticker
-    Description: Define the 'ntp_step_ticker' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array
-    Default    : ["ntp.{{ansible_domain}}"]
-    Options    :
-      Examples: ['ntp.domain.tld'] | ['ntp01.domain.tld', 'ntp02.domain.tld'] |
-                ['ntp01.domain.tld', 'ntp02.domain.tld', 'ntp03.domain.tld']
-      None    : []
-
-  ntp_step_tickers_template
-    Description: Define the template source for 'step-tickers.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
-                 'ntp/templates/example/step-tickers.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'main'
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
 --------------------------------------------------------------------------------
 DEPENDENCIES
 --------------------------------------------------------------------------------
@@ -268,16 +240,12 @@ PACKAGES
   ntp
     Version: >= 4.2
     Name   :
-      RedHat 6: 'ntp'
-      CentOS 6: 'ntp'
       Gentoo 2: 'ntp'
 
 ROLES
   common
 
   mailx
-
-  ntpdate
 
 VARIABLES
 
@@ -316,20 +284,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

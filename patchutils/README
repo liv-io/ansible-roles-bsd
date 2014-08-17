@@ -66,8 +66,6 @@ PACKAGES
   patchutils
     Version: >= 0.3
     Name   :
-      RedHat 6: 'patchutils'
-      CentOS 6: 'patchutils'
       Gentoo 2: 'patchutils'
 
 ROLES
@@ -109,20 +107,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

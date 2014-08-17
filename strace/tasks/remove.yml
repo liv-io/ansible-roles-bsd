@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove strace
-  yum:
-   state: 'removed'
-   name: "{{package_name_strace}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - strace
-
-- name: package remove strace
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

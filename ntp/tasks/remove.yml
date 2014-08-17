@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove ntp
-  yum:
-   state: 'removed'
-   name: "{{package_name_ntp}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - ntp
-
-- name: package remove ntp
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"
@@ -87,16 +77,6 @@
   file:
    state: 'absent'
    path: "{{file_path_ntp_conf}}"
-  tags:
-   - files
-   - remove
-   - ntp
-
-- name: file remove step-tickers
-  file:
-   state: 'absent'
-   path: "{{file_path_step_tickers}}"
-  when: (ansible_os_family == 'RedHat')
   tags:
    - files
    - remove

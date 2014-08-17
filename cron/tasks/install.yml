@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install cron
-  yum:
-   state: 'installed'
-   name: "{{package_name_cron}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - cron
-
-- name: package install cron
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove vlock
-  yum:
-   state: 'removed'
-   name: "{{package_name_vlock}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - vlock
-
-- name: package remove vlock
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

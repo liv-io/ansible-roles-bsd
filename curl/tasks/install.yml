@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install curl
-  yum:
-   state: 'installed'
-   name: "{{package_name_curl}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - curl
-
-- name: package install curl
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

@@ -78,8 +78,6 @@ PACKAGES
   moreutils
     Version: >= 0.40
     Name   :
-      RedHat 6: 'moreutils'
-      CentOS 6: 'moreutils'
       Gentoo 2: 'moreutils'
 
 ROLES
@@ -121,20 +119,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

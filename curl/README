@@ -67,8 +67,6 @@ PACKAGES
   curl
     Version: >= 7.19
     Name   :
-      RedHat 6: 'curl'
-      CentOS 6: 'curl'
       Gentoo 2: 'curl'
 
 ROLES
@@ -110,20 +108,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

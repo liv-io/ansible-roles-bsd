@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove ifstatus
-  yum:
-   state: 'removed'
-   name: "{{package_name_ifstatus}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - ifstatus
-
-- name: package remove ifstatus
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

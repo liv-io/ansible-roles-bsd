@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove ncdu
-  yum:
-   state: 'removed'
-   name: "{{package_name_ncdu}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - ncdu
-
-- name: package remove ncdu
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

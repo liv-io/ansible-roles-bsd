@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove pwgen
-  yum:
-   state: 'removed'
-   name: "{{package_name_pwgen}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - pwgen
-
-- name: package remove pwgen
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

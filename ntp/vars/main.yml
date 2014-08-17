@@ -22,7 +22,7 @@
 #-------------------------------------------------------------------------------
 
 # ntp_driftfile
-ntp_driftfile: '/var/lib/ntp/drift'
+ntp_driftfile: '/var/lib/ntp/ntp.drift'
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -61,13 +61,6 @@ file_path_ntp_update_time_cron: '/etc/cron.d/ntp_update-time'
 file_mode_ntp_update_time_cron: '0640'
 file_owner_ntp_update_time_cron: 'root'
 file_group_ntp_update_time_cron: 'root'
-
-# step-tickers
-file_src_step_tickers: "{{ntp_step_tickers_template if (ntp_step_tickers_template is defined) and not ((ntp_step_tickers_template == None) or (ntp_step_tickers_template == '')) else 'main'}}/step-tickers.j2"
-file_path_step_tickers: '/etc/ntp/step-tickers'
-file_mode_step_tickers: '0644'
-file_owner_step_tickers: 'root'
-file_group_step_tickers: 'root'
 
 #-------------------------------------------------------------------------------
 # SYSTEM

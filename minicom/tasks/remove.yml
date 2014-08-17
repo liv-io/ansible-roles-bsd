@@ -30,17 +30,7 @@
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
-
-- name: package remove minicom
-  yum:
-   state: 'removed'
-   name: "{{package_name_minicom}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - minicom
-
+#
 - name: package remove minicom
   portage:
    state: 'removed'

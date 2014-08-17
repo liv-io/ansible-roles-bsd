@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install ngrep
-  yum:
-   state: 'installed'
-   name: "{{package_name_ngrep}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - ngrep
-
-- name: package install ngrep
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

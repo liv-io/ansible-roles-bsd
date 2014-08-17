@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install tcpreplay
-  yum:
-   state: 'installed'
-   name: "{{package_name_tcpreplay}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - tcpreplay
-
-- name: package install tcpreplay
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

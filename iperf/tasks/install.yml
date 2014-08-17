@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install iperf
-  yum:
-   state: 'installed'
-   name: "{{package_name_iperf}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - iperf
-
-- name: package install iperf
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

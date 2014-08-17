@@ -65,8 +65,6 @@ PACKAGES
   tmux
     Version: >= 1.8
     Name   :
-      RedHat 6: 'tmux'
-      CentOS 6: 'tmux'
       Gentoo 2: 'tmux'
 
 ROLES
@@ -108,20 +106,6 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  RedHat
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
-  CentOS
-    Version: 6
-      Status: Testing
-
-    Version: 7
-      Status: Planned
-
   Gentoo:
     Version: 2
       Status: Testing

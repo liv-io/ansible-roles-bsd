@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove siege
-  yum:
-   state: 'removed'
-   name: "{{package_name_siege}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - siege
-
-- name: package remove siege
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

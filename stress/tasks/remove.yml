@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove stress
-  yum:
-   state: 'removed'
-   name: "{{package_name_stress}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - stress
-
-- name: package remove stress
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install python-crypto
-  yum:
-   state: 'installed'
-   name: "{{package_name_python_crypto}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - python_crypto
-
-- name: package install python-crypto
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

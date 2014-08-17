@@ -14,6 +14,9 @@ changes
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2014-08-14)
+F: Remove support for OS family 'RedHat'
+
 * Version 0.1.3 (2014-08-14)
 I: Improve conditional statements
 

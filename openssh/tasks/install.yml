@@ -32,26 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install openssh
-  yum:
-   state: 'installed'
-   name: "{{package_name_openssh}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - openssh
-
-- name: package install openssh-server
-  yum:
-   state: 'installed'
-   name: "{{package_name_openssh_server}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - openssh
-
-- name: package install openssh
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

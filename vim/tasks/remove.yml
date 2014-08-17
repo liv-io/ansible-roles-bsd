@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove vim
-  yum:
-   state: 'removed'
-   name: "{{package_name_vim}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - vim
-
-- name: package remove vim
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

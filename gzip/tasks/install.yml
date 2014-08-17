@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install gzip
-  yum:
-   state: 'installed'
-   name: "{{package_name_gzip}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - file
-
-- name: package install gzip
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove tmux
-  yum:
-   state: 'removed'
-   name: "{{package_name_tmux}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - remove
-   - tmux
-
-- name: package remove tmux
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"

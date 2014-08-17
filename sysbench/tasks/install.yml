@@ -32,16 +32,6 @@
 #-------------------------------------------------------------------------------
 
 - name: package install sysbench
-  yum:
-   state: 'installed'
-   name: "{{package_name_sysbench}}"
-  when: (ansible_os_family == 'RedHat')
-  tags:
-   - packaging
-   - install
-   - sysbench
-
-- name: package install sysbench
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

@@ -5,7 +5,7 @@ CHANGES
     ____|____
    |         |  This file lists changes made to the Ansible role.
    |  _   _  |  The content is sorted in reverse chronological order and
-   | [_] [_] |  formatted to allow easy procpsping by scripts.
+   | [_] [_] |  formatted to allow easy grepping by scripts.
    |____~____|
     ___//__//   The fields are:
    /|     |/    B: bug
@@ -13,6 +13,9 @@ CHANGES
     _|| ||_     I: improvement
    (__| |__)
 --------------------------------------------------------------------------------
+
+* Version 0.2.0 (2014-08-14)
+F: Remove support for OS family 'RedHat'
 
 * Version 0.1.0 (2014-05-04)
 F: Initial release

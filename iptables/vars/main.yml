@@ -34,31 +34,17 @@ package_name_iptables: 'iptables'
 
 # iptables
 file_src_iptables: "{{iptables_iptables_template if (iptables_iptables_template is defined) and not ((iptables_iptables_template == None) or (iptables_iptables_template == '')) else 'main'}}/iptables.j2"
-file_path_iptables: '/etc/sysconfig/iptables'
+file_path_iptables: '/var/lib/iptables/rules-save'
 file_mode_iptables: '0600'
 file_owner_iptables: 'root'
 file_group_iptables: 'root'
 
-# iptables-config
-file_src_iptables_config: "{{iptables_iptables_config_template if (iptables_iptables_config_template is defined) and not ((iptables_iptables_config_template == None) or (iptables_iptables_config_template == '')) else 'main'}}/iptables-config.j2"
-file_path_iptables_config: '/etc/sysconfig/iptables-config'
-file_mode_iptables_config: '0600'
-file_owner_iptables_config: 'root'
-file_group_iptables_config: 'root'
-
 # ip6tables
 file_src_ip6tables: "{{iptables_ip6tables_template if (iptables_ip6tables_template is defined) and not ((iptables_ip6tables_template == None) or (iptables_ip6tables_template == '')) else 'main'}}/ip6tables.j2"
-file_path_ip6tables: '/etc/sysconfig/ip6tables'
+file_path_ip6tables: '/var/lib/ip6tables/rules-save'
 file_mode_ip6tables: '0600'
 file_owner_ip6tables: 'root'
 file_group_ip6tables: 'root'
-
-# ip6tables-config
-file_src_ip6tables_config: "{{iptables_ip6tables_config_template if (iptables_ip6tables_config_template is defined) and not ((iptables_ip6tables_config_template == None) or (iptables_ip6tables_config_template == '')) else 'main'}}/ip6tables-config.j2"
-file_path_ip6tables_config: '/etc/sysconfig/ip6tables-config'
-file_mode_ip6tables_config: '0600'
-file_owner_ip6tables_config: 'root'
-file_group_ip6tables_config: 'root'
 
 #-------------------------------------------------------------------------------
 # SYSTEM
