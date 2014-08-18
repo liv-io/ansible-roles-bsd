@@ -1,0 +1,114 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : macchanger
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : net-analyzer
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: GNU General Public License version 2 (GPLv2)
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages macchanger.
+
+Macchanger is a GNU/Linux utility for viewing/manipulating the MAC address for
+network interfaces.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: macchanger
+       macchanger_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: macchanger
+       macchanger_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  macchanger_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Remove : 'false' | 'no' | 'remove'
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  macchanger
+    Version: >= 1.6
+    Name   :
+      Gentoo 2: 'macchanger'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  Gentoo:
+    Version: 2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
