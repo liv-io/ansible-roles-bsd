@@ -14,6 +14,10 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.2.1 (2014-08-20)
+B: Add missing loopback connection
+B: Remove obsolete file only required for OS family 'RedHat'
+
 * Version 0.2.0 (2014-08-14)
 F: Remove support for OS family 'RedHat'
 

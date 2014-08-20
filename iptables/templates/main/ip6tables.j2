@@ -70,7 +70,6 @@
 
 # Established and related connections
 -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT -m comment --comment "established and related connections"
--A FORWARD -i lo -j ACCEPT -m comment --comment "loopback connections"
 
 # ICMP rules
 {% if (iptables_filter_forward_v6_icmp is defined) and not ((iptables_filter_forward_v6_icmp == None) or (iptables_filter_forward_v6_icmp == '') or (iptables_filter_forward_v6_icmp == [])) %}
