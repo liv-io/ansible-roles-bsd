@@ -47,6 +47,8 @@ VARIABLES
 ROLE
   gentoolkit_state
     Description: Control the state of the role.
+                 'gentoolkit' is a core package and should therefore not be
+                 removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -105,9 +107,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Unsupported
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Unsupported
 
 --------------------------------------------------------------------------------
 OTHER

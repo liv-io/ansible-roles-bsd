@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : cron
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((cron_state == 'false') or (cron_state == 'no') or (cron_state == 'remove'))
+
+- name: task include enable
+  include: enable.yml
+  when: (cron_state == 'start') or (cron_state == 'on') or (cron_state == 'enable')
+
+- name: task include disable
+  include: disable.yml
+  when: (cron_state == 'stop') or (cron_state == 'off') or (cron_state == 'disable')
+
+- name: task include remove
+  include: remove.yml
+  when: (cron_state == 'false') or (cron_state == 'no') or (cron_state == 'remove')

@@ -33,28 +33,28 @@ package_name_portage: 'portage'
 #-------------------------------------------------------------------------------
 
 # make.conf
-file_src_make_conf: "{{portage_make_conf_template if (portage_make_conf_template is defined) and not ((portage_make_conf_template == None) or (portage_make_conf_template == '')) else ansible_os_family}}/make.conf.j2"
+file_src_make_conf: "../../templates/{{portage_make_conf_template if (portage_make_conf_template is defined) and not ((portage_make_conf_template == None) or (portage_make_conf_template == '')) else ansible_os_family}}/make.conf.j2"
 file_path_make_conf: '/etc/portage/make.conf'
 file_mode_make_conf: '0644'
 file_owner_make_conf: 'root'
 file_group_make_conf: 'root'
 
 # package.accept_keywords
-file_src_package_accept_keywords: "{{portage_package_accept_keywords_template if (portage_package_accept_keywords_template is defined) and not ((portage_package_accept_keywords_template == None) or (portage_package_accept_keywords_template == '')) else ansible_os_family}}/package.accept_keywords.j2"
+file_src_package_accept_keywords: "../../templates/{{portage_package_accept_keywords_template if (portage_package_accept_keywords_template is defined) and not ((portage_package_accept_keywords_template == None) or (portage_package_accept_keywords_template == '')) else ansible_os_family}}/package.accept_keywords.j2"
 file_path_package_accept_keywords: '/etc/portage/package.accept_keywords'
 file_mode_package_accept_keywords: '0644'
 file_owner_package_accept_keywords: 'root'
 file_group_package_accept_keywords: 'root'
 
 # package.license
-file_src_package_license: "{{portage_package_license_template if (portage_package_license_template is defined) and not ((portage_package_license_template == None) or (portage_package_license_template == '')) else ansible_os_family}}/package.license.j2"
+file_src_package_license: "../../templates/{{portage_package_license_template if (portage_package_license_template is defined) and not ((portage_package_license_template == None) or (portage_package_license_template == '')) else ansible_os_family}}/package.license.j2"
 file_path_package_license: '/etc/portage/package.license'
 file_mode_package_license: '0644'
 file_owner_package_license: 'root'
 file_group_package_license: 'root'
 
 # package.use
-file_src_package_use: "{{portage_package_use_template if (portage_package_use_template is defined) and not ((portage_package_use_template == None) or (portage_package_use_template == '')) else ansible_os_family}}/package.use.j2"
+file_src_package_use: "../../templates/{{portage_package_use_template if (portage_package_use_template is defined) and not ((portage_package_use_template == None) or (portage_package_use_template == '')) else ansible_os_family}}/package.use.j2"
 file_path_package_use: '/etc/portage/package.use'
 file_mode_package_use: '0644'
 file_owner_package_use: 'root'

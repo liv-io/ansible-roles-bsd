@@ -21,14 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'disable'))
-
-- name: task include config-custom
-  include: config/custom.yml
-  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'disable'))
-
-- name: task include config-default
-  include: config/default.yml
-  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'disable'))
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'Gentoo')

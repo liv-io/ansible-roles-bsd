@@ -117,9 +117,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Unsupported
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Unsupported
 
 --------------------------------------------------------------------------------
 OTHER

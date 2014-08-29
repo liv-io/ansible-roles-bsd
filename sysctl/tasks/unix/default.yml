@@ -1,0 +1,74 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : default.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : sysctl
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create <sysctl-default.conf>
+  template:
+   src: "{{file_src_sysctl_config}}"
+   dest: "{{file_path_sysctl_d}}/{{item.order if (item.order is defined) and not (item.order == None) else ''}}{{'_' if (item.order is defined) and not (item.order == None) else ''}}{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else sysctl_name_default}}.conf"
+   mode: "{{file_mode_sysctl_config}}"
+   owner: "{{file_owner_sysctl_config}}"
+   group: "{{file_group_sysctl_config}}"
+  with_items: sysctl_default
+  register: register_create_sysctl_default
+  when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  tags:
+   - files
+   - default
+   - unix
+   - sysctl
+
+- name: file remove <sysctl-default.conf>
+  file:
+   state: 'absent'
+   path: "{{file_path_sysctl_d}}/{{item.order if (item.order is defined) and not (item.order == None) else ''}}{{'_' if (item.order is defined) and not (item.order == None) else ''}}{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else sysctl_name_default}}.conf"
+  with_items: sysctl_default
+  register: register_remove_sysctl_default
+  when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  tags:
+   - files
+   - default
+   - unix
+   - sysctl
+
+#-------------------------------------------------------------------------------
+# HANDLERS
+#-------------------------------------------------------------------------------
+
+- name: raw execute sysctl
+  raw: "{{raw_cmd_sysctl}}"
+  when: (register_create_sysctl_default|changed) or (register_remove_sysctl_default|changed)
+  tags:
+   - handlers
+   - default
+   - unix
+   - sysctl

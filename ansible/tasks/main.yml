@@ -21,14 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((ansible_state == 'false') or (ansible_state == 'no') or (ansible_state == 'remove'))
-
-- name: task include server
-  include: server/main.yml
-  when: ((ansible_mode == 'server') or (ansible_mode == 'push'))
-
-- name: task include remove
-  include: remove.yml
-  when: (ansible_state == 'false') or (ansible_state == 'no') or (ansible_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'Gentoo')

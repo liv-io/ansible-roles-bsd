@@ -131,7 +131,7 @@ ROLE
     Value      : Arbitrary
     Type       : String
     Default    :
-      Gentoo: 'ipv4'
+      Gentoo 'ipv4'
     Options    :
       Any      : 'any' | 'ANY' | 'all' | 'ALL'
       IPv4 only: 'inet' | 'ipv4'
@@ -244,9 +244,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Planned
+
+  Gentoo
     Version: 2
-      Status: Development
+      Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

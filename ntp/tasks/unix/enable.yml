@@ -1,0 +1,83 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : enable.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : ntp
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create ntp.conf
+  template:
+   src: "{{file_src_ntp_conf}}"
+   dest: "{{file_path_ntp_conf}}"
+   mode: "{{file_mode_ntp_conf}}"
+   owner: "{{file_owner_ntp_conf}}"
+   group: "{{file_group_ntp_conf}}"
+  notify: service restart ntpd
+  tags:
+   - files
+   - enable
+   - unix
+   - ntp
+
+- name: file remove ntp_update-time.bash
+  file:
+   state: 'absent'
+   path: "{{file_path_ntp_update_time_bash}}"
+  tags:
+   - files
+   - enable
+   - unix
+   - ntp
+
+- name: file remove ntp_update-time.cron
+  file:
+   state: 'absent'
+   path: "{{file_path_ntp_update_time_cron}}"
+  tags:
+   - files
+   - enable
+   - unix
+   - ntp
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: service start ntpd
+  service:
+   state: 'started'
+   enabled: 'yes'
+   runlevel: 'default'
+   name: "{{service_name_ntpd}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - system
+   - enable
+   - unix
+   - ntp

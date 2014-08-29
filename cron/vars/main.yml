@@ -32,5 +32,5 @@ package_name_cron: 'cronie'
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-# crond
+# cronie
 service_name_cron: 'cronie'

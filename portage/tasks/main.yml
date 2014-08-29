@@ -21,6 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((portage_state == 'false') or (portage_state == 'no') or (portage_state == 'disable'))
+- name: task include gentoo
+  include: gentoo/main.yml
+  when: (ansible_os_family == 'Gentoo')

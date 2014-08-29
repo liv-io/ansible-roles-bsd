@@ -21,6 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((tar_state == 'false') or (tar_state == 'no') or (tar_state == 'remove'))
+- name: task include linux
+  include: linux/main.yml
+  when: (ansible_os_family == 'Gentoo')

@@ -1,0 +1,88 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : remove.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : ntp
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package remove ntp
+  portage:
+   state: 'removed'
+   sync: "{{portage_sync}}"
+   name: "{{package_name_ntp}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - ntp
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: file remove ntp_update-time.bash
+  file:
+   state: 'absent'
+   path: "{{file_path_ntp_update_time_bash}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - ntp
+
+- name: file remove ntp_update-time.cron
+  file:
+   state: 'absent'
+   path: "{{file_path_ntp_update_time_cron}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - ntp
+
+- name: file remove ntp-script.dir
+  file:
+   state: 'absent'
+   path: "{{file_path_ntp_script_dir}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - ntp
+
+- name: file remove ntp.conf
+  file:
+   state: 'absent'
+   path: "{{file_path_ntp_conf}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - ntp

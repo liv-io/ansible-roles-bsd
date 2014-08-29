@@ -1,0 +1,88 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : disable.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : iptables
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create iptables
+  template:
+   src: "{{file_src_iptables}}"
+   dest: "{{file_path_iptables}}"
+   mode: "{{file_mode_iptables}}"
+   owner: "{{file_owner_iptables}}"
+   group: "{{file_group_iptables}}"
+  tags:
+   - files
+   - disable
+   - linux
+   - iptables
+
+- name: template create ip6tables
+  template:
+   src: "{{file_src_ip6tables}}"
+   dest: "{{file_path_ip6tables}}"
+   mode: "{{file_mode_ip6tables}}"
+   owner: "{{file_owner_ip6tables}}"
+   group: "{{file_group_ip6tables}}"
+  tags:
+   - files
+   - disable
+   - linux
+   - iptables
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: service stop iptables
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   runlevel: 'default'
+   name: "{{service_name_iptables}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - system
+   - disable
+   - linux
+   - iptables
+
+- name: service stop ip6tables
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   runlevel: 'default'
+   name: "{{service_name_ip6tables}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - system
+   - disable
+   - linux
+   - iptables

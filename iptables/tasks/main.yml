@@ -21,18 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((iptables_state == 'false') or (iptables_state == 'no') or (iptables_state == 'remove'))
-
-- name: task include enable
-  include: enable.yml
-  when: (iptables_state == 'start') or (iptables_state == 'on') or (iptables_state == 'enable')
-
-- name: task include disable
-  include: disable.yml
-  when: (iptables_state == 'stop') or (iptables_state == 'off') or (iptables_state == 'disable')
-
-- name: task include remove
-  include: remove.yml
-  when: (iptables_state == 'false') or (iptables_state == 'no') or (iptables_state == 'remove')
+- name: task include linux
+  include: linux/main.yml
+  when: (ansible_os_family == 'Gentoo')

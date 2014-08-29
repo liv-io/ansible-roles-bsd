@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((netsniff_ng_state == 'false') or (netsniff_ng_state == 'no') or (netsniff_ng_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (netsniff_ng_state == 'false') or (netsniff_ng_state == 'no') or (netsniff_ng_state == 'remove')
+- name: task include linux
+  include: linux/main.yml
+  when: (ansible_os_family == 'Gentoo')

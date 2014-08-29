@@ -21,6 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((util_linux_state == 'false') or (util_linux_state == 'no') or (util_linux_state == 'remove'))
+- name: task include linux
+  include: linux/main.yml
+  when: (ansible_os_family == 'Gentoo')

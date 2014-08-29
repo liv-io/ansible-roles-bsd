@@ -62,14 +62,14 @@ file_owner_ansible_script_dir: 'ansible'
 file_group_ansible_script_dir: 'ansible'
 
 # ansible_run-playbook.bash
-file_src_ansible_run_playbook_bash: "../../templates/{{ansible_ansible_run_playbook_bash_template if (ansible_ansible_run_playbook_bash_template is defined) and not ((ansible_ansible_run_playbook_bash_template == None) or (ansible_ansible_run_playbook_bash_template == '')) else 'main'}}/ansible_run-playbook.bash.j2"
+file_src_ansible_run_playbook_bash: "../../../templates/{{ansible_ansible_run_playbook_bash_template if (ansible_ansible_run_playbook_bash_template is defined) and not ((ansible_ansible_run_playbook_bash_template == None) or (ansible_ansible_run_playbook_bash_template == '')) else 'main'}}/ansible_run-playbook.bash.j2"
 file_path_ansible_run_playbook_bash: "{{file_path_ansible_script_dir}}/ansible_run-playbook.bash"
 file_mode_ansible_run_playbook_bash: '0750'
 file_owner_ansible_run_playbook_bash: 'ansible'
 file_group_ansible_run_playbook_bash: 'ansible'
 
 # ansible_run-playbook.cron
-file_src_ansible_run_playbook_cron: "../../templates/{{ansible_ansible_run_playbook_cron_template if (ansible_ansible_run_playbook_cron_template is defined) and not ((ansible_ansible_run_playbook_cron_template == None) or (ansible_ansible_run_playbook_cron_template == '')) else 'main'}}/ansible_run-playbook.cron.j2"
+file_src_ansible_run_playbook_cron: "../../../templates/{{ansible_ansible_run_playbook_cron_template if (ansible_ansible_run_playbook_cron_template is defined) and not ((ansible_ansible_run_playbook_cron_template == None) or (ansible_ansible_run_playbook_cron_template == '')) else 'main'}}/ansible_run-playbook.cron.j2"
 file_path_ansible_run_playbook_cron: '/etc/cron.d/ansible_run-playbook'
 file_mode_ansible_run_playbook_cron: '0644'
 file_owner_ansible_run_playbook_cron: 'root'
@@ -97,7 +97,7 @@ user_home_remove_ansible: 'yes'
 user_home_force_ansible: 'yes'
 user_password_ansible: "{{ansible_password if (ansible_password is defined) and not ((ansible_password == None) or (ansible_password == '')) else '!'}}"
 user_password_update_ansible: 'always'
-user_shell_ansible: '/bin/bash'
+user_shell_ansible: '/bin/sh'
 user_system_ansible: 'no'
 
 # ansible

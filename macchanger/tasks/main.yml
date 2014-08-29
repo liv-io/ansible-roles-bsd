@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((macchanger_state == 'false') or (macchanger_state == 'no') or (macchanger_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (macchanger_state == 'false') or (macchanger_state == 'no') or (macchanger_state == 'remove')
+- name: task include linux
+  include: linux/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

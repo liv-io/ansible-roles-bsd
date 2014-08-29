@@ -21,18 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((cron_state == 'false') or (cron_state == 'no') or (cron_state == 'remove'))
-
-- name: task include enable
-  include: enable.yml
-  when: (cron_state == 'start') or (cron_state == 'on') or (cron_state == 'enable')
-
-- name: task include disable
-  include: disable.yml
-  when: (cron_state == 'stop') or (cron_state == 'off') or (cron_state == 'disable')
-
-- name: task include remove
-  include: remove.yml
-  when: (cron_state == 'false') or (cron_state == 'no') or (cron_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'Gentoo')

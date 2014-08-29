@@ -74,6 +74,7 @@ VARIABLES
 ROLE
   ansible_state
     Description: Control the state of the role.
+                 'ansible' is a core role and should therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -432,9 +433,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Planned
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

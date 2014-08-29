@@ -14,5 +14,8 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2014-08-27)
+I: Ensure Ansible role is OS agnostic
+
 * Version 0.1.0 (2014-08-18)
 F: Initial release

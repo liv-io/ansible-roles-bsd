@@ -1,0 +1,34 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : ansible
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((ansible_state == 'false') or (ansible_state == 'no') or (ansible_state == 'remove'))
+
+- name: task include server
+  include: server/main.yml
+  when: ((ansible_mode == 'server') or (ansible_mode == 'push'))
+
+- name: task include remove
+  include: remove.yml
+  when: (ansible_state == 'false') or (ansible_state == 'no') or (ansible_state == 'remove')

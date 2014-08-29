@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((gentoolkit_state == 'false') or (gentoolkit_state == 'no') or (gentoolkit_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (gentoolkit_state == 'false') or (gentoolkit_state == 'no') or (gentoolkit_state == 'remove')
+- name: task include gentoo
+  include: gentoo/main.yml
+  when: (ansible_os_family == 'Gentoo')

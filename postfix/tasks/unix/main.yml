@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : postfix
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((postfix_state == 'false') or (postfix_state == 'no') or (postfix_state == 'remove') or (postfix_state == 'quiesce') or (postfix_state == 'inactive'))
+
+- name: task include enable
+  include: enable.yml
+  when: (postfix_state == 'start') or (postfix_state == 'on') or (postfix_state == 'enable')
+
+- name: task include disable
+  include: disable.yml
+  when: (postfix_state == 'stop') or (postfix_state == 'off') or (postfix_state == 'disable')
+
+- name: task include remove
+  include: remove.yml
+  when: (postfix_state == 'false') or (postfix_state == 'no') or (postfix_state == 'remove')

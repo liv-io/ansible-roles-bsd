@@ -21,6 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((procps_state == 'false') or (procps_state == 'no') or (procps_state == 'remove'))
+- name: task include linux
+  include: linux/main.yml
+  when: (ansible_os_family == 'Gentoo')
