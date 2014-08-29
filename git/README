@@ -65,7 +65,8 @@ PACKAGES
   git
     Version: >= 1.7
     Name   :
-      Gentoo 2: 'dev-vcs/git'
+      FreeBSD 10: 'git'
+      Gentoo 2  : 'dev-vcs/git'
 
 ROLES
 
@@ -106,9 +107,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

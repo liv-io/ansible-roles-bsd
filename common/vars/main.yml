@@ -25,6 +25,19 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+# opt.dir
+file_path_opt_dir: '/opt'
+file_mode_opt_dir: '0755'
+file_owner_opt_dir: 'root'
+file_group_opt_dir: 'root'
+
+# opt.link
+file_src_opt_link: '/usr/local/opt'
+file_path_opt_link: '/opt'
+file_mode_opt_link: '0755'
+file_owner_opt_link: 'root'
+file_group_opt_link: 'root'
+
 # common-backup.dir
 file_path_common_backup_dir: "/{{common_backup_dir_partition if (common_backup_dir_partition is defined) and not ((common_backup_dir_partition == None) or (common_backup_dir_partition == '')) else 'opt'}}/{{common_root_dir_name if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{common_backup_dir_name if (common_backup_dir_name is defined) and not ((common_backup_dir_name == None) or (common_backup_dir_name == '')) else 'backup'}}"
 file_mode_common_backup_dir: '0755'
@@ -56,7 +69,7 @@ file_owner_common_system_dir: 'root'
 file_group_common_system_dir: 'root'
 
 # README
-file_src_readme: "main/README.j2"
+file_src_readme: "../../templates/main/README.j2"
 file_path_readme: "{{file_path_common_root_dir}}/README"
 file_mode_readme: '0644'
 file_owner_readme: 'root'

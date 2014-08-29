@@ -25,6 +25,12 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+# master.passwd
+file_path_master_passwd: '/etc/master.passwd'
+file_mode_master_passwd: '0600'
+file_owner_master_passwd: 'root'
+file_group_master_passwd: 'wheel'
+
 # passwd
 file_path_passwd: '/etc/passwd'
 file_mode_passwd: '0644'

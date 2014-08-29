@@ -71,9 +71,10 @@ DEPENDENCIES
 
 PACKAGES
   mailx
-    Version: >= 8.1
+    Version: >= 0.5
     Name   :
-      Gentoo 2: 'mailx'
+      FreeBSD 10: 'mailx'
+      Gentoo 2  : 'mailx'
 
 ROLES
   postfix
@@ -115,9 +116,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

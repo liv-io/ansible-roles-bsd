@@ -1,0 +1,51 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : FreeBSD.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : common
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# opt.dir
+file_path_opt_dir: '/usr/local/opt'
+file_group_opt_dir: 'wheel'
+
+# opt.link
+file_group_opt_link: 'wheel'
+
+# common-backup.dir
+file_group_common_backup_dir: 'wheel'
+
+# common-info.dir
+file_group_common_info_dir: 'wheel'
+
+# common-root.dir
+file_group_common_root_dir: 'wheel'
+
+# common-script.dir
+file_group_common_script_dir: 'wheel'
+
+# common-system.dir
+file_group_common_system_dir: 'wheel'
+
+# README
+file_group_readme: 'wheel'

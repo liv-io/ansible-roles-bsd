@@ -33,7 +33,7 @@ package_name_sudo: 'sudo'
 #-------------------------------------------------------------------------------
 
 # sudoers
-file_src_sudoers: "{{sudo_sudoers_template if (sudo_sudoers_template is defined) and not ((sudo_sudoers_template == None) or (sudo_sudoers_template == '')) else ansible_os_family}}/sudoers.j2"
+file_src_sudoers: "../../templates/{{sudo_sudoers_template if (sudo_sudoers_template is defined) and not ((sudo_sudoers_template == None) or (sudo_sudoers_template == '')) else ansible_os_family}}/sudoers.j2"
 file_path_sudoers: '/etc/sudoers'
 file_mode_sudoers: '0440'
 file_owner_sudoers: 'root'

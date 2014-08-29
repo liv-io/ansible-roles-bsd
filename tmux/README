@@ -65,7 +65,8 @@ PACKAGES
   tmux
     Version: >= 1.8
     Name   :
-      Gentoo 2: 'tmux'
+      FreeBSD 10: 'tmux'
+      Gentoo 2  : 'tmux'
 
 ROLES
 
@@ -106,9 +107,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

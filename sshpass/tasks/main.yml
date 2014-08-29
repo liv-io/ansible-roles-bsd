@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((sshpass_state == 'false') or (sshpass_state == 'no') or (sshpass_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (sshpass_state == 'false') or (sshpass_state == 'no') or (sshpass_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

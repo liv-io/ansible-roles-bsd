@@ -52,8 +52,9 @@ VARIABLES
 
 ROLE
   diffutils_state
-    Description: Control the state of the role. 'diffutils' is a core package
-                 and can therefore not be removed.
+    Description: Control the state of the role.
+                 'diffutils' is a core package on Gentoo based systems and can
+                 therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -71,7 +72,8 @@ PACKAGES
   diffutils
     Version: >= 3.3
     Name   :
-      Gentoo 2: 'diffutils'
+      FreeBSD 10: 'diffutils'
+      Gentoo 2  : 'diffutils'
 
 ROLES
 
@@ -112,9 +114,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

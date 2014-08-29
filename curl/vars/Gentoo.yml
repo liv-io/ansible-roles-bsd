@@ -27,3 +27,6 @@
 
 # portage
 portage_sync: 'web'
+
+# net-misc/curl
+package_name_curl: 'net-misc/curl'

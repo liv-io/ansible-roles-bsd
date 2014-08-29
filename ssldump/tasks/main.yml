@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((ssldump_state == 'false') or (ssldump_state == 'no') or (ssldump_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (ssldump_state == 'false') or (ssldump_state == 'no') or (ssldump_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

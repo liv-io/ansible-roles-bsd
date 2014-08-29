@@ -21,6 +21,10 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((shadow_state == 'false') or (shadow_state == 'no') or (shadow_state == 'disable'))
+- name: task include bsd
+  include: bsd/main.yml
+  when: (ansible_os_family == 'FreeBSD')
+
+- name: task include linux
+  include: linux/main.yml
+  when: (ansible_os_family == 'Gentoo')

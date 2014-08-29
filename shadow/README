@@ -19,6 +19,8 @@ DESCRIPTION
 This role manages shadow.
 
 '/etc/shadow' is a text file which defines the passwords on the system.
+'/etc/pwd.db' is the insecure password database file.
+'/etc/spwd.db' is the secure password database file.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.
@@ -45,7 +47,8 @@ VARIABLES
 
 ROLE
   shadow_state
-    Description: Control the state of the role. 'shadow' is a core file and can
+    Description: Control the state of the role.
+                 'shadow', 'pwd.db' and 'spwd.db' are core files and can
                  therefore not be removed.
     Implemented: 0.1
     Required   : False
@@ -101,9 +104,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

@@ -1,0 +1,45 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : install.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : shadow
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_distribution}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: file ensure shadow
+  file:
+   state: 'file'
+   dest: "{{file_path_shadow}}"
+   mode: "{{file_mode_shadow}}"
+   owner: "{{file_owner_shadow}}"
+   group: "{{file_group_shadow}}"
+  tags:
+   - files
+   - install
+   - linux
+   - shadow

@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((iperf_state == 'false') or (iperf_state == 'no') or (iperf_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (iperf_state == 'false') or (iperf_state == 'no') or (iperf_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

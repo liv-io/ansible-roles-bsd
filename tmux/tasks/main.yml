@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((tmux_state == 'false') or (tmux_state == 'no') or (tmux_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (tmux_state == 'false') or (tmux_state == 'no') or (tmux_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

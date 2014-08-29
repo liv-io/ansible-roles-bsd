@@ -66,7 +66,8 @@ PACKAGES
   bind-tools
     Version: >= 9.8
     Name   :
-      Gentoo 2: 'bind-tools'
+      FreeBSD 10: 'bind-tools'
+      Gentoo 2  : 'bind-tools'
 
 ROLES
 
@@ -107,9 +108,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

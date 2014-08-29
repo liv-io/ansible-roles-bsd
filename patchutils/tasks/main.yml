@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((patchutils_state == 'false') or (patchutils_state == 'no') or (patchutils_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (patchutils_state == 'false') or (patchutils_state == 'no') or (patchutils_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

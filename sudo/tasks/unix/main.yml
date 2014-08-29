@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : sudo
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove'))
+
+- name: task include custom
+  include: custom.yml
+  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove'))
+
+- name: task include default
+  include: default.yml
+  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove'))
+
+- name: task include remove
+  include: remove.yml
+  when: (sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove')

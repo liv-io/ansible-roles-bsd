@@ -63,7 +63,8 @@ PACKAGES
   nano
     Version: >= 2.0
     Name   :
-      Gentoo 2: 'nano'
+      FreeBSD 10: 'nano'
+      Gentoo 2  : 'nano'
 
 ROLES
 
@@ -104,9 +105,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

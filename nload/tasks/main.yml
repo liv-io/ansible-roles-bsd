@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((nload_state == 'false') or (nload_state == 'no') or (nload_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (nload_state == 'false') or (nload_state == 'no') or (nload_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

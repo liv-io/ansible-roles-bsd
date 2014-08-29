@@ -18,7 +18,7 @@ DESCRIPTION
 
 This role manages wget.
 
-GNU Wget is a file retrieval utility which can use either the HTTP or FTP
+Wget is a file retrieval utility which can use either the HTTP or FTP
 protocols. Wget features include the ability to work in the background while you
 are logged out, recursive retrieval of directories, file name wildcard matching,
 remote file timestamp storage and comparison, use of Rest with FTP servers and
@@ -50,8 +50,9 @@ VARIABLES
 
 ROLE
   wget_state
-    Description: Control the state of the role. 'wget' is a core package on
-                 Gentoo based systems and can therefore not be removed.
+    Description: Control the state of the role.
+                 'wget' is a core package on Gentoo based systems and can
+                 therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -69,7 +70,8 @@ PACKAGES
   wget
     Version: >= 1.12
     Name   :
-      Gentoo 2: 'wget'
+      FreeBSD 10: 'wget'
+      Gentoo 2  : 'wget'
 
 ROLES
 
@@ -110,9 +112,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

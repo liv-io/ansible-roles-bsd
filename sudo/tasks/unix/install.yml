@@ -1,0 +1,86 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : install.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : sudo
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_distribution}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package install sudo
+  pkgng:
+   state: 'present'
+   name: "{{package_name_sudo}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - sudo
+
+- name: package install sudo
+  portage:
+   state: 'installed'
+   sync: "{{portage_sync}}"
+   name: "{{package_name_sudo}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - packaging
+   - install
+   - unix
+   - sudo
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create sudoers
+  template:
+   src: "{{file_src_sudoers}}"
+   dest: "{{file_path_sudoers}}"
+   mode: "{{file_mode_sudoers}}"
+   owner: "{{file_owner_sudoers}}"
+   group: "{{file_group_sudoers}}"
+   validate: "{{file_validate_sudoers}}"
+  tags:
+   - files
+   - install
+   - unix
+   - sudo
+
+- name: file create sudoers.d
+  file:
+   state: 'directory'
+   path: "{{file_path_sudoers_d}}"
+   mode: "{{file_mode_sudoers_d}}"
+   owner: "{{file_owner_sudoers_d}}"
+   group: "{{file_group_sudoers_d}}"
+  tags:
+   - files
+   - install
+   - unix
+   - sudo

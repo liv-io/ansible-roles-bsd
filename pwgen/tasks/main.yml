@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((pwgen_state == 'false') or (pwgen_state == 'no') or (pwgen_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (pwgen_state == 'false') or (pwgen_state == 'no') or (pwgen_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

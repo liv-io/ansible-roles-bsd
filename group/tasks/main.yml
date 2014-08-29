@@ -21,14 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((group_state == 'false') or (group_state == 'no') or (group_state == 'disable'))
-
-- name: task include config-custom
-  include: config/custom.yml
-  when: not ((group_state == 'false') or (group_state == 'no') or (group_state == 'disable'))
-
-- name: task include config-default
-  include: config/default.yml
-  when: not ((group_state == 'false') or (group_state == 'no') or (group_state == 'disable'))
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

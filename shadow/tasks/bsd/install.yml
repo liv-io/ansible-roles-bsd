@@ -1,0 +1,58 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : install.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : shadow
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_distribution}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: file ensure pwd.db
+  file:
+   state: 'file'
+   dest: "{{file_path_pwd_db}}"
+   mode: "{{file_mode_pwd_db}}"
+   owner: "{{file_owner_pwd_db}}"
+   group: "{{file_group_pwd_db}}"
+  tags:
+   - files
+   - install
+   - bsd
+   - shadow
+
+- name: file ensure spwd.db
+  file:
+   state: 'file'
+   dest: "{{file_path_spwd_db}}"
+   mode: "{{file_mode_spwd_db}}"
+   owner: "{{file_owner_spwd_db}}"
+   group: "{{file_group_spwd_db}}"
+  tags:
+   - files
+   - install
+   - bsd
+   - shadow

@@ -1,0 +1,43 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : remove.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : psmisc
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package remove psmisc
+  pkgng:
+   state: 'absent'
+   name: "{{package_name_psmisc}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - psmisc

@@ -28,25 +28,34 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-Hostname: {{ansible_hostname}}
-FQDN    : {{ansible_fqdn}}
+Hostname: {% if (ansible_hostname is defined) %}{{ansible_hostname}}{% endif %}
+
+FQDN    : {% if (ansible_fqdn is defined) %}{{ansible_fqdn}}{% endif %}
+
 
 #-------------------------------------------------------------------------------
 # OPERATING SYSTEM
 #-------------------------------------------------------------------------------
 
-Type        : {{ansible_system}}
-Family      : {{ansible_os_family}}
-Distribution: {{ansible_distribution}}
-Version     : {{ansible_distribution_version}}
-Architecture: {{ansible_architecture}}
+Type        : {% if (ansible_system is defined) %}{{ansible_system}}{% endif %}
+
+Family      : {% if (ansible_os_family is defined) %}{{ansible_os_family}}{% endif %}
+
+Distribution: {% if (ansible_distribution is defined) %}{{ansible_distribution}}{% endif %}
+
+Version     : {% if (ansible_distribution_version is defined) %}{{ansible_distribution_version}}{% endif %}
+
+Architecture: {% if (ansible_architecture is defined) %}{{ansible_architecture}}{% endif %}
+
 
 #-------------------------------------------------------------------------------
 # KERNEL
 #-------------------------------------------------------------------------------
 
-Type   : {{ansible_system}}
-Version: {{ansible_kernel}}
+Type   : {% if (ansible_system is defined) %}{{ansible_system}}{% endif %}
+
+Version: {% if (ansible_kernel is defined) %}{{ansible_kernel}}{% endif %}
+
 
 #-------------------------------------------------------------------------------
 # USERLAND
@@ -54,24 +63,33 @@ Version: {{ansible_kernel}}
 
 Type          : {% if (sysinfo_userland_type is defined) and not ((sysinfo_userland_type == None) or (sysinfo_userland_type == '')) %}{{sysinfo_userland_type}}{% endif %}
 
-Achitecture   : {{ansible_userspace_architecture}}
+Achitecture   : {% if (ansible_userspace_architecture is defined) %}{{ansible_userspace_architecture}}{% endif %}
+
 Python Version: {{ansible_python_version}}
 
 #-------------------------------------------------------------------------------
 # NETWORK
 #-------------------------------------------------------------------------------
 
-IPv4 Interface: {{ansible_default_ipv4.interface}}
-IPv4 Address  : {{ansible_default_ipv4.address}}
-IPv4 Netmask  : {{ansible_default_ipv4.netmask}}
-IPv4 Network  : {{ansible_default_ipv4.network}}
-IPv4 Gateway  : {{ansible_default_ipv4.gateway}}
+IPv4 Interface: {% if (ansible_default_ipv4.interface is defined) %}{{ansible_default_ipv4.interface}}{% endif %}
+
+IPv4 Address  : {% if (ansible_default_ipv4.address is defined) %}{{ansible_default_ipv4.address}}{% endif %}
+
+IPv4 Netmask  : {% if (ansible_default_ipv4.netmask is defined) %}{{ansible_default_ipv4.netmask}}{% endif %}
+
+IPv4 Network  : {% if (ansible_default_ipv4.network is defined) %}{{ansible_default_ipv4.network}}{% endif %}
+
+IPv4 Gateway  : {% if (ansible_default_ipv4.gateway is defined) %}{{ansible_default_ipv4.gateway}}{% endif %}
+
 
 #-------------------------------------------------------------------------------
 # HARDWARE
 #-------------------------------------------------------------------------------
 
-Hardware Vendor: {{ansible_system_vendor}}
-Processor Count: {{ansible_processor_count}}
-Processor Cores: {{ansible_processor_cores}}
-Memory Size    : {{ansible_memtotal_mb}} MB
+Hardware Vendor: {% if (ansible_system_vendor is defined) %}{{ansible_system_vendor}}{% endif %}
+
+Processor Count: {% if (ansible_processor_count is defined) %}{{ansible_processor_count}}{% endif %}
+
+Processor Cores: {% if (ansible_processor_cores is defined) %}{{ansible_processor_cores}}{% endif %}
+
+Memory Size    : {% if (ansible_memtotal_mb is defined) %}{{ansible_memtotal_mb}} MB{% endif %}

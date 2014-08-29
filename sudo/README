@@ -153,6 +153,7 @@ CONFIG
 ROLE
   sudo_state
     Description: Control the state of the role.
+                 'sudo' is a core package and should therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -219,7 +220,8 @@ PACKAGES
   sudo
     Version: >= 1.8
     Name   :
-      Gentoo 2: 'sudo'
+      FreeBSD 10: 'sudo'
+      Gentoo 2  : 'sudo'
 
 ROLES
 
@@ -260,9 +262,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

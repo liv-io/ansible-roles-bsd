@@ -1,0 +1,66 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : custom.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : user
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: user config <user-custom>
+  user:
+   state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
+   name: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else user_name_default}}"
+   comment: "{{item.comment if (item.comment is defined) else item.name}}"
+   uid: "{{item.uid if (item.uid is defined) and not ((item.uid == None) or (item.uid == '')) else user_uid_default}}"
+   group: "{{item.group if (item.group is defined) and not ((item.group == None) or (item.group == '')) else user_group_default}}"
+   groups: "{{item.groups|join(',') if (item.groups is defined) else user_groups_default}}"
+   append: "{{'yes' if (item.groups_append is defined) and ((item.groups_append == 'true') or (item.groups_append == 'yes') or (item.groups_append == 'enable')) else 'no'}}"
+   createhome: "{{'no' if (item.home_create is defined) and ((item.home_create == 'false') or (item.home_create == 'no') or (item.home_create == 'disable')) else 'yes'}}"
+   move_home: "{{'yes' if (item.home_move is defined) and ((item.home_move == 'true') or (item.home_move == 'yes') or (item.home_move == 'enable')) else 'no'}}"
+   remove: "{{'yes' if (item.home_remove is defined) and ((item.home_remove == 'true') or (item.home_remove == 'yes') or (item.home_remove == 'enable')) else 'no'}}"
+   force: "{{'yes' if (item.home_force is defined) and ((item.home_force == 'true') or (item.home_force == 'yes') or (item.home_force == 'enable')) else 'no'}}"
+   password: "{{item.password if (item.password is defined) else user_password_default}}"
+   update_password: "{{'on_create' if (item.password_update is defined) and ((item.password_update == 'false') or (item.password_update == 'no') or (item.password_update == 'disable')) else 'always'}}"
+   shell: "{{item.shell if (item.shell is defined) and not (item.shell == '') else user_shell_default}}"
+   system: "{{'yes' if (item.system is defined) and ((item.system == 'true') or (item.system == 'yes') or (item.system == 'enable')) else 'no'}}"
+  with_items: user_custom
+  tags:
+   - system
+   - custom
+   - unix
+   - user
+
+- name: user config <authorized_key-custom>
+  authorized_key:
+   state: "{{'absent' if (item.1.state is defined) and ((item.1.state == 'false') or (item.1.state == 'no') or (item.1.state == 'remove')) else 'present'}}"
+   user: "{{item.0.name}}"
+   key: "{{item.1.key if (item.1.key is defined) else ''}}"
+   key_options: "{{item.1.options if (item.1.options is defined) else ''}}"
+  with_subelements:
+   - user_custom
+   - authorized_key
+  when: (item.1.key is defined) and not ((item.1.key == None) or (item.1.key == ''))
+  tags:
+   - system
+   - custom
+   - unix
+   - user

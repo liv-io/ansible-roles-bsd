@@ -21,18 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((atop_state == 'false') or (atop_state == 'no') or (atop_state == 'remove'))
-
-- name: task include enable
-  include: enable.yml
-  when: (atop_state == 'start') or (atop_state == 'on') or (atop_state == 'enable')
-
-- name: task include disable
-  include: disable.yml
-  when: (atop_state == 'stop') or (atop_state == 'off') or (atop_state == 'disable')
-
-- name: task include remove
-  include: remove.yml
-  when: (atop_state == 'false') or (atop_state == 'no') or (atop_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

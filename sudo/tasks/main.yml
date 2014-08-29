@@ -21,18 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove'))
-
-- name: task include config-custom
-  include: config/custom.yml
-  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove'))
-
-- name: task include config-default
-  include: config/default.yml
-  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

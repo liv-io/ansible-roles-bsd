@@ -21,6 +21,10 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((passwd_state == 'false') or (passwd_state == 'no') or (passwd_state == 'disable'))
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')
+
+- name: task include bsd
+  include: bsd/main.yml
+  when: (ansible_os_family == 'FreeBSD')

@@ -68,7 +68,8 @@ PACKAGES
   netcat
     Version: >= 1.10
     Name   :
-      Gentoo 2: 'netcat'
+      FreeBSD 10: 'nc'
+      Gentoo 2  : 'netcat'
 
 ROLES
 
@@ -109,9 +110,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

@@ -25,8 +25,20 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+# pwd.db
+file_path_pwd_db: '/etc/pwd.db'
+file_mode_pwd_db: '0644'
+file_owner_pwd_db: 'root'
+file_group_pwd_db: 'wheel'
+
 # shadow
 file_path_shadow: '/etc/shadow'
 file_mode_shadow: '0000'
 file_owner_shadow: 'root'
 file_group_shadow: 'root'
+
+# spwd.db
+file_path_spwd_db: '/etc/spwd.db'
+file_mode_spwd_db: '0600'
+file_owner_spwd_db: 'root'
+file_group_spwd_db: 'wheel'

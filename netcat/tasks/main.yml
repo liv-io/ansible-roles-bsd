@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((netcat_state == 'false') or (netcat_state == 'no') or (netcat_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (netcat_state == 'false') or (netcat_state == 'no') or (netcat_state == 'remove')
+- name: task include unix
+  include: unix/main.yml
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')

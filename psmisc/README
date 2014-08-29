@@ -50,8 +50,9 @@ VARIABLES
 
 ROLE
   psmisc_state
-    Description: Control the state of the role. 'psmisc' is a core package and
-                 can therefore not be removed.
+    Description: Control the state of the role.
+                 'psmisc' is a core package on Gentoo based systems and can
+                 therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -69,7 +70,8 @@ PACKAGES
   psmisc
     Version: >= 22.6
     Name   :
-      Gentoo 2: 'psmisc'
+      FreeBSD 10: 'psmisc'
+      Gentoo 2  : 'psmisc'
 
 ROLES
 
@@ -110,9 +112,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER

@@ -1,0 +1,55 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : install.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : gnu_grep
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package install gnu-grep
+  pkgng:
+   state: 'present'
+   name: "{{package_name_gnu_grep}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - gnu_grep
+
+- name: package install gnu-grep
+  portage:
+   state: 'installed'
+   sync: "{{portage_sync}}"
+   name: "{{package_name_gnu_grep}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - packaging
+   - install
+   - unix
+   - gnu_grep

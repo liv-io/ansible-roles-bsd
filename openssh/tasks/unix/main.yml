@@ -1,0 +1,34 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : openssh
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: GNU General Public License version 2 (GPLv2)
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((openssh_state == 'false') or (openssh_state == 'no') or (openssh_state == 'remove'))
+
+- name: task include enable
+  include: enable.yml
+  when: (openssh_state == 'start') or (openssh_state == 'on') or (openssh_state == 'enable')
+
+- name: task include disable
+  include: disable.yml
+  when: (openssh_state == 'stop') or (openssh_state == 'off') or (openssh_state == 'disable')

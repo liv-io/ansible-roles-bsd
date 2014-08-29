@@ -29,28 +29,35 @@
 file_path_common_info_dir: "/{{common_info_dir_partition if (common_info_dir_partition is defined) and not ((common_info_dir_partition == None) or (common_info_dir_partition == '')) else 'opt'}}/{{common_root_dir_name if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{common_info_dir_name if (common_info_dir_name is defined) and not ((common_info_dir_name == None) or (common_info_dir_name == '')) else 'info'}}"
 
 # ansible.info
-file_src_ansible_info: "main/ansible.info.j2"
+file_src_ansible_info: "../../templates/main/ansible.info.j2"
 file_path_ansible_info: "{{file_path_common_info_dir}}/ansible.info"
 file_mode_ansible_info: '0644'
 file_owner_ansible_info: 'root'
 file_group_ansible_info: 'root'
 
 # operation.info
-file_src_operation_info: "main/operation.info.j2"
+file_src_operation_info: "../../templates/main/operation.info.j2"
 file_path_operation_info: "{{file_path_common_info_dir}}/operation.info"
 file_mode_operation_info: '0644'
 file_owner_operation_info: 'root'
 file_group_operation_info: 'root'
 
+# freebsd.info
+file_src_freebsd_info: "../../templates/main/freebsd.info.j2"
+file_path_freebsd_info: "{{file_path_common_info_dir}}/freebsd.info"
+file_mode_freebsd_info: '0644'
+file_owner_freebsd_info: 'root'
+file_group_freebsd_info: 'root'
+
 # gentoo.info
-file_src_gentoo_info: "main/gentoo.info.j2"
+file_src_gentoo_info: "../../templates/main/gentoo.info.j2"
 file_path_gentoo_info: "{{file_path_common_info_dir}}/gentoo.info"
 file_mode_gentoo_info: '0644'
 file_owner_gentoo_info: 'root'
 file_group_gentoo_info: 'root'
 
 # system.info
-file_src_system_info: "main/system.info.j2"
+file_src_system_info: "../../templates/main/system.info.j2"
 file_path_system_info: "{{file_path_common_info_dir}}/system.info"
 file_mode_system_info: '0644'
 file_owner_system_info: 'root'

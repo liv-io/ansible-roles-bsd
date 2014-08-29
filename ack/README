@@ -63,7 +63,8 @@ PACKAGES
   ack
     Version: >= 1.9
     Name   :
-      Gentoo 2: 'ack'
+      FreeBSD 10: 'ack'
+      Gentoo 2  : 'ack'
 
 ROLES
 
@@ -104,9 +105,17 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  Gentoo:
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
     Version: 2
       Status: Testing
+
+  OpenBSD
+    Version: 5
+      Status: Planned
 
 --------------------------------------------------------------------------------
 OTHER
