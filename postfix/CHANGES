@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.3.2 (2014-09-11)
+I: Change license from 'GPLv2' to 'Simplified BSD License'
+
 * Version 0.3.1 (2014-08-29)
 I: Ensure Ansible role is OS agnostic
 
