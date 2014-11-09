@@ -19,10 +19,10 @@ DESCRIPTION
 This role manages mlocate.
 
 mlocate is a locate/updatedb implementation. It keeps a database of all existing
-files and allows you to lookup files by name. The 'm' stands for "merging":
-updatedb reuses the existing database to avoid rereading most of the file system,
-which makes updatedb faster and does not trash the system caches as much as
-traditional locate implementations.
+files and allows you to lookup files by name.
+The 'm' stands for "merging": updatedb reuses the existing database to avoid
+rereading most of the file system, which makes updatedb faster and does not
+trash the system caches as much as traditional locate implementations.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

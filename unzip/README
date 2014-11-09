@@ -23,8 +23,6 @@ Zip archives are commonly found on MS-DOS systems. The zip utility, included in
 the zip package, creates zip archives. Zip and unzip are both compatible with
 archives created by PKWARE(R)'s PKZIP for MS-DOS, but the programs' options and
 default behaviors do differ in some respects.
-Install the unzip package if you need to list, test or extract files from
-a zip archive.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

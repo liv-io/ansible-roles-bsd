@@ -19,7 +19,7 @@ DESCRIPTION
 This role manages telnet.
 
 Telnet is a popular protocol for logging into remote systems over the Internet.
-The package provides a command line Telnet client.
+The package provides a command line Telnet client
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

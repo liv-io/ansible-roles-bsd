@@ -19,8 +19,8 @@ DESCRIPTION
 This role manages mtr.
 
 Mtr is a network diagnostic tool that combines ping and traceroute into one
-program. Mtr provides two interfaces: an ncurses interface, useful for using
-Mtr from a telnet session; and a GTK+ interface for X (provided in the mtr-gtk
+program. Mtr provides two interfaces: an ncurses interface, useful for using Mtr
+from a telnet session; and a GTK+ interface for X (provided in the mtr-gtk
 package).
 
 For more detailed information on the usage and available configuration options

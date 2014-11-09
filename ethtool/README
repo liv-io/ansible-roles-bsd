@@ -19,8 +19,8 @@ DESCRIPTION
 This role manages ethtool.
 
 This utility allows querying and changing settings such as speed, port,
-autonegotiation, PCI locations and checksum offload on many network devices,
-especially of ethernet devices.
+auto-negotiation, PCI locations and checksum offload on many network devices,
+especially of Ethernet devices.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

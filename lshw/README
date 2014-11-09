@@ -19,11 +19,11 @@ DESCRIPTION
 This role manages lshw.
 
 lshw is a small tool to provide detailed informaton on the hardware
-configuration of the machine. It can report exact memory configuration, firmware
-version, mainboard configuration, CPU version and speed, cache configuration,
-bus speed, etc. on DMI-capable x86 systems and on some PowerPC machines
-(PowerMac G4 is known to work).
-Information can be output in plain text, XML or HTML.
+configuration of the machine. It can report exact memory configuration,
+firmware version, mainboard configuration, CPU version and speed, cache
+configuration, bus speed, etc. on DMI-capable x86 systems and on some PowerPC
+machines (PowerMac G4 is known to work). Information can be output in plain
+text, XML or HTML.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

@@ -19,8 +19,8 @@ DESCRIPTION
 This role manages gnu_grep.
 
 The GNU versions of commonly used grep utilities. Grep searches through textual
-input for lines which contain a match to a specified pattern and then prints
-the matching lines. GNU's grep utilities include grep, egrep and fgrep.
+input for lines which contain a match to a specified pattern and then prints the
+matching lines. GNU's grep utilities include grep, egrep and fgrep.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

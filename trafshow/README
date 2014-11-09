@@ -20,7 +20,7 @@ This role manages trafshow.
 
 TrafShow continuously display the information regarding packet traffic on the
 configured network interface that match the boolean expression. It periodically
-sorts and updates this information
+sorts and updates this information.
 This funny program may be useful for locating suspicious network traffic on the
 net or to evaluate current utilization of the network interface.
 

@@ -18,12 +18,11 @@ DESCRIPTION
 
 This role manages man.
 
-The man package includes three tools for finding information and/or
-documentation about your Linux system: man, apropos, and whatis. The man system
-formats and displays on-line manual pages about commands or functions on your
-system. Apropos searches the whatis database (containing short descriptions of
-system commands) for a string. Whatis searches its own database for a complete
-word.
+The man package includes five tools for browsing man-pages: man, whatis,
+apropos, manpath and lexgrog. man formats and displays manual pages. whatis
+searches the manual page names. apropos searches the manual page names and
+descriptions. manpath determines search path for manual pages. lexgrog directly
+reads header information in manual pages.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

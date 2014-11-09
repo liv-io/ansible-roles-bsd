@@ -18,14 +18,15 @@ DESCRIPTION
 
 This role manages mailx.
 
-Mailx is an enhanced mail command, which provides the functionality of the
-POSIX mailx command, as well as SysV mail and Berkeley Mail (from which it is
-derived). Additionally to the POSIX features, mailx can work with Maildir/e-mail
-storage format (as well as mailboxes), supports IMAP, POP3 and SMTP procotols
-(including over SSL) to operate with remote hosts, handles mime types and
-different charsets. There are a lot of other useful features, see mailx. And
-as its ancient analogues, mailx can be used as a mail script language, both for
-sending and receiving mail.
+Mailx is an enhanced mail command, which provides the functionality of the POSIX
+mailx command, as well as SysV mail and Berkeley Mail (from which it is
+derived).
+Additionally to the POSIX features, mailx can work with Maildir/ e-mail storage
+format (as well as mailboxes), supports IMAP, POP3 and SMTP protocols (including
+over SSL) to operate with remote hosts, handles mime types and different
+charsets. There are a lot of other useful features, see mailx(1).
+And as its ancient analogues, mailx can be used as a mail script language, both
+for sending and receiving mail.
 Besides the "mailx" command, this package provides "mail" and "Mail"
 (which should be compatible with its predecessors from the mailx-8.x source),
 as well as "nail" (the initial name of this project).

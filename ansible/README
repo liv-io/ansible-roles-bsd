@@ -18,6 +18,8 @@ DESCRIPTION
 
 This role manages ansible.
 
+Ansible - Software Configuration Management
+
 For more detailed information on the usage and available configuration options
 please consult the following sections.
 

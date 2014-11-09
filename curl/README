@@ -18,11 +18,12 @@ DESCRIPTION
 
 This role manages curl.
 
-cURL is a tool for getting files from HTTP, FTP, FILE, LDAP, LDAPS, DICT, TELNET
-and TFTP servers, using any of the supported protocols. cURL is designed to work
-without user interaction or any kind of interactivity. cURL offers many useful
-capabilities, like proxy support, user authentication, FTP upload, HTTP post,
-and file transfer resume.
+curl is a command line tool for transferring data with URL syntax, supporting
+FTP, FTPS, HTTP, HTTPS, SCP, SFTP, TFTP, TELNET, DICT, LDAP, LDAPS, FILE, IMAP,
+SMTP, POP3 and RTSP.  curl supports SSL certificates, HTTP POST, HTTP PUT, FTP
+uploading, HTTP form based upload, proxies, cookies, user+password
+authentication (Basic, Digest, NTLM, Negotiate, kerberos...), file transfer
+resume, proxy tunneling and a busload of other useful tricks.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

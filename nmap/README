@@ -26,8 +26,8 @@ and port specification, decoy scanning, determination of TCP sequence
 predictability characteristics, reverse-identd scanning, and more. In addition
 to the classic command-line nmap executable, the Nmap suite includes a flexible
 data transfer, redirection, and debugging tool (netcat utility ncat), a utility
-for comparing scan results (ndiff), and a packet generation and response analysis
-tool (nping).
+for comparing scan results (ndiff), and a packet generation and response
+analysis tool (nping).
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

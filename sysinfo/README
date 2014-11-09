@@ -18,7 +18,7 @@ DESCRIPTION
 
 This role manages sysinfo.
 
-Use this role provide general information about the managed node.
+Use this role to provide general information about the managed node.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

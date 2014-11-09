@@ -23,8 +23,6 @@ exits. While the command is executing, ltrace intercepts and records both the
 dynamic library calls called by the executed process and the signals received by
 the executed process. Ltrace can also intercept and print system calls executed
 by the process.
-You should install ltrace if you need a sysadmin tool for tracking the
-execution of processes.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

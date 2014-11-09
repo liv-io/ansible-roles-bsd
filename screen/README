@@ -20,8 +20,7 @@ This role manages screen.
 
 The screen utility allows you to have multiple logins on just one terminal.
 Screen is useful for users who telnet into a machine or are connected via a dumb
-terminal, but want to use more than just one login. Install the screen package
-if you need a screen manager that can support multiple logins on one terminal.
+terminal, but want to use more than just one login.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

@@ -18,7 +18,8 @@ DESCRIPTION
 
 This role manages coreutils.
 
-A set of basic GNU tools commonly used in shell scripts.
+These are the GNU core utilities. This package is the combination of the old GNU
+fileutils, sh-utils, and textutils packages.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

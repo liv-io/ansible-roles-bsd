@@ -18,8 +18,10 @@ DESCRIPTION
 
 This role manages gzip.
 
-The gzip package contains the popular GNU gzip data compression program.
-Gzipped files have a .gz extension.
+The gzip package contains the popular GNU gzip data compression program. Gzipped
+files have a .gz extension.
+Gzip should be installed on your system, because it is a very commonly used data
+compression program.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

@@ -19,8 +19,8 @@ DESCRIPTION
 This role manages iputils.
 
 The iputils package contains basic utilities for monitoring a network, including
-ping. The ping command sends a series of ICMP protocol ECHO_REQUEST packets to
-a specified network host to discover whether the target machine is alive and
+ping. The ping command sends a series of ICMP protocol ECHO_REQUEST packets to a
+specified network host to discover whether the target machine is alive and
 receiving network traffic.
 
 For more detailed information on the usage and available configuration options

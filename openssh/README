@@ -18,11 +18,11 @@ DESCRIPTION
 
 This role manages openssh.
 
-OpenSSH is a free version of SSH (Secure SHell), a program for logging into and
-executing commands on a remote machine. This package contains the secure shell
-daemon (sshd). The sshd daemon allows SSH clients to securely connect to your
-SSH server.
-
+SSH (Secure SHell) is a program for logging into and executing commands on a
+remote machine. SSH is intended to replace rlogin and rsh, and to provide secure
+encrypted communications between two untrusted hosts over an insecure network.
+X11 connections and arbitrary TCP/IP ports can also be forwarded over the secure
+channel.
 OpenSSH is OpenBSD's version of the last free version of SSH, bringing it up to
 date in terms of security and features.
 

@@ -18,12 +18,12 @@ DESCRIPTION
 
 This role manages netcat.
 
-The nc package contains Netcat (the program is actually nc), a simple utility
-for reading and writing data across network connections, using the TCP or UDP
-protocols. Netcat is intended to be a reliable back-end tool which can be used
-directly or easily driven by other programs and scripts. Netcat is also a
-feature-rich network debugging and exploration tool, since it can create many
-different connections and has many built-in capabilities.
+Netcat is a feature packed networking utility which will read and write data
+across a network from the command line. It uses both TCP and UDP for
+communication and is designed to be a reliable back-end tool to instantly
+provide network connectivity to other applications and users. Netcat will not
+only work with IPv4 and IPv6 but provides the user with a virtually limitless
+number of potential uses.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

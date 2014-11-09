@@ -18,8 +18,21 @@ DESCRIPTION
 
 This role manages sysstat.
 
-This package provides the sar and iostat commands for Linux. Sar and iostat
-enable system monitoring of disk, network, and other IO activity.
+The sysstat package contains sar, sadf, mpstat, iostat, pidstat, nfsiostat,
+cifsiostat and sa tools for Linux.
+The sar command collects and reports system activity information. This
+information can be saved in a file in a binary format for future inspection. The
+statistics reported by sar concern I/O transfer rates, paging activity,
+process-related activities, interrupts, network activity, memory and swap space
+utilization, CPU utilization, kernel activities and TTY statistics, among
+others. Both UP and SMP machines are fully supported.
+The sadf command may be used to display data collected by sar in various formats
+(CSV, XML, etc.).
+The iostat command reports CPU utilization and I/O statistics for disks.
+The mpstat command reports global and per-processor statistics.
+The pidstat command reports statistics for Linux tasks (processes).
+The nfsiostat command reports I/O statistics for network file systems.
+The cifsiostat command reports I/O statistics for CIFS file systems.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

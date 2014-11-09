@@ -18,7 +18,8 @@ DESCRIPTION
 
 This role manages colordiff.
 
-Color terminal highlighter for diff files.
+Colordiff is a wrapper for diff and produces the same output but with pretty
+syntax highlighting. Color schemes can be customized.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

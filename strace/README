@@ -21,8 +21,7 @@ This role manages strace.
 The strace program intercepts and records the system calls called and received
 by a running process. Strace can print a record of each system call, its
 arguments and its return value. Strace is useful for diagnosing problems and
-debugging, as well as for instructional purposes. Install strace if you need a
-tool to track the system calls made and received by a process.
+debugging, as well as for instructional purposes.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

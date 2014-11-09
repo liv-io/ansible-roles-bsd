@@ -21,8 +21,7 @@ This role manages tcpdump.
 Tcpdump is a command-line tool for monitoring network traffic. Tcpdump can
 capture and display the packet headers on a particular network interface or on
 all interfaces. Tcpdump can display all of the packet headers, or just the ones
-that match particular criteria. Install tcpdump if you need a program to monitor
-network traffic.
+that match particular criteria.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

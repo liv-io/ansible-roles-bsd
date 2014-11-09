@@ -25,8 +25,8 @@ PyYAML features a complete YAML 1.1 parser, Unicode support, pickle support,
 capable extension API, and sensible error messages. PyYAML supports standard YAML
 tags and provides Python-specific tags that allow to represent an arbitrary
 Python object.
-PyYAML is applicable for a broad range of tasks from complex
-configuration files to object serialization and persistance.
+PyYAML is applicable for a broad range of tasks from complex configuration files
+to object serialization and persistance.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

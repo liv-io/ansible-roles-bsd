@@ -18,7 +18,7 @@ DESCRIPTION
 
 This role manages wget.
 
-Wget is a file retrieval utility which can use either the HTTP or FTP
+GNU Wget is a file retrieval utility which can use either the HTTP or FTP
 protocols. Wget features include the ability to work in the background while you
 are logged out, recursive retrieval of directories, file name wildcard matching,
 remote file timestamp storage and comparison, use of Rest with FTP servers and

@@ -19,10 +19,10 @@ DESCRIPTION
 This role manages tcpreplay.
 
 Tcpreplay is a tool to replay captured network traffic. Currently, tcpreplay
-supports pcap (tcpdump) and snoop capture formats. Also included, is tcpprep
-a tool to pre-process capture files to allow increased performance under
-certain conditions as well as capinfo which provides basic information about
-capture files.
+supports pcap (tcpdump) and snoop capture formats. Also included, is tcpprep a
+tool to pre-process capture files to allow increased performance under certain
+conditions as well as capinfo which provides basic information about capture
+files.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

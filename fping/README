@@ -18,9 +18,9 @@ DESCRIPTION
 
 This role manages fping.
 
-Fping is a ping-like program which can determine the accessibility of multiple
-hosts using ICMP echo requests. Fping is designed for parallelized monitoring
-of large numbers of systems, and is developed with ease of use in scripting in
+fping is a ping-like program which can determine the accessibility of multiple
+hosts using ICMP echo requests. fping is designed for parallelized monitoring of
+large numbers of systems, and is developed with ease of use in scripting in
 mind.
 
 For more detailed information on the usage and available configuration options

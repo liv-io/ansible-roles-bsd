@@ -18,10 +18,9 @@ DESCRIPTION
 
 This role manages hping3.
 
-hping is a network tool able to send custom TCP/IP packets and to display
-target replies like ping do with ICMP replies. hping can handle fragmentation,
+hping3 is a network tool able to send custom TCP/IP packets and to display
+target replies like ping do with ICMP replies. hping3 can handle fragmentation,
 and almost arbitrary packet size and content, using the command line interface.
-Since version 3, hping implements scripting capabilties.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

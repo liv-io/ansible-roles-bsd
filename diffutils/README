@@ -18,14 +18,14 @@ DESCRIPTION
 
 This role manages diffutils.
 
-Diffutils includes four utilities: diff, cmp, diff3 and sdiff. Diff compares
-two files and shows the differences, line by line. The cmp command shows the
-offset and line numbers where two files differ, or cmp can show the characters
-that differ between the two files. The: diff3 command shows the differences
-between three files. Diff3 can be used when two people have made independent
-changes to a common original; diff3 can produce a merged file that contains both
-sets of changes and warnings about conflicts. The sdiff command can be used to
-merge two files interactively.
+Diffutils includes four utilities: diff, cmp, diff3 and sdiff. Diff compares two
+files and shows the differences, line by line. The cmp command shows the offset
+and line numbers where two files differ, or cmp can show the characters that
+differ between the two files. The diff3 command shows the differences between
+three files. Diff3 can be used when two people have made independent changes to
+a common original; diff3 can produce a merged file that contains both sets of
+changes and warnings about conflicts. The sdiff command can be used to merge two
+files interactively.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

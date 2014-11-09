@@ -18,13 +18,12 @@ DESCRIPTION
 
 This role manages netsniff_ng.
 
-netsniff-ng is a high performance linux network sniffer for packet inspection.
-Basically, it is similar to tcpdump, but it doesn't need one syscall per packet.
-Instead, it uses an memory mapped area within kernelspace for accessing packets
-without copying them to userspace (zero-copy mechanism).
-This tool is useful for debugging your network, measuring performance throughput
-or creating network statistics of incoming packets on central network nodes like
-routers or firewalls.
+The netsniff-ng toolkit currently consists of the following utilities:
+ - netsniff-ng: the zero-copy sniffer, pcap capturer and replayer itself.
+ - trafgen: a high performance zero-copy network packet generator.
+ - astraceroute: an autonomous system (AS) and geo-ip trace route utility.
+ - ifpps: a top-like kernel networking and system statistics tool.
+ - bpfc: a tiny Berkeley Packet Filter compiler supporting Linux extensions.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

@@ -18,14 +18,14 @@ DESCRIPTION
 
 This role manages sudo.
 
-Sudo (superuser do) allows a system administrator to give certain users
-(or groups of users) the ability to run some (or all) commands as root while
-logging all commands and arguments. Sudo operates on a per-command basis.
-It is not a replacement for the shell. Features include: the ability to
-restrict what commands a user may run on a per-host basis, copious logging of
-each command (providing a clear audit trail of who did what), a configurable
-timeout of the sudo command, and the ability to use the same configuration file
-(sudoers) on many different machines.
+Sudo (superuser do) allows a system administrator to give certain users (or
+groups of users) the ability to run some (or all) commands as root while logging
+all commands and arguments. Sudo operates on a per-command basis. It is not a
+replacement for the shell. Features include: the ability to restrict what
+commands a user may run on a per-host basis, copious logging of each command
+(providing a clear audit trail of who did what), a configurable timeout of the
+sudo command, and the ability to use the same configuration file (sudoers) on
+many different machines.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.

@@ -20,7 +20,7 @@ This role manages git.
 
 Git is a fast, scalable, distributed revision control system with an unusually
 rich command set that provides both high-level operations and full access to
-internals. The git role installs the core tools with minimal dependencies.
+internals.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.
