@@ -8,7 +8,7 @@ TODO
    | [_] [_] |  Summary: robomon - ansible roles
    |____~____|
     ___//__//   Authors: robomon community
-   /|     |/    License: GNU General Public License version 2 (GPLv2)
+   /|     |/    License: Simplified BSD License
   //|_____|
     _|| ||_     Webpage: http://www.robomon.org/
    (__| |__)
@@ -35,11 +35,8 @@ SUPPORT
 --------------------------------------------------------------------------------
 
 OPERATING SYSTEMS
-  FreeBSD:
+  FreeBSD
     Version: 10
-
-  OpenBSD:
-    Version: 5
 
 --------------------------------------------------------------------------------
 ROLES
@@ -128,6 +125,8 @@ OTHER
  - csync2
  - eudev
  - ddisk
+ - dsniff
+ - dtrace
  - goaccess
  - grinder
  - grub
@@ -137,7 +136,9 @@ OTHER
  - jwhois
  - logwatch
  - mdadm
+ - mercurial
  - monit
+ - mysqlsniffer
  - netdisco-common
  - nfdump
  - ntsysv
@@ -146,6 +147,7 @@ OTHER
  - perf
  - pgfouine
  - pinfo
+ - portmaster
  - rdist
  - readline
  - rng-tools
@@ -153,6 +155,8 @@ OTHER
  - rsnapshot
  - rssh
  - rusers-server
+ - sniff
+ - sslsniff
  - tidy
  - tmpwatch
  - trickle
