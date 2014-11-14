@@ -36,7 +36,6 @@
    state: 'installed'
    sync: "{{portage_sync}}"
    name: "{{package_name_iptables}}"
-  when: (ansible_os_family == 'Gentoo')
   tags:
    - packaging
    - install

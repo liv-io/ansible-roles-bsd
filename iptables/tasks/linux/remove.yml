@@ -37,7 +37,6 @@
    enabled: 'no'
    runlevel: 'default'
    name: "{{service_name_iptables}}"
-  when: (ansible_os_family == 'Gentoo')
   tags:
    - system
    - remove
@@ -50,7 +49,6 @@
    enabled: 'no'
    runlevel: 'default'
    name: "{{service_name_ip6tables}}"
-  when: (ansible_os_family == 'Gentoo')
   tags:
    - system
    - remove
@@ -66,7 +64,6 @@
    state: 'removed'
    sync: "{{portage_sync}}"
    name: "{{package_name_iptables}}"
-  when: (ansible_os_family == 'Gentoo')
   tags:
    - packaging
    - remove

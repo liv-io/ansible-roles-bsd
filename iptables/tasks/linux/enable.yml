@@ -39,7 +39,6 @@
    owner: "{{file_owner_iptables}}"
    group: "{{file_group_iptables}}"
   register: register_gentoo_iptables
-  when: (ansible_os_family == 'Gentoo')
   tags:
    - files
    - enable
@@ -54,7 +53,6 @@
    owner: "{{file_owner_ip6tables}}"
    group: "{{file_group_ip6tables}}"
   register: register_gentoo_ip6tables
-  when: (ansible_os_family == 'Gentoo')
   tags:
    - files
    - enable
