@@ -1,0 +1,56 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : profile
+#   |  _   _  |  Type   : sh configuration file
+#   | [_] [_] |  Role   : sh
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# $FreeBSD: releng/10.1/etc/profile 208116 2010-05-15 17:49:56Z jilles $
+#
+# System-wide .profile file for sh(1).
+#
+# Uncomment this to give you the default 4.2 behavior, where disk
+# information is shown in K-Blocks
+# BLOCKSIZE=K; export BLOCKSIZE
+#
+# For the setting of languages and character sets please see
+# login.conf(5) and in particular the charset and lang options.
+# For full locales list check /usr/share/locale/*
+# You should also read the setlocale(3) man page for information
+# on how to achieve more precise control of locale settings.
+#
+# Check system messages
+# msgs -q
+# Allow terminal messages
+# mesg y
+
+# Source environment variables
+for sh in /etc/profile.d/*.sh ; do
+  [ -r "$sh" ] && . "$sh"
+done
+
+# Source bash specific environment variables
+if [ "$SHELL" = "/usr/local/bin/bash" ] ; then
+  for bash in /etc/profile.d/*.bash ; do
+    [ -r "$bash" ] && . "$bash"
+  done
+fi

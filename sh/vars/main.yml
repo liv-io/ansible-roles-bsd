@@ -1,0 +1,39 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : sh
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# profile
+file_src_profile: "../../templates/{{sh_profile_template if (sh_profile_template is defined) and not ((sh_profile_template == None) or (sh_profile_template == '')) else ansible_os_family}}/profile.j2"
+file_path_profile: '/etc/profile'
+file_mode_profile: '0644'
+file_owner_profile: 'root'
+file_group_profile: 'root'
+
+# profile.d
+file_path_profile_d: '/etc/profile.d'
+file_mode_profile_d: '0755'
+file_owner_profile_d: 'root'
+file_group_profile_d: 'root'
