@@ -1,0 +1,90 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : enable.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create pf.blacklist
+  template:
+   src: "{{file_src_pf_blacklist}}"
+   dest: "{{file_path_pf_blacklist}}"
+   mode: "{{file_mode_pf_blacklist}}"
+   owner: "{{file_owner_pf_blacklist}}"
+   group: "{{file_group_pf_blacklist}}"
+  register: register_pf_blacklist
+  tags:
+   - files
+   - enable
+   - bsd
+   - pf
+
+- name: template create pf.conf
+  template:
+   src: "{{file_src_pf_conf}}"
+   dest: "{{file_path_pf_conf}}"
+   mode: "{{file_mode_pf_conf}}"
+   owner: "{{file_owner_pf_conf}}"
+   group: "{{file_group_pf_conf}}"
+  register: register_pf_conf
+  tags:
+   - files
+   - enable
+   - bsd
+   - pf
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: service start pf
+  service:
+   state: 'started'
+   enabled: 'yes'
+   name: "{{service_name_pf}}"
+  tags:
+   - system
+   - enable
+   - bsd
+   - pf
+
+#-------------------------------------------------------------------------------
+# HANDLERS
+#-------------------------------------------------------------------------------
+
+- name: service reload pf
+  service:
+   state: 'reloaded'
+   name: "{{service_name_pf}}"
+  when: (register_pf_conf|changed) or (register_pf_blacklist|changed)
+  tags:
+   - handlers
+   - enable
+   - bsd
+   - pf

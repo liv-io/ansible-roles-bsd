@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((pf_state == 'false') or (pf_state == 'no') or (pf_state == 'remove'))
+
+- name: task include enable
+  include: enable.yml
+  when: (pf_state == 'start') or (pf_state == 'on') or (pf_state == 'enable')
+
+- name: task include disable
+  include: disable.yml
+  when: (pf_state == 'stop') or (pf_state == 'off') or (pf_state == 'disable')
+
+- name: task include remove
+  include: remove.yml
+  when: (pf_state == 'false') or (pf_state == 'no') or (pf_state == 'remove')

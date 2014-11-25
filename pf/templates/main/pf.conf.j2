@@ -1,0 +1,277 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : pf.conf
+#   |  _   _  |  Type   : pf configuration file
+#   | [_] [_] |  Role   : pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# MACROS
+#-------------------------------------------------------------------------------
+
+# Interfaces
+{% if (pf_macro_if_int is defined) and not ((pf_macro_if_int == None) or (pf_macro_if_int == '')) %}
+if_int="{{pf_macro_if_int}}"
+{% endif %}
+
+{% if (pf_macro_if_dmz is defined) and not ((pf_macro_if_dmz == None) or (pf_macro_if_dmz == '')) %}
+if_dmz="{{pf_macro_if_dmz}}"
+{% endif %}
+
+{% if (pf_macro_if_ext is defined) and not ((pf_macro_if_ext == None) or (pf_macro_if_ext == '')) %}
+if_ext="{{pf_macro_if_ext}}"
+{% endif %}
+
+# TCP state
+{% if (pf_macro_tcp_state is defined) and not ((pf_macro_tcp_state == None) or (pf_macro_tcp_state == '') or (pf_macro_tcp_state == 'false') or (pf_macro_tcp_state == 'no') or (pf_macro_tcp_state == 'disable')) %}
+tcp_state="{{pf_macro_tcp_state}}"
+{% endif %}
+
+# UDP state
+{% if (pf_macro_udp_state is defined) and not ((pf_macro_udp_state == None) or (pf_macro_udp_state == '') or (pf_macro_udp_state == 'false') or (pf_macro_udp_state == 'no') or (pf_macro_udp_state == 'disable')) %}
+udp_state="{{pf_macro_udp_state}}"
+{% endif %}
+
+# Macro default entries
+{% if (pf_macro_default is defined) and not ((pf_macro_default == None) or (pf_macro_default == '') or (pf_macro_default == [])) %}
+{% for macro_default in pf_macro_default %}
+{{macro_default}}
+{% endfor %}
+{% endif %}
+
+# Macro custom entries
+{% if (pf_macro_custom is defined) and not ((pf_macro_custom == None) or (pf_macro_custom == '') or (pf_macro_custom == [])) %}
+{% for macro_custom in pf_macro_custom %}
+{{macro_custom}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# TABLES
+#-------------------------------------------------------------------------------
+
+# Blacklist
+{% if (pf_table_blacklist is defined) and not ((pf_table_blacklist == 'false') or (pf_table_blacklist == 'no') or (pf_table_blacklist == 'disable')) %}
+table <blacklist> persist file '{{pf_table_blacklist}}'
+{% endif %}
+
+# Table default entries
+{% if (pf_table_default is defined) and not ((pf_table_default == None) or (pf_table_default == '') or (pf_table_default == [])) %}
+{% for table_default in pf_table_default %}
+table {{table_default}}
+{% endfor %}
+{% endif %}
+
+# Table custom entries
+{% if (pf_table_custom is defined) and not ((pf_table_custom == None) or (pf_table_custom == '') or (pf_table_custom == [])) %}
+{% for table_custom in pf_table_custom %}
+table {{table_custom}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# OPTIONS
+#-------------------------------------------------------------------------------
+
+# Block policy (drop, return)
+{% if (pf_option_block_policy is defined) and (pf_option_block_policy == 'return') %}
+set block-policy return
+{% else %}
+set block-policy drop
+{% endif %}
+
+# Debugging level (none, urgent, misc, loud)
+{% if (pf_option_debug is defined) and (pf_option_debug == 'none') %}
+set debug none
+{% elif (pf_option_debug is defined) and (pf_option_debug == 'misc') %}
+set debug misc
+{% elif (pf_option_debug is defined) and (pf_option_debug == 'loud') %}
+set debug loud
+{% else %}
+set debug urgent
+{% endif %}
+
+# Operating system fingerprints
+{% if (pf_option_fingerprints is defined) and not ((pf_option_fingerprints == None) or (pf_option_fingerprints == '')) %}
+set fingerprints '{{pf_option_fingerprints}}'
+{% endif %}
+
+# Host ID
+{% if (pf_option_hostid is defined) and not ((pf_option_hostid == None) or (pf_option_hostid == '')) %}
+set hostid {{pf_option_hostid}}
+{% endif %}
+
+# Limits
+{% if (pf_option_limit is defined) and not ((pf_option_limit == None) or (pf_option_limit == '') or (pf_option_limit == [])) %}
+{% for option_limit in pf_option_limit %}
+set limit {{option_limit}}
+{% endfor %}
+{% endif %}
+
+# Log interface (none, <interface>)
+{% if (pf_option_loginterface is defined) and not ((pf_option_loginterface == None) or (pf_option_loginterface == '') or (pf_option_loginterface == 'none') or (pf_option_loginterface == 'false') or (pf_option_loginterface == 'no') or (pf_option_loginterface == 'disable')) %}
+set loginterface {{pf_option_loginterface}}
+{% else %}
+set loginterface none
+{% endif %}
+
+# Optimization (normal, high-latency, satellite, aggressive, conservative)
+{% if (pf_option_optimization is defined) and (pf_option_optimization == 'high-latency') %}
+set optimization high-latency
+{% elif (pf_option_optimization is defined) and (pf_option_optimization == 'satellite') %}
+set optimization satellite
+{% elif (pf_option_optimization is defined) and (pf_option_optimization == 'aggressive') %}
+set optimization aggressive
+{% elif (pf_option_optimization is defined) and (pf_option_optimization == 'conservative') %}
+set optimization conservative
+{% else %}
+set optimization normal
+{% endif %}
+
+# Require order
+{% if (pf_table_require_order is defined) and not ((pf_table_require_order == 'false') or (pf_table_require_order == 'no') or (pf_table_require_order == 'disable')) %}
+set require-order yes
+{% else %}
+set require-order no
+{% endif %}
+
+# Ruleset optimization (none, basic, profile)
+{% if (pf_option_ruleset_optimization is defined) and (pf_option_ruleset_optimization == 'basic') %}
+set ruleset-optimization basic
+{% elif (pf_option_ruleset_optimization is defined) and (pf_option_ruleset_optimization == 'profile') %}
+set ruleset-optimization profile
+{% else %}
+set ruleset-optimization none
+{% endif %}
+
+# Skip
+{% if (pf_option_skip is defined) and not ((pf_option_skip == None) or (pf_option_skip == '') or (pf_option_skip == [])) %}
+set skip on {% for option_skip in pf_option_skip %}{{option_skip}}{% if not loop.last %}, {% endif %}{% endfor %}
+{% endif %}
+
+
+# State defaults
+{% if (pf_option_state_defaults is defined) and not ((pf_option_state_defaults == None) or (pf_option_state_defaults == '') or (pf_option_state_defaults == [])) %}
+set state-defaults {% for state_defaults in pf_option_state_defaults %}{{state_defaults}}{% if not loop.last %}, {% endif %}{% endfor %}
+{% endif %}
+
+
+# State policy (if-bound, floating)
+{% if (pf_option_state_policy is defined) and (pf_option_state_policy == 'floating') %}
+set state-policy floating
+{% else %}
+set state-policy if-bound
+{% endif %}
+
+# Timeouts
+{% if (pf_option_timeout is defined) and not ((pf_option_timeout == None) or (pf_option_timeout == '') or (pf_option_timeout == [])) %}
+{% for option_timeout in pf_option_timeout %}
+set timeout {{option_timeout}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# TRAFFIC NORMALIZATION
+#-------------------------------------------------------------------------------
+
+# Scrub
+{% if (pf_scrub is defined) and not ((pf_scrub == None) or (pf_scrub == '') or (pf_scrub == [])) %}
+{% for scrub in pf_scrub %}
+scrub {{scrub}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# QUEUEING
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# TRANSLATION
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# PACKET FILTERING
+#-------------------------------------------------------------------------------
+
+# IN
+
+# Default in policy
+{% if (pf_filter_in_policy is defined) and (pf_filter_in_policy == 'pass') %}
+pass in all
+{% else %}
+block in all
+{% endif %}
+
+# ICMP rules
+{% if (pf_filter_in_icmp is defined) and not ((pf_filter_in_icmp == None) or (pf_filter_in_icmp == '') or (pf_filter_in_icmp == [])) %}
+{% for filter_in_icmp in pf_filter_in_icmp %}
+{{filter_in_icmp}}
+{% endfor %}
+{% endif %}
+
+# IP default rules
+{% if (pf_filter_in_ip_default is defined) and not ((pf_filter_in_ip_default == None) or (pf_filter_in_ip_default == '') or (pf_filter_in_ip_default == [])) %}
+{% for filter_in_ip_default in pf_filter_in_ip_default %}
+{{filter_in_ip_default}}
+{% endfor %}
+{% endif %}
+
+# IP custom rules
+{% if (pf_filter_in_ip_custom is defined) and not ((pf_filter_in_ip_custom == None) or (pf_filter_in_ip_custom == '') or (pf_filter_in_ip_custom == [])) %}
+{% for filter_in_ip_custom in pf_filter_in_ip_custom %}
+{{filter_in_ip_custom}}
+{% endfor %}
+{% endif %}
+
+# OUT
+
+# Default out policy
+{% if (pf_filter_out_policy is defined) and (pf_filter_out_policy == 'pass') %}
+pass out all
+{% else %}
+block out all
+{% endif %}
+
+# ICMP rules
+{% if (pf_filter_out_icmp is defined) and not ((pf_filter_out_icmp == None) or (pf_filter_out_icmp == '') or (pf_filter_out_icmp == [])) %}
+{% for filter_out_icmp in pf_filter_out_icmp %}
+{{filter_out_icmp}}
+{% endfor %}
+{% endif %}
+
+# IP default rules
+{% if (pf_filter_out_ip_default is defined) and not ((pf_filter_out_ip_default == None) or (pf_filter_out_ip_default == '') or (pf_filter_out_ip_default == [])) %}
+{% for filter_out_ip_default in pf_filter_out_ip_default %}
+{{filter_out_ip_default}}
+{% endfor %}
+{% endif %}
+
+# IP custom rules
+{% if (pf_filter_out_ip_custom is defined) and not ((pf_filter_out_ip_custom == None) or (pf_filter_out_ip_custom == '') or (pf_filter_out_ip_custom == [])) %}
+{% for filter_out_ip_custom in pf_filter_out_ip_custom %}
+{{filter_out_ip_custom}}
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# END
+#-------------------------------------------------------------------------------

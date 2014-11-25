@@ -1,0 +1,146 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# pf_state
+pf_state: 'enable'
+
+# pf_blacklist_custom
+pf_blacklist_custom: []
+
+# pf_blacklist_default
+pf_blacklist_default: []
+
+# pf_filter_in_icmp
+pf_filter_in_icmp: []
+
+# pf_filter_in_ip_custom
+pf_filter_in_ip_custom: []
+
+# pf_filter_in_ip_default
+pf_filter_in_ip_default:
+ - 'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state # SSH - from Private Address Space (RFC 1918)'
+ - 'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state # SSH - from Private Address Space (RFC 1918)'
+ - 'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state # SSH - from Private Address Space (RFC 1918)'
+
+# pf_filter_in_policy
+pf_filter_in_policy: 'block'
+
+# pf_filter_out_icmp
+pf_filter_out_icmp:
+ - 'pass out inet proto icmp icmp-type echoreq $udp_state # Echo request - to any'
+ - 'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state # Echo request - to any'
+
+# pf_filter_out_ip_custom
+pf_filter_out_ip_custom: []
+
+# pf_filter_out_ip_default
+pf_filter_out_ip_default:
+ - 'pass out inet proto tcp to any port 53 $tcp_state # DNS - to any'
+ - 'pass out inet proto udp to any port 53 $udp_state # DNS - to any'
+ - 'pass out inet proto tcp to any port 80 $tcp_state # HTTP - to any'
+ - 'pass out inet proto udp to any port 123 $udp_state # NTP - to any'
+ - 'pass out inet proto tcp to any port 443 $tcp_state # HTTPS - to any'
+
+# pf_filter_out_policy
+pf_filter_out_policy: 'block'
+
+# pf_macro_custom
+pf_macro_custom: []
+
+# pf_macro_default
+pf_macro_default: []
+
+# pf_macro_if_dmz
+pf_macro_if_dmz: ''
+
+# pf_macro_if_ext
+pf_macro_if_ext: ''
+
+# pf_macro_if_int
+pf_macro_if_int: ''
+
+# pf_macro_tcp_state
+pf_macro_tcp_state: 'flags S/SA modulate state'
+
+# pf_macro_udp_state
+pf_macro_udp_state: 'keep state'
+
+# pf_option_block_policy
+pf_option_block_policy: 'drop'
+
+# pf_option_debug
+pf_option_debug: 'urgent'
+
+# pf_option_fingerprints
+pf_option_fingerprints: '/etc/pf.os'
+
+# pf_option_hostid
+pf_option_hostid: ''
+
+# pf_option_limit
+pf_option_limit: []
+
+# pf_option_loginterface
+pf_option_loginterface: 'none'
+
+# pf_option_optimization
+pf_option_optimization: 'normal'
+
+# pf_option_ruleset_optimization
+pf_option_ruleset_optimization: 'none'
+
+# pf_option_skip
+pf_option_skip: ['lo']
+
+# pf_option_state_defaults
+pf_option_state_defaults: []
+
+# pf_option_state_policy
+pf_option_state_policy: 'if-bound'
+
+# pf_option_timeout
+pf_option_timeout: []
+
+# pf_pf_blacklist_template
+pf_pf_blacklist_template: 'main'
+
+# pf_pf_conf_template
+pf_pf_conf_template: 'main'
+
+# pf_scrub
+pf_scrub:
+ - 'in all fragment reassemble'
+ - 'out all random-id fragment reassemble'
+
+# pf_table_blacklist
+pf_table_blacklist: "{{file_path_pf_blacklist}}"
+
+# pf_table_custom
+pf_table_custom: []
+
+# pf_table_default
+pf_table_default:
+ - '<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'
+
+# pf_table_require_order
+pf_table_require_order: 'yes'

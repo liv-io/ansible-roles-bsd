@@ -1,0 +1,47 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# pf.conf
+file_src_pf_conf: "../../templates/{{pf_pf_conf_conf_template if (pf_pf_conf_conf_template is defined) and not ((pf_pf_conf_conf_template == None) or (pf_pf_conf_conf_template == '')) else 'main'}}/pf.conf.j2"
+file_path_pf_conf: '/etc/pf.conf'
+file_mode_pf_conf: '0640'
+file_owner_pf_conf: 'root'
+file_group_pf_conf: 'wheel'
+
+# pf.blacklist
+file_src_pf_blacklist: "../../templates/{{pf_pf_blacklist_blacklist_template if (pf_pf_blacklist_blacklist_template is defined) and not ((pf_pf_blacklist_blacklist_template == None) or (pf_pf_blacklist_blacklist_template == '')) else 'main'}}/pf.blacklist.j2"
+file_path_pf_blacklist: '/etc/pf.blacklist'
+file_mode_pf_blacklist: '0640'
+file_owner_pf_blacklist: 'root'
+file_group_pf_blacklist: 'wheel'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# pf
+service_name_pf: 'pf'

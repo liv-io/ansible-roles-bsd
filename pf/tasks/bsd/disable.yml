@@ -1,0 +1,73 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : disable.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create pf.blacklist
+  template:
+   src: "{{file_src_pf_blacklist}}"
+   dest: "{{file_path_pf_blacklist}}"
+   mode: "{{file_mode_pf_blacklist}}"
+   owner: "{{file_owner_pf_blacklist}}"
+   group: "{{file_group_pf_blacklist}}"
+  tags:
+   - files
+   - disable
+   - bsd
+   - pf
+
+- name: template create pf.conf
+  template:
+   src: "{{file_src_pf_conf}}"
+   dest: "{{file_path_pf_conf}}"
+   mode: "{{file_mode_pf_conf}}"
+   owner: "{{file_owner_pf_conf}}"
+   group: "{{file_group_pf_conf}}"
+  tags:
+   - files
+   - disable
+   - bsd
+   - pf
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: service stop pf
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   name: "{{service_name_pf}}"
+  tags:
+   - system
+   - disable
+   - bsd
+   - pf

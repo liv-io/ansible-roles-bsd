@@ -1,0 +1,39 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : pf.blacklist
+#   |  _   _  |  Type   : pf configuration file
+#   | [_] [_] |  Role   : pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# Blacklist default entries
+{% if (pf_blacklist_default is defined) and not ((pf_blacklist_default == None) or (pf_blacklist_default == '') or (pf_blacklist_default == [])) %}
+{% for blacklist_default in pf_blacklist_default %}
+{{blacklist_default}}
+{% endfor %}
+{% endif %}
+
+# Blacklist custom entries
+{% if (pf_blacklist_custom is defined) and not ((pf_blacklist_custom == None) or (pf_blacklist_custom == '') or (pf_blacklist_custom == [])) %}
+{% for blacklist_custom in pf_blacklist_custom %}
+{{blacklist_custom}}
+{% endfor %}
+{% endif %}
