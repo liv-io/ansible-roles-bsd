@@ -27,3 +27,14 @@
 
 # vim
 package_name_vim: 'vim'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# vimrc
+file_src_vimrc: "../../templates/{{vim_vimrc_template if (vim_vimrc_template is defined) and not ((vim_vimrc_template == None) or (vim_vimrc_template == '')) else 'main'}}/vimrc.j2"
+file_path_vimrc: '/etc/vim/vimrc'
+file_mode_vimrc: '0644'
+file_owner_vimrc: 'root'
+file_group_vimrc: 'root'

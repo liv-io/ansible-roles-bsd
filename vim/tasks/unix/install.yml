@@ -53,3 +53,20 @@
    - install
    - unix
    - vim
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create vimrc
+  template:
+   src: "{{file_src_vimrc}}"
+   dest: "{{file_path_vimrc}}"
+   mode: "{{file_mode_vimrc}}"
+   owner: "{{file_owner_vimrc}}"
+   group: "{{file_group_vimrc}}"
+  tags:
+   - files
+   - install
+   - unix
+   - vim

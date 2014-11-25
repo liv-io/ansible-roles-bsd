@@ -27,3 +27,11 @@
 
 # vim-lite
 package_name_vim: 'vim-lite'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# vimrc
+file_path_vimrc: '/usr/local/share/vim/vimrc'
+file_group_vimrc: 'wheel'

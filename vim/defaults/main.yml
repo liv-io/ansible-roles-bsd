@@ -23,3 +23,6 @@
 
 # vim_state
 vim_state: 'install'
+
+# vim_vimrc_template
+vim_vimrc_template: 'main'
