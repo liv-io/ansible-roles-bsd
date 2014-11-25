@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : openntpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((openntpd_state == 'false') or (openntpd_state == 'no') or (openntpd_state == 'remove'))
+
+- name: task include enable
+  include: enable.yml
+  when: (openntpd_state == 'start') or (openntpd_state == 'on') or (openntpd_state == 'enable')
+
+- name: task include disable
+  include: disable.yml
+  when: (openntpd_state == 'stop') or (openntpd_state == 'off') or (openntpd_state == 'disable')
+
+- name: task include remove
+  include: remove.yml
+  when: (openntpd_state == 'false') or (openntpd_state == 'no') or (openntpd_state == 'remove')

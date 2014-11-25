@@ -1,0 +1,75 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : enable.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : openntpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create ntpd.conf
+  template:
+   src: "{{file_src_ntpd_conf}}"
+   dest: "{{file_path_ntpd_conf}}"
+   mode: "{{file_mode_ntpd_conf}}"
+   owner: "{{file_owner_ntpd_conf}}"
+   group: "{{file_group_ntpd_conf}}"
+  notify: service restart ntpd
+  tags:
+   - files
+   - enable
+   - unix
+   - openntpd
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: service start ntpd
+  service:
+   state: 'started'
+   enabled: 'yes'
+   name: "{{service_name_ntpd}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - system
+   - enable
+   - unix
+   - openntpd
+
+- name: service start ntpd
+  service:
+   state: 'started'
+   enabled: 'yes'
+   runlevel: 'default'
+   name: "{{service_name_ntpd}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - system
+   - enable
+   - unix
+   - openntpd

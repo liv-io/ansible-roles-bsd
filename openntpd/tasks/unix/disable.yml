@@ -1,0 +1,74 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : disable.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : openntpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create ntpd.conf
+  template:
+   src: "{{file_src_ntpd_conf}}"
+   dest: "{{file_path_ntpd_conf}}"
+   mode: "{{file_mode_ntpd_conf}}"
+   owner: "{{file_owner_ntpd_conf}}"
+   group: "{{file_group_ntpd_conf}}"
+  tags:
+   - files
+   - disable
+   - unix
+   - openntpd
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: service stop ntpd
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   name: "{{service_name_ntpd}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - system
+   - disable
+   - unix
+   - openntpd
+
+- name: service stop ntpd
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   runlevel: 'default'
+   name: "{{service_name_ntpd}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - system
+   - disable
+   - unix
+   - openntpd

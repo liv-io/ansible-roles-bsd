@@ -1,0 +1,53 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : openntpd.conf
+#   |  _   _  |  Type   : openntpd configuration file
+#   | [_] [_] |  Role   : openntpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# $FreeBSD: head/net/openntpd/files/ntpd.conf 340872 2014-01-24 00:14:07Z mat $
+# sample ntpd configuration file, see ntpd.conf(5)
+
+# Addresses to listen on (ntpd does not listen by default)
+#listen on *
+{% if (openntpd_listen is defined) and not ((openntpd_listen == None) or (openntpd_listen == '') or (openntpd_listen == [])) %}
+{% for listen in openntpd_listen %}
+listen {{listen}}
+{% endfor %}
+{% endif %}
+
+# sync to a single server
+#server ntp.example.org
+{% if (openntpd_server is defined) and not ((openntpd_server == None) or (openntpd_server == '') or (openntpd_server == [])) %}
+{% for server in openntpd_server %}
+server {{server}}
+{% endfor %}
+{% endif %}
+
+# use a random selection of NTP Pool Time Servers
+# see http://support.ntp.org/bin/view/Servers/NTPPoolServers
+#servers pool.ntp.org
+{% if (openntpd_servers is defined) and not ((openntpd_servers == None) or (openntpd_servers == '') or (openntpd_servers == [])) %}
+{% for servers in openntpd_servers %}
+servers {{servers}}
+{% endfor %}
+{% endif %}

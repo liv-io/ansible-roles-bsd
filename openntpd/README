@@ -1,0 +1,194 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : openntpd
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : net-misc
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: Simplified BSD License
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages openntpd.
+
+The ntpd daemon implements the Simple Network Time Protocol version 4 as
+described in RFC 2030 and the Network Time Protocol version 3 as described in
+RFC 1305. It can synchronize the local clock to one or more remote NTP servers
+and act as NTP server itself, redistributing the local time.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: openntpd
+       openntpd_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+     - role: openntpd
+       openntpd_state: 'enable'
+       openntpd_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: openntpd
+       openntpd_state: 'disable'
+       openntpd_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: openntpd
+       openntpd_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  openntpd_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Enable : 'start' | 'on' | 'enable'
+      Disable: 'stop' | 'off' | 'disable'
+      Remove : 'false' | 'no' | 'remove'
+
+  openntpd_listen
+    Description: Define the 'openntpd_listen' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['*'] | ['127.0.0.1', '::1'] | ['192.168.1.10']
+      None    : []
+
+  openntpd_ntpd_conf_template
+    Description: Define the template source for 'ntpd.conf.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
+                 'openntpd/templates/example/ntpd.conf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  openntpd_server
+    Description: Define the 'openntpd_server' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ["ntp.{{ansible_domain}}"]
+    Options    :
+      Examples: ['ntp.domain.tld'] | ['ntp01.domain.tld', 'ntp02.domain.tld'] |
+                ['ntp01.domain.tld', 'ntp02.domain.tld', 'ntp03.domain.tld']
+      None    : []
+
+  openntpd_servers
+    Description: Define the 'openntpd_servers' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['pool.domain.tld'] |
+                ['pool.domain01.tld', 'pool.domain02.tld'] |
+                ['pool.domain01.tld', 'pool.domain02.tld', 'pool.domain03.tld']
+      None    : []
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+  ntp
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  openntpd
+    Version: >= 20080406
+    Name   :
+      FreeBSD 10: 'openntpd'
+      Gentoo 2  : 'openntpd'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
+    Version: 2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

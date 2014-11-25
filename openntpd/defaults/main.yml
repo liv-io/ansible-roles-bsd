@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : openntpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# openntpd_state
+openntpd_state: 'enable'
+
+# openntpd_listen
+openntpd_listen: []
+
+# openntpd_ntpd_conf_template
+openntpd_ntpd_conf_template: "{{ansible_os_family}}"
+
+# openntpd_server
+openntpd_server:
+ - "ntp.{{ansible_domain}}"
+
+# openntpd_servers
+openntpd_servers: []
