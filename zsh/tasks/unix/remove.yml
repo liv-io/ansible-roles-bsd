@@ -1,0 +1,55 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : remove.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : zsh
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package remove zsh
+  pkgng:
+   state: 'absent'
+   name: "{{package_name_zsh}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - zsh
+
+- name: package remove zsh
+  portage:
+   state: 'removed'
+   sync: "{{portage_sync}}"
+   name: "{{package_name_zsh}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - zsh
