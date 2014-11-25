@@ -155,9 +155,11 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '+%Y-%m-%d %H:%M:%S'
+    Default    :
+      FreeBSD: '%Y-%m-%d %H:%M:%S'
+      Default: '+%Y-%m-%d %H:%M:%S'
     Options    :
-      Examples: '+%Y-%m-%d %H:%M:%S'
+      Examples: '%Y-%m-%d %H:%M:%S' | '+%Y-%m-%d %H:%M:%S'
       Disable : 'false' | 'no' | 'disable'
 
   bash_safety
@@ -237,9 +239,11 @@ PACKAGES
   bash
     Version: >= 4.0
     Name   :
-      Gentoo 2: 'bash'
+      FreeBSD 10: 'bash'
+      Gentoo 2  : 'bash'
 
 ROLES
+  sh
 
 VARIABLES
 
@@ -280,7 +284,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Planned
+      Status: Development
 
   Gentoo
     Version: 2

@@ -52,13 +52,13 @@ bash_histignore: ''
 bash_histcontrol: ''
 
 # bash_ls_time_style
-bash_ls_time_style: '+%Y-%m-%d %H:%M:%S'
+bash_ls_time_style: "{{'%Y-%m-%d %H:%M:%S' if (ansible_os_family == 'FreeBSD') else '+%Y-%m-%d %H:%M:%S'}}"
 
 # bash_safety
 bash_safety: 'enable'
 
 # bash_bash_sh_template
-bash_bash_sh_template: 'main'
+bash_bash_sh_template: "{{ansible_os_family}}"
 
 # bash_session_readonly
 bash_session_readonly: 'enable'
@@ -67,4 +67,4 @@ bash_session_readonly: 'enable'
 bash_tmout: '1800'
 
 # bash_z_bash_sh_template
-bash_z_bash_sh_template: 'main'
+bash_z_bash_sh_template: "{{ansible_os_family}}"

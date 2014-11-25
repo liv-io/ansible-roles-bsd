@@ -1,11 +1,14 @@
----
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
 #-------------------------------------------------------------------------------
 # INFORMATION
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible meta file
+#   |         |  Name   : bash.sh
+#   |  _   _  |  Type   : environment variable configuration file
 #   | [_] [_] |  Role   : bash
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -17,9 +20,8 @@
 # DESCRIPTION
 #-------------------------------------------------------------------------------
 #
-#
+# All default bash environment variables have been moved from 'bash.bash' to
+# 'z_bash.bash'. Files in '/etc/profile.d/' are loaded in alphabetical order.
+# Changing the order helps to ensure important variables do not get overwritten.
 #
 #-------------------------------------------------------------------------------
-
-dependencies:
- - { role: sh }

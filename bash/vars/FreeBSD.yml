@@ -5,7 +5,7 @@
 #        o
 #    ____|____
 #   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible meta file
+#   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : bash
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -21,5 +21,14 @@
 #
 #-------------------------------------------------------------------------------
 
-dependencies:
- - { role: sh }
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# bash.sh
+file_path_bash_sh: '/etc/profile.d/bash.bash'
+file_group_bash_sh: 'wheel'
+
+# z_bash.sh
+file_path_z_bash_sh: '/etc/profile.d/z_bash.bash'
+file_group_z_bash_sh: 'wheel'

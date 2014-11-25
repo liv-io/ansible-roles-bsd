@@ -33,14 +33,14 @@ package_name_bash: 'bash'
 #-------------------------------------------------------------------------------
 
 # bash.sh
-file_src_bash_sh: "../../templates/{{bash_bash_sh_template if (bash_bash_sh_template is defined) and not ((bash_bash_sh_template == None) or (bash_bash_sh_template == '')) else 'main'}}/bash.sh.j2"
+file_src_bash_sh: "../../templates/{{bash_bash_sh_template if (bash_bash_sh_template is defined) and not ((bash_bash_sh_template == None) or (bash_bash_sh_template == '')) else ansible_os_family}}/bash.sh.j2"
 file_path_bash_sh: '/etc/profile.d/bash.sh'
 file_mode_bash_sh: '0644'
 file_owner_bash_sh: 'root'
 file_group_bash_sh: 'root'
 
 # z_bash.sh
-file_src_z_bash_sh: "../../templates/{{bash_z_bash_sh_template if (bash_z_bash_sh_template is defined) and not ((bash_z_bash_sh_template == None) or (bash_z_bash_sh_template == '')) else 'main'}}/z_bash.sh.j2"
+file_src_z_bash_sh: "../../templates/{{bash_z_bash_sh_template if (bash_z_bash_sh_template is defined) and not ((bash_z_bash_sh_template == None) or (bash_z_bash_sh_template == '')) else ansible_os_family}}/z_bash.sh.j2"
 file_path_z_bash_sh: '/etc/profile.d/z_bash.sh'
 file_mode_z_bash_sh: '0644'
 file_owner_z_bash_sh: 'root'

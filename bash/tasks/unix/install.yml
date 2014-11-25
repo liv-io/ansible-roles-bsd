@@ -32,6 +32,17 @@
 #-------------------------------------------------------------------------------
 
 - name: package install bash
+  pkgng:
+   state: 'present'
+   name: "{{package_name_bash}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - bash
+
+- name: package install bash
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"
