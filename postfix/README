@@ -131,7 +131,8 @@ ROLE
     Value      : Arbitrary
     Type       : String
     Default    :
-      Gentoo 'ipv4'
+      Gentoo: 'ipv4'
+      Other : 'all'
     Options    :
       Any      : 'any' | 'ANY' | 'all' | 'ALL'
       IPv4 only: 'inet' | 'ipv4'
