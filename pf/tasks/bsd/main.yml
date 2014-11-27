@@ -21,10 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((pf_state == 'false') or (pf_state == 'no') or (pf_state == 'remove'))
-
 - name: task include enable
   include: enable.yml
   when: (pf_state == 'start') or (pf_state == 'on') or (pf_state == 'enable')
