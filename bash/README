@@ -175,12 +175,12 @@ ROLE
       Examples: '300' | '600' | '1200' | '1800'
       Disable : 'false' | 'no' | 'disable'
 
-  bash_z_bash_sh_template
-    Description: Define the template source for 'z_bash.sh.j2'.
+  bash_zz_bash_sh_template
+    Description: Define the template source for 'zz_bash.sh.j2'.
                  Any value other than "{{ansible_os_family}}" requires a Jinja2
 		 file to be created. The custom Jinja2 file for an example
 		 configuration called 'example' needs to be placed as follows:
-                 'bash/templates/example/z_bash.sh.j2'
+                 'bash/templates/example/zz_bash.sh.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary

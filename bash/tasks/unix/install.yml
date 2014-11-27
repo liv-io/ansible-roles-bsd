@@ -71,13 +71,13 @@
    - unix
    - bash
 
-- name: template create z_bash.sh
+- name: template create zz_bash.sh
   template:
-   src: "{{file_src_z_bash_sh}}"
-   dest: "{{file_path_z_bash_sh}}"
-   mode: "{{file_mode_z_bash_sh}}"
-   owner: "{{file_owner_z_bash_sh}}"
-   group: "{{file_group_z_bash_sh}}"
+   src: "{{file_src_zz_bash_sh}}"
+   dest: "{{file_path_zz_bash_sh}}"
+   mode: "{{file_mode_zz_bash_sh}}"
+   owner: "{{file_owner_zz_bash_sh}}"
+   group: "{{file_group_zz_bash_sh}}"
   tags:
    - files
    - install

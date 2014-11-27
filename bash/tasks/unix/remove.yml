@@ -56,10 +56,10 @@
    - unix
    - bash
 
-- name: file remove z_bash.sh
+- name: file remove zz_bash.sh
   file:
    state: 'absent'
-   path: "{{file_path_z_bash_sh}}"
+   path: "{{file_path_zz_bash_sh}}"
   tags:
    - files
    - remove

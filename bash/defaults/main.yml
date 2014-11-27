@@ -57,5 +57,5 @@ bash_session_readonly: 'enable'
 # bash_tmout
 bash_tmout: '1800'
 
-# bash_z_bash_sh_template
-bash_z_bash_sh_template: "{{ansible_os_family}}"
+# bash_zz_bash_sh_template
+bash_zz_bash_sh_template: "{{ansible_os_family}}"

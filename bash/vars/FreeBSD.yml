@@ -29,6 +29,6 @@
 file_path_bash_sh: '/etc/profile.d/bash.bash'
 file_group_bash_sh: 'wheel'
 
-# z_bash.sh
-file_path_z_bash_sh: '/etc/profile.d/z_bash.bash'
-file_group_z_bash_sh: 'wheel'
+# zz_bash.sh
+file_path_zz_bash_sh: '/etc/profile.d/zz_bash.bash'
+file_group_zz_bash_sh: 'wheel'
