@@ -1,0 +1,72 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : remove.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : shell
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: file remove profile
+  file:
+   state: 'absent'
+   path: "{{file_path_profile}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - shell
+
+- name: file remove profile.d
+  file:
+   state: 'absent'
+   path: "{{file_path_profile_d}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - shell
+
+- name: file remove shell.sh
+  file:
+   state: 'absent'
+   path: "{{file_path_shell_shell}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - shell
+
+- name: file remove z_shell.sh
+  file:
+   state: 'absent'
+   path: "{{file_path_z_shell_shell}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - shell

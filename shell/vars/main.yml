@@ -6,7 +6,7 @@
 #    ____|____
 #   |         |  Name   : main.yml
 #   |  _   _  |  Type   : ansible variable file
-#   | [_] [_] |  Role   : sh
+#   | [_] [_] |  Role   : shell
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -26,7 +26,7 @@
 #-------------------------------------------------------------------------------
 
 # profile
-file_src_profile: "../../templates/{{sh_profile_template if (sh_profile_template is defined) and not ((sh_profile_template == None) or (sh_profile_template == '')) else ansible_os_family}}/profile.j2"
+file_src_profile: "../../templates/{{shell_profile_template if (shell_profile_template is defined) and not ((shell_profile_template == None) or (shell_profile_template == '')) else ansible_os_family}}/profile.j2"
 file_path_profile: '/etc/profile'
 file_mode_profile: '0644'
 file_owner_profile: 'root'
@@ -37,3 +37,17 @@ file_path_profile_d: '/etc/profile.d'
 file_mode_profile_d: '0755'
 file_owner_profile_d: 'root'
 file_group_profile_d: 'root'
+
+# shell.sh
+file_src_shell_shell: "../../templates/{{shell_shell_sh_template if (shell_shell_sh_template is defined) and not ((shell_shell_sh_template == None) or (shell_shell_sh_template == '')) else ansible_os_family}}/shell.sh.j2"
+file_path_shell_shell: '/etc/profile.d/shell.sh'
+file_mode_shell_shell: '0644'
+file_owner_shell_shell: 'root'
+file_group_shell_shell: 'root'
+
+# z_shell.sh
+file_src_z_shell_shell: "../../templates/{{shell_z_shell_sh_template if (shell_z_shell_sh_template is defined) and not ((shell_z_shell_sh_template == None) or (shell_z_shell_sh_template == '')) else ansible_os_family}}/z_shell.sh.j2"
+file_path_z_shell_shell: '/etc/profile.d/z_shell.sh'
+file_mode_z_shell_shell: '0644'
+file_owner_z_shell_shell: 'root'
+file_group_z_shell_shell: 'root'

@@ -6,7 +6,7 @@
 #    ____|____
 #   |         |  Name   : install.yml
 #   |  _   _  |  Type   : ansible task file
-#   | [_] [_] |  Role   : sh
+#   | [_] [_] |  Role   : shell
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -42,7 +42,7 @@
    - files
    - install
    - unix
-   - sh
+   - shell
 
 - name: template create profile
   template:
@@ -55,4 +55,30 @@
    - files
    - install
    - unix
-   - sh
+   - shell
+
+- name: template create shell.sh
+  template:
+   src: "{{file_src_shell_shell}}"
+   dest: "{{file_path_shell_shell}}"
+   mode: "{{file_mode_shell_shell}}"
+   owner: "{{file_owner_shell_shell}}"
+   group: "{{file_group_shell_shell}}"
+  tags:
+   - files
+   - install
+   - unix
+   - shell
+
+- name: template create z_shell.sh
+  template:
+   src: "{{file_src_z_shell_shell}}"
+   dest: "{{file_path_z_shell_shell}}"
+   mode: "{{file_mode_z_shell_shell}}"
+   owner: "{{file_owner_z_shell_shell}}"
+   group: "{{file_group_z_shell_shell}}"
+  tags:
+   - files
+   - install
+   - unix
+   - shell

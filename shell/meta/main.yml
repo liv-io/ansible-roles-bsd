@@ -5,8 +5,8 @@
 #        o
 #    ____|____
 #   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible default file
-#   | [_] [_] |  Role   : sh
+#   |  _   _  |  Type   : ansible meta file
+#   | [_] [_] |  Role   : shell
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -21,8 +21,4 @@
 #
 #-------------------------------------------------------------------------------
 
-# sh_state
-sh_state: 'install'
-
-# sh_profile_template
-sh_profile_template: "{{ansible_os_family}}"
+dependencies: []

@@ -1,12 +1,15 @@
----
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
 #-------------------------------------------------------------------------------
 # INFORMATION
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible meta file
-#   | [_] [_] |  Role   : sh
+#   |         |  Name   : shell.sh
+#   |  _   _  |  Type   : environment variable configuration file
+#   | [_] [_] |  Role   : shell
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -17,8 +20,8 @@
 # DESCRIPTION
 #-------------------------------------------------------------------------------
 #
-#
+# All default shell environment variables have been moved from 'shell.sh' to
+# 'z_shell.sh'. Files in '/etc/profile.d/' are loaded in alphabetical order.
+# Changing the order helps to ensure important variables do not get overwritten.
 #
 #-------------------------------------------------------------------------------
-
-dependencies: []

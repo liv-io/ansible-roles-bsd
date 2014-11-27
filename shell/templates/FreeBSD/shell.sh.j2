@@ -1,12 +1,15 @@
----
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
 #-------------------------------------------------------------------------------
 # INFORMATION
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible task file
-#   | [_] [_] |  Role   : sh
+#   |         |  Name   : shell.sh
+#   |  _   _  |  Type   : environment variable configuration file
+#   | [_] [_] |  Role   : shell
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -17,14 +20,8 @@
 # DESCRIPTION
 #-------------------------------------------------------------------------------
 #
-#
+# All default shell environment variables have been moved from 'shell.sh' to
+# 'z_shell.sh'. Files in '/etc/profile.d/' are loaded in alphabetical order.
+# Changing the order helps to ensure important variables do not get overwritten.
 #
 #-------------------------------------------------------------------------------
-
-- name: task include install
-  include: install.yml
-  when: not ((sh_state == 'false') or (sh_state == 'no') or (sh_state == 'remove'))
-
-- name: task include remove
-  include: remove.yml
-  when: (sh_state == 'false') or (sh_state == 'no') or (sh_state == 'remove')

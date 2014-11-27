@@ -3,7 +3,7 @@ README
 --------------------------------------------------------------------------------
         o
     ____|____
-   |         |  Name   : sh
+   |         |  Name   : shell
    |  _   _  |  Type   : ansible role
    | [_] [_] |  Group  : app-shells
    |____~____|
@@ -16,7 +16,7 @@ README
 DESCRIPTION
 --------------------------------------------------------------------------------
 
-This role manages sh.
+This role manages shell.
 
 The sh utility is the standard command interpreter for the system.
 
@@ -30,21 +30,21 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: sh
-       sh_state: 'install'
+     - role: shell
+       shell_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: sh
-       sh_state: 'remove'
+     - role: shell
+       shell_state: 'remove'
 
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
 
 ROLE
-  sh_state
+  shell_state
     Description: Control the state of the role.
     Implemented: 0.1
     Required   : False
@@ -55,13 +55,88 @@ ROLE
       Install: 'true' | 'yes' | 'install'
       Remove : 'false' | 'no' | 'remove'
 
-  sh_profile_template
+  shell_color_support
+    Description: Control the state of colored 'shell' commands.
+    Implemented: 0.2
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  shell_histsize
+    Description: Set the size of the 'shell' history variable.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '262144'
+    Options    :
+      Examples: '32768' | '65536' | '131072' | '262144'
+      Disable : 'false' | 'no' | 'disable'
+
+  shell_ls_time_style
+    Description: Define the time format of the 'ls' command.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    :
+      FreeBSD: '%Y-%m-%d %H:%M:%S'
+      Other  : '+%Y-%m-%d %H:%M:%S'
+    Options    :
+      Examples: '%Y-%m-%d %H:%M:%S' | '+%Y-%m-%d %H:%M:%S'
+      Disable : 'false' | 'no' | 'disable'
+
+  shell_profile_template
     Description: Define the template source for 'profile.j2'.
                  Any value other than "{{ansible_os_family}}" requires a Jinja2
                  file to be created. The custom Jinja2 file for an example
                  configuration called 'example' needs to be placed as follows:
-                 'sh/templates/example/profile.j2'
+                 'shell/templates/example/profile.j2'
     Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  shell_safety
+    Description: Control the safety of various shell commands
+                 (chmod, chown, ln, mv, rm...).
+    Implemented: 0.2
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  shell_shell_sh_template
+    Description: Define the template source for 'shell.sh.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+		 file to be created. The custom Jinja2 file for an example
+		 configuration called 'example' needs to be placed as follows:
+                 'shell/templates/example/shell.sh.j2'
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  shell_z_shell_sh_template
+    Description: Define the template source for 'z_shell.sh.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+		 file to be created. The custom Jinja2 file for an example
+		 configuration called 'example' needs to be placed as follows:
+                 'shell/templates/example/z_shell.sh.j2'
+    Implemented: 0.2
     Required   : False
     Value      : Arbitrary
     Type       : String

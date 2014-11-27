@@ -4,9 +4,9 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible task file
-#   | [_] [_] |  Role   : sh
+#   |         |  Name   : FreeBSD.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : shell
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -21,6 +21,18 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include unix
-  include: unix/main.yml
-  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# profile
+file_group_profile: 'wheel'
+
+# profile.d
+file_group_profile_d: 'wheel'
+
+# shell.sh
+file_group_shell_shell: 'wheel'
+
+# z_shell.sh
+file_group_z_shell_shell: 'wheel'

@@ -4,9 +4,9 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : remove.yml
+#   |         |  Name   : main.yml
 #   |  _   _  |  Type   : ansible task file
-#   | [_] [_] |  Role   : sh
+#   | [_] [_] |  Role   : shell
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -21,32 +21,10 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: include variables
-  include_vars: "{{item}}"
-  with_first_found:
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+- name: task include install
+  include: install.yml
+  when: not ((shell_state == 'false') or (shell_state == 'no') or (shell_state == 'remove'))
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
-- name: file remove profile
-  file:
-   state: 'absent'
-   path: "{{file_path_profile}}"
-  tags:
-   - files
-   - remove
-   - unix
-   - sh
-
-- name: file remove profile.d
-  file:
-   state: 'absent'
-   path: "{{file_path_profile_d}}"
-  tags:
-   - files
-   - remove
-   - unix
-   - sh
+- name: task include remove
+  include: remove.yml
+  when: (shell_state == 'false') or (shell_state == 'no') or (shell_state == 'remove')

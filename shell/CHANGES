@@ -14,5 +14,8 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2014-11-27)
+F: Add options to control general shell variables
+
 * Version 0.1.0 (2014-11-24)
 F: Initial release
