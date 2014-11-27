@@ -138,9 +138,9 @@ ROLE
 
   portage_make_conf_template
     Description: Define the template source for 'make.conf.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
                  'portage/templates/example/make.conf.j2'
     Implemented: 0.1
     Required   : False
@@ -175,9 +175,9 @@ ROLE
 
   portage_package_accept_keywords_template
     Description: Define the template source for 'package.accept_keywords.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
                  'portage/templates/example/package.accept_keywords.j2'
     Implemented: 0.1
     Required   : False
@@ -200,9 +200,9 @@ ROLE
 
   portage_package_license_template
     Description: Define the template source for 'package.license.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
                  'portage/templates/example/package.license.j2'
     Implemented: 0.1
     Required   : False
@@ -225,9 +225,9 @@ ROLE
 
   portage_package_use_template
     Description: Define the template source for 'package.use.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
                  'portage/templates/example/package.use.j2'
     Implemented: 0.1
     Required   : False

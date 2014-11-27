@@ -80,9 +80,9 @@ ROLE
 
   postfix_aliases_template
     Description: Define the template source for 'aliases.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
                  'postfix/templates/example/aliases.j2'
     Implemented: 0.1
     Required   : False
@@ -140,9 +140,9 @@ ROLE
 
   postfix_main_cf_template
     Description: Define the template source for 'main.cf.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
                  'postfix/templates/example/main.cf.j2'
     Implemented: 0.1
     Required   : False
@@ -154,9 +154,9 @@ ROLE
 
   postfix_master_cf_template
     Description: Define the template source for 'master.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
                  'postfix/templates/example/master.j2'
     Implemented: 0.1
     Required   : False
