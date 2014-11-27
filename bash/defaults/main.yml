@@ -27,9 +27,6 @@ bash_state: 'install'
 # bash_color_prompt
 bash_color_prompt: 'enable'
 
-# bash_color_support
-bash_color_support: 'enable'
-
 # bash_history
 bash_history: 'enable'
 
@@ -50,12 +47,6 @@ bash_histignore: ''
 
 # bash_histcontrol
 bash_histcontrol: ''
-
-# bash_ls_time_style
-bash_ls_time_style: "{{'%Y-%m-%d %H:%M:%S' if (ansible_os_family == 'FreeBSD') else '+%Y-%m-%d %H:%M:%S'}}"
-
-# bash_safety
-bash_safety: 'enable'
 
 # bash_bash_sh_template
 bash_bash_sh_template: "{{ansible_os_family}}"

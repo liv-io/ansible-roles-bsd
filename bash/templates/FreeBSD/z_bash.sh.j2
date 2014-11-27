@@ -79,26 +79,3 @@ export TMOUT
 PS1='\[\033[1;36m\]\u\[\033[1;37m\]@\[\033[1;33m\]\h\[\033[1;37m\]:\[\033[1;31m\]\w \[\033[1;36m\]\$ \[\033[0m\]'
 echo -n -e '\033%G'
 {% endif %}
-
-{% if (bash_color_support is defined) and not ((bash_color_support == None) or (bash_color_support == 'false') or (bash_color_support == 'no') or (bash_color_support == 'disable')) %}
-# Bash color support - 'ls'
-alias ls='ls -F -G {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}-D "{{bash_ls_time_style}}"{% endif %}'
-alias la='ls -laF -G {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}-D "{{bash_ls_time_style}}"{% endif %}' # long listing, list all files
-alias ll='ls -lF -G {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}-D "{{bash_ls_time_style}}"{% endif %}'  # long listing
-alias lr='ls -lRF -G {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}-D "{{bash_ls_time_style}}"{% endif %}' # long listing, list subdirectories recursively
-alias lt='ls -ltF -G {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}-D "{{bash_ls_time_style}}"{% endif %}' # long listing, sort by modification time
-alias lz='ls -lZF -G {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}-D "{{bash_ls_time_style}}"{% endif %}' # long listing, show MAC label
-
-# Bash color support - 'grep'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-{% endif %}
-
-{% if (bash_safety is defined) and not ((bash_safety == None) or (bash_safety == 'false') or (bash_safety == 'no') or (bash_safety == 'disable')) %}
-# Bash safety
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-alias ln='ln -i'
-{% endif %}

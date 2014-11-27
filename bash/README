@@ -70,17 +70,6 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  bash_color_support
-    Description: Control the state of colored 'bash' commands.
-    Implemented: 0.1
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'enable'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
   bash_history_readonly
     Description: Control the readonly state of the 'bash' history variable.
     Implemented: 0.1
@@ -149,42 +138,17 @@ ROLE
       Examples: ''
       Disable : 'false' | 'no' | 'disable'
 
-  bash_ls_time_style
-    Description: Define the time format of the 'ls' command.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    :
-      FreeBSD: '%Y-%m-%d %H:%M:%S'
-      Default: '+%Y-%m-%d %H:%M:%S'
-    Options    :
-      Examples: '%Y-%m-%d %H:%M:%S' | '+%Y-%m-%d %H:%M:%S'
-      Disable : 'false' | 'no' | 'disable'
-
-  bash_safety
-    Description: Control the safety of various bash commands
-                 (chmod, chown, ln, mv, rm...).
-    Implemented: 0.1
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'enable'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
   bash_bash_sh_template
     Description: Define the template source for 'bash.sh.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
                  'bash/templates/example/bash.sh.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'main'
+    Default    : "{{ansible_os_family}}"
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
@@ -213,15 +177,15 @@ ROLE
 
   bash_z_bash_sh_template
     Description: Define the template source for 'z_bash.sh.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+		 file to be created. The custom Jinja2 file for an example
+		 configuration called 'example' needs to be placed as follows:
                  'bash/templates/example/z_bash.sh.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'main'
+    Default    : "{{ansible_os_family}}"
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
@@ -243,7 +207,7 @@ PACKAGES
       Gentoo 2  : 'bash'
 
 ROLES
-  sh
+  shell
 
 VARIABLES
 
@@ -284,7 +248,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Development
+      Status: Testing
 
   Gentoo
     Version: 2

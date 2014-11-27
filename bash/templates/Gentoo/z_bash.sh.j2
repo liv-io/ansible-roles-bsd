@@ -79,35 +79,3 @@ export TMOUT
 PS1='\[\033[1;36m\]\u\[\033[1;37m\]@\[\033[1;33m\]\h\[\033[1;37m\]:\[\033[1;31m\]\w \[\033[1;36m\]\$ \[\033[0m\]'
 echo -n -e '\033%G'
 {% endif %}
-
-{% if (bash_color_support is defined) and not ((bash_color_support == None) or (bash_color_support == 'false') or (bash_color_support == 'no') or (bash_color_support == 'disable')) %}
-if [ -x /usr/bin/dircolors ]; then
-  # Bash color support - 'ls'
-  alias ls='ls -F --color=auto {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}'
-  alias la='ls -laF --color=auto {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, list all files
-  alias ll='ls -lF --color=auto {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}'  # long listing
-  alias lr='ls -lRF --color=auto {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, list subdirectories recursively
-  alias lt='ls -ltF --color=auto {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, sort by modification time
-  alias lz='ls -lZF --color=auto {% if (bash_ls_time_style is defined) and not ((bash_ls_time_style == None) or (bash_ls_time_style == '') or (bash_ls_time_style == 'false') or (bash_ls_time_style == 'no') or (bash_ls_time_style == 'disable')) %}--time-style="{{bash_ls_time_style}}"{% endif %}' # long listing, show SELinux security context
-
-  # Bash color support - 'dir'
-  alias dir='dir --color=auto'
-  alias vdir='vdir --color=auto'
-
-  # Bash color support - 'grep'
-  alias grep='grep --color=auto'
-  alias fgrep='fgrep --color=auto'
-  alias egrep='egrep --color=auto'
-fi
-{% endif %}
-
-{% if (bash_safety is defined) and not ((bash_safety == None) or (bash_safety == 'false') or (bash_safety == 'no') or (bash_safety == 'disable')) %}
-# Bash safety
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-alias ln='ln -i'
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
-{% endif %}
