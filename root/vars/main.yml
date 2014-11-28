@@ -1,0 +1,62 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : root
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# root.dir
+file_path_root_dir: '/root'
+file_mode_root_dir: "{{root_root_dir_mode if (root_root_dir_mode is defined) and not ((root_root_dir_mode == None) or (root_root_dir_mode == '')) else '0700'}}"
+file_owner_root_dir: "{{root_root_dir_owner if (root_root_dir_owner is defined) and not ((root_root_dir_owner == None) or (root_root_dir_owner == '')) else 'root'}}"
+file_group_root_dir: "{{root_root_dir_group if (root_root_dir_group is defined) and not ((root_root_dir_group == None) or (root_root_dir_group == '')) else 'root'}}"
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# root
+group_name_root: 'root'
+group_gid_root: '0'
+group_system_root: 'yes'
+
+# root
+user_name_root: 'root'
+user_comment_root: "{{root_comment if (root_comment is defined) and not ((root_comment == None) or (root_comment == '')) else 'root'}}"
+user_uid_root: '0'
+user_group_root: '0'
+user_groups_root: "{{root_groups if (root_groups is defined) and not ((root_groups == None) or (root_groups == '') or (root_groups == [])) else ['wheel']}}"
+user_append_root: "{{'no' if (root_groups_append is defined) and ((root_groups_append == 'false') or (root_groups_append == 'no') or (root_groups_append == 'disable')) else 'yes'}}"
+user_home_create_root: 'no'
+user_home_move_root: 'no'
+user_home_remove_root: 'no'
+user_home_force_root: 'no'
+user_password_root: "{{root_password if (root_password is defined) and not ((root_password == None) or (root_password == '')) else '!'}}"
+user_password_update_root: 'always'
+user_shell_root: "{{root_shell if (root_shell is defined) and not ((root_shell == None) or (root_shell == '')) else '/bin/sh'}}"
+user_system_root: 'yes'
+
+# root
+authorized_key_user_root: "{{user_name_root if (user_name_root is defined) and not ((user_name_root == None) or (user_name_root == '')) else 'root'}}"
+authorized_key_key_root: "{{root_authorized_key if (root_authorized_key is defined) and not ((root_authorized_key == None) or (root_authorized_key == ''))}}"
+authorized_key_options_root: ''

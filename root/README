@@ -1,0 +1,245 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : root
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : sys-core
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: Simplified BSD License
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages root.
+
+Manage the root user account.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: root
+       root_state: 'install'
+       root_password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
+       root_shell: '/bin/sh'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: root
+       root_state: 'remove'
+       root_password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
+       root_shell: '/bin/sh'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  root_state
+    Description: Control the state of the role.
+                 'root' is a core role and should therefore not be removed.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Remove : 'false' | 'no' | 'remove'
+
+  root_authorized_key
+    Description: Define the 'root_authorized_key' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA5Qg4nV3Jh9kqnCs3YAoVbTCN5DV3vrOPzf1eLp514TE+QC2IDNEV6c8hWUD5VZZF0FS7MfGhsYx3pcd+7OiSvkRtIomNG+GuDJWhD5nCRuvYotrEUGh/P+mm7eLmQUBmZuMBvwUZn9W92zqic8F+uCrOMOqNcxsVp6oHUZSfZUkEoRnJxdBfd4UsLxinwM1fLCm0qYNAAHRjIycXEkAp37gx+6k6qulvf8c3oS/+akZ3xV0hAu7Ce5K1e7dC5iLS0GahMfr16grx+qqK4BHhsN4i7Xg2f1/eMyxsubzH3OkPrzAhoUJbhLUnaaURGhIrMB+JYN0Jo0XMvIavgqcYcQ== root'
+
+  root_authorized_key_options
+    Description: Define the 'root_authorized_key_options' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'command="command"' | 'no-agent-forwarding' | 'no-port-forwarding'
+
+  root_authorized_key_state
+    Description: Control the 'root_authorized_key_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Create: 'true' | 'yes' | 'create'
+      Remove: 'false' | 'no' | 'remove'
+
+  root_comment
+    Description: Define the 'root_comment' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'root'
+    Options    :
+      Examples: 'root' | 'superuser'
+
+  root_groups
+    Description: Define the 'root_groups' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['wheel']
+    Options    :
+      Examples: ['group01'] |
+                ['group01', 'group02'] |
+                ['group01', 'group02', 'group03']
+
+  root_groups_append
+    Description: Control the 'root_groups_append' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  root_password
+    Description: Define the 'root_password' option.
+                 Warning: Define 'root_password' option before applying role.
+    Implemented: 0.1
+    Required   : True
+    Value      : Arbitrary SHA-512 cryptographic hash
+    Type       : String
+    Default    : '!'
+    Options    :
+      Examples: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1' |
+                '$6$Dgjf366H$mpoaFpK8rIaGSpaxhpJIu5AvinfCOLK2WQhnfm3UTwLNBfyCU494fXEYPsrUobsQ7hCcbv8GqwiJjmuhoGqL00' |
+                '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
+
+  root_root_dir_group
+    Description: Define the 'root_root_dir_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    :
+      FreeBSD: 'wheel'
+      Other  : 'root'
+    Options    :
+      Examples: 'root' | 'wheel' | 'sysadmin'
+
+  root_root_dir_mode
+    Description: Define the 'root_root_dir_mode' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '0700'
+    Options    :
+      Examples: '0700' | '0750'
+
+  root_root_dir_owner
+    Description: Define the 'root_root_dir_owner' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'root'
+    Options    :
+      Examples: 'root'
+
+  root_shell
+    Description: Define the 'root_shell' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    :
+      FreeBSD: '/bin/csh'
+      Other  : '/bin/sh'
+    Options    :
+      Examples: '/bin/bash' | '/bin/csh' | '/bin/sh' | '/bin/tcsh' | '/bin/zsh'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
+    Version: 2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

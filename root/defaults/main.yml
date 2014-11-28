@@ -1,0 +1,58 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : root
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# root_state
+root_state: 'install'
+
+# root_authorized_key
+root_authorized_key: ''
+
+# root_authorized_key_options
+root_authorized_key_options: ''
+
+# root_authorized_key_state
+root_authorized_key_state: 'false'
+
+# root_comment
+root_comment: 'root'
+
+# root_groups
+root_groups: ['wheel']
+
+# root_groups_append
+root_groups_append: 'true'
+
+# root_password
+root_password: '!'
+
+# root_root_dir_group
+root_root_dir_group: "{{'wheel' if (ansible_os_family == 'FreeBSD') else 'root'}}"
+
+# root_root_dir_mode
+root_root_dir_mode: '0700'
+
+# root_root_dir_owner
+root_root_dir_owner: 'root'
+
+# root_shell
+root_shell: "{{'/bin/csh' if (ansible_os_family == 'FreeBSD') else '/bin/sh'}}"
