@@ -502,7 +502,9 @@ ROLE
                   'out all random-id fragment reassemble']
     Options    :
       Examples: ['in all fragment reassemble',
-                 'out all random-id fragment reassemble']
+                 'out all random-id fragment reassemble'] |
+                ['in all fragment drop-ovl',
+		 'out all random-id fragment reassemble']
       None    : []
 
   pf_table_blacklist
