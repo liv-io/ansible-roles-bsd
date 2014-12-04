@@ -34,6 +34,7 @@
    group: "{{item.group if (item.group is defined) and not ((item.group == None) or (item.group == '')) else user_group_default}}"
    groups: "{{item.groups|join(',') if (item.groups is defined) else user_groups_default}}"
    append: "{{'yes' if (item.groups_append is defined) and ((item.groups_append == 'true') or (item.groups_append == 'yes') or (item.groups_append == 'enable')) else 'no'}}"
+   home: "{{item.home if (item.home is defined) and not ((item.home == None) or (item.home == '')) else '/home/' + item.name}}"
    createhome: "{{'no' if (item.home_create is defined) and ((item.home_create == 'false') or (item.home_create == 'no') or (item.home_create == 'disable')) else 'yes'}}"
    move_home: "{{'yes' if (item.home_move is defined) and ((item.home_move == 'true') or (item.home_move == 'yes') or (item.home_move == 'enable')) else 'no'}}"
    remove: "{{'yes' if (item.home_remove is defined) and ((item.home_remove == 'true') or (item.home_remove == 'yes') or (item.home_remove == 'enable')) else 'no'}}"

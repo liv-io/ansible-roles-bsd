@@ -170,6 +170,16 @@ CONFIG (user)
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+  home
+    Description: Define the home of the user.
+    Implemented: 0.6
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "/home/{{user.name}}"
+    Options    :
+      Examples: '/home/user01' | '/opt/user02' | '/user03'
+
   home_create
     Description: Control whether to create the home directory.
     Implemented: 0.1
