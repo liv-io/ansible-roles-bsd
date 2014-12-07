@@ -52,6 +52,9 @@ openssh_deny_users: []
 openssh_listen_address:
  - '0.0.0.0'
 
+# openssh_match
+openssh_match: []
+
 # openssh_password_authentication
 openssh_password_authentication: 'yes'
 

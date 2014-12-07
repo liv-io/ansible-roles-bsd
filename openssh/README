@@ -106,6 +106,18 @@ ROLE
       IPv6 only  : 'inet6' | 'ipv6'
       App default: '' | None
 
+  openssh_match
+    Description: Define the 'openssh_match' option.
+    Implemented: 0.7
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Dictionary
+    Default    : []
+    Options    :
+      Examples: [{name: 'sftpuser', type: 'User', config: {'ChrootDirectory': '/opt/sftp', 'ForceCommand': 'internal-sftp'}},
+                 {name: 'sftpgroup', type: 'Group', config: {'ChrootDirectory': '/opt/sftp', 'ForceCommand': 'internal-sftp'}}]
+      None    : []
+
   openssh_allow_groups
     Description: Define the 'openssh_allow_groups' option.
     Implemented: 0.1

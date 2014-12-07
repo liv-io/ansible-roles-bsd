@@ -209,12 +209,26 @@ Subsystem	sftp	/usr/libexec/sftp-server
 # Allow the use of the NONE cipher.
 #NoneEnabled no
 
+#-------------------------------------------------------------------------------
+# CONDITIONAL
+#-------------------------------------------------------------------------------
+
+{% if (openssh_match is defined) and not ((openssh_match == None) or (openssh_match == '') or (openssh_match == [])) %}
+{% for match in openssh_match %}
+Match {{match.type}} {{match.name}}
+{% for key, value in match.config.items()|sort %}
+  {{key}} {{value}}
+{% endfor %}
+
+{% endfor %}
+{% else %}
 # Example of overriding settings on a per-user basis
 #Match User anoncvs
 #	X11Forwarding no
 #	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
+{% endif %}
 
 #-------------------------------------------------------------------------------
 # ACCESS RESTRICTION
