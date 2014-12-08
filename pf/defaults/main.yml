@@ -38,28 +38,28 @@ pf_filter_in_ip_custom: []
 
 # pf_filter_in_ip_default
 pf_filter_in_ip_default:
- - 'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state # SSH - from Private Address Space (RFC 1918)'
- - 'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state # SSH - from Private Address Space (RFC 1918)'
- - 'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state # SSH - from Private Address Space (RFC 1918)'
+ - {config: {'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state',
+             'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state',
+             'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state'}, comment: 'SSH: From private address space (RFC 1918)'}
 
 # pf_filter_in_policy
 pf_filter_in_policy: 'block'
 
 # pf_filter_out_icmp
 pf_filter_out_icmp:
- - 'pass out inet proto icmp icmp-type echoreq $udp_state # Echo request - to any'
- - 'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state # Echo request - to any'
+ - {config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
+             'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'}, comment: 'ICMP echo request: To any'}
 
 # pf_filter_out_ip_custom
 pf_filter_out_ip_custom: []
 
 # pf_filter_out_ip_default
 pf_filter_out_ip_default:
- - 'pass out inet proto tcp to any port 53 $tcp_state # DNS - to any'
- - 'pass out inet proto udp to any port 53 $udp_state # DNS - to any'
- - 'pass out inet proto tcp to any port 80 $tcp_state # HTTP - to any'
- - 'pass out inet proto udp to any port 123 $udp_state # NTP - to any'
- - 'pass out inet proto tcp to any port 443 $tcp_state # HTTPS - to any'
+ - {config: {'pass out inet proto tcp to any port 53 $tcp_state',
+             'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'}
+ - {config: {'pass out inet proto tcp to any port 80 $tcp_state'}, comment: 'HTTP: To any'}
+ - {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'}
+ - {config: {'pass out inet proto tcp to any port 443 $tcp_state'}, comment: 'HTTPS: To any'}
 
 # pf_filter_out_policy
 pf_filter_out_policy: 'block'
@@ -69,15 +69,6 @@ pf_macro_custom: []
 
 # pf_macro_default
 pf_macro_default: []
-
-# pf_macro_if_dmz
-pf_macro_if_dmz: ''
-
-# pf_macro_if_ext
-pf_macro_if_ext: ''
-
-# pf_macro_if_int
-pf_macro_if_int: ''
 
 # pf_macro_tcp_state
 pf_macro_tcp_state: 'flags S/SA modulate state'
@@ -129,8 +120,8 @@ pf_pf_conf_template: 'main'
 
 # pf_scrub
 pf_scrub:
- - 'in all fragment reassemble'
- - 'out all random-id fragment reassemble'
+ - {config: {'in all fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'}
+ - {config: {'out all random-id fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}
 
 # pf_table_blacklist
 pf_table_blacklist: "{{file_path_pf_blacklist}}"
@@ -140,7 +131,13 @@ pf_table_custom: []
 
 # pf_table_default
 pf_table_default:
- - '<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'
+ - {config: {'<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'}, comment: 'Table: private address space (RFC 1918)'}
 
 # pf_table_require_order
 pf_table_require_order: 'yes'
+
+# pf_translation_custom
+pf_translation_custom: []
+
+# pf_translation_default
+pf_translation_default: []

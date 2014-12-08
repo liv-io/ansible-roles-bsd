@@ -42,24 +42,24 @@ ENABLE
      - role: pf
        pf_state: 'enable'
        pf_filter_in_ip_custom:
-        - 'pass in inet proto tcp from any to port 25 $tcp_state # SMTP - from any'
-        - 'pass in inet proto tcp from any to port 80 $tcp_state # HTTP - from any'
-        - 'pass in inet proto tcp from any to port 443 $tcp_state # HTTPS - from any'
-        - 'pass in inet proto tcp from any to port 587 $tcp_state # SMTPS - from any'
-        - 'pass in inet proto tcp from any to port 993 $tcp_state # IMAPS - from any'
+        - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
+        - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
+        - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
+        - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
+        - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
        pf_filter_in_ip_default:
-        - 'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state # SSH - from internal network'
+        - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
        pf_filter_out_ip_custom:
-        - 'pass out inet proto tcp to any port 25 $tcp_state # SMTP - to any'
-        - 'pass out inet proto tcp to any port 587 $tcp_state # SMTPS - to any'
+        - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
+        - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
        pf_filter_out_ip_default:
-        - 'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state # DNS - to primary dns server'
-        - 'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state # DNS - to secondary dns server'
-        - 'pass out inet proto udp to 192.168.1.2 port 53 $udp_state # DNS - to primary dns server'
-        - 'pass out inet proto udp to 192.168.1.3 port 53 $udp_state # DNS - to secondary dns server'
-        - 'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state # HTTP - to internal mirror'
-        - 'pass out inet proto udp to any 192.168.1.4 123 $udp_state # NTP - to ntp server'
-        - 'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state # HTTPS - to internal mirror'
+        - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
+                    'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
+        - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
+                    'pass out inet proto udp to 192.168.1.3 port 53 $udp_state'}, comment: 'DNS: To secondary dns server'}
+        - {config: {'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state'}, comment: 'HTTP: To internal mirror'}
+        - {config: {'pass out inet proto udp to any 192.168.1.4 123 $udp_state'}, comment: 'NTP: To ntp server'}
+        - {config: {'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state'}, comment: 'HTTPS: To internal mirror'}
 
 DISABLE
   - hosts: all
@@ -67,24 +67,24 @@ DISABLE
      - role: pf
        pf_state: 'disable'
        pf_filter_in_ip_custom:
-        - 'pass in inet proto tcp from any to port 25 $tcp_state # SMTP - from any'
-        - 'pass in inet proto tcp from any to port 80 $tcp_state # HTTP - from any'
-        - 'pass in inet proto tcp from any to port 443 $tcp_state # HTTPS - from any'
-        - 'pass in inet proto tcp from any to port 587 $tcp_state # SMTPS - from any'
-        - 'pass in inet proto tcp from any to port 993 $tcp_state # IMAPS - from any'
+        - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
+        - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
+        - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
+        - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
+        - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
        pf_filter_in_ip_default:
-        - 'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state # SSH - from internal network'
+        - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
        pf_filter_out_ip_custom:
-        - 'pass out inet proto tcp to any port 25 $tcp_state # SMTP - to any'
-        - 'pass out inet proto tcp to any port 587 $tcp_state # SMTPS - to any'
+        - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
+        - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
        pf_filter_out_ip_default:
-        - 'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state # DNS - to primary dns server'
-        - 'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state # DNS - to secondary dns server'
-        - 'pass out inet proto udp to 192.168.1.2 port 53 $udp_state # DNS - to primary dns server'
-        - 'pass out inet proto udp to 192.168.1.3 port 53 $udp_state # DNS - to secondary dns server'
-        - 'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state # HTTP - to internal mirror'
-        - 'pass out inet proto udp to any 192.168.1.4 123 $udp_state # NTP - to ntp server'
-        - 'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state # HTTPS - to internal mirror'
+        - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
+                    'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
+        - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
+                    'pass out inet proto udp to 192.168.1.3 port 53 $udp_state'}, comment: 'DNS: To secondary dns server'}
+        - {config: {'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state'}, comment: 'HTTP: To internal mirror'}
+        - {config: {'pass out inet proto udp to any 192.168.1.4 123 $udp_state'}, comment: 'NTP: To ntp server'}
+        - {config: {'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state'}, comment: 'HTTPS: To internal mirror'}
 
 REMOVE
   - hosts: all
@@ -115,12 +115,12 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: ['173.194.40.40',
-                 '74.125.148.0/22',
-                 'google.com']
+      Examples: [{config: {'173.194.40.40'}, comment: 'IP: Single IP address'},
+                 {config: {'74.125.148.0/22'}, comment: 'IP: IP range'},
+                 {config: {'google.com'}, comment: 'Host: Domain'}]
       None    : []
 
   pf_blacklist_default
@@ -128,12 +128,12 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: ['173.194.40.40',
-                 '74.125.148.0/22',
-                 'google.com']
+      Examples: [{config: {'173.194.40.40'}, comment: 'IP: Single IP address'},
+                 {config: {'74.125.148.0/22'}, comment: 'IP: IP range'},
+                 {config: {'google.com'}, comment: 'Host: Domain'}]
       None    : []
 
   pf_filter_in_icmp
@@ -141,11 +141,12 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: ['pass in inet proto icmp icmp-type echoreq $udp_state # Echo request - from any',
-                 'pass in inet6 proto icmp6 icmp6-type echoreq $udp_state # Echo request - from any']
+      Examples: [{config: {'pass in inet proto icmp icmp-type echoreq $udp_state'},
+                           'pass in inet6 proto icmp6 icmp6-type echoreq $udp_state'},
+                  comment: 'ICMP echo request: From any'}]
       None    : []
 
   pf_filter_in_ip_custom
@@ -153,19 +154,20 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: ['pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state # SSH - from internal network',
-                 'pass in inet proto tcp from any to port 25 $tcp_state # SMTP - from any',
-                 'pass in inet proto tcp from any to port 53 $tcp_state # DNS - from any',
-                 'pass in inet proto udp from any to port 53 $udp_state # DNS - from any',
-                 'pass in inet proto tcp from any to port 80 $tcp_state # HTTP - from any',
-                 'pass in inet proto udp from 192.168.1.0/24 to port 123 $udp_state # NTP - from internal network',
-                 'pass in inet proto tcp from any to port 443 $tcp_state # HTTPS - from any',
-                 'pass in inet proto tcp from 192.168.1.0/24 to port 514 $tcp_state # SYSLOG - from internal network',
-                 'pass in inet proto tcp from any to port 587 $tcp_state # SMTPS - from any',
-                 'pass in inet proto tcp from any to port 993 $tcp_state # IMAPS - from any']
+      Examples: [{config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state',
+                           'pass in inet proto tcp from 192.168.2.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal networks'},
+                 {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'},
+                 {config: {'pass in inet proto tcp from any to port 53 $tcp_state',
+                           'pass in inet proto udp from any to port 53 $udp_state'}, comment: 'DNS: From any'},
+                 {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'},
+                 {config: {'pass in inet proto udp from 192.168.1.0/24 to port 123 $udp_state'}, comment: 'NTP: From internal network'},
+                 {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'},
+                 {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 514 $tcp_state'}, comment: 'From internal network'},
+                 {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'},
+                 {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}]
       None    : []
 
   pf_filter_in_ip_default
@@ -173,12 +175,15 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
-    Default    : ['pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state # SSH - from Private Address Space (RFC 1918)',
-                  'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state # SSH - from Private Address Space (RFC 1918)',
-                  'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state # SSH - from Private Address Space (RFC 1918)']
+    Type       : Array/Hash
+    Default    : [{config: {'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state',
+                            'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state',
+                            'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state'},
+                   comment: 'SSH: From private address space (RFC 1918)'}]
     Options    :
-      Examples: ['pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state # SSH - from internal network']
+      Examples: [{config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state',
+                           'pass in inet proto tcp from 192.168.2.0/24 to port 22 $tcp_state'},
+                  comment: 'SSH: From internal networks'}]
       None    : []
 
   pf_filter_in_policy
@@ -197,12 +202,14 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
-    Default    : ['pass out inet proto icmp icmp-type echoreq $udp_state # Echo request - to any',
-                  'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state # Echo request - to any']
+    Type       : Array/Hash
+    Default    : [{config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
+                            'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'},
+                   comment: 'ICMP echo request: To any'}]
     Options    :
-      Examples: ['pass out inet proto icmp icmp-type echoreq $udp_state # Echo request - to any',
-                 'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state # Echo request - to any']
+      Examples: [{config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
+                           'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'},
+                  comment: 'ICMP echo request: To any'}]
       None    : []
 
   pf_filter_out_ip_custom
@@ -210,11 +217,11 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: ['pass out inet proto tcp to 192.168.1.0/24 port 22 $tcp_state # SSH - to internal network',
-                 'pass out inet proto tcp to 192.168.1.10 port 512 $tcp_state # SYSLOG - to internal log server']
+      Examples: [{config: {'pass out inet proto tcp to 192.168.1.0/24 port 22 $tcp_state'}, comment: 'SSH: To internal network'},
+                 {config: {'pass out inet proto tcp to 192.168.1.10 port 512 $tcp_state'}, comment: 'SYSLOG: To internal log server'}]
       None    : []
 
   pf_filter_out_ip_default
@@ -222,15 +229,16 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
-    Default    : ['pass out inet proto tcp to any port 53 $tcp_state # DNS - to any',
-                  'pass out inet proto udp to any port 53 $udp_state # DNS - to any',
-                  'pass out inet proto tcp to any port 80 $tcp_state # HTTP - to any',
-                  'pass out inet proto udp to any port 123 $udp_state # NTP - to any',
-                  'pass out inet proto tcp to any port 443 $tcp_state # HTTPS - to any']
+    Type       : Array/Hash
+    Default    : [{config: {'pass out inet proto tcp to any port 53 $tcp_state,
+                            'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'},
+                  {config: {'pass out inet proto tcp to any port 80 $tcp_state'}, comment: 'HTTP: To any'},
+                  {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'},
+                  {config: {'pass out inet proto tcp to any port 443 $tcp_state'}, comment: 'HTTPS: To any'}]
     Options    :
-      Examples: ['pass out inet proto tcp to any port 53 $tcp_state # DNS - to any',
-                 'pass out inet proto udp to any port 123 $udp_state # NTP - to any']
+      Examples: [{config: {'pass out inet proto tcp to any port 53 $tcp_state,
+                           'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'},
+                 {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'},
       None    : []
 
   pf_filter_out_policy
@@ -249,11 +257,17 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: ["host_fw = '192.168.1.1'"] |
-                ["net_int = '192.168.1.0/24'", "net_dmz = '192.168.2.0/24'"]
+      Examples: [{config: {"if_int='re1'"}, comment: 'Interface: internal'},
+                 {config: {"if_ext='re0'"}, comment: 'Interface: external'},
+                 {config: {"ip_1='192.168.1.1'"}, comment: 'IP: 192.168.1.1'},
+                 {config: {"ip_2='192.168.2.1'"}, comment: 'IP: 192.168.2.1'},
+                 {config: {"net_ext='192.168.1.0/24'"}, comment: 'Network: 192.168.1.0/24'},
+                 {config: {"net_int='192.168.2.0/24'"}, comment: 'Network: 192.168.2.0/24'},
+                 {config: {"host_dns='192.168.2.2'"}, comment: 'Host: dns.domain.tld'},
+                 {config: {"host_ntp='192.168.2.3'"}, comment: 'Host: ntp.domain.tld'}]
       None    : []
 
   pf_macro_default
@@ -261,45 +275,18 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: ["host_fw = '192.168.1.1'"] |
-                ["net_int = '192.168.1.0/24'", "net_dmz = '192.168.2.0/24'"]
+      Examples: [{config: {"if_int='re1'"}, comment: 'Interface: internal'},
+                 {config: {"if_ext='re0'"}, comment: 'Interface: external'},
+                 {config: {"ip_1='192.168.1.1'"}, comment: 'IP: 192.168.1.1'},
+                 {config: {"ip_2='192.168.2.1'"}, comment: 'IP: 192.168.2.1'},
+                 {config: {"net_ext='192.168.1.0/24'"}, comment: 'Network: 192.168.1.0/24'},
+                 {config: {"net_int='192.168.2.0/24'"}, comment: 'Network: 192.168.2.0/24'},
+                 {config: {"host_dns='192.168.2.2'"}, comment: 'Host: dns.domain.tld'},
+                 {config: {"host_ntp='192.168.2.3'"}, comment: 'Host: ntp.domain.tld'}]
       None    : []
-
-  pf_macro_if_dmz
-    Description: Define the 'pf_macro_if_dmz' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: 'em0' | 'ed1' | 'wlan2'
-      None    : ''
-
-  pf_macro_if_ext
-    Description: Define the 'pf_macro_if_ext' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: 'em0' | 'ed1' | 'wlan2'
-      None    : ''
-
-  pf_macro_if_int
-    Description: Define the 'pf_macro_if_int' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: 'em0' | 'ed1' | 'wlan2'
-      None    : ''
 
   pf_macro_tcp_state
     Description: Define the 'pf_macro_tcp_state' option.
@@ -374,11 +361,14 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: ['states 20000', 'frags 20000', 'src-nodes 2000'] |
-                ['tables 1000', 'table-entries 100000']
+      Examples: [{config: {'states 20000'}, comment: 'Limit: Maximum entries for state table'},
+                 {config: {'frags 20000'}, comment: 'Limit: Maximum entries for fragment reassembly'},
+                 {config: {'src-nodes 2000'}, comment: 'Limit: Maximum entries for tracking source IP addresses'},
+                 {config: {'tables 1000'}, comment: 'Limit: Maximum of tables'},
+                 {config: {'table-entries 100000'}, comment: 'Limit: Overall maximum of addresses'}]
       None    : []
 
   pf_option_loginterface
@@ -457,11 +447,13 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: ['tcp.first 120'] | ['tcp.established 86400'] |
-                ['adaptive.start 6000', 'adaptive.end 12000']
+      Examples: [{config: {'tcp.first 120'}, comment: 'State after the first packet'},
+                 {config: {'tcp.established 86400'}, comment: 'Fully established state'}] |
+                [{config: {'adaptive.start 6000'}, comment: 'Adaptive scaling start'},
+                 {config: {'adaptive.end 12000'}, comment: 'Adaptive scaling end'}]
       None    : []
 
   pf_pf_blacklist_template
@@ -497,14 +489,14 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : ['in all fragment reassemble',
                   'out all random-id fragment reassemble']
     Options    :
-      Examples: ['in all fragment reassemble',
-                 'out all random-id fragment reassemble'] |
-                ['in all fragment drop-ovl',
-		 'out all random-id fragment reassemble']
+      Examples: [{config: {'in all fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'},
+                 {config: {'out all random-id fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}] |
+                [{config: {'in all fragment drop-ovl'}, comment: 'Scrub: Incoming traffic normalization'},
+                 {config: {'out all random-id fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}]
       None    : []
 
   pf_table_blacklist
@@ -522,10 +514,10 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
-    Default    : ['<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }']
+    Type       : Array/Hash
+    Default    : []
     Options    :
-      Examples: ["<spam> persist file '/etc/pf.spammers'"]
+      Examples: [{config: {"<spam> persist file '/etc/pf.spammers'"}, comment: 'Table: Spammers'}]
       None    : []
 
   pf_table_default
@@ -533,10 +525,11 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
-    Default    : ['<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }']
+    Type       : Array/Hash
+    Default    : [{config: {'<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'},
+                   comment: 'Table: private address space (RFC 1918)'}]
     Options    :
-      Examples: ["<spam> persist file '/etc/pf.spammers'"]
+      Examples: [{config: {"<spam> persist file '/etc/pf.spammers'"}, comment: 'Table: Spammers'}]
       None    : []
 
   pf_table_require_order
@@ -549,6 +542,34 @@ ROLE
     Options    :
       Yes: 'true' | 'yes' | 'install'
       No : 'false' | 'no' | 'disable'
+
+  pf_translation_custom
+    Description: Define the 'pf_translation_custom' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'no nat on $if_int inet proto { tcp, udp } from $if_int to $net_local'}, comment: 'NONAT: for if_int'},
+                 {config: {'nat on $if_ext inet from $host_sys to any -> $ip_1'}, comment: 'SNAT: host_sys to ip_1'},
+                 {config: {'rdr on $if_ext inet proto tcp to $ip_2 port 80 -> $host_proxy'}, comment: 'DNAT/HTTP: From any to host_proxy'},
+                 {config: {'rdr on $if_ext inet proto tcp to $ip_2 port 443 -> $host_proxy'}, comment: 'DNAT/HTTPS: From any to host_proxy'}]
+      None    : []
+
+  pf_translation_custom
+    Description: Define the 'pf_translation_custom' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'no nat on $if_int inet proto { tcp, udp } from $if_int to $net_local'}, comment: 'NONAT: for if_int'},
+                 {config: {'nat on $if_ext inet from $host_sys to any -> $ip_1'}, comment: 'SNAT: host_sys to ip_1'},
+                 {config: {'rdr on $if_ext inet proto tcp to $ip_2 port 80 -> $host_proxy'}, comment: 'DNAT/HTTP: From any to host_proxy'},
+                 {config: {'rdr on $if_ext inet proto tcp to $ip_2 port 443 -> $host_proxy'}, comment: 'DNAT/HTTPS: From any to host_proxy'}]
+      None    : []
 
 --------------------------------------------------------------------------------
 CONFLICTS
@@ -603,7 +624,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Development
+      Status: Testing
 
   Gentoo
     Version: 2

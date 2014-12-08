@@ -24,16 +24,32 @@
 #
 #-------------------------------------------------------------------------------
 
-# Blacklist default entries
+# BLACKLIST DEFAULT
 {% if (pf_blacklist_default is defined) and not ((pf_blacklist_default == None) or (pf_blacklist_default == '') or (pf_blacklist_default == [])) %}
 {% for blacklist_default in pf_blacklist_default %}
-{{blacklist_default}}
+{% if (blacklist_default.comment is defined) and not ((blacklist_default.comment == None) or (blacklist_default.comment == '')) %}
+# {{blacklist_default.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in blacklist_default.config %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
-# Blacklist custom entries
+# BLACKLIST CUSTOM
 {% if (pf_blacklist_custom is defined) and not ((pf_blacklist_custom == None) or (pf_blacklist_custom == '') or (pf_blacklist_custom == [])) %}
 {% for blacklist_custom in pf_blacklist_custom %}
-{{blacklist_custom}}
+{% if (blacklist_custom.comment is defined) and not ((blacklist_custom.comment == None) or (blacklist_custom.comment == '')) %}
+# {{blacklist_custom.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in blacklist_custom.config %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}

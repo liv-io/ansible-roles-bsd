@@ -28,19 +28,6 @@
 # MACROS
 #-------------------------------------------------------------------------------
 
-# Interfaces
-{% if (pf_macro_if_int is defined) and not ((pf_macro_if_int == None) or (pf_macro_if_int == '')) %}
-if_int="{{pf_macro_if_int}}"
-{% endif %}
-
-{% if (pf_macro_if_dmz is defined) and not ((pf_macro_if_dmz == None) or (pf_macro_if_dmz == '')) %}
-if_dmz="{{pf_macro_if_dmz}}"
-{% endif %}
-
-{% if (pf_macro_if_ext is defined) and not ((pf_macro_if_ext == None) or (pf_macro_if_ext == '')) %}
-if_ext="{{pf_macro_if_ext}}"
-{% endif %}
-
 # TCP state
 {% if (pf_macro_tcp_state is defined) and not ((pf_macro_tcp_state == None) or (pf_macro_tcp_state == '') or (pf_macro_tcp_state == 'false') or (pf_macro_tcp_state == 'no') or (pf_macro_tcp_state == 'disable')) %}
 tcp_state="{{pf_macro_tcp_state}}"
@@ -51,18 +38,34 @@ tcp_state="{{pf_macro_tcp_state}}"
 udp_state="{{pf_macro_udp_state}}"
 {% endif %}
 
-# Macro default entries
+# MACRO DEFAULT
 {% if (pf_macro_default is defined) and not ((pf_macro_default == None) or (pf_macro_default == '') or (pf_macro_default == [])) %}
 {% for macro_default in pf_macro_default %}
-{{macro_default}}
+{% if (macro_default.comment is defined) and not ((macro_default.comment == None) or (macro_default.comment == '')) %}
+# {{macro_default.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in macro_default.config %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
-# Macro custom entries
+# MACRO CUSTOM
 {% if (pf_macro_custom is defined) and not ((pf_macro_custom == None) or (pf_macro_custom == '') or (pf_macro_custom == [])) %}
 {% for macro_custom in pf_macro_custom %}
-{{macro_custom}}
+{% if (macro_custom.comment is defined) and not ((macro_custom.comment == None) or (macro_custom.comment == '')) %}
+# {{macro_custom.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in macro_custom.config %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -74,18 +77,34 @@ udp_state="{{pf_macro_udp_state}}"
 table <blacklist> persist file '{{pf_table_blacklist}}'
 {% endif %}
 
-# Table default entries
+# DEFAULT
 {% if (pf_table_default is defined) and not ((pf_table_default == None) or (pf_table_default == '') or (pf_table_default == [])) %}
 {% for table_default in pf_table_default %}
-table {{table_default}}
+{% if (table_default.comment is defined) and not ((table_default.comment == None) or (table_default.comment == '')) %}
+# {{table_default.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in table_default.config %}
+table {{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
-# Table custom entries
+# CUSTOM
 {% if (pf_table_custom is defined) and not ((pf_table_custom == None) or (pf_table_custom == '') or (pf_table_custom == [])) %}
 {% for table_custom in pf_table_custom %}
-table {{table_custom}}
+{% if (table_custom.comment is defined) and not ((table_custom.comment == None) or (table_custom.comment == '')) %}
+# {{table_custom.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in table_custom.config %}
+table {{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -121,10 +140,18 @@ set hostid {{pf_option_hostid}}
 {% endif %}
 
 # Limits
-{% if (pf_option_limit is defined) and not ((pf_option_limit == None) or (pf_option_limit == '') or (pf_option_limit == [])) %}
-{% for option_limit in pf_option_limit %}
-set limit {{option_limit}}
+{% if (pf_limit is defined) and not ((pf_limit == None) or (pf_limit == '') or (pf_limit == [])) %}
+{% for limit in pf_limit %}
+{% if (limit.comment is defined) and not ((limit.comment == None) or (limit.comment == '')) %}
+# {{limit.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in limit.config %}
+set limit {{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
 # Log interface (none, <interface>)
@@ -183,21 +210,36 @@ set state-policy if-bound
 {% endif %}
 
 # Timeouts
-{% if (pf_option_timeout is defined) and not ((pf_option_timeout == None) or (pf_option_timeout == '') or (pf_option_timeout == [])) %}
-{% for option_timeout in pf_option_timeout %}
-set timeout {{option_timeout}}
+{% if (pf_timeout is defined) and not ((pf_timeout == None) or (pf_timeout == '') or (pf_timeout == [])) %}
+{% for timeout in pf_timeout %}
+{% if (timeout.comment is defined) and not ((timeout.comment == None) or (timeout.comment == '')) %}
+# {{timeout.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in timeout.config %}
+set timeout {{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
 #-------------------------------------------------------------------------------
 # TRAFFIC NORMALIZATION
 #-------------------------------------------------------------------------------
 
-# Scrub
 {% if (pf_scrub is defined) and not ((pf_scrub == None) or (pf_scrub == '') or (pf_scrub == [])) %}
 {% for scrub in pf_scrub %}
-scrub {{scrub}}
+{% if (scrub.comment is defined) and not ((scrub.comment == None) or (scrub.comment == '')) %}
+# {{scrub.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in scrub.config %}
+scrub {{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -208,11 +250,43 @@ scrub {{scrub}}
 # TRANSLATION
 #-------------------------------------------------------------------------------
 
+# DEFAULT
+{% if (pf_translation_default is defined) and not ((pf_translation_default == None) or (pf_translation_default == '') or (pf_translation_default == [])) %}
+{% for translation_default in pf_translation_default %}
+{% if (translation_default.comment is defined) and not ((translation_default.comment == None) or (translation_default.comment == '')) %}
+# {{translation_default.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in translation_default.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# CUSTOM
+{% if (pf_translation_custom is defined) and not ((pf_translation_custom == None) or (pf_translation_custom == '') or (pf_translation_custom == [])) %}
+{% for translation_custom in pf_translation_custom %}
+{% if (translation_custom.comment is defined) and not ((translation_custom.comment == None) or (translation_custom.comment == '')) %}
+# {{translation_custom.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in translation_custom.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
 #-------------------------------------------------------------------------------
 # PACKET FILTERING
 #-------------------------------------------------------------------------------
 
+#-------------------------------------------------------------------------------
 # IN
+#-------------------------------------------------------------------------------
 
 # Default in policy
 {% if (pf_filter_in_policy is defined) and (pf_filter_in_policy == 'pass') %}
@@ -221,28 +295,54 @@ pass in all
 block in all
 {% endif %}
 
-# ICMP rules
+# ICMP
 {% if (pf_filter_in_icmp is defined) and not ((pf_filter_in_icmp == None) or (pf_filter_in_icmp == '') or (pf_filter_in_icmp == [])) %}
 {% for filter_in_icmp in pf_filter_in_icmp %}
-{{filter_in_icmp}}
+{% if (filter_in_icmp.comment is defined) and not ((filter_in_icmp.comment == None) or (filter_in_icmp.comment == '')) %}
+# {{filter_in_icmp.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_in_icmp.config %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
-# IP default rules
+# IP DEFAULT
 {% if (pf_filter_in_ip_default is defined) and not ((pf_filter_in_ip_default == None) or (pf_filter_in_ip_default == '') or (pf_filter_in_ip_default == [])) %}
 {% for filter_in_ip_default in pf_filter_in_ip_default %}
-{{filter_in_ip_default}}
+{% if (filter_in_ip_default.comment is defined) and not ((filter_in_ip_default.comment == None) or (filter_in_ip_default.comment == '')) %}
+# {{filter_in_ip_default.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_in_ip_default.config %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
-# IP custom rules
+# IP CUSTOM
 {% if (pf_filter_in_ip_custom is defined) and not ((pf_filter_in_ip_custom == None) or (pf_filter_in_ip_custom == '') or (pf_filter_in_ip_custom == [])) %}
 {% for filter_in_ip_custom in pf_filter_in_ip_custom %}
-{{filter_in_ip_custom}}
+{% if (filter_in_ip_custom.comment is defined) and not ((filter_in_ip_custom.comment == None) or (filter_in_ip_custom.comment == '')) %}
+# {{filter_in_ip_custom.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_in_ip_custom.config %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
+#-------------------------------------------------------------------------------
 # OUT
+#-------------------------------------------------------------------------------
 
 # Default out policy
 {% if (pf_filter_out_policy is defined) and (pf_filter_out_policy == 'pass') %}
@@ -251,25 +351,49 @@ pass out all
 block out all
 {% endif %}
 
-# ICMP rules
+# ICMP
 {% if (pf_filter_out_icmp is defined) and not ((pf_filter_out_icmp == None) or (pf_filter_out_icmp == '') or (pf_filter_out_icmp == [])) %}
 {% for filter_out_icmp in pf_filter_out_icmp %}
-{{filter_out_icmp}}
+{% if (filter_out_icmp.comment is defined) and not ((filter_out_icmp.comment == None) or (filter_out_icmp.comment == '')) %}
+# {{filter_out_icmp.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_out_icmp.config %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
-# IP default rules
+# IP DEFAULT
 {% if (pf_filter_out_ip_default is defined) and not ((pf_filter_out_ip_default == None) or (pf_filter_out_ip_default == '') or (pf_filter_out_ip_default == [])) %}
 {% for filter_out_ip_default in pf_filter_out_ip_default %}
-{{filter_out_ip_default}}
+{% if (filter_out_ip_default.comment is defined) and not ((filter_out_ip_default.comment == None) or (filter_out_ip_default.comment == '')) %}
+# {{filter_out_ip_default.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_out_ip_default.config %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
-# IP custom rules
+# IP CUSTOM
 {% if (pf_filter_out_ip_custom is defined) and not ((pf_filter_out_ip_custom == None) or (pf_filter_out_ip_custom == '') or (pf_filter_out_ip_custom == [])) %}
 {% for filter_out_ip_custom in pf_filter_out_ip_custom %}
-{{filter_out_ip_custom}}
+{% if (filter_out_ip_custom.comment is defined) and not ((filter_out_ip_custom.comment == None) or (filter_out_ip_custom.comment == '')) %}
+# {{filter_out_ip_custom.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_out_ip_custom.config %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
 
 #-------------------------------------------------------------------------------
