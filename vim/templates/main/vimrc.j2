@@ -48,7 +48,10 @@ scriptencoding utf-8
 " deviating only where it makes sense
 set nocompatible        " Use Vim defaults (much better!)
 set bs=2                " Allow backspacing over everything in insert mode
-set ai                  " Always set auto-indenting on
+set noautoindent        " Disable autoindent
+set nocindent           " Disable cindent
+set nosmartindent       " Disable smartindent
+set indentexpr=         " Override indentexpr
 set history=50          " keep 50 lines of command history
 set ruler               " Show the cursor position all the time
 
@@ -159,7 +162,8 @@ if isdirectory(expand("$VIMRUNTIME/ftplugin"))
   " Uncomment the next line (or copy to your ~/.vimrc) for plugin-provided
   " indent settings. Some people don't like these, so we won't turn them on by
   " default.
-  " filetype indent on
+  filetype indent off
+  filetype plugin indent off
 endif
 
 "-------------------------------------------------------------------------------
