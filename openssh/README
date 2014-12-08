@@ -111,7 +111,7 @@ ROLE
     Implemented: 0.7
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Dictionary
+    Type       : Array/Hash
     Default    : []
     Options    :
       Examples: [{name: 'sftpuser', type: 'User', config: {'ChrootDirectory': '/opt/sftp', 'ForceCommand': 'internal-sftp'}},
