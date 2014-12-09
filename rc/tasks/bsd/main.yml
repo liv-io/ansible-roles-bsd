@@ -1,0 +1,30 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : rc
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include custom
+  include: custom.yml
+  when: not ((rc_state == 'false') or (rc_state == 'no') or (rc_state == 'disable'))
+
+- name: task include default
+  include: default.yml
+  when: not ((rc_state == 'false') or (rc_state == 'no') or (rc_state == 'disable'))
