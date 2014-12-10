@@ -1,0 +1,79 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : opensmtpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# opensmtpd_state
+opensmtpd_state: 'enable'
+
+# opensmtpd_accept_custom
+opensmtpd_accept_custom: []
+
+# opensmtpd_accept_default
+opensmtpd_accept_default:
+ - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
+ - {config: {'accept for any relay via smtp://mail'}, comment: 'Accept: Relay'}
+
+# opensmtpd_aliases_template
+opensmtpd_aliases_template: "{{ansible_os_family}}"
+
+# opensmtpd_listen_custom
+opensmtpd_listen_custom: []
+
+# opensmtpd_listen_default
+opensmtpd_listen_default:
+ - {config: {'listen on localhost'}, comment: 'Listen: Localhost'}
+
+# opensmtpd_rc_disable
+opensmtpd_rc_disable:
+ - {name: 'smtpd_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable OpenSMTPD'}
+
+# opensmtpd_rc_enable
+opensmtpd_rc_enable:
+ - {name: 'smtpd_enable', value: 'YES', state: 'true', comment: 'OpenSMTPD: Enable OpenSMTPD'}
+
+# opensmtpd_rc_install
+opensmtpd_rc_install:
+ - {name: 'sendmail_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}
+ - {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}
+ - {name: 'sendmail_outbound_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}
+ - {name: 'sendmail_submit_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}
+
+# opensmtpd_rc_remove
+opensmtpd_rc_remove:
+ - {name: 'smtpd_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove OpenSMTPD'}
+ - {name: 'sendmail_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'}
+ - {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'}
+ - {name: 'sendmail_outbound_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'}
+ - {name: 'sendmail_submit_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Disable sendmail'}
+
+# opensmtpd_root_mail_address
+opensmtpd_root_mail_address: "root@{{ansible_domain}}"
+
+# opensmtpd_smtpd_conf_template
+opensmtpd_smtpd_conf_template: 'main'
+
+# opensmtpd_table_custom
+opensmtpd_table_custom: []
+
+# opensmtpd_table_default
+opensmtpd_table_default:
+ - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}

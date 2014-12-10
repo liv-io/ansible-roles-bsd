@@ -1,0 +1,130 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : smtpd.conf
+#   |  _   _  |  Type   : opensmtpd configuration file
+#   | [_] [_] |  Role   : opensmtpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# This is the smtpd server system-wide configuration file.
+# See smtpd.conf(5) for more information.
+
+#-------------------------------------------------------------------------------
+# LISTEN
+#-------------------------------------------------------------------------------
+
+# DEFAULT
+{% if (opensmtpd_listen_default is defined) and not ((opensmtpd_listen_default == None) or (opensmtpd_listen_default == '') or (opensmtpd_listen_default == [])) %}
+{% for listen_default in opensmtpd_listen_default %}
+{% if (listen_default.comment is defined) and not ((listen_default.comment == None) or (listen_default.comment == '')) %}
+# {{listen_default.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in listen_default.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# CUSTOM
+{% if (opensmtpd_listen_custom is defined) and not ((opensmtpd_listen_custom == None) or (opensmtpd_listen_custom == '') or (opensmtpd_listen_custom == [])) %}
+{% for listen_custom in opensmtpd_listen_custom %}
+{% if (listen_custom.comment is defined) and not ((listen_custom.comment == None) or (listen_custom.comment == '')) %}
+# {{listen_custom.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in listen_custom.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# TABLE
+#-------------------------------------------------------------------------------
+
+# DEFAULT
+{% if (opensmtpd_table_default is defined) and not ((opensmtpd_table_default == None) or (opensmtpd_table_default == '') or (opensmtpd_table_default == [])) %}
+{% for table_default in opensmtpd_table_default %}
+{% if (table_default.comment is defined) and not ((table_default.comment == None) or (table_default.comment == '')) %}
+# {{table_default.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in table_default.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# CUSTOM
+{% if (opensmtpd_table_custom is defined) and not ((opensmtpd_table_custom == None) or (opensmtpd_table_custom == '') or (opensmtpd_table_custom == [])) %}
+{% for table_custom in opensmtpd_table_custom %}
+{% if (table_custom.comment is defined) and not ((table_custom.comment == None) or (table_custom.comment == '')) %}
+# {{table_custom.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in table_custom.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# ACCEPT
+#-------------------------------------------------------------------------------
+
+# DEFAULT
+{% if (opensmtpd_accept_default is defined) and not ((opensmtpd_accept_default == None) or (opensmtpd_accept_default == '') or (opensmtpd_accept_default == [])) %}
+{% for accept_default in opensmtpd_accept_default %}
+{% if (accept_default.comment is defined) and not ((accept_default.comment == None) or (accept_default.comment == '')) %}
+# {{accept_default.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in accept_default.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# CUSTOM
+{% if (opensmtpd_accept_custom is defined) and not ((opensmtpd_accept_custom == None) or (opensmtpd_accept_custom == '') or (opensmtpd_accept_custom == [])) %}
+{% for accept_custom in opensmtpd_accept_custom %}
+{% if (accept_custom.comment is defined) and not ((accept_custom.comment == None) or (accept_custom.comment == '')) %}
+# {{accept_custom.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in accept_custom.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}

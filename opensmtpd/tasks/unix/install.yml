@@ -1,0 +1,97 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : install.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : opensmtpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package install opensmtpd
+  pkgng:
+   state: 'present'
+   name: "{{package_name_opensmtpd}}"
+  register: register_freebsd_opensmtpd
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - opensmtpd
+
+- name: package install opensmtpd
+  portage:
+   state: 'installed'
+   sync: "{{portage_sync}}"
+   name: "{{package_name_opensmtpd}}"
+  register: register_gentoo_opensmtpd
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - packaging
+   - install
+   - unix
+   - opensmtpd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: file config rc.conf
+  lineinfile:
+   state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
+   line: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}=\"{{item.value if (item.value is defined) and not ((item.value == None) or (item.value == '')) else ''}}\" # {{item.comment if (item.comment is defined) and not (item.comment == None) else item.name}}"
+   regexp: '^{{item.name}}='
+   dest: "{{file_path_rc_conf}}"
+  with_items: opensmtpd_rc_install
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - install
+   - unix
+   - opensmtpd
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: command pkill postfix
+  shell: "{{command_shell_pkill_postfix}}"
+  when: (register_freebsd_opensmtpd|changed) or (register_gentoo_opensmtpd|changed)
+  tags:
+   - commands
+   - install
+   - unix
+   - opensmtpd
+
+- name: command pkill sendmail
+  shell: "{{command_shell_pkill_sendmail}}"
+  when: (register_freebsd_opensmtpd|changed) or (register_gentoo_opensmtpd|changed)
+  tags:
+   - commands
+   - install
+   - unix
+   - opensmtpd

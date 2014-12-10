@@ -1,0 +1,106 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : enable.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : opensmtpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create aliases
+  template:
+   src: "{{file_src_aliases}}"
+   dest: "{{file_path_aliases}}"
+   mode: "{{file_mode_aliases}}"
+   owner: "{{file_owner_aliases}}"
+   group: "{{file_group_aliases}}"
+  notify:
+   - service start opensmtpd
+   - command smtpctl aliases
+   - service restart opensmtpd
+  tags:
+   - files
+   - enable
+   - unix
+   - opensmtpd
+
+- name: template create smtpd.conf
+  template:
+   src: "{{file_src_smtpd_conf}}"
+   dest: "{{file_path_smtpd_conf}}"
+   mode: "{{file_mode_smtpd_conf}}"
+   owner: "{{file_owner_smtpd_conf}}"
+   group: "{{file_group_smtpd_conf}}"
+  notify: service restart opensmtpd
+  tags:
+   - files
+   - enable
+   - unix
+   - opensmtpd
+
+- name: file config rc.conf
+  lineinfile:
+   state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
+   line: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}=\"{{item.value if (item.value is defined) and not ((item.value == None) or (item.value == '')) else ''}}\" # {{item.comment if (item.comment is defined) and not (item.comment == None) else item.name}}"
+   regexp: '^{{item.name}}='
+   dest: "{{file_path_rc_conf}}"
+  with_items: opensmtpd_rc_enable
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - enable
+   - unix
+   - opensmtpd
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: service start opensmtpd
+  service:
+   state: 'started'
+   enabled: 'yes'
+   name: "{{service_name_opensmtpd}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - system
+   - enable
+   - unix
+   - opensmtpd
+
+- name: service start opensmtpd
+  service:
+   state: 'started'
+   enabled: 'yes'
+   runlevel: 'default'
+   name: "{{service_name_opensmtpd}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - system
+   - enable
+   - unix
+   - opensmtpd

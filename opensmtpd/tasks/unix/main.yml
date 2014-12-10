@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : opensmtpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((opensmtpd_state == 'false') or (opensmtpd_state == 'no') or (opensmtpd_state == 'remove') or (opensmtpd_state == 'quiesce') or (opensmtpd_state == 'inactive'))
+
+- name: task include enable
+  include: enable.yml
+  when: (opensmtpd_state == 'start') or (opensmtpd_state == 'on') or (opensmtpd_state == 'enable')
+
+- name: task include disable
+  include: disable.yml
+  when: (opensmtpd_state == 'stop') or (opensmtpd_state == 'off') or (opensmtpd_state == 'disable')
+
+- name: task include remove
+  include: remove.yml
+  when: (opensmtpd_state == 'false') or (opensmtpd_state == 'no') or (opensmtpd_state == 'remove')

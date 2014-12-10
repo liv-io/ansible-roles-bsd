@@ -1,0 +1,327 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : opensmtpd
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : mail-mta
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: Simplified BSD License
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages opensmtpd.
+
+OpenSMTPD is a FREE implementation of the server-side SMTP protocol as defined
+by RFC 5321, with some additional standard extensions. It allows ordinary
+machines to exchange e-mails with other systems speaking the SMTP protocol.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: opensmtpd
+       opensmtpd_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+     - role: opensmtpd
+       opensmtpd_state: 'enable'
+       opensmtpd_accept_default:
+        - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
+        - {config: {'accept for any relay via tls+auth://mail.domain.tld auth <secrets>'}, comment: 'Accept: Relay'}
+       opensmtpd_table_default:
+        - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}
+        - {config: {'table secrets file:/usr/local/etc/mail/secrets'}, comment: 'Table: Secrets'}
+       opensmtpd_root_mail_address: 'root@domain.tld'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: opensmtpd
+       opensmtpd_state: 'disable'
+       opensmtpd_accept_default:
+        - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
+        - {config: {'accept for any relay via tls+auth://mail.domain.tld auth <secrets>'}, comment: 'Accept: Relay'}
+       opensmtpd_table_default:
+        - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}
+        - {config: {'table secrets file:/usr/local/etc/mail/secrets'}, comment: 'Table: Secrets'}
+       opensmtpd_root_mail_address: 'root@domain.tld'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: opensmtpd
+       opensmtpd_state: 'inactive'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: opensmtpd
+       opensmtpd_state: 'remove'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  opensmtpd_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install: 'true' | 'yes' | 'install'
+      Enable : 'start' | 'on' | 'enable'
+      Disable: 'stop' | 'off' | 'disable'
+      Remove : 'false' | 'no' | 'remove'
+      Quiesce: 'quiesce' | 'inactive'
+
+  opensmtpd_accept_custom
+    Description: Define the 'opensmtpd_accept_custom' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'},
+                 {config: {'accept for any relay via smtp://mail'}, comment: 'Accept: Relay'}]
+      None    : []
+
+  opensmtpd_accept_default
+    Description: Define the 'opensmtpd_accept_default' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'},
+                  {config: {'accept for any relay via smtp://mail'}, comment: 'Accept: Relay'}]
+    Options    :
+      Examples: [{config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'},
+                 {config: {'accept for any relay via smtp://mail'}, comment: 'Accept: Relay'}]
+      None    : []
+
+  opensmtpd_aliases_template
+    Description: Define the template source for 'aliases.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
+                 'opensmtpd/templates/example/aliases.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  opensmtpd_listen_custom
+    Description: Define the 'opensmtpd_listen_custom' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'listen on localhost'}, comment: 'Listen: Localhost'}]
+      None    : []
+
+  opensmtpd_listen_default
+    Description: Define the 'opensmtpd_listen_custom' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{config: {'listen on localhost'}, comment: 'Listen: Localhost'}]
+    Options    :
+      Examples: [{config: {'listen on localhost'}, comment: 'Listen: Localhost'}]
+      None    : []
+
+  opensmtpd_rc_disable
+    Description: Define the 'opensmtpd_rc_disable' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{name: 'smtpd_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable OpenSMTPD'}]
+    Options    :
+      Examples: [{name: 'smtpd_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable OpenSMTPD'}]
+      None    : []
+
+  opensmtpd_rc_enable
+    Description: Define the 'opensmtpd_rc_enable' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{name: 'smtpd_enable', value: 'YES', state: 'true', comment: 'OpenSMTPD: Enable OpenSMTPD'}]
+    Options    :
+      Examples: [{name: 'smtpd_enable', value: 'YES', state: 'true', comment: 'OpenSMTPD: Enable OpenSMTPD'}]
+      None    : []
+
+  opensmtpd_rc_install
+    Description: Define the 'opensmtpd_rc_install' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{name: 'sendmail_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
+                  {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
+                  {name: 'sendmail_outbound_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
+                  {name: 'sendmail_submit_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}]
+    Options    :
+      Examples: [{name: 'sendmail_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
+                 {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
+                 {name: 'sendmail_outbound_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
+                 {name: 'sendmail_submit_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}]
+      None    : []
+
+  opensmtpd_rc_remove
+    Description: Define the 'opensmtpd_rc_remove' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{name: 'smtpd_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove OpenSMTPD'},
+                  {name: 'sendmail_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
+                  {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
+                  {name: 'sendmail_outbound_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
+                  {name: 'sendmail_submit_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Disable sendmail'}]
+    Options    :
+      Examples: [{name: 'smtpd_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove OpenSMTPD'},
+                 {name: 'sendmail_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
+                 {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
+                 {name: 'sendmail_outbound_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
+                 {name: 'sendmail_submit_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Disable sendmail'}]
+      None    : []
+
+  opensmtpd_root_mail_address
+    Description: Define the 'opensmtpd_root_mail_address' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "root@{{ansible_domain}}"
+    Options    :
+      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
+
+  opensmtpd_smtpd_conf_template
+    Description: Define the template source for 'smtpd.conf.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'opensmtpd/templates/example/smtpd.conf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  opensmtpd_table_custom
+    Description: Define the 'opensmtpd_table_custom' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}]
+      None    : []
+
+  opensmtpd_table_default
+    Description: Define the 'opensmtpd_table_default' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}]
+    Options    :
+      Examples: [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}]
+      None    : []
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+  postfix
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  opensmtpd
+    Version: >= 5.4
+    Name   :
+      FreeBSD 10: 'opensmtpd'
+      Gentoo 2  : 'opensmtpd'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
+    Version: 2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

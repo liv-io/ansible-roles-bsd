@@ -1,0 +1,67 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : opensmtpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# opensmtpd
+package_name_opensmtpd: 'opensmtpd'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# aliases
+file_src_aliases: "../../templates/{{opensmtpd_aliases_template if (opensmtpd_aliases_template is defined) and not ((opensmtpd_aliases_template == None) or (opensmtpd_aliases_template == '')) else ansible_os_family}}/aliases.j2"
+file_path_aliases: '/etc/mail/aliases'
+file_mode_aliases: '0644'
+file_owner_aliases: 'root'
+file_group_aliases: 'root'
+
+# smtpd.conf
+file_src_smtpd_conf: "../../templates/{{opensmtpd_smtpd_conf_template if (opensmtpd_smtpd_conf_template is defined) and not ((opensmtpd_smtpd_conf_template == None) or (opensmtpd_smtpd_conf_template == '')) else 'main'}}/smtpd.conf.j2"
+file_path_smtpd_conf: '/etc/opensmtpd/smtpd.conf'
+file_mode_smtpd_conf: '0644'
+file_owner_smtpd_conf: 'root'
+file_group_smtpd_conf: 'root'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# pkill sendmail
+command_shell_pkill_sendmail: 'pkill sendmail ; true'
+
+# pkill postfix
+command_shell_pkill_postfix: 'pkill master ; true'
+
+# smtpctl aliases
+command_command_smtpctl_aliases: 'smtpctl update table aliases'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# smtpd
+service_name_opensmtpd: 'smtpd'
