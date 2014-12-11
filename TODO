@@ -53,6 +53,7 @@ ROLES
  - controltier
  - corosync
  - crmsh
+ - dhcpd
  - dokuwiki
  - dovecot
  - example
