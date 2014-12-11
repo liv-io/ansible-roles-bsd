@@ -53,6 +53,12 @@ DISABLE
        postfix_relayhost: 'mx01.domain.tld'
        postfix_root_mail_address: 'root@domain.tld'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: postfix
+       postfix_state: 'inactive'
+
 REMOVE
   - hosts: all
     roles:
@@ -201,6 +207,7 @@ CONFLICTS
 --------------------------------------------------------------------------------
 
 ROLES
+  opensmtpd
 
 --------------------------------------------------------------------------------
 DEPENDENCIES
