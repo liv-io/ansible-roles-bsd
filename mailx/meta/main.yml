@@ -21,5 +21,4 @@
 #
 #-------------------------------------------------------------------------------
 
-dependencies:
- - { role: postfix, when: (ansible_os_family == 'Gentoo') and not ((mailx_state == 'false') or (mailx_state == 'no') or (mailx_state == 'remove')) }
+dependencies: []
