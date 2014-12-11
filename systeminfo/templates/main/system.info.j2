@@ -9,7 +9,7 @@
 #    ____|____
 #   |         |  Name   : system.info
 #   |  _   _  |  Type   : information file
-#   | [_] [_] |  Role   : sysinfo
+#   | [_] [_] |  Role   : systeminfo
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -61,7 +61,7 @@ Version: {% if (ansible_kernel is defined) %}{{ansible_kernel}}{% endif %}
 # USERLAND
 #-------------------------------------------------------------------------------
 
-Type          : {% if (sysinfo_userland_type is defined) and not ((sysinfo_userland_type == None) or (sysinfo_userland_type == '')) %}{{sysinfo_userland_type}}{% endif %}
+Type          : {% if (systeminfo_userland_type is defined) and not ((systeminfo_userland_type == None) or (systeminfo_userland_type == '')) %}{{systeminfo_userland_type}}{% endif %}
 
 Achitecture   : {% if (ansible_userspace_architecture is defined) %}{{ansible_userspace_architecture}}{% endif %}
 

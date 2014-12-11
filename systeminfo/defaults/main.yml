@@ -5,8 +5,8 @@
 #        o
 #    ____|____
 #   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible task file
-#   | [_] [_] |  Role   : sysinfo
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : systeminfo
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -21,6 +21,20 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include unix
-  include: unix/main.yml
-  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')
+# systeminfo_state
+systeminfo_state: 'install'
+
+# systeminfo_administration
+systeminfo_administration: []
+
+# systeminfo_general
+systeminfo_general: ''
+
+# systeminfo_other
+systeminfo_other: []
+
+# systeminfo_patching
+systeminfo_patching: []
+
+# systeminfo_services
+systeminfo_services: []

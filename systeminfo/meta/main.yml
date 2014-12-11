@@ -4,9 +4,9 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : Gentoo.yml
-#   |  _   _  |  Type   : ansible variable file
-#   | [_] [_] |  Role   : sysinfo
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible meta file
+#   | [_] [_] |  Role   : systeminfo
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -21,5 +21,5 @@
 #
 #-------------------------------------------------------------------------------
 
-# sysinfo_userland_type
-sysinfo_userland_type: 'GNU'
+dependencies:
+ - { role: common, when: not ((systeminfo_state == 'false') or (systeminfo_state == 'no') or (systeminfo_state == 'remove')) }

@@ -6,7 +6,7 @@
 #    ____|____
 #   |         |  Name   : remove.yml
 #   |  _   _  |  Type   : ansible task file
-#   | [_] [_] |  Role   : sysinfo
+#   | [_] [_] |  Role   : systeminfo
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -39,7 +39,7 @@
    - files
    - remove
    - unix
-   - sysinfo
+   - systeminfo
 
 - name: file remove operation.info
   file:
@@ -49,7 +49,7 @@
    - files
    - remove
    - unix
-   - sysinfo
+   - systeminfo
 
 - name: file remove freebsd.info
   file:
@@ -60,7 +60,7 @@
    - files
    - remove
    - unix
-   - sysinfo
+   - systeminfo
 
 - name: file remove gentoo.info
   file:
@@ -71,7 +71,7 @@
    - files
    - remove
    - unix
-   - sysinfo
+   - systeminfo
 
 - name: file remove system.info
   file:
@@ -81,4 +81,4 @@
    - files
    - remove
    - unix
-   - sysinfo
+   - systeminfo

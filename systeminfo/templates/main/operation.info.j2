@@ -9,7 +9,7 @@
 #    ____|____
 #   |         |  Name   : operation.info
 #   |  _   _  |  Type   : information file
-#   | [_] [_] |  Role   : sysinfo
+#   | [_] [_] |  Role   : systeminfo
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -29,15 +29,15 @@
 #-------------------------------------------------------------------------------
 
 # General information about this system:
-{{sysinfo_general|wordwrap(width=80)}}
+{{systeminfo_general|wordwrap(width=80)}}
 
 #-------------------------------------------------------------------------------
 # SERVICES
 #-------------------------------------------------------------------------------
 
 # The following services are installed and running on this system:
-{% if (sysinfo_services is defined) and not ((sysinfo_services == None) or (sysinfo_services == '') or (sysinfo_services == [])) %}
-{% for operation_services in sysinfo_services %}
+{% if (systeminfo_services is defined) and not ((systeminfo_services == None) or (systeminfo_services == '') or (systeminfo_services == [])) %}
+{% for operation_services in systeminfo_services %}
  - {{operation_services}}
 {% endfor %}
 {% endif %}
@@ -47,8 +47,8 @@
 #-------------------------------------------------------------------------------
 
 # Be aware of the following facts when administrating this system:
-{% if (sysinfo_administration is defined) and not ((sysinfo_administration == None) or (sysinfo_administration == '') or (sysinfo_administration == [])) %}
-{% for operation_administration in sysinfo_administration %}
+{% if (systeminfo_administration is defined) and not ((systeminfo_administration == None) or (systeminfo_administration == '') or (systeminfo_administration == [])) %}
+{% for operation_administration in systeminfo_administration %}
 {{operation_administration}}
 {% endfor %}
 {% endif %}
@@ -58,8 +58,8 @@
 #-------------------------------------------------------------------------------
 
 # Stick to the following procedure to patch this system:
-{% if (sysinfo_patching is defined) and not ((sysinfo_patching == None) or (sysinfo_patching == '') or (sysinfo_patching == [])) %}
-{% for operation_patching in sysinfo_patching %}
+{% if (systeminfo_patching is defined) and not ((systeminfo_patching == None) or (systeminfo_patching == '') or (systeminfo_patching == [])) %}
+{% for operation_patching in systeminfo_patching %}
 {{operation_patching}}
 {% endfor %}
 {% endif %}
@@ -69,8 +69,8 @@
 #-------------------------------------------------------------------------------
 
 # Additional information about this system:
-{% if (sysinfo_other is defined) and not ((sysinfo_other == None) or (sysinfo_other == '') or (sysinfo_other == [])) %}
-{% for operation_other in sysinfo_other %}
+{% if (systeminfo_other is defined) and not ((systeminfo_other == None) or (systeminfo_other == '') or (systeminfo_other == [])) %}
+{% for operation_other in systeminfo_other %}
 {{operation_other}}
 {% endfor %}
 {% endif %}

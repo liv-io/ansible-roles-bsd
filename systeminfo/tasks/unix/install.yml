@@ -6,7 +6,7 @@
 #    ____|____
 #   |         |  Name   : install.yml
 #   |  _   _  |  Type   : ansible task file
-#   | [_] [_] |  Role   : sysinfo
+#   | [_] [_] |  Role   : systeminfo
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -42,7 +42,7 @@
    - files
    - install
    - unix
-   - sysinfo
+   - systeminfo
 
 - name: template create operation.info
   template:
@@ -55,7 +55,7 @@
    - files
    - install
    - unix
-   - sysinfo
+   - systeminfo
 
 - name: template create freebsd.info
   template:
@@ -69,7 +69,7 @@
    - files
    - install
    - unix
-   - sysinfo
+   - systeminfo
 
 - name: template create gentoo.info
   template:
@@ -83,7 +83,7 @@
    - files
    - install
    - unix
-   - sysinfo
+   - systeminfo
 
 - name: template create system.info
   template:
@@ -96,4 +96,4 @@
    - files
    - install
    - unix
-   - sysinfo
+   - systeminfo

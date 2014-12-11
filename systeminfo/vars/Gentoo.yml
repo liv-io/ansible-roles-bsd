@@ -4,9 +4,9 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible default file
-#   | [_] [_] |  Role   : sysinfo
+#   |         |  Name   : Gentoo.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : systeminfo
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -21,20 +21,5 @@
 #
 #-------------------------------------------------------------------------------
 
-# sysinfo_state
-sysinfo_state: 'install'
-
-# sysinfo_administration
-sysinfo_administration: []
-
-# sysinfo_general
-sysinfo_general: ''
-
-# sysinfo_other
-sysinfo_other: []
-
-# sysinfo_patching
-sysinfo_patching: []
-
-# sysinfo_services
-sysinfo_services: []
+# systeminfo_userland_type
+systeminfo_userland_type: 'GNU'

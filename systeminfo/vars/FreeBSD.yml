@@ -1,15 +1,12 @@
-#-------------------------------------------------------------------------------
-#                             ANSIBLE MANAGED FILE
-#-------------------------------------------------------------------------------
-
+---
 #-------------------------------------------------------------------------------
 # INFORMATION
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : ansible.info
-#   |  _   _  |  Type   : information file
-#   | [_] [_] |  Role   : sysinfo
+#   |         |  Name   : Gentoo.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : systeminfo
 #   |____~____|
 #    ___//__//   Authors: robomon community
 #   /|     |/    License: Simplified BSD License
@@ -20,14 +17,25 @@
 # DESCRIPTION
 #-------------------------------------------------------------------------------
 #
-# This file holds information about the ansible configuration of this system.
+#
 #
 #-------------------------------------------------------------------------------
 
-#-------------------------------------------------------------------------------
-# PLAYBOOKS
-#-------------------------------------------------------------------------------
+# systeminfo_userland_type
+systeminfo_userland_type: 'BSD'
 
 #-------------------------------------------------------------------------------
-# ROLES
+# FILES
 #-------------------------------------------------------------------------------
+
+# ansible.info
+file_group_ansible_info: 'wheel'
+
+# operation.info
+file_group_operation_info: 'wheel'
+
+# freebsd.info
+file_group_freebsd_info: 'wheel'
+
+# system.info
+file_group_system_info: 'wheel'

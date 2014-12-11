@@ -3,7 +3,7 @@ README
 --------------------------------------------------------------------------------
         o
     ____|____
-   |         |  Name   : sysinfo
+   |         |  Name   : systeminfo
    |  _   _  |  Type   : ansible role
    | [_] [_] |  Group  : app-admin
    |____~____|
@@ -16,7 +16,7 @@ README
 DESCRIPTION
 --------------------------------------------------------------------------------
 
-This role manages sysinfo.
+This role manages systeminfo.
 
 Use this role to provide general information about the managed node.
 
@@ -30,10 +30,10 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: sysinfo
-       sysinfo_state: 'install'
-       sysinfo_general: 'Data - Active/Passive Cluster'
-       sysinfo_administration: ['This system is part of an active/passive cluster.',
+     - role: systeminfo
+       systeminfo_state: 'install'
+       systeminfo_general: 'Data - Active/Passive Cluster'
+       systeminfo_administration: ['This system is part of an active/passive cluster.',
                                 'Please bear in mind that switching roles causes short service interrupts.',
                                 'To get health information about the cluster, use the following commands:',
                                 'corosync-cfgtool -s',
@@ -45,13 +45,13 @@ INSTALL
                                 'service corosync status',
                                 'service drbd status',
                                 'service pacemaker status']
-       sysinfo_services: ['Corosync (TCP/5404, TCP/5405)',
+       systeminfo_services: ['Corosync (TCP/5404, TCP/5405)',
                           'DRBD/Kernel (TCP/7789)',
                           'Pacemaker',
                           'Floating service IP address (IPv4, IPv6)',
                           'MySQL DB Server (TCP/3306)',
                           'Apache HTTP Server (TCP/80, TCP/443)']
-       sysinfo_patching: ['crm node standby <host.domain.tld>',
+       systeminfo_patching: ['crm node standby <host.domain.tld>',
                           'yum update',
                           "wall 'WARNING: Reboot is required. System will reboot in 1 minute.'",
                           'shutdown -r +1',
@@ -60,15 +60,15 @@ INSTALL
 REMOVE
   - hosts: all
     roles:
-     - role: sysinfo
-       sysinfo_state: 'remove'
+     - role: systeminfo
+       systeminfo_state: 'remove'
 
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
 
 ROLE
-  sysinfo_state
+  systeminfo_state
     Description: Control the state of the role.
     Implemented: 0.1
     Required   : False
@@ -79,8 +79,8 @@ ROLE
       Install: 'true' | 'yes' | 'install'
       Remove : 'false' | 'no' | 'remove'
 
-  sysinfo_administration
-    Description: Define the 'sysinfo_administration' option.
+  systeminfo_administration
+    Description: Define the 'systeminfo_administration' option.
                  Use this variable to define important facts to be considered
                  while administrating the managed node.
     Implemented: 0.1
@@ -103,8 +103,8 @@ ROLE
                  'service pacemaker status']
       None    : []
 
-  sysinfo_general
-    Description: Define the 'sysinfo_general' option.
+  systeminfo_general
+    Description: Define the 'systeminfo_general' option.
                  Use this variable to define the general purpose of the managed
                  node.
     Implemented: 0.1
@@ -116,8 +116,8 @@ ROLE
       Examples: 'This system is the primary nameserver.'
       None    : ''
 
-  sysinfo_other
-    Description: Define the 'sysinfo_other' option.
+  systeminfo_other
+    Description: Define the 'systeminfo_other' option.
                  Use this variable to define any other information about the
                  managed node.
     Implemented: 0.1
@@ -130,8 +130,8 @@ ROLE
                  'Please consult the wiki for more information.']
       None    : []
 
-  sysinfo_patching
-    Description: Define the 'sysinfo_patching' option.
+  systeminfo_patching
+    Description: Define the 'systeminfo_patching' option.
                  Use this variable to define the procedure to patch the managed
                  node.
     Implemented: 0.1
@@ -147,8 +147,8 @@ ROLE
                  "crm node online <host.domain.tld>"]
       None    : []
 
-  sysinfo_services
-    Description: Define the 'sysinfo_services' option.
+  systeminfo_services
+    Description: Define the 'systeminfo_services' option.
                  Use this variable to define the services installed and running
                  on the managed node.
     Implemented: 0.1
