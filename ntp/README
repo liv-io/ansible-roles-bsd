@@ -41,25 +41,34 @@ ENABLE
     roles:
      - role: ntp
        ntp_state: 'enable'
-       ntp_option: ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
-       ntp_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
+       ntp_config: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                     option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
+                     comment: 'Server: domain.tld'}]
 
 DISABLE
   - hosts: all
     roles:
      - role: ntp
        ntp_state: 'disable'
-       ntp_option: ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
-       ntp_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
+       ntp_config: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                     option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
+                     comment: 'Server: domain.tld'}]
 
 CRONJOB
   - hosts: all
     roles:
      - role: ntp
        ntp_state: 'cronjob'
-       ntp_option: ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
-       ntp_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
+       ntp_config: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                     option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
+                     comment: 'Server: domain.tld'}]
        ntp_ntp_update_time_interval: 15
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: ntp
+       ntp_state: 'inactive'
 
 REMOVE
   - hosts: all
@@ -85,6 +94,22 @@ ROLE
       Disable: 'stop' | 'off' | 'disable'
       Cronjob: 'cron' | 'cronjob'
       Remove : 'false' | 'no' | 'remove'
+      Quiesce: 'quiesce' | 'inactive'
+
+  ntp_config
+    Description: Define the 'ntp_config' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{server: {'ntp'},
+                   option: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'},
+                   comment: 'Server: ntp'}]
+    Options    :
+      Examples: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                  option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
+                  comment: 'Server: domain.tld'}]
+      None    : []
 
   ntp_monitor
     Description: Control the 'ntp_monitor' option.
@@ -153,12 +178,12 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  ntp_ntp_update_time_bash_template
-    Description: Define the template source for 'ntp_update-time.bash.j2'.
+  ntp_ntp_update_time_sh_template
+    Description: Define the template source for 'ntp_update-time.sh.j2'.
                  Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
-                 'ntp/templates/example/ntp_update-time.bash.j2'
+                 'ntp/templates/example/ntp_update-time.sh.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -192,44 +217,28 @@ ROLE
     Options    :
       Examples: 5 | 11 | 15 | 20 | 23
 
-  ntp_option
-    Description: Define the 'ntp_option' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array
-    Default    : ['burst', 'prefer', 'minpoll 4', 'maxpoll 6']
-    Options    :
-      Examples: ['burst', 'prefer', 'minpoll 4', 'maxpoll 6'] |
-                ['iburst', 'prefer', 'minpoll 4', 'maxpoll 6']
-      None    : []
-
   ntp_restrict
     Description: Define the 'ntp_restrict' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
-    Default    : ['default kod nomodify notrap nopeer noquery',
-               '-6 default kod nomodify notrap nopeer noquery',
-               '127.0.0.1', '-6 ::1']
+    Type       : Array/Hash
+    Default    : [{config: {'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv4'},
+                  {config: {'-6', 'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv6'},
+                  {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'},
+                  {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'},
+                  {config: {'127.127.1.0'}, comment: 'Restrict: Pseudo IP address'}]
     Options    :
-      Examples: ['192.168.1.0 mask 255.255.255.0 nomodify notrap',
-                 '192.168.2.0 mask 255.255.255.0 nomodify notrap'] |
-                ['2001:0db8:85a3:08d3:1319:8a2e:0370:7347 nomodify notrap',
-                 '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458 nomodify notrap']
-      None    : []
-
-  ntp_server
-    Description: Define the 'ntp_server' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array
-    Default    : ["ntp.{{ansible_domain}}"]
-    Options    :
-      Examples: ['ntp.domain.tld'] | ['ntp01.domain.tld', 'ntp02.domain.tld'] |
-                ['ntp01.domain.tld', 'ntp02.domain.tld', 'ntp03.domain.tld']
+      Examples: [{config: {'192.168.1.0 mask 255.255.255.0', 'nomodify', 'notrap'}, comment: 'Network: Allow from 192.168.1.0/24'},
+                 {config: {'192.168.2.0 mask 255.255.255.0', 'nomodify', 'notrap'}, comment: 'Network: Allow from 192.168.2.0/24'},
+                 {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'},
+                 {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'},
+                 {config: {'127.127.1.0'}, comment: 'Restrict: Pseudo IP address'}] |
+                [{config: {'2001:0db8:85a3:08d3:1319:8a2e:0370:7347', 'nomodify', 'notrap'}, comment: 'Network: Allow from host'},
+                 {config: {'2001:0ec9:96b4:19e4:2421:9b3f:1480:8458', 'nomodify', 'notrap'}, comment: 'Network: Allow from host'},
+                 {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'},
+                 {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'},
+                 {config: {'127.127.1.0'}, comment: 'Restrict: Pseudo IP address'}]
       None    : []
 
 --------------------------------------------------------------------------------
@@ -246,7 +255,8 @@ PACKAGES
   ntp
     Version: >= 4.2
     Name   :
-      Gentoo 2: 'ntp'
+      FreeBSD 10: 'ntp'
+      Gentoo 2  : 'ntp'
 
 ROLES
   common
@@ -292,7 +302,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Planned
+      Status: Testing
 
   Gentoo
     Version: 2

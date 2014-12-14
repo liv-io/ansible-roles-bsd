@@ -38,17 +38,17 @@
    mode: "{{file_mode_ntp_conf}}"
    owner: "{{file_owner_ntp_conf}}"
    group: "{{file_group_ntp_conf}}"
-  notify: service restart ntpd
+  notify: service restart ntp
   tags:
    - files
    - enable
    - unix
    - ntp
 
-- name: file remove ntp_update-time.bash
+- name: file remove ntp_update-time.sh
   file:
    state: 'absent'
-   path: "{{file_path_ntp_update_time_bash}}"
+   path: "{{file_path_ntp_update_time_sh}}"
   tags:
    - files
    - enable
@@ -59,6 +59,33 @@
   file:
    state: 'absent'
    path: "{{file_path_ntp_update_time_cron}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - files
+   - enable
+   - unix
+   - ntp
+
+- name: file config crontab
+  lineinfile:
+   state: 'absent'
+   line: "{{file_line_crontab}} # Ansible: ntp_update-time"
+   regexp: "# Ansible: ntp_update-time$"
+   dest: "{{file_path_crontab}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - enable
+   - unix
+   - ntp
+
+- name: file config rc.conf
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_rc_conf}}=\"YES\" # Ansible: Enable ntpd"
+   regexp: "{{file_path_ntp_update_time_sh}}$"
+   dest: "{{file_path_rc_conf}}"
+  when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
    - enable
@@ -69,12 +96,24 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service start ntpd
+- name: service start ntp
+  service:
+   state: 'started'
+   enabled: 'yes'
+   name: "{{service_name_ntp}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - system
+   - enable
+   - unix
+   - ntp
+
+- name: service start ntp
   service:
    state: 'started'
    enabled: 'yes'
    runlevel: 'default'
-   name: "{{service_name_ntpd}}"
+   name: "{{service_name_ntp}}"
   when: (ansible_os_family == 'Gentoo')
   tags:
    - system

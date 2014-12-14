@@ -33,7 +33,6 @@
 # See the ntpdc(8) program and the monlist command or further information.
 {% if (ntp_monitor is defined) and ((ntp_monitor == 'true') or (ntp_monitor == 'yes') or (ntp_monitor == 'enable')) %}enable{% else %}disable{% endif %} monitor
 
-
 # Name of the servers ntpd should sync with
 # Please respect the access policy as stated by the responsible person.
 #server		ntp.example.tld		iburst
@@ -46,7 +45,6 @@
 #server 1.gentoo.pool.ntp.org
 #server 2.gentoo.pool.ntp.org
 #server 3.gentoo.pool.ntp.org
-
 
 ##
 # A list of available servers can be found here:
@@ -61,17 +59,23 @@
 
 driftfile {{ntp_driftfile}}
 
-
 #server ntplocal.example.com prefer 
 #server timeserver.example.org 
 
-{% if (ntp_server is defined) and not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}
-{% for server in ntp_server %}
-server {{server}} {% for option in ntp_option %}{{option}} {% endfor %}
+{% if (ntp_config is defined) and not ((ntp_config == None) or (ntp_config == '') or (ntp_config == [])) %}
+{% for config in ntp_config|sort %}
+{% if (config.comment is defined) and not ((config.comment == None) or (config.comment == '')) %}
+# {{config.comment|e}}
+{% else %}
+#
+{% endif %}
+{% for server in config.server|sort %}
+server {{server|e}} {% for option in config.option|sort %}{{option|e}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
-
 
 # Warning: Using default NTP settings will leave your NTP
 # server accessible to all hosts on the Internet.
@@ -89,11 +93,17 @@ server {{server}} {% for option in ntp_option %}{{option}} {% endfor %}
 #restrict [::1]
 
 {% if (ntp_restrict is defined) and not ((ntp_restrict == None) or (ntp_restrict == '') or (ntp_restrict == [])) %}
-{% for restrict in ntp_restrict %}
-restrict {{restrict}}
-{% endfor %}
+{% for restrict in ntp_restrict|sort %}
+{% if (restrict.comment is defined) and not ((restrict.comment == None) or (restrict.comment == '')) %}
+# {{restrict.comment|e}}
+{% else %}
+#
 {% endif %}
+restrict {% for config in restrict.config|sort %}{{config|e}}{% if not loop.last %} {% endif %}{% endfor %}
 
+{% endfor %}
+{% else %}
+{% endif %}
 
 # To allow machines within your network to synchronize
 # their clocks with your server, but ensure they are

@@ -32,6 +32,17 @@
 #-------------------------------------------------------------------------------
 
 - name: package install ntp
+  pkgng:
+   state: 'present'
+   name: "{{package_name_ntp}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - ntp
+
+- name: package install ntp
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"

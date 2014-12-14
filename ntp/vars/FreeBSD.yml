@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : Gentoo.yml
+#   |         |  Name   : FreeBSD.yml
 #   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : ntp
 #   |____~____|
@@ -22,14 +22,25 @@
 #-------------------------------------------------------------------------------
 
 # ntp_command
-ntp_command: 'sntp --settod --syslog'
-
-# ntp_driftfile
-ntp_driftfile: '/var/lib/ntp/ntp.drift'
+ntp_command: 'ntpdate -s -b'
 
 #-------------------------------------------------------------------------------
-# PACKAGING
+# FILES
 #-------------------------------------------------------------------------------
 
-# portage
-portage_sync: 'web'
+# crontab
+file_line_crontab: "*/{% if (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) > 59) %}59{% elif (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntp_ntp_update_time_interval|int(10))}}{% endif %} * * * * {{file_owner_ntp_update_time_sh|e}} {{file_path_ntp_update_time_sh|e}}"
+file_path_crontab: '/etc/crontab'
+
+# ntp.conf
+file_group_ntp_conf: 'wheel'
+
+# ntp-script.dir
+file_group_ntp_script_dir: 'wheel'
+
+# ntp_update-time.sh
+file_group_ntp_update_time_sh: 'wheel'
+
+# rc.conf
+file_line_rc_conf: 'ntpd_enable'
+file_path_rc_conf: '/etc/rc.conf'

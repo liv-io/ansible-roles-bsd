@@ -32,6 +32,18 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove ntp
+  pkgng:
+   state: 'absent'
+   name: "{{package_name_ntp}}"
+  register: register_freebsd_ntp
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - ntp
+
+- name: package remove ntp
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"
@@ -47,10 +59,26 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file remove ntp_update-time.bash
-  file:
+- name: file config rc.conf
+  lineinfile:
    state: 'absent'
-   path: "{{file_path_ntp_update_time_bash}}"
+   line: "{{file_line_rc_conf}}=\"NO\" # Ansible: Remove ntpd"
+   regexp: "{{file_path_ntp_update_time_sh}}$"
+   dest: "{{file_path_rc_conf}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - remove
+   - unix
+   - ntp
+
+- name: file config crontab
+  lineinfile:
+   state: 'absent'
+   line: "{{file_line_crontab}} # Ansible: ntp_update-time"
+   regexp: "# Ansible: ntp_update-time$"
+   dest: "{{file_path_crontab}}"
+  when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
    - remove
@@ -61,6 +89,17 @@
   file:
    state: 'absent'
    path: "{{file_path_ntp_update_time_cron}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - files
+   - remove
+   - unix
+   - ntp
+
+- name: file remove ntp_update-time.sh
+  file:
+   state: 'absent'
+   path: "{{file_path_ntp_update_time_sh}}"
   tags:
    - files
    - remove
