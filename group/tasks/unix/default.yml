@@ -25,7 +25,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: group config <group-custom>
+- name: group config group-custom
   group:
    state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
    name: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}"

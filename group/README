@@ -89,9 +89,10 @@ CONFIG
     Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : None
+    Default    : ''
     Options    :
       Examples: 'group01' | 'group02' | 'group03'
+      None    : ''
 
   gid
     Description: Set the GID of the group.
@@ -99,9 +100,10 @@ CONFIG
     Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : None
+    Default    : ''
     Options    :
       Examples: '2001' | '2002' | '2003'
+      None    : ''
 
   system
     Description: Control whether to create a system group.
