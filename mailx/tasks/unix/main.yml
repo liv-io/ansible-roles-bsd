@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((mailx_state == 'false') or (mailx_state == 'no') or (mailx_state == 'remove'))
+  when: not ((mailx_state == 'false') or (mailx_state == 'no') or (mailx_state == 'remove') or (mailx_state == 'quiesce') or (mailx_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
