@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((iproute_state == 'false') or (iproute_state == 'no') or (iproute_state == 'remove'))
+  when: not ((iproute_state == 'false') or (iproute_state == 'no') or (iproute_state == 'remove') or (iproute_state == 'quiesce') or (iproute_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
