@@ -22,4 +22,4 @@
 #-------------------------------------------------------------------------------
 
 dependencies:
- - { role: common, when: not ((systeminfo_state == 'false') or (systeminfo_state == 'no') or (systeminfo_state == 'remove')) }
+ - {role: 'common', when: not ((systeminfo_state == 'false') or (systeminfo_state == 'no') or (systeminfo_state == 'remove') or (systeminfo_state == 'quiesce') or (systeminfo_state == 'inactive'))}

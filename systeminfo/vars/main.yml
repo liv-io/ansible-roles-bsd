@@ -26,7 +26,7 @@
 #-------------------------------------------------------------------------------
 
 # common-info.dir
-file_path_common_info_dir: "/{{common_info_dir_partition if (common_info_dir_partition is defined) and not ((common_info_dir_partition == None) or (common_info_dir_partition == '')) else 'opt'}}/{{common_root_dir_name if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{common_info_dir_name if (common_info_dir_name is defined) and not ((common_info_dir_name == None) or (common_info_dir_name == '')) else 'info'}}"
+file_path_common_info_dir: "/{{(common_info_dir_partition|e) if (common_info_dir_partition is defined) and not ((common_info_dir_partition == None) or (common_info_dir_partition == '')) else 'opt'}}/{{(common_root_dir_name|e) if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{(common_info_dir_name|e) if (common_info_dir_name is defined) and not ((common_info_dir_name == None) or (common_info_dir_name == '')) else 'info'}}"
 
 # ansible.info
 file_src_ansible_info: "../../templates/main/ansible.info.j2"
