@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((common_state == 'false') or (common_state == 'no') or (common_state == 'remove'))
+  when: not ((common_state == 'false') or (common_state == 'no') or (common_state == 'remove') or (common_state == 'quiesce') or (common_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml

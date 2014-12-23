@@ -39,31 +39,31 @@ file_owner_opt_link: 'root'
 file_group_opt_link: 'root'
 
 # common-backup.dir
-file_path_common_backup_dir: "/{{common_backup_dir_partition if (common_backup_dir_partition is defined) and not ((common_backup_dir_partition == None) or (common_backup_dir_partition == '')) else 'opt'}}/{{common_root_dir_name if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{common_backup_dir_name if (common_backup_dir_name is defined) and not ((common_backup_dir_name == None) or (common_backup_dir_name == '')) else 'backup'}}"
+file_path_common_backup_dir: "/{{(common_backup_dir_partition|e) if (common_backup_dir_partition is defined) and not ((common_backup_dir_partition == None) or (common_backup_dir_partition == '')) else 'opt'}}/{{(common_root_dir_name|e) if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{(common_backup_dir_name|e) if (common_backup_dir_name is defined) and not ((common_backup_dir_name == None) or (common_backup_dir_name == '')) else 'backup'}}"
 file_mode_common_backup_dir: '0755'
 file_owner_common_backup_dir: 'root'
 file_group_common_backup_dir: 'root'
 
 # common-info.dir
-file_path_common_info_dir: "/{{common_info_dir_partition if (common_info_dir_partition is defined) and not ((common_info_dir_partition == None) or (common_info_dir_partition == '')) else 'opt'}}/{{common_root_dir_name if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{common_info_dir_name if (common_info_dir_name is defined) and not ((common_info_dir_name == None) or (common_info_dir_name == '')) else 'info'}}"
+file_path_common_info_dir: "/{{(common_info_dir_partition|e) if (common_info_dir_partition is defined) and not ((common_info_dir_partition == None) or (common_info_dir_partition == '')) else 'opt'}}/{{(common_root_dir_name|e) if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{(common_info_dir_name|e) if (common_info_dir_name is defined) and not ((common_info_dir_name == None) or (common_info_dir_name == '')) else 'info'}}"
 file_mode_common_info_dir: '0755'
 file_owner_common_info_dir: 'root'
 file_group_common_info_dir: 'root'
 
 # common-root.dir
-file_path_common_root_dir: "/opt/{{common_root_dir_name if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}"
+file_path_common_root_dir: "/opt/{{(common_root_dir_name|e) if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}"
 file_mode_common_root_dir: '0755'
 file_owner_common_root_dir: 'root'
 file_group_common_root_dir: 'root'
 
 # common-script.dir
-file_path_common_script_dir: "/{{common_script_dir_partition if (common_script_dir_partition is defined) and not ((common_script_dir_partition == None) or (common_script_dir_partition == '')) else 'opt'}}/{{common_root_dir_name if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{common_script_dir_name if (common_script_dir_name is defined) and not ((common_script_dir_name == None) or (common_script_dir_name == '')) else 'script'}}"
+file_path_common_script_dir: "/{{(common_script_dir_partition|e) if (common_script_dir_partition is defined) and not ((common_script_dir_partition == None) or (common_script_dir_partition == '')) else 'opt'}}/{{(common_root_dir_name|e) if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{(common_script_dir_name|e) if (common_script_dir_name is defined) and not ((common_script_dir_name == None) or (common_script_dir_name == '')) else 'script'}}"
 file_mode_common_script_dir: '0755'
 file_owner_common_script_dir: 'root'
 file_group_common_script_dir: 'root'
 
 # common-system.dir
-file_path_common_system_dir: "/{{common_system_dir_partition if (common_system_dir_partition is defined) and not ((common_system_dir_partition == None) or (common_system_dir_partition == '')) else 'opt'}}/{{common_root_dir_name if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{common_system_dir_name if (common_system_dir_name is defined) and not ((common_system_dir_name == None) or (common_system_dir_name == '')) else 'system'}}"
+file_path_common_system_dir: "/{{(common_system_dir_partition|e) if (common_system_dir_partition is defined) and not ((common_system_dir_partition == None) or (common_system_dir_partition == '')) else 'opt'}}/{{(common_root_dir_name|e) if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{(common_system_dir_name|e) if (common_system_dir_name is defined) and not ((common_system_dir_name == None) or (common_system_dir_name == '')) else 'system'}}"
 file_mode_common_system_dir: '0755'
 file_owner_common_system_dir: 'root'
 file_group_common_system_dir: 'root'

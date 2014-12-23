@@ -25,16 +25,16 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# {% filter upper %}{{common_root_dir_name}}
+# {% filter upper %}{{(common_root_dir_name|e)}}
 {% endfilter %}
 #-------------------------------------------------------------------------------
 
 This is the root directory which holds all the folders listed below.
 
-Path: /opt/{{common_root_dir_name}}
+Path: /opt/{{(common_root_dir_name|e)}}
 
 #-------------------------------------------------------------------------------
-# {% filter upper %}{{common_backup_dir_name}}
+# {% filter upper %}{{(common_backup_dir_name|e)}}
 {% endfilter %}
 #-------------------------------------------------------------------------------
 
@@ -43,10 +43,10 @@ other type of backups.
 Please create a subdirectory per category. Do not put the files in the main
 directory itself.
 
-Path: /{{common_backup_dir_partition}}/{{common_root_dir_name}}/{{common_backup_dir_name}}/
+Path: /{{(common_backup_dir_partition|e)}}/{{(common_root_dir_name|e)}}/{{(common_backup_dir_name|e)}}/
 
 #-------------------------------------------------------------------------------
-# {% filter upper %}{{common_info_dir_name}}
+# {% filter upper %}{{(common_info_dir_name|e)}}
 {% endfilter %}
 #-------------------------------------------------------------------------------
 
@@ -55,10 +55,10 @@ documentations, user guides and any other type of information.
 Please create a subdirectory per category. Do not put the files in the main
 directory itself.
 
-Path: /{{common_info_dir_partition}}/{{common_root_dir_name}}/{{common_info_dir_name}}/
+Path: /{{(common_info_dir_partition|e)}}/{{(common_root_dir_name|e)}}/{{(common_info_dir_name|e)}}/
 
 #-------------------------------------------------------------------------------
-# {% filter upper %}{{common_script_dir_name}}
+# {% filter upper %}{{(common_script_dir_name|e)}}
 {% endfilter %}
 #-------------------------------------------------------------------------------
 
@@ -67,10 +67,10 @@ database tools and any other type of scripts.
 Please create a subdirectory per category. Do not put the files in the main
 directory itself.
 
-Path: /{{common_script_dir_partition}}/{{common_root_dir_name}}/{{common_script_dir_name}}/
+Path: /{{(common_script_dir_partition|e)}}/{{(common_root_dir_name|e)}}/{{(common_script_dir_name|e)}}/
 
 #-------------------------------------------------------------------------------
-# {% filter upper %}{{common_system_dir_name}}
+# {% filter upper %}{{(common_system_dir_name|e)}}
 {% endfilter %}
 #-------------------------------------------------------------------------------
 
@@ -79,4 +79,4 @@ installation logs and any other type of system files.
 Please create a subdirectory per category. Do not put the files in the main
 directory itself.
 
-Path: /{{common_system_dir_partition}}/{{common_root_dir_name}}/{{common_system_dir_name}}/
+Path: /{{(common_system_dir_partition|e)}}/{{(common_root_dir_name|e)}}/{{(common_system_dir_name|e)}}/
