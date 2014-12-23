@@ -38,14 +38,15 @@ INSTALL
      - role: resolver
        resolver_state: 'install'
        resolver_domain: 'domain.tld'
-       resolver_nameserver: ['192.168.1.11', '192.168.1.12']
+       resolver_nameserver: [{server: {'192.168.1.11', '192.168.1.12'},
+                              comment: 'Server: domain.tld'}]
        resolver_search: ['domain01.tld', 'domain02.tld']
 
-DISABLE
+INACTIVE
   - hosts: all
     roles:
      - role: resolver
-       resolver_state: 'disable'
+       resolver_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -61,8 +62,8 @@ ROLE
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Disable: 'false' | 'no' | 'disable'
+      Install : 'true' | 'yes' | 'install'
+      Inactive: 'quiesce' | 'inactive'
 
   resolver_domain
     Description: Define the 'resolver_domain' option.
@@ -80,11 +81,13 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
-    Default    : ['127.0.0.1']
+    Type       : Array/Hash
+    Default    : [{server: {'127.0.0.1'},
+                   comment: 'Server: Localhost'}]
     Options    :
-      Examples: ['192.168.1.10'] | ['192.168.1.11', '192.168.1.12'] |
-                ['192.168.1.11', '192.168.1.12', '192.168.1.13']
+      Examples: [{server: {'192.168.1.11', '192.168.1.12'}, comment: 'Server: domain.tld'}] |
+                [{server: {'192.168.1.21'}, comment: 'Server: Nameserver 01'},
+                 {server: {'192.168.1.22'}, comment: 'Server: Nameserver 02'}]
       None    : []
 
   resolver_search

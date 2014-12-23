@@ -25,16 +25,18 @@
 #-------------------------------------------------------------------------------
 
 # Local domain name
-{% if (resolver_domain is defined) and not ((resolver_domain == None) or (resolver_domain == '')) %}domain {{resolver_domain}}{% endif %}
-
+{% if (resolver_domain is defined) and not ((resolver_domain == None) or (resolver_domain == '')) %}
+domain {{(resolver_domain|e)}}
+{% endif %}
 
 # Search list for host-name lookup
-{% if (resolver_search is defined) and not ((resolver_search == None) or (resolver_search == '') or (resolver_search == [])) %}search {% for search in resolver_search %}{{search}} {% endfor %}{% endif %}
-
+{% if (resolver_search is defined) and not ((resolver_search == None) or (resolver_search == '') or (resolver_search == [])) %}
+search {% for search in resolver_search %}{{(search|e)}}{% if not loop.last %} {% endif %}{% endfor %}
+{% endif %}
 
 # Name server IP address
 {% if (resolver_nameserver is defined) and not ((resolver_nameserver == None) or (resolver_nameserver == '') or (resolver_nameserver == [])) %}
 {% for nameserver in resolver_nameserver %}
-nameserver {{nameserver}}
+nameserver {{(nameserver|e)}}
 {% endfor %}
 {% endif %}
