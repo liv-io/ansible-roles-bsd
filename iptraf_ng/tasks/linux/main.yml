@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((iptraf_ng_state == 'false') or (iptraf_ng_state == 'no') or (iptraf_ng_state == 'remove'))
+  when: not ((iptraf_ng_state == 'false') or (iptraf_ng_state == 'no') or (iptraf_ng_state == 'remove') or (iptraf_ng_state == 'quiesce') or (iptraf_ng_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
