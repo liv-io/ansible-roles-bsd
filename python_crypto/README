@@ -40,6 +40,12 @@ REMOVE
      - role: python_crypto
        python_crypto_state: 'remove'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: python_crypto
+       python_crypto_state: 'inactive'
+
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
@@ -53,8 +59,9 @@ ROLE
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
 CONFLICTS

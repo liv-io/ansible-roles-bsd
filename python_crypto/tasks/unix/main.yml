@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((python_crypto_state == 'false') or (python_crypto_state == 'no') or (python_crypto_state == 'remove'))
+  when: not ((python_crypto_state == 'false') or (python_crypto_state == 'no') or (python_crypto_state == 'remove') or (python_crypto_state == 'quiesce') or (python_crypto_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
