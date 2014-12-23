@@ -24,8 +24,16 @@
 #
 #-------------------------------------------------------------------------------
 
-{% if (portage_package_accept_keywords is defined) and not ((portage_package_accept_keywords == None) or (portage_package_accept_keywords == '') or (portage_package_accept_keywords == []) or (portage_package_accept_keywords == 'false') or (portage_package_accept_keywords == 'no') or (portage_package_accept_keywords == 'disable')) %}
-{% for package_accept_keywords in portage_package_accept_keywords %}
-{{package_accept_keywords}}
+{% if (portage_package_accept_keywords is defined) and not ((portage_package_accept_keywords == None) or (portage_package_accept_keywords == '') or (portage_package_accept_keywords == [])) %}
+{% for item in (portage_package_accept_keywords|sort) %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
+{% else %}
+#
+{% endif %}
+{% for config in (item.config|sort) %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}

@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not ((portage_state == 'false') or (portage_state == 'no') or (portage_state == 'disable'))
+  when: not ((portage_state == 'false') or (portage_state == 'no') or (portage_state == 'remove') or (portage_state == 'quiesce') or (portage_state == 'inactive'))

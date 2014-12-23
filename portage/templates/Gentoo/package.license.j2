@@ -24,8 +24,16 @@
 #
 #-------------------------------------------------------------------------------
 
-{% if (portage_package_license is defined) and not ((portage_package_license == None) or (portage_package_license == '') or (portage_package_license == []) or (portage_package_license == 'false') or (portage_package_license == 'no') or (portage_package_license == 'disable')) %}
-{% for package_accept_keywords in portage_package_license %}
-{{package_accept_keywords}}
+{% if (portage_package_license is defined) and not ((portage_package_license == None) or (portage_package_license == '') or (portage_package_license == [])) %}
+{% for item in (portage_package_license|sort) %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
+{% else %}
+#
+{% endif %}
+{% for config in (item.config|sort) %}
+{{config}}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}
