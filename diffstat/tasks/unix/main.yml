@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((diffstat_state == 'false') or (diffstat_state == 'no') or (diffstat_state == 'remove'))
+  when: not ((diffstat_state == 'false') or (diffstat_state == 'no') or (diffstat_state == 'remove') or (diffstat_state == 'quiesce') or (diffstat_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
