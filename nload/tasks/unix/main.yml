@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((nload_state == 'false') or (nload_state == 'no') or (nload_state == 'remove'))
+  when: not ((nload_state == 'false') or (nload_state == 'no') or (nload_state == 'remove') or (nload_state == 'quiesce') or (nload_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
