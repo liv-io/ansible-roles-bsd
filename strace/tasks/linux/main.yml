@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((strace_state == 'false') or (strace_state == 'no') or (strace_state == 'remove'))
+  when: not ((strace_state == 'false') or (strace_state == 'no') or (strace_state == 'remove') or (strace_state == 'quiesce') or (strace_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
