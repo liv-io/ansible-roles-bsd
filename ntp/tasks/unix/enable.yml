@@ -66,12 +66,12 @@
    - unix
    - ntp
 
-- name: file config crontab
+- name: line config ntp_update-time
   lineinfile:
    state: 'absent'
-   line: "{{file_line_crontab}} # Ansible: ntp_update-time"
+   line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
    regexp: "# Ansible: ntp_update-time$"
-   dest: "{{file_path_crontab}}"
+   dest: "{{file_path_ntp_update_time}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
@@ -83,7 +83,7 @@
   lineinfile:
    state: 'present'
    line: "{{file_line_rc_conf}}=\"YES\" # Ansible: Enable ntpd"
-   regexp: "{{file_path_ntp_update_time_sh}}$"
+   regexp: "^{{file_line_rc_conf}}="
    dest: "{{file_path_rc_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:

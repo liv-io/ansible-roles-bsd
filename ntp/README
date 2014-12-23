@@ -41,7 +41,7 @@ ENABLE
     roles:
      - role: ntp
        ntp_state: 'enable'
-       ntp_config: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+       ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
                      option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
                      comment: 'Server: domain.tld'}]
 
@@ -50,7 +50,7 @@ DISABLE
     roles:
      - role: ntp
        ntp_state: 'disable'
-       ntp_config: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+       ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
                      option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
                      comment: 'Server: domain.tld'}]
 
@@ -59,22 +59,22 @@ CRONJOB
     roles:
      - role: ntp
        ntp_state: 'cronjob'
-       ntp_config: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+       ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
                      option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
                      comment: 'Server: domain.tld'}]
        ntp_ntp_update_time_interval: 15
-
-INACTIVE
-  - hosts: all
-    roles:
-     - role: ntp
-       ntp_state: 'inactive'
 
 REMOVE
   - hosts: all
     roles:
      - role: ntp
        ntp_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: ntp
+       ntp_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -89,27 +89,12 @@ ROLE
     Type       : String
     Default    : 'enable'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Enable : 'start' | 'on' | 'enable'
-      Disable: 'stop' | 'off' | 'disable'
-      Cronjob: 'cron' | 'cronjob'
-      Remove : 'false' | 'no' | 'remove'
-      Quiesce: 'quiesce' | 'inactive'
-
-  ntp_config
-    Description: Define the 'ntp_config' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{server: {'ntp'},
-                   option: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'},
-                   comment: 'Server: ntp'}]
-    Options    :
-      Examples: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                  option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
-                  comment: 'Server: domain.tld'}]
-      None    : []
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Cronjob : 'cron' | 'cronjob'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
   ntp_monitor
     Description: Control the 'ntp_monitor' option.
@@ -241,11 +226,27 @@ ROLE
                  {config: {'127.127.1.0'}, comment: 'Restrict: Pseudo IP address'}]
       None    : []
 
+  ntp_server
+    Description: Define the 'ntp_server' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{server: {'ntp'},
+                   option: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'},
+                   comment: 'Server: ntp'}]
+    Options    :
+      Examples: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                  option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
+                  comment: 'Server: domain.tld'}]
+      None    : []
+
 --------------------------------------------------------------------------------
 CONFLICTS
 --------------------------------------------------------------------------------
 
 ROLES
+  openntpd
 
 --------------------------------------------------------------------------------
 DEPENDENCIES

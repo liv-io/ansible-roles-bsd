@@ -24,10 +24,6 @@
 # ntp_state
 ntp_state: 'enable'
 
-# ntp_config
-ntp_config:
- - {server: {'ntp'}, option: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Server: ntp'}
-
 # ntp_monitor
 ntp_monitor: 'false'
 
@@ -62,3 +58,7 @@ ntp_restrict:
  - {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'}
  - {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'}
  - {config: {'127.127.1.0'}, comment: 'Restrict: Pseudo IP address'}
+
+# ntp_server
+ntp_server:
+ - {server: {'ntp'}, option: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Server: ntp'}

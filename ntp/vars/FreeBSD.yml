@@ -28,9 +28,9 @@ ntp_command: 'ntpdate -s -b'
 # FILES
 #-------------------------------------------------------------------------------
 
-# crontab
-file_line_crontab: "*/{% if (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) > 59) %}59{% elif (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntp_ntp_update_time_interval|int(10))}}{% endif %} * * * * {{file_owner_ntp_update_time_sh|e}} {{file_path_ntp_update_time_sh|e}}"
-file_path_crontab: '/etc/crontab'
+# ntp_update-time
+file_line_ntp_update_time: "*/{% if (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) > 59) %}59{% elif (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntp_ntp_update_time_interval|int(10))}}{% endif %} * * * * {{(file_owner_ntp_update_time_sh|e)}} {{(file_path_ntp_update_time_sh|e)}}"
+file_path_ntp_update_time: '/etc/crontab'
 
 # ntp.conf
 file_group_ntp_conf: 'wheel'
@@ -41,6 +41,6 @@ file_group_ntp_script_dir: 'wheel'
 # ntp_update-time.sh
 file_group_ntp_update_time_sh: 'wheel'
 
-# rc.conf
-file_line_rc_conf: 'ntpd_enable'
-file_path_rc_conf: '/etc/rc.conf'
+# ntpd_enable
+file_path_ntpd_enable: '/etc/rc.conf'
+file_line_ntpd_enable: 'ntpd_enable'

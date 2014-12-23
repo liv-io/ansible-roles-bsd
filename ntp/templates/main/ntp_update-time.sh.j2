@@ -92,17 +92,17 @@ severity='Debug'
 message='Please check log files for more information.'
 
 # List of NTP servers
-ntp_servers='{% if (ntp_config is defined) and not ((ntp_config == None) or (ntp_config == '') or (ntp_config == [])) %}{% for config in ntp_config|sort %}{% if (config.server is defined) and not ((config.server == None) or (config.server == '') or (config.server == [])) %}{% for server in config.server|sort %}{{server|e}} {% endfor %}{% endif %}{% endfor %}{% else %}ntp{% endif %}'
+ntp_servers='{% if (ntp_server is defined) and not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}{% for item in (ntp_server|sort) %}{% if (item.server is defined) and not ((item.server == None) or (item.server == '') or (item.server == [])) %}{% for server in (item.server|sort) %}{{(server|e)}} {% endfor %}{% endif %}{% endfor %}{% else %}ntp{% endif %}'
 
 {% if (ntp_monitor_mail_state is defined) and ((ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable')) %}
 # Define the mail sender
-mail_sender='{% if (ntp_monitor_mail_sender is defined) and not ((ntp_monitor_mail_sender == None) or (ntp_monitor_mail_sender == '')) %}{{ntp_monitor_mail_sender|e}}{% else %}root@{{ansible_domain}}{% endif %}'
+mail_sender='{% if (ntp_monitor_mail_sender is defined) and not ((ntp_monitor_mail_sender == None) or (ntp_monitor_mail_sender == '')) %}{{(ntp_monitor_mail_sender|e)}}{% else %}root@{{ansible_domain}}{% endif %}'
 
 # Define the mail recipient
-mail_recipient='{% if (ntp_monitor_mail_recipient is defined) and not ((ntp_monitor_mail_recipient == None) or (ntp_monitor_mail_recipient == '') or (ntp_monitor_mail_recipient == [])) %}{% for mail_recipient in ntp_monitor_mail_recipient %}{{mail_recipient|e}}{% if not loop.last %},{% endif %}{% endfor %}{% else %}ntp{% endif %}'
+mail_recipient='{% if (ntp_monitor_mail_recipient is defined) and not ((ntp_monitor_mail_recipient == None) or (ntp_monitor_mail_recipient == '') or (ntp_monitor_mail_recipient == [])) %}{% for mail_recipient in ntp_monitor_mail_recipient %}{{(mail_recipient|e)}}{% if not loop.last %},{% endif %}{% endfor %}{% else %}ntp{% endif %}'
 
 # Define the mail subject
-mail_subject='{% if (ntp_monitor_mail_subject is defined) and not ((ntp_monitor_mail_subject == None) or (ntp_monitor_mail_subject == '')) %}{{ntp_monitor_mail_subject|e}}{% else %}NTP: Update Time - Error ({{ansible_hostname}}){% endif %}'
+mail_subject='{% if (ntp_monitor_mail_subject is defined) and not ((ntp_monitor_mail_subject == None) or (ntp_monitor_mail_subject == '')) %}{{(ntp_monitor_mail_subject|e)}}{% else %}NTP: Update Time - Error ({{ansible_hostname}}){% endif %}'
 {% endif %}
 
 #-------------------------------------------------------------------------------

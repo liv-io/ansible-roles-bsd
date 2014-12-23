@@ -64,15 +64,15 @@
 # server 1.CC.pool.ntp.org iburst
 # server 2.CC.pool.ntp.org iburst
 
-{% if (ntp_config is defined) and not ((ntp_config == None) or (ntp_config == '') or (ntp_config == [])) %}
-{% for config in ntp_config|sort %}
-{% if (config.comment is defined) and not ((config.comment == None) or (config.comment == '')) %}
-# {{config.comment|e}}
+{% if (ntp_server is defined) and not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}
+{% for item in (ntp_server|sort) %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
 {% else %}
 #
 {% endif %}
-{% for server in config.server|sort %}
-server {{server|e}} {% for option in config.option|sort %}{{option|e}}{% if not loop.last %} {% endif %}{% endfor %}
+{% for server in (item.server|sort) %}
+server {{(server|e)}} {% for option in (item.option|sort) %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
 {% endfor %}
@@ -113,13 +113,13 @@ server {{server|e}} {% for option in config.option|sort %}{{option|e}}{% if not 
 #restrict 127.127.1.0
 
 {% if (ntp_restrict is defined) and not ((ntp_restrict == None) or (ntp_restrict == '') or (ntp_restrict == [])) %}
-{% for restrict in ntp_restrict|sort %}
-{% if (restrict.comment is defined) and not ((restrict.comment == None) or (restrict.comment == '')) %}
-# {{restrict.comment|e}}
+{% for item in (ntp_restrict|sort) %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
 {% else %}
 #
 {% endif %}
-restrict {% for config in restrict.config|sort %}{{config|e}}{% if not loop.last %} {% endif %}{% endfor %}
+restrict {% for config in (item.config|sort) %}{{config}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
 {% else %}
