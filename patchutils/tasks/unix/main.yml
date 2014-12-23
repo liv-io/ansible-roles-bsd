@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((patchutils_state == 'false') or (patchutils_state == 'no') or (patchutils_state == 'remove'))
+  when: not ((patchutils_state == 'false') or (patchutils_state == 'no') or (patchutils_state == 'remove') or (patchutils_state == 'quiesce') or (patchutils_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
