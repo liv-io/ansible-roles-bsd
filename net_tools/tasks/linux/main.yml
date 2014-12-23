@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not ((net_tools_state == 'false') or (net_tools_state == 'no') or (net_tools_state == 'remove'))
+  when: not ((net_tools_state == 'false') or (net_tools_state == 'no') or (net_tools_state == 'remove') or (net_tools_state == 'quiesce') or (net_tools_state == 'inactive'))
