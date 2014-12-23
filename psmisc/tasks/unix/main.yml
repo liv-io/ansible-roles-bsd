@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((psmisc_state == 'false') or (psmisc_state == 'no') or (psmisc_state == 'remove'))
+  when: not ((psmisc_state == 'false') or (psmisc_state == 'no') or (psmisc_state == 'remove') or (psmisc_state == 'quiesce') or (psmisc_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
