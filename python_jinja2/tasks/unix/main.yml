@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((python_jinja2_state == 'false') or (python_jinja2_state == 'no') or (python_jinja2_state == 'remove'))
+  when: not ((python_jinja2_state == 'false') or (python_jinja2_state == 'no') or (python_jinja2_state == 'remove') or (python_jinja2_state == 'quiesce') or (python_jinja2_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
