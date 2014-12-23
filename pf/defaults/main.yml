@@ -64,6 +64,12 @@ pf_filter_out_ip_default:
 # pf_filter_out_policy
 pf_filter_out_policy: 'block'
 
+# pf_gateway_ipv4_state
+pf_gateway_ipv4_state: 'false'
+
+# pf_gateway_ipv6_state
+pf_gateway_ipv6_state: 'false'
+
 # pf_macro_custom
 pf_macro_custom: []
 

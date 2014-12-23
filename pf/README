@@ -92,6 +92,12 @@ REMOVE
      - role: pf
        pf_state: 'remove'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: pf
+       pf_state: 'inactive'
+
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
@@ -105,10 +111,11 @@ ROLE
     Type       : String
     Default    : 'enable'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Enable : 'start' | 'on' | 'enable'
-      Disable: 'stop' | 'off' | 'disable'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
   pf_blacklist_custom
     Description: Define the 'pf_blacklist_custom' option.
@@ -251,6 +258,28 @@ ROLE
     Options    :
       Block: 'block'
       Pass : 'pass'
+
+  pf_gateway_ipv4_state
+    Description: Control the 'pf_gateway_ipv4_state' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  pf_gateway_ipv6_state
+    Description: Control the 'pf_gateway_ipv6_state' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   pf_macro_custom
     Description: Define the 'pf_macro_custom' option.

@@ -26,18 +26,30 @@
 #-------------------------------------------------------------------------------
 
 # pf.conf
-file_src_pf_conf: "../../templates/{{pf_pf_conf_conf_template if (pf_pf_conf_conf_template is defined) and not ((pf_pf_conf_conf_template == None) or (pf_pf_conf_conf_template == '')) else 'main'}}/pf.conf.j2"
+file_src_pf_conf: "../../templates/{{(pf_pf_conf_conf_template|e) if (pf_pf_conf_conf_template is defined) and not ((pf_pf_conf_conf_template == None) or (pf_pf_conf_conf_template == '')) else 'main'}}/pf.conf.j2"
 file_path_pf_conf: '/etc/pf.conf'
 file_mode_pf_conf: '0640'
 file_owner_pf_conf: 'root'
 file_group_pf_conf: 'wheel'
 
 # pf.blacklist
-file_src_pf_blacklist: "../../templates/{{pf_pf_blacklist_blacklist_template if (pf_pf_blacklist_blacklist_template is defined) and not ((pf_pf_blacklist_blacklist_template == None) or (pf_pf_blacklist_blacklist_template == '')) else 'main'}}/pf.blacklist.j2"
+file_src_pf_blacklist: "../../templates/{{(pf_pf_blacklist_blacklist_template|e) if (pf_pf_blacklist_blacklist_template is defined) and not ((pf_pf_blacklist_blacklist_template == None) or (pf_pf_blacklist_blacklist_template == '')) else 'main'}}/pf.blacklist.j2"
 file_path_pf_blacklist: '/etc/pf.blacklist'
 file_mode_pf_blacklist: '0640'
 file_owner_pf_blacklist: 'root'
 file_group_pf_blacklist: 'wheel'
+
+# pf_enable
+file_path_pf_enable: '/etc/rc.conf'
+file_line_pf_enable: 'pf_enable'
+
+# gateway_enable
+file_path_gateway_ipv4: '/etc/rc.conf'
+file_line_gateway_ipv4: 'gateway_enable'
+
+# ipv6_gateway_enable
+file_path_gateway_ipv6: '/etc/rc.conf'
+file_line_gateway_ipv6: 'ipv6_gateway_enable'
 
 #-------------------------------------------------------------------------------
 # SYSTEM
