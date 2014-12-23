@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((ssldump_state == 'false') or (ssldump_state == 'no') or (ssldump_state == 'remove'))
+  when: not ((ssldump_state == 'false') or (ssldump_state == 'no') or (ssldump_state == 'remove') or (ssldump_state == 'quiesce') or (ssldump_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
