@@ -42,7 +42,7 @@ group_system_root: 'yes'
 
 # root
 user_name_root: 'root'
-user_comment_root: "{{root_comment if (root_comment is defined) and not ((root_comment == None) or (root_comment == '')) else 'root'}}"
+user_comment_root: "{{(root_comment|e) if (root_comment is defined) and not ((root_comment == None) or (root_comment == '')) else 'root'}}"
 user_uid_root: '0'
 user_group_root: '0'
 user_groups_root: "{{root_groups if (root_groups is defined) and not ((root_groups == None) or (root_groups == '') or (root_groups == [])) else ['wheel']}}"

@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((root_state == 'false') or (root_state == 'no') or (root_state == 'remove'))
+  when: not ((root_state == 'false') or (root_state == 'no') or (root_state == 'remove') or (root_state == 'quiesce') or (root_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml

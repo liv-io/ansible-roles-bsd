@@ -43,6 +43,12 @@ REMOVE
        root_password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
        root_shell: '/bin/sh'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: root
+       root_state: 'inactive'
+
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
@@ -57,8 +63,9 @@ ROLE
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
   root_authorized_key
     Description: Define the 'root_authorized_key' option.
