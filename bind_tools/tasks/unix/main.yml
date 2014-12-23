@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((bind_tools_state == 'false') or (bind_tools_state == 'no') or (bind_tools_state == 'remove'))
+  when: not ((bind_tools_state == 'false') or (bind_tools_state == 'no') or (bind_tools_state == 'remove') or (bind_tools_state == 'quiesce') or (bind_tools_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
