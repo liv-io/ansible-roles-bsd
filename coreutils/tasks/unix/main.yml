@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((coreutils_state == 'false') or (coreutils_state == 'no') or (coreutils_state == 'remove'))
+  when: not ((coreutils_state == 'false') or (coreutils_state == 'no') or (coreutils_state == 'remove') or (coreutils_state == 'quiesce') or (coreutils_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
