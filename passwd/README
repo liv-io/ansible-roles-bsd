@@ -33,11 +33,11 @@ INSTALL
      - role: passwd
        passwd_state: 'install'
 
-DISABLE
+INACTIVE
   - hosts: all
     roles:
      - role: passwd
-       passwd_state: 'disable'
+       passwd_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -53,8 +53,8 @@ ROLE
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Disable: 'false' | 'no' | 'disable'
+      Install : 'true' | 'yes' | 'install'
+      Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
 CONFLICTS

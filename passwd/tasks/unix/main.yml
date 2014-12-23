@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not ((passwd_state == 'false') or (passwd_state == 'no') or (passwd_state == 'disable'))
+  when: not ((passwd_state == 'false') or (passwd_state == 'no') or (passwd_state == 'remove') or (passwd_state == 'quiesce') or (passwd_state == 'inactive'))
