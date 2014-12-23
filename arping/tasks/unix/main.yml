@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((arping_state == 'false') or (arping_state == 'no') or (arping_state == 'remove'))
+  when: not ((arping_state == 'false') or (arping_state == 'no') or (arping_state == 'remove') or (arping_state == 'quiesce') or (arping_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
