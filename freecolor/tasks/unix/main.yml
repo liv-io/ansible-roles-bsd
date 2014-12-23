@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((freecolor_state == 'false') or (freecolor_state == 'no') or (freecolor_state == 'remove'))
+  when: not ((freecolor_state == 'false') or (freecolor_state == 'no') or (freecolor_state == 'remove') or (freecolor_state == 'quiesce') or (freecolor_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
