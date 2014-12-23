@@ -23,12 +23,12 @@
 
 - name: task include install
   include: install.yml
-  when: not ((group_state == 'false') or (group_state == 'no') or (group_state == 'disable'))
+  when: not ((group_state == 'false') or (group_state == 'no') or (group_state == 'remove') or (group_state == 'quiesce') or (group_state == 'inactive'))
 
 - name: task include custom
   include: custom.yml
-  when: not ((group_state == 'false') or (group_state == 'no') or (group_state == 'disable'))
+  when: not ((group_state == 'false') or (group_state == 'no') or (group_state == 'remove') or (group_state == 'quiesce') or (group_state == 'inactive'))
 
 - name: task include default
   include: default.yml
-  when: not ((group_state == 'false') or (group_state == 'no') or (group_state == 'disable'))
+  when: not ((group_state == 'false') or (group_state == 'no') or (group_state == 'remove') or (group_state == 'quiesce') or (group_state == 'inactive'))

@@ -34,11 +34,11 @@ INSTALL
      - role: group
        group_state: 'install'
 
-DISABLE
-  - group: all
+INACTIVE
+  - hosts: all
     roles:
      - role: group
-       group_state: 'disable'
+       group_state: 'inactive'
 
 CONFIG
   group_default:
@@ -80,8 +80,8 @@ CONFIG
     Type       : String
     Default    : 'true'
     Options    :
-      Create: 'true' | 'yes' | 'create'
-      Remove: 'false' | 'no' | 'remove'
+      Create  : 'true' | 'yes' | 'create'
+      Remove  : 'false' | 'no' | 'remove'
 
   name
     Description: Define the name of the group.
@@ -125,8 +125,8 @@ ROLE
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Disable: 'false' | 'no' | 'disable'
+      Install : 'true' | 'yes' | 'install'
+      Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
 CONFLICTS
