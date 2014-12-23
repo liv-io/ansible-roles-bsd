@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((lftp_state == 'false') or (lftp_state == 'no') or (lftp_state == 'remove'))
+  when: not ((lftp_state == 'false') or (lftp_state == 'no') or (lftp_state == 'remove') or (lftp_state == 'quiesce') or (lftp_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
