@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((lshw_state == 'false') or (lshw_state == 'no') or (lshw_state == 'remove'))
+  when: not ((lshw_state == 'false') or (lshw_state == 'no') or (lshw_state == 'remove') or (lshw_state == 'quiesce') or (lshw_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
