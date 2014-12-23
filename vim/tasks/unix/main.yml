@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((vim_state == 'false') or (vim_state == 'no') or (vim_state == 'remove'))
+  when: not ((vim_state == 'false') or (vim_state == 'no') or (vim_state == 'remove') or (vim_state == 'quiesce') or (vim_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
