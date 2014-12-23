@@ -25,11 +25,11 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: user config <user-custom>
+- name: user config user-custom
   user:
    state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
    name: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else user_name_default}}"
-   comment: "{{item.comment if (item.comment is defined) else item.name}}"
+   comment: "{{(item.comment|e) if (item.comment is defined) else item.name}}"
    uid: "{{item.uid if (item.uid is defined) and not ((item.uid == None) or (item.uid == '')) else user_uid_default}}"
    group: "{{item.group if (item.group is defined) and not ((item.group == None) or (item.group == '')) else user_group_default}}"
    groups: "{{item.groups|join(',') if (item.groups is defined) else user_groups_default}}"
@@ -50,7 +50,7 @@
    - unix
    - user
 
-- name: user config <authorized_key-custom>
+- name: user config authorized_key-custom
   authorized_key:
    state: "{{'absent' if (item.1.state is defined) and ((item.1.state == 'false') or (item.1.state == 'no') or (item.1.state == 'remove')) else 'present'}}"
    user: "{{item.0.name}}"

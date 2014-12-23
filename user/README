@@ -37,11 +37,11 @@ INSTALL
        user_password_default: '!'
        user_shell_default: '/bin/bash'
 
-DISABLE
-  - user: all
+INACTIVE
+  - hosts: all
     roles:
      - role: user
-       user_state: 'disable'
+       user_state: 'inactive'
 
 CONFIG
   user_default:
@@ -112,9 +112,10 @@ CONFIG (user)
     Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : None
+    Default    : ''
     Options    :
       Examples: 'user01' | 'user02' | 'user03'
+      None    : ''
 
   comment
     Description: Define a comment for the user.
@@ -122,7 +123,7 @@ CONFIG (user)
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : {{user.name}}
+    Default    : "{{user.name}}"
     Options    :
       Examples: 'Example User' | 'Test User' | 'Service User'
 
@@ -132,9 +133,10 @@ CONFIG (user)
     Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : None
+    Default    : ''
     Options    :
       Examples: '1001' | '1002' | '1003'
+      None    : ''
 
   group
     Description: Define the primary group of the user.
@@ -279,7 +281,7 @@ CONFIG (authorized_key)
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : {{user.name}}
+    Default    : "{{user.name}}"
     Options    :
       Examples: 'user01' | 'user02' | 'user03'
 
@@ -292,6 +294,7 @@ CONFIG (authorized_key)
     Default    : ''
     Options    :
       Examples: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA5Qg4nV3Jh9kqnCs3YAoVbTCN5DV3vrOPzf1eLp514TE+QC2IDNEV6c8hWUD5VZZF0FS7MfGhsYx3pcd+7OiSvkRtIomNG+GuDJWhD5nCRuvYotrEUGh/P+mm7eLmQUBmZuMBvwUZn9W92zqic8F+uCrOMOqNcxsVp6oHUZSfZUkEoRnJxdBfd4UsLxinwM1fLCm0qYNAAHRjIycXEkAp37gx+6k6qulvf8c3oS/+akZ3xV0hAu7Ce5K1e7dC5iLS0GahMfr16grx+qqK4BHhsN4i7Xg2f1/eMyxsubzH3OkPrzAhoUJbhLUnaaURGhIrMB+JYN0Jo0XMvIavgqcYcQ== user01'
+      None    : ''
 
   key_options
     Description: Define the options for the authorized_key.
@@ -302,6 +305,7 @@ CONFIG (authorized_key)
     Default    : ''
     Options    :
       Examples: 'command="command"' | 'no-agent-forwarding' | 'no-port-forwarding'
+      None    : ''
 
 ROLE
   user_state
@@ -312,8 +316,9 @@ ROLE
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Disable: 'false' | 'no' | 'disable'
+      Install : 'true' | 'yes' | 'install'
+      Disable : 'false' | 'no' | 'disable'
+      Inactive: 'quiesce' | 'inactive'
 
   user_groups_default
     Description: Define the default groups for the user.
