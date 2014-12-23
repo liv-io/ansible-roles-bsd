@@ -14,5 +14,8 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2014-12-18)
+I: Various small Ansible and Jinja2 improvements
+
 * Version 0.1.0 (2014-12-09)
 F: Initial release

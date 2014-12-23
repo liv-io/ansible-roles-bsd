@@ -35,11 +35,11 @@ INSTALL
        rc_state: 'enable'
        rc_path_default: '/etc/rc.conf'
 
-DISABLE
-  - rc: all
+INACTIVE
+  - hosts: all
     roles:
      - role: rc
-       rc_state: 'disable'
+       rc_state: 'inactive'
 
 CONFIG
   rc_default:
@@ -47,11 +47,6 @@ CONFIG
      value: 'YES'
      state: 'true'
      comment: 'Enable service OpenSSH'
-
-   - name: 'pf_enable'
-     value: 'YES'
-     state: 'true'
-     comment: 'Enable service PF'
 
   rc_custom:
    - name: 'hostname'
@@ -84,11 +79,6 @@ CONFIG
      state: 'true'
      comment: 'Define tertiary IP address'
 
-   - name: 'gateway_enable'
-     value: 'YES'
-     state: 'true'
-     comment: 'Enable gateway capabilities'
-
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
@@ -105,17 +95,6 @@ CONFIG
       Create: 'true' | 'yes' | 'create'
       Remove: 'false' | 'no' | 'remove'
 
-  name
-    Description: Define the name of the 'rc' entry.
-    Implemented: 0.1
-    Required   : True
-    Value      : Arbitrary
-    Type       : String
-    Default    : None
-    Options    :
-      Examples: 'hostname' | 'keymap' | 'ifconfig_re0' | 'defaultrouter' |
-                'sshd_enable'
-
   comment
     Description: Define a comment for the 'rc' entry.
     Implemented: 0.1
@@ -128,6 +107,18 @@ CONFIG
                 'Define gateway' | 'Enable service' | 'Disable service'
       None    : ''
 
+  name
+    Description: Define the name of the 'rc' entry.
+    Implemented: 0.1
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'hostname' | 'keymap' | 'ifconfig_re0' | 'defaultrouter' |
+                'sshd_enable'
+      None    : ''
+
   path
     Description: Define the path of the 'rc' file.
     Implemented: 0.1
@@ -137,6 +128,7 @@ CONFIG
     Default    : "{{rc_path_default}}"
     Options    :
       Examples: '/etc/rc.conf'
+      None    : ''
 
   value
     Description: Define the value of the 'rc' entry.
@@ -144,11 +136,12 @@ CONFIG
     Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : None
+    Default    : ''
     Options    :
       Examples: 'example01' | 'swissgerman.iso.kbd' |
                 'inet 192.168.1.10 netmask 255.255.255.0' |
                 '192.168.1.1' | 'YES' | 'NO'
+      None    : ''
 
 ROLE
   rc_state
@@ -159,8 +152,8 @@ ROLE
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Disable: 'false' | 'no' | 'disable'
+      Install : 'true' | 'yes' | 'install'
+      Inactive: 'quiesce' | 'inactive'
 
   rc_path_default
     Description: Define the default path of the 'rc' file.
@@ -171,6 +164,7 @@ ROLE
     Default    : '/etc/rc.conf'
     Options    :
       Examples: '/etc/rc.conf'
+      None    : ''
 
 --------------------------------------------------------------------------------
 CONFLICTS
