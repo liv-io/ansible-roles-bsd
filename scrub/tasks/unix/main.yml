@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((scrub_state == 'false') or (scrub_state == 'no') or (scrub_state == 'remove'))
+  when: not ((scrub_state == 'false') or (scrub_state == 'no') or (scrub_state == 'remove') or (scrub_state == 'quiesce') or (scrub_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
