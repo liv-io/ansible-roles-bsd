@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not ((util_linux_state == 'false') or (util_linux_state == 'no') or (util_linux_state == 'remove'))
+  when: not ((util_linux_state == 'false') or (util_linux_state == 'no') or (util_linux_state == 'remove') or (util_linux_state == 'quiesce') or (util_linux_state == 'inactive'))
