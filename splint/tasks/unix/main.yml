@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((splint_state == 'false') or (splint_state == 'no') or (splint_state == 'remove'))
+  when: not ((splint_state == 'false') or (splint_state == 'no') or (splint_state == 'remove') or (splint_state == 'quiesce') or (splint_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
