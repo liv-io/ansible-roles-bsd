@@ -27,23 +27,35 @@
 # $OpenBSD: ntpd.conf,v 1.7 2004/07/20 17:38:35 henning Exp $
 # sample ntpd configuration file, see ntpd.conf(5)
 
+#-------------------------------------------------------------------------------
+# LISTEN
+#-------------------------------------------------------------------------------
+
 # Addresses to listen on (ntpd does not listen by default)
 #listen on *
 #listen on 127.0.0.1
 #listen on ::1
+
 {% if (openntpd_listen is defined) and not ((openntpd_listen == None) or (openntpd_listen == '') or (openntpd_listen == [])) %}
-{% for listen in openntpd_listen %}
-listen {{listen}}
-{% endfor %}
+{% for item in (openntpd_listen|sort) %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
+{% else %}
+#
 {% endif %}
+{% for config in (item.config|sort) %}
+listen on {{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# SERVER
+#-------------------------------------------------------------------------------
 
 # sync to a single server
 #server ntp.example.org
-{% if (openntpd_server is defined) and not ((openntpd_server == None) or (openntpd_server == '') or (openntpd_server == [])) %}
-{% for server in openntpd_server %}
-server {{server}}
-{% endfor %}
-{% endif %}
 
 # use a random selection of 8 public stratum 2 servers
 # see http://twiki.ntp.org/bin/view/Servers/NTPPoolServers
@@ -54,8 +66,23 @@ server {{server}}
 #servers 1.gentoo.pool.ntp.org
 #servers 2.gentoo.pool.ntp.org
 #servers 3.gentoo.pool.ntp.org
-{% if (openntpd_servers is defined) and not ((openntpd_servers == None) or (openntpd_servers == '') or (openntpd_servers == [])) %}
-{% for servers in openntpd_servers %}
-servers {{servers}}
+
+{% if (openntpd_server is defined) and not ((openntpd_server == None) or (openntpd_server == '') or (openntpd_server == [])) %}
+{% for item in (openntpd_server|sort) %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
+{% else %}
+#
+{% endif %}
+{% for server in (item.server|sort) %}
+{% if (item.type is defined) and ((item.type == 'single') or (item.type == 'server')) %}
+server {{(server|e)}} {% if (item.weight is defined) and not ((item.weight == None) or (item.weight == '')) %}weight {{(item.weight|int(1))}}{% endif %}
+
+{% else %}
+servers {{(server|e)}} {% if (item.weight is defined) and not ((item.weight == None) or (item.weight == '')) %}weight {{(item.weight|int(1))}}{% endif %}
+
+{% endif %}
 {% endfor %}
+{% endfor %}
+{% else %}
 {% endif %}

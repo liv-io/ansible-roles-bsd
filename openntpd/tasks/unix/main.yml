@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((openntpd_state == 'false') or (openntpd_state == 'no') or (openntpd_state == 'remove'))
+  when: not ((openntpd_state == 'false') or (openntpd_state == 'no') or (openntpd_state == 'remove') or (openntpd_state == 'quiesce') or (openntpd_state == 'inactive'))
 
 - name: task include enable
   include: enable.yml

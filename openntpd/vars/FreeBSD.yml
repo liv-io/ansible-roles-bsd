@@ -28,3 +28,14 @@
 # ntpd.conf
 file_path_ntpd_conf: '/usr/local/etc/ntpd.conf'
 file_group_ntpd_conf: 'wheel'
+
+# openntpd_enable
+file_path_openntpd_enable: '/etc/rc.conf'
+file_line_openntpd_enable: 'openntpd_enable'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# openntpd
+service_name_openntpd: 'openntpd'

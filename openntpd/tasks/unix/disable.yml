@@ -44,6 +44,19 @@
    - unix
    - openntpd
 
+- name: line disable openntpd_enable
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_openntpd_enable}}=\"NO\" # Ansible: Disable openntpd"
+   regexp: "^{{file_line_openntpd_enable}}="
+   dest: "{{file_path_openntpd_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - disable
+   - unix
+   - openntpd
+
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
@@ -52,7 +65,7 @@
   service:
    state: 'stopped'
    enabled: 'no'
-   name: "{{service_name_ntpd}}"
+   name: "{{service_name_openntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
    - system
@@ -65,7 +78,7 @@
    state: 'stopped'
    enabled: 'no'
    runlevel: 'default'
-   name: "{{service_name_ntpd}}"
+   name: "{{service_name_openntpd}}"
   when: (ansible_os_family == 'Gentoo')
   tags:
    - system

@@ -31,7 +31,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service restart ntpd
+- name: service restart openntpd
   service:
    state: 'restarted'
-   name: "{{service_name_ntpd}}"
+   name: "{{service_name_openntpd}}"

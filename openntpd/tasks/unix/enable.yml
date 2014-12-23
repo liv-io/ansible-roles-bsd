@@ -38,7 +38,20 @@
    mode: "{{file_mode_ntpd_conf}}"
    owner: "{{file_owner_ntpd_conf}}"
    group: "{{file_group_ntpd_conf}}"
-  notify: service restart ntpd
+  notify: service restart openntpd
+  tags:
+   - files
+   - enable
+   - unix
+   - openntpd
+
+- name: line enable openntpd_enable
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_openntpd_enable}}=\"YES\" # Ansible: Enable openntpd"
+   regexp: "^{{file_line_openntpd_enable}}="
+   dest: "{{file_path_openntpd_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
    - enable
@@ -53,7 +66,7 @@
   service:
    state: 'started'
    enabled: 'yes'
-   name: "{{service_name_ntpd}}"
+   name: "{{service_name_openntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
    - system
@@ -66,7 +79,7 @@
    state: 'started'
    enabled: 'yes'
    runlevel: 'default'
-   name: "{{service_name_ntpd}}"
+   name: "{{service_name_openntpd}}"
   when: (ansible_os_family == 'Gentoo')
   tags:
    - system

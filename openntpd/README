@@ -41,20 +41,28 @@ ENABLE
     roles:
      - role: openntpd
        openntpd_state: 'enable'
-       openntpd_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
+       openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                          type: 'single', comment: 'Server: Single NTP servers'}]
 
 DISABLE
   - hosts: all
     roles:
      - role: openntpd
        openntpd_state: 'disable'
-       openntpd_server: ['ntp01.domain.tld', 'ntp02.domain.tld']
+       openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                          type: 'single', comment: 'Server: Single NTP servers'}]
 
 REMOVE
   - hosts: all
     roles:
      - role: openntpd
        openntpd_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: openntpd
+       openntpd_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -69,20 +77,23 @@ ROLE
     Type       : String
     Default    : 'enable'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Enable : 'start' | 'on' | 'enable'
-      Disable: 'stop' | 'off' | 'disable'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
   openntpd_listen
     Description: Define the 'openntpd_listen' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: ['*'] | ['127.0.0.1', '::1'] | ['192.168.1.10']
+      Examples: [{config: {'*'}, comment: 'Listen: All interfaces'}] |
+                [{config: {'127.0.0.1', '::1'}, comment: 'Listen: Localhost'}] |
+                [{config: {'192.168.1.10'}, comment: 'Listen: Specific interface'}]
       None    : []
 
   openntpd_ntpd_conf_template
@@ -104,24 +115,13 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
-    Default    : ["ntp.{{ansible_domain}}"]
+    Type       : Array/Hash
+    Default    : [{server: {'ntp'}, type: 'single', weight: 1, comment: 'Server: ntp'}]
     Options    :
-      Examples: ['ntp.domain.tld'] | ['ntp01.domain.tld', 'ntp02.domain.tld'] |
-                ['ntp01.domain.tld', 'ntp02.domain.tld', 'ntp03.domain.tld']
-      None    : []
-
-  openntpd_servers
-    Description: Define the 'openntpd_servers' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array
-    Default    : []
-    Options    :
-      Examples: ['pool.domain.tld'] |
-                ['pool.domain01.tld', 'pool.domain02.tld'] |
-                ['pool.domain01.tld', 'pool.domain02.tld', 'pool.domain03.tld']
+      Examples: [{server: {'ntp01.domain.tld'}, type: 'single', weight: 1, comment: 'Server: Single NTP servers'},
+                 {server: {'ntp02.domain.tld'}, type: 'single', weight: 2, comment: 'Server: Single NTP servers'}] |
+                [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'}, type: 'single', comment: 'Server: Single NTP servers'}] |
+                [{server: {'pool01.ntp.domain.tld', 'pool02.ntp.domain.tld'}, type: 'random', comment: 'Server: Random NTP servers'}]
       None    : []
 
 --------------------------------------------------------------------------------
