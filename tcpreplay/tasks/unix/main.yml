@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((tcpreplay_state == 'false') or (tcpreplay_state == 'no') or (tcpreplay_state == 'remove'))
+  when: not ((tcpreplay_state == 'false') or (tcpreplay_state == 'no') or (tcpreplay_state == 'remove') or (tcpreplay_state == 'quiesce') or (tcpreplay_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
