@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((mlocate_state == 'false') or (mlocate_state == 'no') or (mlocate_state == 'remove'))
+  when: not ((mlocate_state == 'false') or (mlocate_state == 'no') or (mlocate_state == 'remove') or (mlocate_state == 'quiesce') or (mlocate_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
