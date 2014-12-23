@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((vlock_state == 'false') or (vlock_state == 'no') or (vlock_state == 'remove'))
+  when: not ((vlock_state == 'false') or (vlock_state == 'no') or (vlock_state == 'remove') or (vlock_state == 'quiesce') or (vlock_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
