@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((minicom_state == 'false') or (minicom_state == 'no') or (minicom_state == 'remove'))
+  when: not ((minicom_state == 'false') or (minicom_state == 'no') or (minicom_state == 'remove') or (minicom_state == 'quiesce') or (minicom_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
