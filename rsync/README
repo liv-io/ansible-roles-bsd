@@ -44,6 +44,12 @@ REMOVE
      - role: rsync
        rsync_state: 'remove'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: rsync
+       rsync_state: 'inactive'
+
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
@@ -52,15 +58,16 @@ ROLE
   rsync_state
     Description: Control the state of the role.
                  'rsync' is a core package on Gentoo based systems and can
-                 therefore ot be removed.
+                 therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
 CONFLICTS
