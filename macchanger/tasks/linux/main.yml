@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((macchanger_state == 'false') or (macchanger_state == 'no') or (macchanger_state == 'remove'))
+  when: not ((macchanger_state == 'false') or (macchanger_state == 'no') or (macchanger_state == 'remove') or (macchanger_state == 'quiesce') or (macchanger_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
