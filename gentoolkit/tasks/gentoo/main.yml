@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((gentoolkit_state == 'false') or (gentoolkit_state == 'no') or (gentoolkit_state == 'remove'))
+  when: not ((gentoolkit_state == 'false') or (gentoolkit_state == 'no') or (gentoolkit_state == 'remove') or (gentoolkit_state == 'quiesce') or (gentoolkit_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml

@@ -40,6 +40,12 @@ REMOVE
      - role: gentoolkit
        gentoolkit_state: 'remove'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: gentoolkit
+       gentoolkit_state: 'inactive'
+
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
@@ -47,16 +53,17 @@ VARIABLES
 ROLE
   gentoolkit_state
     Description: Control the state of the role.
-                 'gentoolkit' is a core package and should therefore not be
-                 removed.
+                 'gentoolkit' is a core package on Gentoo based systems and
+                 should therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
 CONFLICTS
