@@ -28,26 +28,3 @@
 # sysctl
 raw_cwd_sysctl: '/root'
 raw_cmd_sysctl: 'sysctl -q -e -p /etc/sysctl.conf ; test -f /etc/sysctl.d/*.conf && sysctl -q -e -p /etc/sysctl.d/*.conf || true'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
-# sysctl.conf
-file_src_sysctl_conf: "../../templates/{{sysctl_sysctl_conf_template if (sysctl_sysctl_conf_template is defined) and not ((sysctl_sysctl_conf_template == None) or (sysctl_sysctl_conf_template == '')) else ansible_os_family}}/sysctl.conf.j2"
-file_path_sysctl_conf: '/etc/sysctl.conf'
-file_mode_sysctl_conf: '0644'
-file_owner_sysctl_conf: 'root'
-file_group_sysctl_conf: 'root'
-
-# sysctl-config
-file_src_sysctl_config: "../../templates/{{sysctl_sysctl_config_template if (sysctl_sysctl_config_template is defined) and not ((sysctl_sysctl_config_template == None) or (sysctl_sysctl_config_template == '')) else 'main'}}/sysctl-config.j2"
-file_mode_sysctl_config: '0644'
-file_owner_sysctl_config: 'root'
-file_group_sysctl_config: 'root'
-
-# sysctl.d
-file_path_sysctl_d: '/etc/sysctl.d'
-file_mode_sysctl_d: '0755'
-file_owner_sysctl_d: 'root'
-file_group_sysctl_d: 'root'

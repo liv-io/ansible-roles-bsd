@@ -21,14 +21,10 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'disable'))
-
 - name: task include custom
   include: custom.yml
-  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'disable'))
+  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'remove') or (sysctl_state == 'quiesce') or (sysctl_state == 'inactive'))
 
 - name: task include default
   include: default.yml
-  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'disable'))
+  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'remove') or (sysctl_state == 'quiesce') or (sysctl_state == 'inactive'))

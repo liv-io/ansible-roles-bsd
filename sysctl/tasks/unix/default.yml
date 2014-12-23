@@ -31,44 +31,16 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create <sysctl-default.conf>
-  template:
-   src: "{{file_src_sysctl_config}}"
-   dest: "{{file_path_sysctl_d}}/{{item.order if (item.order is defined) and not (item.order == None) else ''}}{{'_' if (item.order is defined) and not (item.order == None) else ''}}{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else sysctl_name_default}}.conf"
-   mode: "{{file_mode_sysctl_config}}"
-   owner: "{{file_owner_sysctl_config}}"
-   group: "{{file_group_sysctl_config}}"
+- name: line config sysctl-default
+  lineinfile:
+   state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
+   line: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}={{item.value if (item.value is defined) and not ((item.value == None) or (item.value == '')) else ''}}"
+   regexp: "^{{item.name}}="
+   dest: "{{(item.path|e) if (item.path is defined) and not ((item.path == None) or (item.path == '')) else (sysctl_path_default|e)}}"
   with_items: sysctl_default
-  register: register_create_sysctl_default
-  when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  notify: raw execute sysctl
   tags:
    - files
-   - default
-   - unix
-   - sysctl
-
-- name: file remove <sysctl-default.conf>
-  file:
-   state: 'absent'
-   path: "{{file_path_sysctl_d}}/{{item.order if (item.order is defined) and not (item.order == None) else ''}}{{'_' if (item.order is defined) and not (item.order == None) else ''}}{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else sysctl_name_default}}.conf"
-  with_items: sysctl_default
-  register: register_remove_sysctl_default
-  when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
-  tags:
-   - files
-   - default
-   - unix
-   - sysctl
-
-#-------------------------------------------------------------------------------
-# HANDLERS
-#-------------------------------------------------------------------------------
-
-- name: raw execute sysctl
-  raw: "{{raw_cmd_sysctl}}"
-  when: (register_create_sysctl_default|changed) or (register_remove_sysctl_default|changed)
-  tags:
-   - handlers
    - default
    - unix
    - sysctl
