@@ -33,13 +33,13 @@
 
 # DEFAULT
 {% if (opensmtpd_listen_default is defined) and not ((opensmtpd_listen_default == None) or (opensmtpd_listen_default == '') or (opensmtpd_listen_default == [])) %}
-{% for listen_default in opensmtpd_listen_default %}
-{% if (listen_default.comment is defined) and not ((listen_default.comment == None) or (listen_default.comment == '')) %}
-# {{listen_default.comment}}
+{% for item in opensmtpd_listen_default %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
 {% else %}
 #
 {% endif %}
-{% for config in listen_default.config %}
+{% for config in item.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -48,13 +48,13 @@
 
 # CUSTOM
 {% if (opensmtpd_listen_custom is defined) and not ((opensmtpd_listen_custom == None) or (opensmtpd_listen_custom == '') or (opensmtpd_listen_custom == [])) %}
-{% for listen_custom in opensmtpd_listen_custom %}
-{% if (listen_custom.comment is defined) and not ((listen_custom.comment == None) or (listen_custom.comment == '')) %}
-# {{listen_custom.comment}}
+{% for item in opensmtpd_listen_custom %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
 {% else %}
 #
 {% endif %}
-{% for config in listen_custom.config %}
+{% for config in item.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -67,13 +67,13 @@
 
 # DEFAULT
 {% if (opensmtpd_table_default is defined) and not ((opensmtpd_table_default == None) or (opensmtpd_table_default == '') or (opensmtpd_table_default == [])) %}
-{% for table_default in opensmtpd_table_default %}
-{% if (table_default.comment is defined) and not ((table_default.comment == None) or (table_default.comment == '')) %}
-# {{table_default.comment}}
+{% for item in opensmtpd_table_default %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
 {% else %}
 #
 {% endif %}
-{% for config in table_default.config %}
+{% for config in item.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -82,13 +82,13 @@
 
 # CUSTOM
 {% if (opensmtpd_table_custom is defined) and not ((opensmtpd_table_custom == None) or (opensmtpd_table_custom == '') or (opensmtpd_table_custom == [])) %}
-{% for table_custom in opensmtpd_table_custom %}
-{% if (table_custom.comment is defined) and not ((table_custom.comment == None) or (table_custom.comment == '')) %}
-# {{table_custom.comment}}
+{% for item in opensmtpd_table_custom %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
 {% else %}
 #
 {% endif %}
-{% for config in table_custom.config %}
+{% for config in item.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -101,13 +101,13 @@
 
 # DEFAULT
 {% if (opensmtpd_accept_default is defined) and not ((opensmtpd_accept_default == None) or (opensmtpd_accept_default == '') or (opensmtpd_accept_default == [])) %}
-{% for accept_default in opensmtpd_accept_default %}
-{% if (accept_default.comment is defined) and not ((accept_default.comment == None) or (accept_default.comment == '')) %}
-# {{accept_default.comment}}
+{% for item in opensmtpd_accept_default %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
 {% else %}
 #
 {% endif %}
-{% for config in accept_default.config %}
+{% for config in item.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -116,13 +116,13 @@
 
 # CUSTOM
 {% if (opensmtpd_accept_custom is defined) and not ((opensmtpd_accept_custom == None) or (opensmtpd_accept_custom == '') or (opensmtpd_accept_custom == [])) %}
-{% for accept_custom in opensmtpd_accept_custom %}
-{% if (accept_custom.comment is defined) and not ((accept_custom.comment == None) or (accept_custom.comment == '')) %}
-# {{accept_custom.comment}}
+{% for item in opensmtpd_accept_custom %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
 {% else %}
 #
 {% endif %}
-{% for config in accept_custom.config %}
+{% for config in item.config %}
 {{config}}
 {% endfor %}
 {% endfor %}

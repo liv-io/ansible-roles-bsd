@@ -60,13 +60,51 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file config rc.conf
+- name: line disable sendmail_enable
   lineinfile:
-   state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
-   line: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}=\"{{item.value if (item.value is defined) and not ((item.value == None) or (item.value == '')) else ''}}\" # {{item.comment if (item.comment is defined) and not (item.comment == None) else item.name}}"
-   regexp: '^{{item.name}}='
-   dest: "{{file_path_rc_conf}}"
-  with_items: opensmtpd_rc_install
+   state: 'present'
+   line: "{{file_line_sendmail_enable}}=\"NO\" # Ansible: Disable sendmail"
+   regexp: "^{{file_line_sendmail_enable}}="
+   dest: "{{file_path_sendmail_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - install
+   - unix
+   - opensmtpd
+
+- name: line disable sendmail_msp_queue_enable
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_sendmail_msp_queue_enable}}=\"NO\" # Ansible: Disable sendmail_msp_queue"
+   regexp: "^{{file_line_sendmail_msp_queue_enable}}="
+   dest: "{{file_path_sendmail_msp_queue_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - install
+   - unix
+   - opensmtpd
+
+- name: line disable sendmail_outbound_enable
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_sendmail_outbound_enable}}=\"NO\" # Ansible: Disable sendmail_outbound"
+   regexp: "^{{file_line_sendmail_outbound_enable}}="
+   dest: "{{file_path_sendmail_outbound_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - install
+   - unix
+   - opensmtpd
+
+- name: line disable sendmail_submit_enable
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_sendmail_submit_enable}}=\"NO\" # Ansible: Disable sendmail_submit"
+   regexp: "^{{file_line_sendmail_submit_enable}}="
+   dest: "{{file_path_sendmail_submit_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
    - files

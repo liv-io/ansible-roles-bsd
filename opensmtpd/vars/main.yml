@@ -33,14 +33,14 @@ package_name_opensmtpd: 'opensmtpd'
 #-------------------------------------------------------------------------------
 
 # aliases
-file_src_aliases: "../../templates/{{opensmtpd_aliases_template if (opensmtpd_aliases_template is defined) and not ((opensmtpd_aliases_template == None) or (opensmtpd_aliases_template == '')) else ansible_os_family}}/aliases.j2"
+file_src_aliases: "../../templates/{{(opensmtpd_aliases_template|e) if (opensmtpd_aliases_template is defined) and not ((opensmtpd_aliases_template == None) or (opensmtpd_aliases_template == '')) else ansible_os_family}}/aliases.j2"
 file_path_aliases: '/etc/mail/aliases'
 file_mode_aliases: '0644'
 file_owner_aliases: 'root'
 file_group_aliases: 'root'
 
 # smtpd.conf
-file_src_smtpd_conf: "../../templates/{{opensmtpd_smtpd_conf_template if (opensmtpd_smtpd_conf_template is defined) and not ((opensmtpd_smtpd_conf_template == None) or (opensmtpd_smtpd_conf_template == '')) else 'main'}}/smtpd.conf.j2"
+file_src_smtpd_conf: "../../templates/{{(opensmtpd_smtpd_conf_template|e) if (opensmtpd_smtpd_conf_template is defined) and not ((opensmtpd_smtpd_conf_template == None) or (opensmtpd_smtpd_conf_template == '')) else 'main'}}/smtpd.conf.j2"
 file_path_smtpd_conf: '/etc/opensmtpd/smtpd.conf'
 file_mode_smtpd_conf: '0644'
 file_owner_smtpd_conf: 'root'

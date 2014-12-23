@@ -42,29 +42,6 @@ opensmtpd_listen_custom: []
 opensmtpd_listen_default:
  - {config: {'listen on localhost'}, comment: 'Listen: Localhost'}
 
-# opensmtpd_rc_disable
-opensmtpd_rc_disable:
- - {name: 'smtpd_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable OpenSMTPD'}
-
-# opensmtpd_rc_enable
-opensmtpd_rc_enable:
- - {name: 'smtpd_enable', value: 'YES', state: 'true', comment: 'OpenSMTPD: Enable OpenSMTPD'}
-
-# opensmtpd_rc_install
-opensmtpd_rc_install:
- - {name: 'sendmail_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}
- - {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}
- - {name: 'sendmail_outbound_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}
- - {name: 'sendmail_submit_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}
-
-# opensmtpd_rc_remove
-opensmtpd_rc_remove:
- - {name: 'smtpd_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove OpenSMTPD'}
- - {name: 'sendmail_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'}
- - {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'}
- - {name: 'sendmail_outbound_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'}
- - {name: 'sendmail_submit_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Disable sendmail'}
-
 # opensmtpd_root_mail_address
 opensmtpd_root_mail_address: "root@{{ansible_domain}}"
 

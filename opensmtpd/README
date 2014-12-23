@@ -61,17 +61,17 @@ DISABLE
         - {config: {'table secrets file:/usr/local/etc/mail/secrets'}, comment: 'Table: Secrets'}
        opensmtpd_root_mail_address: 'root@domain.tld'
 
-INACTIVE
-  - hosts: all
-    roles:
-     - role: opensmtpd
-       opensmtpd_state: 'inactive'
-
 REMOVE
   - hosts: all
     roles:
      - role: opensmtpd
        opensmtpd_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: opensmtpd
+       opensmtpd_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -86,11 +86,11 @@ ROLE
     Type       : String
     Default    : 'enable'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Enable : 'start' | 'on' | 'enable'
-      Disable: 'stop' | 'off' | 'disable'
-      Remove : 'false' | 'no' | 'remove'
-      Quiesce: 'quiesce' | 'inactive'
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
   opensmtpd_accept_custom
     Description: Define the 'opensmtpd_accept_custom' option.
@@ -151,64 +151,6 @@ ROLE
     Default    : [{config: {'listen on localhost'}, comment: 'Listen: Localhost'}]
     Options    :
       Examples: [{config: {'listen on localhost'}, comment: 'Listen: Localhost'}]
-      None    : []
-
-  opensmtpd_rc_disable
-    Description: Define the 'opensmtpd_rc_disable' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{name: 'smtpd_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable OpenSMTPD'}]
-    Options    :
-      Examples: [{name: 'smtpd_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable OpenSMTPD'}]
-      None    : []
-
-  opensmtpd_rc_enable
-    Description: Define the 'opensmtpd_rc_enable' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{name: 'smtpd_enable', value: 'YES', state: 'true', comment: 'OpenSMTPD: Enable OpenSMTPD'}]
-    Options    :
-      Examples: [{name: 'smtpd_enable', value: 'YES', state: 'true', comment: 'OpenSMTPD: Enable OpenSMTPD'}]
-      None    : []
-
-  opensmtpd_rc_install
-    Description: Define the 'opensmtpd_rc_install' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{name: 'sendmail_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
-                  {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
-                  {name: 'sendmail_outbound_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
-                  {name: 'sendmail_submit_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}]
-    Options    :
-      Examples: [{name: 'sendmail_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
-                 {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
-                 {name: 'sendmail_outbound_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'},
-                 {name: 'sendmail_submit_enable', value: 'NO', state: 'true', comment: 'OpenSMTPD: Disable sendmail'}]
-      None    : []
-
-  opensmtpd_rc_remove
-    Description: Define the 'opensmtpd_rc_remove' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{name: 'smtpd_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove OpenSMTPD'},
-                  {name: 'sendmail_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
-                  {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
-                  {name: 'sendmail_outbound_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
-                  {name: 'sendmail_submit_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Disable sendmail'}]
-    Options    :
-      Examples: [{name: 'smtpd_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove OpenSMTPD'},
-                 {name: 'sendmail_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
-                 {name: 'sendmail_msp_queue_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
-                 {name: 'sendmail_outbound_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Remove sendmail'},
-                 {name: 'sendmail_submit_enable', value: 'NO', state: 'false', comment: 'OpenSMTPD: Disable sendmail'}]
       None    : []
 
   opensmtpd_root_mail_address

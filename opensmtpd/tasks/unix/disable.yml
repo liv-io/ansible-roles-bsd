@@ -57,13 +57,12 @@
    - unix
    - opensmtpd
 
-- name: file config rc.conf
+- name: line disable smtpd_enable
   lineinfile:
-   state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
-   line: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}=\"{{item.value if (item.value is defined) and not ((item.value == None) or (item.value == '')) else ''}}\" # {{item.comment if (item.comment is defined) and not (item.comment == None) else item.name}}"
-   regexp: '^{{item.name}}='
-   dest: "{{file_path_rc_conf}}"
-  with_items: opensmtpd_rc_disable
+   state: 'present'
+   line: "{{file_line_smtpd_enable}}=\"NO\" # Ansible: Disable opensmtpd"
+   regexp: "^{{file_line_smtpd_enable}}="
+   dest: "{{file_path_smtpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
