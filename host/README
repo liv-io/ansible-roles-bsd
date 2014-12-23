@@ -35,11 +35,11 @@ INSTALL
        host_state: 'enable'
        host_path_default: '/etc/hosts'
 
-DISABLE
-  - host: all
+INACTIVE
+  - hosts: all
     roles:
      - role: host
-       host_state: 'disable'
+       host_state: 'inactive'
 
 CONFIG
   host_default:
@@ -84,7 +84,7 @@ CONFIG
     Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : None
+    Default    : ''
     Options    :
       Examples: 'host01' | 'host02' | 'host03'
 
@@ -107,7 +107,7 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : {{host.name}}
+    Default    : "{{host.name}}"
     Options    :
       Examples: 'Example Host' | 'Test Host' | 'Service Host'
       None    : ''
@@ -118,9 +118,10 @@ CONFIG
     Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : None
+    Default    : ''
     Options    :
       Examples: '192.168.1.1' | '192.168.1.2' | '192.168.1.3'
+      None    : ''
 
   path
     Description: Define the path of the hosts file.
@@ -128,7 +129,7 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : {{host_path_default}}
+    Default    : "{{host_path_default}}"
     Options    :
       Examples: '/etc/hosts'
 
@@ -141,8 +142,8 @@ ROLE
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Disable: 'false' | 'no' | 'disable'
+      Install : 'true' | 'yes' | 'install'
+      Inactive: 'quiesce' | 'inactive'
 
   host_path_default
     Description: Define the default path of the hosts file.
