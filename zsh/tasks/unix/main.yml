@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((zsh_state == 'false') or (zsh_state == 'no') or (zsh_state == 'remove'))
+  when: not ((zsh_state == 'false') or (zsh_state == 'no') or (zsh_state == 'remove') or (zsh_state == 'quiesce') or (zsh_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
