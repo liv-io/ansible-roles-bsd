@@ -28,6 +28,62 @@
    - "../../vars/main.yml"
 
 #-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create banner
+  template:
+   src: "{{file_src_banner}}"
+   dest: "{{file_path_banner}}"
+   mode: "{{file_mode_banner}}"
+   owner: "{{file_owner_banner}}"
+   group: "{{file_group_banner}}"
+  tags:
+   - files
+   - disable
+   - unix
+   - openssh
+
+- name: template create ssh_config
+  template:
+   src: "{{file_src_ssh_config}}"
+   dest: "{{file_path_ssh_config}}"
+   mode: "{{file_mode_ssh_config}}"
+   owner: "{{file_owner_ssh_config}}"
+   group: "{{file_group_ssh_config}}"
+  tags:
+   - files
+   - disable
+   - unix
+   - openssh
+
+- name: template create sshd_config
+  template:
+   src: "{{file_src_sshd_config}}"
+   dest: "{{file_path_sshd_config}}"
+   mode: "{{file_mode_sshd_config}}"
+   owner: "{{file_owner_sshd_config}}"
+   group: "{{file_group_sshd_config}}"
+  tags:
+   - files
+   - disable
+   - unix
+   - openssh
+
+- name: line disable sshd_enable
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_sshd_enable}}=\"NO\" # Ansible: Disable openssh"
+   regexp: "^{{file_line_sshd_enable}}="
+   dest: "{{file_path_sshd_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - disable
+   - unix
+   - openssh
+
+#-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 

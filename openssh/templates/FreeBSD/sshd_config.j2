@@ -42,7 +42,7 @@
 
 {% if (openssh_port is defined) and not ((openssh_port == None) or (openssh_port == '') or (openssh_port == [])) %}
 {% for port in openssh_port %}
-Port {{port}}
+Port {{port|int(22)}}
 {% endfor %}
 {% else %}
 Port 22
@@ -97,9 +97,16 @@ Protocol 2
 #MaxAuthTries 6
 #MaxSessions 10
 
-RSAAuthentication {% if (openssh_rsa_authentication is defined) and ((openssh_rsa_authentication == 'false') or (openssh_rsa_authentication == 'no') or (openssh_rsa_authentication == 'disable')) %}no{% else %}yes{% endif %}
-
-PubkeyAuthentication {% if (openssh_pubkey_authentication is defined) and ((openssh_pubkey_authentication == 'false') or (openssh_pubkey_authentication == 'no') or (openssh_pubkey_authentication == 'disable')) %}no{% else %}yes{% endif %}
+{% if (openssh_rsa_authentication is defined) and ((openssh_rsa_authentication == 'false') or (openssh_rsa_authentication == 'no') or (openssh_rsa_authentication == 'disable')) %}
+RSAAuthentication no
+{% else %}
+RSAAuthentication yes
+{% endif %}
+{% if (openssh_pubkey_authentication is defined) and ((openssh_pubkey_authentication == 'false') or (openssh_pubkey_authentication == 'no') or (openssh_pubkey_authentication == 'disable')) %}
+PubkeyAuthentication no
+{% else %}
+PubkeyAuthentication yes
+{% endif %}
 
 # The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
 #AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2
@@ -120,8 +127,11 @@ HostbasedAuthentication no
 IgnoreRhosts yes
 
 # Change to yes to enable built-in password authentication.
-PasswordAuthentication {% if (openssh_password_authentication is defined) and ((openssh_password_authentication == 'false') or (openssh_password_authentication == 'no') or (openssh_password_authentication == 'disable')) %}no{% else %}yes{% endif %}
-
+{% if (openssh_password_authentication is defined) and ((openssh_password_authentication == 'false') or (openssh_password_authentication == 'no') or (openssh_password_authentication == 'disable')) %}
+PasswordAuthentication no
+{% else %}
+PasswordAuthentication yes
+{% endif %}
 PermitEmptyPasswords no
 
 # Change to no to disable PAM authentication
@@ -151,34 +161,53 @@ UsePAM yes
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
 #GatewayPorts no
-X11Forwarding {% if (openssh_x11_forwarding is defined) and ((openssh_x11_forwarding == 'true') or (openssh_x11_forwarding == 'yes') or (openssh_x11_forwarding == 'enable')) %}yes{% else %}no{% endif %}
-
+{% if (openssh_x11_forwarding is defined) and ((openssh_x11_forwarding == 'true') or (openssh_x11_forwarding == 'yes') or (openssh_x11_forwarding == 'enable')) %}
+X11Forwarding yes
+{% else %}
+X11Forwarding no
+{% endif %}
 {% if (openssh_x11_forwarding is defined) and ((openssh_x11_forwarding == 'true') or (openssh_x11_forwarding == 'yes') or (openssh_x11_forwarding == 'enable')) %}
 #X11DisplayOffset 10
-X11UseLocalhost {% if (openssh_x11_use_localhost is defined) and ((openssh_x11_use_localhost == 'true') or (openssh_x11_use_localhost == 'yes') or (openssh_x11_use_localhost == 'enable')) %}yes{% else %}no{% endif %}
-
+{% if (openssh_x11_use_localhost is defined) and ((openssh_x11_use_localhost == 'true') or (openssh_x11_use_localhost == 'yes') or (openssh_x11_use_localhost == 'enable')) %}
+X11UseLocalhost yes
+{% else %}
+X11UseLocalhost no
+{% endif %}
 {% endif %}
 
-#X11UseLocalhost yes
 #PermitTTY yes
-PrintMotd {% if (openssh_print_motd is defined) and ((openssh_print_motd == 'true') or (openssh_print_motd == 'yes') or (openssh_print_motd == 'enable')) %}yes{% else %}no{% endif %}
-
-PrintLastLog {% if (openssh_print_last_log is defined) and ((openssh_print_last_log == 'false') or (openssh_print_last_log == 'no') or (openssh_print_last_log == 'disable')) %}no{% else %}yes{% endif %}
-
-TCPKeepAlive {% if (openssh_tcp_keep_alive is defined) and ((openssh_tcp_keep_alive == 'false') or (openssh_tcp_keep_alive == 'no') or (openssh_tcp_keep_alive == 'disable')) %}no{% else %}yes{% endif %}
-
+{% if (openssh_print_motd is defined) and ((openssh_print_motd == 'true') or (openssh_print_motd == 'yes') or (openssh_print_motd == 'enable')) %}
+PrintMotd yes
+{% else %}
+PrintMotd no
+{% endif %}
+{% if (openssh_print_last_log is defined) and ((openssh_print_last_log == 'false') or (openssh_print_last_log == 'no') or (openssh_print_last_log == 'disable')) %}
+PrintLastLog no
+{% else %}
+PrintLastLog yes
+{% endif %}
+{% if (openssh_tcp_keep_alive is defined) and ((openssh_tcp_keep_alive == 'false') or (openssh_tcp_keep_alive == 'no') or (openssh_tcp_keep_alive == 'disable')) %}
+TCPKeepAlive no
+{% else %}
+TCPKeepAlive yes
+{% endif %}
 #UseLogin no
 #UsePrivilegeSeparation sandbox
 #PermitUserEnvironment no
-{% if (openssh_compression is defined) and not ((openssh_compression == None) or (openssh_compression == '')) %}
-Compression {{openssh_compression}}
+{% if (openssh_compression is defined) and ((openssh_compression == 'true') or (openssh_compression == 'yes') or (openssh_compression == 'enable')) %}
+Compression yes
+{% elif (openssh_compression is defined) and ((openssh_compression == 'false') or (openssh_compression == 'no') or (openssh_compression == 'disable')) %}
+Compression no
 {% else %}
-#Compression delayed
+Compression delayed
 {% endif %}
-
 #ClientAliveInterval 0
 #ClientAliveCountMax 3
-UseDNS {% if (openssh_use_dns is defined) and ((openssh_use_dns == 'false') or (openssh_use_dns == 'no') or (openssh_use_dns == 'disable')) %}no{% else %}yes{% endif %}
+{% if (openssh_use_dns is defined) and ((openssh_use_dns == 'false') or (openssh_use_dns == 'no') or (openssh_use_dns == 'disable')) %}
+UseDNS no
+{% else %}
+UseDNS yes
+{% endif %}
 
 #PidFile /var/run/sshd.pid
 #MaxStartups 10:30:100
@@ -216,7 +245,7 @@ Subsystem	sftp	/usr/libexec/sftp-server
 {% if (openssh_match is defined) and not ((openssh_match == None) or (openssh_match == '') or (openssh_match == [])) %}
 {% for match in openssh_match %}
 Match {{match.type}} {{match.name}}
-{% for key, value in match.config.items()|sort %}
+{% for key, value in (match.config.items()|sort) %}
   {{key}} {{value}}
 {% endfor %}
 
@@ -235,12 +264,15 @@ Match {{match.type}} {{match.name}}
 #-------------------------------------------------------------------------------
 
 # Specifies whether root can log in using ssh.
-PermitRootLogin {% if (openssh_permit_root_login is defined) and ((openssh_permit_root_login == 'true') or (openssh_permit_root_login == 'yes') or (openssh_permit_root_login == 'enable')) %}yes{% else %}no{% endif %}
-
+{% if (openssh_permit_root_login is defined) and ((openssh_permit_root_login == 'true') or (openssh_permit_root_login == 'yes') or (openssh_permit_root_login == 'enable')) %}
+PermitRootLogin yes
+{% else %}
+PermitRootLogin no
+{% endif %}
 
 # Login is disallowed for user names that match one of the patterns.
 {% if (openssh_deny_users is defined) and not ((openssh_deny_users == None) or (openssh_deny_users == '') or (openssh_deny_users == [])) %}
-DenyUsers {% for deny_users in openssh_deny_users %}{{deny_users}} {% endfor %}
+DenyUsers {% for deny_users in openssh_deny_users %}{{deny_users}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
 #DenyUsers
@@ -249,7 +281,7 @@ DenyUsers {% for deny_users in openssh_deny_users %}{{deny_users}} {% endfor %}
 
 # Login is allowed only for user names that match one of the patterns.
 {% if (openssh_allow_users is defined) and not ((openssh_allow_users == None) or (openssh_allow_users == '') or (openssh_allow_users == [])) %}
-AllowUsers {% for allow_users in openssh_allow_users %}{{allow_users}} {% endfor %}
+AllowUsers {% for allow_users in openssh_allow_users %}{{allow_users}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
 #AllowUsers
@@ -259,7 +291,7 @@ AllowUsers {% for allow_users in openssh_allow_users %}{{allow_users}} {% endfor
 # Login is disallowed for users whose primary group or
 # supplementary group list matches one of the patterns.
 {% if (openssh_deny_groups is defined) and not ((openssh_deny_groups == None) or (openssh_deny_groups == '') or (openssh_deny_groups == [])) %}
-DenyGroups {% for deny_groups in openssh_deny_groups %}{{deny_groups}} {% endfor %}
+DenyGroups {% for deny_groups in openssh_deny_groups %}{{deny_groups}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
 #DenyGroups
@@ -269,7 +301,7 @@ DenyGroups {% for deny_groups in openssh_deny_groups %}{{deny_groups}} {% endfor
 # Login is allowed only for users whose primary group or
 # supplementary group list matches one of the patterns.
 {% if (openssh_allow_groups is defined) and not ((openssh_allow_groups == None) or (openssh_allow_groups == '') or (openssh_allow_groups == [])) %}
-AllowGroups {% for allow_groups in openssh_allow_groups %}{{allow_groups}} {% endfor %}
+AllowGroups {% for allow_groups in openssh_allow_groups %}{{allow_groups}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
 #AllowGroups

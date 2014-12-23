@@ -36,21 +36,21 @@ package_name_openssh_server: 'openssh-server'
 #-------------------------------------------------------------------------------
 
 # banner
-file_src_banner: "../../templates/{{openssh_banner_template if (openssh_banner_template is defined) and not ((openssh_banner_template == None) or (openssh_banner_template == '')) else 'main'}}/banner.j2"
+file_src_banner: "../../templates/{{(openssh_banner_template|e) if (openssh_banner_template is defined) and not ((openssh_banner_template == None) or (openssh_banner_template == '')) else 'main'}}/banner.j2"
 file_path_banner: '/etc/ssh/banner'
 file_mode_banner: '0644'
 file_owner_banner: 'root'
 file_group_banner: 'root'
 
 # ssh_config
-file_src_ssh_config: "../../templates/{{openssh_ssh_config_template if (openssh_ssh_config_template is defined) and not ((openssh_ssh_config_template == None) or (openssh_ssh_config_template == '')) else ansible_os_family}}/ssh_config.j2"
+file_src_ssh_config: "../../templates/{{(openssh_ssh_config_template|e) if (openssh_ssh_config_template is defined) and not ((openssh_ssh_config_template == None) or (openssh_ssh_config_template == '')) else ansible_os_family}}/ssh_config.j2"
 file_path_ssh_config: '/etc/ssh/ssh_config'
 file_mode_ssh_config: '0644'
 file_owner_ssh_config: 'root'
 file_group_ssh_config: 'root'
 
 # sshd_config
-file_src_sshd_config: "../../templates/{{openssh_sshd_config_template if (openssh_sshd_config_template is defined) and not ((openssh_sshd_config_template == None) or (openssh_sshd_config_template == '')) else ansible_os_family}}/sshd_config.j2"
+file_src_sshd_config: "../../templates/{{(openssh_sshd_config_template|e) if (openssh_sshd_config_template is defined) and not ((openssh_sshd_config_template == None) or (openssh_sshd_config_template == '')) else ansible_os_family}}/sshd_config.j2"
 file_path_sshd_config: '/etc/ssh/sshd_config'
 file_mode_sshd_config: '0600'
 file_owner_sshd_config: 'root'

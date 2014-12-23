@@ -57,7 +57,6 @@ DISABLE
     roles:
      - role: openssh
        openssh_state: 'disable'
-       openssh_state: 'enable'
        openssh_allow_users:
         - 'user01'
         - 'user02'
@@ -72,13 +71,19 @@ REMOVE
      - role: openssh
        openssh_state: 'remove'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: openssh
+       openssh_state: 'inactive'
+
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
 
 ROLE
   openssh_state
-    Description: Control the state of the state of the role.
+    Description: Control the state of the role.
                  'openssh' is a core package and can therefore not be removed.
                  'openssh' is a core service and should therefore not be
                  disabled.
@@ -88,10 +93,11 @@ ROLE
     Type       : String
     Default    : 'enable'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Enable : 'start' | 'on' | 'enable'
-      Disable: 'stop' | 'off' | 'disable'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
   openssh_address_family
     Description: Set the 'openssh_address_family' option.
@@ -99,12 +105,11 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : ''
+    Default    : 'any'
     Options    :
-      Any        : 'any' | 'ANY' | 'all' | 'ALL'
-      IPv4 only  : 'inet' | 'ipv4'
-      IPv6 only  : 'inet6' | 'ipv6'
-      App default: '' | None
+      IPv4/IPv6: 'any' | 'ANY' | 'all' | 'ALL'
+      IPv4     : 'inet' | 'ipv4'
+      IPv6     : 'inet6' | 'ipv6'
 
   openssh_match
     Description: Define the 'openssh_match' option.
@@ -141,7 +146,7 @@ ROLE
       None    : []
 
   openssh_banner
-    Description: Control the state of the state of the 'openssh_banner'.
+    Description: Control the 'openssh_banner' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -171,10 +176,11 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : ''
+    Default    : 'delayed'
     Options    :
-      Examples   : 'yes' | 'no' | 'delayed'
-      App default: '' | None
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+      Delayed: 'delayed'
 
   openssh_deny_groups
     Description: Define the 'openssh_deny_groups' option.
@@ -206,9 +212,8 @@ ROLE
     Type       : Array
     Default    : ['0.0.0.0']
     Options    :
-      Examples   : ['0.0.0.0' | '127.0.0.1', '::', '::1'] |
-                   ['192.168.1.1', '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458']
-      App default: [] | None
+      Examples: ['0.0.0.0' | '127.0.0.1', '::', '::1'] |
+                ['192.168.1.1', '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458']
 
   openssh_password_authentication
     Description: Control the 'openssh_password_authentication'

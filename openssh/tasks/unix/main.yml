@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((openssh_state == 'false') or (openssh_state == 'no') or (openssh_state == 'remove'))
+  when: not ((openssh_state == 'false') or (openssh_state == 'no') or (openssh_state == 'remove') or (openssh_state == 'quiesce') or (openssh_state == 'inactive'))
 
 - name: task include enable
   include: enable.yml

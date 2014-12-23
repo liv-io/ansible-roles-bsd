@@ -25,7 +25,7 @@
 openssh_state: 'enable'
 
 # openssh_address_family
-openssh_address_family: ''
+openssh_address_family: 'any'
 
 # openssh_allow_groups
 openssh_allow_groups: []
@@ -40,7 +40,7 @@ openssh_banner: 'enable'
 openssh_banner_template: 'main'
 
 # openssh_compression
-openssh_compression: ''
+openssh_compression: 'delayed'
 
 # openssh_deny_groups
 openssh_deny_groups: []

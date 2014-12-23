@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.7.1 (2014-12-22)
+I: Various small Ansible and Jinja2 improvements
+
 * Version 0.7.0 (2014-12-07)
 F: Add option 'openssh_match' to override settings
 
