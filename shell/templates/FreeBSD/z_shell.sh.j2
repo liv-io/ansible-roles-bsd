@@ -25,20 +25,20 @@
 #-------------------------------------------------------------------------------
 
 {% if (shell_histsize is defined) and not ((shell_histsize == None) or (shell_histsize == '') or (shell_histsize == 'false') or (shell_histsize == 'no') or (shell_histsize == 'disable')) %}
-# Shell history - 'HISTSIZE'
-HISTSIZE={{shell_histsize}}
+# HISTSIZE
+HISTSIZE={{(shell_histsize|e)}}
 {% endif %}
 
 {% if (shell_color_support is defined) and not ((shell_color_support == None) or (shell_color_support == 'false') or (shell_color_support == 'no') or (shell_color_support == 'disable')) %}
-# Color support - 'ls'
-alias ls='ls -FI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{shell_ls_time_style}}"{% endif %}'
-alias la='ls -laF -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{shell_ls_time_style}}"{% endif %}' # long listing, list all files
-alias ll='ls -lFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{shell_ls_time_style}}"{% endif %}'  # long listing
-alias lr='ls -lRFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{shell_ls_time_style}}"{% endif %}' # long listing, list subdirectories recursively
-alias lt='ls -ltFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{shell_ls_time_style}}"{% endif %}' # long listing, sort by modification time
-alias lz='ls -lZFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{shell_ls_time_style}}"{% endif %}' # long listing, shellow MAC label
+# Color support (ls)
+alias ls='ls -FI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}'
+alias la='ls -laF -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, list all files
+alias ll='ls -lFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}'  # long listing
+alias lr='ls -lRFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, list subdirectories recursively
+alias lt='ls -ltFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, sort by modification time
+alias lz='ls -lZFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, shellow MAC label
 
-# Color support - 'grep'
+# Color support (grep)
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'

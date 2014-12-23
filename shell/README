@@ -39,6 +39,12 @@ REMOVE
      - role: shell
        shell_state: 'remove'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: shell
+       shell_state: 'inactive'
+
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
@@ -52,8 +58,9 @@ ROLE
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
   shell_color_support
     Description: Control the state of colored 'shell' commands.

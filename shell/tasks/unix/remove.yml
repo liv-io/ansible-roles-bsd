@@ -31,26 +31,6 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file remove profile
-  file:
-   state: 'absent'
-   path: "{{file_path_profile}}"
-  tags:
-   - files
-   - remove
-   - unix
-   - shell
-
-- name: file remove profile.d
-  file:
-   state: 'absent'
-   path: "{{file_path_profile_d}}"
-  tags:
-   - files
-   - remove
-   - unix
-   - shell
-
 - name: file remove shell.sh
   file:
    state: 'absent'

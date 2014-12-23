@@ -44,7 +44,7 @@
 # mesg y
 
 # Source general shell environment variables
-for shell in /etc/profile.d/*.shell ; do
+for shell in /etc/profile.d/*.sh ; do
   [ -r "$shell" ] && . "$shell"
 done
 
