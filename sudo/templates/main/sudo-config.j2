@@ -20,12 +20,17 @@
 # DESCRIPTION
 #-------------------------------------------------------------------------------
 #
-# {{item.comment if (item.comment is defined) and not (item.comment == None) else sudo_comment_default}}
+#
 #
 #-------------------------------------------------------------------------------
 
-{% if (item.sudo is defined) and not ((item.sudo == None) or (item.sudo == '') or (item.sudo == [])) %}
-{% for sudo in item.sudo %}
-{{sudo}}
+{% if (item.config is defined) and not ((item.config == None) or (item.config == '') or (item.config == [])) %}
+{% for config in item.config %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{item.comment}}
+{% else %}
+#
+{% endif %}
+{{config}}
 {% endfor %}
 {% endif %}

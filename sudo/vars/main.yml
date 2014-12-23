@@ -33,7 +33,7 @@ package_name_sudo: 'sudo'
 #-------------------------------------------------------------------------------
 
 # sudoers
-file_src_sudoers: "../../templates/{{sudo_sudoers_template if (sudo_sudoers_template is defined) and not ((sudo_sudoers_template == None) or (sudo_sudoers_template == '')) else ansible_os_family}}/sudoers.j2"
+file_src_sudoers: "../../templates/{{(sudo_sudoers_template|e) if (sudo_sudoers_template is defined) and not ((sudo_sudoers_template == None) or (sudo_sudoers_template == '')) else ansible_os_family}}/sudoers.j2"
 file_path_sudoers: '/etc/sudoers'
 file_mode_sudoers: '0440'
 file_owner_sudoers: 'root'
@@ -41,7 +41,7 @@ file_group_sudoers: 'root'
 file_validate_sudoers: 'visudo -cf %s'
 
 # sudo-config
-file_src_sudo_config: "../../templates/{{sudo_sudo_config_template if (sudo_sudo_config_template is defined) and not ((sudo_sudo_config_template == None) or (sudo_sudo_config_template == '')) else 'main'}}/sudo-config.j2"
+file_src_sudo_config: "../../templates/{{(sudo_sudo_config_template|e) if (sudo_sudo_config_template is defined) and not ((sudo_sudo_config_template == None) or (sudo_sudo_config_template == '')) else 'main'}}/sudo-config.j2"
 file_mode_sudo_config: '0440'
 file_owner_sudo_config: 'root'
 file_group_sudo_config: 'root'

@@ -23,15 +23,15 @@
 
 - name: task include install
   include: install.yml
-  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove'))
+  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove') or (sudo_state == 'quiesce') or (sudo_state == 'inactive'))
 
 - name: task include custom
   include: custom.yml
-  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove'))
+  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove') or (sudo_state == 'quiesce') or (sudo_state == 'inactive'))
 
 - name: task include default
   include: default.yml
-  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove'))
+  when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove') or (sudo_state == 'quiesce') or (sudo_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml

@@ -24,16 +24,13 @@
 # sudo_state
 sudo_state: 'install'
 
-# sudo_comment_default
-sudo_comment_default: 'Default comment'
-
 # sudo_custom
 sudo_custom:
  - name: ''
    state: 'false'
 
-# sudoers_default
-sudoers_default:
+# sudo_default
+sudo_default:
  - name: ''
    state: 'false'
 

@@ -46,19 +46,25 @@ REMOVE
      - role: sudo
        sudo_state: 'remove'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: sudo
+       sudo_state: 'inactive'
+
 CONFIG
-  sudoers_default:
+  sudo_default:
    - name: 'core'
      state: 'true'
      order: '10'
      comment: 'Core Sudoers'
-     sudo: ['root ALL=(ALL) ALL']
+     config: ['root ALL=(ALL) ALL']
 
    - name: 'ansible'
      state: 'true'
      order: '20'
      comment: 'Ansible Configuration Management'
-     sudo: ['ansible ALL=(root) NOPASSWD: ALL']
+     config: ['ansible ALL=(root) NOPASSWD: ALL']
 
    - name: 'obsolete'
      state: 'false'
@@ -69,19 +75,19 @@ CONFIG
      state: 'true'
      order: '50'
      comment: 'System Administrators'
-     sudo: ['%sysadmin ALL=(ALL) ALL']
+     config: ['%sysadmin ALL=(ALL) ALL']
 
    - name: 'dbadmin'
      state: 'true'
      order: '51'
      comment: 'Database Administrators'
-     sudo: ['%dbadmin ALL=(root) service mysqld restart, service mysql restart']
+     config: ['%dbadmin ALL=(root) service mysqld restart, service mysql restart']
 
    - name: 'appadmin'
      state: 'true'
      order: '52'
      comment: 'Application Administrators'
-     sudo: ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
+     config: ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
 
    - name: 'obsolete'
      state: 'false'
@@ -120,11 +126,24 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : "{{sudo_comment_default}}"
+    Default    : ''
     Options    :
       Examples: 'System Administrators' | 'Database Administrators' |
                 'Application Administrators'
       None    : ''
+
+  config
+    Description: Define the 'config' entry/entries.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['%sysadmin ALL=(ALL) ALL'] |
+                ['%dbadmin ALL=(root) service mysqld restart, service mysql restart'] |
+                ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
+      None    : []
 
   order
     Description: Define the 'order' of the sudo file.
@@ -137,19 +156,6 @@ CONFIG
       Examples: '05' | '23' | '42' | '55'
       None    : ''
 
-  sudo
-    Description: Define the 'sudo' entry/entries.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array
-    Default    : []
-    Options    :
-      Examples: ['%sysadmin ALL=(ALL) ALL'] |
-                ['%dbadmin ALL=(root) service mysqld restart, service mysql restart'] |
-                ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
-      None    : []
-
 ROLE
   sudo_state
     Description: Control the state of the role.
@@ -160,19 +166,8 @@ ROLE
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Disable: 'false' | 'no' | 'remove'
-
-  sudo_comment_default
-    Description: Define the 'sudo_comment_default' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'Default comment'
-    Options    :
-      Examples: 'Dummy comment' | 'Example comment'
-      None    : ''
+      Install : 'true' | 'yes' | 'install'
+      Inactive: 'quiesce' | 'inactive'
 
   sudo_name_default
     Description: Define the 'sudo_name_default' option.
