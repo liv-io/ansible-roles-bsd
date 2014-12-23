@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((pydf_state == 'false') or (pydf_state == 'no') or (pydf_state == 'remove'))
+  when: not ((pydf_state == 'false') or (pydf_state == 'no') or (pydf_state == 'remove') or (pydf_state == 'quiesce') or (pydf_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
