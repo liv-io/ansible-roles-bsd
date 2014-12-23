@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((nano_state == 'false') or (nano_state == 'no') or (nano_state == 'remove'))
+  when: not ((nano_state == 'false') or (nano_state == 'no') or (nano_state == 'remove') or (nano_state == 'quiesce') or (nano_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
