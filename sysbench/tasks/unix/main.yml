@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((sysbench_state == 'false') or (sysbench_state == 'no') or (sysbench_state == 'remove'))
+  when: not ((sysbench_state == 'false') or (sysbench_state == 'no') or (sysbench_state == 'remove') or (sysbench_state == 'quiesce') or (sysbench_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
