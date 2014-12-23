@@ -28,6 +28,23 @@
    - "../../vars/main.yml"
 
 #-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: line disable atop_enable
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_atop_enable}}=\"NO\" # Ansible: Disable atop"
+   regexp: "^{{file_line_atop_enable}}="
+   dest: "{{file_path_atop_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - disable
+   - unix
+   - atop
+
+#-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 

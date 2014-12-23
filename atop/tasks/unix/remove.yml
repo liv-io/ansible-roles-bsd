@@ -53,3 +53,20 @@
    - remove
    - unix
    - atop
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: line remove atop_enable
+  lineinfile:
+   state: 'absent'
+   line: "{{file_line_atop_enable}}=\"NO\" # Ansible: Remove atop"
+   regexp: "^{{file_line_atop_enable}}="
+   dest: "{{file_path_atop_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - remove
+   - unix
+   - atop

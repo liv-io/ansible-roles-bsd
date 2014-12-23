@@ -4,8 +4,8 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible task file
+#   |         |  Name   : FreeBSD.yml
+#   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : atop
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -21,18 +21,10 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include install
-  include: install.yml
-  when: not ((atop_state == 'false') or (atop_state == 'no') or (atop_state == 'remove') or (atop_state == 'quiesce') or (atop_state == 'inactive'))
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
 
-- name: task include enable
-  include: enable.yml
-  when: (atop_state == 'start') or (atop_state == 'on') or (atop_state == 'enable')
-
-- name: task include disable
-  include: disable.yml
-  when: (atop_state == 'stop') or (atop_state == 'off') or (atop_state == 'disable')
-
-- name: task include remove
-  include: remove.yml
-  when: (atop_state == 'false') or (atop_state == 'no') or (atop_state == 'remove')
+# atop_enable
+file_path_atop_enable: '/etc/rc.conf'
+file_line_atop_enable: 'atop_enable'
