@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((curl_state == 'false') or (curl_state == 'no') or (curl_state == 'remove'))
+  when: not ((curl_state == 'false') or (curl_state == 'no') or (curl_state == 'remove') or (curl_state == 'quiesce') or (curl_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
