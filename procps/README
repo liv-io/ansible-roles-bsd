@@ -54,6 +54,12 @@ REMOVE
      - role: procps
        procps_state: 'remove'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: procps
+       procps_state: 'inactive'
+
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
@@ -61,15 +67,17 @@ VARIABLES
 ROLE
   procps_state
     Description: Control the state of the role.
-                 'procps' is a core package and can therefore not be removed.
+                 'procps' is a core package on Gentoo based systems and can
+                 therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
     Default    : 'install'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
 CONFLICTS
