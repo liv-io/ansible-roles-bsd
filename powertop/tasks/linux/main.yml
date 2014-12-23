@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((powertop_state == 'false') or (powertop_state == 'no') or (powertop_state == 'remove'))
+  when: not ((powertop_state == 'false') or (powertop_state == 'no') or (powertop_state == 'remove') or (powertop_state == 'quiesce') or (powertop_state == 'inactive'))
 
 - name: task include remove
   include: remove.yml
