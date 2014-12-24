@@ -32,6 +32,17 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove postfix
+  pkgng:
+   state: 'absent'
+   name: "{{package_name_postfix}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - postfix
+
+- name: package remove postfix
   portage:
    state: 'removed'
    sync: "{{portage_sync}}"
@@ -46,6 +57,19 @@
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
+
+- name: line remove postfix_enable
+  lineinfile:
+   state: 'absent'
+   line: "{{file_line_postfix_enable}}=\"NO\" # Ansible: Remove postfix"
+   regexp: "^{{file_line_postfix_enable}}="
+   dest: "{{file_path_postfix_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - remove
+   - unix
+   - postfix
 
 - name: file remove aliases
   file:

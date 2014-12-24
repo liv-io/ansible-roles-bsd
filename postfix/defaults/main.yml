@@ -27,8 +27,11 @@ postfix_state: 'enable'
 # postfix_aliases_template
 postfix_aliases_template: "{{ansible_os_family}}"
 
-# postfix_custom_options
-postfix_custom_options: []
+# postfix_custom
+postfix_custom: []
+
+# postfix_default
+postfix_default: []
 
 # postfix_fallback_relay
 postfix_fallback_relay: "mx02.{{ansible_domain}}"
@@ -37,7 +40,7 @@ postfix_fallback_relay: "mx02.{{ansible_domain}}"
 postfix_inet_interfaces: []
 
 # postfix_inet_protocols
-postfix_inet_protocols: "{{'ipv4' if (ansible_distribution == 'Gentoo') else 'all'}}"
+postfix_inet_protocols: 'ipv4'
 
 # postfix_main_cf_template
 postfix_main_cf_template: "{{ansible_os_family}}"

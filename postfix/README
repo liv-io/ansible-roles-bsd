@@ -53,17 +53,17 @@ DISABLE
        postfix_relayhost: 'mx01.domain.tld'
        postfix_root_mail_address: 'root@domain.tld'
 
-INACTIVE
-  - hosts: all
-    roles:
-     - role: postfix
-       postfix_state: 'inactive'
-
 REMOVE
   - hosts: all
     roles:
      - role: postfix
        postfix_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: postfix
+       postfix_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -78,11 +78,11 @@ ROLE
     Type       : String
     Default    : 'enable'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Enable : 'start' | 'on' | 'enable'
-      Disable: 'stop' | 'off' | 'disable'
-      Remove : 'false' | 'no' | 'remove'
-      Quiesce: 'quiesce' | 'inactive'
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
   postfix_aliases_template
     Description: Define the template source for 'aliases.j2'.
@@ -98,16 +98,30 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  postfix_custom_options
-    Description: Define the 'postfix_custom_options' option.
+  postfix_custom
+    Description: Define the 'postfix_custom' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: ['mynetworks = 168.100.189.0/28, 127.0.0.0/8',
-                 'mydestination = $myhostname, localhost.$mydomain, localhost']
+      Examples: [{config: {'mynetworks = 168.100.189.0/28, 127.0.0.0/8',
+                 'mydestination = $myhostname, localhost.$mydomain, localhost'},
+                  comment: 'Custom configuration'}]
+      None    : []
+
+  postfix_default
+    Description: Define the 'postfix_default' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'mynetworks = 168.100.189.0/28, 127.0.0.0/8',                 
+                 'mydestination = $myhostname, localhost.$mydomain, localhost'},
+                  comment: 'Custom configuration'}]
       None    : []
 
   postfix_fallback_relay
@@ -136,13 +150,11 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    :
-      Gentoo: 'ipv4'
-      Other : 'all'
+    Default    : 'ipv4'
     Options    :
-      Any      : 'any' | 'ANY' | 'all' | 'ALL'
-      IPv4 only: 'inet' | 'ipv4'
-      IPv6 only: 'inet6' | 'ipv6'
+      IPv4/IPv6: 'any' | 'ANY' | 'all' | 'ALL'
+      IPv4     : 'inet' | 'ipv4'
+      IPv6     : 'inet6' | 'ipv6'
 
   postfix_main_cf_template
     Description: Define the template source for 'main.cf.j2'.
@@ -217,7 +229,8 @@ PACKAGES
   postfix
     Version: >= 2.6
     Name   :
-      Gentoo 2: 'postfix'
+      FreeBSD 10: 'postfix'
+      Gentoo 2  : 'postfix'
 
 ROLES
 
@@ -260,7 +273,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Planned
+      Status: Testing
 
   Gentoo
     Version: 2

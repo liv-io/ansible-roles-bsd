@@ -28,8 +28,76 @@
    - "../../vars/main.yml"
 
 #-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create aliases
+  template:
+   src: "{{file_src_aliases}}"
+   dest: "{{file_path_aliases}}"
+   mode: "{{file_mode_aliases}}"
+   owner: "{{file_owner_aliases}}"
+   group: "{{file_group_aliases}}"
+  tags:
+   - files
+   - disable
+   - unix
+   - postfix
+
+- name: template create main.cf
+  template:
+   src: "{{file_src_main_cf}}"
+   dest: "{{file_path_main_cf}}"
+   mode: "{{file_mode_main_cf}}"
+   owner: "{{file_owner_main_cf}}"
+   group: "{{file_group_main_cf}}"
+  tags:
+   - files
+   - disable
+   - unix
+   - postfix
+
+- name: template create master.cf
+  template:
+   src: "{{file_src_master_cf}}"
+   dest: "{{file_path_master_cf}}"
+   mode: "{{file_mode_master_cf}}"
+   owner: "{{file_owner_master_cf}}"
+   group: "{{file_group_master_cf}}"
+  tags:
+   - files
+   - disable
+   - unix
+   - postfix
+
+- name: line disable postfix_enable
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_postfix_enable}}=\"NO\" # Ansible: Disable postfix"
+   regexp: "^{{file_line_postfix_enable}}="
+   dest: "{{file_path_postfix_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - disable
+   - unix
+   - postfix
+
+#-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+- name: service stop postfix
+  service:
+   state: 'stopped'
+   enabled: 'no'
+   name: "{{service_name_postfix}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - system
+   - disable
+   - unix
+   - postfix
 
 - name: service stop postfix
   service:

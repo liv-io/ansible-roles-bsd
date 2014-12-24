@@ -32,13 +32,48 @@
 #-------------------------------------------------------------------------------
 
 - name: package install postfix
+  pkgng:
+   state: 'present'
+   name: "{{package_name_postfix}}"
+  register: register_freebsd_postfix
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - postfix
+
+- name: package install postfix
   portage:
    state: 'installed'
    sync: "{{portage_sync}}"
    name: "{{package_name_postfix}}"
+  register: register_gentoo_postfix
   when: (ansible_os_family == 'Gentoo')
   tags:
    - packaging
+   - install
+   - unix
+   - postfix
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: command pkill opensmtpd
+  shell: "{{command_shell_pkill_opensmtpd}}"
+  when: (register_freebsd_postfix|changed) or (register_gentoo_postfix|changed)
+  tags:
+   - commands
+   - install
+   - unix
+   - postfix
+
+- name: command pkill sendmail
+  shell: "{{command_shell_pkill_sendmail}}"
+  when: (register_freebsd_postfix|changed) or (register_gentoo_postfix|changed)
+  tags:
+   - commands
    - install
    - unix
    - postfix

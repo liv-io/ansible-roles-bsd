@@ -31,7 +31,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command initialize newaliases
+- name: command newaliases
   command: "{{command_command_newaliases}}"
 
 #-------------------------------------------------------------------------------

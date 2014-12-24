@@ -31,7 +31,7 @@
 # For common configuration examples, see BASIC_CONFIGURATION_README
 # and STANDARD_CONFIGURATION_README. To find these documents, use
 # the command "postconf html_directory readme_directory", or go to
-# http://www.postfix.org/.
+# http://www.postfix.org/BASIC_CONFIGURATION_README.html etc.
 #
 # For best results, change no more than 2-3 parameters at a time,
 # and test if Postfix still works after every change.
@@ -59,19 +59,19 @@ queue_directory = /var/spool/postfix
 # The command_directory parameter specifies the location of all
 # postXXX commands.
 #
-command_directory = /usr/sbin
+command_directory = /usr/local/sbin
 
 # The daemon_directory parameter specifies the location of all Postfix
 # daemon programs (i.e. programs listed in the master.cf file). This
 # directory must be owned by root.
 #
-daemon_directory = /usr/libexec/postfix
+daemon_directory = /usr/local/libexec/postfix
 
 # The data_directory parameter specifies the location of Postfix-writable
 # data files (caches, random numbers). This directory must be owned
 # by the mail_owner account (see below).
 #
-data_directory = /var/lib/postfix
+data_directory = /var/db/postfix
 
 # QUEUE AND PROCESS OWNERSHIP
 #
@@ -278,7 +278,7 @@ unknown_local_recipient_reject_code = 550
 # 
 #mynetworks_style = class
 #mynetworks_style = subnet
-#mynetworks_style = host
+mynetworks_style = host
 
 # Alternatively, you can specify the mynetworks list by hand, in
 # which case Postfix ignores the mynetworks_style setting.
@@ -293,7 +293,7 @@ unknown_local_recipient_reject_code = 550
 #
 #mynetworks = 168.100.189.0/28, 127.0.0.0/8
 #mynetworks = $config_directory/mynetworks
-#mynetworks = hash:/etc/postfix/network_table
+#mynetworks = hash:$config_directory/network_table
 
 # The relay_domains parameter restricts what destinations this system will
 # relay mail to.  See the smtpd_recipient_restrictions description in
@@ -366,7 +366,7 @@ fallback_relay = {{(postfix_fallback_relay|e)}}
 # In the left-hand side, specify an @domain.tld wild-card, or specify
 # a user@domain.tld address.
 # 
-#relay_recipient_maps = hash:/etc/postfix/relay_recipients
+#relay_recipient_maps = hash:$config_directory/relay_recipients
 
 # INPUT RATE CONTROL
 #
@@ -431,7 +431,6 @@ fallback_relay = {{(postfix_fallback_relay|e)}}
 # tables that are not necessarily all under control by Postfix.
 #
 #alias_database = dbm:/etc/aliases
-#alias_database = dbm:/etc/mail/aliases
 #alias_database = hash:/etc/aliases
 #alias_database = hash:/etc/aliases, hash:/opt/majordomo/aliases
 
@@ -564,7 +563,7 @@ fallback_relay = {{(postfix_fallback_relay|e)}}
 #
 # For details, see "man header_checks".
 #
-#header_checks = regexp:/etc/postfix/header_checks
+#header_checks = regexp:$config_directory/header_checks
 
 # FAST ETRN SERVICE
 #
@@ -662,40 +661,40 @@ debugger_command =
 # sendmail_path: The full pathname of the Postfix sendmail command.
 # This is the Sendmail-compatible mail posting interface.
 # 
-sendmail_path = /usr/sbin/sendmail
+sendmail_path = /usr/local/sbin/sendmail
 
 # newaliases_path: The full pathname of the Postfix newaliases command.
 # This is the Sendmail-compatible command to build alias databases.
 #
-newaliases_path = /usr/bin/newaliases
+newaliases_path = /usr/local/bin/newaliases
 
 # mailq_path: The full pathname of the Postfix mailq command.  This
 # is the Sendmail-compatible mail queue listing command.
 # 
-mailq_path = /usr/bin/mailq
+mailq_path = /usr/local/bin/mailq
 
 # setgid_group: The group for mail submission and queue management
 # commands.  This must be a group name with a numerical group ID that
 # is not shared with other accounts, not even with the Postfix account.
 #
-setgid_group = postdrop
+setgid_group = maildrop
 
 # html_directory: The location of the Postfix HTML documentation.
 #
-html_directory = no
+html_directory = /usr/local/share/doc/postfix
 
 # manpage_directory: The location of the Postfix on-line manual pages.
 #
-manpage_directory = /usr/share/man
+manpage_directory = /usr/local/man
 
 # sample_directory: The location of the Postfix sample configuration files.
 # This parameter is obsolete as of Postfix 2.1.
 #
-sample_directory = /etc/postfix
+sample_directory = /usr/local/etc/postfix
 
 # readme_directory: The location of the Postfix README files.
 #
-readme_directory = no
+readme_directory = /usr/local/share/doc/postfix
 
 {% if (postfix_inet_protocols is defined) and ((postfix_inet_protocols == 'inet') or (postfix_inet_protocols == 'ipv4')) %}
 inet_protocols = ipv4
@@ -704,8 +703,6 @@ inet_protocols = ipv6
 {% else %}
 inet_protocols = all
 {% endif %}
-
-home_mailbox = .maildir/
 
 #-------------------------------------------------------------------------------
 # CUSTOM CONFIGURATION

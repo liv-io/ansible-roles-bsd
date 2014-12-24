@@ -4,8 +4,8 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible task file
+#   |         |  Name   : FreeBSD.yml
+#   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : postfix
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -21,6 +21,21 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include unix
-  include: unix/main.yml
-  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# aliases
+file_group_aliases: 'wheel'
+
+# main.cf
+file_path_main_cf: '/usr/local/etc/postfix/main.cf'
+file_group_main_cf: 'wheel'
+
+# master.cf
+file_path_master_cf: '/usr/local/etc/postfix/master.cf'
+file_group_master_cf: 'wheel'
+
+# postfix_enable
+file_path_postfix_enable: '/etc/rc.conf'
+file_line_postfix_enable: 'postfix_enable'
