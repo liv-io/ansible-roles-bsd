@@ -92,7 +92,7 @@ severity='Debug'
 message='Please check log files for more information.'
 
 # List of NTP servers
-ntp_servers='{% if (ntp_server is defined) and not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}{% for item in (ntp_server|sort) %}{% if (item.server is defined) and not ((item.server == None) or (item.server == '') or (item.server == [])) %}{% for server in (item.server|sort) %}{{(server|e)}} {% endfor %}{% endif %}{% endfor %}{% else %}ntp{% endif %}'
+ntp_servers='{% if (ntp_server is defined) and not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}{% for item in (ntp_server|sort) %}{% if (item.server is defined) and not ((item.server == None) or (item.server == '') or (item.server == [])) %}{% for server in (item.server|sort) %}{{(server|e)}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %}{% endfor %}{% else %}ntp{% endif %}'
 
 {% if (ntp_monitor_mail_state is defined) and ((ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable')) %}
 # Define the mail sender
