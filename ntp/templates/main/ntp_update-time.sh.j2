@@ -131,7 +131,7 @@ SCRIPT
 --------------------------------------------------------------------------------
 
 Name        : ntp_update-time.sh
-Type        : sh script
+Type        : shell script
 PID         : $$
 
 --------------------------------------------------------------------------------
@@ -265,7 +265,7 @@ time_hr=$($date -u -r "$time_exec" '+%H:%M:%S')
 # Logging and alerting
 retval=0
 code='0000'
-severity='Info:'
+severity='Info'
 message='System time and hardware clock updated.'
 $logger -t $script "$severity: $message"
 $logger -t $script "Duration: $time_hr"
