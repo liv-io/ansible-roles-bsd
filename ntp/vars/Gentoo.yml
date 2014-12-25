@@ -22,7 +22,7 @@
 #-------------------------------------------------------------------------------
 
 # ntp_command
-ntp_command: 'sntp --settod --syslog'
+ntp_command: 'sntp --step'
 
 # ntp_driftfile
 ntp_driftfile: '/var/lib/ntp/ntp.drift'
