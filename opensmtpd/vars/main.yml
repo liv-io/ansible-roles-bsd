@@ -50,11 +50,11 @@ file_group_smtpd_conf: 'root'
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-# pkill sendmail
-command_shell_pkill_sendmail: 'pkill sendmail ; true'
-
 # pkill postfix
 command_shell_pkill_postfix: 'pkill master ; true'
+
+# pkill sendmail
+command_shell_pkill_sendmail: 'pkill sendmail ; true'
 
 # smtpctl aliases
 command_command_smtpctl_aliases: 'smtpctl update table aliases'
