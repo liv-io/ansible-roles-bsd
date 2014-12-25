@@ -54,6 +54,12 @@ REMOVE
      - role: cron
        cron_state: 'remove'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: cron
+       cron_state: 'inactive'
+
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
@@ -67,10 +73,11 @@ ROLE
     Type       : String
     Default    : 'enable'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Enable : 'start' | 'on' | 'enable'
-      Disable: 'stop' | 'off' | 'disable'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
 CONFLICTS
@@ -129,7 +136,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Planned
+      Status: Testing
 
   Gentoo
     Version: 2

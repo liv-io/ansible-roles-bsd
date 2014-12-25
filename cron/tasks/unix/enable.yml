@@ -28,8 +28,37 @@
    - "../../vars/main.yml"
 
 #-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: line enable cron_enable
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_cron_enable}}=\"YES\" # Ansible: Enable cron"
+   regexp: "^{{file_line_cron_enable}}="
+   dest: "{{file_path_cron_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - enable
+   - unix
+   - cron
+
+#-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+- name: service start cron
+  service:
+   state: 'started'
+   enabled: 'yes'
+   name: "{{service_name_cron}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - system
+   - enable
+   - unix
+   - cron
 
 - name: service start cron
   service:

@@ -4,8 +4,8 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : disable.yml
-#   |  _   _  |  Type   : ansible task file
+#   |         |  Name   : FreeBSD.yml
+#   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : cron
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -21,54 +21,17 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: include variables
-  include_vars: "{{item}}"
-  with_first_found:
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
-
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line disable cron_enable
-  lineinfile:
-   state: 'present'
-   line: "{{file_line_cron_enable}}=\"NO\" # Ansible: Disable cron"
-   regexp: "^{{file_line_cron_enable}}="
-   dest: "{{file_path_cron_enable}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-   - files
-   - disable
-   - unix
-   - cron
+# cron_enable
+file_path_cron_enable: '/etc/rc.conf'
+file_line_cron_enable: 'cron_enable'
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service stop cron
-  service:
-   state: 'stopped'
-   enabled: 'no'
-   name: "{{service_name_cron}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-   - system
-   - disable
-   - unix
-   - cron
-
-- name: service stop cron
-  service:
-   state: 'stopped'
-   enabled: 'no'
-   runlevel: 'default'
-   name: "{{service_name_cron}}"
-  when: (ansible_os_family == 'Gentoo')
-  tags:
-   - system
-   - disable
-   - unix
-   - cron
+# cron
+service_name_cron: 'cron'
