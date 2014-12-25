@@ -69,6 +69,12 @@ REMOVE
        ansible_state: 'remove'
        ansible_mode: 'server'
 
+INACTIVE
+  - hosts: all
+    roles:
+     - role: ansible
+       ansible_state: 'inactive'
+
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
@@ -83,10 +89,11 @@ ROLE
     Type       : String
     Default    : 'enable'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Enable : 'start' | 'on' | 'enable'
-      Disable: 'stop' | 'off' | 'disable'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
   ansible_mode
     Description: Control the 'ansible_mode' option.
@@ -109,12 +116,12 @@ ROLE
     Options    :
       Examples: 'ansible'
 
-  ansible_ansible_run_playbook_bash_template
-    Description: Define the template source for 'ansible_run-playbook.bash.j2'.
+  ansible_ansible_run_playbook_sh_template
+    Description: Define the template source for 'ansible_run-playbook.sh.j2'.
                  Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
-                 'ansible/templates/example/ansible_run-playbook.bash.j2'
+                 'ansible/templates/example/ansible_run-playbook.sh.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -207,7 +214,7 @@ ROLE
     Type       : Array
     Default    : ["admin@{{ansible_domain}}"]
     Options    :
-      Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
+      Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld'] |
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
 
   ansible_monitor_mail_sender
@@ -443,7 +450,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Planned
+      Status: Testing
 
   Gentoo
     Version: 2

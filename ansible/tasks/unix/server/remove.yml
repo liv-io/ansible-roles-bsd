@@ -35,6 +35,7 @@
   file:
    state: 'absent'
    path: "{{file_path_ansible_run_playbook_cron}}"
+  when: (ansible_os_family == 'Gentoo')
   tags:
    - files
    - remove
@@ -42,10 +43,24 @@
    - unix
    - ansible
 
-- name: file remove ansible_run-playbook.bash
+- name: line config ansible_run-playbook
+  lineinfile:
+   state: 'absent'
+   line: "{{file_line_ansible_update_time}} # Ansible: ansible_run-playbook"
+   regexp: "# Ansible: ansible_run-playbook$"
+   dest: "{{file_path_ansible_update_time}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - remove
+   - server
+   - unix
+   - ansible
+
+- name: file remove ansible_run-playbook.sh
   file:
    state: 'absent'
-   path: "{{file_path_ansible_run_playbook_bash}}"
+   path: "{{file_path_ansible_run_playbook_sh}}"
   tags:
    - files
    - remove

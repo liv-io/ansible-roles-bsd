@@ -23,7 +23,7 @@
 
 - name: task include install
   include: install.yml
-  when: not ((ansible_state == 'false') or (ansible_state == 'no') or (ansible_state == 'remove'))
+  when: not ((ansible_state == 'false') or (ansible_state == 'no') or (ansible_state == 'remove') or (ansible_state == 'quiesce') or (ansible_state == 'inactive'))
 
 - name: task include server
   include: server/main.yml

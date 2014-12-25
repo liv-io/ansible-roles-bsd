@@ -30,8 +30,8 @@ ansible_mode: 'client'
 # ansible_ansible_dir_name
 ansible_ansible_dir_name: 'ansible'
 
-# ansible_ansible_run_playbook_bash_template
-ansible_ansible_run_playbook_bash_template: 'main'
+# ansible_ansible_run_playbook_sh_template
+ansible_ansible_run_playbook_sh_template: 'main'
 
 # ansible_ansible_run_playbook_cron_template
 ansible_ansible_run_playbook_cron_template: 'main'

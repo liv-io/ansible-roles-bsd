@@ -115,13 +115,13 @@
    - unix
    - ansible
 
-- name: template create ansible_run-playbook.bash
+- name: template create ansible_run-playbook.sh
   template:
-   src: "{{file_src_ansible_run_playbook_bash}}"
-   dest: "{{file_path_ansible_run_playbook_bash}}"
-   mode: "{{file_mode_ansible_run_playbook_bash}}"
-   owner: "{{file_owner_ansible_run_playbook_bash}}"
-   group: "{{file_group_ansible_run_playbook_bash}}"
+   src: "{{file_src_ansible_run_playbook_sh}}"
+   dest: "{{file_path_ansible_run_playbook_sh}}"
+   mode: "{{file_mode_ansible_run_playbook_sh}}"
+   owner: "{{file_owner_ansible_run_playbook_sh}}"
+   group: "{{file_group_ansible_run_playbook_sh}}"
   tags:
    - files
    - install

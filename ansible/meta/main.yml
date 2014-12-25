@@ -22,5 +22,5 @@
 #-------------------------------------------------------------------------------
 
 dependencies:
- - { role: common }
- - { role: mailx, when: (ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable') }
+ - {role: 'common'}
+ - {role: 'mailx', when: (ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable')}
