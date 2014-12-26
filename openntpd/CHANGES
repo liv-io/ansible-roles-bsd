@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.1.2 (2014-12-26)
+B: Add missing configuration to 'remove' task
+
 * Version 0.1.1 (2014-12-21)
 I: Various small Ansible and Jinja2 improvements
 
