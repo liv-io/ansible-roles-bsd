@@ -51,7 +51,7 @@
 #SECURE_LOG=/private/var/log/system.log
 #
 {% if (denyhosts_secure_log is defined) and not ((denyhosts_secure_log == None) or (denyhosts_secure_log == '')) %}
-SECURE_LOG = {{denyhosts_secure_log}}
+SECURE_LOG = {{(denyhosts_secure_log|e)}}
 {% else %}
 SECURE_LOG = /var/log/auth.log
 {% endif %}
@@ -63,13 +63,16 @@ SECURE_LOG = /var/log/auth.log
 # HOSTS_DENY: the file which contains restricted host access information
 #
 # Most operating systems:
-HOSTS_DENY = /etc/hosts.deniedssh
+#HOSTS_DENY = /etc/hosts.deniedssh
 #
 # Some BSD (FreeBSD) Unixes:
 #HOSTS_DENY = /etc/hosts.allow
 #
 # Another possibility (also see the next option):
 #HOSTS_DENY = /etc/hosts.evil
+#
+HOSTS_DENY = /etc/hosts.block
+#
 #######################################################################
 
 
@@ -96,7 +99,7 @@ HOSTS_DENY = /etc/hosts.deniedssh
 #PURGE_DENY = 5d
 #
 {% if (denyhosts_purge_deny is defined) and not ((denyhosts_purge_deny == None) or (denyhosts_purge_deny == '') or (denyhosts_purge_deny == 'false') or (denyhosts_purge_deny == 'no') or (denyhosts_purge_deny == 'disable') or (denyhosts_purge_deny == 'never')) %}
-PURGE_DENY = {{denyhosts_purge_deny}}
+PURGE_DENY = {{(denyhosts_purge_deny|e)}}
 {% else %}
 PURGE_DENY =
 {% endif %}
@@ -151,7 +154,7 @@ BLOCK_SERVICE = sshd
 # user login attempts (eg. non-existent user accounts)
 #
 {% if (denyhosts_deny_threshold_invalid is defined) and not ((denyhosts_deny_threshold_invalid == None) or (denyhosts_deny_threshold_invalid == '')) %}
-DENY_THRESHOLD_INVALID = {{denyhosts_deny_threshold_invalid}}
+DENY_THRESHOLD_INVALID = {{(denyhosts_deny_threshold_invalid|int(2))}}
 {% else %}
 DENY_THRESHOLD_INVALID = 2
 {% endif %}
@@ -166,7 +169,7 @@ DENY_THRESHOLD_INVALID = 2
 # for the "root" user
 #
 {% if (denyhosts_deny_threshold_valid is defined) and not ((denyhosts_deny_threshold_valid == None) or (denyhosts_deny_threshold_valid == '')) %}
-DENY_THRESHOLD_VALID = {{denyhosts_deny_threshold_valid}}
+DENY_THRESHOLD_VALID = {{(denyhosts_deny_threshold_valid|int(2))}}
 {% else %}
 DENY_THRESHOLD_VALID = 2
 {% endif %}
@@ -180,7 +183,7 @@ DENY_THRESHOLD_VALID = 2
 # "root" user login attempts only.
 #
 {% if (denyhosts_deny_threshold_root is defined) and not ((denyhosts_deny_threshold_root == None) or (denyhosts_deny_threshold_root == '')) %}
-DENY_THRESHOLD_ROOT = {{denyhosts_deny_threshold_root}}
+DENY_THRESHOLD_ROOT = {{(denyhosts_deny_threshold_root|int(2))}}
 {% else %}
 DENY_THRESHOLD_ROOT = 2
 {% endif %}
@@ -195,7 +198,7 @@ DENY_THRESHOLD_ROOT = 2
 # usernames that appear in the WORK_DIR/restricted-usernames file only.
 #
 {% if (denyhosts_deny_threshold_restricted is defined) and not ((denyhosts_deny_threshold_restricted == None) or (denyhosts_deny_threshold_restricted == '')) %}
-DENY_THRESHOLD_RESTRICTED = {{denyhosts_deny_threshold_restricted}}
+DENY_THRESHOLD_RESTRICTED = {{(denyhosts_deny_threshold_restricted|int(2))}}
 {% else %}
 DENY_THRESHOLD_RESTRICTED = 2
 {% endif %}
@@ -266,7 +269,7 @@ HOSTNAME_LOOKUP=NO
 #LOCK_FILE = /tmp/denyhosts.lock
 #
 {% if (denyhosts_lock_file is defined) and not ((denyhosts_lock_file == None) or (denyhosts_lock_file == '')) %}
-LOCK_FILE = {{denyhosts_lock_file}}
+LOCK_FILE = {{(denyhosts_lock_file|e)}}
 {% else %}
 LOCK_FILE = /var/run/denyhosts.pid
 {% endif %}
@@ -288,7 +291,7 @@ LOCK_FILE = /var/run/denyhosts.pid
 # ADMIN_EMAIL = foo@bar.com, bar@foo.com, etc@foobar.com
 #
 {% if (denyhosts_admin_email is defined) and not ((denyhosts_admin_email == None) or (denyhosts_admin_email == '')) %}
-ADMIN_EMAIL = {{denyhosts_admin_email}}
+ADMIN_EMAIL = {{(denyhosts_admin_email|e)}}
 {% else %}
 #ADMIN_EMAIL =
 {% endif %}
@@ -302,13 +305,13 @@ ADMIN_EMAIL = {{denyhosts_admin_email}}
 # email server address (SMTP_HOST) and the server port (SMTP_PORT)
 #
 {% if (denyhosts_smtp_host is defined) and not ((denyhosts_smtp_host == None) or (denyhosts_smtp_host == '')) %}
-SMTP_HOST = {{denyhosts_smtp_host}}
+SMTP_HOST = {{(denyhosts_smtp_host|e)}}
 {% else %}
 #SMTP_HOST = localhost
 {% endif %}
 #
 {% if (denyhosts_smtp_port is defined) and not ((denyhosts_smtp_port == None) or (denyhosts_smtp_port == '')) %}
-SMTP_PORT = {{denyhosts_smtp_port}}
+SMTP_PORT = {{(denyhosts_smtp_port|int(25))}}
 {% else %}
 #SMTP_PORT = 25
 {% endif %}
@@ -320,13 +323,13 @@ SMTP_PORT = {{denyhosts_smtp_port}}
 # SMTP_USERNAME and SMTP_PASSWORD: set these parameters if your 
 # smtp email server requires authentication
 #
-{% if (denyhosts_smtp_username is defined) and not ((denyhosts_smtp_username == None) or (denyhosts_smtp_username == '') or (denyhosts_smtp_username == 'false') or (denyhosts_smtp_username == 'no') or (denyhosts_smtp_username == 'disable')) %}
+{% if (denyhosts_smtp_username is defined) and not ((denyhosts_smtp_username == None) or (denyhosts_smtp_username == '')) %}
 SMTP_USERNAME={{denyhosts_smtp_username}}
 {% else %}
 #SMTP_USERNAME=foo
 {% endif %}
 #
-{% if (denyhosts_smtp_password is defined) and not ((denyhosts_smtp_password == None) or (denyhosts_smtp_password == '') or (denyhosts_smtp_password == 'false') or (denyhosts_smtp_password == 'no') or (denyhosts_smtp_password == 'disable')) %}
+{% if (denyhosts_smtp_password is defined) and not ((denyhosts_smtp_password == None) or (denyhosts_smtp_password == '')) %}
 SMTP_PASSWORD={{denyhosts_smtp_password}}
 {% else %}
 #SMTP_PASSWORD=bar
@@ -340,7 +343,7 @@ SMTP_PASSWORD={{denyhosts_smtp_password}}
 # from DenyHosts when it reports thwarted abuse attempts
 #
 {% if (denyhosts_smtp_from is defined) and not ((denyhosts_smtp_from == None) or (denyhosts_smtp_from == '')) %}
-SMTP_FROM = {{denyhosts_smtp_from}}
+SMTP_FROM = {{(denyhosts_smtp_from|e)}}
 {% else %}
 #SMTP_FROM = DenyHosts <nobody@localhost>
 {% endif %}
@@ -353,7 +356,7 @@ SMTP_FROM = {{denyhosts_smtp_from}}
 # by DenyHosts when it reports thwarted abuse attempts
 #
 {% if (denyhosts_smtp_subject is defined) and not ((denyhosts_smtp_subject == None) or (denyhosts_smtp_subject == '')) %}
-SMTP_SUBJECT = {{denyhosts_smtp_subject}}
+SMTP_SUBJECT = {{(denyhosts_smtp_subject|e)}}
 {% else %}
 #SMTP_SUBJECT = DenyHosts Report
 {% endif %}
@@ -422,7 +425,7 @@ SYSLOG_REPORT=NO
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if (denyhosts_age_reset_valid is defined) and not ((denyhosts_age_reset_valid == None) or (denyhosts_age_reset_valid == '') or (denyhosts_age_reset_valid == 'false') or (denyhosts_age_reset_valid == 'no') or (denyhosts_age_reset_valid == 'disable')) %}
-AGE_RESET_VALID={{denyhosts_age_reset_valid}}
+AGE_RESET_VALID={{(denyhosts_age_reset_valid|e)}}
 {% else %}
 #AGE_RESET_VALID=5d
 {% endif %}
@@ -442,7 +445,7 @@ AGE_RESET_VALID={{denyhosts_age_reset_valid}}
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if (denyhosts_age_reset_root is defined) and not ((denyhosts_age_reset_root == None) or (denyhosts_age_reset_root == '') or (denyhosts_age_reset_root == 'false') or (denyhosts_age_reset_root == 'no') or (denyhosts_age_reset_root == 'disable')) %}
-AGE_RESET_ROOT={{denyhosts_age_reset_root}}
+AGE_RESET_ROOT={{(denyhosts_age_reset_root|e)}}
 {% else %}
 #AGE_RESET_ROOT=25d
 {% endif %}
@@ -462,7 +465,7 @@ AGE_RESET_ROOT={{denyhosts_age_reset_root}}
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if (denyhosts_age_reset_restricted is defined) and not ((denyhosts_age_reset_restricted == None) or (denyhosts_age_reset_restricted == '') or (denyhosts_age_reset_restricted == 'false') or (denyhosts_age_reset_restricted == 'no') or (denyhosts_age_reset_restricted == 'disable')) %}
-AGE_RESET_RESTRICTED={{denyhosts_age_reset_restricted}}
+AGE_RESET_RESTRICTED={{(denyhosts_age_reset_restricted|e)}}
 {% else %}
 #AGE_RESET_RESTRICTED=25d
 {% endif %}
@@ -483,7 +486,7 @@ AGE_RESET_RESTRICTED={{denyhosts_age_reset_restricted}}
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if (denyhosts_age_reset_invalid is defined) and not ((denyhosts_age_reset_invalid == None) or (denyhosts_age_reset_invalid == '') or (denyhosts_age_reset_invalid == 'false') or (denyhosts_age_reset_invalid == 'no') or (denyhosts_age_reset_invalid == 'disable')) %}
-AGE_RESET_INVALID={{denyhosts_age_reset_invalid}}
+AGE_RESET_INVALID={{(denyhosts_age_reset_invalid|e)}}
 {% else %}
 #AGE_RESET_INVALID=10d
 {% endif %}
@@ -567,7 +570,7 @@ USERDEF_FAILED_ENTRY_REGEX=[a|A]uthentication error for (?P<invalid>invalid user
 #DAEMON_LOG = 
 #
 {% if (denyhosts_daemon_log is defined) and not ((denyhosts_daemon_log == None) or (denyhosts_daemon_log == '')) %}
-DAEMON_LOG = {{denyhosts_daemon_log}}
+DAEMON_LOG = {{(denyhosts_daemon_log|e)}}
 {% else %}
 DAEMON_LOG = /var/log/denyhosts
 {% endif %}
@@ -622,7 +625,7 @@ DAEMON_LOG = /var/log/denyhosts
 # refer to:    http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if (denyhosts_daemon_sleep is defined) and not ((denyhosts_daemon_sleep == None) or (denyhosts_daemon_sleep == '')) %}
-DAEMON_SLEEP = {{denyhosts_daemon_sleep}}
+DAEMON_SLEEP = {{(denyhosts_daemon_sleep|e)}}
 {% else %}
 DAEMON_SLEEP = 30s
 {% endif %}
@@ -636,7 +639,7 @@ DAEMON_SLEEP = 30s
 # This has no effect if PURGE_DENY is blank.
 #
 {% if (denyhosts_daemon_purge is defined) and not ((denyhosts_daemon_purge == None) or (denyhosts_daemon_purge == '')) %}
-DAEMON_PURGE = {{denyhosts_daemon_purge}}
+DAEMON_PURGE = {{(denyhosts_daemon_purge|e)}}
 {% else %}
 DAEMON_PURGE = 1h
 {% endif %}

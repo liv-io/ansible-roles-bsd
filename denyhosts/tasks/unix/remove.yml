@@ -58,6 +58,33 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: line remove denyhosts_enable
+  lineinfile:
+   state: 'absent'
+   line: "{{file_line_denyhosts_enable}}=\"NO\" # Ansible: Remove denyhosts"
+   regexp: "^{{file_line_denyhosts_enable}}="
+   dest: "{{file_path_denyhosts_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - remove
+   - unix
+   - denyhosts
+
+- name: line remove syslogd_flags
+  lineinfile:
+   state: 'absent'
+   line: "{{file_line_syslogd_flags}}=\"-c\" # Ansible: Config denyhosts"
+   regexp: "^{{file_line_syslogd_flags}}="
+   dest: "{{file_path_syslogd_flags}}"
+  notify: service restart syslog
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - remove
+   - unix
+   - denyhosts
+
 - name: file remove allowed-hosts
   file:
    state: 'absent'
@@ -72,6 +99,28 @@
   file:
    state: 'absent'
    path: "{{file_path_denyhosts_conf}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - denyhosts
+
+- name: file remove hosts.allow
+  file:
+   state: 'absent'
+   path: "{{file_path_hosts_allow}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - remove
+   - unix
+   - denyhosts
+
+- name: file remove hosts.block
+  file:
+   state: 'absent'
+   path: "{{file_path_hosts.block}}"
+  when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
    - remove

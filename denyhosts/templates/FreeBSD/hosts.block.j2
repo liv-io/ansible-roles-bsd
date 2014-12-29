@@ -1,11 +1,10 @@
----
 #-------------------------------------------------------------------------------
 # INFORMATION
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible handler file
+#   |         |  Name   : hosts.block
+#   |  _   _  |  Type   : hosts configuration file
 #   | [_] [_] |  Role   : denyhosts
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -21,22 +20,3 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: include variables
-  include_vars: "{{item}}"
-  with_first_found:
-   - "../vars/{{ansible_os_family}}.yml"
-   - "../vars/main.yml"
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
-
-- name: service restart denyhosts
-  service:
-   state: 'restarted'
-   name: "{{service_name_denyhosts}}"
-
-- name: service restart syslog
-  service:
-   state: 'restarted'
-   name: "{{service_name_syslog}}"

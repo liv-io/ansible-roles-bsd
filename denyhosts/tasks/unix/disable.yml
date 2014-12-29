@@ -28,6 +28,77 @@
    - "../../vars/main.yml"
 
 #-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create allowed-hosts
+  template:
+   src: "{{file_src_allowed_hosts}}"
+   dest: "{{file_path_allowed_hosts}}"
+   mode: "{{file_mode_allowed_hosts}}"
+   owner: "{{file_owner_allowed_hosts}}"
+   group: "{{file_group_allowed_hosts}}"
+  tags:
+   - files
+   - disable
+   - unix
+   - denyhosts
+
+- name: template create denyhosts.conf
+  template:
+   src: "{{file_src_denyhosts_conf}}"
+   dest: "{{file_path_denyhosts_conf}}"
+   mode: "{{file_mode_denyhosts_conf}}"
+   owner: "{{file_owner_denyhosts_conf}}"
+   group: "{{file_group_denyhosts_conf}}"
+  tags:
+   - files
+   - disable
+   - unix
+   - denyhosts
+
+- name: line disable denyhosts_enable
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_denyhosts_enable}}=\"NO\" # Ansible: Disable denyhosts"
+   regexp: "^{{file_line_denyhosts_enable}}="
+   dest: "{{file_path_denyhosts_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - disable
+   - unix
+   - denyhosts
+
+- name: template create hosts.allow
+  template:
+   src: "{{file_src_hosts_allow}}"
+   dest: "{{file_path_hosts_allow}}"
+   mode: "{{file_mode_hosts_allow}}"
+   owner: "{{file_owner_hosts_allow}}"
+   group: "{{file_group_hosts_allow}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - disable
+   - unix
+   - denyhosts
+
+- name: line create syslogd_flags
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_syslogd_flags}}=\"-c\" # Ansible: Config denyhosts"
+   regexp: "^{{file_line_syslogd_flags}}="
+   dest: "{{file_path_syslogd_flags}}"
+  notify: service restart syslog
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - disable
+   - unix
+   - denyhosts
+
+#-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 

@@ -39,7 +39,6 @@
    owner: "{{file_owner_allowed_hosts}}"
    group: "{{file_group_allowed_hosts}}"
   notify: service restart denyhosts
-  when: (ansible_os_family == 'Gentoo')
   tags:
    - files
    - enable
@@ -54,6 +53,47 @@
    owner: "{{file_owner_denyhosts_conf}}"
    group: "{{file_group_denyhosts_conf}}"
   notify: service restart denyhosts
+  tags:
+   - files
+   - enable
+   - unix
+   - denyhosts
+
+- name: template create hosts.allow
+  template:
+   src: "{{file_src_hosts_allow}}"
+   dest: "{{file_path_hosts_allow}}"
+   mode: "{{file_mode_hosts_allow}}"
+   owner: "{{file_owner_hosts_allow}}"
+   group: "{{file_group_hosts_allow}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - enable
+   - unix
+   - denyhosts
+
+- name: line enable denyhosts_enable
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_denyhosts_enable}}=\"YES\" # Ansible: Enable denyhosts"
+   regexp: "^{{file_line_denyhosts_enable}}="
+   dest: "{{file_path_denyhosts_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - enable
+   - unix
+   - denyhosts
+
+- name: line create syslogd_flags
+  lineinfile:
+   state: 'present'
+   line: "{{file_line_syslogd_flags}}=\"-c\" # Ansible: Config denyhosts"
+   regexp: "^{{file_line_syslogd_flags}}="
+   dest: "{{file_path_syslogd_flags}}"
+  notify: service restart syslog
+  when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
    - enable

@@ -43,11 +43,9 @@ ENABLE
     roles:
      - role: denyhosts
        denyhosts_state: 'enable'
-       admin_email: 'root'
+       admin_email: 'root@domain.tld'
        allowed_hosts:
-        - '127.0.0.1'
-        - '192.168.1.*'
-        - '192.168.2.*'
+        - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
        block_service: 'sshd'
        deny_threshold_invalid: '3'
        deny_threshold_valid: '5'
@@ -58,11 +56,9 @@ DISABLE
     roles:
      - role: denyhosts
        denyhosts_state: 'disable'
-       admin_email: 'root'
+       admin_email: 'root@domain.tld'
        allowed_hosts:
-        - '127.0.0.1'
-        - '192.168.1.*'
-        - '192.168.2.*'
+        - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
        block_service: 'sshd'
        deny_threshold_invalid: '3'
        deny_threshold_valid: '5'
@@ -73,6 +69,12 @@ REMOVE
     roles:
      - role: denyhosts
        denyhosts_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: denyhosts
+       denyhosts_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -87,10 +89,11 @@ ROLE
     Type       : String
     Default    : 'enable'
     Options    :
-      Install: 'true' | 'yes' | 'install'
-      Enable : 'start' | 'on' | 'enable'
-      Disable: 'stop' | 'off' | 'disable'
-      Remove : 'false' | 'no' | 'remove'
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
   denyhosts_admin_email
     Description: Define the 'denyhosts_admin_email' option.
@@ -98,9 +101,10 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'root'
+    Default    : "root@{{ansible_domain}}"
     Options    :
       Examples: 'user' | 'user@localhost' | 'user.domain.tld'
+      None    : ''
 
   denyhosts_age_reset_invalid
     Description: Set the 'denyhosts_age_reset_invalid' option.
@@ -154,8 +158,9 @@ ROLE
     Type       : Array
     Default    : ['127.0.0.1']
     Options    :
-      Examples: ['127.0.0.1', '192.168.1.*', '192.168.2.*'] |
-                ['127.0.0.1', '192.168.3.*']
+      Examples: [{config: {'127.0.0.1'}, comment: 'Allow from localhost'}] |
+                [{config: {'192.168.1.*', '192.168.2.*'},
+                  comment: 'Allow from local networks'}]
       None    : []
 
   denyhosts_allowed_hosts_template
@@ -180,8 +185,8 @@ ROLE
     Type       : String
     Default    : 'sshd'
     Options    :
-      ALL    : 'all' | 'ALL' | 'any' | 'ANY'
-      SSH    : 'sshd' | 'SSHD' | 'ssh' | 'SSH'
+      ALL: 'all' | 'ALL' | 'any' | 'ANY'
+      SSH: 'sshd' | 'SSHD' | 'ssh' | 'SSH'
 
   denyhosts_daemon_sleep
     Description: Set the 'denyhosts_daemon_sleep' option.
@@ -268,6 +273,34 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+  denyhosts_hosts_allow_template
+    Description: Define the template source for 'hosts.allow.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
+                 'denyhosts/templates/example/hosts.allow.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  denyhosts_hosts_block_template
+    Description: Define the template source for 'hosts.block.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
+                 'denyhosts/templates/example/hosts.block.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
   denyhosts_purge_deny
     Description: Set the 'denyhosts_purge_deny' option.
     Implemented: 0.1
@@ -299,6 +332,7 @@ ROLE
     Default    : 'localhost'
     Options    :
       Examples: 'localhost' | 'host' | 'host@domain.tld'
+      None    : ''
 
   denyhosts_smtp_from
     Description: Define the 'denyhosts_smtp_from' option.
@@ -310,6 +344,7 @@ ROLE
     Options    :
       Examples: 'Comment user' | 'Comment user@localhost' |
                 'Comment user@domain.tld' | 'user@domain.tld'
+      None    : ''
 
   denyhosts_smtp_password
     Description: Define the 'denyhosts_smtp_password' option.
@@ -319,8 +354,8 @@ ROLE
     Type       : String
     Default    : 'disable'
     Options    :
-      Examples: '$uP_3rp-@$5.WoR!d'
-      Disable : 'false' | 'no' | 'disable'
+      Examples: '8PMx3WTty.zdDk_ZfrcTa6MAC-gewa4A'
+      None    : ''
 
   denyhosts_smtp_port
     Description: Set the 'denyhosts_smtp_port' option.
@@ -341,6 +376,7 @@ ROLE
     Default    : "DenyHosts: Report ({{ansible_hostname}})"
     Options    :
       Examples: 'DenyHost' | 'DenyHosts Report'
+      None    : ''
 
   denyhosts_smtp_username
     Description: Define the 'denyhosts_smtp_username' option.
@@ -348,10 +384,10 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'disable'
+    Default    : ''
     Options    :
       Examples: 'username' | 'username@domain.tld'
-      Disable : 'false' | 'no' | 'disable'
+      None    : ''
 
   denyhosts_syslog_report
     Description: Control the 'denyhosts_syslog_report' option.

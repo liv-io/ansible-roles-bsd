@@ -25,7 +25,7 @@
 denyhosts_state: 'enable'
 
 # denyhosts_admin_email
-denyhosts_admin_email: 'root'
+denyhosts_admin_email: "root@{{ansible_domain}}"
 
 # denyhosts_age_reset_invalid
 denyhosts_age_reset_invalid: ''
@@ -41,7 +41,7 @@ denyhosts_age_reset_valid: ''
 
 # denyhosts_allowed_hosts
 denyhosts_allowed_hosts:
- - '127.0.0.1'
+ - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
 
 # denyhosts_allowed_hosts_template
 denyhosts_allowed_hosts_template: 'main'
@@ -72,6 +72,12 @@ denyhosts_deny_threshold_valid: '2'
 
 # denyhosts_hostname_lookup
 denyhosts_hostname_lookup: 'disable'
+
+# denyhosts_hosts_allow_template
+denyhosts_hosts_allow_template: "{{ansible_os_family}}"
+
+# denyhosts_hosts_block_template
+denyhosts_hosts_block_template: "{{ansible_os_family}}"
 
 # denyhosts_purge_deny
 denyhosts_purge_deny: 'disable'
