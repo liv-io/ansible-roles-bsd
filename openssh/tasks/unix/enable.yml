@@ -52,7 +52,9 @@
    mode: "{{file_mode_ssh_config}}"
    owner: "{{file_owner_ssh_config}}"
    group: "{{file_group_ssh_config}}"
-  notify: service reload openssh
+  notify:
+   - command validate openssh
+   - service reload openssh
   tags:
    - files
    - enable
@@ -66,7 +68,9 @@
    mode: "{{file_mode_sshd_config}}"
    owner: "{{file_owner_sshd_config}}"
    group: "{{file_group_sshd_config}}"
-  notify: service reload openssh
+  notify:
+   - command validate openssh
+   - service reload openssh
   tags:
    - files
    - enable
