@@ -92,7 +92,7 @@ denyhosts_smtp_host: 'localhost'
 denyhosts_smtp_from: "root@{{ansible_domain}}"
 
 # denyhosts_smtp_password
-denyhosts_smtp_password: 'disable'
+denyhosts_smtp_password: ''
 
 # denyhosts_smtp_port
 denyhosts_smtp_port: '25'
@@ -101,7 +101,7 @@ denyhosts_smtp_port: '25'
 denyhosts_smtp_subject: "DenyHosts: Report ({{ansible_hostname}})"
 
 # denyhosts_smtp_username
-denyhosts_smtp_username: 'disable'
+denyhosts_smtp_username: ''
 
 # denyhosts_syslog_report
 denyhosts_syslog_report: 'disable'

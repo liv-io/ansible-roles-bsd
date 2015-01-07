@@ -352,7 +352,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'disable'
+    Default    : ''
     Options    :
       Examples: '8PMx3WTty.zdDk_ZfrcTa6MAC-gewa4A'
       None    : ''
