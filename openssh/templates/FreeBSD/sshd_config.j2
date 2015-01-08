@@ -40,13 +40,21 @@
 # Note that some of FreeBSD's defaults differ from OpenBSD's, and
 # FreeBSD has a few additional options.
 
+#-------------------------------------------------------------------------------
+# PORT
+#-------------------------------------------------------------------------------
+
 {% if (openssh_port is defined) and not ((openssh_port == None) or (openssh_port == '') or (openssh_port == [])) %}
 {% for port in openssh_port %}
-Port {{port|int(22)}}
+Port {{(port|int(22))}}
 {% endfor %}
 {% else %}
 Port 22
 {% endif %}
+
+#-------------------------------------------------------------------------------
+# ADDRESS FAMILY
+#-------------------------------------------------------------------------------
 
 {% if (openssh_address_family is defined) and ((openssh_address_family == 'any') or (openssh_address_family == 'ANY') or (openssh_address_family == 'all') or (openssh_address_family == 'ALL')) %}
 AddressFamily any
@@ -58,6 +66,10 @@ AddressFamily inet6
 #AddressFamily
 {% endif %}
 
+#-------------------------------------------------------------------------------
+# LISTEN ADDRESS
+#-------------------------------------------------------------------------------
+
 {% if (openssh_listen_address is defined) and not ((openssh_listen_address == None) or (openssh_listen_address == '') or (openssh_listen_address == [])) %}
 {% for listen_address in openssh_listen_address %}
 ListenAddress {{listen_address}}
@@ -67,15 +79,65 @@ ListenAddress {{listen_address}}
 #ListenAddress ::
 {% endif %}
 
+#-------------------------------------------------------------------------------
+# PROTOCOL
+#-------------------------------------------------------------------------------
+
 # The default requires explicit activation of protocol 1
 Protocol 2
 
+#-------------------------------------------------------------------------------
+# HOST KEY
+#-------------------------------------------------------------------------------
+
+{% if (openssh_host_key is defined) and not ((openssh_host_key == None) or (openssh_host_key == '') or (openssh_host_key == [])) %}
+{% for host_key in openssh_host_key %}
+HostKey {{(host_key|e)}}
+{% endfor %}
+{% else %}
 # HostKey for protocol version 1
 #HostKey /etc/ssh/ssh_host_key
 # HostKeys for protocol version 2
-#HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_rsa_key
 #HostKey /etc/ssh/ssh_host_dsa_key
 #HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# CIPHERS
+#-------------------------------------------------------------------------------
+
+{% if (openssh_ciphers is defined) and not ((openssh_ciphers == None) or (openssh_ciphers == '') or (openssh_ciphers == [])) %}
+Ciphers {% for ciphers in openssh_ciphers %}{{ciphers}}{% if not loop.last %},{% endif %}{% endfor %}
+
+{% else %}
+Ciphers chacha20-poly1305@openssh.com,aes256-ctr,aes192-ctr
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# KEY EXCHANGE ALGORITHMs
+#-------------------------------------------------------------------------------
+
+{% if (openssh_kex_algorithms is defined) and not ((openssh_kex_algorithms == None) or (openssh_kex_algorithms == '') or (openssh_kex_algorithms == [])) %}
+KexAlgorithms {% for kex_algorithms in openssh_kex_algorithms %}{{kex_algorithms}}{% if not loop.last %},{% endif %}{% endfor %}
+
+{% else %}
+KexAlgorithms curve25519-sha256@libssh.org
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# MESSAGE AUTHENTICATION CODE ALGORITHMS
+#-------------------------------------------------------------------------------
+
+{% if (openssh_macs is defined) and not ((openssh_macs == None) or (openssh_macs == '') or (openssh_macs == [])) %}
+MACs {% for macs in openssh_macs %}{{macs}}{% if not loop.last %},{% endif %}{% endfor %}
+
+{% else %}
+MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160
+{% endif %}
+
+#-------------------------------------------------------------------------------
 
 # Lifetime and size of ephemeral version 1 server key
 #KeyRegenerationInterval 1h
@@ -84,10 +146,18 @@ Protocol 2
 # Ciphers and keying
 #RekeyLimit default none
 
+#-------------------------------------------------------------------------------
+# LOGGING
+#-------------------------------------------------------------------------------
+
 # Logging
 # obsoletes QuietMode and FascistLogging
 #SyslogFacility AUTH
 #LogLevel INFO
+
+#-------------------------------------------------------------------------------
+# AUTHENTICATION
+#-------------------------------------------------------------------------------
 
 # Authentication:
 
@@ -158,6 +228,10 @@ ChallengeResponseAuthentication no
 # and ChallengeResponseAuthentication to 'no'.
 UsePAM yes
 
+#-------------------------------------------------------------------------------
+# FORWARDING
+#-------------------------------------------------------------------------------
+
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
 #GatewayPorts no
@@ -174,6 +248,10 @@ X11UseLocalhost yes
 X11UseLocalhost no
 {% endif %}
 {% endif %}
+
+#-------------------------------------------------------------------------------
+# OTHER
+#-------------------------------------------------------------------------------
 
 #PermitTTY yes
 {% if (openssh_print_motd is defined) and ((openssh_print_motd == 'true') or (openssh_print_motd == 'yes') or (openssh_print_motd == 'enable')) %}
@@ -215,7 +293,10 @@ UseDNS yes
 #ChrootDirectory none
 #VersionAddendum FreeBSD-20140420
 
-# no default banner path
+#-------------------------------------------------------------------------------
+# BANNER
+#-------------------------------------------------------------------------------
+
 # no default banner path
 {% if (openssh_banner is defined) and ((openssh_banner == 'false') or (openssh_banner == 'no') or (openssh_banner == 'disable')) %}
 Banner none
@@ -223,8 +304,14 @@ Banner none
 Banner {{file_path_banner}}
 {% endif %}
 
+#-------------------------------------------------------------------------------
+# SUBSYSTEM
+#-------------------------------------------------------------------------------
+
 # override default of no subsystems
 Subsystem	sftp	/usr/libexec/sftp-server
+
+#-------------------------------------------------------------------------------
 
 # Disable HPN tuning improvements.
 #HPNDisabled no

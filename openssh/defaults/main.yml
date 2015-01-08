@@ -39,6 +39,9 @@ openssh_banner: 'enable'
 # openssh_banner_template
 openssh_banner_template: 'main'
 
+# openssh_ciphers
+openssh_ciphers: ['chacha20-poly1305@openssh.com', 'aes256-ctr', 'aes192-ctr']
+
 # openssh_compression
 openssh_compression: 'delayed'
 
@@ -48,12 +51,24 @@ openssh_deny_groups: []
 # openssh_deny_users
 openssh_deny_users: []
 
+# openssh_host_key
+openssh_host_key: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ed25519_key']
+
+# openssh_kex_algorithms
+openssh_kex_algorithms: ['curve25519-sha256@libssh.org']
+
 # openssh_listen_address
 openssh_listen_address:
  - '0.0.0.0'
 
+# openssh_macs
+openssh_macs: ['hmac-sha2-512-etm@openssh.com', 'hmac-sha2-256-etm@openssh.com', 'hmac-ripemd160-etm@openssh.com', 'hmac-sha2-512', 'hmac-sha2-256', 'hmac-ripemd160']
+
 # openssh_match
 openssh_match: []
+
+# openssh_moduli_template
+openssh_moduli_template: "{{ansible_os_family}}"
 
 # openssh_password_authentication
 openssh_password_authentication: 'yes'

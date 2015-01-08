@@ -28,6 +28,9 @@
 # banner
 file_group_banner: 'wheel'
 
+# moduli
+file_group_moduli: 'wheel'
+
 # ssh_config
 file_group_ssh_config: 'wheel'
 

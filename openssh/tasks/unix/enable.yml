@@ -45,6 +45,20 @@
    - unix
    - openssh
 
+- name: template create moduli
+  template:
+   src: "{{file_src_moduli}}"
+   dest: "{{file_path_moduli}}"
+   mode: "{{file_mode_moduli}}"
+   owner: "{{file_owner_moduli}}"
+   group: "{{file_group_moduli}}"
+  notify: service reload openssh
+  tags:
+   - files
+   - enable
+   - unix
+   - openssh
+
 - name: template create ssh_config
   template:
    src: "{{file_src_ssh_config}}"

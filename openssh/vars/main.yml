@@ -42,6 +42,13 @@ file_mode_banner: '0644'
 file_owner_banner: 'root'
 file_group_banner: 'root'
 
+# moduli
+file_src_moduli: "../../templates/{{(openssh_moduli_template|e) if (openssh_moduli_template is defined) and not ((openssh_moduli_template == None) or (openssh_moduli_template == '')) else ansible_os_family}}/moduli.j2"
+file_path_moduli: '/etc/ssh/moduli'
+file_mode_moduli: '0600'
+file_owner_moduli: 'root'
+file_group_moduli: 'root'
+
 # ssh_config
 file_src_ssh_config: "../../templates/{{(openssh_ssh_config_template|e) if (openssh_ssh_config_template is defined) and not ((openssh_ssh_config_template == None) or (openssh_ssh_config_template == '')) else ansible_os_family}}/ssh_config.j2"
 file_path_ssh_config: '/etc/ssh/ssh_config'

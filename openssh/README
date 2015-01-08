@@ -111,18 +111,6 @@ ROLE
       IPv4     : 'inet' | 'ipv4'
       IPv6     : 'inet6' | 'ipv6'
 
-  openssh_match
-    Description: Define the 'openssh_match' option.
-    Implemented: 0.7
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{name: 'sftpuser', type: 'User', config: {'ChrootDirectory': '/opt/sftp', 'ForceCommand': 'internal-sftp'}},
-                 {name: 'sftpgroup', type: 'Group', config: {'ChrootDirectory': '/opt/sftp', 'ForceCommand': 'internal-sftp'}}]
-      None    : []
-
   openssh_allow_groups
     Description: Define the 'openssh_allow_groups' option.
     Implemented: 0.1
@@ -156,7 +144,7 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  openssh_banner_templatea
+  openssh_banner_template
     Description: Define the template source for 'banner.j2'.
                  Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
@@ -169,6 +157,16 @@ ROLE
     Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
+
+  openssh_ciphers
+    Description: Define the 'openssh_ciphers' option.
+    Implemented: 0.8
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['chacha20-poly1305@openssh.com', 'aes256-ctr', 'aes192-ctr']
+    Options    :
+      Examples: ['chacha20-poly1305@openssh.com', 'aes256-ctr']
 
   openssh_compression
     Description: Control the 'openssh_compression' option.
@@ -204,6 +202,26 @@ ROLE
       Examples: ['user1', 'user2', 'user3']
       None    : []
 
+  openssh_host_key
+    Description: Define the 'openssh_host_key' option.
+    Implemented: 0.8
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ed25519_key']
+    Options    :
+      Examples: ['/etc/ssh/ssh_host_rsa_key']
+
+  openssh_kex_algorithms
+    Description: Define the 'openssh_kex_algorithms' option.
+    Implemented: 0.8
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['curve25519-sha256@libssh.org']
+    Options    :
+      Examples: ['curve25519-sha256@libssh.org', 'diffie-hellman-group-exchange-sha256']
+
   openssh_listen_address
     Description: Define the 'openssh_listen_address' option.
     Implemented: 0.1
@@ -212,8 +230,44 @@ ROLE
     Type       : Array
     Default    : ['0.0.0.0']
     Options    :
-      Examples: ['0.0.0.0' | '127.0.0.1', '::', '::1'] |
+      Examples: ['0.0.0.0'] | ['127.0.0.1', '::', '::1'] |
                 ['192.168.1.1', '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458']
+
+  openssh_macs
+    Description: Define the 'openssh_macs' option.
+    Implemented: 0.8
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['hmac-sha2-512-etm@openssh.com', 'hmac-sha2-256-etm@openssh.com', 'hmac-ripemd160-etm@openssh.com', 'hmac-sha2-512', 'hmac-sha2-256', 'hmac-ripemd160']
+    Options    :
+      Examples: ['hmac-sha2-512-etm@openssh.com', 'hmac-sha2-256-etm@openssh.com', 'hmac-sha2-512']
+
+  openssh_match
+    Description: Define the 'openssh_match' option.
+    Implemented: 0.7
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'sftpuser', type: 'User', config: {'ChrootDirectory': '/opt/sftp', 'ForceCommand': 'internal-sftp'}},
+                 {name: 'sftpgroup', type: 'Group', config: {'ChrootDirectory': '/opt/sftp', 'ForceCommand': 'internal-sftp'}}]
+      None    : []
+
+  openssh_moduli_template
+    Description: Define the template source for 'moduli.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
+                 'openssh/templates/example/moduli.j2'
+    Implemented: 0.8
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
 
   openssh_password_authentication
     Description: Control the 'openssh_password_authentication'
@@ -379,7 +433,7 @@ DEPENDENCIES
 
 PACKAGES
   openssh
-    Version: >= 5.3
+    Version: >= 6.6
     Name   :
       Gentoo 2: 'openssh'
 
