@@ -126,3 +126,14 @@
    - remove
    - unix
    - denyhosts
+
+- name: file remove data.dir
+  file:
+   state: 'absent'
+   path: "{{file_path_data_dir}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - remove
+   - unix
+   - denyhosts

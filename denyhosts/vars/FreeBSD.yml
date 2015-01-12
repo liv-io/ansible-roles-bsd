@@ -29,6 +29,12 @@
 file_path_allowed_hosts: '/usr/local/share/denyhosts/data/allowed-hosts'
 file_group_allowed_hosts: 'wheel'
 
+# data.dir
+file_path_data_dir: '/usr/local/share/denyhosts/data'
+file_mode_data_dir: '0755'
+file_owner_data_dir: 'root'
+file_group_data_dir: 'wheel'
+
 # denyhosts.conf
 file_path_denyhosts_conf: '/usr/local/etc/denyhosts.conf'
 file_group_denyhosts_conf: 'wheel'
