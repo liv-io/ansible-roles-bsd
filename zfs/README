@@ -1,0 +1,284 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : zfs
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : sys-fs
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: Simplified BSD License
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages zfs.
+
+ZFS is a combined file system and logical volume manager designed by Sun
+Microsystems.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: zfs
+       zfs_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+     - role: zfs
+       zfs_state: 'enable'
+       zfs_scrub_pools_state: 'enable'
+       zfs_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
+       zfs_monitor_mail_recipient: ["user@domain.tld"]
+       zfs_monitor_mail_sender: 'root@domain.tld'
+       zfs_monitor_mail_state: 'true'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: zfs
+       zfs_state: 'disable'
+       zfs_scrub_pools_state: 'disable'
+       zfs_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
+       zfs_monitor_mail_recipient: ["user@domain.tld"]
+       zfs_monitor_mail_sender: 'root@domain.tld'
+       zfs_monitor_mail_state: 'true'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: zfs
+       zfs_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: zfs
+       zfs_state: 'inactive'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  zfs_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+  zfs_monitor_mail_recipient
+    Description: Define the 'zfs_monitor_mail_recipient' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ["admin@{{ansible_domain}}"]
+    Options    :
+      Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld'] |
+                ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
+
+  zfs_monitor_mail_sender
+    Description: Define the 'zfs_monitor_mail_sender' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "root@{{ansible_domain}}"
+    Options    :
+      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
+
+  zfs_monitor_mail_state
+    Description: Control the 'zfs_monitor_mail_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  zfs_monitor_mail_subject
+    Description: Define the 'zfs_monitor_mail_subject' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "ZFS: Scrub Pool - Error ({{ansible_hostname}})"
+    Options    :
+      Examples: 'ZFS: Scrub Pool - Error'
+
+  zfs_pools
+    Description: Define the 'zfs_pools' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['tank'] | ['ssd_pool', 'hdd_pool'] |
+                ['ssd-slc_pool', 'ssd-mlc_pool', 'ssd-tlc_pool']
+      None    : []
+
+  zfs_scrub_pools_cron_hour
+    Description: Set the 'zfs_scrub_pools_cron_hour' option.
+                 Specify a value between 0-24.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 2
+    Options    :
+      Examples: 5 | 11 | 15 | 20 | 23
+
+  zfs_scrub_pools_cron_minute
+    Description: Set the 'zfs_scrub_pools_cron_minute' option.
+                 Specify a value between 0-60.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 20
+    Options    :
+      Examples: 5 | 11 | 15 | 20 | 23
+
+  zfs_scrub_pools_cron_weekday
+    Description: Set the 'zfs_scrub_pools_cron_weekday' option.
+                 Specify a value between 0-7.
+                 Sunday   : 0    |    Thursday : 4
+                 Monday   : 1    |    Friday   : 5
+                 Tuesday  : 2    |    Saturday : 6
+                 Wednesday: 3    |    Sunday   : 7
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 6
+    Options    :
+      Examples: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+
+  zfs_scrub_pools_state
+    Description: Control the 'zfs_scrub_pools_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'start' | 'on' | 'enable'
+      Disable: 'stop' | 'off' | 'disable'
+
+  zfs_zfs_scrub_pools_sh_template
+    Description: Define the template source for 'zfs_scrub-pools.sh.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'zfs/templates/example/zfs_scrub-pools.sh.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  zfs_zfs_scrub_pools_cron_template
+    Description: Define the template source for 'zfs_scrub-pools.cron.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'zfs/templates/example/zfs_scrub-pools.cron.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'main'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+  common
+
+  mailx
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
+    Version: 2
+      Status: Planned
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

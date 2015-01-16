@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : zfs
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((zfs_state == 'false') or (zfs_state == 'no') or (zfs_state == 'remove') or (zfs_state == 'quiesce') or (zfs_state == 'inactive'))
+
+- name: task include enable
+  include: enable.yml
+  when: (zfs_state == 'start') or (zfs_state == 'on') or (zfs_state == 'enable')
+
+- name: task include disable
+  include: disable.yml
+  when: (zfs_state == 'stop') or (zfs_state == 'off') or (zfs_state == 'disable')
+
+- name: task include remove
+  include: remove.yml
+  when: (zfs_state == 'false') or (zfs_state == 'no') or (zfs_state == 'remove')

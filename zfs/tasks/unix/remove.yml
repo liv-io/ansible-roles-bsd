@@ -1,0 +1,76 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : remove.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : zfs
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: file remove zfs_scrub-pools.cron
+  file:
+   state: 'absent'
+   path: "{{file_path_zfs_scrub_pools_cron}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - files
+   - remove
+   - unix
+   - zfs
+
+- name: line remove zfs_scrub-pools
+  lineinfile:
+   state: 'absent'
+   line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
+   regexp: "# Ansible: zfs_scrub-pools$"
+   dest: "{{file_path_zfs_scrub_pools}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - files
+   - remove
+   - unix
+   - zfs
+
+- name: file remove zfs_scrub-pools.sh
+  file:
+   state: 'absent'
+   path: "{{file_path_zfs_scrub_pools_sh}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - zfs
+
+- name: file remove zfs-script.dir
+  file:
+   state: 'absent'
+   path: "{{file_path_zfs_script_dir}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - zfs

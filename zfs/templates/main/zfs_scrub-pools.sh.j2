@@ -1,0 +1,286 @@
+#!/usr/bin/env sh
+
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : zfs_scrub-pools.sh
+#   |  _   _  |  Type   : shell script
+#   | [_] [_] |  Role   : zfs
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+# This script scrubs ZFS pools.
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# SHELL VARIABLES
+#-------------------------------------------------------------------------------
+
+SHELL='/bin/sh'
+PATH='/sbin:/bin:/usr/sbin:/usr/bin'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+which='/usr/bin/which' && [ -x $which ] || exit 0100
+basename=$($which basename) || exit 0101
+date=$($which date) || exit 0102
+echo=$($which echo) || exit 0103
+expr=$($which expr) || exit 0104
+grep=$($which grep) || exit 0105
+hostname=$($which hostname) || exit 0106
+logger=$($which logger) || exit 0107
+{% if (zfs_monitor_mail_state is defined) and ((zfs_monitor_mail_state == 'true') or (zfs_monitor_mail_state == 'yes') or (zfs_monitor_mail_state == 'enable')) %}
+mailx=$($which mailx) || exit 0108
+{% endif %}
+rm=$($which rm) || exit 0109
+sleep=$($which sleep) || exit 0110
+touch=$($which touch) || exit 0111
+whoami=$($which whoami) || exit 0112
+zpool=$($which zpool) || exit 0113
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+# Get the short host name
+host=$($hostname -s) || exit 0200
+
+# Get the script name and PID
+script="$($basename $0)[$$]" || exit 0201
+
+# Get the start date and time
+date_start=$($date '+%Y-%m-%dT%H:%M:%S%z')
+
+# Get the start time (seconds since 1970-01-01T00:00:00+00:00)
+time_start=$($date '+%s')
+
+# Define the script user
+user='{{file_owner_zfs_scrub_pools_sh}}'
+
+# Define the lockfile location
+lockfile='{{file_path_zfs_script_dir}}/zfs_scrub-pools.lock'
+
+# Set the initial return value
+retval=0
+
+# Set the initial exit code
+code='0000'
+
+# Define the initial log severity
+severity='Debug'
+
+# Define the initial log message
+message='Please check log files for more information.'
+
+# Define the ZFS pools
+zfs_pools='{% if (zfs_pools is defined) and not ((zfs_pools == None) or (zfs_pools == '') or (zfs_pools == [])) %}{% for pool in zfs_pools %}{{(pool|e)}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %}'
+
+{% if (zfs_monitor_mail_state is defined) and ((zfs_monitor_mail_state == 'true') or (zfs_monitor_mail_state == 'yes') or (zfs_monitor_mail_state == 'enable')) %}
+# Define the mail sender
+mail_sender='{% if (zfs_monitor_mail_sender is defined) and not ((zfs_monitor_mail_sender == None) or (zfs_monitor_mail_sender == '')) %}{{(zfs_monitor_mail_sender|e)}}{% else %}root@{{(ansible_domain|e)}}{% endif %}'
+
+# Define the mail recipient
+mail_recipient='{% if (zfs_monitor_mail_recipient is defined) and not ((zfs_monitor_mail_recipient == None) or (zfs_monitor_mail_recipient == '') or (zfs_monitor_mail_recipient == [])) %}{% for mail_recipient in zfs_monitor_mail_recipient %}{{(mail_recipient|e)}}{% if not loop.last %},{% endif %}{% endfor %}{% else %}admin@{{ansible_domain}}{% endif %}'
+
+# Define the mail subject
+mail_subject='{% if (zfs_monitor_mail_subject is defined) and not ((zfs_monitor_mail_subject == None) or (zfs_monitor_mail_subject == '')) %}{{(zfs_monitor_mail_subject|e)}}{% else %}ZFS: Scrub Pool - Error ({{ansible_hostname}}){% endif %}'
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# FUNCTIONS
+#-------------------------------------------------------------------------------
+
+{% if (zfs_monitor_mail_state is defined) and ((zfs_monitor_mail_state == 'true') or (zfs_monitor_mail_state == 'yes') or (zfs_monitor_mail_state == 'enable')) %}
+# Mail monitoring
+mail_error () {
+  retval=$1
+  code=$2
+  severity=$3
+  message=$4
+  # Define the mail body
+  mail_body="--------------------------------------------------------------------------------
+ERROR
+--------------------------------------------------------------------------------
+
+Message     : $message
+Severity    : $severity
+Code        : $code
+Date & Time : $($date '+%Y-%m-%dT%H:%M:%S%z')
+
+--------------------------------------------------------------------------------
+SCRIPT
+--------------------------------------------------------------------------------
+
+Name        : zfs_scrub-pools.sh
+Type        : shell script
+PID         : $$
+
+--------------------------------------------------------------------------------
+SYSTEM
+--------------------------------------------------------------------------------
+
+Hostname    : {{ansible_hostname}}
+FQDN        : {{ansible_fqdn}}
+
+--------------------------------------------------------------------------------
+OPERATING SYSTEM
+--------------------------------------------------------------------------------
+
+Type        : {{ansible_system}}
+Family      : {{ansible_os_family}}
+Distribution: {{ansible_distribution}}
+Version     : {{ansible_distribution_version}}
+Architecture: {{ansible_architecture}}
+
+--------------------------------------------------------------------------------
+KERNEL
+--------------------------------------------------------------------------------
+
+Type        : {{ansible_system}}
+Version     : {{ansible_kernel}}
+
+--------------------------------------------------------------------------------
+MAIL
+--------------------------------------------------------------------------------
+
+Sender      : $mail_sender
+Recipient   : $mail_recipient
+Subject     : $mail_subject"
+
+{% if (ansible_os_family == 'FreeBSD') %}
+  $echo "$mail_body" | $mailx -s "$mail_subject" -F "$mail_recipient" > /dev/null 2>&1
+{% else %}
+  $echo "$mail_body" | $mailx -a "From: "$mail_sender"" -s "$mail_subject" "$mail_recipient" > /dev/null 2>&1
+{% endif %}
+}
+{% endif %}
+
+# Log and exit if return value is not equal zero
+log_and_exit_on_error () {
+  retval=$1
+  code=$2
+  severity=$3
+  message=$4
+  if [ $retval -ne 0 ]; then
+    $rm -f $lockfile
+    $echo "$($date '+%Y-%m-%dT%H:%M:%S%z') - $host - $script: "$severity: $code - $message""
+    $logger -t $script "$severity: $code - $message"
+{% if (zfs_monitor_mail_state is defined) and ((zfs_monitor_mail_state == 'true') or (zfs_monitor_mail_state == 'yes') or (zfs_monitor_mail_state == 'enable')) %}
+    mail_error $retval $code "$severity" "$message"
+{% endif %}
+    exit $retval
+  fi
+}
+
+#-------------------------------------------------------------------------------
+# CHECKS
+#-------------------------------------------------------------------------------
+
+# Check if script is running as correct user
+if [ "$($whoami)" != "$user" ]; then
+  code='0300'
+  severity='Error'
+  message="Please run script as user '$user'"
+  $echo "$($date '+%Y-%m-%dT%H:%M:%S%z') - $host - $script: "$severity "($code)": $message""
+  exit $code
+fi
+
+#-------------------------------------------------------------------------------
+# LOCKFILE
+#-------------------------------------------------------------------------------
+
+# Create lockfile
+if [ ! -e $lockfile ]; then
+  $touch $lockfile || log_and_exit_on_error "$?" '0400' 'Warning' 'Could not create lockfile. Please investigate.'
+else
+  log_and_exit_on_error "$?" '0401' 'Warning' 'Lockfile does already exist. Please investigate.'
+fi
+
+#-------------------------------------------------------------------------------
+# SCRIPT
+#-------------------------------------------------------------------------------
+
+# Scrub ZFS pools
+for pool in $zfs_pools ; do
+  # Wait while scrub is running
+  while $zpool status | $grep 'scrub in progress' > /dev/null 2>&1 ; do
+    sleep 60
+  done
+
+  # Scrub next ZFS pool
+  $zpool scrub $pool
+  log_and_exit_on_error "$?" '0500' 'Error' "Unable to scrub ZFS pool: '$pool'"
+done
+
+# Check ZFS pools
+for pool in $zfs_pools ; do
+  # Wait while scrub is running
+  while $zpool status | $grep 'scrub in progress' > /dev/null 2>&1 ; do
+    sleep 60
+  done
+
+  # Get next ZFS pool status
+  zfs_pool_status="$($zpool status -xv $pool)"
+  log_and_exit_on_error "$?" '0501' 'Error' "Unable to get ZFS pool status: '$pool'"
+
+  # Check next ZFS pool status
+  $echo "$zfs_pool_status" | $grep 'healthy' > /dev/null 2>&1
+  log_and_exit_on_error "$?" '0502' 'Critical' "ZFS pool is unhealthy: '$pool'"
+done
+
+#-------------------------------------------------------------------------------
+# LOCKFILE
+#-------------------------------------------------------------------------------
+
+# Delete lockfile
+if [ -e $lockfile ]; then
+  $rm -f $lockfile || log_and_exit_on_error "$?" '0402' 'Warning' 'Could not delete lockfile. Please investigate.'
+else
+  log_and_exit_on_error "$?" '0403' 'Warning' 'Lockfile did not exist. Please investigate.'
+fi
+
+#-------------------------------------------------------------------------------
+# LOGGING
+#-------------------------------------------------------------------------------
+
+# Get the end date and time
+date_end=$($date '+%Y-%m-%dT%H:%M:%S%z')
+
+# Get the end time (seconds since 1970-01-01T00:00:00+00:00)
+time_end=$($date '+%s')
+
+# Calculate execution time
+time_exec=$($expr $time_end - $time_start)
+
+# Convert execution time into human readable format
+{% if (ansible_os_family == 'Gentoo') %}
+time_hr=$($date -d "1970-01-01 $time_exec sec" '+%H:%M:%S')
+{% else %}
+time_hr=$($date -u -r "$time_exec" '+%H:%M:%S')
+{% endif %}
+
+# Logging and alerting
+retval=0
+code='0000'
+severity='Info'
+message='All ZFS pools are healthy.'
+$logger -t $script "$severity: $message"
+$logger -t $script "Duration: $time_hr"
+
+exit $retval
