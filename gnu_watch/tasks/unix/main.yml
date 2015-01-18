@@ -1,0 +1,30 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : gnu_watch
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((gnu_watch_state == 'false') or (gnu_watch_state == 'no') or (gnu_watch_state == 'remove') or (gnu_watch_state == 'quiesce') or (gnu_watch_state == 'inactive'))
+
+- name: task include remove
+  include: remove.yml
+  when: (gnu_watch_state == 'false') or (gnu_watch_state == 'no') or (gnu_watch_state == 'remove')
