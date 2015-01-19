@@ -24,13 +24,12 @@
 #
 #-------------------------------------------------------------------------------
 
-{% if (shell_histsize is defined) and not ((shell_histsize == None) or (shell_histsize == '') or (shell_histsize == 'false') or (shell_histsize == 'no') or (shell_histsize == 'disable')) %}
-# HISTSIZE
-HISTSIZE={{(shell_histsize|e)}}
-{% endif %}
+#-------------------------------------------------------------------------------
+# COLOR SUPPORT
+#-------------------------------------------------------------------------------
 
 {% if (shell_color_support is defined) and not ((shell_color_support == None) or (shell_color_support == 'false') or (shell_color_support == 'no') or (shell_color_support == 'disable')) %}
-# Color support (ls)
+# ls
 alias ls='ls -FI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}'
 alias la='ls -laF -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, list all files
 alias ll='ls -lFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}'  # long listing
@@ -38,14 +37,34 @@ alias lr='ls -lRFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_
 alias lt='ls -ltFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, sort by modification time
 alias lz='ls -lZFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, shellow MAC label
 
-# Color support (grep)
+# grep
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 {% endif %}
 
+#-------------------------------------------------------------------------------
+# SHELL VARIABLES
+#-------------------------------------------------------------------------------
+
+{% if (shell_histsize is defined) and not ((shell_histsize == None) or (shell_histsize == '') or (shell_histsize == 'false') or (shell_histsize == 'no') or (shell_histsize == 'disable')) %}
+# HISTSIZE
+HISTSIZE={{(shell_histsize|e)}}
+{% endif %}
+
+# PAGER
+{% if (shell_pager is defined) and not ((shell_pager == None) or (shell_pager == '')) %}
+PAGER='{{(shell_pager|e)}}'
+{% else %}
+PAGER=''
+{% endif %}
+export PAGER
+
+#-------------------------------------------------------------------------------
+# SHELL SAFETY
+#-------------------------------------------------------------------------------
+
 {% if (shell_safety is defined) and not ((shell_safety == None) or (shell_safety == 'false') or (shell_safety == 'no') or (shell_safety == 'disable')) %}
-# Shell safety
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'

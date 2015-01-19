@@ -97,6 +97,17 @@ ROLE
       Examples: '%Y-%m-%d %H:%M:%S' | '+%Y-%m-%d %H:%M:%S'
       Disable : 'false' | 'no' | 'disable'
 
+  shell_pager
+    Description: Define the default 'PAGER' variable.
+    Implemented: 0.3
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'less'
+    Options    :
+      Examples: 'less' | 'more' | '/usr/bin/less' | '/usr/bin/more'
+      None    : ''
+
   shell_profile_template
     Description: Define the template source for 'profile.j2'.
                  Any value other than "{{ansible_os_family}}" requires a Jinja2

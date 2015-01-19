@@ -24,14 +24,13 @@
 #
 #-------------------------------------------------------------------------------
 
-{% if (shell_histsize is defined) and not ((shell_histsize == None) or (shell_histsize == '') or (shell_histsize == 'false') or (shell_histsize == 'no') or (shell_histsize == 'disable')) %}
-# HISTSIZE
-HISTSIZE={{(shell_histsize|e)}}
-{% endif %}
+#-------------------------------------------------------------------------------
+# COLOR SUPPORT
+#-------------------------------------------------------------------------------
 
 {% if (shell_color_support is defined) and not ((shell_color_support == None) or (shell_color_support == 'false') or (shell_color_support == 'no') or (shell_color_support == 'disable')) %}
 if [ -x /usr/bin/dircolors ]; then
-  # Color support (ls)
+  # ls
   alias ls='ls -F --color=auto {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}--time-style="{{(shell_ls_time_style|e)}}"{% endif %}'
   alias la='ls -laF --color=auto {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}--time-style="{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, list all files
   alias ll='ls -lF --color=auto {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}--time-style="{{(shell_ls_time_style|e)}}"{% endif %}'  # long listing
@@ -39,19 +38,39 @@ if [ -x /usr/bin/dircolors ]; then
   alias lt='ls -ltF --color=auto {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}--time-style="{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, sort by modification time
   alias lz='ls -lZF --color=auto {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}--time-style="{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, shellow SELinux security context
 
-  # Color support (dir)
+  # dir
   alias dir='dir --color=auto'
   alias vdir='vdir --color=auto'
 
-  # Color support (grep)
+  # grep
   alias grep='grep --color=auto'
   alias fgrep='fgrep --color=auto'
   alias egrep='egrep --color=auto'
 fi
 {% endif %}
 
+#-------------------------------------------------------------------------------
+# SHELL VARIABLES
+#-------------------------------------------------------------------------------
+
+{% if (shell_histsize is defined) and not ((shell_histsize == None) or (shell_histsize == '') or (shell_histsize == 'false') or (shell_histsize == 'no') or (shell_histsize == 'disable')) %}
+# HISTSIZE
+HISTSIZE={{(shell_histsize|e)}}
+{% endif %}
+
+# PAGER
+{% if (shell_pager is defined) and not ((shell_pager == None) or (shell_pager == '')) %}
+PAGER='{{(shell_pager|e)}}'
+{% else %}
+PAGER=''
+{% endif %}
+export PAGER
+
+#-------------------------------------------------------------------------------
+# SHELL SAFETY
+#-------------------------------------------------------------------------------
+
 {% if (shell_safety is defined) and not ((shell_safety == None) or (shell_safety == 'false') or (shell_safety == 'no') or (shell_safety == 'disable')) %}
-# Shell safety
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'

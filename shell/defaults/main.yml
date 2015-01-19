@@ -33,6 +33,9 @@ shell_histsize: '262144'
 # shell_ls_time_style
 shell_ls_time_style: "{{'%Y-%m-%d %H:%M:%S' if (ansible_os_family == 'FreeBSD') else '+%Y-%m-%d %H:%M:%S'}}"
 
+# shell_pager
+shell_pager: 'less'
+
 # shell_profile_template
 shell_profile_template: "{{ansible_os_family}}"
 
