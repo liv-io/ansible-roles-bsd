@@ -109,6 +109,19 @@ ROLE
       Examples: [{config: {'INPUT_DEVICES="evdev synaptics"'}, comment: 'Input devices'}]
       None    : []
 
+  portage_cpu_flags_x86
+    Description: Define the 'portage_cpu_flags_x86' option. To generate the
+                 appropriate flags for your CPU please use the following tool:
+                 'app-portage/cpuinfo2cpuflags'
+    Implemented: 0.3
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['mmx', 'mmxext', 'sse', 'sse2', 'sse3', 'ssse3']
+      None    : []
+
   portage_cxxflags
     Description: Define the 'portage_cxxflags' option.
     Implemented: 0.1

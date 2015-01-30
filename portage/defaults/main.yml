@@ -33,6 +33,9 @@ portage_chost: 'x86_64-pc-linux-gnu'
 # portage_custom_options
 portage_custom_options: []
 
+# portage_cpu_flags_x86
+portage_cpu_flags_x86: []
+
 # portage_cxxflags
 portage_cxxflags: ['${CFLAGS}']
 

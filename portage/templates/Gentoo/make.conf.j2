@@ -60,6 +60,12 @@ CXXFLAGS="{% for cxxflags in portage_cxxflags %}{{cxxflags}}{% if not loop.last 
 CXXFLAGS="${CFLAGS}"
 {% endif %}
 
+{% if (portage_cpu_flags_x86 is defined) and not ((portage_cpu_flags_x86 == None) or (portage_cpu_flags_x86 == '') or (portage_cpu_flags_x86 == [])) %}
+CPU_FLAGS_X86="{% for cpu_flags_x86 in portage_cpu_flags_x86 %}{{cpu_flags_x86}}{% if not loop.last %} {% endif %}{% endfor %}"
+{% else %}
+#CPU_FLAGS_X86=""
+{% endif %}
+
 #-------------------------------------------------------------------------------
 # ADVANCED FEATURES
 #-------------------------------------------------------------------------------
