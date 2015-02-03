@@ -156,7 +156,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['127.0.0.1']
+    Default    : [{config: {'127.0.0.1'}, comment: 'Allow from localhost'}]
     Options    :
       Examples: [{config: {'127.0.0.1'}, comment: 'Allow from localhost'}] |
                 [{config: {'192.168.1.*', '192.168.2.*'},
