@@ -108,7 +108,7 @@ mail_subject='{% if (zfs_monitor_mail_subject is defined) and not ((zfs_monitor_
 
 {% if (zfs_monitor_mail_state is defined) and ((zfs_monitor_mail_state == 'true') or (zfs_monitor_mail_state == 'yes') or (zfs_monitor_mail_state == 'enable')) %}
 # Mail monitoring
-mail_error () {
+mail_error() {
   retval=$1
   code=$2
   severity=$3
@@ -172,15 +172,15 @@ Subject     : $mail_subject"
 {% endif %}
 
 # Log and exit if return value is not equal zero
-log_and_exit_on_error () {
+log_and_exit_on_error() {
   retval=$1
   code=$2
   severity=$3
   message=$4
-  if [ $retval -ne 0 ]; then
+  if [ $retval -ne 0 ] ; then
     $rm -f $lockfile
-    $echo "$($date '+%Y-%m-%dT%H:%M:%S%z') - $host - $script: "$severity: $code - $message""
-    $logger -t $script "$severity: $code - $message"
+    $echo "$($date '+%Y-%m-%dT%H:%M:%S%z') - $host - $script: "$severity: $message Code: $code""
+    $logger -t $script "$severity: $message Code: $code"
 {% if (zfs_monitor_mail_state is defined) and ((zfs_monitor_mail_state == 'true') or (zfs_monitor_mail_state == 'yes') or (zfs_monitor_mail_state == 'enable')) %}
     mail_error $retval $code "$severity" "$message"
 {% endif %}
@@ -188,16 +188,33 @@ log_and_exit_on_error () {
   fi
 }
 
+# Watch and wait on change
+watch_and_wait_on_change() {
+  watch_key=$1
+  watch_value=$2
+  watch_option=$3
+  time_step=$4
+  time_maximum=$5
+  while ${watch_key} | $grep ${watch_option} "${watch_value}" > /dev/null 2>&1 ; do
+    if [ $time_initial -lt $time_maximum ] ; then
+      time_initial=$($expr $time_initial + $time_step)
+      $sleep $time_initial
+    else
+      $sleep $time_initial
+    fi
+  done
+}
+
 #-------------------------------------------------------------------------------
 # CHECKS
 #-------------------------------------------------------------------------------
 
 # Check if script is running as correct user
-if [ "$($whoami)" != "$user" ]; then
+if [ "$($whoami)" != "$user" ] ; then
   code='0300'
   severity='Error'
   message="Please run script as user '$user'"
-  $echo "$($date '+%Y-%m-%dT%H:%M:%S%z') - $host - $script: "$severity "($code)": $message""
+  $echo "$($date '+%Y-%m-%dT%H:%M:%S%z') - $host - $script: "$severity: $message Code: $code""
   exit $code
 fi
 
@@ -206,7 +223,7 @@ fi
 #-------------------------------------------------------------------------------
 
 # Create lockfile
-if [ ! -e $lockfile ]; then
+if [ ! -e $lockfile ] ; then
   $touch $lockfile || log_and_exit_on_error "$?" '0400' 'Warning' 'Could not create lockfile. Please investigate.'
 else
   log_and_exit_on_error "$?" '0401' 'Warning' 'Lockfile does already exist. Please investigate.'
@@ -218,10 +235,9 @@ fi
 
 # Scrub ZFS pools
 for pool in $zfs_pools ; do
-  # Wait while scrub is running
-  while $zpool status | $grep 'scrub in progress' > /dev/null 2>&1 ; do
-    sleep 60
-  done
+  # Wait until previous scrub has finished
+  time_initial=0
+  watch_and_wait_on_change "$zpool status" 'scrub in progress' '' '5' '300'
 
   # Scrub next ZFS pool
   $zpool scrub $pool
@@ -230,17 +246,16 @@ done
 
 # Check ZFS pools
 for pool in $zfs_pools ; do
-  # Wait while scrub is running
-  while $zpool status | $grep 'scrub in progress' > /dev/null 2>&1 ; do
-    sleep 60
-  done
+  # Wait until previous scrub has finished
+  time_initial=0
+  watch_and_wait_on_change "$zpool status" 'scrub in progress' '' '5' '300'
 
   # Get next ZFS pool status
   zfs_pool_status="$($zpool status -xv $pool)"
   log_and_exit_on_error "$?" '0501' 'Error' "Unable to get ZFS pool status: '$pool'"
 
   # Check next ZFS pool status
-  $echo "$zfs_pool_status" | $grep 'healthy' > /dev/null 2>&1
+  echo "$zfs_pool_status" | $grep 'healthy' > /dev/null 2>&1
   log_and_exit_on_error "$?" '0502' 'Critical' "ZFS pool is unhealthy: '$pool'"
 done
 
@@ -249,7 +264,7 @@ done
 #-------------------------------------------------------------------------------
 
 # Delete lockfile
-if [ -e $lockfile ]; then
+if [ -e $lockfile ] ; then
   $rm -f $lockfile || log_and_exit_on_error "$?" '0402' 'Warning' 'Could not delete lockfile. Please investigate.'
 else
   log_and_exit_on_error "$?" '0403' 'Warning' 'Lockfile did not exist. Please investigate.'
@@ -280,7 +295,6 @@ retval=0
 code='0000'
 severity='Info'
 message='All ZFS pools are healthy.'
-$logger -t $script "$severity: $message"
-$logger -t $script "Duration: $time_hr"
+$logger -t $script "$severity: $message Duration: $time_hr"
 
 exit $retval
