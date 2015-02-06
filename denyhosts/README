@@ -155,7 +155,7 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : [{config: {'127.0.0.1'}, comment: 'Allow from localhost'}]
     Options    :
       Examples: [{config: {'127.0.0.1'}, comment: 'Allow from localhost'}] |
