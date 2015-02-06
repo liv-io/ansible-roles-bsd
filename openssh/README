@@ -297,7 +297,7 @@ ROLE
     Implemented: 0.2
     Required   : False
     Value      : Arbitrary
-    Type       : String
+    Type       : Array, Integer, String
     Default    : ['22']
     Options    :
       Examples: ['22'] | ['22', '222'] | ['22', '8022']
