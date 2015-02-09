@@ -112,7 +112,7 @@ Ciphers chacha20-poly1305@openssh.com,aes256-ctr,aes192-ctr
 {% endif %}
 
 #-------------------------------------------------------------------------------
-# KEY EXCHANGE ALGORITHMs
+# KEY EXCHANGE ALGORITHMS
 #-------------------------------------------------------------------------------
 
 {% if (openssh_kex_algorithms is defined) and not ((openssh_kex_algorithms == None) or (openssh_kex_algorithms == '') or (openssh_kex_algorithms == [])) %}
