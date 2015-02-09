@@ -62,14 +62,14 @@ file_owner_ansible_script_dir: 'ansible'
 file_group_ansible_script_dir: 'ansible'
 
 # ansible_run-playbook.sh
-file_src_ansible_run_playbook_sh: "../../../templates/{{(ansible_ansible_run_playbook_sh_template|e) if (ansible_ansible_run_playbook_sh_template is defined) and not ((ansible_ansible_run_playbook_sh_template == None) or (ansible_ansible_run_playbook_sh_template == '')) else 'main'}}/ansible_run-playbook.sh.j2"
+file_src_ansible_run_playbook_sh: "../../../templates/{{(ansible_ansible_run_playbook_sh_template|e)}}/ansible_run-playbook.sh.j2"
 file_path_ansible_run_playbook_sh: "{{file_path_ansible_script_dir}}/ansible_run-playbook.sh"
 file_mode_ansible_run_playbook_sh: '0750'
 file_owner_ansible_run_playbook_sh: 'ansible'
 file_group_ansible_run_playbook_sh: 'ansible'
 
 # ansible_run-playbook.cron
-file_src_ansible_run_playbook_cron: "../../../templates/{{(ansible_ansible_run_playbook_cron_template|e) if (ansible_ansible_run_playbook_cron_template is defined) and not ((ansible_ansible_run_playbook_cron_template == None) or (ansible_ansible_run_playbook_cron_template == '')) else 'main'}}/ansible_run-playbook.cron.j2"
+file_src_ansible_run_playbook_cron: "../../../templates/{{(ansible_ansible_run_playbook_cron_template|e)}}/ansible_run-playbook.cron.j2"
 file_path_ansible_run_playbook_cron: '/etc/cron.d/ansible_run-playbook'
 file_mode_ansible_run_playbook_cron: '0644'
 file_owner_ansible_run_playbook_cron: 'root'

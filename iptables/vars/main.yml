@@ -33,14 +33,14 @@ package_name_iptables: 'iptables'
 #-------------------------------------------------------------------------------
 
 # iptables
-file_src_iptables: "../../templates/{{(iptables_iptables_template|e) if (iptables_iptables_template is defined) and not ((iptables_iptables_template == None) or (iptables_iptables_template == '')) else 'main'}}/iptables.j2"
+file_src_iptables: "../../templates/{{(iptables_iptables_template|e)}}/iptables.j2"
 file_path_iptables: '/var/lib/iptables/rules-save'
 file_mode_iptables: '0600'
 file_owner_iptables: 'root'
 file_group_iptables: 'root'
 
 # ip6tables
-file_src_ip6tables: "../../templates/{{(iptables_ip6tables_template|e) if (iptables_ip6tables_template is defined) and not ((iptables_ip6tables_template == None) or (iptables_ip6tables_template == '')) else 'main'}}/ip6tables.j2"
+file_src_ip6tables: "../../templates/{{(iptables_ip6tables_template|e)}}/ip6tables.j2"
 file_path_ip6tables: '/var/lib/ip6tables/rules-save'
 file_mode_ip6tables: '0600'
 file_owner_ip6tables: 'root'

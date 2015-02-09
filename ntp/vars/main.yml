@@ -33,7 +33,7 @@ package_name_ntp: 'ntp'
 #-------------------------------------------------------------------------------
 
 # ntp.conf
-file_src_ntp_conf: "../../templates/{{(ntp_ntp_conf_template|e) if (ntp_ntp_conf_template is defined) and not ((ntp_ntp_conf_template == None) or (ntp_ntp_conf_template == '')) else ansible_os_family}}/ntp.conf.j2"
+file_src_ntp_conf: "../../templates/{{(ntp_ntp_conf_template|e)}}/ntp.conf.j2"
 file_path_ntp_conf: '/etc/ntp.conf'
 file_mode_ntp_conf: '0644'
 file_owner_ntp_conf: 'root'
@@ -46,14 +46,14 @@ file_owner_ntp_script_dir: 'root'
 file_group_ntp_script_dir: 'root'
 
 # ntp_update-time.sh
-file_src_ntp_update_time_sh: "../../templates/{{(ntp_ntp_update_time_sh_template|e) if (ntp_ntp_update_time_sh_template is defined) and not ((ntp_ntp_update_time_sh_template == None) or (ntp_ntp_update_time_sh_template == '')) else 'main'}}/ntp_update-time.sh.j2"
+file_src_ntp_update_time_sh: "../../templates/{{(ntp_ntp_update_time_sh_template|e)}}/ntp_update-time.sh.j2"
 file_path_ntp_update_time_sh: "{{file_path_ntp_script_dir}}/ntp_update-time.sh"
 file_mode_ntp_update_time_sh: '0750'
 file_owner_ntp_update_time_sh: 'root'
 file_group_ntp_update_time_sh: 'root'
 
 # ntp_update-time.cron
-file_src_ntp_update_time_cron: "../../templates/{{(ntp_ntp_update_time_cron_template|e) if (ntp_ntp_update_time_cron_template is defined) and not ((ntp_ntp_update_time_cron_template == None) or (ntp_ntp_update_time_cron_template == '')) else 'main'}}/ntp_update-time.cron.j2"
+file_src_ntp_update_time_cron: "../../templates/{{(ntp_ntp_update_time_cron_template|e)}}/ntp_update-time.cron.j2"
 file_path_ntp_update_time_cron: '/etc/cron.d/ntp_update-time'
 file_mode_ntp_update_time_cron: '0640'
 file_owner_ntp_update_time_cron: 'root'

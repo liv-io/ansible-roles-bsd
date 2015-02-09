@@ -29,7 +29,7 @@ motd_os_color: '0;37m'
 #-------------------------------------------------------------------------------
 
 # motd
-file_src_motd: "../../templates/{{(motd_motd_template|e) if (motd_motd_template is defined) and not ((motd_motd_template == None) or (motd_motd_template == '')) else 'robomon'}}/motd.j2"
+file_src_motd: "../../templates/{{(motd_motd_template|e)}}/motd.j2"
 file_path_motd: '/etc/motd'
 file_mode_motd: '0644'
 file_owner_motd: 'root'

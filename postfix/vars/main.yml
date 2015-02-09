@@ -33,21 +33,21 @@ package_name_postfix: 'postfix'
 #-------------------------------------------------------------------------------
 
 # aliases
-file_src_aliases: "../../templates/{{(postfix_aliases_template|e) if (postfix_aliases_template is defined) and not ((postfix_aliases_template == None) or (postfix_aliases_template == '')) else ansible_os_family}}/aliases.j2"
+file_src_aliases: "../../templates/{{(postfix_aliases_template|e)}}/aliases.j2"
 file_path_aliases: '/etc/mail/aliases'
 file_mode_aliases: '0644'
 file_owner_aliases: 'root'
 file_group_aliases: 'root'
 
 # main.cf
-file_src_main_cf: "../../templates/{{(postfix_main_cf_template|e) if (postfix_main_cf_template is defined) and not ((postfix_main_cf_template == None) or (postfix_main_cf_template == '')) else ansible_os_family}}/main.cf.j2"
+file_src_main_cf: "../../templates/{{(postfix_main_cf_template|e)}}/main.cf.j2"
 file_path_main_cf: '/etc/postfix/main.cf'
 file_mode_main_cf: '0644'
 file_owner_main_cf: 'root'
 file_group_main_cf: 'root'
 
 # master.cf
-file_src_master_cf: "../../templates/{{(postfix_master_cf_template|e) if (postfix_master_cf_template is defined) and not ((postfix_master_cf_template == None) or (postfix_master_cf_template == '')) else ansible_os_family}}/master.cf.j2"
+file_src_master_cf: "../../templates/{{(postfix_master_cf_template|e)}}/master.cf.j2"
 file_path_master_cf: '/etc/postfix/master.cf'
 file_mode_master_cf: '0644'
 file_owner_master_cf: 'root'
