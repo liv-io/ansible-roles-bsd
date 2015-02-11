@@ -1,0 +1,253 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : fstab
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : sys-core
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: Simplified BSD License
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages fstab.
+
+The file fstab contains descriptive information about the various file systems.
+fstab is only read by programs, and not written; it is the duty of the system
+administrator to properly create and maintain this file. Each filesystem is
+described on a separate line; fields on each line are separated by tabs or
+spaces. Lines starting with '#' are comments, blank lines are ignored. The order
+of records in fstab is important because fsck, mount, and umount sequentially
+iterate through fstab doing their thing.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - fstab: all
+    roles:
+     - role: fstab
+       fstab_state: 'enable'
+       fstab_path_default: '/etc/fstab'
+
+INACTIVE
+  - fstabs: all
+    roles:
+     - role: fstab
+       fstab_state: 'inactive'
+
+CONFIG
+  fstab_default:
+   - filesystem: '192.168.1.10:/nfs'
+     state: 'true'
+     mountpoint: '/nfs'
+     type: 'nfs'
+     options: ['nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15']
+     dump: 0
+     pass: 0
+     comment: 'NFS File System'
+
+  fstab_custom:
+   - filesystem: '/dev/mapper/data-opt'
+     state: 'true'
+     mountpoint: '/opt'
+     type: 'xfs'
+     options: ['defaults']
+     dump: 1
+     pass: 1
+     comment: 'Optional File System'
+
+   - filesystem: '/dev/mapper/data-remove'
+     state: 'false'
+     mountpoint: '/remove'
+     type: 'ext4'
+     options: []
+     dump: 0
+     pass: 0
+     comment: 'Unused File System'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+CONFIG
+  state
+    Description: Control the state of the fstab entry.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Create: 'true' | 'yes' | 'create'
+      Remove: 'false' | 'no' | 'remove'
+
+  comment
+    Description: Define a comment for the fstab entry.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'Data File System' | 'Opt File System' | 'Var File System'
+      None    : ''
+
+  dump
+    Description: Set the dump option for the fstab entry.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String, Integer
+    Default    : 0
+    Options    :
+      Examples: 0 | 1
+
+  filesystem
+    Description: Define the filesystem of the fstab entry.
+    Implemented: 0.1
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: '/dev/mapper/fs-data' | '/dev/mapper/data-opt' |
+                '/dev/mapper/host-var'
+
+  mountpoint
+    Description: Define the mountpoint of the fstab entry.
+    Implemented: 0.1
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: '/data' | '/opt' | '/var'
+
+  options
+    Description: Define the options for the fstab entry.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['defaults']
+    Options    :
+      Examples: ['defaults', 'noatime'] |
+                ['defaults', 'nodev', 'nosuid', 'noexec'] |
+                ['nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15'] |
+                ['nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15', 'x-systemd.automount', 'x-systemd.device-timeout=10']
+
+  pass
+    Description: Set the pass option for the fstab entry.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String, Integer
+    Default    : 0
+    Options    :
+      Examples: 0 | 1 | 2
+
+  type
+    Description: Define the type of the fstab entry.
+    Implemented: 0.1
+    Required   : True
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'ext4' | 'xfs' | 'zfs'
+
+ROLE
+  fstab_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Inactive: 'quiesce' | 'inactive'
+
+  fstab_path_default
+    Description: Define the default path of the fstab file.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/etc/fstab'
+    Options    :
+      Examples: '/etc/fstab'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  Gentoo
+    Version: 2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
