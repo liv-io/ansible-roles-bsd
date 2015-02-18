@@ -85,10 +85,10 @@ retval=0
 # Set the initial exit code
 code='0000'
 
-# Set the initial log severity
+# Define the initial log severity
 severity='Debug'
 
-# Set the initial log message
+# Define the initial log message
 message='Please check log files for more information.'
 
 # List of NTP servers
@@ -99,7 +99,7 @@ ntp_servers='{% if (ntp_server is defined) and not ((ntp_server == None) or (ntp
 mail_sender='{% if (ntp_monitor_mail_sender is defined) and not ((ntp_monitor_mail_sender == None) or (ntp_monitor_mail_sender == '')) %}{{(ntp_monitor_mail_sender|e)}}{% else %}root@{{ansible_domain}}{% endif %}'
 
 # Define the mail recipient
-mail_recipient='{% if (ntp_monitor_mail_recipient is defined) and not ((ntp_monitor_mail_recipient == None) or (ntp_monitor_mail_recipient == '') or (ntp_monitor_mail_recipient == [])) %}{% for mail_recipient in ntp_monitor_mail_recipient %}{{(mail_recipient|e)}}{% if not loop.last %},{% endif %}{% endfor %}{% else %}ntp{% endif %}'
+mail_recipient='{% if (ntp_monitor_mail_recipient is defined) and not ((ntp_monitor_mail_recipient == None) or (ntp_monitor_mail_recipient == '') or (ntp_monitor_mail_recipient == [])) %}{% for mail_recipient in ntp_monitor_mail_recipient %}{{(mail_recipient|e)}}{% if not loop.last %},{% endif %}{% endfor %}{% else %}admin@{{ansible_domain}}{% endif %}'
 
 # Define the mail subject
 mail_subject='{% if (ntp_monitor_mail_subject is defined) and not ((ntp_monitor_mail_subject == None) or (ntp_monitor_mail_subject == '')) %}{{(ntp_monitor_mail_subject|e)}}{% else %}NTP: Update Time - Error ({{ansible_hostname}}){% endif %}'

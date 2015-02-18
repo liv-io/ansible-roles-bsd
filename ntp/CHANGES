@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.9.2 (2014-07-22)
+B: Fix default value of variable 'ntp_monitor_mail_recipient'
+
 * Version 0.9.1 (2015-02-03)
 I: Improve NTP update script
 
