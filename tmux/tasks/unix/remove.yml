@@ -53,3 +53,17 @@
    - remove
    - unix
    - tmux
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: file remove tmux.conf
+  file:
+   state: 'absent'
+   path: "{{file_path_tmux_conf}}"
+  tags:
+   - files
+   - remove
+   - unix
+   - tmux

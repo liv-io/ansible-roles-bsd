@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
+#   |         |  Name   : FreeBSD.yml
 #   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : tmux
 #   |____~____|
@@ -22,19 +22,9 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
-# tmux
-package_name_tmux: 'tmux'
-
-#-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
 # tmux.conf
-file_src_tmux_conf: "../../templates/{{(tmux_tmux_conf_template|e)}}/tmux.conf.j2"
-file_path_tmux_conf: '/etc/tmux.conf'
-file_mode_tmux_conf: '0644'
-file_owner_tmux_conf: 'root'
-file_group_tmux_conf: 'root'
+file_path_tmux_conf: '/usr/local/etc/tmux.conf'
+file_group_tmux_conf: 'wheel'
