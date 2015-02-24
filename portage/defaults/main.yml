@@ -48,6 +48,9 @@ portage_features: []
 # portage_gentoo_mirrors
 portage_gentoo_mirrors: 'http://mirror.switch.ch/ftp/mirror/gentoo/'
 
+# portage_http_proxy
+portage_http_proxy: ''
+
 # portage_make_conf_template
 portage_make_conf_template: "{{ansible_os_family}}"
 

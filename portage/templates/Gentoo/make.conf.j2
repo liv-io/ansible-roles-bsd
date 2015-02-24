@@ -107,6 +107,16 @@ VIDEO_CARDS="{% for video_cards in portage_video_cards %}{{video_cards}}{% if no
 {% endif %}
 
 #-------------------------------------------------------------------------------
+# FETCHING FILES
+#-------------------------------------------------------------------------------
+
+{% if (portage_http_proxy is defined) and not ((portage_http_proxy == None) or (portage_http_proxy == '')) %}
+http_proxy="{{portage_http_proxy}}"
+{% else %}
+#http_proxy=""
+{% endif %}
+
+#-------------------------------------------------------------------------------
 # SYNCHRONIZING PORTAGE
 #-------------------------------------------------------------------------------
 

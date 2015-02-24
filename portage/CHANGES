@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.4.0 (2015-02-22)
+F: Add support for 'http_proxy' option
+
 * Version 0.3.0 (2015-01-29)
 F: Add option 'portage_cpu_flags_x86' to define 'CPU_FLAGS_X86' optimizations
 

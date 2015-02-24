@@ -163,6 +163,17 @@ ROLE
     Options    :
       Examples: 'http://mirror.switch.ch/ftp/mirror/gentoo/'
 
+  portage_http_proxy
+    Description: Define the 'portage_http_proxy' option.
+    Implemented: 0.4
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'http://proxy.domain.tld:3128'
+      None    : ''
+
   portage_make_conf_template
     Description: Define the template source for 'make.conf.j2'.
                  Any value other than "{{ansible_os_family}}" requires a Jinja2
