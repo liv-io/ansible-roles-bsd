@@ -89,17 +89,32 @@ severity='Debug'
 message='Please check log files for more information.'
 
 # Define the ZFS pools
-zfs_pools='{% if (zfs_pools is defined) and not ((zfs_pools == None) or (zfs_pools == '') or (zfs_pools == [])) %}{% for pool in zfs_pools %}{{(pool|e)}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %}'
+{% if (zfs_pools is defined) and not ((zfs_pools == None) or (zfs_pools == '') or (zfs_pools == [])) %}
+zfs_pools='{% for pool in zfs_pools %}{{(pool|e)}}{% if not loop.last %} {% endif %}'
+{% endfor %}
+{% endif %}
 
 {% if (zfs_monitor_mail_state is defined) and ((zfs_monitor_mail_state == 'true') or (zfs_monitor_mail_state == 'yes') or (zfs_monitor_mail_state == 'enable')) %}
 # Define the mail sender
-mail_sender='{% if (zfs_monitor_mail_sender is defined) and not ((zfs_monitor_mail_sender == None) or (zfs_monitor_mail_sender == '')) %}{{(zfs_monitor_mail_sender|e)}}{% else %}root@{{(ansible_domain|e)}}{% endif %}'
+{% if (zfs_monitor_mail_sender is defined) and not ((zfs_monitor_mail_sender == None) or (zfs_monitor_mail_sender == '')) %}
+mail_sender='{{(zfs_monitor_mail_sender|e)}}'
+{% else %}
+mail_sender='root@{{(ansible_domain|e)}}'
+{% endif %}
 
 # Define the mail recipient
-mail_recipient='{% if (zfs_monitor_mail_recipient is defined) and not ((zfs_monitor_mail_recipient == None) or (zfs_monitor_mail_recipient == '') or (zfs_monitor_mail_recipient == [])) %}{% for mail_recipient in zfs_monitor_mail_recipient %}{{(mail_recipient|e)}}{% if not loop.last %},{% endif %}{% endfor %}{% else %}admin@{{ansible_domain}}{% endif %}'
+{% if (zfs_monitor_mail_recipient is defined) and not ((zfs_monitor_mail_recipient == None) or (zfs_monitor_mail_recipient == '') or (zfs_monitor_mail_recipient == [])) %}
+mail_recipient='{% for mail_recipient in zfs_monitor_mail_recipient %}{{(mail_recipient|e)}}{% if not loop.last %},{% endif %}{% endfor %}'
+{% else %}
+mail_recipient='admin@{{ansible_domain}}'
+{% endif %}
 
 # Define the mail subject
-mail_subject='{% if (zfs_monitor_mail_subject is defined) and not ((zfs_monitor_mail_subject == None) or (zfs_monitor_mail_subject == '')) %}{{(zfs_monitor_mail_subject|e)}}{% else %}ZFS: Scrub Pool - Error ({{ansible_hostname}}){% endif %}'
+{% if (zfs_monitor_mail_subject is defined) and not ((zfs_monitor_mail_subject == None) or (zfs_monitor_mail_subject == '')) %}
+mail_subject='{{(zfs_monitor_mail_subject|e)}}'
+{% else %}
+mail_subject='ZFS: Scrub Pool - Error ({{ansible_hostname}})'
+{% endif %}
 {% endif %}
 
 #-------------------------------------------------------------------------------
