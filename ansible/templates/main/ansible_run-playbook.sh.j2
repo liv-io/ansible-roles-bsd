@@ -112,20 +112,38 @@ playbooks_dir='{{file_path_ansible_playbooks_dir}}'
 roles_dir='{{file_path_ansible_roles_dir}}'
 
 # Define the Ansible playbooks
-playbooks='{% if (ansible_playbooks is defined) and not ((ansible_playbooks == None) or (ansible_playbooks == '') or (ansible_playbooks == [])) %}{% for playbook in ansible_playbooks %}{{(playbook|e)}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %}'
+{% if (ansible_playbooks is defined) and not ((ansible_playbooks == None) or (ansible_playbooks == '') or (ansible_playbooks == [])) %}
+playbooks='{% for playbook in ansible_playbooks %}{{(playbook|e)}}{% if not loop.last %} {% endif %}{% endfor %}'
+{% endif %}
 
 # Set the period (days) after purging log files
-purge_period='{% if (ansible_purge_log_period is defined) and not ((ansible_purge_log_period == None) or (ansible_purge_log_period == '')) %}{{(ansible_purge_log_period|int(30))}}{% else %}30{% endif %}'
+{% if (ansible_purge_log_period is defined) and not ((ansible_purge_log_period == None) or (ansible_purge_log_period == '')) %}
+purge_period='{{(ansible_purge_log_period|int(30))}}'
+{% else %}
+purge_period='30'
+{% endif %}
 
 {% if (ansible_monitor_mail_state is defined) and ((ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable')) %}
 # Define the mail sender
-mail_sender='{% if (ansible_monitor_mail_sender is defined) and not ((ansible_monitor_mail_sender == None) or (ansible_monitor_mail_sender == '')) %}{{(ansible_monitor_mail_sender|e)}}{% else %}root@{{(ansible_domain|e)}}{% endif %}'
+{% if (ansible_monitor_mail_sender is defined) and not ((ansible_monitor_mail_sender == None) or (ansible_monitor_mail_sender == '')) %}
+mail_sender='{{(ansible_monitor_mail_sender|e)}}'
+{% else %}
+mail_sender='root@{{(ansible_domain|e)}}'
+{% endif %}
 
 # Define the mail recipient
-mail_recipient='{% if (ansible_monitor_mail_recipient is defined) and not ((ansible_monitor_mail_recipient == None) or (ansible_monitor_mail_recipient == '') or (ansible_monitor_mail_recipient == [])) %}{% for mail_recipient in ansible_monitor_mail_recipient %}{{(mail_recipient|e)}}{% if not loop.last %},{% endif %}{% endfor %}{% else %}admin@{{ansible_domain}}{% endif %}'
+{% if (ansible_monitor_mail_recipient is defined) and not ((ansible_monitor_mail_recipient == None) or (ansible_monitor_mail_recipient == '') or (ansible_monitor_mail_recipient == [])) %}
+mail_recipient='{% for mail_recipient in ansible_monitor_mail_recipient %}{{(mail_recipient|e)}}{% if not loop.last %},{% endif %}{% endfor %}'
+{% else %}
+mail_recipient='admin@{{ansible_domain}}'
+{% endif %}
 
 # Define the mail subject
-mail_subject='{% if (ansible_monitor_mail_subject is defined) and not ((ansible_monitor_mail_subject == None) or (ansible_monitor_mail_subject == '')) %}{{(ansible_monitor_mail_subject|e)}}{% else %}Ansible: Run playbook - Error ({{ansible_hostname}}){% endif %}'
+{% if (ansible_monitor_mail_subject is defined) and not ((ansible_monitor_mail_subject == None) or (ansible_monitor_mail_subject == '')) %}
+mail_subject='{{(ansible_monitor_mail_subject|e)}}'
+{% else %}
+mail_subject='Ansible: Run playbook - Error ({{ansible_hostname}})'
+{% endif %}
 {% endif %}
 
 #-------------------------------------------------------------------------------
