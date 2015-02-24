@@ -44,7 +44,7 @@ set-option -g default-terminal 'xterm'
 set-option -g history-limit 65536
 
 # Control the windows renumbering
-set-option -g renumber-windows on
+set-option -g renumber-windows off
 
 # Control the status bar state
 set-option -g status on
@@ -68,14 +68,10 @@ set-option -g status-left-length 20
 set-option -g status-position bottom
 
 # Define the right status string
-{% if (ansible_os_family == 'FreeBSD') %}
-set-option -g status-right "#[fg=grey]| #[fg=grey]#(uptime | cut -f 12-15 -d ' ' | sed 's@, @ @g') #[fg=grey]| #[fg=grey]%H:%M %Z %Y-%m-%d"
-{% else %}
-set-option -g status-right "#[fg=grey]| #[fg=grey]#(uptime | cut -f 13-16 -d ' ' | sed 's@, @ @g') #[fg=grey]| #[fg=grey]%H:%M %Z %Y-%m-%d"
-{% endif %}
+set-option -g status-right "#[fg=grey]| #[fg=grey]#(uptime | sed 's@.*average.*: @@g' | sed 's@, @ @g') #[fg=grey]| #[fg=grey]%H:%M %Z %Y-%m-%d"
 
 # Set the right status length
-set-option -g status-right-length 46
+set-option -g status-right-length 50
 
 # Control the status bar characters
 set-option -g status-utf8 on

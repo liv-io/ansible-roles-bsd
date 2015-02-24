@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.4.1 (2015-02-22)
+I: Improve default configuration
+
 * Version 0.4.0 (2015-02-18)
 F: Add support for 'tmux.conf' configuration file
 
