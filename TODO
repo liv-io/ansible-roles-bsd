@@ -41,7 +41,6 @@ ROLES
  - acarm
  - amavisd-new
  - apache / httpd
- - bind
  - bro
  - bugzilla
  - capistrano
@@ -81,11 +80,11 @@ ROLES
  - pedrino
  - perl
  - php
- - portage
  - postfix
  - postfixadmin
  - postgresql
  - postgrey
+ - powerdns
  - prelude
  - pulp
  - python
@@ -109,7 +108,6 @@ ROLES
  - syslog-ng
  - trac
  - varnish
- - vim
  - zabbix
  - zenoss
  - zoneminder
@@ -134,7 +132,6 @@ OTHER
  - logwatch
  - mdadm
  - mercurial
- - monit
  - mysqlsniffer
  - netdisco-common
  - nfdump
