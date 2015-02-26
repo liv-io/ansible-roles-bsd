@@ -1,0 +1,46 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : monit
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
+
+- name: task include custom
+  include: custom.yml
+  when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
+
+- name: task include default
+  include: default.yml
+  when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
+
+- name: task include enable
+  include: enable.yml
+  when: (monit_state == 'start') or (monit_state == 'on') or (monit_state == 'enable')
+
+- name: task include disable
+  include: disable.yml
+  when: (monit_state == 'stop') or (monit_state == 'off') or (monit_state == 'disable')
+
+- name: task include remove
+  include: remove.yml
+  when: (monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove')

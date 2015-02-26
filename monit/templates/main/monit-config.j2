@@ -1,0 +1,35 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : monit-config
+#   |  _   _  |  Type   : monit configuration file
+#   | [_] [_] |  Role   : monit
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
+{% else %}
+#
+{% endif %}
+#
+#-------------------------------------------------------------------------------
+
+{% if (item.config is defined) and not ((item.config == None) or (item.config == '') or (item.config == [])) %}
+{% for config in item.config %}
+{{config}}
+{% endfor %}
+{% endif %}

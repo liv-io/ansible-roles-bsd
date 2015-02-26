@@ -1,0 +1,413 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : monitrc
+#   |  _   _  |  Type   : monit configuration file
+#   | [_] [_] |  Role   : monit
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+###############################################################################
+## Monit control file
+###############################################################################
+##
+## Comments begin with a '#' and extend through the end of the line. Keywords
+## are case insensitive. All path's MUST BE FULLY QUALIFIED, starting with '/'.
+##
+## Below you will find examples of some frequently used statements. For 
+## information about the control file and a complete list of statements and 
+## options, please have a look in the Monit manual.
+##
+##
+###############################################################################
+## Global section
+###############################################################################
+##
+## Start Monit in the background (run as a daemon):
+#
+{% if (monit_daemon_interval is defined) and not ((monit_daemon_interval == None) or (monit_daemon_interval == '')) %}
+set daemon {{(monit_daemon_interval|int(60))}}
+{% else %}
+set daemon 60
+{% endif %}
+{% if (monit_daemon_delay is defined) and not ((monit_daemon_delay == None) or (monit_daemon_delay == '')) %}
+  with start delay {{(monit_daemon_delay|int(3))}}
+{% else %}
+{% endif %}
+#
+#
+## Set syslog logging with the 'daemon' facility. If the FACILITY option is
+## omitted, Monit will use 'user' facility by default. If you want to log to 
+## a standalone log file instead, specify the full path to the log file
+#
+{% if (monit_log_file is defined) and not ((monit_log_file == None) or (monit_log_file == '')) %}
+set logfile {{(monit_log_file|e)}} facility {% if (monit_log_facility is defined) and not ((monit_log_facility == None) or (monit_log_facility == '')) %}{{(monit_log_facility|e)}}{% else %}user{% endif %}
+
+{% else %}
+set logfile syslog {% if (monit_log_facility is defined) and not ((monit_log_facility == None) or (monit_log_facility == '')) %}{{(monit_log_facility|e)}}{% else %}user{% endif %}
+
+{% endif %}
+#
+#
+## Set the location of the Monit lock file which stores the process id of the
+## running Monit instance. By default this file is stored in $HOME/.monit.pid
+#
+# set pidfile /var/run/monit.pid
+#
+## Set the location of the Monit id file which stores the unique id for the
+## Monit instance. The id is generated and stored on first Monit start. By 
+## default the file is placed in $HOME/.monit.id.
+#
+# set idfile /var/.monit.id
+#
+## Set the location of the Monit state file which saves monitoring states
+## on each cycle. By default the file is placed in $HOME/.monit.state. If
+## the state file is stored on a persistent filesystem, Monit will recover
+## the monitoring state across reboots. If it is on temporary filesystem, the
+## state will be lost on reboot which may be convenient in some situations.
+#
+# set statefile /var/.monit.state
+#
+## Set the list of mail servers for alert delivery. Multiple servers may be 
+## specified using a comma separator. If the first mail server fails, Monit 
+# will use the second mail server in the list and so on. By default Monit uses 
+# port 25 - it is possible to override this with the PORT option.
+#
+{% if (monit_mail_server is defined) and not ((monit_mail_server == None) or (monit_mail_server == '') or (monit_mail_server == [])) %}
+{% for item in monit_mail_server %}
+{% for name in item.name %}
+set mailserver {{(name|e)}} {% if (item.port is defined) and not ((item.port == None) or (item.port == '')) %}port {{(item.port|int(25))}}{% else %}{% endif %}{% if not loop.last %},{% endif %} {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}# {{(item.comment|e)}}{% else %}{% endif %}
+
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+#
+#
+## By default Monit will drop alert events if no mail servers are available. 
+## If you want to keep the alerts for later delivery retry, you can use the 
+## EVENTQUEUE statement. The base directory where undelivered alerts will be 
+## stored is specified by the BASEDIR option. You can limit the queue size 
+## by using the SLOTS option (if omitted, the queue is limited by space
+## available in the back end filesystem).
+#
+# set eventqueue
+#     basedir /var/monit  # set the base directory where events will be stored
+#     slots 100           # optionally limit the queue size
+#
+#
+## Send status and events to M/Monit (for more informations about M/Monit 
+## see http://mmonit.com/). By default Monit registers credentials with 
+## M/Monit so M/Monit can smoothly communicate back to Monit and you don't
+## have to register Monit credentials manually in M/Monit. It is possible to
+## disable credential registration using the commented out option below. 
+## Though, if safety is a concern we recommend instead using https when
+## communicating with M/Monit and send credentials encrypted.
+#
+# set mmonit http://monit:monit@192.168.1.10:8080/collector
+#     # and register without credentials     # Don't register credentials
+#
+#
+## Monit by default uses the following format for alerts if the the mail-format
+## statement is missing::
+## --8<--
+## set mail-format {
+##      from: monit@$HOST
+##   subject: monit alert --  $EVENT $SERVICE
+##   message: $EVENT Service $SERVICE
+##                 Date:        $DATE
+##                 Action:      $ACTION
+##                 Host:        $HOST
+##                 Description: $DESCRIPTION
+##
+##            Your faithful employee,
+##            Monit
+## }
+## --8<--
+##
+## You can override this message format or parts of it, such as subject
+## or sender using the MAIL-FORMAT statement. Macros such as $DATE, etc.
+## are expanded at runtime. For example, to override the sender, use:
+#
+set mail-format {
+{% if (monit_mail_from is defined) and not ((monit_mail_from == None) or (monit_mail_from == '')) %}
+     from: {{(monit_mail_from|e)}}
+{% else %}
+     from: admin@{{ansible_domain}}
+{% endif %}
+{% if (monit_mail_subject is defined) and not ((monit_mail_subject == None) or (monit_mail_subject == '')) %}
+  subject: {{monit_mail_subject}}
+{% else %}
+  subject: Monit: $EVENT '$SERVICE' ({{ansible_hostname}})
+{% endif %}
+  message: --------------------------------------------------------------------------------
+MONIT
+--------------------------------------------------------------------------------
+
+{% if (monit_mail_message_host is defined) and not ((monit_mail_message_host == None) or (monit_mail_message_host == '')) %}
+Host        : {{(monit_mail_message_host|e)}}
+{% else %}
+Host        : $HOST
+{% endif %}
+{% if (monit_mail_message_service is defined) and not ((monit_mail_message_service == None) or (monit_mail_message_service == '')) %}
+Service     : {{(monit_mail_message_service|e)}}
+{% else %}
+Service     : $SERVICE
+{% endif %}
+{% if (monit_mail_message_event is defined) and not ((monit_mail_message_event == None) or (monit_mail_message_event == '')) %}
+Event       : {{(monit_mail_message_event|e)}}
+{% else %}
+Event       : $EVENT
+{% endif %}
+{% if (monit_mail_message_action is defined) and not ((monit_mail_message_action == None) or (monit_mail_message_action == '')) %}
+Action      : {{(monit_mail_message_action|e)}}
+{% else %}
+Action      : $ACTION
+{% endif %}
+{% if (monit_mail_message_description is defined) and not ((monit_mail_message_description == None) or (monit_mail_message_description == '')) %}
+Description : {{(monit_mail_message_description|e)}}
+{% else %}
+Description : $DESCRIPTION
+{% endif %}
+{% if (monit_mail_message_date is defined) and not ((monit_mail_message_date == None) or (monit_mail_message_date == '')) %}
+Date        : {{(monit_mail_message_date|e)}}
+{% else %}
+Date        : $DATE
+{% endif %}
+
+--------------------------------------------------------------------------------
+SYSTEM
+--------------------------------------------------------------------------------
+
+Hostname    : {{ansible_hostname}}
+FQDN        : {{ansible_fqdn}}
+
+--------------------------------------------------------------------------------
+OPERATING SYSTEM
+--------------------------------------------------------------------------------
+
+Type        : {{ansible_system}}
+Family      : {{ansible_os_family}}
+Distribution: {{ansible_distribution}}
+Version     : {{ansible_distribution_version}}
+Architecture: {{ansible_architecture}}
+
+--------------------------------------------------------------------------------
+KERNEL
+--------------------------------------------------------------------------------
+
+Type        : {{ansible_system}}
+Version     : {{ansible_kernel}}
+
+--------------------------------------------------------------------------------
+MAIL
+--------------------------------------------------------------------------------
+
+{% if (monit_mail_from is defined) and not ((monit_mail_from == None) or (monit_mail_from == '')) %}
+Sender      : {{(monit_mail_from|e)}}
+{% else %}
+Sender      : root@{{(ansible_domain|e)}}
+{% endif %}
+{% if (monit_mail_to is defined) and not ((monit_mail_to == None) or (monit_mail_to == '')) %}
+Recipient   : {{(monit_mail_to|e)}}
+{% else %}
+Recipient   : admin@{{(ansible_domain|e)}}
+{% endif %}
+{% if (monit_mail_subject is defined) and not ((monit_mail_subject == None) or (monit_mail_subject == '')) %}
+Subject     : {{monit_mail_subject}}
+{% else %}
+Subject     : Monit: $EVENT '$SERVICE' ({{ansible_hostname}})
+{% endif %}
+}
+#
+#
+## You can set alert recipients whom will receive alerts if/when a 
+## service defined in this file has errors. Alerts may be restricted on 
+## events by using a filter as in the second example below.
+#
+# set alert sysadm@foo.bar                       # receive all alerts
+#
+## Do not alert when Monit starts, stops or performs a user initiated action.
+## This filter is recommended to avoid getting alerts for trivial cases.
+#
+# set alert your-name@your.domain not on { instance, action }
+#
+{% if (monit_mail_to is defined) and not ((monit_mail_to == None) or (monit_mail_to == '')) %}
+set alert {{(monit_mail_to|e)}} {% if (monit_mail_exclusions is defined) and not ((monit_mail_exclusions == None) or (monit_mail_exclusions == '') or (monit_mail_exclusions == [])) %}{ {% for mail_exclusion in (monit_mail_exclusions|sort) %}{{(mail_exclusion|e)}}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
+
+{% else %}
+#set alert {{(monit_mail_to|e)}} {% if (monit_mail_exclusions is defined) and not ((monit_mail_exclusions == None) or (monit_mail_exclusions == '') or (monit_mail_exclusions == [])) %}{% for mail_exclusion in (monit_mail_exclusions|sort) %}{{(mail_exclusion|e)}}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
+
+{% endif %}
+#
+#
+## Monit has an embedded HTTP interface which can be used to view status of 
+## services monitored and manage services from a web interface. The HTTP 
+## interface is also required if you want to issue Monit commands from the
+## command line, such as 'monit status' or 'monit restart service' The reason
+## for this is that the Monit client uses the HTTP interface to send these
+## commands to a running Monit daemon. See the Monit Wiki if you want to 
+## enable SSL for the HTTP interface. 
+#
+{% if (monit_web_server_port is defined) and not ((monit_web_server_port == None) or (monit_web_server_port == '')) %}
+set httpd port {{(monit_web_server_port|int(2812))}} and
+{% else %}
+set httpd port 2812 and
+{% endif %}
+{% if (monit_web_server_address is defined) and not ((monit_web_server_address == None) or (monit_web_server_address == '')) %}
+  use address {{(monit_web_server_address|e)}}
+{% else %}
+  use address localhost
+{% endif %}
+{% for item in monit_web_server_allow %}
+  {% if (item.user is defined) and not ((item.user == None) or (item.user == '')) %}allow {{(item.user|e)}} {% if (item.password is defined) and not ((item.password == None) or (item.password == '')) %}:{{(item.password|e)}}{% else %}{% endif %} {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}# {{(item.comment|e)}}{% else %}{% endif %}{% else %}{% endif %}
+
+{% endfor %}
+#
+#
+###############################################################################
+## Services
+###############################################################################
+##
+## Check general system resources such as load average, cpu and memory
+## usage. Each test specifies a resource, conditions and the action to be
+## performed should a test fail.
+#
+#  check system myhost.mydomain.tld
+#    if loadavg (1min) > 4 then alert
+#    if loadavg (5min) > 2 then alert
+#    if memory usage > 75% then alert
+#    if swap usage > 25% then alert
+#    if cpu usage (user) > 70% then alert
+#    if cpu usage (system) > 30% then alert
+#    if cpu usage (wait) > 20% then alert
+#
+#    
+## Check if a file exists, checksum, permissions, uid and gid. In addition
+## to alert recipients in the global section, customized alert can be sent to 
+## additional recipients by specifying a local alert handler. The service may 
+## be grouped using the GROUP option. More than one group can be specified by
+## repeating the 'group name' statement.
+#    
+#  check file apache_bin with path /usr/local/apache/bin/httpd
+#    if failed checksum and 
+#       expect the sum 8f7f419955cefa0b33a2ba316cba3659 then unmonitor
+#    if failed permission 755 then unmonitor
+#    if failed uid root then unmonitor
+#    if failed gid root then unmonitor
+#    alert security@foo.bar on {
+#           checksum, permission, uid, gid, unmonitor
+#        } with the mail-format { subject: Alarm! }
+#    group server
+#
+#    
+## Check that a process is running, in this case Apache, and that it respond
+## to HTTP and HTTPS requests. Check its resource usage such as cpu and memory,
+## and number of children. If the process is not running, Monit will restart 
+## it by default. In case the service is restarted very often and the 
+## problem remains, it is possible to disable monitoring using the TIMEOUT
+## statement. This service depends on another service (apache_bin) which
+## is defined above.
+#    
+#  check process apache with pidfile /usr/local/apache/logs/httpd.pid
+#    start program = "/etc/init.d/httpd start" with timeout 60 seconds
+#    stop program  = "/etc/init.d/httpd stop"
+#    if cpu > 60% for 2 cycles then alert
+#    if cpu > 80% for 5 cycles then restart
+#    if totalmem > 200.0 MB for 5 cycles then restart
+#    if children > 250 then restart
+#    if loadavg(5min) greater than 10 for 8 cycles then stop
+#    if failed host www.tildeslash.com port 80 protocol http 
+#       and request "/somefile.html"
+#    then restart
+#    if failed port 443 type tcpssl protocol http
+#       with timeout 15 seconds
+#    then restart
+#    if 3 restarts within 5 cycles then timeout
+#    depends on apache_bin
+#    group server
+#    
+#    
+## Check filesystem permissions, uid, gid, space and inode usage. Other services,
+## such as databases, may depend on this resource and an automatically graceful
+## stop may be cascaded to them before the filesystem will become full and data
+## lost.
+#
+#  check filesystem datafs with path /dev/sdb1
+#    start program  = "/bin/mount /data"
+#    stop program  = "/bin/umount /data"
+#    if failed permission 660 then unmonitor
+#    if failed uid root then unmonitor
+#    if failed gid disk then unmonitor
+#    if space usage > 80% for 5 times within 15 cycles then alert
+#    if space usage > 99% then stop
+#    if inode usage > 30000 then alert
+#    if inode usage > 99% then stop
+#    group server
+#
+#
+## Check a file's timestamp. In this example, we test if a file is older 
+## than 15 minutes and assume something is wrong if its not updated. Also,
+## if the file size exceed a given limit, execute a script
+#
+#  check file database with path /data/mydatabase.db
+#    if failed permission 700 then alert
+#    if failed uid data then alert
+#    if failed gid data then alert
+#    if timestamp > 15 minutes then alert
+#    if size > 100 MB then exec "/my/cleanup/script" as uid dba and gid dba
+#
+#
+## Check directory permission, uid and gid.  An event is triggered if the 
+## directory does not belong to the user with uid 0 and gid 0.  In addition, 
+## the permissions have to match the octal description of 755 (see chmod(1)).
+#
+#  check directory bin with path /bin
+#    if failed permission 755 then unmonitor
+#    if failed uid 0 then unmonitor
+#    if failed gid 0 then unmonitor
+#
+#
+## Check a remote host availability by issuing a ping test and check the 
+## content of a response from a web server. Up to three pings are sent and 
+## connection to a port and an application level network check is performed.
+#
+#  check host myserver with address 192.168.1.1
+#    if failed ping then alert
+#    if failed port 3306 protocol mysql with timeout 15 seconds then alert
+#    if failed port 80 protocol http
+#       and request /some/path with content = "a string"
+#    then alert
+#
+#
+###############################################################################
+## Includes
+###############################################################################
+##
+## It is possible to include additional configuration parts from other files or
+## directories.
+#
+{% if (monit_include is defined) and not ((monit_include == None) or (monit_include == '')) %}
+include {{(monit_include|e)}}
+{% else %}
+#  include /etc/monit.d/*.cfg
+{% endif %}
+#
+#

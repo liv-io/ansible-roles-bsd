@@ -1,0 +1,72 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : install.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : monit
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_distribution}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package install monit
+  pkgng:
+   state: 'present'
+   name: "{{package_name_monit}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - monit
+
+- name: package install monit
+  portage:
+   state: 'installed'
+   sync: "{{portage_sync}}"
+   name: "{{package_name_monit}}"
+  when: (ansible_os_family == 'Gentoo')
+  tags:
+   - packaging
+   - install
+   - unix
+   - monit
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: file create monit.d
+  file:
+   state: 'directory'
+   path: "{{file_path_monit_d}}"
+   mode: "{{file_mode_monit_d}}"
+   owner: "{{file_owner_monit_d}}"
+   group: "{{file_group_monit_d}}"
+  tags:
+   - files
+   - install
+   - unix
+   - monit

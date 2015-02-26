@@ -1,0 +1,48 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : FreeBSD.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : monit
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# monitrc
+file_path_monitrc: '/usr/local/etc/monitrc'
+file_group_monitrc: 'wheel'
+
+# monit-config
+file_group_monit_config: 'wheel'
+
+# monit.d
+file_path_monit_d: '/usr/local/etc/monit.d'
+file_group_monit_d: 'wheel'
+
+# monit_enable
+file_path_monit_enable: '/etc/rc.conf'
+file_line_monit_enable: 'monit_enable'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# validate-monit
+command_command_validate_monit: '/usr/local/bin/monit -t'
