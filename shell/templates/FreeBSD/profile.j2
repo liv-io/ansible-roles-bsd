@@ -49,7 +49,7 @@ for shell in /etc/profile.d/*.sh ; do
 done
 
 # Source bash specific environment variables
-if [ "$SHELL" = "/usr/local/bin/bash" ] ; then
+if [ "$SHELL" = "/usr/local/bin/bash" ]; then
   for bash in /etc/profile.d/*.bash ; do
     [ -r "$bash" ] && . "$bash"
   done

@@ -29,7 +29,7 @@
 #-------------------------------------------------------------------------------
 
 {% if (shell_color_support is defined) and not ((shell_color_support == None) or (shell_color_support == 'false') or (shell_color_support == 'no') or (shell_color_support == 'disable')) %}
-if [ -x /usr/bin/dircolors ] ; then
+if [ -x /usr/bin/dircolors ]; then
   # ls
   alias ls='ls -F --color=auto {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}--time-style="{{(shell_ls_time_style|e)}}"{% endif %}'
   alias la='ls -laF --color=auto {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}--time-style="{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, list all files

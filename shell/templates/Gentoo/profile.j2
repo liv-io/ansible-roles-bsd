@@ -32,7 +32,7 @@
 
 # Load environment settings from profile.env, which is created by
 # env-update from the files in /etc/env.d
-if [ -e /etc/profile.env ] ; then
+if [ -e /etc/profile.env ]; then
 	. /etc/profile.env
 fi
 
@@ -52,7 +52,7 @@ umask 022
 # It is intentional in the following line to use || instead of -o.
 # This way the evaluation can be short-circuited and calling whoami is
 # avoided.
-if [ "$EUID" = "0" ] || [ "$USER" = "root" ] ; then
+if [ "$EUID" = "0" ] || [ "$USER" = "root" ]; then
 	PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:${ROOTPATH}"
 else
 	PATH="/usr/local/bin:/usr/bin:/bin:${PATH}"
@@ -60,11 +60,11 @@ fi
 export PATH
 unset ROOTPATH
 
-if [ -n "${BASH_VERSION}" ] ; then
+if [ -n "${BASH_VERSION}" ]; then
 	# Newer bash ebuilds include /etc/bash/bashrc which will setup PS1
 	# including color.  We leave out color here because not all
 	# terminals support it.
-	if [ -f /etc/bash/bashrc ] ; then
+	if [ -f /etc/bash/bashrc ]; then
 		# Bash login shells run only /etc/profile
 		# Bash non-login shells run only /etc/bash/bashrc
 		# Since we want to run /etc/bash/bashrc regardless, we source it 
