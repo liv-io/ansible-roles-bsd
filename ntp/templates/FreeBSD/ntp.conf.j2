@@ -38,7 +38,11 @@
 
 # Monitoring facility.
 # See the ntpdc(8) program and the monlist command or further information.
-{% if (ntp_monitor is defined) and ((ntp_monitor == 'true') or (ntp_monitor == 'yes') or (ntp_monitor == 'enable')) %}enable{% else %}disable{% endif %} monitor
+{% if (ntp_monitor is defined) and ((ntp_monitor == 'true') or (ntp_monitor == 'yes') or (ntp_monitor == 'enable')) %}
+enable monitor
+{% else %}
+disable monitor
+{% endif %}
 
 #
 # The following three servers will give you a random set of three
