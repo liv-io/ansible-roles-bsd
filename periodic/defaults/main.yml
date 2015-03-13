@@ -1,0 +1,64 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : periodic
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# periodic_state
+periodic_state: 'install'
+
+# periodic_daily_output
+periodic_daily_output: 'root'
+
+# periodic_daily_show_badconfig
+periodic_daily_show_badconfig: 'false'
+
+# periodic_daily_show_info
+periodic_daily_show_info: 'true'
+
+# periodic_daily_show_success
+periodic_daily_show_success: 'true'
+
+# periodic_monthly_output
+periodic_monthly_output: 'root'
+
+# periodic_monthly_show_badconfig
+periodic_monthly_show_badconfig: 'false'
+
+# periodic_monthly_show_info
+periodic_monthly_show_info: 'true'
+
+# periodic_monthly_show_success
+periodic_monthly_show_success: 'true'
+
+# periodic_periodic_conf_template
+periodic_periodic_conf_template: "{{ansible_os_family}}"
+
+# periodic_weekly_output
+periodic_weekly_output: 'root'
+
+# periodic_weekly_show_badconfig
+periodic_weekly_show_badconfig: 'false'
+
+# periodic_weekly_show_info 
+periodic_weekly_show_info: 'true'
+
+# periodic_weekly_show_success
+periodic_weekly_show_success: 'true'

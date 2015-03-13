@@ -1,0 +1,94 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : periodic.conf
+#   |  _   _  |  Type   : periodic configuration file
+#   | [_] [_] |  Role   : periodic
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# DAILY OPTIONS
+#-------------------------------------------------------------------------------
+
+{% if (periodic_daily_output is defined) and not ((periodic_daily_output == None) or (periodic_daily_output == '')) %}
+daily_output="{{(periodic_daily_output|e)}}"
+{% endif %}
+{% if (periodic_daily_show_success is defined) and ((periodic_daily_show_success == 'false') or (periodic_daily_show_success == 'no') or (periodic_daily_show_success == 'disable')) %}
+daily_show_success="NO"
+{% else %}
+daily_show_success="YES"
+{% endif %}
+{% if (periodic_daily_show_info is defined) and ((periodic_daily_show_info == 'false') or (periodic_daily_show_info == 'no') or (periodic_daily_show_info == 'disable')) %}
+daily_show_info="NO"
+{% else %}
+daily_show_info="YES"
+{% endif %}
+{% if (periodic_daily_show_badconfig is defined) and ((periodic_daily_show_badconfig == 'true') or (periodic_daily_show_badconfig == 'yes') or (periodic_daily_show_badconfig == 'enable')) %}
+daily_show_badconfig="YES"
+{% else %}
+daily_show_badconfig="NO"
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# WEEKLY OPTIONS
+#-------------------------------------------------------------------------------
+
+{% if (periodic_weekly_output is defined) and not ((periodic_weekly_output == None) or (periodic_weekly_output == '')) %}
+weekly_output="{{(periodic_weekly_output|e)}}"
+{% endif %}
+{% if (periodic_weekly_show_success is defined) and ((periodic_weekly_show_success == 'false') or (periodic_weekly_show_success == 'no') or (periodic_weekly_show_success == 'disable')) %}
+weekly_show_success="NO"
+{% else %}
+weekly_show_success="YES"
+{% endif %}
+{% if (periodic_weekly_show_info is defined) and ((periodic_weekly_show_info == 'false') or (periodic_weekly_show_info == 'no') or (periodic_weekly_show_info == 'disable')) %}
+weekly_show_info="NO"
+{% else %}
+weekly_show_info="YES"
+{% endif %}
+{% if (periodic_weekly_show_badconfig is defined) and ((periodic_weekly_show_badconfig == 'true') or (periodic_weekly_show_badconfig == 'yes') or (periodic_weekly_show_badconfig == 'enable')) %}
+weekly_show_badconfig="YES"
+{% else %}
+weekly_show_badconfig="NO"
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# MONTHLY OPTIONS
+#-------------------------------------------------------------------------------
+
+{% if (periodic_monthly_output is defined) and not ((periodic_monthly_output == None) or (periodic_monthly_output == '')) %}
+monthly_output="{{(periodic_monthly_output|e)}}"
+{% endif %}
+{% if (periodic_monthly_show_success is defined) and ((periodic_monthly_show_success == 'false') or (periodic_monthly_show_success == 'no') or (periodic_monthly_show_success == 'disable')) %}
+monthly_show_success="NO"
+{% else %}
+monthly_show_success="YES"
+{% endif %}
+{% if (periodic_monthly_show_info is defined) and ((periodic_monthly_show_info == 'false') or (periodic_monthly_show_info == 'no') or (periodic_monthly_show_info == 'disable')) %}
+monthly_show_info="NO"
+{% else %}
+monthly_show_info="YES"
+{% endif %}
+{% if (periodic_monthly_show_badconfig is defined) and ((periodic_monthly_show_badconfig == 'true') or (periodic_monthly_show_badconfig == 'yes') or (periodic_monthly_show_badconfig == 'enable')) %}
+monthly_show_badconfig="YES"
+{% else %}
+monthly_show_badconfig="NO"
+{% endif %}

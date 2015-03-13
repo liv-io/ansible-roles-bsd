@@ -1,0 +1,33 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : periodic
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# periodic.conf
+file_src_periodic_conf: "../../templates/{{(periodic_periodic_conf_template|e)}}/periodic.conf.j2"
+file_path_periodic_conf: '/etc/periodic.conf'
+file_mode_periodic_conf: '0644'
+file_owner_periodic_conf: 'root'
+file_group_periodic_conf: 'wheel'
