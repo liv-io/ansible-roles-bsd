@@ -23,8 +23,8 @@
 
 - name: task include custom
   include: custom.yml
-  when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'remove') or (user_state == 'quiesce') or (user_state == 'inactive'))
+  when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable') or (user_state == 'quiesce') or (user_state == 'inactive'))
 
 - name: task include default
   include: default.yml
-  when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'remove') or (user_state == 'quiesce') or (user_state == 'inactive'))
+  when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable') or (user_state == 'quiesce') or (user_state == 'inactive'))

@@ -29,13 +29,19 @@ USAGE
 --------------------------------------------------------------------------------
 
 INSTALL
-  - user: all
+  - hosts: all
     roles:
      - role: user
        user_state: 'enable'
        user_groups_default: ['nobody']
        user_password_default: '!'
        user_shell_default: '/bin/bash'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: user
+       user_state: 'disable'
 
 INACTIVE
   - hosts: all
@@ -136,7 +142,6 @@ CONFIG (user)
     Default    : ''
     Options    :
       Examples: '1001' | '1002' | '1003'
-      None    : ''
 
   group
     Description: Define the primary group of the user.
@@ -367,6 +372,8 @@ DEPENDENCIES
 PACKAGES
 
 ROLES
+  group
+
   passwd
 
   shadow
