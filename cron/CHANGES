@@ -14,7 +14,7 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
-* Version 0.3.0 (2014-00-00)
+* Version 0.3.0 (2014-12-25)
 F: Add support for OS family 'FreeBSD'
 I: Various small Ansible and Jinja2 improvements
 
