@@ -14,5 +14,8 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2015-05-28)
+F: Update configuration file 'monitrc'
+
 * Version 0.1.0 (2015-02-25)
 F: Initial release

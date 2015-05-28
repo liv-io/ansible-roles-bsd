@@ -397,6 +397,23 @@ set httpd port 2812 and
 #    then alert
 #
 #
+## Check a network link status (up/down), link capacity changes, saturation
+## and bandwidth usage.
+#
+#  check network public with interface eth0
+#    if failed link then alert
+#    if changed link then alert
+#    if saturation > 90% then alert
+#    if download > 10 MB/s then alert
+#    if total upload > 1 GB in last hour then alert
+#
+#
+## Check custom program status output.
+#
+#  check program myscript with path /usr/local/bin/myscript.sh
+#    if status != 0 then alert
+#
+#
 ###############################################################################
 ## Includes
 ###############################################################################
