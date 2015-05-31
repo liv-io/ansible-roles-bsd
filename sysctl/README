@@ -36,6 +36,12 @@ INSTALL
        sysctl_state: 'install'
        sysctl_path_default: '/etc/sysctl.conf'
 
+DISABLE
+  - sysctl: all
+    roles:
+     - role: sysctl
+       sysctl_state: 'disable'
+
 INACTIVE
   - hosts: all
     roles:
@@ -130,6 +136,7 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
+      Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
   sysctl_path_default

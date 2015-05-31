@@ -23,8 +23,8 @@
 
 - name: task include custom
   include: custom.yml
-  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'remove') or (sysctl_state == 'quiesce') or (sysctl_state == 'inactive'))
+  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'disable') or (sysctl_state == 'quiesce') or (sysctl_state == 'inactive'))
 
 - name: task include default
   include: default.yml
-  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'remove') or (sysctl_state == 'quiesce') or (sysctl_state == 'inactive'))
+  when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'disable') or (sysctl_state == 'quiesce') or (sysctl_state == 'inactive'))
