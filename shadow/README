@@ -35,6 +35,12 @@ INSTALL
      - role: shadow
        shadow_state: 'install'
 
+DISABLE
+  - hosts: all
+    roles:
+     - role: shadow
+       shadow_state: 'disable'
+
 INACTIVE
   - hosts: all
     roles:
@@ -57,6 +63,7 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
+      Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
