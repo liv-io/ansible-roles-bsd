@@ -143,6 +143,7 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
+      Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
   host_path_default
