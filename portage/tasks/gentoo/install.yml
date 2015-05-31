@@ -97,3 +97,16 @@
    - install
    - gentoo
    - portage
+
+- name: file create portage.repos.conf
+  file:
+   state: 'directory'
+   path: "{{file_path_portage_repos_conf}}"
+   mode: "{{file_mode_portage_repos_conf}}"
+   owner: "{{file_owner_portage_repos_conf}}"
+   group: "{{file_group_portage_repos_conf}}"
+  tags:
+   - files
+   - install
+   - gentoo
+   - portage

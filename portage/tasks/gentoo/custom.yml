@@ -1,0 +1,59 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : custom.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : portage
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create portage-custom.conf
+  template:
+   src: "{{file_src_portage_config}}"
+   dest: "{{file_path_portage_repos_conf}}/{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}.conf"
+   mode: "{{file_mode_portage_config}}"
+   owner: "{{file_owner_portage_config}}"
+   group: "{{file_group_portage_config}}"
+  with_items: portage_custom
+  when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  tags:
+   - files
+   - custom
+   - gentoo
+   - portage
+
+- name: file remove portage-custom.conf
+  file:
+   state: 'absent'
+   path: "{{file_path_portage_repos_conf}}/{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}.conf"
+  with_items: portage_custom
+  when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  tags:
+   - files
+   - custom
+   - gentoo
+   - portage

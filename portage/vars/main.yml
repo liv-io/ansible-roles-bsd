@@ -46,12 +46,24 @@ file_mode_package_accept_keywords: '0644'
 file_owner_package_accept_keywords: 'root'
 file_group_package_accept_keywords: 'root'
 
+# portage-config
+file_src_portage_config: "../../templates/{{(portage_portage_config_template|e)}}/portage-config.j2"
+file_mode_portage_config: '0644'
+file_owner_portage_config: 'root'
+file_group_portage_config: 'root'
+
 # package.license
 file_src_package_license: "../../templates/{{(portage_package_license_template|e)}}/package.license.j2"
 file_path_package_license: '/etc/portage/package.license'
 file_mode_package_license: '0644'
 file_owner_package_license: 'root'
 file_group_package_license: 'root'
+
+# portage.repos.conf
+file_path_portage_repos_conf: '/etc/portage/repos.conf'
+file_mode_portage_repos_conf: '0755'
+file_owner_portage_repos_conf: 'root'
+file_group_portage_repos_conf: 'root'
 
 # package.use
 file_src_package_use: "../../templates/{{(portage_package_use_template|e)}}/package.use.j2"

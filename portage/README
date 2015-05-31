@@ -56,6 +56,12 @@ INSTALL
         - 'sys-cluster/libqb ~amd64'
         - 'sys-cluster/pacemaker ~amd64'
 
+DISABLE
+  - hosts: all
+    roles:
+     - role: portage
+       portage_state: 'disable'
+
 INACTIVE
   - hosts: all
     roles:
@@ -76,6 +82,7 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
+      Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
   portage_cflags
@@ -295,16 +302,6 @@ ROLE
     Default    : '/usr/portage'
     Options    :
       Examples: '/usr/portage'
-
-  portage_sync
-    Description: Define the 'portage_sync' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'rsync://rsync.de.gentoo.org/gentoo-portage'
-    Options    :
-      Examples: 'rsync://rsync.de.gentoo.org/gentoo-portage'
 
   portage_use
     Description: Define the 'portage_use' option.

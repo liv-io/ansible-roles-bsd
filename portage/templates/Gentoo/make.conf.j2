@@ -126,12 +126,6 @@ GENTOO_MIRRORS="{{portage_gentoo_mirrors}}"
 GENTOO_MIRRORS="http://mirror.switch.ch/ftp/mirror/gentoo/"
 {% endif %}
 
-{% if (portage_sync is defined) and not ((portage_sync == None) or (portage_sync == '')) %}
-SYNC="{{portage_sync}}"
-{% else %}
-SYNC="rsync://rsync.de.gentoo.org/gentoo-portage"
-{% endif %}
-
 #-------------------------------------------------------------------------------
 # PORTAGE DIRECTORIES
 #-------------------------------------------------------------------------------

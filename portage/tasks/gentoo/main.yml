@@ -23,4 +23,12 @@
 
 - name: task include install
   include: install.yml
-  when: not ((portage_state == 'false') or (portage_state == 'no') or (portage_state == 'remove') or (portage_state == 'quiesce') or (portage_state == 'inactive'))
+  when: not ((portage_state == 'false') or (portage_state == 'no') or (portage_state == 'disable') or (portage_state == 'quiesce') or (portage_state == 'inactive'))
+
+- name: task include custom
+  include: custom.yml
+  when: not ((portage_state == 'false') or (portage_state == 'no') or (portage_state == 'disable') or (portage_state == 'quiesce') or (portage_state == 'inactive'))
+
+- name: task include default
+  include: default.yml
+  when: not ((portage_state == 'false') or (portage_state == 'no') or (portage_state == 'disable') or (portage_state == 'quiesce') or (portage_state == 'inactive'))
