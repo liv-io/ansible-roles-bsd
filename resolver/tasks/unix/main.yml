@@ -23,4 +23,4 @@
 
 - name: task include install
   include: install.yml
-  when: not ((resolver_state == 'false') or (resolver_state == 'no') or (resolver_state == 'remove') or (resolver_state == 'quiesce') or (resolver_state == 'inactive'))
+  when: not ((resolver_state == 'false') or (resolver_state == 'no') or (resolver_state == 'disable') or (resolver_state == 'quiesce') or (resolver_state == 'inactive'))

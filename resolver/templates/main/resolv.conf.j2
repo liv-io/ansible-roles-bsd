@@ -32,6 +32,7 @@ domain {{(resolver_domain|e)}}
 # Search list for host-name lookup
 {% if (resolver_search is defined) and not ((resolver_search == None) or (resolver_search == '') or (resolver_search == [])) %}
 search {% for search in resolver_search %}{{(search|e)}}{% if not loop.last %} {% endif %}{% endfor %}
+
 {% endif %}
 
 # Name server IP address
