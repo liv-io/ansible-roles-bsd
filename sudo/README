@@ -167,6 +167,7 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
   sudo_name_default
