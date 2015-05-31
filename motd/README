@@ -37,6 +37,12 @@ INSTALL
        motd_host_description: 'Test Host'
        motd_motd_template: 'robomon'
 
+DISABLE
+  - hosts: all
+    roles:
+     - role: motd
+       motd_state: 'disable'
+
 INACTIVE
   - hosts: all
     roles:
@@ -58,6 +64,7 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
+      Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
   motd_env_name
