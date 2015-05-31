@@ -10,7 +10,7 @@
 #        o
 #    ____|____
 #   |         |  Name   : ansible_run-playbook.sh
-#   |  _   _  |  Type   : shell script
+#   |  _   _  |  Type   : Shell script
 #   | [_] [_] |  Role   : ansible
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -172,7 +172,7 @@ SCRIPT
 --------------------------------------------------------------------------------
 
 Name        : ansible_run-playbook.sh
-Type        : shell script
+Type        : Shell script
 PID         : $$
 
 --------------------------------------------------------------------------------
@@ -278,12 +278,12 @@ $echo "-------------------------------------------------------------------------
 INFORMATION
 --------------------------------------------------------------------------------
 
-Name        : ansible_run-playbook.sh
-Type        : sh script
-PID         : $$
-Date & Time : $date_start
-Hostname    : {{ansible_hostname}}
-FQDN        : {{ansible_fqdn}}
+Name       : ansible_run-playbook.sh
+Type       : Shell script
+PID        : $$
+Date & Time: $date_start
+Hostname   : {{ansible_hostname}}
+FQDN       : {{ansible_fqdn}}
 
 --------------------------------------------------------------------------------
 " > "${log_dir}/ansible_${exec_date}.log"
@@ -309,7 +309,7 @@ PLAYBOOK ($playbook) - BEGIN
     message="Ansible playbook '$playbook' executed."
     $logger -t $script "$severity: $message"
   else
-    log_and_exit_on_error "$?" '1506' 'Error' "Unable to run Ansible playbook '$playbook'"
+    log_and_exit_on_error "$?" '1506' 'Error' "Unable to run Ansible playbook '$playbook'."
   fi
   # Insert playbook 'end' tag
   $echo "
