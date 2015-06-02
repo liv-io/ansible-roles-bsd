@@ -33,6 +33,12 @@ INSTALL
      - role: passwd
        passwd_state: 'install'
 
+DISABLE
+  - hosts: all
+    roles:
+     - role: passwd
+       passwd_state: 'disable'
+
 INACTIVE
   - hosts: all
     roles:
@@ -54,6 +60,7 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
+      Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
