@@ -32,7 +32,7 @@
 #-------------------------------------------------------------------------------
 
 - name: command newaliases
-  command: "{{command_command_newaliases}}"
+  command: "{{command_cmd_newaliases}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM

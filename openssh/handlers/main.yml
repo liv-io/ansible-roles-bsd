@@ -32,7 +32,7 @@
 #-------------------------------------------------------------------------------
 
 - name: command validate openssh
-  command: "{{command_command_validate_openssh}}"
+  command: "{{command_cmd_validate_openssh}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM

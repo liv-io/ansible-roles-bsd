@@ -58,7 +58,7 @@ file_group_master_cf: 'root'
 #-------------------------------------------------------------------------------
 
 # newaliases
-command_command_newaliases: 'newaliases'
+command_cmd_newaliases: 'newaliases'
 
 # pkill opensmtpd
 command_shell_pkill_opensmtpd: 'pkill smptd ; true'

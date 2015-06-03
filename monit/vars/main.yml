@@ -56,7 +56,7 @@ file_group_monit_d: 'root'
 #-------------------------------------------------------------------------------
 
 # validate-monit
-command_command_validate_monit: '/usr/bin/monit -t'
+command_cmd_validate_monit: '/usr/bin/monit -t'
 
 #-------------------------------------------------------------------------------
 # SYSTEM

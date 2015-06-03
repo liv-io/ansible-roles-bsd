@@ -32,7 +32,7 @@
 #-------------------------------------------------------------------------------
 
 - name: command smtpctl aliases
-  command: "{{command_command_smtpctl_aliases}}"
+  command: "{{command_cmd_smtpctl_aliases}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM

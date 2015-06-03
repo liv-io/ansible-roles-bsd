@@ -32,7 +32,7 @@
 #-------------------------------------------------------------------------------
 
 - name: command validate monit
-  command: "{{command_command_validate_monit}}"
+  command: "{{command_cmd_validate_monit}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM

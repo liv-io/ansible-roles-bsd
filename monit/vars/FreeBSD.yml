@@ -45,4 +45,4 @@ file_line_monit_enable: 'monit_enable'
 #-------------------------------------------------------------------------------
 
 # validate-monit
-command_command_validate_monit: '/usr/local/bin/monit -t'
+command_cmd_validate_monit: '/usr/local/bin/monit -t'
