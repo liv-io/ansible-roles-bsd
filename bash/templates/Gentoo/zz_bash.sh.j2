@@ -66,7 +66,7 @@ HISTTIMEFORMAT='{{(bash_histtimeformat|e)}}'
 {% endif %}
 
 {% if (bash_tmout is defined) and not ((bash_tmout == None) or (bash_tmout == '') or (bash_tmout == 'false') or (bash_tmout == 'no') or (bash_tmout == 'disable')) %}
-# Bash session
+# Session
 TMOUT={{(bash_tmout|e)}}
 {% if (bash_session_readonly is defined) and not ((bash_session_readonly == 'false') or (bash_session_readonly == 'no') or (bash_session_readonly == 'disable')) %}
 readonly TMOUT
@@ -75,7 +75,7 @@ export TMOUT
 {% endif %}
 
 {% if (bash_color_prompt is defined) and not ((bash_color_prompt == None) or (bash_color_prompt == 'false') or (bash_color_prompt == 'no') or (bash_color_prompt == 'disable')) %}
-# Bash color prompt
+# Color prompt
 PS1='\[\033[1;36m\]\u\[\033[1;37m\]@\[\033[1;33m\]\h\[\033[1;37m\]:\[\033[1;31m\]\w \[\033[1;36m\]\$ \[\033[0m\]'
 echo -n -e '\033%G'
 {% endif %}
