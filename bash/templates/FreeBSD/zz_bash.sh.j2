@@ -20,15 +20,16 @@
 # DESCRIPTION
 #-------------------------------------------------------------------------------
 #
-# This file defines environment variables for bash.
+# This file defines environment variables for Bash.
 #
 #-------------------------------------------------------------------------------
 
-{% if (bash_histsize is defined) and not ((bash_histsize == None) or (bash_histsize == '') or (bash_histsize == 'false') or (bash_histsize == 'no') or (bash_histsize == 'disable')) %}
 #-------------------------------------------------------------------------------
-# HISTSIZE
+# SHELL VARIABLES
 #-------------------------------------------------------------------------------
 
+{% if (bash_histsize is defined) and not ((bash_histsize == None) or (bash_histsize == '') or (bash_histsize == 'false') or (bash_histsize == 'no') or (bash_histsize == 'disable')) %}
+# HISTSIZE
 HISTSIZE={{(bash_histsize|e)}}
 {% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
 readonly HISTSIZE
@@ -37,10 +38,7 @@ export HISTSIZE
 {% endif %}
 
 {% if (bash_histfilesize is defined) and not ((bash_histfilesize == None) or (bash_histfilesize == '') or (bash_histfilesize == 'false') or (bash_histfilesize == 'no') or (bash_histfilesize == 'disable')) %}
-#-------------------------------------------------------------------------------
 # HISTFILESIZE
-#-------------------------------------------------------------------------------
-
 HISTFILESIZE={{(bash_histfilesize|e)}}
 {% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
 readonly HISTFILESIZE
@@ -49,10 +47,7 @@ export HISTFILESIZE
 {% endif %}
 
 {% if (bash_histignore is defined) and not ((bash_histignore == None) or (bash_histignore == 'false') or (bash_histignore == 'no') or (bash_histignore == 'disable')) %}
-#-------------------------------------------------------------------------------
 # HISTIGNORE
-#-------------------------------------------------------------------------------
-
 HISTIGNORE='{{(bash_histignore|e)}}'
 {% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
 readonly HISTIGNORE
@@ -61,10 +56,7 @@ export HISTIGNORE
 {% endif %}
 
 {% if (bash_histcontrol is defined) and not ((bash_histcontrol == None) or (bash_histcontrol == 'false') or (bash_histcontrol == 'no') or (bash_histcontrol == 'disable')) %}
-#-------------------------------------------------------------------------------
 # HISTCONTROL
-#-------------------------------------------------------------------------------
-
 HISTCONTROL='{{(bash_histcontrol|e)}}'
 {% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
 readonly HISTCONTROL
@@ -73,18 +65,12 @@ export HISTCONTROL
 {% endif %}
 
 {% if (bash_histtimeformat is defined) and not ((bash_histtimeformat == None) or (bash_histtimeformat == 'false') or (bash_histtimeformat == 'no') or (bash_histtimeformat == 'disable')) %}
-#-------------------------------------------------------------------------------
 # HISTTIMEFORMAT
-#-------------------------------------------------------------------------------
-
 HISTTIMEFORMAT='{{(bash_histtimeformat|e)}}'
 {% endif %}
 
 {% if (bash_tmout is defined) and not ((bash_tmout == None) or (bash_tmout == '') or (bash_tmout == 'false') or (bash_tmout == 'no') or (bash_tmout == 'disable')) %}
-#-------------------------------------------------------------------------------
 # SESSION
-#-------------------------------------------------------------------------------
-
 TMOUT={{(bash_tmout|e)}}
 {% if (bash_session_readonly is defined) and not ((bash_session_readonly == 'false') or (bash_session_readonly == 'no') or (bash_session_readonly == 'disable')) %}
 readonly TMOUT
@@ -105,5 +91,7 @@ echo -n -e '\033%G'
 # KEY BINDINGS
 #-------------------------------------------------------------------------------
 
-bind '"\e[1~": beginning-of-line'
-bind '"\e[4~": end-of-line'
+if [[ $- =~ i ]]; then
+  bind '"\e[1~": beginning-of-line'
+  bind '"\e[4~": end-of-line'
+fi
