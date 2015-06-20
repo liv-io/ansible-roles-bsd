@@ -44,6 +44,18 @@ alias egrep='egrep --color=auto'
 {% endif %}
 
 #-------------------------------------------------------------------------------
+# SHELL ALIASES
+#-------------------------------------------------------------------------------
+
+{% if (shell_safety is defined) and not ((shell_safety == None) or (shell_safety == 'false') or (shell_safety == 'no') or (shell_safety == 'disable')) %}
+# Shell safety
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias ln='ln -i'
+{% endif %}
+
+#-------------------------------------------------------------------------------
 # SHELL VARIABLES
 #-------------------------------------------------------------------------------
 
@@ -59,14 +71,3 @@ PAGER='{{(shell_pager|e)}}'
 PAGER=''
 {% endif %}
 export PAGER
-
-#-------------------------------------------------------------------------------
-# SHELL SAFETY
-#-------------------------------------------------------------------------------
-
-{% if (shell_safety is defined) and not ((shell_safety == None) or (shell_safety == 'false') or (shell_safety == 'no') or (shell_safety == 'disable')) %}
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-alias ln='ln -i'
-{% endif %}

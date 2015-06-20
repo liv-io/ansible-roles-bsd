@@ -50,6 +50,21 @@ fi
 {% endif %}
 
 #-------------------------------------------------------------------------------
+# SHELL ALIASES
+#-------------------------------------------------------------------------------
+
+{% if (shell_safety is defined) and not ((shell_safety == None) or (shell_safety == 'false') or (shell_safety == 'no') or (shell_safety == 'disable')) %}
+# Shell safety
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i'
+alias ln='ln -i'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+{% endif %}
+
+#-------------------------------------------------------------------------------
 # SHELL VARIABLES
 #-------------------------------------------------------------------------------
 
@@ -65,17 +80,3 @@ PAGER='{{(shell_pager|e)}}'
 PAGER=''
 {% endif %}
 export PAGER
-
-#-------------------------------------------------------------------------------
-# SHELL SAFETY
-#-------------------------------------------------------------------------------
-
-{% if (shell_safety is defined) and not ((shell_safety == None) or (shell_safety == 'false') or (shell_safety == 'no') or (shell_safety == 'disable')) %}
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'
-alias ln='ln -i'
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
-{% endif %}
