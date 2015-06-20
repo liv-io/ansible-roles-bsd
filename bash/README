@@ -67,85 +67,6 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  bash_color_prompt
-    Description: Control the state of a colored 'bash' prompt.
-    Implemented: 0.1
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'enable'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
-  bash_history_readonly
-    Description: Control the readonly state of the 'bash' history variable.
-    Implemented: 0.1
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'enable'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
-  bash_histsize
-    Description: Set the size of the 'bash' history variable.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '262144'
-    Options    :
-      Examples: '32768' | '65536' | '131072' | '262144'
-      Disable : 'false' | 'no' | 'disable'
-
-  bash_histfilesize
-    Description: Set the size of the 'bash' history file.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '262144'
-    Options    :
-      Examples: '32768' | '65536' | '131072' | '262144'
-      Disable : 'false' | 'no' | 'disable'
-
-  bash_histtimeformat
-    Description: Define the time format of the 'bash' history.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '%F %T  '
-    Options    :
-      Examples: '%F %T  '
-      Disable : 'false' | 'no' | 'disable'
-
-  bash_histignore
-    Description: Define patterns to decide which command lines should be saved
-                 in the 'bash' history.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: ''
-      Disable : 'false' | 'no' | 'disable'
-
-  bash_histcontrol
-    Description: Define values to control how commands are saved in the 'bash'
-                 history.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: ''
-      Disable : 'false' | 'no' | 'disable'
-
   bash_bash_sh_template
     Description: Define the template source for 'bash.sh.j2'.
                  Any value other than "{{ansible_os_family}}" requires a Jinja2
@@ -160,8 +81,19 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  bash_session_readonly
-    Description: Control the readonly state of the 'bash' session variable.
+  bash_checkwinsize
+    Description: Control the state of the 'checkwinsize' Bash option.
+    Implemented: 0.5
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  bash_color_prompt
+    Description: Control the state of a colored Bash prompt.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -171,8 +103,97 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+  bash_histappend
+    Description: Control the state of the 'histappend' Bash option.
+    Implemented: 0.5
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  bash_histcontrol
+    Description: Define values to control how commands are saved in the Bash
+                 history.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: ''
+      Disable : 'false' | 'no' | 'disable'
+
+  bash_histfilesize
+    Description: Set the size of the Bash history file.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '262144'
+    Options    :
+      Examples: '32768' | '65536' | '131072' | '262144'
+      Disable : 'false' | 'no' | 'disable'
+
+  bash_histignore
+    Description: Define patterns to decide which command lines should be saved
+                 in the Bash history.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: ''
+      Disable : 'false' | 'no' | 'disable'
+
+  bash_history_readonly
+    Description: Control the readonly state of the Bash history variable.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  bash_histsize
+    Description: Set the size of the Bash history variable.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '262144'
+    Options    :
+      Examples: '32768' | '65536' | '131072' | '262144'
+      Disable : 'false' | 'no' | 'disable'
+
+  bash_histtimeformat
+    Description: Define the time format of the Bash history.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '%F %T  '
+    Options    :
+      Examples: '%F %T  '
+      Disable : 'false' | 'no' | 'disable'
+
+  bash_prompt_command
+    Description: Define the 'bash_prompt_command' option.
+    Implemented: 0.5
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'history -a'
+    Options    :
+      Examples: 'history -a'
+
   bash_tmout
-    Description: Set the number of seconds after 'bash' terminates its session
+    Description: Set the number of seconds after Bash terminates its session
                  if no input arrives.
     Implemented: 0.1
     Required   : False
@@ -182,6 +203,17 @@ ROLE
     Options    :
       Examples: '300' | '600' | '1200' | '1800'
       Disable : 'false' | 'no' | 'disable'
+
+  bash_tmout_readonly
+    Description: Control the readonly state of the Bash 'TMOUT' variable.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   bash_zz_bash_sh_template
     Description: Define the template source for 'zz_bash.sh.j2'.

@@ -25,16 +25,34 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
+# SHELL OPTIONS
+#-------------------------------------------------------------------------------
+
+# checkwinsize
+{% if (bash_checkwinsize is defined) and ((bash_checkwinsize == 'false') or (bash_checkwinsize == 'no') or (bash_checkwinsize == 'disable')) %}
+shopt -d checkwinsize
+{% else %}
+shopt -s checkwinsize
+{% endif %}
+
+# histappend
+{% if (bash_histappend is defined) and ((bash_histappend == 'false') or (bash_histappend == 'no') or (bash_histappend == 'disable')) %}
+shopt -d histappend
+{% else %}
+shopt -s histappend
+{% endif %}
+
+#-------------------------------------------------------------------------------
 # SHELL VARIABLES
 #-------------------------------------------------------------------------------
 
-{% if (bash_histsize is defined) and not ((bash_histsize == None) or (bash_histsize == '') or (bash_histsize == 'false') or (bash_histsize == 'no') or (bash_histsize == 'disable')) %}
-# HISTSIZE
-HISTSIZE={{(bash_histsize|e)}}
+{% if (bash_histcontrol is defined) and not ((bash_histcontrol == None) or (bash_histcontrol == 'false') or (bash_histcontrol == 'no') or (bash_histcontrol == 'disable')) %}
+# HISTCONTROL
+HISTCONTROL='{{(bash_histcontrol|e)}}'
 {% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
-readonly HISTSIZE
+readonly HISTCONTROL
 {% endif %}
-export HISTSIZE
+export HISTCONTROL
 {% endif %}
 
 {% if (bash_histfilesize is defined) and not ((bash_histfilesize == None) or (bash_histfilesize == '') or (bash_histfilesize == 'false') or (bash_histfilesize == 'no') or (bash_histfilesize == 'disable')) %}
@@ -55,13 +73,13 @@ readonly HISTIGNORE
 export HISTIGNORE
 {% endif %}
 
-{% if (bash_histcontrol is defined) and not ((bash_histcontrol == None) or (bash_histcontrol == 'false') or (bash_histcontrol == 'no') or (bash_histcontrol == 'disable')) %}
-# HISTCONTROL
-HISTCONTROL='{{(bash_histcontrol|e)}}'
+{% if (bash_histsize is defined) and not ((bash_histsize == None) or (bash_histsize == '') or (bash_histsize == 'false') or (bash_histsize == 'no') or (bash_histsize == 'disable')) %}
+# HISTSIZE
+HISTSIZE={{(bash_histsize|e)}}
 {% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
-readonly HISTCONTROL
+readonly HISTSIZE
 {% endif %}
-export HISTCONTROL
+export HISTSIZE
 {% endif %}
 
 {% if (bash_histtimeformat is defined) and not ((bash_histtimeformat == None) or (bash_histtimeformat == 'false') or (bash_histtimeformat == 'no') or (bash_histtimeformat == 'disable')) %}
@@ -69,10 +87,19 @@ export HISTCONTROL
 HISTTIMEFORMAT='{{(bash_histtimeformat|e)}}'
 {% endif %}
 
+{% if (bash_prompt_command is defined) and not ((bash_prompt_command == None) or (bash_prompt_command == '') or (bash_prompt_command == 'false') or (bash_prompt_command == 'no') or (bash_prompt_command == 'disable')) %}
+# PROMPT_COMMAND
+PROMPT_COMMAND='{{(bash_prompt_command|e)}}'
+{% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
+readonly PROMPT_COMMAND
+{% endif %}
+export PROMPT_COMMAND
+{% endif %}
+
 {% if (bash_tmout is defined) and not ((bash_tmout == None) or (bash_tmout == '') or (bash_tmout == 'false') or (bash_tmout == 'no') or (bash_tmout == 'disable')) %}
-# SESSION
+# TMOUT
 TMOUT={{(bash_tmout|e)}}
-{% if (bash_session_readonly is defined) and not ((bash_session_readonly == 'false') or (bash_session_readonly == 'no') or (bash_session_readonly == 'disable')) %}
+{% if (bash_tmout_readonly is defined) and not ((bash_tmout_readonly == 'false') or (bash_tmout_readonly == 'no') or (bash_tmout_readonly == 'disable')) %}
 readonly TMOUT
 {% endif %}
 export TMOUT
