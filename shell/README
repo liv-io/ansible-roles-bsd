@@ -106,7 +106,7 @@ ROLE
     Default    : 'less'
     Options    :
       Examples: 'less' | 'more' | '/usr/bin/less' | '/usr/bin/more'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   shell_profile_template
     Description: Define the template source for 'profile.j2'.

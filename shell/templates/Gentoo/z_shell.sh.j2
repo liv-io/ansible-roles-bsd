@@ -71,12 +71,11 @@ alias chgrp='chgrp --preserve-root'
 {% if (shell_histsize is defined) and not ((shell_histsize == None) or (shell_histsize == '') or (shell_histsize == 'false') or (shell_histsize == 'no') or (shell_histsize == 'disable')) %}
 # HISTSIZE
 HISTSIZE={{(shell_histsize|e)}}
+export HISTSIZE
 {% endif %}
 
+{% if (shell_pager is defined) and not ((shell_pager == None) or (shell_pager == '') or (shell_pager == 'false') or (shell_pager == 'no') or (shell_pager == 'disable')) %}
 # PAGER
-{% if (shell_pager is defined) and not ((shell_pager == None) or (shell_pager == '')) %}
 PAGER='{{(shell_pager|e)}}'
-{% else %}
-PAGER=''
-{% endif %}
 export PAGER
+{% endif %}
