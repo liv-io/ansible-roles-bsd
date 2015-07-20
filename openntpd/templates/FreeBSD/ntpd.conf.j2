@@ -24,7 +24,7 @@
 #
 #-------------------------------------------------------------------------------
 
-# $FreeBSD: head/net/openntpd/files/ntpd.conf 340872 2014-01-24 00:14:07Z mat $
+# $OpenBSD: ntpd.conf,v 1.2 2015/02/10 06:40:08 reyk Exp $
 # sample ntpd configuration file, see ntpd.conf(5)
 
 #-------------------------------------------------------------------------------
@@ -78,3 +78,13 @@ servers {{(server|e)}} {% if (item.weight is defined) and not ((item.weight == N
 {% endfor %}
 {% else %}
 {% endif %}
+
+#-------------------------------------------------------------------------------
+# SENSOR
+#-------------------------------------------------------------------------------
+
+# use a specific local timedelta sensor (radio clock, etc)
+#sensor nmea0
+
+# use all detected timedelta sensors
+#sensor *

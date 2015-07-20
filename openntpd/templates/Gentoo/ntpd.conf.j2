@@ -86,3 +86,13 @@ servers {{(server|e)}} {% if (item.weight is defined) and not ((item.weight == N
 {% endfor %}
 {% else %}
 {% endif %}
+
+#-------------------------------------------------------------------------------
+# SENSOR
+#-------------------------------------------------------------------------------
+
+# use a specific local timedelta sensor (radio clock, etc)
+#sensor nmea0
+
+# use all detected timedelta sensors
+#sensor *
