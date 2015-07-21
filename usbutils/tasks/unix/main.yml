@@ -1,0 +1,30 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : usbutils
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((usbutils_state == 'false') or (usbutils_state == 'no') or (usbutils_state == 'remove') or (usbutils_state == 'quiesce') or (usbutils_state == 'inactive'))
+
+- name: task include remove
+  include: remove.yml
+  when: (usbutils_state == 'false') or (usbutils_state == 'no') or (usbutils_state == 'remove')
