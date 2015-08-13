@@ -43,6 +43,9 @@ denyhosts_age_reset_valid: ''
 denyhosts_allowed_hosts:
  - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
 
+# denyhosts_allowed_hosts_hostname_lookup
+denyhosts_allowed_hosts_hostname_lookup: 'disable'
+
 # denyhosts_allowed_hosts_template
 denyhosts_allowed_hosts_template: 'main'
 

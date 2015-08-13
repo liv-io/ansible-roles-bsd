@@ -407,7 +407,11 @@ SYSLOG_REPORT=NO
 # and sshd sometimes log hostnames in addition to ip addresses
 # then you may wish to specify this option.
 # 
-#ALLOWED_HOSTS_HOSTNAME_LOOKUP=NO
+{% if (denyhosts_allowed_hosts_hostname_lookup is defined) and ((denyhosts_allowed_hosts_hostname_lookup == 'true') or (denyhosts_allowed_hosts_hostname_lookup == 'yes') or (denyhosts_allowed_hosts_hostname_lookup == 'enable')) %}
+ALLOWED_HOSTS_HOSTNAME_LOOKUP=YES
+{% else %}
+ALLOWED_HOSTS_HOSTNAME_LOOKUP=NO
+{% endif %}
 #
 ######################################################################
 

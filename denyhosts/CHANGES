@@ -14,6 +14,10 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.5.0 (2015-08-13)
+F: Add option 'denyhosts_allowed_hosts_hostname_lookup'
+F: Update 'Gentoo' configuration files
+
 * Version 0.4.2 (2015-01-12)
 B: Create inexistent directory before managing file
 

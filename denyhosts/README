@@ -163,6 +163,17 @@ ROLE
                   comment: 'Allow from local networks'}]
       None    : []
 
+  denyhosts_allowed_hosts_hostname_lookup
+    Description: Control the 'denyhosts_allowed_hosts_hostname_lookup' option.
+    Implemented: 0.5
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'disable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   denyhosts_allowed_hosts_template
     Description: Define the template source for 'allowed-hosts.j2'.
                  Any value other than 'main' requires a Jinja2 file to be
