@@ -37,31 +37,31 @@ PATH='/sbin:/bin:/usr/sbin:/usr/bin'
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-which='/usr/bin/which' && [ -x $which ] || exit 1100
-basename=$($which basename) || exit 1101
-chmod=$($which chmod) || exit 1102
-find=$($which find) || exit 1103
-date=$($which date) || exit 1104
-echo=$($which echo) || exit 1105
-expr=$($which expr) || exit 1106
-hostname=$($which hostname) || exit 1107
-logger=$($which logger) || exit 1108
+which='/usr/bin/which' && [ -x $which ] || { echo "Error: Command 'which' not found. Code: 1100"; exit 127; }
+basename=$($which basename) || { echo "Error: Command 'basename' not found. Code: 1101"; exit 127; }
+chmod=$($which chmod) || { echo "Error: Command 'chmod' not found. Code: 1102"; exit 127; }
+find=$($which find) || { echo "Error: Command 'find' not found. Code: 1103"; exit 127; }
+date=$($which date) || { echo "Error: Command 'date' not found. Code: 1104"; exit 127; }
+echo=$($which echo) || { echo "Error: Command 'echo' not found. Code: 1105"; exit 127; }
+expr=$($which expr) || { echo "Error: Command 'expr' not found. Code: 1106"; exit 127; }
+hostname=$($which hostname) || { echo "Error: Command 'hostname' not found. Code: 1107"; exit 127; }
+logger=$($which logger) || { echo "Error: Command 'logger' not found. Code: 1108"; exit 127; }
 {% if (ansible_monitor_mail_state is defined) and ((ansible_monitor_mail_state == 'true') or (ansible_monitor_mail_state == 'yes') or (ansible_monitor_mail_state == 'enable')) %}
-mailx=$($which mailx) || exit 1109
+mailx=$($which mailx) || { echo "Error: Command 'mailx' not found. Code: 1109"; exit 127; }
 {% endif %}
-rm=$($which rm) || exit 1110
-touch=$($which touch) || exit 1111
-whoami=$($which whoami) || exit 1112
+rm=$($which rm) || { echo "Error: Command 'rm' not found. Code: 1110"; exit 127; }
+touch=$($which touch) || { echo "Error: Command 'touch' not found. Code: 1111"; exit 127; }
+whoami=$($which whoami) || { echo "Error: Command 'whoami' not found. Code: 1112"; exit 127; }
 
 #-------------------------------------------------------------------------------
 # VARIABLES
 #-------------------------------------------------------------------------------
 
 # Get the short host name
-host=$($hostname -s) || exit 1200
+host=$($hostname -s) || { echo "Error: Host name unknown. Code: 1200"; exit 68; }
 
 # Get the script name and PID
-script="$($basename $0)[$$]" || exit 1201
+script="$($basename $0)[$$]" || { echo "Error: Command invoked cannot execute. Code: 1201"; exit 126; }
 
 # Get the start date and time
 date_start=$($date '+%Y-%m-%dT%H:%M:%S%z')
@@ -238,11 +238,12 @@ log_and_exit_on_error() {
 
 # Check if script is running as correct user
 if [ "$($whoami)" != "$user" ]; then
+  retval=77
   code='1300'
   severity='Error'
   message="Please run script as user '$user'"
   $echo "$($date '+%Y-%m-%dT%H:%M:%S%z') - $host - $script: "$severity: $message Code: $code""
-  exit $code
+  exit $retval
 fi
 
 #-------------------------------------------------------------------------------
