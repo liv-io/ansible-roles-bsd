@@ -21,14 +21,10 @@
 #
 #-------------------------------------------------------------------------------
 
-# sysctl_state
 sysctl_state: 'install'
 
-# sysctl_custom
 sysctl_custom: []
 
-# sysctl_default
 sysctl_default: []
 
-# sysctl_path_default
 sysctl_path_default: '/etc/sysctl.conf'

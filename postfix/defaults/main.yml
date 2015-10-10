@@ -21,38 +21,26 @@
 #
 #-------------------------------------------------------------------------------
 
-# postfix_state
 postfix_state: 'enable'
 
-# postfix_aliases_template
 postfix_aliases_template: "{{ansible_os_family}}"
 
-# postfix_custom
 postfix_custom: []
 
-# postfix_default
 postfix_default: []
 
-# postfix_fallback_relay
 postfix_fallback_relay: "mx02.{{ansible_domain}}"
 
-# postfix_inet_interfaces
 postfix_inet_interfaces: []
 
-# postfix_inet_protocols
 postfix_inet_protocols: 'ipv4'
 
-# postfix_main_cf_template
 postfix_main_cf_template: "{{ansible_os_family}}"
 
-# postfix_master_cf_template
 postfix_master_cf_template: "{{ansible_os_family}}"
 
-# postfix_myhostname
 postfix_myhostname: "{{ansible_fqdn}}"
 
-# postfix_relayhost
 postfix_relayhost: "mx01.{{ansible_domain}}"
 
-# postfix_root_mail_address
 postfix_root_mail_address: "root@{{ansible_domain}}"

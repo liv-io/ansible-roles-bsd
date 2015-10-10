@@ -21,36 +21,26 @@
 #
 #-------------------------------------------------------------------------------
 
-# opensmtpd_state
 opensmtpd_state: 'enable'
 
-# opensmtpd_accept_custom
 opensmtpd_accept_custom: []
 
-# opensmtpd_accept_default
 opensmtpd_accept_default:
  - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
  - {config: {'accept for any relay via smtp://mail'}, comment: 'Accept: Relay'}
 
-# opensmtpd_aliases_template
 opensmtpd_aliases_template: "{{ansible_os_family}}"
 
-# opensmtpd_listen_custom
 opensmtpd_listen_custom: []
 
-# opensmtpd_listen_default
 opensmtpd_listen_default:
  - {config: {'listen on localhost'}, comment: 'Listen: Localhost'}
 
-# opensmtpd_root_mail_address
 opensmtpd_root_mail_address: "root@{{ansible_domain}}"
 
-# opensmtpd_smtpd_conf_template
 opensmtpd_smtpd_conf_template: 'main'
 
-# opensmtpd_table_custom
 opensmtpd_table_custom: []
 
-# opensmtpd_table_default
 opensmtpd_table_default:
  - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}

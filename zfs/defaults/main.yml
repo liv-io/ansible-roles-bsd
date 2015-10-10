@@ -21,38 +21,26 @@
 #
 #-------------------------------------------------------------------------------
 
-# zfs_state
 zfs_state: 'enable'
 
-# zfs_monitor_mail_recipient
 zfs_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
 
-# zfs_monitor_mail_sender
 zfs_monitor_mail_sender: "root@{{ansible_domain}}"
 
-# zfs_monitor_mail_state
 zfs_monitor_mail_state: 'false'
 
-# zfs_monitor_mail_subject
 zfs_monitor_mail_subject: "ZFS: Scrub Pool - Error ({{ansible_hostname}})"
 
-# zfs_pools
 zfs_pools: []
 
-# zfs_scrub_pools_cron_hour
 zfs_scrub_pools_cron_hour: 2
 
-# zfs_scrub_pools_cron_minute
 zfs_scrub_pools_cron_minute: 22
 
-# zfs_scrub_pools_cron_weekday
 zfs_scrub_pools_cron_weekday: 6
 
-# zfs_scrub_pools_state
 zfs_scrub_pools_state: 'enable'
 
-# zfs_zfs_scrub_pools_sh_template
 zfs_zfs_scrub_pools_sh_template: 'main'
 
-# zfs_zfs_scrub_pools_cron_template
 zfs_zfs_scrub_pools_cron_template: 'main'

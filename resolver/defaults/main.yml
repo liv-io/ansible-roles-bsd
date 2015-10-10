@@ -21,18 +21,13 @@
 #
 #-------------------------------------------------------------------------------
 
-# resolver_state
 resolver_state: 'install'
 
-# resolver_domain
 resolver_domain: "{{ansible_domain}}"
 
-# resolver_nameserver
 resolver_nameserver:
  - {server: {'127.0.0.1'}, comment: 'Server: Localhost'}
 
-# resolver_search
 resolver_search: ["{{ansible_domain}}"]
 
-# resolver_resolv_conf_template
 resolver_resolv_conf_template: 'main'

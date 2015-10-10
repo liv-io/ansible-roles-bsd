@@ -21,15 +21,12 @@
 #
 #-------------------------------------------------------------------------------
 
-# group_state
 group_state: 'install'
 
-# group_custom
 group_custom:
  - name: ''
    state: 'false'
 
-# group_default
 group_default:
  - name: ''
    state: 'false'

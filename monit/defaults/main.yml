@@ -21,74 +21,50 @@
 #
 #-------------------------------------------------------------------------------
 
-# monit_state
 monit_state: 'enable'
 
-# monit_custom
 monit_custom: []
 
-# monit_daemon_delay
 monit_daemon_delay: 3
 
-# monit_daemon_interval
 monit_daemon_interval: 60
 
-# monit_default
 monit_default: []
 
-# monit_include
 monit_include: "{{'/usr/local/etc/monit.d/*.cfg' if (ansible_os_family == 'FreeBSD') else '/etc/monit.d/*.cfg'}}"
 
-# monit_log_facility
 monit_log_facility: 'log_daemon'
 
-# monit_log_file
 monit_log_file: 'syslog'
 
-# monit_mail_exclusions
 monit_mail_exclusions: []
 
-# monit_mail_from
 monit_mail_from: "monit@{{ansible_domain}}"
 
-# monit_mail_message_action
 monit_mail_message_action: '$ACTION'
 
-# monit_mail_message_date
 monit_mail_message_date: '$DATE'
 
-# monit_mail_message_description
 monit_mail_message_description: '$DESCRIPTION'
 
-# monit_mail_message_event
 monit_mail_message_event: '$EVENT'
 
-# monit_mail_message_host
 monit_mail_message_host: '$HOST'
 
-# monit_mail_message_service
 monit_mail_message_service: '$SERVICE'
 
-# monit_mail_server
 monit_mail_server: []
 
-# monit_mail_subject
 monit_mail_subject: "Monit: $EVENT '$SERVICE' ({{ansible_hostname}})"
 
-# monit_mail_to
 monit_mail_to: "admin@{{ansible_domain}}"
 
-# monit_monit_config_template
 monit_monit_config_template: 'main'
 
-# monit_monitrc_template
 monit_monitrc_template: 'main'
 
-# monit_web_server_address
 monit_web_server_address: 'localhost'
 
-# monit_web_server_allow
 monit_web_server_allow: [{user: 'localhost', comment: 'Allow localhost'}]
 
-# monit_web_server_port
 monit_web_server_port: 2812

@@ -21,90 +21,61 @@
 #
 #-------------------------------------------------------------------------------
 
-# denyhosts_state
 denyhosts_state: 'enable'
 
-# denyhosts_admin_email
 denyhosts_admin_email: "root@{{ansible_domain}}"
 
-# denyhosts_age_reset_invalid
 denyhosts_age_reset_invalid: ''
 
-# denyhosts_age_reset_restricted
 denyhosts_age_reset_restricted: ''
 
-# denyhosts_age_reset_root
 denyhosts_age_reset_root: ''
 
-# denyhosts_age_reset_valid
 denyhosts_age_reset_valid: ''
 
-# denyhosts_allowed_hosts
 denyhosts_allowed_hosts:
  - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
 
-# denyhosts_allowed_hosts_hostname_lookup
 denyhosts_allowed_hosts_hostname_lookup: 'disable'
 
-# denyhosts_allowed_hosts_template
 denyhosts_allowed_hosts_template: 'main'
 
-# denyhosts_block_service
 denyhosts_block_service: 'sshd'
 
-# denyhosts_daemon_sleep
 denyhosts_daemon_sleep: '30s'
 
-# denyhosts_daemon_purge
 denyhosts_daemon_purge: '1h'
 
-# denyhosts_denyhosts_conf_template
 denyhosts_denyhosts_conf_template: "{{ansible_os_family}}"
 
-# denyhosts_deny_threshold_invalid
 denyhosts_deny_threshold_invalid: '2'
 
-# denyhosts_deny_threshold_restricted
 denyhosts_deny_threshold_restricted: '2'
 
-# denyhosts_deny_threshold_root
 denyhosts_deny_threshold_root: '2'
 
-# denyhosts_deny_threshold_valid
 denyhosts_deny_threshold_valid: '2'
 
-# denyhosts_hostname_lookup
 denyhosts_hostname_lookup: 'disable'
 
-# denyhosts_hosts_allow_template
 denyhosts_hosts_allow_template: "{{ansible_os_family}}"
 
-# denyhosts_hosts_block_template
 denyhosts_hosts_block_template: "{{ansible_os_family}}"
 
-# denyhosts_purge_deny
 denyhosts_purge_deny: 'disable'
 
-# denyhosts_reset_on_success
 denyhosts_reset_on_success: 'enable'
 
-# denyhosts_smtp_host
 denyhosts_smtp_host: 'localhost'
 
-# denyhosts_smtp_from
 denyhosts_smtp_from: "root@{{ansible_domain}}"
 
-# denyhosts_smtp_password
 denyhosts_smtp_password: ''
 
-# denyhosts_smtp_port
 denyhosts_smtp_port: '25'
 
-# denyhosts_smtp_subject
 denyhosts_smtp_subject: "DenyHosts: Report ({{ansible_hostname}})"
 
-# denyhosts_smtp_username
 denyhosts_smtp_username: ''
 
-# denyhosts_syslog_report
 denyhosts_syslog_report: 'disable'

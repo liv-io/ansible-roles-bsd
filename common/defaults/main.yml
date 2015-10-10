@@ -21,32 +21,22 @@
 #
 #-------------------------------------------------------------------------------
 
-# common_state
 common_state: 'install'
 
-# common_backup_dir_name
 common_backup_dir_name: 'backup'
 
-# common_backup_dir_partition
 common_backup_dir_partition: 'opt'
 
-# common_info_dir_name
 common_info_dir_name: 'info'
 
-# common_info_dir_partition
 common_info_dir_partition: 'opt'
 
-# common_root_dir_name
 common_root_dir_name: 'common'
 
-# common_script_dir_name
 common_script_dir_name: 'script'
 
-# common_script_dir_partition
 common_script_dir_partition: 'opt'
 
-# common_system_dir_name
 common_system_dir_name: 'system'
 
-# common_system_dir_partition
 common_system_dir_partition: 'opt'

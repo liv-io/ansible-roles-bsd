@@ -21,24 +21,18 @@
 #
 #-------------------------------------------------------------------------------
 
-# sudo_state
 sudo_state: 'install'
 
-# sudo_custom
 sudo_custom:
  - name: ''
    state: 'false'
 
-# sudo_default
 sudo_default:
  - name: ''
    state: 'false'
 
-# sudo_name_default
 sudo_name_default: 'default'
 
-# sudo_sudo_config_template
 sudo_sudo_config_template: 'main'
 
-# sudo_sudoers_template
 sudo_sudoers_template: "{{ansible_os_family}}"

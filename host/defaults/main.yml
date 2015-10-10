@@ -21,22 +21,18 @@
 #
 #-------------------------------------------------------------------------------
 
-# host_state
 host_state: 'install'
 
-# host_custom
 host_custom:
  - name: ''
    state: 'false'
    ip: ''
    aliases: []
 
-# host_default
 host_default:
  - name: ''
    state: 'false'
    ip: ''
    aliases: []
 
-# host_path_default
 host_path_default: '/etc/hosts'

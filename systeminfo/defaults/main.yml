@@ -21,20 +21,14 @@
 #
 #-------------------------------------------------------------------------------
 
-# systeminfo_state
 systeminfo_state: 'install'
 
-# systeminfo_administration
 systeminfo_administration: []
 
-# systeminfo_general
 systeminfo_general: ''
 
-# systeminfo_other
 systeminfo_other: []
 
-# systeminfo_patching
 systeminfo_patching: []
 
-# systeminfo_services
 systeminfo_services: []

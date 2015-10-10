@@ -21,14 +21,10 @@
 #
 #-------------------------------------------------------------------------------
 
-# fstab_state
 fstab_state: 'install'
 
-# fstab_custom
 fstab_custom: []
 
-# fstab_default
 fstab_default: []
 
-# fstab_path_default
 fstab_path_default: '/etc/fstab'

@@ -21,65 +21,46 @@
 #
 #-------------------------------------------------------------------------------
 
-# iptables_state
 iptables_state: 'enable'
 
-# iptables_filter_forward_v4_custom
 iptables_filter_forward_v4_custom: []
 
-# iptables_filter_forward_v4_default
 iptables_filter_forward_v4_default: []
 
-# iptables_filter_forward_v4_icmp
 iptables_filter_forward_v4_icmp: []
 
-# iptables_filter_forward_v4_policy
 iptables_filter_forward_v4_policy: 'DROP'
 
-# iptables_filter_forward_v6_custom
 iptables_filter_forward_v6_custom: []
 
-# iptables_filter_forward_v6_default
 iptables_filter_forward_v6_default: []
 
-# iptables_filter_forward_v6_icmp
 iptables_filter_forward_v6_icmp: []
 
-# iptables_filter_forward_v6_policy
 iptables_filter_forward_v6_policy: 'DROP'
 
-# iptables_filter_input_v4_custom
 iptables_filter_input_v4_custom: []
 
-# iptables_filter_input_v4_default
 iptables_filter_input_v4_default:
  - '-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 22 -j ACCEPT -m comment --comment "SSH: From Private address space (RFC 1918)"'
  - '-A INPUT -m state --state NEW -m tcp -p tcp -s 172.16.0.0/12 --dport 22 -j ACCEPT -m comment --comment "SSH: From Private address space (RFC 1918)"'
  - '-A INPUT -m state --state NEW -m tcp -p tcp -s 10.0.0.0/8 --dport 22 -j ACCEPT -m comment --comment "SSH: From Private address space (RFC 1918)"'
 
-# iptables_filter_input_v4_icmp
 iptables_filter_input_v4_icmp:
  - '-A INPUT -p icmp -m icmp --icmp-type 3/4 -j ACCEPT -m comment --comment "destination-unreachable/fragmentation-needed (ICMP type 3 code 4)"'
 
-# iptables_filter_input_v4_policy
 iptables_filter_input_v4_policy: 'DROP'
 
-# iptables_filter_input_v6_custom
 iptables_filter_input_v6_custom: []
 
-# iptables_filter_input_v6_default
 iptables_filter_input_v6_default: []
 
-# iptables_filter_input_v6_icmp
 iptables_filter_input_v6_icmp: []
 
-# iptables_filter_input_v6_policy
 iptables_filter_input_v6_policy: 'DROP'
 
-# iptables_filter_output_v4_custom
 iptables_filter_output_v4_custom: []
 
-# iptables_filter_output_v4_default
 iptables_filter_output_v4_default:
  - '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 53 -j ACCEPT -m comment --comment "DNS: To any"'
  - '-A OUTPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT -m comment --comment "DNS: To any"'
@@ -87,76 +68,52 @@ iptables_filter_output_v4_default:
  - '-A OUTPUT -m state --state NEW -m udp -p udp --dport 123 -j ACCEPT -m comment --comment "NTP: To any"'
  - '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 443 -j ACCEPT -m comment --comment "HTTPS: To any"'
 
-# iptables_filter_output_v4_icmp
 iptables_filter_output_v4_icmp:
  - '-A OUTPUT -p icmp -m icmp --icmp-type 3/4 -j ACCEPT -m comment --comment "destination-unreachable/fragmentation-needed (ICMP type 3 code 4)"'
  - '-A OUTPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT -m comment --comment "echo-request (ICMP type 8)"'
 
-# iptables_filter_output_v4_policy
 iptables_filter_output_v4_policy: 'DROP'
 
-# iptables_filter_output_v6_custom
 iptables_filter_output_v6_custom: []
 
-# iptables_filter_output_v6_default
 iptables_filter_output_v6_default: []
 
-# iptables_filter_output_v6_icmp
 iptables_filter_output_v6_icmp: []
 
-# iptables_filter_output_v6_policy
 iptables_filter_output_v6_policy: 'DROP'
 
-# iptables_ip6tables_config_template
 iptables_ip6tables_config_template: 'main'
 
-# iptables_ip6tables_template
 iptables_ip6tables_template: 'main'
 
-# iptables_iptables_config_template
 iptables_iptables_config_template: 'main'
 
-# iptables_iptables_template
 iptables_iptables_template: 'main'
 
-# iptables_mangle_forward_v4
 iptables_mangle_forward_v4: []
 
-# iptables_mangle_forward_v4_policy
 iptables_mangle_forward_v4_policy: 'ACCEPT'
 
-# iptables_mangle_input_v4
 iptables_mangle_input_v4: []
 
-# iptables_mangle_input_v4_policy
 iptables_mangle_input_v4_policy: 'ACCEPT'
 
-# iptables_mangle_output_v4
 iptables_mangle_output_v4: []
 
-# iptables_mangle_output_v4_policy
 iptables_mangle_output_v4_policy: 'ACCEPT'
 
-# iptables_mangle_postrouting_v4
 iptables_mangle_postrouting_v4: []
 
-# iptables_mangle_postrouting_v4_policy
 iptables_mangle_postrouting_v4_policy: 'ACCEPT'
 
-# iptables_mangle_prerouting_v4
 iptables_mangle_prerouting_v4: []
 
-# iptables_mangle_prerouting_v4_policy
 iptables_mangle_prerouting_v4_policy: 'ACCEPT'
 
-# iptables_nat_postrouting_v4
 iptables_nat_postrouting_v4: []
 
-# iptables_nat_postrouting_v4_policy
 iptables_nat_postrouting_v4_policy: 'ACCEPT'
 
-# iptables_nat_prerouting_v4
 iptables_nat_prerouting_v4: []
 
-# iptables_nat_prerouting_v4_policy
 iptables_nat_prerouting_v4_policy: 'ACCEPT'

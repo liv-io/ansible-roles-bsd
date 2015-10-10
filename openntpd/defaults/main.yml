@@ -21,15 +21,11 @@
 #
 #-------------------------------------------------------------------------------
 
-# openntpd_state
 openntpd_state: 'enable'
 
-# openntpd_listen
 openntpd_listen: []
 
-# openntpd_ntpd_conf_template
 openntpd_ntpd_conf_template: "{{ansible_os_family}}"
 
-# openntpd_server
 openntpd_server:
  - {server: {'ntp'}, type: 'single', weight: 1, comment: 'Server: Single NTP server'}

@@ -21,37 +21,26 @@
 #
 #-------------------------------------------------------------------------------
 
-# ntp_state
 ntp_state: 'enable'
 
-# ntp_monitor
 ntp_monitor: 'false'
 
-# ntp_monitor_mail_recipient
 ntp_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
 
-# ntp_monitor_mail_sender
 ntp_monitor_mail_sender: "root@{{ansible_domain}}"
 
-# ntp_monitor_mail_state
 ntp_monitor_mail_state: 'false'
 
-# ntp_monitor_mail_subject
 ntp_monitor_mail_subject: "NTP: Update Time - Error ({{ansible_hostname}})"
 
-# ntp_ntp_conf_template
 ntp_ntp_conf_template: "{{ansible_os_family}}"
 
-# ntp_ntp_update_time_sh_template
 ntp_ntp_update_time_sh_template: 'main'
 
-# ntp_ntp_update_time_cron_template
 ntp_ntp_update_time_cron_template: 'main'
 
-# ntp_ntp_update_time_interval
 ntp_ntp_update_time_interval: 10
 
-# ntp_restrict
 ntp_restrict:
  - {config: {'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv4 restrictions'}
  - {config: {'-6', 'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv6 restrictions'}
@@ -59,6 +48,5 @@ ntp_restrict:
  - {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'}
  - {config: {'127.127.1.0'}, comment: 'Restrict: Pseudo IP address'}
 
-# ntp_server
 ntp_server:
  - {server: {'ntp'}, option: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Server: ntp'}

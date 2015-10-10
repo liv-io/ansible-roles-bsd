@@ -21,8 +21,6 @@
 #
 #-------------------------------------------------------------------------------
 
-# tmux_state
 tmux_state: 'install'
 
-# tmux_tmux_conf_template
 tmux_tmux_conf_template: 'main'
