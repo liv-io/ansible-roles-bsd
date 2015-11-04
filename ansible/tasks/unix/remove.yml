@@ -40,7 +40,7 @@
    force: "{{user_home_force_ansible}}"
   tags:
    - system
-   - install
+   - remove
    - unix
    - ansible
 
@@ -51,6 +51,6 @@
    gid: "{{group_gid_ansible}}"
   tags:
    - system
-   - install
+   - remove
    - unix
    - ansible
