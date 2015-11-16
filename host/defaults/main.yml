@@ -23,13 +23,13 @@
 
 host_state: 'install'
 
-host_custom:
+host_host_vars:
  - name: ''
    state: 'false'
    ip: ''
    aliases: []
 
-host_default:
+host_group_vars:
  - name: ''
    state: 'false'
    ip: ''

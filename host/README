@@ -42,14 +42,14 @@ INACTIVE
        host_state: 'inactive'
 
 CONFIG
-  host_default:
+  host_group_vars:
    - name: 'host01.domain.tld'
      state: 'true'
      ip: '192.168.1.1'
      aliases: ['host01', 'hostname01.domain.tld', 'hostname01']
      comment: 'host01'
 
-  host_custom:
+  host_host_vars:
    - name: 'host02.domain.tld'
      state: 'true'
      ip: '192.168.1.2'
