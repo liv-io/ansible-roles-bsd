@@ -23,8 +23,8 @@
 
 fstab_state: 'install'
 
-fstab_custom: []
+fstab_host_vars: []
 
-fstab_default: []
+fstab_group_vars: []
 
 fstab_path_default: '/etc/fstab'

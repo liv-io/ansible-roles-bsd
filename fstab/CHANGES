@@ -14,5 +14,8 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2015-11-08)
+I: Improve 'group_vars' and 'host_vars' options
+
 * Version 0.1.0 (2015-02-11)
 F: Initial release

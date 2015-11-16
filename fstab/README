@@ -47,7 +47,7 @@ INACTIVE
        fstab_state: 'inactive'
 
 CONFIG
-  fstab_default:
+  fstab_group_vars:
    - filesystem: '192.168.1.10:/nfs'
      state: 'true'
      mountpoint: '/nfs'
@@ -57,7 +57,7 @@ CONFIG
      pass: 0
      comment: 'NFS File System'
 
-  fstab_custom:
+  fstab_host_vars:
    - filesystem: '/dev/mapper/data-opt'
      state: 'true'
      mountpoint: '/opt'

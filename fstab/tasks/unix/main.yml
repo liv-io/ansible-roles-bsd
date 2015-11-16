@@ -21,10 +21,10 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include custom
-  include: custom.yml
+- name: task include host_vars
+  include: host_vars.yml
   when: not ((fstab_state == 'false') or (fstab_state == 'no') or (fstab_state == 'remove') or (fstab_state == 'quiesce') or (fstab_state == 'inactive'))
 
-- name: task include default
-  include: default.yml
+- name: task include group_vars
+  include: group_vars.yml
   when: not ((fstab_state == 'false') or (fstab_state == 'no') or (fstab_state == 'remove') or (fstab_state == 'quiesce') or (fstab_state == 'inactive'))
