@@ -50,7 +50,7 @@ INACTIVE
        user_state: 'inactive'
 
 CONFIG
-  user_default:
+  user_group_vars:
    - name: 'user01'
      state: 'true'
      comment: 'Example User 01'
@@ -77,7 +77,7 @@ CONFIG
      shell: '/bin/bash'
      authorized_key: []
 
-  user_custom:
+  user_host_vars:
    - name: 'user03'
      state: 'true'
      comment: 'Example User 03'

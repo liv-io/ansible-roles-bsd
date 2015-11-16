@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : custom.yml
+#   |         |  Name   : group_vars.yml
 #   |  _   _  |  Type   : ansible task file
 #   | [_] [_] |  Role   : user
 #   |____~____|
@@ -25,7 +25,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: user config user-custom
+- name: user config user-group_vars
   user:
    state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
    name: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else user_name_default}}"
@@ -43,25 +43,25 @@
    update_password: "{{'on_create' if (item.password_update is defined) and ((item.password_update == 'false') or (item.password_update == 'no') or (item.password_update == 'disable')) else 'always'}}"
    shell: "{{item.shell if (item.shell is defined) and not (item.shell == '') else user_shell_default}}"
    system: "{{'yes' if (item.system is defined) and ((item.system == 'true') or (item.system == 'yes') or (item.system == 'enable')) else 'no'}}"
-  with_items: user_custom
+  with_items: user_group_vars
   tags:
    - system
-   - custom
+   - group_vars
    - unix
    - user
 
-- name: user config authorized_key-custom
+- name: user config authorized_key-group_vars
   authorized_key:
    state: "{{'absent' if (item.1.state is defined) and ((item.1.state == 'false') or (item.1.state == 'no') or (item.1.state == 'remove')) else 'present'}}"
    user: "{{item.0.name}}"
    key: "{{item.1.key if (item.1.key is defined) else ''}}"
    key_options: "{{item.1.options if (item.1.options is defined) else ''}}"
   with_subelements:
-   - user_custom
+   - user_group_vars
    - authorized_key
   when: (item.1.key is defined) and not ((item.1.key == None) or (item.1.key == ''))
   tags:
    - system
-   - custom
+   - group_vars
    - unix
    - user

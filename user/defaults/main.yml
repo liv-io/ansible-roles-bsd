@@ -23,7 +23,7 @@
 
 user_state: 'install'
 
-user_custom:
+user_host_vars:
  - name: ''
    state: 'false'
    comment: ''
@@ -38,7 +38,7 @@ user_custom:
     - state: 'false'
       key: ''
 
-user_default:
+user_group_vars:
  - name: ''
    state: 'false'
    comment: ''
