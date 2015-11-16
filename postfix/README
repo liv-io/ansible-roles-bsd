@@ -98,8 +98,8 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  postfix_custom
-    Description: Define the 'postfix_custom' option.
+  postfix_host_vars
+    Description: Define the 'postfix_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -111,8 +111,8 @@ ROLE
                   comment: 'Custom configuration'}]
       None    : []
 
-  postfix_default
-    Description: Define the 'postfix_default' option.
+  postfix_group_vars
+    Description: Define the 'postfix_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary

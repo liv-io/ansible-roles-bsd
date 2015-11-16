@@ -711,8 +711,8 @@ home_mailbox = .maildir/
 # CUSTOM CONFIGURATION
 #-------------------------------------------------------------------------------
 
-{% if (postfix_custom is defined) and not ((postfix_custom == None) or (postfix_custom == '') or (postfix_custom == [])) %}
-{% for item in (postfix_custom|sort) %}
+{% if (postfix_host_vars is defined) and not ((postfix_host_vars == None) or (postfix_host_vars == '') or (postfix_host_vars == [])) %}
+{% for item in (postfix_host_vars|sort) %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
 {% else %}
@@ -729,8 +729,8 @@ home_mailbox = .maildir/
 # DEFAULT CONFIGURATION
 #-------------------------------------------------------------------------------
 
-{% if (postfix_default is defined) and not ((postfix_default == None) or (postfix_default == '') or (postfix_default == [])) %}
-{% for item in (postfix_default|sort) %}
+{% if (postfix_group_vars is defined) and not ((postfix_group_vars == None) or (postfix_group_vars == '') or (postfix_group_vars == [])) %}
+{% for item in (postfix_group_vars|sort) %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
 {% else %}
