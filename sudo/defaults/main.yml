@@ -23,11 +23,11 @@
 
 sudo_state: 'install'
 
-sudo_custom:
+sudo_host_vars:
  - name: ''
    state: 'false'
 
-sudo_default:
+sudo_group_vars:
  - name: ''
    state: 'false'
 

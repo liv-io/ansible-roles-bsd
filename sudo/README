@@ -53,7 +53,7 @@ INACTIVE
        sudo_state: 'inactive'
 
 CONFIG
-  sudo_default:
+  sudo_group_vars:
    - name: 'core'
      state: 'true'
      order: '10'
@@ -70,7 +70,7 @@ CONFIG
      state: 'false'
      order: '23'
 
-  sudo_custom:
+  sudo_host_vars:
    - name: 'sysadmin'
      state: 'true'
      order: '50'
