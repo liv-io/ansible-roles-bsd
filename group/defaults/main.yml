@@ -23,10 +23,10 @@
 
 group_state: 'install'
 
-group_custom:
+group_host_vars:
  - name: ''
    state: 'false'
 
-group_default:
+group_group_vars:
  - name: ''
    state: 'false'

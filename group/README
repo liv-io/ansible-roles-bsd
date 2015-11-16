@@ -47,7 +47,7 @@ INACTIVE
        group_state: 'inactive'
 
 CONFIG
-  group_default:
+  group_group_vars:
    - name: 'group01'
      state: 'true'
      gid: '2001'
@@ -60,7 +60,7 @@ CONFIG
      name: 'group03'
      gid: '2003'
 
-  group_custom:
+  group_host_vars:
    - name: 'group04'
      state: 'true'
      gid: '2004'
