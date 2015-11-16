@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : custom.yml
+#   |         |  Name   : group_vars.yml
 #   |  _   _  |  Type   : ansible task file
 #   | [_] [_] |  Role   : portage
 #   |____~____|
@@ -31,29 +31,29 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create portage-custom.conf
+- name: template create portage-group_vars.conf
   template:
    src: "{{file_src_portage_config}}"
    dest: "{{file_path_portage_repos_conf}}/{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}.conf"
    mode: "{{file_mode_portage_config}}"
    owner: "{{file_owner_portage_config}}"
    group: "{{file_group_portage_config}}"
-  with_items: portage_custom
+  with_items: portage_group_vars
   when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
    - files
-   - custom
+   - group_vars
    - gentoo
    - portage
 
-- name: file remove portage-custom.conf
+- name: file remove portage-group_vars.conf
   file:
    state: 'absent'
    path: "{{file_path_portage_repos_conf}}/{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}.conf"
-  with_items: portage_custom
+  with_items: portage_group_vars
   when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
    - files
-   - custom
+   - group_vars
    - gentoo
    - portage

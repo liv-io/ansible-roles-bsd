@@ -25,10 +25,10 @@
   include: install.yml
   when: not ((portage_state == 'false') or (portage_state == 'no') or (portage_state == 'disable') or (portage_state == 'quiesce') or (portage_state == 'inactive'))
 
-- name: task include custom
-  include: custom.yml
+- name: task include host_vars
+  include: host_vars.yml
   when: not ((portage_state == 'false') or (portage_state == 'no') or (portage_state == 'disable') or (portage_state == 'quiesce') or (portage_state == 'inactive'))
 
-- name: task include default
-  include: default.yml
+- name: task include group_vars
+  include: group_vars.yml
   when: not ((portage_state == 'false') or (portage_state == 'no') or (portage_state == 'disable') or (portage_state == 'quiesce') or (portage_state == 'inactive'))

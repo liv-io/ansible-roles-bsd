@@ -29,13 +29,13 @@ portage_chost: 'x86_64-pc-linux-gnu'
 
 portage_cpu_flags_x86: []
 
-portage_custom: []
+portage_host_vars: []
 
 portage_custom_options: []
 
 portage_cxxflags: ['${CFLAGS}']
 
-portage_default: []
+portage_group_vars: []
 
 portage_distdir: '${PORTDIR}/distfiles'
 

@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.5.1 (2015-11-08)
+I: Improve 'group_vars' and 'host_vars' options
+
 * Version 0.5.0 (2015-05-05)
 F: Add basic Portage repository configuration options
 
