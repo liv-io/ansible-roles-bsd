@@ -42,13 +42,13 @@ INACTIVE
        rc_state: 'inactive'
 
 CONFIG
-  rc_default:
+  rc_group_vars:
    - name: 'sshd_enable'
      value: 'YES'
      state: 'true'
      comment: 'Enable service OpenSSH'
 
-  rc_custom:
+  rc_host_vars:
    - name: 'hostname'
      value: 'example01'
      state: 'true'

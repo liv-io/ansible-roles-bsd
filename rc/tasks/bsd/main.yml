@@ -21,10 +21,10 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include custom
-  include: custom.yml
+- name: task include host_vars
+  include: host_vars.yml
   when: not ((rc_state == 'false') or (rc_state == 'no') or (rc_state == 'remove') or (rc_state == 'quiesce') or (rc_state == 'inactive'))
 
-- name: task include default
-  include: default.yml
+- name: task include group_vars
+  include: group_vars.yml
   when: not ((rc_state == 'false') or (rc_state == 'no') or (rc_state == 'remove') or (rc_state == 'quiesce') or (rc_state == 'inactive'))

@@ -23,8 +23,8 @@
 
 rc_state: 'install'
 
-rc_custom: []
+rc_host_vars: []
 
-rc_default: []
+rc_group_vars: []
 
 rc_path_default: '/etc/rc.conf'
