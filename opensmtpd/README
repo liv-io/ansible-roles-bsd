@@ -40,10 +40,10 @@ ENABLE
     roles:
      - role: opensmtpd
        opensmtpd_state: 'enable'
-       opensmtpd_accept_default:
+       opensmtpd_accept_group_vars:
         - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
         - {config: {'accept for any relay via tls+auth://mail.domain.tld auth <secrets>'}, comment: 'Accept: Relay'}
-       opensmtpd_table_default:
+       opensmtpd_table_group_vars:
         - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}
         - {config: {'table secrets file:/usr/local/etc/mail/secrets'}, comment: 'Table: Secrets'}
        opensmtpd_root_mail_address: 'root@domain.tld'
@@ -53,10 +53,10 @@ DISABLE
     roles:
      - role: opensmtpd
        opensmtpd_state: 'disable'
-       opensmtpd_accept_default:
+       opensmtpd_accept_group_vars:
         - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
         - {config: {'accept for any relay via tls+auth://mail.domain.tld auth <secrets>'}, comment: 'Accept: Relay'}
-       opensmtpd_table_default:
+       opensmtpd_table_group_vars:
         - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}
         - {config: {'table secrets file:/usr/local/etc/mail/secrets'}, comment: 'Table: Secrets'}
        opensmtpd_root_mail_address: 'root@domain.tld'
@@ -92,8 +92,8 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  opensmtpd_accept_custom
-    Description: Define the 'opensmtpd_accept_custom' option.
+  opensmtpd_accept_host_vars
+    Description: Define the 'opensmtpd_accept_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -104,8 +104,8 @@ ROLE
                  {config: {'accept for any relay via smtp://mail'}, comment: 'Accept: Relay'}]
       None    : []
 
-  opensmtpd_accept_default
-    Description: Define the 'opensmtpd_accept_default' option.
+  opensmtpd_accept_group_vars
+    Description: Define the 'opensmtpd_accept_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -131,8 +131,8 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  opensmtpd_listen_custom
-    Description: Define the 'opensmtpd_listen_custom' option.
+  opensmtpd_listen_host_vars
+    Description: Define the 'opensmtpd_listen_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -142,8 +142,8 @@ ROLE
       Examples: [{config: {'listen on localhost'}, comment: 'Listen: Localhost'}]
       None    : []
 
-  opensmtpd_listen_default
-    Description: Define the 'opensmtpd_listen_custom' option.
+  opensmtpd_listen_group_vars
+    Description: Define the 'opensmtpd_listen_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -177,8 +177,8 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  opensmtpd_table_custom
-    Description: Define the 'opensmtpd_table_custom' option.
+  opensmtpd_table_host_vars
+    Description: Define the 'opensmtpd_table_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -188,8 +188,8 @@ ROLE
       Examples: [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}]
       None    : []
 
-  opensmtpd_table_default
-    Description: Define the 'opensmtpd_table_default' option.
+  opensmtpd_table_group_vars
+    Description: Define the 'opensmtpd_table_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary

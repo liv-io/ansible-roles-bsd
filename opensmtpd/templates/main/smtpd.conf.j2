@@ -32,8 +32,8 @@
 #-------------------------------------------------------------------------------
 
 # DEFAULT
-{% if (opensmtpd_listen_default is defined) and not ((opensmtpd_listen_default == None) or (opensmtpd_listen_default == '') or (opensmtpd_listen_default == [])) %}
-{% for item in opensmtpd_listen_default %}
+{% if (opensmtpd_listen_group_vars is defined) and not ((opensmtpd_listen_group_vars == None) or (opensmtpd_listen_group_vars == '') or (opensmtpd_listen_group_vars == [])) %}
+{% for item in opensmtpd_listen_group_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
 {% else %}
@@ -47,8 +47,8 @@
 {% endif %}
 
 # CUSTOM
-{% if (opensmtpd_listen_custom is defined) and not ((opensmtpd_listen_custom == None) or (opensmtpd_listen_custom == '') or (opensmtpd_listen_custom == [])) %}
-{% for item in opensmtpd_listen_custom %}
+{% if (opensmtpd_listen_host_vars is defined) and not ((opensmtpd_listen_host_vars == None) or (opensmtpd_listen_host_vars == '') or (opensmtpd_listen_host_vars == [])) %}
+{% for item in opensmtpd_listen_host_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
 {% else %}
@@ -66,8 +66,8 @@
 #-------------------------------------------------------------------------------
 
 # DEFAULT
-{% if (opensmtpd_table_default is defined) and not ((opensmtpd_table_default == None) or (opensmtpd_table_default == '') or (opensmtpd_table_default == [])) %}
-{% for item in opensmtpd_table_default %}
+{% if (opensmtpd_table_group_vars is defined) and not ((opensmtpd_table_group_vars == None) or (opensmtpd_table_group_vars == '') or (opensmtpd_table_group_vars == [])) %}
+{% for item in opensmtpd_table_group_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
 {% else %}
@@ -81,8 +81,8 @@
 {% endif %}
 
 # CUSTOM
-{% if (opensmtpd_table_custom is defined) and not ((opensmtpd_table_custom == None) or (opensmtpd_table_custom == '') or (opensmtpd_table_custom == [])) %}
-{% for item in opensmtpd_table_custom %}
+{% if (opensmtpd_table_host_vars is defined) and not ((opensmtpd_table_host_vars == None) or (opensmtpd_table_host_vars == '') or (opensmtpd_table_host_vars == [])) %}
+{% for item in opensmtpd_table_host_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
 {% else %}
@@ -100,8 +100,8 @@
 #-------------------------------------------------------------------------------
 
 # DEFAULT
-{% if (opensmtpd_accept_default is defined) and not ((opensmtpd_accept_default == None) or (opensmtpd_accept_default == '') or (opensmtpd_accept_default == [])) %}
-{% for item in opensmtpd_accept_default %}
+{% if (opensmtpd_accept_group_vars is defined) and not ((opensmtpd_accept_group_vars == None) or (opensmtpd_accept_group_vars == '') or (opensmtpd_accept_group_vars == [])) %}
+{% for item in opensmtpd_accept_group_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
 {% else %}
@@ -115,8 +115,8 @@
 {% endif %}
 
 # CUSTOM
-{% if (opensmtpd_accept_custom is defined) and not ((opensmtpd_accept_custom == None) or (opensmtpd_accept_custom == '') or (opensmtpd_accept_custom == [])) %}
-{% for item in opensmtpd_accept_custom %}
+{% if (opensmtpd_accept_host_vars is defined) and not ((opensmtpd_accept_host_vars == None) or (opensmtpd_accept_host_vars == '') or (opensmtpd_accept_host_vars == [])) %}
+{% for item in opensmtpd_accept_host_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
 {% else %}
