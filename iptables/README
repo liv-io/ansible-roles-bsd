@@ -40,18 +40,18 @@ ENABLE
     roles:
      - role: iptables
        iptables_state: 'enable'
-       iptables_filter_input_v4_custom:
+       iptables_filter_input_v4_host_vars:
         - '-A INPUT -m state --state NEW -m tcp -p tcp --dport 25 -m comment -j ACCEPT --comment "SMTP: From any"'
         - '-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -m comment -j ACCEPT --comment "HTTP: From any"'
         - '-A INPUT -m state --state NEW -m tcp -p tcp --dport 443 -m comment -j ACCEPT --comment "HTTPS: From any"'
         - '-A INPUT -m state --state NEW -m tcp -p tcp --dport 587 -m comment -j ACCEPT --comment "SMTPS: From any"'
         - '-A INPUT -m state --state NEW -m tcp -p tcp --dport 993 -m comment -j ACCEPT --comment "IMAPS: From any"'
-       iptables_filter_input_v4_default:
+       iptables_filter_input_v4_group_vars:
         - '-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.1.0/24 --dport 22 -j ACCEPT -m comment --comment "SSH: From internal network"'
-       iptables_filter_output_v4_custom:
+       iptables_filter_output_v4_host_vars:
         - '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 25 -j ACCEPT -m comment --comment "SMTP: To any"'
         - '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 587 -j ACCEPT -m comment --comment "SMTPS: To any"'
-       iptables_filter_output_v4_default:
+       iptables_filter_output_v4_group_vars:
         - '-A OUTPUT -m state --state NEW -m tcp -p tcp -d 192.168.1.0/24 --dport 53 -j ACCEPT -m comment --comment "DNS: To internal network"'
         - '-A OUTPUT -m state --state NEW -m udp -p udp -d 192.168.1.0/24 --dport 53 -j ACCEPT -m comment --comment "DNS: To internal network"'
         - '-A OUTPUT -m state --state NEW -m tcp -p tcp -d 192.168.1.0/24 --dport 80 -j ACCEPT -m comment --comment "HTTP: To internal network"'
@@ -63,18 +63,18 @@ DISABLE
     roles:
      - role: iptables
        iptables_state: 'disable'
-       iptables_filter_input_v4_custom:
+       iptables_filter_input_v4_host_vars:
         - '-A INPUT -m state --state NEW -m tcp -p tcp --dport 25 -m comment -j ACCEPT --comment "SMTP: From any"'
         - '-A INPUT -m state --state NEW -m tcp -p tcp --dport 80 -m comment -j ACCEPT --comment "HTTP: From any"'
         - '-A INPUT -m state --state NEW -m tcp -p tcp --dport 443 -m comment -j ACCEPT --comment "HTTPS: From any"'
         - '-A INPUT -m state --state NEW -m tcp -p tcp --dport 587 -m comment -j ACCEPT --comment "SMTPS: From any"'
         - '-A INPUT -m state --state NEW -m tcp -p tcp --dport 993 -m comment -j ACCEPT --comment "IMAPS: From any"'
-       iptables_filter_input_v4_default:
+       iptables_filter_input_v4_group_vars:
         - '-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.1.0/24 --dport 22 -j ACCEPT -m comment --comment "SSH: From internal network"'
-       iptables_filter_output_v4_custom:
+       iptables_filter_output_v4_host_vars:
         - '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 25 -j ACCEPT -m comment --comment "SMTP: To any"'
         - '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 587 -j ACCEPT -m comment --comment "SMTPS: To any"'
-       iptables_filter_output_v4_default:
+       iptables_filter_output_v4_group_vars:
         - '-A OUTPUT -m state --state NEW -m tcp -p tcp -d 192.168.1.0/24 --dport 53 -j ACCEPT -m comment --comment "DNS: To internal network"'
         - '-A OUTPUT -m state --state NEW -m udp -p udp -d 192.168.1.0/24 --dport 53 -j ACCEPT -m comment --comment "DNS: To internal network"'
         - '-A OUTPUT -m state --state NEW -m tcp -p tcp -d 192.168.1.0/24 --dport 80 -j ACCEPT -m comment --comment "HTTP: To internal network"'
@@ -112,8 +112,8 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  iptables_filter_forward_v4_custom
-    Description: Define the 'iptables_filter_forward_v4_custom' option.
+  iptables_filter_forward_v4_host_vars
+    Description: Define the 'iptables_filter_forward_v4_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -126,8 +126,8 @@ ROLE
                  '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8443 -m comment --comment "HTTPS: From any to any" -j ACCEPT']
       None    : []
 
-  iptables_filter_forward_v4_default
-    Description: Define the 'iptables_filter_forward_v4_default' option.
+  iptables_filter_forward_v4_group_vars
+    Description: Define the 'iptables_filter_forward_v4_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -171,8 +171,8 @@ ROLE
       Accept: 'accept' | 'ACCEPT'
       Drop  : 'drop' | 'DROP'
 
-  iptables_filter_forward_v6_custom
-    Description: Define the 'iptables_filter_forward_v6_custom' option.
+  iptables_filter_forward_v6_host_vars
+    Description: Define the 'iptables_filter_forward_v6_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -185,8 +185,8 @@ ROLE
                  '-A FORWARD -m state --state NEW -m tcp -p tcp --dport 8443 -m comment --comment "HTTPS: From any to any" -j ACCEPT']
       None    : []
 
-  iptables_filter_forward_v6_default
-    Description: Define the 'iptables_filter_forward_v6_default' option.
+  iptables_filter_forward_v6_group_vars
+    Description: Define the 'iptables_filter_forward_v6_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -236,8 +236,8 @@ ROLE
       Accept: 'accept' | 'ACCEPT'
       Drop  : 'drop' | 'DROP'
 
-  iptables_filter_input_v4_custom
-    Description: Define the 'iptables_filter_input_v4_custom' option.
+  iptables_filter_input_v4_host_vars
+    Description: Define the 'iptables_filter_input_v4_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -253,8 +253,8 @@ ROLE
                  '-A INPUT -m state --state NEW -m tcp -p tcp --dport 993 -m comment -j ACCEPT --comment "IMAPS: From any"']
       None    : []
 
-  iptables_filter_input_v4_default
-    Description:  Define the 'iptables_filter_input_v4_default' option.
+  iptables_filter_input_v4_group_vars
+    Description:  Define the 'iptables_filter_input_v4_group_vars' option.
                   SSH (22/TCP) is a core port and should therefore not be disabled.
     Implemented: 0.1
     Required   : False
@@ -299,8 +299,8 @@ ROLE
       Accept: 'accept' | 'ACCEPT'
       Drop  : 'drop' | 'DROP'
 
-  iptables_filter_input_v6_custom
-    Description: Define the 'iptables_filter_input_v6_custom' option.
+  iptables_filter_input_v6_host_vars
+    Description: Define the 'iptables_filter_input_v6_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -316,8 +316,8 @@ ROLE
                  '-A INPUT -m state --state NEW -m tcp -p tcp --dport 993 -m comment -j ACCEPT --comment "IMAPS: From any"']
       None    : []
 
-  iptables_filter_input_v6_default
-    Description: Define the 'iptables_filter_input_v6_default' option.
+  iptables_filter_input_v6_group_vars
+    Description: Define the 'iptables_filter_input_v6_group_vars' option.
                  SSH (22/TCP) is a core port and should therefore not be disabled.
     Implemented: 0.1
     Required   : False
@@ -365,8 +365,8 @@ ROLE
       Accept: 'accept' | 'ACCEPT'
       Drop  : 'drop' | 'DROP'
 
-  iptables_filter_output_v4_custom
-    Description: Define the 'iptables_filter_output_v4_custom' option.
+  iptables_filter_output_v4_host_vars
+    Description: Define the 'iptables_filter_output_v4_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -376,8 +376,8 @@ ROLE
       Examples: ['-A OUTPUT -m state --state NEW -m tcp -p tcp -d 192.168.1.0/24 --dport 22 -j ACCEPT -m comment --comment "SSH: To internal network"']
       None    : []
 
-  iptables_filter_output_v4_default
-    Description: Define the 'iptables_filter_output_v4_default' option.
+  iptables_filter_output_v4_group_vars
+    Description: Define the 'iptables_filter_output_v4_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -427,8 +427,8 @@ ROLE
       Accept: 'accept' | 'ACCEPT'
       Drop  : 'drop' | 'DROP'
 
-  iptables_filter_output_v6_custom
-    Description: Define the 'iptables_filter_output_v6_custom' option.
+  iptables_filter_output_v6_host_vars
+    Description: Define the 'iptables_filter_output_v6_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -438,8 +438,8 @@ ROLE
       Examples: ['-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT -m comment --comment "SSH: To any"']
       None    : []
 
-  iptables_filter_output_v6_default
-    Description: Define the 'iptables_filter_output_v6_default' option.
+  iptables_filter_output_v6_group_vars
+    Description: Define the 'iptables_filter_output_v6_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary

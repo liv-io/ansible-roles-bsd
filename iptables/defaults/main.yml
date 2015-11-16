@@ -23,25 +23,25 @@
 
 iptables_state: 'enable'
 
-iptables_filter_forward_v4_custom: []
+iptables_filter_forward_v4_host_vars: []
 
-iptables_filter_forward_v4_default: []
+iptables_filter_forward_v4_group_vars: []
 
 iptables_filter_forward_v4_icmp: []
 
 iptables_filter_forward_v4_policy: 'DROP'
 
-iptables_filter_forward_v6_custom: []
+iptables_filter_forward_v6_host_vars: []
 
-iptables_filter_forward_v6_default: []
+iptables_filter_forward_v6_group_vars: []
 
 iptables_filter_forward_v6_icmp: []
 
 iptables_filter_forward_v6_policy: 'DROP'
 
-iptables_filter_input_v4_custom: []
+iptables_filter_input_v4_host_vars: []
 
-iptables_filter_input_v4_default:
+iptables_filter_input_v4_group_vars:
  - '-A INPUT -m state --state NEW -m tcp -p tcp -s 192.168.0.0/16 --dport 22 -j ACCEPT -m comment --comment "SSH: From Private address space (RFC 1918)"'
  - '-A INPUT -m state --state NEW -m tcp -p tcp -s 172.16.0.0/12 --dport 22 -j ACCEPT -m comment --comment "SSH: From Private address space (RFC 1918)"'
  - '-A INPUT -m state --state NEW -m tcp -p tcp -s 10.0.0.0/8 --dport 22 -j ACCEPT -m comment --comment "SSH: From Private address space (RFC 1918)"'
@@ -51,17 +51,17 @@ iptables_filter_input_v4_icmp:
 
 iptables_filter_input_v4_policy: 'DROP'
 
-iptables_filter_input_v6_custom: []
+iptables_filter_input_v6_host_vars: []
 
-iptables_filter_input_v6_default: []
+iptables_filter_input_v6_group_vars: []
 
 iptables_filter_input_v6_icmp: []
 
 iptables_filter_input_v6_policy: 'DROP'
 
-iptables_filter_output_v4_custom: []
+iptables_filter_output_v4_host_vars: []
 
-iptables_filter_output_v4_default:
+iptables_filter_output_v4_group_vars:
  - '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 53 -j ACCEPT -m comment --comment "DNS: To any"'
  - '-A OUTPUT -m state --state NEW -m udp -p udp --dport 53 -j ACCEPT -m comment --comment "DNS: To any"'
  - '-A OUTPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT -m comment --comment "HTTP: To any"'
@@ -74,9 +74,9 @@ iptables_filter_output_v4_icmp:
 
 iptables_filter_output_v4_policy: 'DROP'
 
-iptables_filter_output_v6_custom: []
+iptables_filter_output_v6_host_vars: []
 
-iptables_filter_output_v6_default: []
+iptables_filter_output_v6_group_vars: []
 
 iptables_filter_output_v6_icmp: []
 

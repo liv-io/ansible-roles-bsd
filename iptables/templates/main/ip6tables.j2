@@ -50,17 +50,17 @@
 {% endfor %}
 {% endif %}
 
-# Default rules
-{% if (iptables_filter_input_v6_default is defined) and not ((iptables_filter_input_v6_default == None) or (iptables_filter_input_v6_default == '') or (iptables_filter_input_v6_default == [])) %}
-{% for filter_input_v6_default in iptables_filter_input_v6_default %}
-{{filter_input_v6_default}}
+# 'group_vars' rules
+{% if (iptables_filter_input_v6_group_vars is defined) and not ((iptables_filter_input_v6_group_vars == None) or (iptables_filter_input_v6_group_vars == '') or (iptables_filter_input_v6_group_vars == [])) %}
+{% for filter_input_v6_group_vars in iptables_filter_input_v6_group_vars %}
+{{filter_input_v6_group_vars}}
 {% endfor %}
 {% endif %}
 
-# Custom rules
-{% if (iptables_filter_input_v6_custom is defined) and not ((iptables_filter_input_v6_custom == None) or (iptables_filter_input_v6_custom == '') or (iptables_filter_input_v6_custom == [])) %}
-{% for filter_input_v6_custom in iptables_filter_input_v6_custom %}
-{{filter_input_v6_custom}}
+# 'host_vars' rules
+{% if (iptables_filter_input_v6_host_vars is defined) and not ((iptables_filter_input_v6_host_vars == None) or (iptables_filter_input_v6_host_vars == '') or (iptables_filter_input_v6_host_vars == [])) %}
+{% for filter_input_v6_host_vars in iptables_filter_input_v6_host_vars %}
+{{filter_input_v6_host_vars}}
 {% endfor %}
 {% endif %}
 
@@ -78,17 +78,17 @@
 {% endfor %}
 {% endif %}
 
-# Default rules
-{% if (iptables_filter_forward_v6_default is defined) and not ((iptables_filter_forward_v6_default == None) or (iptables_filter_forward_v6_default == '') or (iptables_filter_forward_v6_default == [])) %}
-{% for filter_forward_v6_default in iptables_filter_forward_v6_default %}
-{{filter_forward_v6_default}}
+# 'group_vars' rules
+{% if (iptables_filter_forward_v6_group_vars is defined) and not ((iptables_filter_forward_v6_group_vars == None) or (iptables_filter_forward_v6_group_vars == '') or (iptables_filter_forward_v6_group_vars == [])) %}
+{% for filter_forward_v6_group_vars in iptables_filter_forward_v6_group_vars %}
+{{filter_forward_v6_group_vars}}
 {% endfor %}
 {% endif %}
 
-# Custom rules
-{% if (iptables_filter_forward_v6_custom is defined) and not ((iptables_filter_forward_v6_custom == None) or (iptables_filter_forward_v6_custom == '') or (iptables_filter_forward_v6_custom == [])) %}
-{% for filter_forward_v6_custom in iptables_filter_forward_v6_custom %}
-{{filter_forward_v6_custom}}
+# 'host_vars' rules
+{% if (iptables_filter_forward_v6_host_vars is defined) and not ((iptables_filter_forward_v6_host_vars == None) or (iptables_filter_forward_v6_host_vars == '') or (iptables_filter_forward_v6_host_vars == [])) %}
+{% for filter_forward_v6_host_vars in iptables_filter_forward_v6_host_vars %}
+{{filter_forward_v6_host_vars}}
 {% endfor %}
 {% endif %}
 
@@ -107,17 +107,17 @@
 {% endfor %}
 {% endif %}
 
-# Default rules
-{% if (iptables_filter_output_v6_default is defined) and not ((iptables_filter_output_v6_default == None) or (iptables_filter_output_v6_default == '') or (iptables_filter_output_v6_default == [])) %}
-{% for filter_output_v6_default in iptables_filter_output_v6_default %}
-{{filter_output_v6_default}}
+# 'group_vars' rules
+{% if (iptables_filter_output_v6_group_vars is defined) and not ((iptables_filter_output_v6_group_vars == None) or (iptables_filter_output_v6_group_vars == '') or (iptables_filter_output_v6_group_vars == [])) %}
+{% for filter_output_v6_group_vars in iptables_filter_output_v6_group_vars %}
+{{filter_output_v6_group_vars}}
 {% endfor %}
 {% endif %}
 
-# Custom rules
-{% if (iptables_filter_output_v6_custom is defined) and not ((iptables_filter_output_v6_custom == None) or (iptables_filter_output_v6_custom == '') or (iptables_filter_output_v6_custom == [])) %}
-{% for filter_output_v6_custom in iptables_filter_output_v6_custom %}
-{{filter_output_v6_custom}}
+# 'host_vars' rules
+{% if (iptables_filter_output_v6_host_vars is defined) and not ((iptables_filter_output_v6_host_vars == None) or (iptables_filter_output_v6_host_vars == '') or (iptables_filter_output_v6_host_vars == [])) %}
+{% for filter_output_v6_host_vars in iptables_filter_output_v6_host_vars %}
+{{filter_output_v6_host_vars}}
 {% endfor %}
 {% endif %}
 
