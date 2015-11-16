@@ -23,8 +23,8 @@
 
 sysctl_state: 'install'
 
-sysctl_custom: []
+sysctl_host_vars: []
 
-sysctl_default: []
+sysctl_group_vars: []
 
 sysctl_path_default: '/etc/sysctl.conf'

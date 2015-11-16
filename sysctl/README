@@ -49,7 +49,7 @@ INACTIVE
        sysctl_state: 'inactive'
 
 CONFIG
-  sysctl_default:
+  sysctl_group_vars:
    - name: 'net.ipv4.tcp_syncookies'
      value: '1'
      state: 'true'
@@ -58,7 +58,7 @@ CONFIG
      value: '3'
      state: 'true'
 
-  sysctl_custom:
+  sysctl_host_vars:
    - name: 'kernel.hostname'
      value: 'host01'
      state: 'true'

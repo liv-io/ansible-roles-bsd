@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : default.yml
+#   |         |  Name   : host_vars.yml
 #   |  _   _  |  Type   : ansible task file
 #   | [_] [_] |  Role   : sysctl
 #   |____~____|
@@ -31,16 +31,16 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line config sysctl-default
+- name: line config sysctl-host_vars
   lineinfile:
    state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
    line: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}={{item.value if (item.value is defined) and not ((item.value == None) or (item.value == '')) else ''}}"
    regexp: "^{{item.name}}="
    dest: "{{(item.path|e) if (item.path is defined) and not ((item.path == None) or (item.path == '')) else (sysctl_path_default|e)}}"
-  with_items: sysctl_default
+  with_items: sysctl_host_vars
   notify: raw execute sysctl
   tags:
    - files
-   - default
+   - host_vars
    - unix
    - sysctl
