@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : default.yml
+#   |         |  Name   : host_vars.yml
 #   |  _   _  |  Type   : ansible task file
 #   | [_] [_] |  Role   : monit
 #   |____~____|
@@ -31,35 +31,35 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create monit-default
+- name: template create monit-host_vars
   template:
    src: "{{file_src_monit_config}}"
-   dest: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else monit_name_default}}.cfg"
+   dest: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else monit_name_group_vars}}.cfg"
    mode: "{{file_mode_monit_config}}"
    owner: "{{file_owner_monit_config}}"
    group: "{{file_group_monit_config}}"
   notify:
    - command validate monit
    - service restart monit
-  with_items: monit_default
+  with_items: monit_host_vars
   when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
    - files
-   - default
+   - host_vars
    - unix
    - monit
 
-- name: file remove monit-default
+- name: file remove monit-host_vars
   file:
    state: 'absent'
-   path: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else monit_name_default}}.cfg"
+   path: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else monit_name_group_vars}}.cfg"
   notify:
    - command validate monit
    - service restart monit
-  with_items: monit_default
+  with_items: monit_host_vars
   when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
    - files
-   - default
+   - host_vars
    - unix
    - monit

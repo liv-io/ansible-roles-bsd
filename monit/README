@@ -82,7 +82,7 @@ INACTIVE
        monit_state: 'inactive'
 
 CONFIG
-  monit_default:
+  monit_group_vars:
    - name: 'openssh'
      state: 'true'
      comment: 'OpenSSH'
@@ -98,7 +98,7 @@ CONFIG
       - '  if failed host 127.0.0.1 port 22 type tcp protocol ssh with timeout 10 seconds then restart'
       - '  if 5 restarts within 5 cycles then timeout'
 
-  monit_custom:
+  monit_host_vars:
    - name: 'pdns-server'
      state: 'true'
      comment: 'PowerDNS Server'
@@ -216,8 +216,8 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  monit_custom
-    Description: Define the 'monit_custom' option.
+  monit_host_vars
+    Description: Define the 'monit_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -259,8 +259,8 @@ ROLE
       Examples: 30 | 60 | 120 | 180 | 240 | 300
       None    : ''
 
-  monit_default
-    Description: Define the 'monit_default' option.
+  monit_group_vars
+    Description: Define the 'monit_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -454,6 +454,17 @@ ROLE
     Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
+
+  monit_name_default
+    Description: Define the 'monit_name_default' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'apache' | 'mariadb' | 'postfix'
+      None    : ''
 
   monit_web_server_address
     Description: Define the 'monit_web_server_address' option.
