@@ -41,18 +41,18 @@ ENABLE
     roles:
      - role: pf
        pf_state: 'enable'
-       pf_filter_in_ip_custom:
+       pf_filter_in_ip_host_vars:
         - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
         - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
         - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
         - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
         - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
-       pf_filter_in_ip_default:
+       pf_filter_in_ip_group_vars:
         - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
-       pf_filter_out_ip_custom:
+       pf_filter_out_ip_host_vars:
         - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
         - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
-       pf_filter_out_ip_default:
+       pf_filter_out_ip_group_vars:
         - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
                     'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
         - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
@@ -66,18 +66,18 @@ DISABLE
     roles:
      - role: pf
        pf_state: 'disable'
-       pf_filter_in_ip_custom:
+       pf_filter_in_ip_host_vars:
         - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
         - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
         - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
         - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
         - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
-       pf_filter_in_ip_default:
+       pf_filter_in_ip_group_vars:
         - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
-       pf_filter_out_ip_custom:
+       pf_filter_out_ip_host_vars:
         - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
         - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
-       pf_filter_out_ip_default:
+       pf_filter_out_ip_group_vars:
         - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
                     'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
         - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
@@ -117,8 +117,8 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  pf_blacklist_custom
-    Description: Define the 'pf_blacklist_custom' option.
+  pf_blacklist_host_vars
+    Description: Define the 'pf_blacklist_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -130,8 +130,8 @@ ROLE
                  {config: {'google.com'}, comment: 'Host: Domain'}]
       None    : []
 
-  pf_blacklist_default
-    Description: Define the 'pf_blacklist_default' option.
+  pf_blacklist_group_vars
+    Description: Define the 'pf_blacklist_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -156,8 +156,8 @@ ROLE
                   comment: 'ICMP echo request: From any'}]
       None    : []
 
-  pf_filter_in_ip_custom
-    Description: Define the 'pf_filter_in_ip_custom' option.
+  pf_filter_in_ip_host_vars
+    Description: Define the 'pf_filter_in_ip_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -177,8 +177,8 @@ ROLE
                  {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}]
       None    : []
 
-  pf_filter_in_ip_default
-    Description: Define the 'pf_filter_in_ip_default' option.
+  pf_filter_in_ip_group_vars
+    Description: Define the 'pf_filter_in_ip_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -219,8 +219,8 @@ ROLE
                   comment: 'ICMP echo request: To any'}]
       None    : []
 
-  pf_filter_out_ip_custom
-    Description: Define the 'pf_filter_out_ip_custom' option.
+  pf_filter_out_ip_host_vars
+    Description: Define the 'pf_filter_out_ip_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -231,8 +231,8 @@ ROLE
                  {config: {'pass out inet proto tcp to 192.168.1.10 port 512 $tcp_state'}, comment: 'SYSLOG: To internal log server'}]
       None    : []
 
-  pf_filter_out_ip_default
-    Description: Define the 'pf_filter_out_ip_default' option.
+  pf_filter_out_ip_group_vars
+    Description: Define the 'pf_filter_out_ip_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -281,8 +281,8 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  pf_macro_custom
-    Description: Define the 'pf_macro_custom' option.
+  pf_macro_host_vars
+    Description: Define the 'pf_macro_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -299,8 +299,8 @@ ROLE
                  {config: {"host_ntp='192.168.2.3'"}, comment: 'Host: ntp.domain.tld'}]
       None    : []
 
-  pf_macro_default
-    Description: Define the 'pf_macro_default' option.
+  pf_macro_group_vars
+    Description: Define the 'pf_macro_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -374,8 +374,8 @@ ROLE
     Options    :
       Examples: '/etc/pf.os' | '/etc/pf.os-fingerprints'
 
-  pf_option_hostid
-    Description: Define the 'pf_option_hostid' option.
+  pf_option_host_varsid
+    Description: Define the 'pf_option_host_varsid' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -538,8 +538,8 @@ ROLE
     Options    :
       Examples: '/etc/pf.blacklist' | '/etc/pf.black-list'
 
-  pf_table_custom
-    Description: Define the 'pf_table_custom' option.
+  pf_table_host_vars
+    Description: Define the 'pf_table_host_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -549,8 +549,8 @@ ROLE
       Examples: [{config: {"<spam> persist file '/etc/pf.spammers'"}, comment: 'Table: Spammers'}]
       None    : []
 
-  pf_table_default
-    Description: Define the 'pf_table_default' option.
+  pf_table_group_vars
+    Description: Define the 'pf_table_group_vars' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -572,8 +572,8 @@ ROLE
       Yes: 'true' | 'yes' | 'install'
       No : 'false' | 'no' | 'disable'
 
-  pf_translation_custom
-    Description: Define the 'pf_translation_custom' option.
+  pf_translation_host_vars
+    Description: Define the 'pf_translation_host_vars' option.
     Implemented: 0.2
     Required   : False
     Value      : Arbitrary
@@ -586,8 +586,8 @@ ROLE
                  {config: {'rdr on $if_ext inet proto tcp to $ip_2 port 443 -> $host_proxy'}, comment: 'DNAT/HTTPS: From any to host_proxy'}]
       None    : []
 
-  pf_translation_custom
-    Description: Define the 'pf_translation_custom' option.
+  pf_translation_host_vars
+    Description: Define the 'pf_translation_host_vars' option.
     Implemented: 0.2
     Required   : False
     Value      : Arbitrary

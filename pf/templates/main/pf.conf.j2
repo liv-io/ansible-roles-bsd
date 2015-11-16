@@ -39,14 +39,14 @@ udp_state="{{pf_macro_udp_state}}"
 {% endif %}
 
 # MACRO DEFAULT
-{% if (pf_macro_default is defined) and not ((pf_macro_default == None) or (pf_macro_default == '') or (pf_macro_default == [])) %}
-{% for macro_default in pf_macro_default %}
-{% if (macro_default.comment is defined) and not ((macro_default.comment == None) or (macro_default.comment == '')) %}
-# {{macro_default.comment}}
+{% if (pf_macro_group_vars is defined) and not ((pf_macro_group_vars == None) or (pf_macro_group_vars == '') or (pf_macro_group_vars == [])) %}
+{% for macro_group_vars in pf_macro_group_vars %}
+{% if (macro_group_vars.comment is defined) and not ((macro_group_vars.comment == None) or (macro_group_vars.comment == '')) %}
+# {{macro_group_vars.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in macro_default.config %}
+{% for config in macro_group_vars.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -54,14 +54,14 @@ udp_state="{{pf_macro_udp_state}}"
 {% endif %}
 
 # MACRO CUSTOM
-{% if (pf_macro_custom is defined) and not ((pf_macro_custom == None) or (pf_macro_custom == '') or (pf_macro_custom == [])) %}
-{% for macro_custom in pf_macro_custom %}
-{% if (macro_custom.comment is defined) and not ((macro_custom.comment == None) or (macro_custom.comment == '')) %}
-# {{macro_custom.comment}}
+{% if (pf_macro_host_vars is defined) and not ((pf_macro_host_vars == None) or (pf_macro_host_vars == '') or (pf_macro_host_vars == [])) %}
+{% for macro_host_vars in pf_macro_host_vars %}
+{% if (macro_host_vars.comment is defined) and not ((macro_host_vars.comment == None) or (macro_host_vars.comment == '')) %}
+# {{macro_host_vars.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in macro_custom.config %}
+{% for config in macro_host_vars.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -78,14 +78,14 @@ table <blacklist> persist file '{{pf_table_blacklist}}'
 {% endif %}
 
 # DEFAULT
-{% if (pf_table_default is defined) and not ((pf_table_default == None) or (pf_table_default == '') or (pf_table_default == [])) %}
-{% for table_default in pf_table_default %}
-{% if (table_default.comment is defined) and not ((table_default.comment == None) or (table_default.comment == '')) %}
-# {{table_default.comment}}
+{% if (pf_table_group_vars is defined) and not ((pf_table_group_vars == None) or (pf_table_group_vars == '') or (pf_table_group_vars == [])) %}
+{% for table_group_vars in pf_table_group_vars %}
+{% if (table_group_vars.comment is defined) and not ((table_group_vars.comment == None) or (table_group_vars.comment == '')) %}
+# {{table_group_vars.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in table_default.config %}
+{% for config in table_group_vars.config %}
 table {{config}}
 {% endfor %}
 {% endfor %}
@@ -93,14 +93,14 @@ table {{config}}
 {% endif %}
 
 # CUSTOM
-{% if (pf_table_custom is defined) and not ((pf_table_custom == None) or (pf_table_custom == '') or (pf_table_custom == [])) %}
-{% for table_custom in pf_table_custom %}
-{% if (table_custom.comment is defined) and not ((table_custom.comment == None) or (table_custom.comment == '')) %}
-# {{table_custom.comment}}
+{% if (pf_table_host_vars is defined) and not ((pf_table_host_vars == None) or (pf_table_host_vars == '') or (pf_table_host_vars == [])) %}
+{% for table_host_vars in pf_table_host_vars %}
+{% if (table_host_vars.comment is defined) and not ((table_host_vars.comment == None) or (table_host_vars.comment == '')) %}
+# {{table_host_vars.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in table_custom.config %}
+{% for config in table_host_vars.config %}
 table {{config}}
 {% endfor %}
 {% endfor %}
@@ -135,8 +135,8 @@ set fingerprints '{{pf_option_fingerprints}}'
 {% endif %}
 
 # Host ID
-{% if (pf_option_hostid is defined) and not ((pf_option_hostid == None) or (pf_option_hostid == '')) %}
-set hostid {{pf_option_hostid}}
+{% if (pf_option_host_varsid is defined) and not ((pf_option_host_varsid == None) or (pf_option_host_varsid == '')) %}
+set hostid {{pf_option_host_varsid}}
 {% endif %}
 
 # Limits
@@ -198,7 +198,7 @@ set skip on {% for option_skip in pf_option_skip %}{{option_skip}}{% if not loop
 
 # State defaults
 {% if (pf_option_state_defaults is defined) and not ((pf_option_state_defaults == None) or (pf_option_state_defaults == '') or (pf_option_state_defaults == [])) %}
-set state-defaults {% for state_defaults in pf_option_state_defaults %}{{state_defaults}}{% if not loop.last %}, {% endif %}{% endfor %}
+set state-defaults {% for state_group_varss in pf_option_state_defaults %}{{state_group_varss}}{% if not loop.last %}, {% endif %}{% endfor %}
 {% endif %}
 
 
@@ -251,14 +251,14 @@ scrub {{config}}
 #-------------------------------------------------------------------------------
 
 # DEFAULT
-{% if (pf_translation_default is defined) and not ((pf_translation_default == None) or (pf_translation_default == '') or (pf_translation_default == [])) %}
-{% for translation_default in pf_translation_default %}
-{% if (translation_default.comment is defined) and not ((translation_default.comment == None) or (translation_default.comment == '')) %}
-# {{translation_default.comment}}
+{% if (pf_translation_group_vars is defined) and not ((pf_translation_group_vars == None) or (pf_translation_group_vars == '') or (pf_translation_group_vars == [])) %}
+{% for translation_group_vars in pf_translation_group_vars %}
+{% if (translation_group_vars.comment is defined) and not ((translation_group_vars.comment == None) or (translation_group_vars.comment == '')) %}
+# {{translation_group_vars.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in translation_default.config %}
+{% for config in translation_group_vars.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -266,14 +266,14 @@ scrub {{config}}
 {% endif %}
 
 # CUSTOM
-{% if (pf_translation_custom is defined) and not ((pf_translation_custom == None) or (pf_translation_custom == '') or (pf_translation_custom == [])) %}
-{% for translation_custom in pf_translation_custom %}
-{% if (translation_custom.comment is defined) and not ((translation_custom.comment == None) or (translation_custom.comment == '')) %}
-# {{translation_custom.comment}}
+{% if (pf_translation_host_vars is defined) and not ((pf_translation_host_vars == None) or (pf_translation_host_vars == '') or (pf_translation_host_vars == [])) %}
+{% for translation_host_vars in pf_translation_host_vars %}
+{% if (translation_host_vars.comment is defined) and not ((translation_host_vars.comment == None) or (translation_host_vars.comment == '')) %}
+# {{translation_host_vars.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in translation_custom.config %}
+{% for config in translation_host_vars.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -311,14 +311,14 @@ block in all
 {% endif %}
 
 # IP DEFAULT
-{% if (pf_filter_in_ip_default is defined) and not ((pf_filter_in_ip_default == None) or (pf_filter_in_ip_default == '') or (pf_filter_in_ip_default == [])) %}
-{% for filter_in_ip_default in pf_filter_in_ip_default %}
-{% if (filter_in_ip_default.comment is defined) and not ((filter_in_ip_default.comment == None) or (filter_in_ip_default.comment == '')) %}
-# {{filter_in_ip_default.comment}}
+{% if (pf_filter_in_ip_group_vars is defined) and not ((pf_filter_in_ip_group_vars == None) or (pf_filter_in_ip_group_vars == '') or (pf_filter_in_ip_group_vars == [])) %}
+{% for filter_in_ip_group_vars in pf_filter_in_ip_group_vars %}
+{% if (filter_in_ip_group_vars.comment is defined) and not ((filter_in_ip_group_vars.comment == None) or (filter_in_ip_group_vars.comment == '')) %}
+# {{filter_in_ip_group_vars.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in filter_in_ip_default.config %}
+{% for config in filter_in_ip_group_vars.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -326,14 +326,14 @@ block in all
 {% endif %}
 
 # IP CUSTOM
-{% if (pf_filter_in_ip_custom is defined) and not ((pf_filter_in_ip_custom == None) or (pf_filter_in_ip_custom == '') or (pf_filter_in_ip_custom == [])) %}
-{% for filter_in_ip_custom in pf_filter_in_ip_custom %}
-{% if (filter_in_ip_custom.comment is defined) and not ((filter_in_ip_custom.comment == None) or (filter_in_ip_custom.comment == '')) %}
-# {{filter_in_ip_custom.comment}}
+{% if (pf_filter_in_ip_host_vars is defined) and not ((pf_filter_in_ip_host_vars == None) or (pf_filter_in_ip_host_vars == '') or (pf_filter_in_ip_host_vars == [])) %}
+{% for filter_in_ip_host_vars in pf_filter_in_ip_host_vars %}
+{% if (filter_in_ip_host_vars.comment is defined) and not ((filter_in_ip_host_vars.comment == None) or (filter_in_ip_host_vars.comment == '')) %}
+# {{filter_in_ip_host_vars.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in filter_in_ip_custom.config %}
+{% for config in filter_in_ip_host_vars.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -367,14 +367,14 @@ block out all
 {% endif %}
 
 # IP DEFAULT
-{% if (pf_filter_out_ip_default is defined) and not ((pf_filter_out_ip_default == None) or (pf_filter_out_ip_default == '') or (pf_filter_out_ip_default == [])) %}
-{% for filter_out_ip_default in pf_filter_out_ip_default %}
-{% if (filter_out_ip_default.comment is defined) and not ((filter_out_ip_default.comment == None) or (filter_out_ip_default.comment == '')) %}
-# {{filter_out_ip_default.comment}}
+{% if (pf_filter_out_ip_group_vars is defined) and not ((pf_filter_out_ip_group_vars == None) or (pf_filter_out_ip_group_vars == '') or (pf_filter_out_ip_group_vars == [])) %}
+{% for filter_out_ip_group_vars in pf_filter_out_ip_group_vars %}
+{% if (filter_out_ip_group_vars.comment is defined) and not ((filter_out_ip_group_vars.comment == None) or (filter_out_ip_group_vars.comment == '')) %}
+# {{filter_out_ip_group_vars.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in filter_out_ip_default.config %}
+{% for config in filter_out_ip_group_vars.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -382,14 +382,14 @@ block out all
 {% endif %}
 
 # IP CUSTOM
-{% if (pf_filter_out_ip_custom is defined) and not ((pf_filter_out_ip_custom == None) or (pf_filter_out_ip_custom == '') or (pf_filter_out_ip_custom == [])) %}
-{% for filter_out_ip_custom in pf_filter_out_ip_custom %}
-{% if (filter_out_ip_custom.comment is defined) and not ((filter_out_ip_custom.comment == None) or (filter_out_ip_custom.comment == '')) %}
-# {{filter_out_ip_custom.comment}}
+{% if (pf_filter_out_ip_host_vars is defined) and not ((pf_filter_out_ip_host_vars == None) or (pf_filter_out_ip_host_vars == '') or (pf_filter_out_ip_host_vars == [])) %}
+{% for filter_out_ip_host_vars in pf_filter_out_ip_host_vars %}
+{% if (filter_out_ip_host_vars.comment is defined) and not ((filter_out_ip_host_vars.comment == None) or (filter_out_ip_host_vars.comment == '')) %}
+# {{filter_out_ip_host_vars.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in filter_out_ip_custom.config %}
+{% for config in filter_out_ip_host_vars.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
