@@ -24,7 +24,13 @@
 - name: task include host_vars
   include: host_vars.yml
   when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable') or (user_state == 'quiesce') or (user_state == 'inactive'))
+  tags:
+   - unix
+   - user
 
 - name: task include group_vars
   include: group_vars.yml
   when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable') or (user_state == 'quiesce') or (user_state == 'inactive'))
+  tags:
+   - unix
+   - user
