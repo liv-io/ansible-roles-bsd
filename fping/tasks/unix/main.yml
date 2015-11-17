@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((fping_state == 'false') or (fping_state == 'no') or (fping_state == 'remove') or (fping_state == 'quiesce') or (fping_state == 'inactive'))
+  tags:
+   - unix
+   - fping
 
 - name: task include remove
   include: remove.yml
   when: (fping_state == 'false') or (fping_state == 'no') or (fping_state == 'remove')
+  tags:
+   - unix
+   - fping
