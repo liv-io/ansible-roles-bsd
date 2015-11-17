@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((pv_state == 'false') or (pv_state == 'no') or (pv_state == 'remove') or (pv_state == 'quiesce') or (pv_state == 'inactive'))
+  tags:
+   - unix
+   - pv
 
 - name: task include remove
   include: remove.yml
   when: (pv_state == 'false') or (pv_state == 'no') or (pv_state == 'remove')
+  tags:
+   - unix
+   - pv
