@@ -24,3 +24,6 @@
 - name: task include install
   include: install.yml
   when: not ((man_pages_state == 'false') or (man_pages_state == 'no') or (man_pages_state == 'remove') or (man_pages_state == 'quiesce') or (man_pages_state == 'inactive'))
+  tags:
+   - linux
+   - man_pages
