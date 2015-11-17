@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((screen_state == 'false') or (screen_state == 'no') or (screen_state == 'remove') or (screen_state == 'quiesce') or (screen_state == 'inactive'))
+  tags:
+   - unix
+   - screen
 
 - name: task include remove
   include: remove.yml
   when: (screen_state == 'false') or (screen_state == 'no') or (screen_state == 'remove')
+  tags:
+   - unix
+   - screen
