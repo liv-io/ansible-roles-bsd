@@ -24,3 +24,5 @@
 - name: task include linux
   include: linux/main.yml
   when: (ansible_os_family == 'Gentoo')
+  tags:
+   - nethogs

@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((nethogs_state == 'false') or (nethogs_state == 'no') or (nethogs_state == 'remove') or (nethogs_state == 'quiesce') or (nethogs_state == 'inactive'))
+  tags:
+   - linux
+   - nethogs
 
 - name: task include remove
   include: remove.yml
   when: (nethogs_state == 'false') or (nethogs_state == 'no') or (nethogs_state == 'remove')
+  tags:
+   - linux
+   - nethogs
