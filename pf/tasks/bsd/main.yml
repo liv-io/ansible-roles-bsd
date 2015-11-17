@@ -24,11 +24,20 @@
 - name: task include enable
   include: enable.yml
   when: (pf_state == 'start') or (pf_state == 'on') or (pf_state == 'enable')
+  tags:
+   - bsd
+   - pf
 
 - name: task include disable
   include: disable.yml
   when: (pf_state == 'stop') or (pf_state == 'off') or (pf_state == 'disable')
+  tags:
+   - bsd
+   - pf
 
 - name: task include remove
   include: remove.yml
   when: (pf_state == 'false') or (pf_state == 'no') or (pf_state == 'remove')
+  tags:
+   - bsd
+   - pf
