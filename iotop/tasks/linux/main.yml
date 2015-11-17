@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((iotop_state == 'false') or (iotop_state == 'no') or (iotop_state == 'remove') or (iotop_state == 'quiesce') or (iotop_state == 'inactive'))
+  tags:
+   - linux
+   - iotop
 
 - name: task include remove
   include: remove.yml
   when: (iotop_state == 'false') or (iotop_state == 'no') or (iotop_state == 'remove')
+  tags:
+   - linux
+   - iotop
