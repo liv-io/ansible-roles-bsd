@@ -24,23 +24,41 @@
 - name: task include install
   include: install.yml
   when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
+  tags:
+   - unix
+   - monit
 
 - name: task include host_vars
   include: host_vars.yml
   when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
+  tags:
+   - unix
+   - monit
 
 - name: task include group_vars
   include: group_vars.yml
   when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
+  tags:
+   - unix
+   - monit
 
 - name: task include enable
   include: enable.yml
   when: (monit_state == 'start') or (monit_state == 'on') or (monit_state == 'enable')
+  tags:
+   - unix
+   - monit
 
 - name: task include disable
   include: disable.yml
   when: (monit_state == 'stop') or (monit_state == 'off') or (monit_state == 'disable')
+  tags:
+   - unix
+   - monit
 
 - name: task include remove
   include: remove.yml
   when: (monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove')
+  tags:
+   - unix
+   - monit
