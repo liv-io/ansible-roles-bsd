@@ -24,15 +24,31 @@
 - name: task include install
   include: install.yml
   when: not ((ansible_state == 'false') or (ansible_state == 'no') or (ansible_state == 'remove') or (ansible_state == 'quiesce') or (ansible_state == 'inactive'))
+  tags:
+   - server
+   - unix
+   - ansible
 
 - name: task include enable
   include: enable.yml
   when: (ansible_state == 'start') or (ansible_state == 'on') or (ansible_state == 'enable')
+  tags:
+   - server
+   - unix
+   - ansible
 
 - name: task include disable
   include: disable.yml
   when: (ansible_state == 'stop') or (ansible_state == 'off') or (ansible_state == 'disable')
+  tags:
+   - server
+   - unix
+   - ansible
 
 - name: task include remove
   include: remove.yml
   when: (ansible_state == 'false') or (ansible_state == 'no') or (ansible_state == 'remove')
+  tags:
+   - server
+   - unix
+   - ansible

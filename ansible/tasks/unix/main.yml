@@ -24,11 +24,20 @@
 - name: task include install
   include: install.yml
   when: not ((ansible_state == 'false') or (ansible_state == 'no') or (ansible_state == 'remove') or (ansible_state == 'quiesce') or (ansible_state == 'inactive'))
+  tags:
+   - unix
+   - ansible
 
 - name: task include server
   include: server/main.yml
   when: ((ansible_mode == 'server') or (ansible_mode == 'push'))
+  tags:
+   - unix
+   - ansible
 
 - name: task include remove
   include: remove.yml
   when: (ansible_state == 'false') or (ansible_state == 'no') or (ansible_state == 'remove')
+  tags:
+   - unix
+   - ansible
