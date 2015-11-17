@@ -24,7 +24,13 @@
 - name: task include host_vars
   include: host_vars.yml
   when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'disable') or (sysctl_state == 'quiesce') or (sysctl_state == 'inactive'))
+  tags:
+   - unix
+   - sysctl
 
 - name: task include group_vars
   include: group_vars.yml
   when: not ((sysctl_state == 'false') or (sysctl_state == 'no') or (sysctl_state == 'disable') or (sysctl_state == 'quiesce') or (sysctl_state == 'inactive'))
+  tags:
+   - unix
+   - sysctl
