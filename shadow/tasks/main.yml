@@ -24,7 +24,11 @@
 - name: task include bsd
   include: bsd/main.yml
   when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - shadow
 
 - name: task include linux
   include: linux/main.yml
   when: (ansible_os_family == 'Gentoo')
+  tags:
+   - shadow

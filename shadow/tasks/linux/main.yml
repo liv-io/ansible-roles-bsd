@@ -24,3 +24,6 @@
 - name: task include install
   include: install.yml
   when: not ((shadow_state == 'false') or (shadow_state == 'no') or (shadow_state == 'disable') or (shadow_state == 'quiesce') or (shadow_state == 'inactive'))
+  tags:
+   - linux
+   - shadow

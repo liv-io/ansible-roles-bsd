@@ -26,6 +26,10 @@
   with_first_found:
    - "../../vars/{{ansible_distribution}}.yml"
    - "../../vars/main.yml"
+  tags:
+   - install
+   - linux
+   - shadow
 
 #-------------------------------------------------------------------------------
 # FILES
