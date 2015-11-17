@@ -24,15 +24,27 @@
 - name: task include install
   include: install.yml
   when: not ((openntpd_state == 'false') or (openntpd_state == 'no') or (openntpd_state == 'remove') or (openntpd_state == 'quiesce') or (openntpd_state == 'inactive'))
+  tags:
+   - unix
+   - openntpd
 
 - name: task include enable
   include: enable.yml
   when: (openntpd_state == 'start') or (openntpd_state == 'on') or (openntpd_state == 'enable')
+  tags:
+   - unix
+   - openntpd
 
 - name: task include disable
   include: disable.yml
   when: (openntpd_state == 'stop') or (openntpd_state == 'off') or (openntpd_state == 'disable')
+  tags:
+   - unix
+   - openntpd
 
 - name: task include remove
   include: remove.yml
   when: (openntpd_state == 'false') or (openntpd_state == 'no') or (openntpd_state == 'remove')
+  tags:
+   - unix
+   - openntpd
