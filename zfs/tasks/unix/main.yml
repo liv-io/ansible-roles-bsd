@@ -24,15 +24,27 @@
 - name: task include install
   include: install.yml
   when: not ((zfs_state == 'false') or (zfs_state == 'no') or (zfs_state == 'remove') or (zfs_state == 'quiesce') or (zfs_state == 'inactive'))
+  tags:
+   - unix
+   - zfs
 
 - name: task include enable
   include: enable.yml
   when: (zfs_state == 'start') or (zfs_state == 'on') or (zfs_state == 'enable')
+  tags:
+   - unix
+   - zfs
 
 - name: task include disable
   include: disable.yml
   when: (zfs_state == 'stop') or (zfs_state == 'off') or (zfs_state == 'disable')
+  tags:
+   - unix
+   - zfs
 
 - name: task include remove
   include: remove.yml
   when: (zfs_state == 'false') or (zfs_state == 'no') or (zfs_state == 'remove')
+  tags:
+   - unix
+   - zfs
