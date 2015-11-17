@@ -24,3 +24,5 @@
 - name: task include gentoo
   include: gentoo/main.yml
   when: (ansible_os_family == 'Gentoo')
+  tags:
+   - gentoolkit
