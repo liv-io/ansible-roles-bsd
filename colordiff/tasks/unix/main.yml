@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((colordiff_state == 'false') or (colordiff_state == 'no') or (colordiff_state == 'remove') or (colordiff_state == 'quiesce') or (colordiff_state == 'inactive'))
+  tags:
+   - unix
+   - colordiff
 
 - name: task include remove
   include: remove.yml
   when: (colordiff_state == 'false') or (colordiff_state == 'no') or (colordiff_state == 'remove')
+  tags:
+   - unix
+   - colordiff
