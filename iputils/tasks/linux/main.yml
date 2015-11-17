@@ -24,3 +24,6 @@
 - name: task include install
   include: install.yml
   when: not ((iputils_state == 'false') or (iputils_state == 'no') or (iputils_state == 'remove') or (iputils_state == 'quiesce') or (iputils_state == 'inactive'))
+  tags:
+   - linux
+   - iputils
