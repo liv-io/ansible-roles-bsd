@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((freecolor_state == 'false') or (freecolor_state == 'no') or (freecolor_state == 'remove') or (freecolor_state == 'quiesce') or (freecolor_state == 'inactive'))
+  tags:
+   - unix
+   - freecolor
 
 - name: task include remove
   include: remove.yml
   when: (freecolor_state == 'false') or (freecolor_state == 'no') or (freecolor_state == 'remove')
+  tags:
+   - unix
+   - freecolor
