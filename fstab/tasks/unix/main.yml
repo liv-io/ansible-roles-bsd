@@ -24,7 +24,13 @@
 - name: task include host_vars
   include: host_vars.yml
   when: not ((fstab_state == 'false') or (fstab_state == 'no') or (fstab_state == 'remove') or (fstab_state == 'quiesce') or (fstab_state == 'inactive'))
+  tags:
+   - unix
+   - fstab
 
 - name: task include group_vars
   include: group_vars.yml
   when: not ((fstab_state == 'false') or (fstab_state == 'no') or (fstab_state == 'remove') or (fstab_state == 'quiesce') or (fstab_state == 'inactive'))
+  tags:
+   - unix
+   - fstab
