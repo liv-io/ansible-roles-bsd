@@ -24,3 +24,5 @@
 - name: task include bsd
   include: bsd/main.yml
   when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - bsd_grep
