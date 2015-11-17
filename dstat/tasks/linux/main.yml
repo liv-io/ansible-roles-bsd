@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((dstat_state == 'false') or (dstat_state == 'no') or (dstat_state == 'remove') or (dstat_state == 'quiesce') or (dstat_state == 'inactive'))
+  tags:
+   - linux
+   - dstat
 
 - name: task include remove
   include: remove.yml
   when: (dstat_state == 'false') or (dstat_state == 'no') or (dstat_state == 'remove')
+  tags:
+   - linux
+   - dstat
