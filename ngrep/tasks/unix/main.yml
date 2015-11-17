@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((ngrep_state == 'false') or (ngrep_state == 'no') or (ngrep_state == 'remove') or (ngrep_state == 'quiesce') or (ngrep_state == 'inactive'))
+  tags:
+   - unix
+   - ngrep
 
 - name: task include remove
   include: remove.yml
   when: (ngrep_state == 'false') or (ngrep_state == 'no') or (ngrep_state == 'remove')
+  tags:
+   - unix
+   - ngrep
