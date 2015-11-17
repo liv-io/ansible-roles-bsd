@@ -24,3 +24,5 @@
 - name: task include unix
   include: unix/main.yml
   when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'Gentoo')
+  tags:
+   - coreutils
