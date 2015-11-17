@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((diffutils_state == 'false') or (diffutils_state == 'no') or (diffutils_state == 'remove') or (diffutils_state == 'quiesce') or (diffutils_state == 'inactive'))
+  tags:
+   - unix
+   - diffutils
 
 - name: task include remove
   include: remove.yml
   when: (diffutils_state == 'false') or (diffutils_state == 'no') or (diffutils_state == 'remove')
+  tags:
+   - unix
+   - diffutils
