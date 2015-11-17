@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((gnu_grep_state == 'false') or (gnu_grep_state == 'no') or (gnu_grep_state == 'remove') or (gnu_grep_state == 'quiesce') or (gnu_grep_state == 'inactive'))
+  tags:
+   - unix
+   - gnu_grep
 
 - name: task include remove
   include: remove.yml
   when: (gnu_grep_state == 'false') or (gnu_grep_state == 'no') or (gnu_grep_state == 'remove')
+  tags:
+   - unix
+   - gnu_grep
