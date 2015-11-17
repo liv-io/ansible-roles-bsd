@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((multitail_state == 'false') or (multitail_state == 'no') or (multitail_state == 'remove') or (multitail_state == 'quiesce') or (multitail_state == 'inactive'))
+  tags:
+   - unix
+   - multitail
 
 - name: task include remove
   include: remove.yml
   when: (multitail_state == 'false') or (multitail_state == 'no') or (multitail_state == 'remove')
+  tags:
+   - unix
+   - multitail
