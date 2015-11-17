@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((periodic_state == 'false') or (periodic_state == 'no') or (periodic_state == 'remove') or (periodic_state == 'quiesce') or (periodic_state == 'inactive'))
+  tags:
+   - freebsd
+   - periodic
 
 - name: task include remove
   include: remove.yml
   when: (periodic_state == 'false') or (periodic_state == 'no') or (periodic_state == 'remove')
+  tags:
+   - freebsd
+   - periodic
