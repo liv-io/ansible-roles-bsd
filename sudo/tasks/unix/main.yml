@@ -24,15 +24,27 @@
 - name: task include install
   include: install.yml
   when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove') or (sudo_state == 'quiesce') or (sudo_state == 'inactive'))
+  tags:
+   - unix
+   - sudo
 
 - name: task include host_vars
   include: host_vars.yml
   when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove') or (sudo_state == 'quiesce') or (sudo_state == 'inactive'))
+  tags:
+   - unix
+   - sudo
 
 - name: task include group_vars
   include: group_vars.yml
   when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove') or (sudo_state == 'quiesce') or (sudo_state == 'inactive'))
+  tags:
+   - unix
+   - sudo
 
 - name: task include remove
   include: remove.yml
   when: (sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove')
+  tags:
+   - unix
+   - sudo
