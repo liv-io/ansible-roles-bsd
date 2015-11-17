@@ -24,15 +24,27 @@
 - name: task include install
   include: install.yml
   when: not ((iptables_state == 'false') or (iptables_state == 'no') or (iptables_state == 'remove') or (iptables_state == 'quiesce') or (iptables_state == 'inactive'))
+  tags:
+   - linux
+   - iptables
 
 - name: task include enable
   include: enable.yml
   when: (iptables_state == 'start') or (iptables_state == 'on') or (iptables_state == 'enable')
+  tags:
+   - linux
+   - iptables
 
 - name: task include disable
   include: disable.yml
   when: (iptables_state == 'stop') or (iptables_state == 'off') or (iptables_state == 'disable')
+  tags:
+   - linux
+   - iptables
 
 - name: task include remove
   include: remove.yml
   when: (iptables_state == 'false') or (iptables_state == 'no') or (iptables_state == 'remove')
+  tags:
+   - linux
+   - iptables
