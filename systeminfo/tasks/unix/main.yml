@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((systeminfo_state == 'false') or (systeminfo_state == 'no') or (systeminfo_state == 'remove') or (systeminfo_state == 'quiesce') or (systeminfo_state == 'inactive'))
+  tags:
+   - unix
+   - systeminfo
 
 - name: task include remove
   include: remove.yml
   when: (systeminfo_state == 'false') or (systeminfo_state == 'no') or (systeminfo_state == 'remove')
+  tags:
+   - unix
+   - systeminfo
