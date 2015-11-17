@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((rdate_state == 'false') or (rdate_state == 'no') or (rdate_state == 'remove') or (rdate_state == 'quiesce') or (rdate_state == 'inactive'))
+  tags:
+   - unix
+   - rdate
 
 - name: task include remove
   include: remove.yml
   when: (rdate_state == 'false') or (rdate_state == 'no') or (rdate_state == 'remove')
+  tags:
+   - unix
+   - rdate
