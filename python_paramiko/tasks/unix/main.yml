@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((python_paramiko_state == 'false') or (python_paramiko_state == 'no') or (python_paramiko_state == 'remove') or (python_paramiko_state == 'quiesce') or (python_paramiko_state == 'inactive'))
+  tags:
+   - unix
+   - python_paramiko
 
 - name: task include remove
   include: remove.yml
   when: (python_paramiko_state == 'false') or (python_paramiko_state == 'no') or (python_paramiko_state == 'remove')
+  tags:
+   - unix
+   - python_paramiko
