@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((pwgen_state == 'false') or (pwgen_state == 'no') or (pwgen_state == 'remove') or (pwgen_state == 'quiesce') or (pwgen_state == 'inactive'))
+  tags:
+   - unix
+   - pwgen
 
 - name: task include remove
   include: remove.yml
   when: (pwgen_state == 'false') or (pwgen_state == 'no') or (pwgen_state == 'remove')
+  tags:
+   - unix
+   - pwgen
