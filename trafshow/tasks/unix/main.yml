@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((trafshow_state == 'false') or (trafshow_state == 'no') or (trafshow_state == 'remove') or (trafshow_state == 'quiesce') or (trafshow_state == 'inactive'))
+  tags:
+   - unix
+   - trafshow
 
 - name: task include remove
   include: remove.yml
   when: (trafshow_state == 'false') or (trafshow_state == 'no') or (trafshow_state == 'remove')
+  tags:
+   - unix
+   - trafshow
