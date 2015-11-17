@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((netsniff_ng_state == 'false') or (netsniff_ng_state == 'no') or (netsniff_ng_state == 'remove') or (netsniff_ng_state == 'quiesce') or (netsniff_ng_state == 'inactive'))
+  tags:
+   - linux
+   - netsniff_ng
 
 - name: task include remove
   include: remove.yml
   when: (netsniff_ng_state == 'false') or (netsniff_ng_state == 'no') or (netsniff_ng_state == 'remove')
+  tags:
+   - linux
+   - netsniff_ng
