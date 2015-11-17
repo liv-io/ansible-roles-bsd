@@ -26,6 +26,10 @@
   with_first_found:
    - "../../vars/{{ansible_os_family}}.yml"
    - "../../vars/main.yml"
+  tags:
+   - install
+   - linux
+   - procps
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -40,5 +44,5 @@
   tags:
    - packaging
    - install
-   - unix
+   - linux
    - procps
