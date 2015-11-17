@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((openssl_state == 'false') or (openssl_state == 'no') or (openssl_state == 'remove') or (openssl_state == 'quiesce') or (openssl_state == 'inactive'))
+  tags:
+   - unix
+   - openssl
 
 - name: task include remove
   include: remove.yml
   when: (openssl_state == 'false') or (openssl_state == 'no') or (openssl_state == 'remove')
+  tags:
+   - unix
+   - openssl
