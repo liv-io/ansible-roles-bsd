@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((hdparm_state == 'false') or (hdparm_state == 'no') or (hdparm_state == 'remove') or (hdparm_state == 'quiesce') or (hdparm_state == 'inactive'))
+  tags:
+   - linux
+   - hdparm
 
 - name: task include remove
   include: remove.yml
   when: (hdparm_state == 'false') or (hdparm_state == 'no') or (hdparm_state == 'remove')
+  tags:
+   - linux
+   - hdparm
