@@ -24,15 +24,27 @@
 - name: task include install
   include: install.yml
   when: not ((postfix_state == 'false') or (postfix_state == 'no') or (postfix_state == 'remove') or (postfix_state == 'quiesce') or (postfix_state == 'inactive'))
+  tags:
+   - unix
+   - postfix
 
 - name: task include enable
   include: enable.yml
   when: (postfix_state == 'start') or (postfix_state == 'on') or (postfix_state == 'enable')
+  tags:
+   - unix
+   - postfix
 
 - name: task include disable
   include: disable.yml
   when: (postfix_state == 'stop') or (postfix_state == 'off') or (postfix_state == 'disable')
+  tags:
+   - unix
+   - postfix
 
 - name: task include remove
   include: remove.yml
   when: (postfix_state == 'false') or (postfix_state == 'no') or (postfix_state == 'remove')
+  tags:
+   - unix
+   - postfix
