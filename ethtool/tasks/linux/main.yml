@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((ethtool_state == 'false') or (ethtool_state == 'no') or (ethtool_state == 'remove') or (ethtool_state == 'quiesce') or (ethtool_state == 'inactive'))
+  tags:
+   - linux
+   - ethtool
 
 - name: task include remove
   include: remove.yml
   when: (ethtool_state == 'false') or (ethtool_state == 'no') or (ethtool_state == 'remove')
+  tags:
+   - linux
+   - ethtool
