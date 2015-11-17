@@ -24,7 +24,13 @@
 - name: task include install
   include: install.yml
   when: not ((iptstate_state == 'false') or (iptstate_state == 'no') or (iptstate_state == 'remove') or (iptstate_state == 'quiesce') or (iptstate_state == 'inactive'))
+  tags:
+   - linux
+   - iptstate
 
 - name: task include remove
   include: remove.yml
   when: (iptstate_state == 'false') or (iptstate_state == 'no') or (iptstate_state == 'remove')
+  tags:
+   - linux
+   - iptstate
