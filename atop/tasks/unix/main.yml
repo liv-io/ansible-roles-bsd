@@ -24,15 +24,27 @@
 - name: task include install
   include: install.yml
   when: not ((atop_state == 'false') or (atop_state == 'no') or (atop_state == 'remove') or (atop_state == 'quiesce') or (atop_state == 'inactive'))
+  tags:
+   - unix
+   - atop
 
 - name: task include enable
   include: enable.yml
   when: (atop_state == 'start') or (atop_state == 'on') or (atop_state == 'enable')
+  tags:
+   - unix
+   - atop
 
 - name: task include disable
   include: disable.yml
   when: (atop_state == 'stop') or (atop_state == 'off') or (atop_state == 'disable')
+  tags:
+   - unix
+   - atop
 
 - name: task include remove
   include: remove.yml
   when: (atop_state == 'false') or (atop_state == 'no') or (atop_state == 'remove')
+  tags:
+   - unix
+   - atop
