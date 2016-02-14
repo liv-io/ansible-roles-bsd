@@ -140,7 +140,6 @@ PACKAGES
     Version: >= 20080406
     Name   :
       FreeBSD 10: 'openntpd'
-      Gentoo 2  : 'openntpd'
 
 ROLES
 
@@ -183,10 +182,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
