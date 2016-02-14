@@ -55,8 +55,6 @@ VARIABLES
 ROLE
   bash_state
     Description: Control the state of the role.
-                 'bash' is a core package on Gentoo based systems and can
-                 therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -244,7 +242,6 @@ PACKAGES
     Version: >= 4.0
     Name   :
       FreeBSD 10: 'bash'
-      Gentoo 2  : 'bash'
 
 ROLES
   shell
@@ -288,10 +285,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
