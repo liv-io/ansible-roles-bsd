@@ -53,8 +53,6 @@ VARIABLES
 ROLE
   coreutils_state
     Description: Control the state of the role.
-                 'coreutils' is a core package on Gentoo based systems and can
-                 therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -80,7 +78,6 @@ PACKAGES
     Version: >= 8.2
     Name   :
       FreeBSD 10: 'coreutils'
-      Gentoo 2  : 'coreutils'
 
 ROLES
 
@@ -123,10 +120,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
