@@ -54,8 +54,6 @@ VARIABLES
 ROLE
   openssl_state
     Description: Control the state of the role.
-                 'openssl' is a core package on Gentoo based systems and can
-                 therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -81,7 +79,6 @@ PACKAGES
     Version: >= 1.0
     Name   :
       FreeBSD 10: 'openssl'
-      Gentoo 2  : 'openssl'
 
 ROLES
 
@@ -124,10 +121,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
