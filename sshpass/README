@@ -79,7 +79,6 @@ PACKAGES
     Version: >= 1.05
     Name   :
       FreeBSD 10: 'sshpass'
-      Gentoo 2  : 'sshpass'
 
 ROLES
 
@@ -122,10 +121,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
