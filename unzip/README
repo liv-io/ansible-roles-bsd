@@ -81,7 +81,6 @@ PACKAGES
     Version: >= 6.0
     Name   :
       FreeBSD 10: 'unzip'
-      Gentoo 2  : 'unzip'
 
 ROLES
 
@@ -124,10 +123,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
