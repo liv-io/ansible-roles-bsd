@@ -94,7 +94,6 @@ PACKAGES
     Version: >= 0.40
     Name   :
       FreeBSD 10: 'moreutils'
-      Gentoo 2  : 'moreutils'
 
 ROLES
 
@@ -137,10 +136,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
