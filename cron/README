@@ -90,10 +90,6 @@ DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  cron
-    Version: >= 1.4
-    Name   :
-      Gentoo 2: 'cronie'
 
 ROLES
 
@@ -136,10 +132,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
