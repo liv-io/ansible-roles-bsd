@@ -78,7 +78,6 @@ PACKAGES
     Version: >= 1.6
     Name   :
       FreeBSD 10: 'mytop'
-      Gentoo 2  : 'mytop'
 
 ROLES
 
@@ -121,10 +120,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
