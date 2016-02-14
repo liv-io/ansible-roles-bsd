@@ -78,11 +78,6 @@ PACKAGES
     Name   :
       FreeBSD 10: 'usbutils'
 
-  usbutils
-    Version: >= 008
-    Name   :
-      Gentoo 2  : 'usbutils'
-
 ROLES
 
 VARIABLES
@@ -124,10 +119,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
