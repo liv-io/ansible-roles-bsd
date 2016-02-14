@@ -56,8 +56,6 @@ VARIABLES
 ROLE
   findutils_state
     Description: Control the state of the role.
-                 'findutils' is a core package on Gentoo based systems and can
-                 therefore not be removed.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -83,7 +81,6 @@ PACKAGES
     Version: >= 4.4
     Name   :
       FreeBSD 10: 'findutils'
-      Gentoo 2  : 'findutils'
 
 ROLES
 
@@ -126,10 +123,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
