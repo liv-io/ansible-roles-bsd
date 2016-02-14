@@ -78,7 +78,6 @@ PACKAGES
     Version: >= 9
     Name   :
       FreeBSD 10: 'pydf'
-      Gentoo 2  : 'pydf'
 
 ROLES
 
@@ -121,10 +120,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
