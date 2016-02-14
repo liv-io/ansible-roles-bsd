@@ -31,19 +31,22 @@ INSTALL
   - hosts: all
     roles:
      - role: ack
-       ack_state: 'install'
+    vars:
+     ack_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: ack
-       ack_state: 'remove'
+    vars:
+     ack_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: ack
-       ack_state: 'inactive'
+    vars:
+     ack_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -77,7 +80,6 @@ PACKAGES
     Version: >= 1.9
     Name   :
       FreeBSD 10: 'ack'
-      Gentoo 2  : 'ack'
 
 ROLES
 
@@ -120,10 +122,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
