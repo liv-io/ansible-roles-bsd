@@ -52,13 +52,6 @@ file_mode_ntp_update_time_sh: '0750'
 file_owner_ntp_update_time_sh: 'root'
 file_group_ntp_update_time_sh: 'root'
 
-# ntp_update-time.cron
-file_src_ntp_update_time_cron: "../../templates/{{(ntp_ntp_update_time_cron_template|e)}}/ntp_update-time.cron.j2"
-file_path_ntp_update_time_cron: '/etc/cron.d/ntp_update-time'
-file_mode_ntp_update_time_cron: '0640'
-file_owner_ntp_update_time_cron: 'root'
-file_group_ntp_update_time_cron: 'root'
-
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------

@@ -24,6 +24,7 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
+   - "../../vars/{{ansible_os_family}}{{ansible_distribution_major_version}}.yml"
    - "../../vars/{{ansible_os_family}}.yml"
    - "../../vars/main.yml"
   tags:
@@ -53,17 +54,6 @@
   file:
    state: 'absent'
    path: "{{file_path_ntp_update_time_sh}}"
-  tags:
-   - files
-   - enable
-   - unix
-   - ntp
-
-- name: file remove ntp_update-time.cron
-  file:
-   state: 'absent'
-   path: "{{file_path_ntp_update_time_cron}}"
-  when: (ansible_os_family == 'Gentoo')
   tags:
    - files
    - enable
@@ -106,19 +96,6 @@
    enabled: 'yes'
    name: "{{service_name_ntp}}"
   when: (ansible_os_family == 'FreeBSD')
-  tags:
-   - system
-   - enable
-   - unix
-   - ntp
-
-- name: service start ntp
-  service:
-   state: 'started'
-   enabled: 'yes'
-   runlevel: 'default'
-   name: "{{service_name_ntp}}"
-  when: (ansible_os_family == 'Gentoo')
   tags:
    - system
    - enable

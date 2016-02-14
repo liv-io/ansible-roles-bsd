@@ -39,20 +39,17 @@ PATH='/sbin:/bin:/usr/sbin:/usr/bin'
 
 which='/usr/bin/which' && [ -x $which ] || { echo "Error: Command 'which' not found. Code: 1100"; exit 127; }
 basename=$($which basename) || { echo "Error: Command 'basename' not found. Code: 1101"; exit 127; }
-{% if (ansible_os_family == 'Gentoo') %}
-hwclock=$($which hwclock) || { echo "Error: Command 'hwclock' not found. Code: 1102"; exit 127; }
-{% endif %}
-date=$($which date) || { echo "Error: Command 'date' not found. Code: 1103"; exit 127; }
-echo=$($which echo) || { echo "Error: Command 'echo' not found. Code: 1104"; exit 127; }
-expr=$($which expr) || { echo "Error: Command 'expr' not found. Code: 1105"; exit 127; }
-hostname=$($which hostname) || { echo "Error: Command 'hostname' not found. Code: 1106"; exit 127; }
-logger=$($which logger) || { echo "Error: Command 'logger' not found. Code: 1107"; exit 127; }
+date=$($which date) || { echo "Error: Command 'date' not found. Code: 1102"; exit 127; }
+echo=$($which echo) || { echo "Error: Command 'echo' not found. Code: 1103"; exit 127; }
+expr=$($which expr) || { echo "Error: Command 'expr' not found. Code: 1104"; exit 127; }
+hostname=$($which hostname) || { echo "Error: Command 'hostname' not found. Code: 1105"; exit 127; }
+logger=$($which logger) || { echo "Error: Command 'logger' not found. Code: 1106"; exit 127; }
 {% if (ntp_monitor_mail_state is defined) and ((ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable')) %}
-mailx=$($which mailx) || { echo "Error: Command 'mailx' not found. Code: 1108"; exit 127; }
+mailx=$($which mailx) || { echo "Error: Command 'mailx' not found. Code: 1107"; exit 127; }
 {% endif %}
-rm=$($which rm) || { echo "Error: Command 'rm' not found. Code: 1109"; exit 127; }
-touch=$($which touch) || { echo "Error: Command 'touch' not found. Code: 1110"; exit 127; }
-whoami=$($which whoami) || { echo "Error: Command 'whoami' not found. Code: 1111"; exit 127; }
+rm=$($which rm) || { echo "Error: Command 'rm' not found. Code: 1108"; exit 127; }
+touch=$($which touch) || { echo "Error: Command 'touch' not found. Code: 1109"; exit 127; }
+whoami=$($which whoami) || { echo "Error: Command 'whoami' not found. Code: 1110"; exit 127; }
 
 # NTP command
 ntp_command='{{ntp_command}}'
@@ -248,12 +245,6 @@ for ntp_server in $ntp_servers ; do
 done
 log_and_exit_on_error "$ntp_status" '1500' 'Error' 'Unable to update the system time.'
 
-{% if (ansible_os_family == 'Gentoo') %}
-# Update the hardware clock to the system time
-$hwclock -w
-log_and_exit_on_error "$?" '1501' 'Error' 'Unable to update the hardware clock.'
-{% endif %}
-
 #-------------------------------------------------------------------------------
 # LOCKFILE
 #-------------------------------------------------------------------------------
@@ -279,11 +270,7 @@ time_end=$($date '+%s')
 time_exec=$($expr $time_end - $time_start)
 
 # Convert execution time into human readable format
-{% if (ansible_os_family == 'Gentoo') %}
-time_hr=$($date -d "1970-01-01 $time_exec sec" '+%H:%M:%S')
-{% else %}
 time_hr=$($date -u -r "$time_exec" '+%H:%M:%S')
-{% endif %}
 
 # Logging and alerting
 retval=0

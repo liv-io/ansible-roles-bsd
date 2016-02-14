@@ -24,6 +24,7 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
+   - "../../vars/{{ansible_os_family}}{{ansible_distribution_major_version}}.yml"
    - "../../vars/{{ansible_os_family}}.yml"
    - "../../vars/main.yml"
   tags:
@@ -41,18 +42,6 @@
    enabled: 'no'
    name: "{{service_name_ntp}}"
   when: (ansible_os_family == 'FreeBSD')
-  tags:
-   - system
-   - cronjob
-   - unix
-   - ntp
-
-- name: service stop ntp
-  service:
-   state: 'stopped'
-   enabled: 'no'
-   name: "{{service_name_ntp}}"
-  when: (ansible_os_family == 'Gentoo')
   tags:
    - system
    - cronjob
@@ -96,20 +85,6 @@
    mode: "{{file_mode_ntp_update_time_sh}}"
    owner: "{{file_owner_ntp_update_time_sh}}"
    group: "{{file_group_ntp_update_time_sh}}"
-  tags:
-   - files
-   - cronjob
-   - unix
-   - ntp
-
-- name: template create ntp_update-time.cron
-  template:
-   src: "{{file_src_ntp_update_time_cron}}"
-   dest: "{{file_path_ntp_update_time_cron}}"
-   mode: "{{file_mode_ntp_update_time_cron}}"
-   owner: "{{file_owner_ntp_update_time_cron}}"
-   group: "{{file_group_ntp_update_time_cron}}"
-  when: (ansible_os_family == 'Gentoo')
   tags:
    - files
    - cronjob

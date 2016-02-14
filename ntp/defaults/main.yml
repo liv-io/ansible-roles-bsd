@@ -37,8 +37,6 @@ ntp_ntp_conf_template: "{{ansible_os_family}}"
 
 ntp_ntp_update_time_sh_template: 'main'
 
-ntp_ntp_update_time_cron_template: 'main'
-
 ntp_ntp_update_time_interval: 10
 
 ntp_restrict:

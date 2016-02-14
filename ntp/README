@@ -177,20 +177,6 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  ntp_ntp_update_time_cron_template
-    Description: Define the template source for 'ntp_update-time.cron.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
-                 'ntp/templates/example/ntp_update-time.cron.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'main'
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
   ntp_ntp_update_time_interval
     Description: Set the 'ntp_ntp_update_time_interval' option.
                  Specify a value between 1-59.
@@ -257,7 +243,6 @@ PACKAGES
     Version: >= 4.2
     Name   :
       FreeBSD 10: 'ntp'
-      Gentoo 2  : 'ntp'
 
 ROLES
   common
@@ -303,10 +288,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
