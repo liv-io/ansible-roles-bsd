@@ -83,7 +83,6 @@ PACKAGES
     Version: >= 1.45
     Name   :
       FreeBSD 10: 'ngrep'
-      Gentoo 2  : 'ngrep'
 
 ROLES
 
@@ -126,10 +125,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
