@@ -78,7 +78,6 @@ PACKAGES
     Version: >= 2.0
     Name   :
       FreeBSD 10: 'py27-pycrypto'
-      Gentoo 2  : 'pycrypto'
 
 ROLES
 
@@ -121,10 +120,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
