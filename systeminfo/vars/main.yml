@@ -49,13 +49,6 @@ file_mode_freebsd_info: '0644'
 file_owner_freebsd_info: 'root'
 file_group_freebsd_info: 'root'
 
-# gentoo.info
-file_src_gentoo_info: "../../templates/main/gentoo.info.j2"
-file_path_gentoo_info: "{{file_path_common_info_dir}}/gentoo.info"
-file_mode_gentoo_info: '0644'
-file_owner_gentoo_info: 'root'
-file_group_gentoo_info: 'root'
-
 # system.info
 file_src_system_info: "../../templates/main/system.info.j2"
 file_path_system_info: "{{file_path_common_info_dir}}/system.info"
