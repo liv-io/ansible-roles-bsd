@@ -84,7 +84,6 @@ PACKAGES
     Version: >= 1.7
     Name   :
       FreeBSD 10: 'py27-paramiko'
-      Gentoo 2  : 'paramiko'
 
 ROLES
 
@@ -127,10 +126,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
