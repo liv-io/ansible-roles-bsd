@@ -80,7 +80,6 @@ PACKAGES
     Version: >= 3.1
     Name   :
       FreeBSD 10: 'splint'
-      Gentoo 2  : 'splint'
 
 ROLES
 
@@ -123,10 +122,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
