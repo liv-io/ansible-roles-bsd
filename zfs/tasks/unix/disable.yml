@@ -24,6 +24,7 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
+   - "../../vars/{{ansible_os_family}}{{ansible_distribution_major_version}}.yml"
    - "../../vars/{{ansible_os_family}}.yml"
    - "../../vars/main.yml"
   tags:
@@ -34,17 +35,6 @@
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
-
-- name: file remove zfs_scrub-pools.cron
-  file:
-   state: 'absent'
-   path: "{{file_path_zfs_scrub_pools_cron}}"
-  when: (ansible_os_family == 'Gentoo')
-  tags:
-   - files
-   - disable
-   - unix
-   - zfs
 
 - name: line remove zfs_scrub-pools
   lineinfile:

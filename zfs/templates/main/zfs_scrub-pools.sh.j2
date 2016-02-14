@@ -300,11 +300,7 @@ time_end=$($date '+%s')
 time_exec=$($expr $time_end - $time_start)
 
 # Convert execution time into human readable format
-{% if (ansible_os_family == 'Gentoo') %}
-time_hr=$($date -d "1970-01-01 $time_exec sec" '+%H:%M:%S')
-{% else %}
 time_hr=$($date -u -r "$time_exec" '+%H:%M:%S')
-{% endif %}
 
 # Logging and alerting
 retval=0
