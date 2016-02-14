@@ -89,7 +89,6 @@ PACKAGES
     Version: >= 5.2
     Name   :
       FreeBSD 10: 'multitail'
-      Gentoo 2  : 'multitail'
 
 ROLES
 
@@ -132,10 +131,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
