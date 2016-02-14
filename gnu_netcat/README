@@ -83,7 +83,6 @@ PACKAGES
     Version: >= 0.7
     Name   :
       FreeBSD 10: 'gnetcat'
-      Gentoo 2  : 'gnu-netcat'
 
 ROLES
 
@@ -126,10 +125,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
