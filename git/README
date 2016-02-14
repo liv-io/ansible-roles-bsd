@@ -79,7 +79,6 @@ PACKAGES
     Version: >= 1.7
     Name   :
       FreeBSD 10: 'git-lite'
-      Gentoo 2  : 'dev-vcs/git'
 
 ROLES
 
@@ -122,10 +121,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
