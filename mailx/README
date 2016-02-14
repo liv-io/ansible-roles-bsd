@@ -88,7 +88,6 @@ PACKAGES
     Version: >= 0.5
     Name   :
       FreeBSD 10: 'mailx'
-      Gentoo 2  : 'mailx'
 
 ROLES
 
@@ -131,10 +130,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
