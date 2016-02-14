@@ -83,7 +83,6 @@ PACKAGES
     Version: >= 2.2
     Name   :
       FreeBSD 10: 'py27-Jinja2'
-      Gentoo 2  : 'jinja'
 
 ROLES
 
@@ -126,10 +125,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
