@@ -41,31 +41,36 @@ INSTALL
   - hosts: all
     roles:
      - role: atop
-       atop_state: 'install'
+    vars:
+     atop_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
      - role: atop
-       atop_state: 'enable'
+    vars:
+     atop_state: 'enable'
 
 DISABLE
   - hosts: all
     roles:
      - role: atop
-       atop_state: 'disable'
+    vars:
+     atop_state: 'disable'
 
 REMOVE
   - hosts: all
     roles:
      - role: atop
-       atop_state: 'remove'
+    vars:
+     atop_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: atop
-       atop_state: 'inactive'
+    vars:
+     atop_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -101,7 +106,6 @@ PACKAGES
     Version: >= 1.27
     Name   :
       FreeBSD 10: 'atop'
-      Gentoo 2  : 'atop'
 
 ROLES
 
@@ -144,10 +148,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
