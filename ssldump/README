@@ -83,7 +83,6 @@ PACKAGES
     Version: >= 0.9
     Name   :
       FreeBSD 10: 'ssldump'
-      Gentoo 2  : 'ssldump'
 
 ROLES
 
@@ -126,10 +125,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
