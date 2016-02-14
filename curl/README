@@ -82,7 +82,6 @@ PACKAGES
     Version: >= 7.19
     Name   :
       FreeBSD 10: 'curl'
-      Gentoo 2  : 'net-misc/curl'
 
 ROLES
 
@@ -125,10 +124,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
