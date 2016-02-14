@@ -82,7 +82,6 @@ PACKAGES
     Version: >= 1.0
     Name   :
       FreeBSD 10: 'sdparm'
-      Gentoo 2  : 'sdparm'
 
 ROLES
 
@@ -125,10 +124,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
