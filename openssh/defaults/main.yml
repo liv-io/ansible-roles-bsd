@@ -61,7 +61,7 @@ openssh_permit_root_login: 'no'
 openssh_port:
  - '22'
 
-openssh_print_motd: "{{'no' if (ansible_distribution == 'Gentoo') else 'yes'}}"
+openssh_print_motd: 'yes'
 
 openssh_print_last_log: 'yes'
 

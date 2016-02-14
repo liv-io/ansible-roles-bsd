@@ -309,8 +309,6 @@ ROLE
     Value      : Predetermined
     Type       : String
     Default    : 'yes'
-      Gentoo : 'no'
-      Default: 'yes'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
@@ -432,10 +430,6 @@ DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  openssh
-    Version: >= 6.6
-    Name   :
-      Gentoo 2: 'openssh'
 
 ROLES
 
@@ -478,10 +472,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
