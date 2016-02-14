@@ -96,7 +96,6 @@ PACKAGES
     Version: >= 7.2
     Name   :
       FreeBSD 10: 'vim-lite'
-      Gentoo 2  : 'vim'
 
 ROLES
 
@@ -139,10 +138,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
