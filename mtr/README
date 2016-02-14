@@ -80,7 +80,6 @@ PACKAGES
     Version: >= 0.75
     Name   :
       FreeBSD 10: 'mtr-nox11'
-      Gentoo 2  : 'mtr'
 
 ROLES
 
@@ -123,10 +122,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
