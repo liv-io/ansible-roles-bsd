@@ -82,7 +82,6 @@ PACKAGES
     Version: >= 2.2
     Name   :
       FreeBSD 10: 'diskscrub'
-      Gentoo 2  : 'scrub'
 
 ROLES
 
@@ -125,10 +124,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
