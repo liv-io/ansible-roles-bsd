@@ -80,7 +80,6 @@ PACKAGES
     Version: >= 2.4
     Name   :
       FreeBSD 10: 'fping'
-      Gentoo 2  : 'fping'
 
 ROLES
 
@@ -123,10 +122,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
