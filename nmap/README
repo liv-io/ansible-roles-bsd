@@ -86,7 +86,6 @@ PACKAGES
     Version: >= 5.51
     Name   :
       FreeBSD 10: 'nmap'
-      Gentoo 2  : 'nmap'
 
 ROLES
 
@@ -129,10 +128,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
