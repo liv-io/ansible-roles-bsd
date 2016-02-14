@@ -83,7 +83,6 @@ PACKAGES
     Version: >= 1.10
     Name   :
       FreeBSD 10: 'nc'
-      Gentoo 2  : 'netcat'
 
 ROLES
 
@@ -126,10 +125,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
