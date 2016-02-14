@@ -80,7 +80,6 @@ PACKAGES
     Version: >= 2.06
     Name   :
       FreeBSD 10: 'pwgen'
-      Gentoo 2  : 'pwgen'
 
 ROLES
 
@@ -123,10 +122,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
