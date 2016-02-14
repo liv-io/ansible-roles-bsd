@@ -426,7 +426,6 @@ PACKAGES
     Version: >= 2.6
     Name   :
       FreeBSD 10: 'denyhosts'
-      Gentoo 2  : 'denyhosts'
 
 ROLES
 
@@ -469,10 +468,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
