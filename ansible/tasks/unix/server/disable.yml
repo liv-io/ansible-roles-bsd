@@ -24,6 +24,7 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
+   - "../../../vars/{{ansible_os_family}}{{ansible_distribution_major_version}}.yml"
    - "../../../vars/{{ansible_os_family}}.yml"
    - "../../../vars/main.yml"
   tags:
@@ -35,18 +36,6 @@
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
-
-- name: file remove ansible_run-playbook.cron
-  file:
-   state: 'absent'
-   path: "{{file_path_ansible_run_playbook_cron}}"
-  when: (ansible_os_family == 'Gentoo')
-  tags:
-   - files
-   - disable
-   - server
-   - unix
-   - ansible
 
 - name: line config ansible_run-playbook
   lineinfile:

@@ -29,8 +29,6 @@ ansible_ansible_dir_name: 'ansible'
 
 ansible_ansible_run_playbook_sh_template: 'main'
 
-ansible_ansible_run_playbook_cron_template: 'main'
-
 ansible_authorized_key: ''
 
 ansible_gid: '800'

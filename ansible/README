@@ -31,49 +31,54 @@ INSTALL
   - hosts: all
     roles:
      - role: ansible
-       ansible_state: 'install'
-       ansible_mode: 'server'
+    vars:
+     ansible_state: 'install'
+     ansible_mode: 'server'
 
 ENABLE
   - hosts: all
     roles:
      - role: ansible
-       ansible_state: 'enable'
-       ansible_mode: 'server'
-       ansible_playbooks: ['all', 'db', 'file', 'web']
-       ansible_monitor_mail_recipient: ["user@domain.tld"]
-       ansible_monitor_mail_sender: 'ansible@domain.tld'
-       ansible_monitor_mail_state: 'true'
-       ansible_log_group: 'sysadmin'
-       ansible_playbooks_dir_group: 'sysadmin'
-       ansible_roles_dir_group: 'sysadmin'
+    vars:
+     ansible_state: 'enable'
+     ansible_mode: 'server'
+     ansible_playbooks: ['all', 'db', 'file', 'web']
+     ansible_monitor_mail_recipient: ["user@domain.tld"]
+     ansible_monitor_mail_sender: 'ansible@domain.tld'
+     ansible_monitor_mail_state: 'true'
+     ansible_log_group: 'sysadmin'
+     ansible_playbooks_dir_group: 'sysadmin'
+     ansible_roles_dir_group: 'sysadmin'
 
 DISABLE
   - hosts: all
     roles:
      - role: ansible
-       ansible_state: 'disable'
-       ansible_mode: 'server'
-       ansible_playbooks: ['all', 'db', 'file', 'web']
-       ansible_monitor_mail_recipient: ["user@domain.tld"]
-       ansible_monitor_mail_sender: 'ansible@domain.tld'
-       ansible_monitor_mail_state: 'true'
-       ansible_log_group: 'sysadmin'
-       ansible_playbooks_dir_group: 'sysadmin'
-       ansible_roles_dir_group: 'sysadmin'
+    vars:
+     ansible_state: 'disable'
+     ansible_mode: 'server'
+     ansible_playbooks: ['all', 'db', 'file', 'web']
+     ansible_monitor_mail_recipient: ["user@domain.tld"]
+     ansible_monitor_mail_sender: 'ansible@domain.tld'
+     ansible_monitor_mail_state: 'true'
+     ansible_log_group: 'sysadmin'
+     ansible_playbooks_dir_group: 'sysadmin'
+     ansible_roles_dir_group: 'sysadmin'
 
 REMOVE
   - hosts: all
     roles:
      - role: ansible
-       ansible_state: 'remove'
-       ansible_mode: 'server'
+    vars:
+     ansible_state: 'remove'
+     ansible_mode: 'server'
 
 INACTIVE
   - hosts: all
     roles:
      - role: ansible
-       ansible_state: 'inactive'
+    vars:
+     ansible_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -122,20 +127,6 @@ ROLE
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'ansible/templates/example/ansible_run-playbook.sh.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'main'
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
-  ansible_ansible_run_playbook_cron_template
-    Description: Define the template source for 'ansible_run-playbook.cron.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
-                 'ansible/templates/example/ansible_run-playbook.cron.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -450,10 +441,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------

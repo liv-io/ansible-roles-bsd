@@ -68,13 +68,6 @@ file_mode_ansible_run_playbook_sh: '0750'
 file_owner_ansible_run_playbook_sh: 'ansible'
 file_group_ansible_run_playbook_sh: 'ansible'
 
-# ansible_run-playbook.cron
-file_src_ansible_run_playbook_cron: "../../../templates/{{(ansible_ansible_run_playbook_cron_template|e)}}/ansible_run-playbook.cron.j2"
-file_path_ansible_run_playbook_cron: '/etc/cron.d/ansible_run-playbook'
-file_mode_ansible_run_playbook_cron: '0644'
-file_owner_ansible_run_playbook_cron: 'root'
-file_group_ansible_run_playbook_cron: 'root'
-
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
