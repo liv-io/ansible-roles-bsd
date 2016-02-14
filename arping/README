@@ -33,19 +33,22 @@ INSTALL
   - hosts: all
     roles:
      - role: arping
-       arping_state: 'install'
+    vars:
+     arping_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: arping
-       arping_state: 'remove'
+    vars:
+     arping_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: arping
-       arping_state: 'inactive'
+    vars:
+     arping_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -79,7 +82,6 @@ PACKAGES
     Version: >= 2.13
     Name   :
       FreeBSD 10: 'arping'
-      Gentoo 2  : 'arping'
 
 ROLES
 
@@ -122,10 +124,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
