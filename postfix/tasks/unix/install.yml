@@ -24,6 +24,7 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
+   - "../../vars/{{ansible_os_family}}{{ansible_distribution_major_version}}.yml"
    - "../../vars/{{ansible_os_family}}.yml"
    - "../../vars/main.yml"
   tags:
@@ -47,26 +48,13 @@
    - unix
    - postfix
 
-- name: package install postfix
-  portage:
-   state: 'installed'
-   sync: "{{portage_sync}}"
-   name: "{{package_name_postfix}}"
-  register: register_gentoo_postfix
-  when: (ansible_os_family == 'Gentoo')
-  tags:
-   - packaging
-   - install
-   - unix
-   - postfix
-
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
 
 - name: command pkill opensmtpd
   shell: "{{command_shell_pkill_opensmtpd}}"
-  when: (register_freebsd_postfix|changed) or (register_gentoo_postfix|changed)
+  when: (register_freebsd_postfix|changed)
   tags:
    - commands
    - install
@@ -75,7 +63,7 @@
 
 - name: command pkill sendmail
   shell: "{{command_shell_pkill_sendmail}}"
-  when: (register_freebsd_postfix|changed) or (register_gentoo_postfix|changed)
+  when: (register_freebsd_postfix|changed)
   tags:
    - commands
    - install
