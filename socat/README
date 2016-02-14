@@ -81,7 +81,6 @@ PACKAGES
     Version: >= 1.7.2.3
     Name   :
       FreeBSD 10: 'socat'
-      Gentoo 2  : 'socat'
 
 ROLES
 
@@ -124,10 +123,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
