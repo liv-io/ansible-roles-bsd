@@ -78,7 +78,6 @@ PACKAGES
     Version: >= 4.8
     Name   :
       FreeBSD 10: 'lsof'
-      Gentoo 2  : 'lsof'
 
 ROLES
 
@@ -121,10 +120,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
