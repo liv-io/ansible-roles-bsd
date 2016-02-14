@@ -215,7 +215,6 @@ PACKAGES
     Version: >= 5.4
     Name   :
       FreeBSD 10: 'opensmtpd'
-      Gentoo 2  : 'opensmtpd'
 
 ROLES
 
@@ -258,10 +257,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
