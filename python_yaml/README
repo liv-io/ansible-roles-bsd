@@ -85,7 +85,6 @@ PACKAGES
     Version: >= 3.10
     Name   :
       FreeBSD 10: 'py27-yaml'
-      Gentoo 2  : 'pyyaml'
 
 ROLES
 
@@ -128,10 +127,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
