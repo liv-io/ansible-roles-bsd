@@ -78,7 +78,6 @@ PACKAGES
     Version: >= 0.9
     Name   :
       FreeBSD 10: 'freecolor'
-      Gentoo 2  : 'freecolor'
 
 ROLES
 
@@ -122,10 +121,6 @@ OPERATING SYSTEMS
   FreeBSD
     Version: 10
       Status: Testing
-
-  Gentoo
-    Version: 2
-      Status: Unsupported
 
 --------------------------------------------------------------------------------
 OTHER
