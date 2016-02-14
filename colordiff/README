@@ -78,7 +78,6 @@ PACKAGES
     Version: >= 1.0
     Name   :
       FreeBSD 10: 'colordiff'
-      Gentoo 2  : 'colordiff'
 
 ROLES
 
@@ -121,10 +120,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
