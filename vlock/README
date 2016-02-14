@@ -82,7 +82,6 @@ PACKAGES
     Version: >= 1.3
     Name   :
       FreeBSD 10: 'vlock'
-      Gentoo 2  : 'vlock'
 
 ROLES
 
@@ -125,10 +124,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
