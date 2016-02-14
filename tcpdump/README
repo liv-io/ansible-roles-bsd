@@ -80,7 +80,6 @@ PACKAGES
     Version: >= 4.0
     Name   :
       FreeBSD 10: 'tcpdump'
-      Gentoo 2  : 'tcpdump'
 
 ROLES
 
@@ -123,10 +122,6 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
-      Status: Testing
-
-  Gentoo
-    Version: 2
       Status: Testing
 
 --------------------------------------------------------------------------------
