@@ -34,69 +34,74 @@ INSTALL
   - hosts: all
     roles:
      - role: pf
-       pf_state: 'install'
+    vars:
+     pf_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
      - role: pf
-       pf_state: 'enable'
-       pf_filter_in_ip_host_vars:
-        - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
-        - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
-        - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
-        - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
-        - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
-       pf_filter_in_ip_group_vars:
-        - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
-       pf_filter_out_ip_host_vars:
-        - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
-        - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
-       pf_filter_out_ip_group_vars:
-        - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
-                    'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
-        - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
-                    'pass out inet proto udp to 192.168.1.3 port 53 $udp_state'}, comment: 'DNS: To secondary dns server'}
-        - {config: {'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state'}, comment: 'HTTP: To internal mirror'}
-        - {config: {'pass out inet proto udp to any 192.168.1.4 123 $udp_state'}, comment: 'NTP: To ntp server'}
-        - {config: {'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state'}, comment: 'HTTPS: To internal mirror'}
+    vars:
+     pf_state: 'enable'
+     pf_filter_in_ip_host_vars:
+      - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
+      - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
+      - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
+      - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
+      - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
+     pf_filter_in_ip_group_vars:
+      - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
+     pf_filter_out_ip_host_vars:
+      - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
+      - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
+     pf_filter_out_ip_group_vars:
+      - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
+                  'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
+      - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
+                  'pass out inet proto udp to 192.168.1.3 port 53 $udp_state'}, comment: 'DNS: To secondary dns server'}
+      - {config: {'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state'}, comment: 'HTTP: To internal mirror'}
+      - {config: {'pass out inet proto udp to any 192.168.1.4 123 $udp_state'}, comment: 'NTP: To ntp server'}
+      - {config: {'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state'}, comment: 'HTTPS: To internal mirror'}
 
 DISABLE
   - hosts: all
     roles:
      - role: pf
-       pf_state: 'disable'
-       pf_filter_in_ip_host_vars:
-        - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
-        - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
-        - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
-        - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
-        - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
-       pf_filter_in_ip_group_vars:
-        - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
-       pf_filter_out_ip_host_vars:
-        - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
-        - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
-       pf_filter_out_ip_group_vars:
-        - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
-                    'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
-        - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
-                    'pass out inet proto udp to 192.168.1.3 port 53 $udp_state'}, comment: 'DNS: To secondary dns server'}
-        - {config: {'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state'}, comment: 'HTTP: To internal mirror'}
-        - {config: {'pass out inet proto udp to any 192.168.1.4 123 $udp_state'}, comment: 'NTP: To ntp server'}
-        - {config: {'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state'}, comment: 'HTTPS: To internal mirror'}
+    vars:
+     pf_state: 'disable'
+     pf_filter_in_ip_host_vars:
+      - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
+      - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
+      - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
+      - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
+      - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
+     pf_filter_in_ip_group_vars:
+      - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
+     pf_filter_out_ip_host_vars:
+      - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
+      - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
+     pf_filter_out_ip_group_vars:
+      - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
+                  'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
+      - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
+                  'pass out inet proto udp to 192.168.1.3 port 53 $udp_state'}, comment: 'DNS: To secondary dns server'}
+      - {config: {'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state'}, comment: 'HTTP: To internal mirror'}
+      - {config: {'pass out inet proto udp to any 192.168.1.4 123 $udp_state'}, comment: 'NTP: To ntp server'}
+      - {config: {'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state'}, comment: 'HTTPS: To internal mirror'}
 
 REMOVE
   - hosts: all
     roles:
      - role: pf
-       pf_state: 'remove'
+    vars:
+     pf_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: pf
-       pf_state: 'inactive'
+    vars:
+     pf_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
