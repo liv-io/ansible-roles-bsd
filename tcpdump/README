@@ -34,19 +34,22 @@ INSTALL
   - hosts: all
     roles:
      - role: tcpdump
-       tcpdump_state: 'install'
+    vars:
+     tcpdump_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: tcpdump
-       tcpdump_state: 'remove'
+    vars:
+     tcpdump_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: tcpdump
-       tcpdump_state: 'inactive'
+    vars:
+     tcpdump_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
