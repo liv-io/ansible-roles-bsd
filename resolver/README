@@ -36,23 +36,26 @@ INSTALL
   - hosts: all
     roles:
      - role: resolver
-       resolver_state: 'install'
-       resolver_domain: 'domain.tld'
-       resolver_nameserver: [{server: {'192.168.1.11', '192.168.1.12'},
-                              comment: 'Server: domain.tld'}]
-       resolver_search: ['domain01.tld', 'domain02.tld']
+    vars:
+     resolver_state: 'install'
+     resolver_domain: 'domain.tld'
+     resolver_nameserver: [{server: {'192.168.1.11', '192.168.1.12'},
+                            comment: 'Server: domain.tld'}]
+     resolver_search: ['domain01.tld', 'domain02.tld']
 
 DISABLE
   - hosts: all
     roles:
      - role: resolver
-       resolver_state: 'disable'
+    vars:
+     resolver_state: 'disable'
 
 INACTIVE
   - hosts: all
     roles:
      - role: resolver
-       resolver_state: 'inactive'
+    vars:
+     resolver_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
