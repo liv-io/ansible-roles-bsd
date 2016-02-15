@@ -37,44 +37,47 @@ INSTALL
   - fstab: all
     roles:
      - role: fstab
-       fstab_state: 'enable'
-       fstab_path_default: '/etc/fstab'
+    vars:
+     fstab_state: 'enable'
+     fstab_path_default: '/etc/fstab'
 
 INACTIVE
   - fstabs: all
     roles:
      - role: fstab
-       fstab_state: 'inactive'
+    vars:
+     fstab_state: 'inactive'
 
 CONFIG
-  fstab_group_vars:
-   - filesystem: '192.168.1.10:/nfs'
-     state: 'true'
-     mountpoint: '/nfs'
-     type: 'nfs'
-     options: ['nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15']
-     dump: 0
-     pass: 0
-     comment: 'NFS File System'
+  vars:
+    fstab_group_vars:
+     - filesystem: '192.168.1.10:/nfs'
+       state: 'true'
+       mountpoint: '/nfs'
+       type: 'nfs'
+       options: ['nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15']
+       dump: 0
+       pass: 0
+       comment: 'NFS File System'
 
-  fstab_host_vars:
-   - filesystem: '/dev/mapper/data-opt'
-     state: 'true'
-     mountpoint: '/opt'
-     type: 'xfs'
-     options: ['defaults']
-     dump: 1
-     pass: 1
-     comment: 'Optional File System'
+    fstab_host_vars:
+     - filesystem: '/dev/mapper/data-opt'
+       state: 'true'
+       mountpoint: '/opt'
+       type: 'xfs'
+       options: ['defaults']
+       dump: 1
+       pass: 1
+       comment: 'Optional File System'
 
-   - filesystem: '/dev/mapper/data-remove'
-     state: 'false'
-     mountpoint: '/remove'
-     type: 'ext4'
-     options: []
-     dump: 0
-     pass: 0
-     comment: 'Unused File System'
+     - filesystem: '/dev/mapper/data-remove'
+       state: 'false'
+       mountpoint: '/remove'
+       type: 'ext4'
+       options: []
+       dump: 0
+       pass: 0
+       comment: 'Unused File System'
 
 --------------------------------------------------------------------------------
 VARIABLES
