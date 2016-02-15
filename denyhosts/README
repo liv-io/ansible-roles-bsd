@@ -36,45 +36,50 @@ INSTALL
   - hosts: all
     roles:
      - role: denyhosts
-       denyhosts_state: 'install'
+    vars:
+     denyhosts_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
      - role: denyhosts
-       denyhosts_state: 'enable'
-       admin_email: 'root@domain.tld'
-       allowed_hosts:
-        - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
-       block_service: 'sshd'
-       deny_threshold_invalid: '3'
-       deny_threshold_valid: '5'
-       reset_on_success: 'disable'
+    vars:
+     denyhosts_state: 'enable'
+     denyhosts_admin_email: 'root@domain.tld'
+     denyhosts_allowed_hosts:
+      - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
+     denyhosts_block_service: 'sshd'
+     denyhosts_deny_threshold_invalid: '3'
+     denyhosts_deny_threshold_valid: '5'
+     denyhosts_reset_on_success: 'disable'
 
 DISABLE
   - hosts: all
     roles:
      - role: denyhosts
-       denyhosts_state: 'disable'
-       admin_email: 'root@domain.tld'
-       allowed_hosts:
-        - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
-       block_service: 'sshd'
-       deny_threshold_invalid: '3'
-       deny_threshold_valid: '5'
-       reset_on_success: 'disable'
+    vars:
+     denyhosts_state: 'enable'
+     denyhosts_admin_email: 'root@domain.tld'
+     denyhosts_allowed_hosts:
+      - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
+     denyhosts_block_service: 'sshd'
+     denyhosts_deny_threshold_invalid: '3'
+     denyhosts_deny_threshold_valid: '5'
+     denyhosts_reset_on_success: 'disable'
 
 REMOVE
   - hosts: all
     roles:
      - role: denyhosts
-       denyhosts_state: 'remove'
+    vars:
+     denyhosts_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: denyhosts
-       denyhosts_state: 'inactive'
+    vars:
+     denyhosts_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
