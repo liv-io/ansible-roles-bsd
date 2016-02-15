@@ -35,19 +35,22 @@ INSTALL
   - hosts: all
     roles:
      - role: trafshow
-       trafshow_state: 'install'
+    vars:
+     trafshow_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: trafshow
-       trafshow_state: 'remove'
+    vars:
+     trafshow_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: trafshow
-       trafshow_state: 'inactive'
+    vars:
+     trafshow_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
