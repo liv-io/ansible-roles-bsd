@@ -31,23 +31,26 @@ INSTALL
   - hosts: all
     roles:
      - role: root
-       root_state: 'install'
-       root_password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
-       root_shell: '/bin/sh'
+    vars:
+     root_state: 'install'
+     root_password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
+     root_shell: '/bin/sh'
 
 REMOVE
   - hosts: all
     roles:
      - role: root
-       root_state: 'remove'
-       root_password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
-       root_shell: '/bin/sh'
+    vars:
+     root_state: 'remove'
+     root_password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
+     root_shell: '/bin/sh'
 
 INACTIVE
   - hosts: all
     roles:
      - role: root
-       root_state: 'inactive'
+    vars:
+     root_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
