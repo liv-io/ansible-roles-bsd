@@ -33,19 +33,22 @@ INSTALL
   - hosts: all
     roles:
      - role: hping3
-       hping3_state: 'install'
+    vars:
+     hping3_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: hping3
-       hping3_state: 'remove'
+    vars:
+     hping3_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: hping3
-       hping3_state: 'inactive'
+    vars:
+     hping3_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
