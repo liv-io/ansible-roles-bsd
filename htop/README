@@ -18,7 +18,7 @@ DESCRIPTION
 
 This role manages htop.
 
-htop is an interactive text-mode process viewer for Linux, similar to top.
+Htop is an interactive text-mode process viewer, similar to top.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.
