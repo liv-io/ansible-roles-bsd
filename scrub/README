@@ -36,19 +36,22 @@ INSTALL
   - hosts: all
     roles:
      - role: scrub
-       scrub_state: 'install'
+    vars:
+     scrub_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: scrub
-       scrub_state: 'remove'
+    vars:
+     scrub_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: scrub
-       scrub_state: 'inactive'
+    vars:
+     scrub_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
