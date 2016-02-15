@@ -31,22 +31,25 @@ INSTALL
   - hosts: all
     roles:
      - role: periodic
-       periodic_state: 'install'
-       periodic_daily_show_info: 'false'
-       periodic_monthly_show_info: 'false'
-       periodic_weekly_show_info: 'false'
+    vars:
+     periodic_state: 'install'
+     periodic_daily_show_info: 'false'
+     periodic_monthly_show_info: 'false'
+     periodic_weekly_show_info: 'false'
 
 REMOVE
   - hosts: all
     roles:
      - role: periodic
-       periodic_state: 'remove'
+    vars:
+     periodic_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: periodic
-       periodic_state: 'inactive'
+    vars:
+     periodic_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
