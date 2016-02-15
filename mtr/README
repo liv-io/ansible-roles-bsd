@@ -34,19 +34,22 @@ INSTALL
   - hosts: all
     roles:
      - role: mtr
-       mtr_state: 'install'
+    vars:
+     mtr_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: mtr
-       mtr_state: 'remove'
+    vars:
+     mtr_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: mtr
-       mtr_state: 'inactive'
+    vars:
+     mtr_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
