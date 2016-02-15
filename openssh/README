@@ -37,45 +37,50 @@ INSTALL
   - hosts: all
     roles:
      - role: openssh
-       openssh_state: 'install'
+    vars:
+     openssh_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
      - role: openssh
-       openssh_state: 'enable'
-       openssh_allow_users:
-        - 'user01'
-        - 'user02'
-        - 'user03'
-       openssh_password_authentication: 'no'
-       openssh_listen_address:
-        - '0.0.0.0'
+    vars:
+     openssh_state: 'enable'
+     openssh_allow_users:
+      - 'user01'
+      - 'user02'
+      - 'user03'
+     openssh_password_authentication: 'no'
+     openssh_listen_address:
+      - '0.0.0.0'
 
 DISABLE
   - hosts: all
     roles:
      - role: openssh
-       openssh_state: 'disable'
-       openssh_allow_users:
-        - 'user01'
-        - 'user02'
-        - 'user03'
-       openssh_password_authentication: 'no'
-       openssh_listen_address:
-        - '0.0.0.0'
+    vars:
+     openssh_state: 'disable'
+     openssh_allow_users:
+      - 'user01'
+      - 'user02'
+      - 'user03'
+     openssh_password_authentication: 'no'
+     openssh_listen_address:
+      - '0.0.0.0'
 
 REMOVE
   - hosts: all
     roles:
      - role: openssh
-       openssh_state: 'remove'
+    vars:
+     openssh_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: openssh
-       openssh_state: 'inactive'
+    vars:
+     openssh_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
