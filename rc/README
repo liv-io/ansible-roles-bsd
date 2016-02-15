@@ -32,52 +32,55 @@ INSTALL
   - rc: all
     roles:
      - role: rc
-       rc_state: 'enable'
-       rc_path_default: '/etc/rc.conf'
+    vars:
+     rc_state: 'enable'
+     rc_path_default: '/etc/rc.conf'
 
 INACTIVE
   - hosts: all
     roles:
      - role: rc
-       rc_state: 'inactive'
+    vars:
+     rc_state: 'inactive'
 
 CONFIG
-  rc_group_vars:
-   - name: 'sshd_enable'
-     value: 'YES'
-     state: 'true'
-     comment: 'Enable service OpenSSH'
+  vars:
+    rc_group_vars:
+     - name: 'sshd_enable'
+       value: 'YES'
+       state: 'true'
+       comment: 'Enable service OpenSSH'
 
-  rc_host_vars:
-   - name: 'hostname'
-     value: 'example01'
-     state: 'true'
-     comment: 'Define short hostname'
+    rc_host_vars:
+     - name: 'hostname'
+       value: 'example01'
+       state: 'true'
+       comment: 'Define short hostname'
 
-   - name: 'keymap'
-     value: 'swissgerman.iso.kbd'
-     state: 'true'
-     comment: 'Set keymap'
+     - name: 'keymap'
+       value: 'swissgerman.iso.kbd'
+       state: 'true'
+       comment: 'Set keymap'
 
-   - name: 'ifconfig_re0'
-     value: 'inet 192.168.1.10 netmask 255.255.255.0'
-     state: 'true'
-     comment: 'Define primary IP address'
+     - name: 'ifconfig_re0'
+       value: 'inet 192.168.1.10 netmask 255.255.255.0'
+       state: 'true'
+       comment: 'Define primary IP address'
 
-   - name: 'defaultrouter'
-     value: '192.168.1.1'
-     state: 'true'
-     comment: 'Define gateway'
+     - name: 'defaultrouter'
+       value: '192.168.1.1'
+       state: 'true'
+       comment: 'Define gateway'
 
-   - name: 'ifconfig_re1'
-     value: 'inet 192.168.2.10 netmask 255.255.255.0'
-     state: 'true'
-     comment: 'Define secondary IP address'
+     - name: 'ifconfig_re1'
+       value: 'inet 192.168.2.10 netmask 255.255.255.0'
+       state: 'true'
+       comment: 'Define secondary IP address'
 
-   - name: 'ifconfig_re2'
-     value: 'inet 192.168.3.10 netmask 255.255.255.0'
-     state: 'true'
-     comment: 'Define tertiary IP address'
+     - name: 'ifconfig_re2'
+       value: 'inet 192.168.3.10 netmask 255.255.255.0'
+       state: 'true'
+       comment: 'Define tertiary IP address'
 
 --------------------------------------------------------------------------------
 VARIABLES
