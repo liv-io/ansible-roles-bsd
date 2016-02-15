@@ -34,35 +34,40 @@ INSTALL
   - hosts: all
     roles:
      - role: openntpd
-       openntpd_state: 'install'
+    vars:
+     openntpd_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
      - role: openntpd
-       openntpd_state: 'enable'
-       openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                          type: 'single', comment: 'Server: Single NTP servers'}]
+    vars:
+     openntpd_state: 'enable'
+     openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                        type: 'single', comment: 'Server: Single NTP servers'}]
 
 DISABLE
   - hosts: all
     roles:
      - role: openntpd
-       openntpd_state: 'disable'
-       openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                          type: 'single', comment: 'Server: Single NTP servers'}]
+    vars:
+     openntpd_state: 'disable'
+     openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                        type: 'single', comment: 'Server: Single NTP servers'}]
 
 REMOVE
   - hosts: all
     roles:
      - role: openntpd
-       openntpd_state: 'remove'
+    vars:
+     openntpd_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: openntpd
-       openntpd_state: 'inactive'
+    vars:
+     openntpd_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
