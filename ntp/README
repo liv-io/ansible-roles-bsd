@@ -34,47 +34,53 @@ INSTALL
   - hosts: all
     roles:
      - role: ntp
-       ntp_state: 'install'
+    vars:
+     ntp_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
      - role: ntp
-       ntp_state: 'enable'
-       ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                     option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
-                     comment: 'Server: domain.tld'}]
+    vars:
+     ntp_state: 'enable'
+     ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                   option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
+                   comment: 'Server: domain.tld'}]
 
 DISABLE
   - hosts: all
     roles:
      - role: ntp
-       ntp_state: 'disable'
-       ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                     option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
-                     comment: 'Server: domain.tld'}]
+    vars:
+     ntp_state: 'disable'
+     ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                   option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
+                   comment: 'Server: domain.tld'}]
 
 CRONJOB
   - hosts: all
     roles:
      - role: ntp
-       ntp_state: 'cronjob'
-       ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                     option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
-                     comment: 'Server: domain.tld'}]
-       ntp_ntp_update_time_interval: 15
+    vars:
+     ntp_state: 'cronjob'
+     ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                   option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
+                   comment: 'Server: domain.tld'}]
+     ntp_ntp_update_time_interval: 15
 
 REMOVE
   - hosts: all
     roles:
      - role: ntp
-       ntp_state: 'remove'
+    vars:
+     ntp_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: ntp
-       ntp_state: 'inactive'
+    vars:
+     ntp_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
