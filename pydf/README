@@ -32,19 +32,22 @@ INSTALL
   - hosts: all
     roles:
      - role: pydf
-       pydf_state: 'install'
+    vars:
+     pydf_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: pydf
-       pydf_state: 'remove'
+    vars:
+     pydf_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: pydf
-       pydf_state: 'inactive'
+    vars:
+     pydf_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
