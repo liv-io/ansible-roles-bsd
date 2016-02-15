@@ -32,46 +32,50 @@ INSTALL
   - hosts: all
     roles:
      - role: group
-       group_state: 'install'
+    vars:
+     group_state: 'install'
 
 DISABLE
   - hosts: all
     roles:
      - role: group
-       group_state: 'disable'
+    vars:
+     group_state: 'disable'
 
 INACTIVE
   - hosts: all
     roles:
      - role: group
-       group_state: 'inactive'
+    vars:
+     group_state: 'inactive'
 
 CONFIG
-  group_group_vars:
-   - name: 'group01'
-     state: 'true'
-     gid: '2001'
+  vars:
+    group_group_vars:
+     - name: 'group01'
+       state: 'true'
+       gid: '2001'
 
-   - name: 'group02'
-     state: 'true'
-     gid: '2002'
+     - name: 'group02'
+       state: 'true'
+       gid: '2002'
 
-   - state: 'false'
-     name: 'group03'
-     gid: '2003'
+     - state: 'false'
+       name: 'group03'
+       gid: '2003'
 
-  group_host_vars:
-   - name: 'group04'
-     state: 'true'
-     gid: '2004'
+    group_host_vars:
+     - name: 'group04'
+       state: 'true'
+       gid: '2004'
 
-   - name: 'group05'
-     state: 'true'
-     gid: '2005'
+     - name: 'group05'
+       state: 'true'
+       gid: '2005'
 
-   - state: 'false'
-     name: 'group06'
-     gid: '2006'
+     - state: 'false'
+       name: 'group06'
+       gid: '2006'
 
 --------------------------------------------------------------------------------
 VARIABLES
