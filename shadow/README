@@ -33,19 +33,22 @@ INSTALL
   - hosts: all
     roles:
      - role: shadow
-       shadow_state: 'install'
+    vars:
+     shadow_state: 'install'
 
 DISABLE
   - hosts: all
     roles:
      - role: shadow
-       shadow_state: 'disable'
+    vars:
+     shadow_state: 'disable'
 
 INACTIVE
   - hosts: all
     roles:
      - role: shadow
-       shadow_state: 'inactive'
+    vars:
+     shadow_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
