@@ -32,22 +32,25 @@ INSTALL
   - hosts: all
     roles:
      - role: motd
-       motd_state: 'install'
-       motd_env_name: 'Testing'
-       motd_host_description: 'Test Host'
-       motd_motd_template: 'robomon'
+    vars:
+     motd_state: 'install'
+     motd_env_name: 'Testing'
+     motd_host_description: 'Test Host'
+     motd_motd_template: 'robomon'
 
 DISABLE
   - hosts: all
     roles:
      - role: motd
-       motd_state: 'disable'
+    vars:
+     motd_state: 'disable'
 
 INACTIVE
   - hosts: all
     roles:
      - role: motd
-       motd_state: 'inactive'
+    vars:
+     motd_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
