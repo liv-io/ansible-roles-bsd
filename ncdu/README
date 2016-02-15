@@ -32,19 +32,22 @@ INSTALL
   - hosts: all
     roles:
      - role: ncdu
-       ncdu_state: 'install'
+    vars:
+     ncdu_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: ncdu
-       ncdu_state: 'remove'
+    vars:
+     ncdu_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: ncdu
-       ncdu_state: 'inactive'
+    vars:
+     ncdu_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
