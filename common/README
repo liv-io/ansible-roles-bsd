@@ -31,23 +31,26 @@ INSTALL
   - hosts: all
     roles:
      - role: common
-       common_state: 'install'
-       common_info_dir_name: 'information'
-       common_root_dir_name: 'robomon'
+    vars:
+     common_state: 'install'
+     common_info_dir_name: 'information'
+     common_root_dir_name: 'robomon'
 
 REMOVE
   - hosts: all
     roles:
      - role: common
-       common_state: 'remove'
-       common_info_dir_name: 'information'
-       common_root_dir_name: 'robomon'
+    vars:
+     common_state: 'remove'
+     common_info_dir_name: 'information'
+     common_root_dir_name: 'robomon'
 
 INACTIVE
   - hosts: all
     roles:
      - role: common
-       common_state: 'inactive'
+    vars:
+     common_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
