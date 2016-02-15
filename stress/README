@@ -34,19 +34,22 @@ INSTALL
   - hosts: all
     roles:
      - role: stress
-       stress_state: 'install'
+    vars:
+     stress_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: stress
-       stress_state: 'remove'
+    vars:
+     stress_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: stress
-       stress_state: 'inactive'
+    vars:
+     stress_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
