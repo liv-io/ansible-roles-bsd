@@ -36,19 +36,22 @@ INSTALL
   - hosts: all
     roles:
      - role: rsync
-       rsync_state: 'install'
+    vars:
+     rsync_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: rsync
-       rsync_state: 'remove'
+    vars:
+     rsync_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: rsync
-       rsync_state: 'inactive'
+    vars:
+     rsync_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
