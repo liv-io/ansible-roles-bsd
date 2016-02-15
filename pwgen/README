@@ -34,19 +34,22 @@ INSTALL
   - hosts: all
     roles:
      - role: pwgen
-       pwgen_state: 'install'
+    vars:
+     pwgen_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: pwgen
-       pwgen_state: 'remove'
+    vars:
+     pwgen_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: pwgen
-       pwgen_state: 'inactive'
+    vars:
+     pwgen_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
