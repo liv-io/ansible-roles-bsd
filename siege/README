@@ -36,19 +36,22 @@ INSTALL
   - hosts: all
     roles:
      - role: siege
-       siege_state: 'install'
+    vars:
+     siege_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: siege
-       siege_state: 'remove'
+    vars:
+     siege_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: siege
-       siege_state: 'inactive'
+    vars:
+     siege_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
