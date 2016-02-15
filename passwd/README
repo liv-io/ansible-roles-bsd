@@ -31,19 +31,22 @@ INSTALL
   - hosts: all
     roles:
      - role: passwd
-       passwd_state: 'install'
+    vars:
+     passwd_state: 'install'
 
 DISABLE
   - hosts: all
     roles:
      - role: passwd
-       passwd_state: 'disable'
+    vars:
+     passwd_state: 'disable'
 
 INACTIVE
   - hosts: all
     roles:
      - role: passwd
-       passwd_state: 'inactive'
+    vars:
+     passwd_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
