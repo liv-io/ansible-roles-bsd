@@ -32,19 +32,22 @@ INSTALL
   - hosts: all
     roles:
      - role: coreutils
-       coreutils_state: 'install'
+    vars:
+     coreutils_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: coreutils
-       coreutils_state: 'remove'
+    vars:
+     coreutils_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: coreutils
-       coreutils_state: 'inactive'
+    vars:
+     coreutils_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
