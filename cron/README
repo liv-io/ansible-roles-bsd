@@ -34,31 +34,36 @@ INSTALL
   - hosts: all
     roles:
      - role: cron
-       cron_state: 'install'
+    vars:
+     cron_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
      - role: cron
-       cron_state: 'enable'
+    vars:
+     cron_state: 'enable'
 
 DISABLE
   - hosts: all
     roles:
      - role: cron
-       cron_state: 'disable'
+    vars:
+     cron_state: 'disable'
 
 REMOVE
   - hosts: all
     roles:
      - role: cron
-       cron_state: 'remove'
+    vars:
+     cron_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: cron
-       cron_state: 'inactive'
+    vars:
+     cron_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
