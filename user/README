@@ -32,69 +32,73 @@ INSTALL
   - hosts: all
     roles:
      - role: user
-       user_state: 'enable'
-       user_groups_default: ['nobody']
-       user_password_default: '!'
-       user_shell_default: '/bin/bash'
+    vars:
+     user_state: 'enable'
+     user_groups_default: ['nobody']
+     user_password_default: '!'
+     user_shell_default: '/bin/bash'
 
 DISABLE
   - hosts: all
     roles:
      - role: user
-       user_state: 'disable'
+    vars:
+     user_state: 'disable'
 
 INACTIVE
   - hosts: all
     roles:
      - role: user
-       user_state: 'inactive'
+    vars:
+     user_state: 'inactive'
 
 CONFIG
-  user_group_vars:
-   - name: 'user01'
-     state: 'true'
-     comment: 'Example User 01'
-     uid: '1001'
-     groups: ['group01', 'group02']
-     groups_append: 'true'
-     password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
-     password_update: 'true'
-     shell: '/bin/bash'
-     authorized_key:
-      - state: 'true'
-        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAqAJMzq+BmNh+rkQiV64pKahfS2JQKYCruyoEmUMRJ7iLNmYs1xYuAcDwinxV6G39X6DMPLyPrV/e6ZECQKdcgg/8+GJ2CPWTCGC/6eyOdq1/iLgAuovMv32/t4sIZbNfKWAgVSkrcLHln6Scdh7hGHEk85o4eubzArWZRwRjvDtyiozl1LUDWnoJo8YZAb8ABg/NMyEcprVLNtZ3ZlgNk8SHiih5dARvPAPZXNKax3SCQx9S0ZSHRGmjlLVclTxC1kDn0vaPRqnFN6opEnd9F15Dmb+VHc1pvKVEFa1ukMOTzeNvQZrhhRjVuaWpiJrjAIGTk6wsGxoHathPEf2X4w== user01'
-      - state: 'true'
-        key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAylF0+CUcLIiVcZNG3psSLzu5f4qS1yjMEPJhCiI9TCD7Vc3j+Z+o5J5SO7jt5FKzhx7vVndVMtASmTQppZ5L7d+qCNDO3rFwcM/VKKO7I8gU24tO4WKGK/3f8ACIxrfNHRslNJLjt6TFYc20ZU+60JF7objO/uN7Dh3BOhUKO8ZK8M9Tk5EnYQqm1jicfix/kozcHqzIKEM7+m3Uxq3t1sA6yRo3/R6RzTydWmvzX85852i0MBNTYM6SCy727aEJNZDPr3/rFCVd5Ai2j+z3vMjbkczNyNeifd8kCojdeDjkYEv4VQ3fG/0EsBXsXyVdzRHCAt31Yh77OlPWIR/2MQ== user01'
+  vars:
+    user_group_vars:
+     - name: 'user01'
+       state: 'true'
+       comment: 'Example User 01'
+       uid: '1001'
+       groups: ['group01', 'group02']
+       groups_append: 'true'
+       password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
+       password_update: 'true'
+       shell: '/bin/bash'
+       authorized_key:
+        - state: 'true'
+          key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAqAJMzq+BmNh+rkQiV64pKahfS2JQKYCruyoEmUMRJ7iLNmYs1xYuAcDwinxV6G39X6DMPLyPrV/e6ZECQKdcgg/8+GJ2CPWTCGC/6eyOdq1/iLgAuovMv32/t4sIZbNfKWAgVSkrcLHln6Scdh7hGHEk85o4eubzArWZRwRjvDtyiozl1LUDWnoJo8YZAb8ABg/NMyEcprVLNtZ3ZlgNk8SHiih5dARvPAPZXNKax3SCQx9S0ZSHRGmjlLVclTxC1kDn0vaPRqnFN6opEnd9F15Dmb+VHc1pvKVEFa1ukMOTzeNvQZrhhRjVuaWpiJrjAIGTk6wsGxoHathPEf2X4w== user01'
+        - state: 'true'
+          key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAylF0+CUcLIiVcZNG3psSLzu5f4qS1yjMEPJhCiI9TCD7Vc3j+Z+o5J5SO7jt5FKzhx7vVndVMtASmTQppZ5L7d+qCNDO3rFwcM/VKKO7I8gU24tO4WKGK/3f8ACIxrfNHRslNJLjt6TFYc20ZU+60JF7objO/uN7Dh3BOhUKO8ZK8M9Tk5EnYQqm1jicfix/kozcHqzIKEM7+m3Uxq3t1sA6yRo3/R6RzTydWmvzX85852i0MBNTYM6SCy727aEJNZDPr3/rFCVd5Ai2j+z3vMjbkczNyNeifd8kCojdeDjkYEv4VQ3fG/0EsBXsXyVdzRHCAt31Yh77OlPWIR/2MQ== user01'
 
-   - name: 'user02'
-     state: 'true'
-     comment: 'Example User 02'
-     uid: '1002'
-     groups: ['group02']
-     groups_append: 'true'
-     password: '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
-     password_update: 'true'
-     shell: '/bin/bash'
-     authorized_key: []
+     - name: 'user02'
+       state: 'true'
+       comment: 'Example User 02'
+       uid: '1002'
+       groups: ['group02']
+       groups_append: 'true'
+       password: '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
+       password_update: 'true'
+       shell: '/bin/bash'
+       authorized_key: []
 
-  user_host_vars:
-   - name: 'user03'
-     state: 'true'
-     comment: 'Example User 03'
-     uid: '1003'
-     groups: ['group03']
-     groups_append: 'true'
-     password: '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
-     password_update: 'true'
-     shell: '/bin/bash'
-     authorized_key: []
+    user_host_vars:
+     - name: 'user03'
+       state: 'true'
+       comment: 'Example User 03'
+       uid: '1003'
+       groups: ['group03']
+       groups_append: 'true'
+       password: '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
+       password_update: 'true'
+       shell: '/bin/bash'
+       authorized_key: []
 
-   - name: 'user04'
-     state: 'false'
-     uid: '1004'
-     home_remove: 'true'
-     home_force: 'true'
-     authorized_key: []
+     - name: 'user04'
+       state: 'false'
+       uid: '1004'
+       home_remove: 'true'
+       home_force: 'true'
+       authorized_key: []
 
 --------------------------------------------------------------------------------
 VARIABLES
