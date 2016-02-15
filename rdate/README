@@ -33,19 +33,22 @@ INSTALL
   - hosts: all
     roles:
      - role: rdate
-       rdate_state: 'install'
+    vars:
+     rdate_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: rdate
-       rdate_state: 'remove'
+    vars:
+     rdate_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: rdate
-       rdate_state: 'inactive'
+    vars:
+     rdate_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
