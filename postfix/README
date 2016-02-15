@@ -31,39 +31,44 @@ INSTALL
   - hosts: all
     roles:
      - role: postfix
-       postfix_state: 'install'
+    vars:
+     postfix_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
      - role: postfix
-       postfix_state: 'enable'
-       postfix_fallback_relay: 'mx02.domain.tld'
-       postfix_inet_protocols: 'ipv4'
-       postfix_relayhost: 'mx01.domain.tld'
-       postfix_root_mail_address: 'root@domain.tld'
+    vars:
+     postfix_state: 'enable'
+     postfix_fallback_relay: 'mx02.domain.tld'
+     postfix_inet_protocols: 'ipv4'
+     postfix_relayhost: 'mx01.domain.tld'
+     postfix_root_mail_address: 'root@domain.tld'
 
 DISABLE
   - hosts: all
     roles:
      - role: postfix
-       postfix_state: 'disable'
-       postfix_fallback_relay: 'mx02.domain.tld'
-       postfix_inet_protocols: 'ipv4'
-       postfix_relayhost: 'mx01.domain.tld'
-       postfix_root_mail_address: 'root@domain.tld'
+    vars:
+     postfix_state: 'disable'
+     postfix_fallback_relay: 'mx02.domain.tld'
+     postfix_inet_protocols: 'ipv4'
+     postfix_relayhost: 'mx01.domain.tld'
+     postfix_root_mail_address: 'root@domain.tld'
 
 REMOVE
   - hosts: all
     roles:
      - role: postfix
-       postfix_state: 'remove'
+    vars:
+     postfix_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: postfix
-       postfix_state: 'inactive'
+    vars:
+     postfix_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
