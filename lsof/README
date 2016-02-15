@@ -32,19 +32,22 @@ INSTALL
   - hosts: all
     roles:
      - role: lsof
-       lsof_state: 'install'
+    vars:
+     lsof_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
      - role: lsof
-       lsof_state: 'remove'
+    vars:
+     lsof_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: lsof
-       lsof_state: 'inactive'
+    vars:
+     lsof_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
