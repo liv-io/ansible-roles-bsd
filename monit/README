@@ -51,85 +51,91 @@ INSTALL
   - hosts: all
     roles:
      - role: monit
-       monit_state: 'install'
+    vars:
+     monit_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
      - role: monit
-       monit_state: 'enable'
-       monit_mail_server: [{name: {'127.0.0.1'}, port: 25,
-                            comment: 'MTA localhost'}]
+    vars:
+     monit_state: 'enable'
+     monit_mail_server: [{name: {'127.0.0.1'}, port: 25,
+                          comment: 'MTA localhost'}]
 
 DISABLE
   - hosts: all
     roles:
      - role: monit
-       monit_state: 'disable'
-       monit_mail_server: [{name: {'127.0.0.1'}, port: 25,
-                            comment: 'MTA localhost'}]
+    vars:
+     monit_state: 'disable'
+     monit_mail_server: [{name: {'127.0.0.1'}, port: 25,
+                          comment: 'MTA localhost'}]
 
 REMOVE
   - hosts: all
     roles:
      - role: monit
-       monit_state: 'remove'
+    vars:
+     monit_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
      - role: monit
-       monit_state: 'inactive'
+    vars:
+     monit_state: 'inactive'
 
 CONFIG
-  monit_group_vars:
-   - name: 'openssh'
-     state: 'true'
-     comment: 'OpenSSH'
-     config:
-      - 'check process openssh with pidfile /run/sshd.pid'
-      - '  group system'
-      - '  start program = "/sbin/service sshd start"'
-      - '  stop program  = "/sbin/service sshd stop"'
-      - '  if cpu > 60% for 2 cycles then alert'
-      - '  if cpu > 80% for 5 cycles then restart'
-      - '  if totalmem > 256.0 MB for 2 cycles then alert'
-      - '  if totalmem > 256.0 MB for 5 cycles then restart'
-      - '  if failed host 127.0.0.1 port 22 type tcp protocol ssh with timeout 10 seconds then restart'
-      - '  if 5 restarts within 5 cycles then timeout'
+  vars:
+    monit_group_vars:
+     - name: 'openssh'
+       state: 'true'
+       comment: 'OpenSSH'
+       config:
+        - 'check process openssh with pidfile /run/sshd.pid'
+        - '  group system'
+        - '  start program = "/sbin/service sshd start"'
+        - '  stop program  = "/sbin/service sshd stop"'
+        - '  if cpu > 60% for 2 cycles then alert'
+        - '  if cpu > 80% for 5 cycles then restart'
+        - '  if totalmem > 256.0 MB for 2 cycles then alert'
+        - '  if totalmem > 256.0 MB for 5 cycles then restart'
+        - '  if failed host 127.0.0.1 port 22 type tcp protocol ssh with timeout 10 seconds then restart'
+        - '  if 5 restarts within 5 cycles then timeout'
 
-  monit_host_vars:
-   - name: 'pdns-server'
-     state: 'true'
-     comment: 'PowerDNS Server'
-     config:
-      - 'check process pdns-server with pidfile /run/pdns.pid'
-      - '  group dns'
-      - '  start program = "/sbin/service pdns start"'
-      - '  stop program  = "/sbin/service pdns stop"'
-      - '  if cpu > 60% for 2 cycles then alert'
-      - '  if cpu > 80% for 5 cycles then restart'
-      - '  if totalmem > 32.0 MB for 2 cycles then alert'
-      - '  if totalmem > 32.0 MB for 5 cycles then restart'
-      - '  if failed host 127.0.0.1 port 53 type tcp protocol dns then alert'
-      - '  if failed host 127.0.0.1 port 53 type udp protocol dns then alert'
-      - '  if 5 restarts within 5 cycles then timeout'
+    monit_host_vars:
+     - name: 'pdns-server'
+       state: 'true'
+       comment: 'PowerDNS Server'
+       config:
+        - 'check process pdns-server with pidfile /run/pdns.pid'
+        - '  group dns'
+        - '  start program = "/sbin/service pdns start"'
+        - '  stop program  = "/sbin/service pdns stop"'
+        - '  if cpu > 60% for 2 cycles then alert'
+        - '  if cpu > 80% for 5 cycles then restart'
+        - '  if totalmem > 32.0 MB for 2 cycles then alert'
+        - '  if totalmem > 32.0 MB for 5 cycles then restart'
+        - '  if failed host 127.0.0.1 port 53 type tcp protocol dns then alert'
+        - '  if failed host 127.0.0.1 port 53 type udp protocol dns then alert'
+        - '  if 5 restarts within 5 cycles then timeout'
 
-   - name: 'pdns-recursor'
-     state: 'true'
-     comment: 'PowerDNS Recursor'
-     config:
-      - 'check process pdns-recursor with pidfile /var/lib/powerdns/pdns_recursor.pid'
-      - '  group dns'
-      - '  start program = "/sbin/service precursor start"'
-      - '  stop program  = "/sbin/service precursor stop"'
-      - '  if cpu > 60% for 2 cycles then alert'
-      - '  if cpu > 80% for 5 cycles then restart'
-      - '  if totalmem > 32.0 MB for 2 cycles then alert'
-      - '  if totalmem > 32.0 MB for 5 cycles then restart'
-      - '  if failed host 127.0.0.1 port 5300 type tcp protocol dns then alert'
-      - '  if failed host 127.0.0.1 port 5300 type udp protocol dns then alert'
-      - '  if 5 restarts within 5 cycles then timeout'
+     - name: 'pdns-recursor'
+       state: 'true'
+       comment: 'PowerDNS Recursor'
+       config:
+        - 'check process pdns-recursor with pidfile /var/lib/powerdns/pdns_recursor.pid'
+        - '  group dns'
+        - '  start program = "/sbin/service precursor start"'
+        - '  stop program  = "/sbin/service precursor stop"'
+        - '  if cpu > 60% for 2 cycles then alert'
+        - '  if cpu > 80% for 5 cycles then restart'
+        - '  if totalmem > 32.0 MB for 2 cycles then alert'
+        - '  if totalmem > 32.0 MB for 5 cycles then restart'
+        - '  if failed host 127.0.0.1 port 5300 type tcp protocol dns then alert'
+        - '  if failed host 127.0.0.1 port 5300 type udp protocol dns then alert'
+        - '  if 5 restarts within 5 cycles then timeout'
 
 --------------------------------------------------------------------------------
 VARIABLES
