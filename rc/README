@@ -33,7 +33,7 @@ INSTALL
     roles:
      - role: rc
     vars:
-     rc_state: 'enable'
+     rc_state: 'install'
      rc_path_default: '/etc/rc.conf'
 
 INACTIVE
