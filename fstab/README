@@ -38,7 +38,7 @@ INSTALL
     roles:
      - role: fstab
     vars:
-     fstab_state: 'enable'
+     fstab_state: 'install'
      fstab_path_default: '/etc/fstab'
 
 INACTIVE
