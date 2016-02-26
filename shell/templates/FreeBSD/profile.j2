@@ -8,7 +8,7 @@
 #        o
 #    ____|____
 #   |         |  Name   : profile
-#   |  _   _  |  Type   : shell configuration file
+#   |  _   _  |  Type   : Shell configuration file
 #   | [_] [_] |  Role   : shell
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -43,12 +43,12 @@
 # Allow terminal messages
 # mesg y
 
-# Source general shell environment variables
+# Source general Shell environment variables
 for shell in /etc/profile.d/*.sh ; do
   [ -r "$shell" ] && . "$shell"
 done
 
-# Source bash specific environment variables
+# Source Bash specific environment variables
 if [ "$SHELL" = "/usr/local/bin/bash" ]; then
   for bash in /etc/profile.d/*.bash ; do
     [ -r "$bash" ] && . "$bash"

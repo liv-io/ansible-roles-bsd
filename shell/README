@@ -93,9 +93,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    :
-      FreeBSD: '%Y-%m-%d %H:%M:%S'
-      Other  : '+%Y-%m-%d %H:%M:%S'
+    Default    : '%Y-%m-%d %H:%M:%S'
     Options    :
       Examples: '%Y-%m-%d %H:%M:%S' | '+%Y-%m-%d %H:%M:%S'
       Disable : 'false' | 'no' | 'disable'
@@ -218,6 +216,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------

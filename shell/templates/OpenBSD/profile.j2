@@ -1,11 +1,14 @@
----
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
 #-------------------------------------------------------------------------------
 # INFORMATION
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible default file
+#   |         |  Name   : profile
+#   |  _   _  |  Type   : Shell configuration file
 #   | [_] [_] |  Role   : shell
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -21,20 +24,16 @@
 #
 #-------------------------------------------------------------------------------
 
-shell_state: 'install'
+# System-wide .profile file for sh(1).
 
-shell_color_support: 'enable'
+# Source general Shell environment variables
+for shell in /etc/profile.d/*.sh ; do
+  [ -r "$shell" ] && . "$shell"
+done
 
-shell_histsize: '262144'
-
-shell_ls_time_style: '%Y-%m-%d %H:%M:%S'
-
-shell_pager: 'less'
-
-shell_profile_template: "{{ansible_os_family}}"
-
-shell_safety: 'enable'
-
-shell_shell_sh_template: "{{ansible_os_family}}"
-
-shell_z_shell_sh_template: "{{ansible_os_family}}"
+# Source Bash specific environment variables
+if [ "$SHELL" = "/usr/local/bin/bash" ]; then
+  for bash in /etc/profile.d/*.bash ; do
+    [ -r "$bash" ] && . "$bash"
+  done
+fi

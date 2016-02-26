@@ -30,24 +30,24 @@ file_src_profile: "../../templates/{{(shell_profile_template|e)}}/profile.j2"
 file_path_profile: '/etc/profile'
 file_mode_profile: '0644'
 file_owner_profile: 'root'
-file_group_profile: 'root'
+file_group_profile: 'wheel'
 
 # profile.d
 file_path_profile_d: '/etc/profile.d'
 file_mode_profile_d: '0755'
 file_owner_profile_d: 'root'
-file_group_profile_d: 'root'
+file_group_profile_d: 'wheel'
 
 # shell.sh
 file_src_shell_shell: "../../templates/{{(shell_shell_sh_template|e)}}/shell.sh.j2"
 file_path_shell_shell: '/etc/profile.d/shell.sh'
 file_mode_shell_shell: '0644'
 file_owner_shell_shell: 'root'
-file_group_shell_shell: 'root'
+file_group_shell_shell: 'wheel'
 
 # z_shell.sh
 file_src_z_shell_shell: "../../templates/{{(shell_z_shell_sh_template|e)}}/z_shell.sh.j2"
 file_path_z_shell_shell: '/etc/profile.d/z_shell.sh'
 file_mode_z_shell_shell: '0644'
 file_owner_z_shell_shell: 'root'
-file_group_z_shell_shell: 'root'
+file_group_z_shell_shell: 'wheel'
