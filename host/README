@@ -33,7 +33,7 @@ INSTALL
     roles:
      - role: host
     vars:
-     host_state: 'enable'
+     host_state: 'install'
      host_path_default: '/etc/hosts'
 
 INACTIVE
