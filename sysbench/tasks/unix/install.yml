@@ -46,3 +46,14 @@
    - install
    - unix
    - sysbench
+
+- name: package install sysbench
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_sysbench}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - sysbench

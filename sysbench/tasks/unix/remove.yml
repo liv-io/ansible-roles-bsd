@@ -46,3 +46,14 @@
    - remove
    - unix
    - sysbench
+
+- name: package remove sysbench
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_sysbench}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - sysbench
