@@ -84,6 +84,7 @@ PACKAGES
     Version: >= 5.0
     Name   :
       FreeBSD 10: 'zsh'
+      OpenBSD 5 : 'zsh'
 
 ROLES
 
@@ -126,6 +127,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------

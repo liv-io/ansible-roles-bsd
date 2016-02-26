@@ -46,3 +46,14 @@
    - remove
    - unix
    - zsh
+
+- name: package remove zsh
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_zsh}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - zsh
