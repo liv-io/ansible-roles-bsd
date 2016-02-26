@@ -82,9 +82,10 @@ DEPENDENCIES
 
 PACKAGES
   siege
-    Version: >= 3.0
+    Version: >= 2.70
     Name   :
       FreeBSD 10: 'siege'
+      OpenBSD 5 : 'siege'
 
 ROLES
 
@@ -127,6 +128,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------
