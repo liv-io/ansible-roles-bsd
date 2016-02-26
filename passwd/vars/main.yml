@@ -35,4 +35,16 @@ file_group_master_passwd: 'wheel'
 file_path_passwd: '/etc/passwd'
 file_mode_passwd: '0644'
 file_owner_passwd: 'root'
-file_group_passwd: 'root'
+file_group_passwd: 'wheel'
+
+# pwd.db
+file_path_pwd_db: '/etc/pwd.db'
+file_mode_pwd_db: '0644'
+file_owner_pwd_db: 'root'
+file_group_pwd_db: 'wheel'
+
+# spwd.db
+file_path_spwd_db: '/etc/spwd.db'
+file_mode_spwd_db: '0600'
+file_owner_spwd_db: 'root'
+file_group_spwd_db: 'wheel'

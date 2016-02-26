@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : FreeBSD.yml
+#   |         |  Name   : OpenBSD.yml
 #   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : passwd
 #   |____~____|
@@ -25,5 +25,6 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-# passwd
-file_group_passwd: 'wheel'
+# spwd.db
+file_mode_spwd_db: '0640'
+file_group_spwd_db: '_shadow'
