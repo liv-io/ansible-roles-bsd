@@ -27,4 +27,3 @@
 
 # tmux.conf
 file_path_tmux_conf: '/usr/local/etc/tmux.conf'
-file_group_tmux_conf: 'wheel'
