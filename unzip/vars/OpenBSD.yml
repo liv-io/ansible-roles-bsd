@@ -4,8 +4,8 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible task file
+#   |         |  Name   : OpenBSD.yml
+#   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : unzip
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -21,8 +21,9 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include unix
-  include: unix/main.yml
-  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'OpenBSD')
-  tags:
-   - unzip
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# unzip
+package_name_unzip: 'unzip--'
