@@ -27,11 +27,6 @@
 
 # sudoers
 file_path_sudoers: '/usr/local/etc/sudoers'
-file_group_sudoers: 'wheel'
-
-# sudo-config
-file_group_sudo_config: 'wheel'
 
 # sudoers.d
 file_path_sudoers_d: '/usr/local/etc/sudoers.d'
-file_group_sudoers_d: 'wheel'

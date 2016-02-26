@@ -23,16 +23,12 @@
 
 sudo_state: 'install'
 
-sudo_host_vars:
- - name: ''
-   state: 'false'
+sudo_host_vars: []
 
-sudo_group_vars:
- - name: ''
-   state: 'false'
+sudo_group_vars: []
 
 sudo_name_default: 'default'
 
-sudo_sudo_config_template: 'main'
+sudo_sudo_config_template: 'default'
 
 sudo_sudoers_template: "{{ansible_os_family}}"

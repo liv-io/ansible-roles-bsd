@@ -37,18 +37,18 @@ file_src_sudoers: "../../templates/{{(sudo_sudoers_template|e)}}/sudoers.j2"
 file_path_sudoers: '/etc/sudoers'
 file_mode_sudoers: '0440'
 file_owner_sudoers: 'root'
-file_group_sudoers: 'root'
+file_group_sudoers: 'wheel'
 file_validate_sudoers: 'visudo -cf %s'
 
 # sudo-config
 file_src_sudo_config: "../../templates/{{(sudo_sudo_config_template|e)}}/sudo-config.j2"
 file_mode_sudo_config: '0440'
 file_owner_sudo_config: 'root'
-file_group_sudo_config: 'root'
+file_group_sudo_config: 'wheel'
 file_validate_sudo_config: 'visudo -cf %s'
 
 # sudoers.d
 file_path_sudoers_d: '/etc/sudoers.d'
 file_mode_sudoers_d: '0750'
 file_owner_sudoers_d: 'root'
-file_group_sudoers_d: 'root'
+file_group_sudoers_d: 'wheel'

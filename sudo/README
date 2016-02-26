@@ -227,6 +227,7 @@ PACKAGES
     Version: >= 1.8
     Name   :
       FreeBSD 10: 'sudo'
+      OpenBSD 5 : 'sudo'
 
 ROLES
 
@@ -269,6 +270,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------
