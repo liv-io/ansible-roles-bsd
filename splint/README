@@ -83,6 +83,7 @@ PACKAGES
     Version: >= 3.1
     Name   :
       FreeBSD 10: 'splint'
+      OpenBSD 5 : 'splint'
 
 ROLES
 
@@ -125,6 +126,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------
