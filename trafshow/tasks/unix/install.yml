@@ -46,3 +46,14 @@
    - install
    - unix
    - trafshow
+
+- name: package install trafshow
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_trafshow}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - trafshow
