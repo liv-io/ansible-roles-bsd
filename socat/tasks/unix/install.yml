@@ -46,3 +46,14 @@
    - install
    - unix
    - socat
+
+- name: package install socat
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_socat}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - socat
