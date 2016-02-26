@@ -76,6 +76,20 @@
    - unix
    - systeminfo
 
+- name: template create openbsd.info
+  template:
+   src: "{{file_src_openbsd_info}}"
+   dest: "{{file_path_openbsd_info}}"
+   mode: "{{file_mode_openbsd_info}}"
+   owner: "{{file_owner_openbsd_info}}"
+   group: "{{file_group_openbsd_info}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - files
+   - install
+   - unix
+   - systeminfo
+
 - name: template create system.info
   template:
    src: "{{file_src_system_info}}"

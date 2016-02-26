@@ -58,7 +58,9 @@ Distribution: {{ansible_distribution}}
 {% else %}
 Distribution:
 {% endif %}
-{% if (ansible_distribution_version is defined) %}
+{% if (ansible_distribution_release is defined) and (ansible_os_family == 'OpenBSD') %}
+Version     : {{ansible_distribution_release}}
+{% elif (ansible_distribution_version is defined) %}
 Version     : {{ansible_distribution_version}}
 {% else %}
 Version     :

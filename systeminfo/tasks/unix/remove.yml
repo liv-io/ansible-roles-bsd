@@ -67,6 +67,17 @@
    - unix
    - systeminfo
 
+- name: file remove openbsd.info
+  file:
+   state: 'absent'
+   path: "{{file_path_openbsd_info}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - files
+   - remove
+   - unix
+   - systeminfo
+
 - name: file remove system.info
   file:
    state: 'absent'
