@@ -46,3 +46,14 @@
    - install
    - unix
    - lsof
+
+- name: package install lsof
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_lsof}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - lsof

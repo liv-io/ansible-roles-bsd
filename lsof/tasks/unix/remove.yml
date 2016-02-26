@@ -46,3 +46,14 @@
    - remove
    - unix
    - lsof
+
+- name: package remove lsof
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_lsof}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - lsof
