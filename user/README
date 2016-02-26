@@ -33,7 +33,7 @@ INSTALL
     roles:
      - role: user
     vars:
-     user_state: 'enable'
+     user_state: 'install'
      user_groups_default: ['nobody']
      user_password_default: '!'
      user_shell_default: '/bin/bash'
