@@ -46,3 +46,14 @@
    - remove
    - unix
    - zip
+
+- name: package remove zip
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_zip}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - zip

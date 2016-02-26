@@ -46,3 +46,14 @@
    - install
    - unix
    - zip
+
+- name: package install zip
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_zip}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - zip
