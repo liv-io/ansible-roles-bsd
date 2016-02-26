@@ -46,3 +46,14 @@
    - remove
    - unix
    - usbutils
+
+- name: package remove usbutils
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_usbutils}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - usbutils

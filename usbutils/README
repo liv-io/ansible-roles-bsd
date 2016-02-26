@@ -81,6 +81,11 @@ PACKAGES
     Name   :
       FreeBSD 10: 'usbutils'
 
+  usbutils
+    Version: >= 007p0
+    Name   :
+      OpenBSD 5 : 'usbutils'
+
 ROLES
 
 VARIABLES
@@ -122,6 +127,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------

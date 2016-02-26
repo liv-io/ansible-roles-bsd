@@ -46,3 +46,14 @@
    - install
    - unix
    - usbutils
+
+- name: package install usbutils
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_usbutils}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - usbutils
