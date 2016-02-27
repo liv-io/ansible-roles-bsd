@@ -139,7 +139,7 @@ ROLE
                  Warning: Define 'root_password' option before applying role.
     Implemented: 0.1
     Required   : True
-    Value      : Arbitrary SHA-512 cryptographic hash
+    Value      : Arbitrary cryptographic hash
     Type       : String
     Default    : '!'
     Options    :
@@ -153,9 +153,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    :
-      FreeBSD: 'wheel'
-      Other  : 'root'
+    Default    : 'wheel'
     Options    :
       Examples: 'root' | 'wheel' | 'sysadmin'
 
@@ -187,9 +185,10 @@ ROLE
     Type       : String
     Default    :
       FreeBSD: '/bin/csh'
+      OpenBSD: '/bin/ksh'
       Other  : '/bin/sh'
     Options    :
-      Examples: '/bin/bash' | '/bin/csh' | '/bin/sh' | '/bin/tcsh' | '/bin/zsh'
+      Examples: '/bin/bash' | '/bin/sh' | '/bin/csh' | '/bin/ksh' | '/bin/zsh'
 
 --------------------------------------------------------------------------------
 CONFLICTS
@@ -244,6 +243,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------

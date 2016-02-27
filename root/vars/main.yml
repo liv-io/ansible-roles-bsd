@@ -29,14 +29,14 @@
 file_path_root_dir: '/root'
 file_mode_root_dir: "{{root_root_dir_mode if (root_root_dir_mode is defined) and not ((root_root_dir_mode == None) or (root_root_dir_mode == '')) else '0700'}}"
 file_owner_root_dir: "{{root_root_dir_owner if (root_root_dir_owner is defined) and not ((root_root_dir_owner == None) or (root_root_dir_owner == '')) else 'root'}}"
-file_group_root_dir: "{{root_root_dir_group if (root_root_dir_group is defined) and not ((root_root_dir_group == None) or (root_root_dir_group == '')) else 'root'}}"
+file_group_root_dir: "{{root_root_dir_group if (root_root_dir_group is defined) and not ((root_root_dir_group == None) or (root_root_dir_group == '')) else 'wheel'}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
 # root
-group_name_root: 'root'
+group_name_root: 'wheel'
 group_gid_root: '0'
 group_system_root: 'yes'
 

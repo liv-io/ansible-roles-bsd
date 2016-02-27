@@ -37,10 +37,10 @@ root_groups_append: 'true'
 
 root_password: '!'
 
-root_root_dir_group: "{{'wheel' if (ansible_os_family == 'FreeBSD') else 'root'}}"
+root_root_dir_group: 'wheel'
 
 root_root_dir_mode: '0700'
 
 root_root_dir_owner: 'root'
 
-root_shell: "{{'/bin/csh' if (ansible_os_family == 'FreeBSD') else '/bin/sh'}}"
+root_shell: "{% if (ansible_os_family == 'FreeBSD') %}/bin/csh{% elif (ansible_os_family == 'OpenBSD') %}/bin/ksh{% else %}/bin/sh{% endif %}"
