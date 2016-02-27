@@ -4,8 +4,8 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : remove.yml
-#   |  _   _  |  Type   : ansible task file
+#   |         |  Name   : OpenBSD.yml
+#   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : python_paramiko
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -21,39 +21,9 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: include variables
-  include_vars: "{{item}}"
-  with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_major_version}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
-  tags:
-   - remove
-   - unix
-   - python_paramiko
-
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove python-paramiko
-  pkgng:
-   state: 'absent'
-   name: "{{package_name_python_paramiko}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-   - packaging
-   - remove
-   - unix
-   - python_paramiko
-
-- name: package remove python-paramiko
-  openbsd_pkg:
-   state: 'absent'
-   name: "{{package_name_python_paramiko}}"
-  when: (ansible_os_family == 'OpenBSD')
-  tags:
-   - packaging
-   - remove
-   - unix
-   - python_paramiko
+# py-paramiko
+package_name_python_paramiko: 'py-paramiko'
