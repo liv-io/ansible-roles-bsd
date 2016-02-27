@@ -46,3 +46,14 @@
    - install
    - unix
    - pv
+
+- name: package install pv
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_pv}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - pv
