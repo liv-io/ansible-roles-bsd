@@ -46,3 +46,14 @@
    - install
    - unix
    - screen
+
+- name: package install screen
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_screen}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - screen
