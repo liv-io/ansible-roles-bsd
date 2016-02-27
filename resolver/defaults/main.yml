@@ -30,4 +30,4 @@ resolver_nameserver:
 
 resolver_search: ["{{ansible_domain}}"]
 
-resolver_resolv_conf_template: 'main'
+resolver_resolv_conf_template: "{{ansible_os_family}}"

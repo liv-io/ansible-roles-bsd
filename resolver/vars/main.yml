@@ -30,4 +30,4 @@ file_src_resolv_conf: "../../templates/{{(resolver_resolv_conf_template|e)}}/res
 file_path_resolv_conf: '/etc/resolv.conf'
 file_mode_resolv_conf: '0644'
 file_owner_resolv_conf: 'root'
-file_group_resolv_conf: 'root'
+file_group_resolv_conf: 'wheel'
