@@ -46,3 +46,14 @@
    - install
    - unix
    - python_crypto
+
+- name: package install python-crypto
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_python_crypto}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - python_crypto
