@@ -46,3 +46,14 @@
    - remove
    - unix
    - patchutils
+
+- name: package remove patchutils
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_patchutils}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - patchutils
