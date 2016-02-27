@@ -46,3 +46,14 @@
    - remove
    - unix
    - rsync
+
+- name: package remove rsync
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_rsync}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - rsync
