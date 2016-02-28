@@ -46,3 +46,14 @@
    - install
    - unix
    - multitail
+
+- name: package install multitail
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_multitail}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - multitail

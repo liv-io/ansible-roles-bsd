@@ -92,6 +92,7 @@ PACKAGES
     Version: >= 5.2
     Name   :
       FreeBSD 10: 'multitail'
+      OpenBSD 5 : 'multitail'
 
 ROLES
 
@@ -134,6 +135,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------
