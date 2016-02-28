@@ -46,3 +46,14 @@
    - install
    - unix
    - curl
+
+- name: package install curl
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_curl}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - curl
