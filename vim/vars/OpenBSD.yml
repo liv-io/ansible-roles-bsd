@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
+#   |         |  Name   : OpenBSD.yml
 #   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : vim
 #   |____~____|
@@ -25,16 +25,5 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-# vim
-package_name_vim: 'vim'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
-# vimrc
-file_src_vimrc: "../../templates/{{(vim_vimrc_template|e)}}/vimrc.j2"
-file_path_vimrc: '/usr/local/share/vim/vimrc'
-file_mode_vimrc: '0644'
-file_owner_vimrc: 'root'
-file_group_vimrc: 'wheel'
+# vim--no_x11
+package_name_vim: 'vim--no_x11'

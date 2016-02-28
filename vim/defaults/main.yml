@@ -23,4 +23,4 @@
 
 vim_state: 'install'
 
-vim_vimrc_template: 'main'
+vim_vimrc_template: 'default'
