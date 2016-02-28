@@ -83,6 +83,7 @@ PACKAGES
     Version: >= 0.7
     Name   :
       FreeBSD 10: 'iftop'
+      OpenBSD 5 : 'iftop'
 
 ROLES
 
@@ -125,6 +126,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------
