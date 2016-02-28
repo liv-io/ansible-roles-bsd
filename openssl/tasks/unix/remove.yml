@@ -46,3 +46,14 @@
    - remove
    - unix
    - openssl
+
+- name: package remove openssl
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_openssl}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - openssl
