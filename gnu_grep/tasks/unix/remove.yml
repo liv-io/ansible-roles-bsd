@@ -46,3 +46,14 @@
    - remove
    - unix
    - gnu_grep
+
+- name: package remove gnu-grep
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_gnu_grep}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - gnu_grep
