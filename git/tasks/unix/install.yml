@@ -46,3 +46,14 @@
    - install
    - unix
    - git
+
+- name: package install git
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_git}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - git

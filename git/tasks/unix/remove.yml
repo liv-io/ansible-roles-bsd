@@ -46,3 +46,14 @@
    - remove
    - unix
    - git
+
+- name: package remove git
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_git}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - git

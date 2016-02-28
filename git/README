@@ -82,6 +82,7 @@ PACKAGES
     Version: >= 1.7
     Name   :
       FreeBSD 10: 'git-lite'
+      OpenBSD 5 : 'git'
 
 ROLES
 
@@ -124,6 +125,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------
