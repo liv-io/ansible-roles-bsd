@@ -33,4 +33,4 @@ file_src_motd: "../../templates/{{(motd_motd_template|e)}}/motd.j2"
 file_path_motd: '/etc/motd'
 file_mode_motd: '0644'
 file_owner_motd: 'root'
-file_group_motd: 'root'
+file_group_motd: 'wheel'

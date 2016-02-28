@@ -94,7 +94,7 @@ ROLE
 
   motd_motd_template
     Description: Define the template source for 'motd.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
+                 Any value other than 'default' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'motd/templates/example/motd.j2'
@@ -159,6 +159,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------
