@@ -82,6 +82,7 @@ PACKAGES
     Version: >= 3.1
     Name   :
       FreeBSD 10: 'pciutils'
+      OpenBSD 5 : 'pciutils'
 
 ROLES
 
@@ -124,6 +125,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------
