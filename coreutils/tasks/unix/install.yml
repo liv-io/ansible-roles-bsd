@@ -46,3 +46,14 @@
    - install
    - unix
    - coreutils
+
+- name: package install coreutils
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_coreutils}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - coreutils
