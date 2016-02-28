@@ -46,3 +46,14 @@
    - install
    - unix
    - ncdu
+
+- name: package install ncdu
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_ncdu}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - ncdu
