@@ -23,35 +23,9 @@
 
 user_state: 'install'
 
-user_host_vars:
- - name: ''
-   state: 'false'
-   comment: ''
-   uid: ''
-   group: ''
-   groups: ['']
-   groups_append: 'true'
-   password: '!'
-   password_update: 'true'
-   shell: '/bin/false'
-   authorized_key:
-    - state: 'false'
-      key: ''
+user_host_vars: []
 
-user_group_vars:
- - name: ''
-   state: 'false'
-   comment: ''
-   uid: ''
-   group: ''
-   groups: ['']
-   groups_append: 'true'
-   password: '!'
-   password_update: 'true'
-   shell: '/bin/false'
-   authorized_key:
-    - state: 'false'
-      key: ''
+user_group_vars: []
 
 user_group_default: 'nobody'
 

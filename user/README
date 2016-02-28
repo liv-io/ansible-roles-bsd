@@ -241,7 +241,7 @@ CONFIG (user)
     Description: Define the password for the user.
     Implemented: 0.1
     Required   : False
-    Value      : Arbitrary SHA-512 cryptographic hash
+    Value      : Arbitrary cryptographic hash
     Type       : String
     Default    : '!'
     Options    :
@@ -345,7 +345,7 @@ ROLE
     Description: Define the default password for the user.
     Implemented: 0.1
     Required   : False
-    Value      : Arbitrary SHA-512 cryptographic hash
+    Value      : Arbitrary cryptographic hash
     Type       : String
     Default    : '!'
     Options    :
@@ -421,6 +421,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------
