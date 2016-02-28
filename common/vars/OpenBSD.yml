@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : FreeBSD.yml
+#   |         |  Name   : OpenBSD.yml
 #   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : common
 #   |____~____|

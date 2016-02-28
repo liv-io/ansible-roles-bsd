@@ -57,7 +57,7 @@
    mode: "{{file_mode_opt_link}}"
    owner: "{{file_owner_opt_link}}"
    group: "{{file_group_opt_link}}"
-  when: (ansible_os_family == 'FreeBSD')
+  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'OpenBSD')
   tags:
    - files
    - install
