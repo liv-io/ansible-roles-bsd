@@ -46,3 +46,14 @@
    - remove
    - unix
    - ngrep
+
+- name: package remove ngrep
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_ngrep}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - ngrep
