@@ -46,3 +46,14 @@
    - remove
    - unix
    - iperf
+
+- name: package remove iperf
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_iperf}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - iperf
