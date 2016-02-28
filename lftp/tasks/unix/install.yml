@@ -46,3 +46,14 @@
    - install
    - unix
    - lftp
+
+- name: package install lftp
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_lftp}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - lftp
