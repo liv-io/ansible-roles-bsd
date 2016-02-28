@@ -1,0 +1,124 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : zz_bash.bash
+#   |  _   _  |  Type   : environment variable configuration file
+#   | [_] [_] |  Role   : bash
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+# This file defines environment variables for Bash.
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# SHELL OPTIONS
+#-------------------------------------------------------------------------------
+
+# checkwinsize
+{% if (bash_checkwinsize is defined) and ((bash_checkwinsize == 'false') or (bash_checkwinsize == 'no') or (bash_checkwinsize == 'disable')) %}
+shopt -d checkwinsize
+{% else %}
+shopt -s checkwinsize
+{% endif %}
+
+# histappend
+{% if (bash_histappend is defined) and ((bash_histappend == 'false') or (bash_histappend == 'no') or (bash_histappend == 'disable')) %}
+shopt -d histappend
+{% else %}
+shopt -s histappend
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# SHELL VARIABLES
+#-------------------------------------------------------------------------------
+
+{% if (bash_histcontrol is defined) and not ((bash_histcontrol == None) or (bash_histcontrol == 'false') or (bash_histcontrol == 'no') or (bash_histcontrol == 'disable')) %}
+# HISTCONTROL
+HISTCONTROL='{{(bash_histcontrol|e)}}'
+{% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
+readonly HISTCONTROL
+{% endif %}
+export HISTCONTROL
+{% endif %}
+
+{% if (bash_histfilesize is defined) and not ((bash_histfilesize == None) or (bash_histfilesize == '') or (bash_histfilesize == 'false') or (bash_histfilesize == 'no') or (bash_histfilesize == 'disable')) %}
+# HISTFILESIZE
+HISTFILESIZE={{(bash_histfilesize|e)}}
+{% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
+readonly HISTFILESIZE
+{% endif %}
+export HISTFILESIZE
+{% endif %}
+
+{% if (bash_histignore is defined) and not ((bash_histignore == None) or (bash_histignore == 'false') or (bash_histignore == 'no') or (bash_histignore == 'disable')) %}
+# HISTIGNORE
+HISTIGNORE='{{(bash_histignore|e)}}'
+{% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
+readonly HISTIGNORE
+{% endif %}
+export HISTIGNORE
+{% endif %}
+
+{% if (bash_histsize is defined) and not ((bash_histsize == None) or (bash_histsize == '') or (bash_histsize == 'false') or (bash_histsize == 'no') or (bash_histsize == 'disable')) %}
+# HISTSIZE
+HISTSIZE={{(bash_histsize|e)}}
+{% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
+readonly HISTSIZE
+{% endif %}
+export HISTSIZE
+{% endif %}
+
+{% if (bash_histtimeformat is defined) and not ((bash_histtimeformat == None) or (bash_histtimeformat == 'false') or (bash_histtimeformat == 'no') or (bash_histtimeformat == 'disable')) %}
+# HISTTIMEFORMAT
+HISTTIMEFORMAT='{{(bash_histtimeformat|e)}}'
+{% endif %}
+
+{% if (bash_prompt_command is defined) and not ((bash_prompt_command == None) or (bash_prompt_command == '') or (bash_prompt_command == 'false') or (bash_prompt_command == 'no') or (bash_prompt_command == 'disable')) %}
+# PROMPT_COMMAND
+PROMPT_COMMAND='{{(bash_prompt_command|e)}}'
+{% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
+readonly PROMPT_COMMAND
+{% endif %}
+export PROMPT_COMMAND
+{% endif %}
+
+{% if (bash_tmout is defined) and not ((bash_tmout == None) or (bash_tmout == '') or (bash_tmout == 'false') or (bash_tmout == 'no') or (bash_tmout == 'disable')) %}
+# TMOUT
+TMOUT={{(bash_tmout|e)}}
+{% if (bash_tmout_readonly is defined) and not ((bash_tmout_readonly == 'false') or (bash_tmout_readonly == 'no') or (bash_tmout_readonly == 'disable')) %}
+readonly TMOUT
+{% endif %}
+export TMOUT
+{% endif %}
+
+{% if (bash_color_prompt is defined) and not ((bash_color_prompt == None) or (bash_color_prompt == 'false') or (bash_color_prompt == 'no') or (bash_color_prompt == 'disable')) %}
+#-------------------------------------------------------------------------------
+# COLOR PROMPT
+#-------------------------------------------------------------------------------
+
+PS1='\[\033[1;36m\]\u\[\033[1;37m\]@\[\033[1;33m\]\h\[\033[1;37m\]:\[\033[1;31m\]\w \[\033[1;36m\]\$ \[\033[0m\]'
+echo -n -e '\033%G'
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# KEY BINDINGS
+#-------------------------------------------------------------------------------
+
+if [[ $- =~ i ]]; then
+  bind '"\e[1~": beginning-of-line'
+  bind '"\e[4~": end-of-line'
+fi

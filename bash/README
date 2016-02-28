@@ -68,12 +68,12 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  bash_bash_sh_template
-    Description: Define the template source for 'bash.sh.j2'.
+  bash_bash_bash_template
+    Description: Define the template source for 'bash.bash.j2'.
                  Any value other than "{{ansible_os_family}}" requires a Jinja2
                  file to be created. The custom Jinja2 file for an example
                  configuration called 'example' needs to be placed as follows:
-                 'bash/templates/example/bash.sh.j2'
+                 'bash/templates/example/bash.bash.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -216,12 +216,12 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  bash_zz_bash_sh_template
-    Description: Define the template source for 'zz_bash.sh.j2'.
+  bash_zz_bash_bash_template
+    Description: Define the template source for 'zz_bash.bash.j2'.
                  Any value other than "{{ansible_os_family}}" requires a Jinja2
 		 file to be created. The custom Jinja2 file for an example
 		 configuration called 'example' needs to be placed as follows:
-                 'bash/templates/example/zz_bash.sh.j2'
+                 'bash/templates/example/zz_bash.bash.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -245,6 +245,7 @@ PACKAGES
     Version: >= 4.0
     Name   :
       FreeBSD 10: 'bash'
+      OpenBSD 5 : 'bash'
 
 ROLES
   shell
@@ -288,6 +289,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------

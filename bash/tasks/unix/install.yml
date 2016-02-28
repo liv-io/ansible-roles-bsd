@@ -47,30 +47,41 @@
    - unix
    - bash
 
+- name: package install bash
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_bash}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - bash
+
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create bash.sh
+- name: template create bash.bash
   template:
-   src: "{{file_src_bash_sh}}"
-   dest: "{{file_path_bash_sh}}"
-   mode: "{{file_mode_bash_sh}}"
-   owner: "{{file_owner_bash_sh}}"
-   group: "{{file_group_bash_sh}}"
+   src: "{{file_src_bash_bash}}"
+   dest: "{{file_path_bash_bash}}"
+   mode: "{{file_mode_bash_bash}}"
+   owner: "{{file_owner_bash_bash}}"
+   group: "{{file_group_bash_bash}}"
   tags:
    - files
    - install
    - unix
    - bash
 
-- name: template create zz_bash.sh
+- name: template create zz_bash.bash
   template:
-   src: "{{file_src_zz_bash_sh}}"
-   dest: "{{file_path_zz_bash_sh}}"
-   mode: "{{file_mode_zz_bash_sh}}"
-   owner: "{{file_owner_zz_bash_sh}}"
-   group: "{{file_group_zz_bash_sh}}"
+   src: "{{file_src_zz_bash_bash}}"
+   dest: "{{file_path_zz_bash_bash}}"
+   mode: "{{file_mode_zz_bash_bash}}"
+   owner: "{{file_owner_zz_bash_bash}}"
+   group: "{{file_group_zz_bash_bash}}"
   tags:
    - files
    - install

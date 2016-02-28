@@ -23,7 +23,7 @@
 
 bash_state: 'install'
 
-bash_bash_sh_template: "{{ansible_os_family}}"
+bash_bash_bash_template: "{{ansible_os_family}}"
 
 bash_checkwinsize: 'enable'
 
@@ -49,4 +49,4 @@ bash_tmout: '1800'
 
 bash_tmout_readonly: 'enable'
 
-bash_zz_bash_sh_template: "{{ansible_os_family}}"
+bash_zz_bash_bash_template: "{{ansible_os_family}}"

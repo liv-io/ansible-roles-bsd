@@ -1,11 +1,14 @@
----
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
 #-------------------------------------------------------------------------------
 # INFORMATION
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : FreeBSD.yml
-#   |  _   _  |  Type   : ansible variable file
+#   |         |  Name   : bash.bash
+#   |  _   _  |  Type   : environment variable configuration file
 #   | [_] [_] |  Role   : bash
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -17,18 +20,8 @@
 # DESCRIPTION
 #-------------------------------------------------------------------------------
 #
+# All default Bash environment variables have been moved from 'bash.bash' to
+# 'zz_bash.bash'. Files in '/etc/profile.d/' are loaded in alphabetical order.
+# Changing the order helps to ensure important variables do not get overwritten.
 #
-#
 #-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
-# bash.sh
-file_path_bash_sh: '/etc/profile.d/bash.bash'
-file_group_bash_sh: 'wheel'
-
-# zz_bash.sh
-file_path_zz_bash_sh: '/etc/profile.d/zz_bash.bash'
-file_group_zz_bash_sh: 'wheel'

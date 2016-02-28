@@ -47,24 +47,35 @@
    - unix
    - bash
 
+- name: package remove bash
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_bash}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - bash
+
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file remove bash.sh
+- name: file remove bash.bash
   file:
    state: 'absent'
-   path: "{{file_path_bash_sh}}"
+   path: "{{file_path_bash_bash}}"
   tags:
    - files
    - remove
    - unix
    - bash
 
-- name: file remove zz_bash.sh
+- name: file remove zz_bash.bash
   file:
    state: 'absent'
-   path: "{{file_path_zz_bash_sh}}"
+   path: "{{file_path_zz_bash_bash}}"
   tags:
    - files
    - remove
