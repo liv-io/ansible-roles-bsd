@@ -46,3 +46,14 @@
    - install
    - unix
    - mytop
+
+- name: package install mytop
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_mytop}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - mytop

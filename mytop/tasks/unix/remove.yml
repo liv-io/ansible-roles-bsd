@@ -46,3 +46,14 @@
    - remove
    - unix
    - mytop
+
+- name: package remove mytop
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_mytop}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - mytop
