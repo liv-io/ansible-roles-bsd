@@ -4,8 +4,8 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : install.yml
-#   |  _   _  |  Type   : ansible task file
+#   |         |  Name   : OpenBSD.yml
+#   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : gnu_watch
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -21,39 +21,9 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: include variables
-  include_vars: "{{item}}"
-  with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_major_version}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
-  tags:
-   - install
-   - unix
-   - gnu_watch
-
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package install gnu-watch
-  pkgng:
-   state: 'present'
-   name: "{{package_name_gnu_watch}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-   - packaging
-   - install
-   - unix
-   - gnu_watch
-
-- name: package install gnu-watch
-  openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_gnu_watch}}"
-  when: (ansible_os_family == 'OpenBSD')
-  tags:
-   - packaging
-   - install
-   - unix
-   - gnu_watch
+# gnuwatch
+package_name_gnu_watch: 'gnuwatch'
