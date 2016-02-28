@@ -46,3 +46,14 @@
    - install
    - unix
    - nload
+
+- name: package install nload
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_nload}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - nload
