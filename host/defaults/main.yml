@@ -23,16 +23,8 @@
 
 host_state: 'install'
 
-host_host_vars:
- - name: ''
-   state: 'false'
-   ip: ''
-   aliases: []
+host_host_vars: []
 
-host_group_vars:
- - name: ''
-   state: 'false'
-   ip: ''
-   aliases: []
+host_group_vars: []
 
 host_path_default: '/etc/hosts'
