@@ -46,3 +46,14 @@
    - remove
    - unix
    - mtr
+
+- name: package remove mtr
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_mtr}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - mtr
