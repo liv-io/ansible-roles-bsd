@@ -1,0 +1,50 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : install.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : openbsd_pkg
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}{{ansible_distribution_major_version}}.yml"
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+  tags:
+   - install
+   - openbsd
+   - openbsd_pkg
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create pkg.conf
+  template:
+   src: "{{file_src_pkg_conf}}"
+   dest: "{{file_path_pkg_conf}}"
+   mode: "{{file_mode_pkg_conf}}"
+   owner: "{{file_owner_pkg_conf}}"
+   group: "{{file_group_pkg_conf}}"
+  tags:
+   - files
+   - install
+   - openbsd
+   - openbsd_pkg

@@ -1,0 +1,192 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : openbsd_pkg
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : sys-core
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: Simplified BSD License
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages openbsd_pkg.
+
+OpenBSD package management tool. Pkg provides an interface for manipulating
+packages: registering, adding, removing and upgrading packages.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: openbsd_pkg
+    vars:
+     openbsd_pkg_state: 'install'
+     openbsd_pkg_installpath:
+      - {path: {'http://mirror.switch.ch/ftp/pub/OpenBSD/%c/packages/%a/'}, comment: 'OpenBSD Packages'}
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: openbsd_pkg
+    vars:
+     openbsd_pkg_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: openbsd_pkg
+    vars:
+     openbsd_pkg_state: 'inactive'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  openbsd_pkg_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+  openbsd_pkg_fullwidth
+    Description: Control the 'openbsd_pkg_fullwidth' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  openbsd_pkg_installpath
+    Description: Define the 'openbsd_pkg_installpath' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{path: {'http://ftp.OpenBSD.org/pub/OpenBSD/%c/packages/%a/'}, comment: 'OpenBSD Packages'}]
+    Options    :
+      Examples: [{path: {'http://mirror.switch.ch/ftp/pub/OpenBSD/%c/packages/%a/'}, comment: 'OpenBSD Packages'}]
+                [{path: {'http://www.mirrorservice.org/pub/OpenBSD/%c/packages/%a/',
+                         ' http://mirror.yandex.ru/pub/OpenBSD/%c/packages/%a/'}, comment: 'OpenBSD Packages'}]
+      None    : []
+
+  openbsd_pkg_loglevel
+    Description: Control the 'openbsd_pkg_loglevel' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : Integer, String
+    Default    : 1
+    Options    :
+      Enable : 'true' | 'yes' | 'enable' | 1
+      Disable: 'false' | 'no' | 'disable' | 0
+
+  openbsd_pkg_ntogo
+    Description: Control the 'openbsd_pkg_ntogo' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  openbsd_pkg_pkg_conf_template
+    Description: Define the template source for 'pkg.conf.j2'.
+                 Any value other than 'default' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'openbsd_pkg/templates/example/pkg.conf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'default'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 10
+      Status: Unsupported
+
+  OpenBSD
+    Version: 5
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

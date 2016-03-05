@@ -1,0 +1,35 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : openbsd_pkg
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+openbsd_pkg_state: 'install'
+
+openbsd_pkg_fullwidth: 'true'
+
+openbsd_pkg_installpath:
+ - {path: {'http://ftp.OpenBSD.org/pub/OpenBSD/%c/packages/%a/'}, comment: 'OpenBSD Packages'}
+
+openbsd_pkg_loglevel: 1
+
+openbsd_pkg_ntogo: 'true'
+
+openbsd_pkg_pkg_conf_template: 'default'

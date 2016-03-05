@@ -1,0 +1,73 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : pkg.conf
+#   |  _   _  |  Type   : pkg configuration file
+#   | [_] [_] |  Role   : openbsd_pkg
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FULLWIDTH
+#-------------------------------------------------------------------------------
+
+{% if (openbsd_pkg_fullwidth is defined) and ((openbsd_pkg_fullwidth == 'true') or (openbsd_pkg_fullwidth == 'yes') or (openbsd_pkg_fullwidth == 'enable')) %}
+fullwidth = yes
+{% else %}
+fullwidth = no
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# LOGLEVEL
+#-------------------------------------------------------------------------------
+
+{% if (openbsd_pkg_loglevel is defined) and ((openbsd_pkg_loglevel == 'false') or (openbsd_pkg_loglevel == 'no') or (openbsd_pkg_loglevel == 'disable') or (openbsd_pkg_loglevel == 0)) %}
+loglevel = 0
+{% else %}
+loglevel = 1
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# INSTALLPATH
+#-------------------------------------------------------------------------------
+
+{% if (openbsd_pkg_installpath is defined) and not ((openbsd_pkg_installpath == None) or (openbsd_pkg_installpath == '') or (openbsd_pkg_installpath == [])) %}
+{% for item in openbsd_pkg_installpath %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{item.comment}}
+{% else %}
+#
+{% endif %}
+{% for path in (item.path) %}
+installpath+={{path}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# NTOGO
+#-------------------------------------------------------------------------------
+
+{% if (openbsd_pkg_ntogo is defined) and ((openbsd_pkg_ntogo == 'true') or (openbsd_pkg_ntogo == 'yes') or (openbsd_pkg_ntogo == 'enable')) %}
+ntogo = yes
+{% else %}
+ntogo = no
+{% endif %}
