@@ -1,0 +1,381 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : pf.conf
+#   |  _   _  |  Type   : pf configuration file
+#   | [_] [_] |  Role   : openbsd_pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# MACROS
+#-------------------------------------------------------------------------------
+
+# TCP state
+{% if (openbsd_pf_macro_tcp_state is defined) and not ((openbsd_pf_macro_tcp_state == None) or (openbsd_pf_macro_tcp_state == '') or (openbsd_pf_macro_tcp_state == 'false') or (openbsd_pf_macro_tcp_state == 'no') or (openbsd_pf_macro_tcp_state == 'disable')) %}
+tcp_state="{{openbsd_pf_macro_tcp_state}}"
+{% endif %}
+
+# UDP state
+{% if (openbsd_pf_macro_udp_state is defined) and not ((openbsd_pf_macro_udp_state == None) or (openbsd_pf_macro_udp_state == '') or (openbsd_pf_macro_udp_state == 'false') or (openbsd_pf_macro_udp_state == 'no') or (openbsd_pf_macro_udp_state == 'disable')) %}
+udp_state="{{openbsd_pf_macro_udp_state}}"
+{% endif %}
+
+# MACRO GROUP
+{% if (openbsd_pf_macro_group_vars is defined) and not ((openbsd_pf_macro_group_vars == None) or (openbsd_pf_macro_group_vars == '') or (openbsd_pf_macro_group_vars == [])) %}
+{% for macro_group_vars in openbsd_pf_macro_group_vars %}
+{% if (macro_group_vars.comment is defined) and not ((macro_group_vars.comment == None) or (macro_group_vars.comment == '')) %}
+# {{macro_group_vars.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in macro_group_vars.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# MACRO HOST
+{% if (openbsd_pf_macro_host_vars is defined) and not ((openbsd_pf_macro_host_vars == None) or (openbsd_pf_macro_host_vars == '') or (openbsd_pf_macro_host_vars == [])) %}
+{% for macro_host_vars in openbsd_pf_macro_host_vars %}
+{% if (macro_host_vars.comment is defined) and not ((macro_host_vars.comment == None) or (macro_host_vars.comment == '')) %}
+# {{macro_host_vars.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in macro_host_vars.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# TABLES
+#-------------------------------------------------------------------------------
+
+# Blacklist
+{% if (openbsd_pf_table_blacklist is defined) and not ((openbsd_pf_table_blacklist == 'false') or (openbsd_pf_table_blacklist == 'no') or (openbsd_pf_table_blacklist == 'disable')) %}
+table <blacklist> persist file '{{openbsd_pf_table_blacklist}}'
+{% endif %}
+
+# GROUP
+{% if (openbsd_pf_table_group_vars is defined) and not ((openbsd_pf_table_group_vars == None) or (openbsd_pf_table_group_vars == '') or (openbsd_pf_table_group_vars == [])) %}
+{% for table_group_vars in openbsd_pf_table_group_vars %}
+{% if (table_group_vars.comment is defined) and not ((table_group_vars.comment == None) or (table_group_vars.comment == '')) %}
+# {{table_group_vars.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in table_group_vars.config %}
+table {{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# HOST
+{% if (openbsd_pf_table_host_vars is defined) and not ((openbsd_pf_table_host_vars == None) or (openbsd_pf_table_host_vars == '') or (openbsd_pf_table_host_vars == [])) %}
+{% for table_host_vars in openbsd_pf_table_host_vars %}
+{% if (table_host_vars.comment is defined) and not ((table_host_vars.comment == None) or (table_host_vars.comment == '')) %}
+# {{table_host_vars.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in table_host_vars.config %}
+table {{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# ANCHORS
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# OPTIONS
+#-------------------------------------------------------------------------------
+
+# Block policy (drop, return)
+{% if (openbsd_pf_option_block_policy is defined) and (openbsd_pf_option_block_policy == 'return') %}
+set block-policy return
+{% else %}
+set block-policy drop
+{% endif %}
+
+# Debugging level (none, emerg, alert, crit, err, warning, notice, info, debug)
+{% if (openbsd_pf_option_debug is defined) and (openbsd_pf_option_debug == 'none') %}
+set debug none
+{% elif (openbsd_pf_option_debug is defined) and (openbsd_pf_option_debug == 'emerg') %}
+set debug emerg
+{% elif (openbsd_pf_option_debug is defined) and (openbsd_pf_option_debug == 'alert') %}
+set debug alert
+{% elif (openbsd_pf_option_debug is defined) and (openbsd_pf_option_debug == 'crit') %}
+set debug crit
+{% elif (openbsd_pf_option_debug is defined) and (openbsd_pf_option_debug == 'err') %}
+set debug err
+{% elif (openbsd_pf_option_debug is defined) and (openbsd_pf_option_debug == 'warning') %}
+set debug warning
+{% elif (openbsd_pf_option_debug is defined) and (openbsd_pf_option_debug == 'notice') %}
+set debug notice
+{% elif (openbsd_pf_option_debug is defined) and (openbsd_pf_option_debug == 'info') %}
+set debug info
+{% else %}
+set debug debug
+{% endif %}
+
+# Operating system fingerprints
+{% if (openbsd_pf_option_fingerprints is defined) and not ((openbsd_pf_option_fingerprints == None) or (openbsd_pf_option_fingerprints == '')) %}
+set fingerprints '{{openbsd_pf_option_fingerprints}}'
+{% endif %}
+
+# Host ID
+{% if (openbsd_pf_option_host_hostid is defined) and not ((openbsd_pf_option_host_hostid == None) or (openbsd_pf_option_host_hostid == '')) %}
+set hostid {{openbsd_pf_option_host_hostid}}
+{% endif %}
+
+# Limits
+{% if (openbsd_pf_limit is defined) and not ((openbsd_pf_limit == None) or (openbsd_pf_limit == '') or (openbsd_pf_limit == [])) %}
+{% for limit in openbsd_pf_limit %}
+{% if (limit.comment is defined) and not ((limit.comment == None) or (limit.comment == '')) %}
+# {{limit.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in limit.config %}
+set limit {{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# Log interface (none, <interface>)
+{% if (openbsd_pf_option_loginterface is defined) and not ((openbsd_pf_option_loginterface == None) or (openbsd_pf_option_loginterface == '') or (openbsd_pf_option_loginterface == 'none') or (openbsd_pf_option_loginterface == 'false') or (openbsd_pf_option_loginterface == 'no') or (openbsd_pf_option_loginterface == 'disable')) %}
+set loginterface {{openbsd_pf_option_loginterface}}
+{% else %}
+set loginterface none
+{% endif %}
+
+# Optimization (normal, high-latency, satellite, aggressive, conservative)
+{% if (openbsd_pf_option_optimization is defined) and (openbsd_pf_option_optimization == 'high-latency') %}
+set optimization high-latency
+{% elif (openbsd_pf_option_optimization is defined) and (openbsd_pf_option_optimization == 'satellite') %}
+set optimization satellite
+{% elif (openbsd_pf_option_optimization is defined) and (openbsd_pf_option_optimization == 'aggressive') %}
+set optimization aggressive
+{% elif (openbsd_pf_option_optimization is defined) and (openbsd_pf_option_optimization == 'conservative') %}
+set optimization conservative
+{% else %}
+set optimization normal
+{% endif %}
+
+# Ruleset optimization (none, basic, profile)
+{% if (openbsd_pf_option_ruleset_optimization is defined) and (openbsd_pf_option_ruleset_optimization == 'basic') %}
+set ruleset-optimization basic
+{% elif (openbsd_pf_option_ruleset_optimization is defined) and (openbsd_pf_option_ruleset_optimization == 'profile') %}
+set ruleset-optimization profile
+{% else %}
+set ruleset-optimization none
+{% endif %}
+
+# Reassemble
+{% if (openbsd_pf_option_reassemble is defined) and ((openbsd_pf_option_reassemble == 'false') or (openbsd_pf_option_reassemble == 'no') or (openbsd_pf_option_reassemble == 'disable')) %}
+set loginterface no
+{% else %}
+set reassemble yes
+{% endif %}
+
+# Skip
+{% if (openbsd_pf_option_skip is defined) and not ((openbsd_pf_option_skip == None) or (openbsd_pf_option_skip == '') or (openbsd_pf_option_skip == [])) %}
+set skip on {% for option_skip in openbsd_pf_option_skip %}{{option_skip}}{% if not loop.last %}, {% endif %}{% endfor %}
+
+{% endif %}
+
+# State defaults
+{% if (openbsd_pf_option_state_defaults is defined) and not ((openbsd_pf_option_state_defaults == None) or (openbsd_pf_option_state_defaults == '') or (openbsd_pf_option_state_defaults == [])) %}
+set state-defaults {% for state_group_varss in openbsd_pf_option_state_defaults %}{{state_group_varss}}{% if not loop.last %}, {% endif %}{% endfor %}
+
+{% endif %}
+
+# State policy (if-bound, floating)
+{% if (openbsd_pf_option_state_policy is defined) and (openbsd_pf_option_state_policy == 'floating') %}
+set state-policy floating
+{% else %}
+set state-policy if-bound
+{% endif %}
+
+# Timeouts
+{% if (openbsd_pf_timeout is defined) and not ((openbsd_pf_timeout == None) or (openbsd_pf_timeout == '') or (openbsd_pf_timeout == [])) %}
+{% for timeout in openbsd_pf_timeout %}
+{% if (timeout.comment is defined) and not ((timeout.comment == None) or (timeout.comment == '')) %}
+# {{timeout.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in timeout.config %}
+set timeout {{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# TRAFFIC NORMALIZATION
+#-------------------------------------------------------------------------------
+
+{% if (openbsd_pf_scrub is defined) and not ((openbsd_pf_scrub == None) or (openbsd_pf_scrub == '') or (openbsd_pf_scrub == [])) %}
+{% for scrub in openbsd_pf_scrub %}
+{% if (scrub.comment is defined) and not ((scrub.comment == None) or (scrub.comment == '')) %}
+# {{scrub.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in scrub.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# QUEUEING
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# PACKET FILTERING
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# IN
+#-------------------------------------------------------------------------------
+
+# Default in policy
+{% if (openbsd_pf_filter_in_policy is defined) and (openbsd_pf_filter_in_policy == 'pass') %}
+pass in all
+{% else %}
+block in all
+{% endif %}
+
+# ICMP
+{% if (openbsd_pf_filter_in_icmp is defined) and not ((openbsd_pf_filter_in_icmp == None) or (openbsd_pf_filter_in_icmp == '') or (openbsd_pf_filter_in_icmp == [])) %}
+{% for filter_in_icmp in openbsd_pf_filter_in_icmp %}
+{% if (filter_in_icmp.comment is defined) and not ((filter_in_icmp.comment == None) or (filter_in_icmp.comment == '')) %}
+# {{filter_in_icmp.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_in_icmp.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# IP GROUP
+{% if (openbsd_pf_filter_in_ip_group_vars is defined) and not ((openbsd_pf_filter_in_ip_group_vars == None) or (openbsd_pf_filter_in_ip_group_vars == '') or (openbsd_pf_filter_in_ip_group_vars == [])) %}
+{% for filter_in_ip_group_vars in openbsd_pf_filter_in_ip_group_vars %}
+{% if (filter_in_ip_group_vars.comment is defined) and not ((filter_in_ip_group_vars.comment == None) or (filter_in_ip_group_vars.comment == '')) %}
+# {{filter_in_ip_group_vars.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_in_ip_group_vars.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# IP HOST
+{% if (openbsd_pf_filter_in_ip_host_vars is defined) and not ((openbsd_pf_filter_in_ip_host_vars == None) or (openbsd_pf_filter_in_ip_host_vars == '') or (openbsd_pf_filter_in_ip_host_vars == [])) %}
+{% for filter_in_ip_host_vars in openbsd_pf_filter_in_ip_host_vars %}
+{% if (filter_in_ip_host_vars.comment is defined) and not ((filter_in_ip_host_vars.comment == None) or (filter_in_ip_host_vars.comment == '')) %}
+# {{filter_in_ip_host_vars.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_in_ip_host_vars.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# OUT
+#-------------------------------------------------------------------------------
+
+# Default out policy
+{% if (openbsd_pf_filter_out_policy is defined) and (openbsd_pf_filter_out_policy == 'pass') %}
+pass out all
+{% else %}
+block out all
+{% endif %}
+
+# ICMP
+{% if (openbsd_pf_filter_out_icmp is defined) and not ((openbsd_pf_filter_out_icmp == None) or (openbsd_pf_filter_out_icmp == '') or (openbsd_pf_filter_out_icmp == [])) %}
+{% for filter_out_icmp in openbsd_pf_filter_out_icmp %}
+{% if (filter_out_icmp.comment is defined) and not ((filter_out_icmp.comment == None) or (filter_out_icmp.comment == '')) %}
+# {{filter_out_icmp.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_out_icmp.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# IP GROUP
+{% if (openbsd_pf_filter_out_ip_group_vars is defined) and not ((openbsd_pf_filter_out_ip_group_vars == None) or (openbsd_pf_filter_out_ip_group_vars == '') or (openbsd_pf_filter_out_ip_group_vars == [])) %}
+{% for filter_out_ip_group_vars in openbsd_pf_filter_out_ip_group_vars %}
+{% if (filter_out_ip_group_vars.comment is defined) and not ((filter_out_ip_group_vars.comment == None) or (filter_out_ip_group_vars.comment == '')) %}
+# {{filter_out_ip_group_vars.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_out_ip_group_vars.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# IP HOST
+{% if (openbsd_pf_filter_out_ip_host_vars is defined) and not ((openbsd_pf_filter_out_ip_host_vars == None) or (openbsd_pf_filter_out_ip_host_vars == '') or (openbsd_pf_filter_out_ip_host_vars == [])) %}
+{% for filter_out_ip_host_vars in openbsd_pf_filter_out_ip_host_vars %}
+{% if (filter_out_ip_host_vars.comment is defined) and not ((filter_out_ip_host_vars.comment == None) or (filter_out_ip_host_vars.comment == '')) %}
+# {{filter_out_ip_host_vars.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_out_ip_host_vars.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# END
+#-------------------------------------------------------------------------------

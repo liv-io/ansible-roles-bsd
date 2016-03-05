@@ -1,0 +1,103 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : openbsd_pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+openbsd_pf_state: 'enable'
+
+openbsd_pf_blacklist_host_vars: []
+
+openbsd_pf_blacklist_group_vars: []
+
+openbsd_pf_filter_in_icmp: []
+
+openbsd_pf_filter_in_ip_host_vars: []
+
+openbsd_pf_filter_in_ip_group_vars:
+ - {config: {'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state',
+             'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state',
+             'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state'}, comment: 'SSH: From private address space (RFC 1918)'}
+
+openbsd_pf_filter_in_policy: 'block'
+
+openbsd_pf_filter_out_icmp:
+ - {config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
+             'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'}, comment: 'ICMP echo request: To any'}
+
+openbsd_pf_filter_out_ip_host_vars: []
+
+openbsd_pf_filter_out_ip_group_vars:
+ - {config: {'pass out inet proto tcp to any port 53 $tcp_state',
+             'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'}
+ - {config: {'pass out inet proto tcp to any port 80 $tcp_state'}, comment: 'HTTP: To any'}
+ - {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'}
+ - {config: {'pass out inet proto tcp to any port 443 $tcp_state'}, comment: 'HTTPS: To any'}
+
+openbsd_pf_filter_out_policy: 'block'
+
+openbsd_pf_macro_host_vars: []
+
+openbsd_pf_macro_group_vars: []
+
+openbsd_pf_macro_tcp_state: 'flags S/SA modulate state'
+
+openbsd_pf_macro_udp_state: 'keep state'
+
+openbsd_pf_option_block_policy: 'drop'
+
+openbsd_pf_option_debug: 'crit'
+
+openbsd_pf_option_fingerprints: '/etc/pf.os'
+
+openbsd_pf_option_host_hostid: ''
+
+openbsd_pf_option_limit: []
+
+openbsd_pf_option_loginterface: 'none'
+
+openbsd_pf_option_optimization: 'normal'
+
+openbsd_pf_option_reassemble: 'true'
+
+openbsd_pf_option_ruleset_optimization: 'basic'
+
+openbsd_pf_option_skip: ['lo']
+
+openbsd_pf_option_state_defaults: []
+
+openbsd_pf_option_state_policy: 'floating'
+
+openbsd_pf_option_timeout: []
+
+openbsd_pf_pf_blacklist_template: 'default'
+
+openbsd_pf_pf_conf_template: 'default'
+
+openbsd_pf_scrub:
+ - {config: {'match in all scrub (reassemble tcp)'}, comment: 'Scrub: Incoming traffic normalization'}
+ - {config: {'match out all scrub (random-id reassemble tcp)'}, comment: 'Scrub: Outgoing traffic normalization'}
+
+openbsd_pf_table_blacklist: "{{file_path_pf_blacklist}}"
+
+openbsd_pf_table_host_vars: []
+
+openbsd_pf_table_group_vars:
+ - {config: {'<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'}, comment: 'Table: private address space (RFC 1918)'}

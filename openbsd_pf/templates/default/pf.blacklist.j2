@@ -1,0 +1,55 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : pf.blacklist
+#   |  _   _  |  Type   : pf configuration file
+#   | [_] [_] |  Role   : openbsd_pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# BLACKLIST GROUP
+{% if (openbsd_pf_blacklist_group_vars is defined) and not ((openbsd_pf_blacklist_group_vars == None) or (openbsd_pf_blacklist_group_vars == '') or (openbsd_pf_blacklist_group_vars == [])) %}
+{% for blacklist_group_vars in openbsd_pf_blacklist_group_vars %}
+{% if (blacklist_group_vars.comment is defined) and not ((blacklist_group_vars.comment == None) or (blacklist_group_vars.comment == '')) %}
+# {{blacklist_group_vars.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in blacklist_group_vars.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# BLACKLIST HOST
+{% if (openbsd_pf_blacklist_host_vars is defined) and not ((openbsd_pf_blacklist_host_vars == None) or (openbsd_pf_blacklist_host_vars == '') or (openbsd_pf_blacklist_host_vars == [])) %}
+{% for blacklist_host_vars in openbsd_pf_blacklist_host_vars %}
+{% if (blacklist_host_vars.comment is defined) and not ((blacklist_host_vars.comment == None) or (blacklist_host_vars.comment == '')) %}
+# {{blacklist_host_vars.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in blacklist_host_vars.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}

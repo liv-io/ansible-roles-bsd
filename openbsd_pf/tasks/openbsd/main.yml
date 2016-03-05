@@ -1,0 +1,43 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : openbsd_pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include enable
+  include: enable.yml
+  when: (openbsd_pf_state == 'start') or (openbsd_pf_state == 'on') or (openbsd_pf_state == 'enable')
+  tags:
+   - openbsd
+   - openbsd_pf
+
+- name: task include disable
+  include: disable.yml
+  when: (openbsd_pf_state == 'stop') or (openbsd_pf_state == 'off') or (openbsd_pf_state == 'disable')
+  tags:
+   - openbsd
+   - openbsd_pf
+
+- name: task include remove
+  include: remove.yml
+  when: (openbsd_pf_state == 'false') or (openbsd_pf_state == 'no') or (openbsd_pf_state == 'remove')
+  tags:
+   - openbsd
+   - openbsd_pf
