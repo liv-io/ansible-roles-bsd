@@ -1,0 +1,29 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : freebsd_pkg
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((freebsd_pkg_state == 'false') or (freebsd_pkg_state == 'no') or (freebsd_pkg_state == 'remove') or (freebsd_pkg_state == 'quiesce') or (freebsd_pkg_state == 'inactive'))
+  tags:
+   - freebsd
+   - freebsd_pkg
