@@ -1,0 +1,111 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible default file
+#   | [_] [_] |  Role   : freebsd_pf
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+freebsd_pf_state: 'enable'
+
+freebsd_pf_blacklist_host_vars: []
+
+freebsd_pf_blacklist_group_vars: []
+
+freebsd_pf_filter_in_icmp: []
+
+freebsd_pf_filter_in_ip_host_vars: []
+
+freebsd_pf_filter_in_ip_group_vars:
+ - {config: {'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state',
+             'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state',
+             'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state'}, comment: 'SSH: From private address space (RFC 1918)'}
+
+freebsd_pf_filter_in_policy: 'block'
+
+freebsd_pf_filter_out_icmp:
+ - {config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
+             'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'}, comment: 'ICMP echo request: To any'}
+
+freebsd_pf_filter_out_ip_host_vars: []
+
+freebsd_pf_filter_out_ip_group_vars:
+ - {config: {'pass out inet proto tcp to any port 53 $tcp_state',
+             'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'}
+ - {config: {'pass out inet proto tcp to any port 80 $tcp_state'}, comment: 'HTTP: To any'}
+ - {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'}
+ - {config: {'pass out inet proto tcp to any port 443 $tcp_state'}, comment: 'HTTPS: To any'}
+
+freebsd_pf_filter_out_policy: 'block'
+
+freebsd_pf_gateway_ipv4_state: 'false'
+
+freebsd_pf_gateway_ipv6_state: 'false'
+
+freebsd_pf_macro_host_vars: []
+
+freebsd_pf_macro_group_vars: []
+
+freebsd_pf_macro_tcp_state: 'flags S/SA modulate state'
+
+freebsd_pf_macro_udp_state: 'keep state'
+
+freebsd_pf_option_block_policy: 'drop'
+
+freebsd_pf_option_debug: 'urgent'
+
+freebsd_pf_option_fingerprints: '/etc/pf.os'
+
+freebsd_pf_option_host_hostid: ''
+
+freebsd_pf_option_limit: []
+
+freebsd_pf_option_loginterface: 'none'
+
+freebsd_pf_option_optimization: 'normal'
+
+freebsd_pf_option_ruleset_optimization: 'basic'
+
+freebsd_pf_option_skip: ['lo']
+
+freebsd_pf_option_state_defaults: []
+
+freebsd_pf_option_state_policy: 'floating'
+
+freebsd_pf_option_timeout: []
+
+freebsd_pf_pf_blacklist_template: 'default'
+
+freebsd_pf_pf_conf_template: 'default'
+
+freebsd_pf_scrub:
+ - {config: {'in all fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'}
+ - {config: {'out all random-id fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}
+
+freebsd_pf_table_blacklist: "{{file_path_pf_blacklist}}"
+
+freebsd_pf_table_host_vars: []
+
+freebsd_pf_table_group_vars:
+ - {config: {'<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'}, comment: 'Table: private address space (RFC 1918)'}
+
+freebsd_pf_table_require_order: 'yes'
+
+freebsd_pf_translation_host_vars: []
+
+freebsd_pf_translation_group_vars: []

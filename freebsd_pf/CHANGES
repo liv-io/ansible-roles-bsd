@@ -1,0 +1,42 @@
+--------------------------------------------------------------------------------
+CHANGES
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  This file lists changes made to the Ansible role.
+   |  _   _  |  The content is sorted in reverse chronological order and
+   | [_] [_] |  formatted to allow easy grepping by scripts.
+   |____~____|
+    ___//__//   The fields are:
+   /|     |/    B: bug
+  //|_____|     F: feature
+    _|| ||_     I: improvement
+   (__| |__)
+--------------------------------------------------------------------------------
+
+* Version 0.4.0 (2016-03-05)
+F: Rename role from 'pf' to 'freebsd_pf'
+
+* Version 0.3.0 (2016-01-21)
+F: Drop support for OS family 'Gentoo'
+
+* Version 0.2.4 (2015-11-17)
+I: Add missing Ansible tags
+
+* Version 0.2.3 (2015-11-08)
+I: Improve 'group_vars' and 'host_vars' options
+
+* Version 0.2.2 (2015-02-10)
+B: Correct wrong variable name
+
+* Version 0.2.1 (2014-12-17)
+I: Various small Ansible and Jinja2 improvements
+
+* Version 0.2.0 (2014-12-08)
+F: Add support for 'translation' (i.e. nat/rdr)
+
+* Version 0.1.1 (2014-11-27)
+I: Remove needless 'install' task
+
+* Version 0.1.0 (2014-11-14)
+F: Initial release
