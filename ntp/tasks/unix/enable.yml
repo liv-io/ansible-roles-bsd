@@ -66,7 +66,6 @@
    line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
    regexp: "# Ansible: ntp_update-time$"
    dest: "{{file_path_ntp_update_time}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
    - enable
@@ -76,12 +75,58 @@
 - name: file config rc.conf
   lineinfile:
    state: 'present'
-   line: "{{file_line_rc_conf}}=\"YES\" # Ansible: Enable ntpd"
+   line: "{{file_line_rc_conf}}=\"YES\" # Ansible: Enable ntp"
    regexp: "^{{file_line_rc_conf}}="
    dest: "{{file_path_rc_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
+   - enable
+   - unix
+   - ntp
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: command status ntp
+  command: "{{command_cmd_status_ntp}}"
+  register: register_status_ntp
+  changed_when: (register_status_ntp.rc > 1)
+  failed_when: (register_status_ntp.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - enable
+   - unix
+   - ntp
+
+- name: command enable ntp
+  command: "{{command_cmd_enable_ntp}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_status_ntp.rc == 1)
+  tags:
+   - commands
+   - enable
+   - unix
+   - ntp
+
+- name: command check ntp
+  command: "{{command_cmd_check_ntp}}"
+  register: register_check_ntp
+  changed_when: (register_check_ntp.rc > 1)
+  failed_when: (register_check_ntp.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - enable
+   - unix
+   - ntp
+
+- name: command start ntp
+  command: "{{command_cmd_start_ntp}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_check_ntp.rc == 1)
+  tags:
+   - commands
    - enable
    - unix
    - ntp

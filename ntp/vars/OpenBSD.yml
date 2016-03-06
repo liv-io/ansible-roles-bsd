@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : FreeBSD.yml
+#   |         |  Name   : OpenBSD.yml
 #   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : ntp
 #   |____~____|
@@ -26,16 +26,37 @@
 #-------------------------------------------------------------------------------
 
 # ntp_update-time
-file_line_ntp_update_time: "*/{% if (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) > 59) %}59{% elif (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntp_ntp_update_time_interval|int(10))}}{% endif %} * * * * {{(file_owner_ntp_update_time_sh|e)}} {{(file_path_ntp_update_time_sh|e)}}"
-file_path_ntp_update_time: '/etc/crontab'
+file_line_ntp_update_time: "*/{% if (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) > 59) %}59{% elif (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntp_ntp_update_time_interval|int(10))}}{% endif %}    *       *       *       *       {{(file_path_ntp_update_time_sh|e)}}"
+file_path_ntp_update_time: '/var/cron/tabs/root'
 
-# ntpd_enable
-file_path_ntpd_enable: '/etc/rc.conf'
-file_line_ntpd_enable: 'ntpd_enable'
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check ntp
+command_cmd_check_ntp: 'rcctl check xntpd'
+
+# disable ntp
+command_cmd_disable_ntp: 'rcctl disable xntpd'
+
+# enable ntp
+command_cmd_enable_ntp: 'rcctl enable xntpd'
+
+# info ntp
+raw_cmd_info_ntp: 'pkg_info | grep -q "^ntp.*"'
+
+# start ntp
+command_cmd_start_ntp: 'rcctl start xntpd'
+
+# status ntp
+command_cmd_status_ntp: 'rcctl get xntpd status'
+
+# stop ntp
+command_cmd_stop_ntp: 'rcctl stop xntpd'
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-# ntpd
-service_name_ntp: 'ntpd'
+# xntpd
+service_name_ntp: 'xntpd'

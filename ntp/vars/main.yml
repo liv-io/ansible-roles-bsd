@@ -21,6 +21,9 @@
 #
 #-------------------------------------------------------------------------------
 
+# ntp_command
+ntp_command: 'ntpdate -s -b'
+
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
@@ -37,24 +40,24 @@ file_src_ntp_conf: "../../templates/{{(ntp_ntp_conf_template|e)}}/ntp.conf.j2"
 file_path_ntp_conf: '/etc/ntp.conf'
 file_mode_ntp_conf: '0644'
 file_owner_ntp_conf: 'root'
-file_group_ntp_conf: 'root'
+file_group_ntp_conf: 'wheel'
 
 # ntp-script.dir
 file_path_ntp_script_dir: "/{{(common_script_dir_partition|e)}}/{{(common_root_dir_name|e)}}/{{(common_script_dir_name|e)}}/ntp"
 file_mode_ntp_script_dir: '0750'
 file_owner_ntp_script_dir: 'root'
-file_group_ntp_script_dir: 'root'
+file_group_ntp_script_dir: 'wheel'
 
 # ntp_update-time.sh
 file_src_ntp_update_time_sh: "../../templates/{{(ntp_ntp_update_time_sh_template|e)}}/ntp_update-time.sh.j2"
 file_path_ntp_update_time_sh: "{{file_path_ntp_script_dir}}/ntp_update-time.sh"
 file_mode_ntp_update_time_sh: '0750'
 file_owner_ntp_update_time_sh: 'root'
-file_group_ntp_update_time_sh: 'root'
+file_group_ntp_update_time_sh: 'wheel'
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-# ntpd
-service_name_ntp: 'ntpd'
+# ntp
+service_name_ntp: 'ntp'

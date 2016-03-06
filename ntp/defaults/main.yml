@@ -35,7 +35,7 @@ ntp_monitor_mail_subject: "NTP: Update Time - Error ({{ansible_hostname}})"
 
 ntp_ntp_conf_template: "{{ansible_os_family}}"
 
-ntp_ntp_update_time_sh_template: 'main'
+ntp_ntp_update_time_sh_template: 'default'
 
 ntp_ntp_update_time_interval: 10
 

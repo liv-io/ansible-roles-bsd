@@ -33,6 +33,39 @@
    - ntp
 
 #-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: command info ntp
+  raw: "{{raw_cmd_info_ntp}}"
+  register: register_info_ntp
+  failed_when: (register_info_ntp.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - remove
+   - unix
+   - ntp
+
+- name: command disable ntp
+  command: "{{command_cmd_disable_ntp}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_info_ntp.rc == 0)
+  tags:
+   - commands
+   - remove
+   - unix
+   - ntp
+
+- name: command stop ntp
+  command: "{{command_cmd_stop_ntp}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_info_ntp.rc == 0)
+  tags:
+   - commands
+   - remove
+   - unix
+   - ntp
+
+#-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
@@ -48,6 +81,18 @@
    - unix
    - ntp
 
+- name: package remove ntp
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_ntp}}"
+  register: register_freebsd_ntp
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - ntp
+
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
@@ -55,7 +100,7 @@
 - name: line remove ntpd_enable
   lineinfile:
    state: 'absent'
-   line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Remove ntpd"
+   line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Remove ntp"
    regexp: "^{{file_line_ntpd_enable}}="
    dest: "{{file_path_ntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
@@ -71,7 +116,6 @@
    line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
    regexp: "# Ansible: ntp_update-time$"
    dest: "{{file_path_ntp_update_time}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
    - remove
