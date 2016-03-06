@@ -1,0 +1,36 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : freebsd_rc
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include host_vars
+  include: host_vars.yml
+  when: not ((freebsd_rc_state == 'false') or (freebsd_rc_state == 'no') or (freebsd_rc_state == 'remove') or (freebsd_rc_state == 'quiesce') or (freebsd_rc_state == 'inactive'))
+  tags:
+   - freebsd
+   - freebsd_rc
+
+- name: task include group_vars
+  include: group_vars.yml
+  when: not ((freebsd_rc_state == 'false') or (freebsd_rc_state == 'no') or (freebsd_rc_state == 'remove') or (freebsd_rc_state == 'quiesce') or (freebsd_rc_state == 'inactive'))
+  tags:
+   - freebsd
+   - freebsd_rc

@@ -1,0 +1,39 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : group_vars.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : freebsd_rc
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: line config rc-group_vars
+  lineinfile:
+   state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
+   line: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}=\"{{item.value if (item.value is defined) and not ((item.value == None) or (item.value == '')) else ''}}\" # Ansible: {{(item.comment|e) if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) else item.name}}"
+   regexp: "^{{item.name}}="
+   dest: "{{(item.path|e) if (item.path is defined) and not ((item.path == None) or (item.path == '')) else (freebsd_rc_path_default|e)}}"
+  with_items: freebsd_rc_group_vars
+  tags:
+   - files
+   - group_vars
+   - freebsd
+   - freebsd_rc
