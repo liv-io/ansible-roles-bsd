@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : FreeBSD.yml
+#   |         |  Name   : OpenBSD.yml
 #   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : monit
 #   |____~____|
@@ -22,15 +22,26 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# FILES
+# COMMANDS
 #-------------------------------------------------------------------------------
 
-# monitrc
-file_path_monitrc: '/usr/local/etc/monitrc'
+# check monit
+command_cmd_check_monit: 'rcctl check monit'
 
-# monit.d
-file_path_monit_d: '/usr/local/etc/monit.d'
+# disable monit
+command_cmd_disable_monit: 'rcctl disable monit'
 
-# monit_enable
-file_path_monit_enable: '/etc/rc.conf'
-file_line_monit_enable: 'monit_enable'
+# enable monit
+command_cmd_enable_monit: 'rcctl enable monit'
+
+# info monit
+raw_cmd_info_monit: 'pkg_info | grep -q "^monit.*"'
+
+# start monit
+command_cmd_start_monit: 'rcctl start monit'
+
+# status monit
+command_cmd_status_monit: 'rcctl get monit status'
+
+# stop monit
+command_cmd_stop_monit: 'rcctl stop monit'

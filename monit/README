@@ -435,7 +435,7 @@ ROLE
 
   monit_monit_config_template
     Description: Define the template source for 'monit-config.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
+                 Any value other than 'default' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'monit/templates/example/monit-config.j2'
@@ -443,13 +443,13 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'main'
+    Default    : 'default'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
   monit_monitrc_template
     Description: Define the template source for 'monitrc.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
+                 Any value other than 'default' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'monit/templates/example/monitrc.j2'
@@ -457,7 +457,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'main'
+    Default    : 'default'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
@@ -518,6 +518,7 @@ PACKAGES
     Version: >= 5.9
     Name   :
       FreeBSD 10: 'monit'
+      OpenBSD 5 : 'monit'
 
 ROLES
 
@@ -560,6 +561,10 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5
       Status: Testing
 
 --------------------------------------------------------------------------------

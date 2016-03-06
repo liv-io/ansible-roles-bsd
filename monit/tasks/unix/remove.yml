@@ -33,6 +33,39 @@
    - monit
 
 #-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: command info monit
+  raw: "{{raw_cmd_info_monit}}"
+  register: register_info_monit
+  failed_when: (register_info_monit.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - remove
+   - unix
+   - monit
+
+- name: command disable monit
+  command: "{{command_cmd_disable_monit}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
+  tags:
+   - commands
+   - remove
+   - unix
+   - monit
+
+- name: command stop monit
+  command: "{{command_cmd_stop_monit}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
+  tags:
+   - commands
+   - remove
+   - unix
+   - monit
+
+#-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
@@ -41,6 +74,17 @@
    state: 'absent'
    name: "{{package_name_monit}}"
   when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - remove
+   - unix
+   - monit
+
+- name: package remove monit
+  openbsd_pkg:
+   state: 'absent'
+   name: "{{package_name_monit}}"
+  when: (ansible_os_family == 'OpenBSD')
   tags:
    - packaging
    - remove

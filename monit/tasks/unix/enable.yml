@@ -66,6 +66,52 @@
    - monit
 
 #-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: command status monit
+  command: "{{command_cmd_status_monit}}"
+  register: register_status_monit
+  changed_when: (register_status_monit.rc > 1)
+  failed_when: (register_status_monit.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - enable
+   - unix
+   - monit
+
+- name: command enable monit
+  command: "{{command_cmd_enable_monit}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_status_monit.rc == 1)
+  tags:
+   - commands
+   - enable
+   - unix
+   - monit
+
+- name: command check monit
+  command: "{{command_cmd_check_monit}}"
+  register: register_check_monit
+  changed_when: (register_check_monit.rc > 1)
+  failed_when: (register_check_monit.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - enable
+   - unix
+   - monit
+
+- name: command start monit
+  command: "{{command_cmd_start_monit}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_check_monit.rc == 1)
+  tags:
+   - commands
+   - enable
+   - unix
+   - monit
+
+#-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 

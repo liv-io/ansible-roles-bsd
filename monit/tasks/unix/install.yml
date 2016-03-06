@@ -47,6 +47,17 @@
    - unix
    - monit
 
+- name: package install monit
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_monit}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - monit
+
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
