@@ -33,6 +33,52 @@
    - opensmtpd
 
 #-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: command status opensmtpd
+  command: "{{command_cmd_status_opensmtpd}}"
+  register: register_status_opensmtpd
+  changed_when: (register_status_opensmtpd.rc > 1)
+  failed_when: (register_status_opensmtpd.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - remove
+   - unix
+   - opensmtpd
+
+- name: command disable opensmtpd
+  command: "{{command_cmd_disable_opensmtpd}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 0)
+  tags:
+   - commands
+   - remove
+   - unix
+   - opensmtpd
+
+- name: command check opensmtpd
+  command: "{{command_cmd_check_opensmtpd}}"
+  register: register_check_opensmtpd
+  changed_when: (register_check_opensmtpd.rc > 1)
+  failed_when: (register_check_opensmtpd.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - remove
+   - unix
+   - opensmtpd
+
+- name: command stop opensmtpd
+  command: "{{command_cmd_stop_opensmtpd}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 0)
+  tags:
+   - commands
+   - remove
+   - unix
+   - opensmtpd
+
+#-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
@@ -121,6 +167,7 @@
   file:
    state: 'absent'
    path: "{{file_path_aliases}}"
+  when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
    - remove
@@ -131,6 +178,7 @@
   file:
    state: 'absent'
    path: "{{file_path_smtpd_conf}}"
+  when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
    - remove

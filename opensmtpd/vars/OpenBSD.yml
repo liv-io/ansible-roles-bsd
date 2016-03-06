@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : FreeBSD.yml
+#   |         |  Name   : OpenBSD.yml
 #   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : opensmtpd
 #   |____~____|
@@ -22,28 +22,23 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# FILES
+# COMMANDS
 #-------------------------------------------------------------------------------
 
-# smtpd_enable
-file_path_smtpd_enable: '/etc/rc.conf'
-file_line_smtpd_enable: 'smtpd_enable'
+# check opensmtpd
+command_cmd_check_opensmtpd: 'rcctl check smtpd'
 
-# sendmail_enable
-file_path_sendmail_enable: '/etc/rc.conf'
-file_line_sendmail_enable: 'sendmail_enable'
+# disable opensmtpd
+command_cmd_disable_opensmtpd: 'rcctl disable smtpd'
 
-# sendmail_msp_queue_enable
-file_path_sendmail_msp_queue_enable: '/etc/rc.conf'
-file_line_sendmail_msp_queue_enable: 'sendmail_msp_queue_enable'
+# enable opensmtpd
+command_cmd_enable_opensmtpd: 'rcctl enable smtpd'
 
-# sendmail_outbound_enable
-file_path_sendmail_outbound_enable: '/etc/rc.conf'
-file_line_sendmail_outbound_enable: 'sendmail_outbound_enable'
+# start opensmtpd
+command_cmd_start_opensmtpd: 'rcctl start smtpd'
 
-# sendmail_submit_enable
-file_path_sendmail_submit_enable: '/etc/rc.conf'
-file_line_sendmail_submit_enable: 'sendmail_submit_enable'
+# status opensmtpd
+command_cmd_status_opensmtpd: 'rcctl get smtpd status'
 
-# smtpd.conf
-file_path_smtpd_conf: '/usr/local/etc/mail/smtpd.conf'
+# stop opensmtpd
+command_cmd_stop_opensmtpd: 'rcctl stop smtpd'

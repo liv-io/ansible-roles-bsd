@@ -31,7 +31,7 @@
 # LISTEN
 #-------------------------------------------------------------------------------
 
-# DEFAULT
+# GROUP
 {% if (opensmtpd_listen_group_vars is defined) and not ((opensmtpd_listen_group_vars == None) or (opensmtpd_listen_group_vars == '') or (opensmtpd_listen_group_vars == [])) %}
 {% for item in opensmtpd_listen_group_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
@@ -46,7 +46,7 @@
 {% else %}
 {% endif %}
 
-# CUSTOM
+# HOST
 {% if (opensmtpd_listen_host_vars is defined) and not ((opensmtpd_listen_host_vars == None) or (opensmtpd_listen_host_vars == '') or (opensmtpd_listen_host_vars == [])) %}
 {% for item in opensmtpd_listen_host_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
@@ -65,7 +65,7 @@
 # TABLE
 #-------------------------------------------------------------------------------
 
-# DEFAULT
+# GROUP
 {% if (opensmtpd_table_group_vars is defined) and not ((opensmtpd_table_group_vars == None) or (opensmtpd_table_group_vars == '') or (opensmtpd_table_group_vars == [])) %}
 {% for item in opensmtpd_table_group_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
@@ -80,7 +80,7 @@
 {% else %}
 {% endif %}
 
-# CUSTOM
+# HOST
 {% if (opensmtpd_table_host_vars is defined) and not ((opensmtpd_table_host_vars == None) or (opensmtpd_table_host_vars == '') or (opensmtpd_table_host_vars == [])) %}
 {% for item in opensmtpd_table_host_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
@@ -99,7 +99,7 @@
 # ACCEPT
 #-------------------------------------------------------------------------------
 
-# DEFAULT
+# GROUP
 {% if (opensmtpd_accept_group_vars is defined) and not ((opensmtpd_accept_group_vars == None) or (opensmtpd_accept_group_vars == '') or (opensmtpd_accept_group_vars == [])) %}
 {% for item in opensmtpd_accept_group_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
@@ -114,7 +114,7 @@
 {% else %}
 {% endif %}
 
-# CUSTOM
+# HOST
 {% if (opensmtpd_accept_host_vars is defined) and not ((opensmtpd_accept_host_vars == None) or (opensmtpd_accept_host_vars == '') or (opensmtpd_accept_host_vars == [])) %}
 {% for item in opensmtpd_accept_host_vars %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}

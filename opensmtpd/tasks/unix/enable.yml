@@ -81,6 +81,52 @@
    - opensmtpd
 
 #-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: command status opensmtpd
+  command: "{{command_cmd_status_opensmtpd}}"
+  register: register_status_opensmtpd
+  changed_when: (register_status_opensmtpd.rc > 1)
+  failed_when: (register_status_opensmtpd.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - enable
+   - unix
+   - opensmtpd
+
+- name: command enable opensmtpd
+  command: "{{command_cmd_enable_opensmtpd}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 1)
+  tags:
+   - commands
+   - enable
+   - unix
+   - opensmtpd
+
+- name: command check opensmtpd
+  command: "{{command_cmd_check_opensmtpd}}"
+  register: register_check_opensmtpd
+  changed_when: (register_check_opensmtpd.rc > 1)
+  failed_when: (register_check_opensmtpd.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - enable
+   - unix
+   - opensmtpd
+
+- name: command start opensmtpd
+  command: "{{command_cmd_start_opensmtpd}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 1)
+  tags:
+   - commands
+   - enable
+   - unix
+   - opensmtpd
+
+#-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
