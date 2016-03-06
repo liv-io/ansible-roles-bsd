@@ -63,6 +63,52 @@
    - openntpd
 
 #-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: command status openntpd
+  command: "{{command_cmd_status_openntpd}}"
+  register: register_status_openntpd
+  changed_when: (register_status_openntpd.rc > 1)
+  failed_when: (register_status_openntpd.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - disable
+   - unix
+   - openntpd
+
+- name: command disable openntpd
+  command: "{{command_cmd_disable_openntpd}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
+  tags:
+   - commands
+   - disable
+   - unix
+   - openntpd
+
+- name: command check openntpd
+  command: "{{command_cmd_check_openntpd}}"
+  register: register_check_openntpd
+  changed_when: (register_check_openntpd.rc > 1)
+  failed_when: (register_check_openntpd.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - disable
+   - unix
+   - openntpd
+
+- name: command stop openntpd
+  command: "{{command_cmd_stop_openntpd}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
+  tags:
+   - commands
+   - disable
+   - unix
+   - openntpd
+
+#-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
