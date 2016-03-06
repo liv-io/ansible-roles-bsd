@@ -25,18 +25,8 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-# banner
-file_group_banner: 'wheel'
-
-# moduli
-file_group_moduli: 'wheel'
-
-# ssh_config
-file_group_ssh_config: 'wheel'
-
 # sshd_config
 file_mode_sshd_config: '0640'
-file_group_sshd_config: 'wheel'
 
 # sshd_enable
 file_path_sshd_enable: '/etc/rc.conf'

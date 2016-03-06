@@ -56,6 +56,7 @@
    mode: "{{file_mode_moduli}}"
    owner: "{{file_owner_moduli}}"
    group: "{{file_group_moduli}}"
+  when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
    - disable
@@ -97,6 +98,52 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
    - files
+   - disable
+   - unix
+   - openssh
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: command status openssh
+  command: "{{command_cmd_status_openssh}}"
+  register: register_status_openssh
+  changed_when: (register_status_openssh.rc > 1)
+  failed_when: (register_status_openssh.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - disable
+   - unix
+   - openssh
+
+- name: command disable openssh
+  command: "{{command_cmd_disable_openssh}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_status_openssh.rc == 0)
+  tags:
+   - commands
+   - disable
+   - unix
+   - openssh
+
+- name: command check openssh
+  command: "{{command_cmd_check_openssh}}"
+  register: register_check_openssh
+  changed_when: (register_check_openssh.rc > 1)
+  failed_when: (register_check_openssh.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - commands
+   - disable
+   - unix
+   - openssh
+
+- name: command stop openssh
+  command: "{{command_cmd_stop_openssh}}"
+  when: (ansible_os_family == 'OpenBSD') and (register_check_openssh.rc == 0)
+  tags:
+   - commands
    - disable
    - unix
    - openssh

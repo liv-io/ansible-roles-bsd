@@ -4,8 +4,8 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : main.yml
-#   |  _   _  |  Type   : ansible task file
+#   |         |  Name   : OpenBSD.yml
+#   |  _   _  |  Type   : ansible variable file
 #   | [_] [_] |  Role   : openssh
 #   |____~____|
 #    ___//__//   Authors: robomon community
@@ -21,8 +21,24 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include unix
-  include: unix/main.yml
-  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'OpenBSD')
-  tags:
-   - openssh
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check openssh
+command_cmd_check_openssh: 'rcctl check sshd'
+
+# disable openssh
+command_cmd_disable_openssh: 'rcctl disable sshd'
+
+# enable openssh
+command_cmd_enable_openssh: 'rcctl enable sshd'
+
+# start openssh
+command_cmd_start_openssh: 'rcctl start sshd'
+
+# status openssh
+command_cmd_status_openssh: 'rcctl get sshd status'
+
+# stop openssh
+command_cmd_stop_openssh: 'rcctl stop sshd'
