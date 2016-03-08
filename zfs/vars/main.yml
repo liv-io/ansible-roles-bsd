@@ -29,11 +29,11 @@
 file_path_zfs_script_dir: "/{{(common_script_dir_partition|e) if (common_script_dir_partition is defined) and not ((common_script_dir_partition == None) or (common_script_dir_partition == '')) else 'opt'}}/{{(common_root_dir_name|e) if (common_root_dir_name is defined) and not ((common_root_dir_name == None) or (common_root_dir_name == '')) else 'common'}}/{{(common_script_dir_name|e) if (common_script_dir_name is defined) and not ((common_script_dir_name == None) or (common_script_dir_name == '')) else 'script'}}/zfs"
 file_mode_zfs_script_dir: '0750'
 file_owner_zfs_script_dir: 'root'
-file_group_zfs_script_dir: 'root'
+file_group_zfs_script_dir: 'wheel'
 
 # zfs_scrub-pools.sh
 file_src_zfs_scrub_pools_sh: "../../templates/{{(zfs_zfs_scrub_pools_sh_template|e)}}/zfs_scrub-pools.sh.j2"
 file_path_zfs_scrub_pools_sh: "{{file_path_zfs_script_dir}}/zfs_scrub-pools.sh"
 file_mode_zfs_scrub_pools_sh: '0750'
 file_owner_zfs_scrub_pools_sh: 'root'
-file_group_zfs_scrub_pools_sh: 'root'
+file_group_zfs_scrub_pools_sh: 'wheel'
