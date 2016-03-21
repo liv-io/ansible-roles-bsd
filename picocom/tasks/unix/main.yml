@@ -1,0 +1,36 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : picocom
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((picocom_state == 'false') or (picocom_state == 'no') or (picocom_state == 'remove') or (picocom_state == 'quiesce') or (picocom_state == 'inactive'))
+  tags:
+   - unix
+   - picocom
+
+- name: task include remove
+  include: remove.yml
+  when: (picocom_state == 'false') or (picocom_state == 'no') or (picocom_state == 'remove')
+  tags:
+   - unix
+   - picocom

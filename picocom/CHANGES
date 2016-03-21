@@ -1,0 +1,18 @@
+--------------------------------------------------------------------------------
+CHANGES
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  This file lists changes made to the Ansible role.
+   |  _   _  |  The content is sorted in reverse chronological order and
+   | [_] [_] |  formatted to allow easy grepping by scripts.
+   |____~____|
+    ___//__//   The fields are:
+   /|     |/    B: bug
+  //|_____|     F: feature
+    _|| ||_     I: improvement
+   (__| |__)
+--------------------------------------------------------------------------------
+
+* Version 0.1.0 (2016-03-21)
+F: Initial release
