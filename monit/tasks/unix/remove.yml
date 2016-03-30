@@ -121,7 +121,7 @@
 - name: file remove monitrc
   file:
    state: 'absent'
-   path: "{{file_src_monitrc}}"
+   path: "{{file_path_monitrc}}"
   tags:
    - files
    - remove
