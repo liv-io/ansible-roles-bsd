@@ -303,7 +303,7 @@ ROLE
   openbsd_pf_macro_tcp_state
     Description: Define the 'openbsd_pf_macro_tcp_state' option.
                  The flags 'S/SA' are safe when using scrubbing. Use the flags
-		 'S/SFRA' when scrubbing is disabled.
+                 'S/SFRA' when scrubbing is disabled.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
