@@ -75,7 +75,7 @@
 - name: file remove sudoers
   file:
    state: 'absent'
-   path: "{{file_src_sudoers}}"
+   path: "{{file_path_sudoers}}"
   tags:
    - files
    - remove
