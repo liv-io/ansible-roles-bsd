@@ -47,6 +47,9 @@ alias egrep='egrep --color=auto'
 # SHELL ALIASES
 #-------------------------------------------------------------------------------
 
+# cls
+alias cls='printf "\033c"'
+
 {% if (shell_safety is defined) and not ((shell_safety == None) or (shell_safety == 'false') or (shell_safety == 'no') or (shell_safety == 'disable')) %}
 # Shell safety
 alias cp='cp -i'
