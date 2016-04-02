@@ -23,6 +23,6 @@
 
 - name: task include unix
   include: unix/main.yml
-  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'OpenBSD')
+  when: (ansible_os_family == 'FreeBSD') or ((ansible_os_family == 'OpenBSD') and (ansible_distribution_release == '5.9'))
   tags:
    - wget
