@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.3.1 (2016-04-02)
+F: Update support information for OpenBSD 5.9
+
 * Version 0.3.0 (2016-03-03)
 F: Rename role from 'rc' to 'freebsd_rc'
 
