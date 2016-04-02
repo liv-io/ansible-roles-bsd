@@ -23,3 +23,12 @@
 
 # motd_os_color
 motd_os_color: '0;33m'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# motd-patch
+file_path_motd_patch: '/etc/rc'
+file_regexp_motd_patch: '.*cmp.*/etc/motd.*cp.*/etc/motd'
+file_line_motd_patch: 'cmp -s $T /etc/motd || cp $T /etc/motd'

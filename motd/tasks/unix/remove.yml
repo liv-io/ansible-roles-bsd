@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : install.yml
+#   |         |  Name   : remove.yml
 #   |  _   _  |  Type   : ansible task file
 #   | [_] [_] |  Role   : motd
 #   |____~____|
@@ -28,7 +28,7 @@
    - "../../vars/{{ansible_distribution}}.yml"
    - "../../vars/main.yml"
   tags:
-   - install
+   - remove
    - unix
    - motd
 
@@ -36,28 +36,15 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create motd
-  template:
-   src: "{{file_src_motd}}"
-   dest: "{{file_path_motd}}"
-   mode: "{{file_mode_motd}}"
-   owner: "{{file_owner_motd}}"
-   group: "{{file_group_motd}}"
-  tags:
-   - files
-   - install
-   - unix
-   - motd
-
-- name: line disable motd-patch
+- name: line enable motd-patch
   lineinfile:
    state: 'present'
-   line: "#\t{{file_line_motd_patch}} # Ansible: Disable motd-patch"
+   line: "\t{{file_line_motd_patch}} # Ansible: Enable motd-patch"
    regexp: "{{file_regexp_motd_patch}}"
    dest: "{{file_path_motd_patch}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
    - files
-   - install
+   - remove
    - unix
    - motd

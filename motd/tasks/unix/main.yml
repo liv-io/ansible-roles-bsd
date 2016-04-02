@@ -27,3 +27,10 @@
   tags:
    - unix
    - motd
+
+- name: task include remove
+  include: remove.yml
+  when: (motd_state == 'false') or (motd_state == 'no') or (motd_state == 'disable')
+  tags:
+   - unix
+   - motd
