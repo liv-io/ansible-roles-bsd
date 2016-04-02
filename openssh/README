@@ -402,6 +402,16 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+  openssh_version_addendum
+    Description: Define the 'openssh_version_addendum' option.
+    Implemented: 0.13
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'none'
+    Options    :
+      Examples: 'hostname' | 'Operating System'
+
   openssh_x11_forwarding
     Description: Control the 'openssh_x11_forwarding' option.
     Implemented: 0.1
@@ -480,7 +490,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5
+    Version: 5.9
       Status: Testing
 
 --------------------------------------------------------------------------------

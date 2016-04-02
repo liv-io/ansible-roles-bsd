@@ -24,7 +24,7 @@
 #
 #-------------------------------------------------------------------------------
 
-#	$OpenBSD: sshd_config,v 1.97 2015/08/06 14:53:21 deraadt Exp $
+#	$OpenBSD: sshd_config,v 1.98 2016/02/17 05:29:04 djm Exp $
 
 # This is the sshd server system-wide configuration file.  See
 # sshd_config(5) for more information.
@@ -245,7 +245,7 @@ TCPKeepAlive no
 TCPKeepAlive yes
 {% endif %}
 #UseLogin no
-UsePrivilegeSeparation sandbox		# Default for new installations.
+UsePrivilegeSeparation sandbox
 #PermitUserEnvironment no
 {% if (openssh_compression is defined) and ((openssh_compression == 'true') or (openssh_compression == 'yes') or (openssh_compression == 'enable')) %}
 Compression yes
@@ -256,17 +256,20 @@ Compression delayed
 {% endif %}
 #ClientAliveInterval 0
 #ClientAliveCountMax 3
-{% if (openssh_use_dns is defined) and ((openssh_use_dns == 'false') or (openssh_use_dns == 'no') or (openssh_use_dns == 'disable')) %}
-UseDNS no
-{% else %}
+{% if (openssh_use_dns is defined) and ((openssh_use_dns == 'true') or (openssh_use_dns == 'yes') or (openssh_use_dns == 'enable')) %}
 UseDNS yes
+{% else %}
+UseDNS no
 {% endif %}
-
 #PidFile /var/run/sshd.pid
 #MaxStartups 10:30:100
 #PermitTunnel no
 #ChrootDirectory none
-#VersionAddendum none
+{% if (openssh_version_addendum is defined) and not ((openssh_version_addendum == None) or (openssh_version_addendum == '')) %}
+VersionAddendum {{openssh_version_addendum}}
+{% else %}
+VersionAddendum none
+{% endif %}
 
 #-------------------------------------------------------------------------------
 # BANNER
@@ -285,8 +288,6 @@ Banner {{file_path_banner}}
 
 # override default of no subsystems
 Subsystem	sftp	/usr/libexec/sftp-server
-
-#-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # CONDITIONAL

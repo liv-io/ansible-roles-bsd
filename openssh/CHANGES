@@ -14,6 +14,11 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.13.0 (2016-04-02)
+F: Add support for OpenBSD 5.9
+F: Drop support for OpenBSD 5.8
+F: Add support for 'openssh_version_addendum' option
+
 * Version 0.12.0 (2016-02-28)
 F: Add support for OS family 'OpenBSD'
 
