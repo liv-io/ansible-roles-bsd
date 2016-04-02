@@ -1,0 +1,91 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : openntpd.conf
+#   |  _   _  |  Type   : openntpd configuration file
+#   | [_] [_] |  Role   : openntpd
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+# $OpenBSD: ntpd.conf,v 1.14 2015/07/15 20:28:37 ajacoutot Exp $
+#
+# See ntpd.conf(5) and /etc/examples/ntpd.conf
+
+#-------------------------------------------------------------------------------
+# LISTEN
+#-------------------------------------------------------------------------------
+
+# Addresses to listen on (ntpd does not listen by default)
+#listen on *
+
+{% if (openntpd_listen is defined) and not ((openntpd_listen == None) or (openntpd_listen == '') or (openntpd_listen == [])) %}
+{% for item in (openntpd_listen|sort) %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
+{% else %}
+#
+{% endif %}
+{% for config in (item.config|sort) %}
+listen on {{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# SERVER
+#-------------------------------------------------------------------------------
+
+# sync to a single server
+#server ntp.example.org
+
+# use a random selection of NTP Pool Time Servers
+# see http://support.ntp.org/bin/view/Servers/NTPPoolServers
+#servers pool.ntp.org
+
+{% if (openntpd_server is defined) and not ((openntpd_server == None) or (openntpd_server == '') or (openntpd_server == [])) %}
+{% for item in (openntpd_server|sort) %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
+{% else %}
+#
+{% endif %}
+{% for server in (item.server|sort) %}
+{% if (item.type is defined) and ((item.type == 'single') or (item.type == 'server')) %}
+server {{(server|e)}} {% if (item.weight is defined) and not ((item.weight == None) or (item.weight == '')) %}weight {{(item.weight|int(1))}}{% endif %}
+
+{% else %}
+servers {{(server|e)}} {% if (item.weight is defined) and not ((item.weight == None) or (item.weight == '')) %}weight {{(item.weight|int(1))}}{% endif %}
+
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# SENSOR
+#-------------------------------------------------------------------------------
+
+# use a specific local timedelta sensor (radio clock, etc)
+#sensor nmea0
+
+# use all detected timedelta sensors
+#sensor *
