@@ -38,7 +38,7 @@ opensmtpd_listen_group_vars:
 
 opensmtpd_root_mail_address: "root@{{ansible_domain}}"
 
-opensmtpd_smtpd_conf_template: 'default'
+opensmtpd_smtpd_conf_template: "{{ansible_os_family}}"
 
 opensmtpd_table_host_vars: []
 
