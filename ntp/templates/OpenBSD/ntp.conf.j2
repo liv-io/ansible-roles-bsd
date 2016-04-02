@@ -24,17 +24,7 @@
 #
 #-------------------------------------------------------------------------------
 
-#
-# $FreeBSD: releng/10.1/etc/ntp.conf 259974 2013-12-27 23:09:40Z delphij $
-#
-# Default NTP servers for the FreeBSD operating system.
-#
-# Don't forget to enable ntpd in /etc/rc.conf with:
-# ntpd_enable="YES"
-#
-# The driftfile is by default /var/db/ntpd.drift, check
-# /etc/defaults/rc.conf on how to change the location.
-#
+# Default NTP servers for the OpenBSD operating system.
 
 # Monitoring facility.
 # See the ntpdc(8) program and the monlist command or further information.
@@ -53,10 +43,10 @@ disable monitor
 #
 # The option `iburst' is used for faster initial synchronization.
 #
-#server 0.freebsd.pool.ntp.org iburst
-#server 1.freebsd.pool.ntp.org iburst
-#server 2.freebsd.pool.ntp.org iburst
-#server 3.freebsd.pool.ntp.org iburst
+#server 0.pool.ntp.org iburst
+#server 1.pool.ntp.org iburst
+#server 2.pool.ntp.org iburst
+#server 3.pool.ntp.org iburst
 
 #
 # If you want to pick yourself which country's public NTP server
