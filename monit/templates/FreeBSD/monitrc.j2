@@ -1,3 +1,29 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : monitrc
+#   |  _   _  |  Type   : monit configuration file
+#   | [_] [_] |  Role   : monit
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
 ###############################################################################
 ## Monit control file
 ###############################################################################
@@ -16,16 +42,27 @@
 ##
 ## Start Monit in the background (run as a daemon):
 #
-set daemon  30              # check services at 30 seconds intervals
-#   with start delay 240    # optional: delay the first check by 4-minutes (by 
-#                           # default Monit check immediately after Monit start)
+{% if (monit_daemon_interval is defined) and not ((monit_daemon_interval == None) or (monit_daemon_interval == '')) %}
+set daemon {{(monit_daemon_interval|int(60))}}
+{% else %}
+set daemon 60
+{% endif %}
+{% if (monit_daemon_delay is defined) and not ((monit_daemon_delay == None) or (monit_daemon_delay == '')) %}
+  with start delay {{(monit_daemon_delay|int(3))}}
+{% else %}
+{% endif %}
 #
 #
 ## Set syslog logging. If you want to log to a standalone log file instead,
 ## specify the full path to the log file
 #
-set logfile syslog
+{% if (monit_log_file is defined) and not ((monit_log_file == None) or (monit_log_file == '')) %}
+set logfile {{(monit_log_file|e)}} facility {% if (monit_log_facility is defined) and not ((monit_log_facility == None) or (monit_log_facility == '')) %}{{(monit_log_facility|e)}}{% else %}user{% endif %}
 
+{% else %}
+set logfile syslog {% if (monit_log_facility is defined) and not ((monit_log_facility == None) or (monit_log_facility == '')) %}{{(monit_log_facility|e)}}{% else %}user{% endif %}
+
+{% endif %}
 #
 #
 ## Set the location of the Monit lock file which stores the process id of the
@@ -47,14 +84,41 @@ set logfile syslog
 #
 # set statefile /var/.monit.state
 #
+#
+
+## Set limits for various tests. The following example shows the default values:
+##
+# set limits {
+#     programOutput:     512 B,    # check program's output truncate limit
+#     sendExpectBuffer:  256 B,    # limit for send/expect protocol test
+#     fileContentBuffer: 512 B,    # limit for file content test
+#     httpContentBuffer: 1 MB,     # limit for HTTP content test
+#     networkTimeout:    5 seconds # timeout for network I/O
+# }
+
+## Set global SSL options (just most common options showed, see manual for
+## full list).
+#
+# set ssl {
+#     verify     : enable, # verify SSL certificates (disabled by default but STRONGLY RECOMMENDED)
+#     selfsigned : allow   # allow self signed SSL certificates (reject by default)
+# }
+#
+#
 ## Set the list of mail servers for alert delivery. Multiple servers may be 
 ## specified using a comma separator. If the first mail server fails, Monit 
 # will use the second mail server in the list and so on. By default Monit uses 
 # port 25 - it is possible to override this with the PORT option.
 #
-# set mailserver mail.bar.baz,               # primary mailserver
-#                backup.bar.baz port 10025,  # backup mailserver on port 10025
-#                localhost                   # fallback relay
+{% if (monit_mail_server is defined) and not ((monit_mail_server == None) or (monit_mail_server == '') or (monit_mail_server == [])) %}
+{% for item in monit_mail_server %}
+{% for name in item.name %}
+set mailserver {{(name|e)}} {% if (item.port is defined) and not ((item.port == None) or (item.port == '')) %}port {{(item.port|int(25))}}{% else %}{% endif %}{% if not loop.last %},{% endif %} {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}# {{(item.comment|e)}}{% else %}{% endif %}
+
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
 #
 #
 ## By default Monit will drop alert events if no mail servers are available. 
@@ -85,7 +149,7 @@ set logfile syslog
 ## statement is missing::
 ## --8<--
 ## set mail-format {
-##      from: monit@$HOST
+##   from:    Monit <monit@$HOST>
 ##   subject: monit alert --  $EVENT $SERVICE
 ##   message: $EVENT Service $SERVICE
 ##                 Date:        $DATE
@@ -102,7 +166,96 @@ set logfile syslog
 ## or sender using the MAIL-FORMAT statement. Macros such as $DATE, etc.
 ## are expanded at runtime. For example, to override the sender, use:
 #
-# set mail-format { from: monit@foo.bar }
+set mail-format {
+{% if (monit_mail_from is defined) and not ((monit_mail_from == None) or (monit_mail_from == '')) %}
+     from: {{(monit_mail_from|e)}}
+{% else %}
+     from: admin@{{ansible_domain}}
+{% endif %}
+{% if (monit_mail_subject is defined) and not ((monit_mail_subject == None) or (monit_mail_subject == '')) %}
+  subject: {{monit_mail_subject}}
+{% else %}
+  subject: Monit: $EVENT '$SERVICE' ({{ansible_hostname}})
+{% endif %}
+  message: --------------------------------------------------------------------------------
+MONIT
+--------------------------------------------------------------------------------
+
+{% if (monit_mail_message_host is defined) and not ((monit_mail_message_host == None) or (monit_mail_message_host == '')) %}
+Host        : {{(monit_mail_message_host|e)}}
+{% else %}
+Host        : $HOST
+{% endif %}
+{% if (monit_mail_message_service is defined) and not ((monit_mail_message_service == None) or (monit_mail_message_service == '')) %}
+Service     : {{(monit_mail_message_service|e)}}
+{% else %}
+Service     : $SERVICE
+{% endif %}
+{% if (monit_mail_message_event is defined) and not ((monit_mail_message_event == None) or (monit_mail_message_event == '')) %}
+Event       : {{(monit_mail_message_event|e)}}
+{% else %}
+Event       : $EVENT
+{% endif %}
+{% if (monit_mail_message_action is defined) and not ((monit_mail_message_action == None) or (monit_mail_message_action == '')) %}
+Action      : {{(monit_mail_message_action|e)}}
+{% else %}
+Action      : $ACTION
+{% endif %}
+{% if (monit_mail_message_description is defined) and not ((monit_mail_message_description == None) or (monit_mail_message_description == '')) %}
+Description : {{(monit_mail_message_description|e)}}
+{% else %}
+Description : $DESCRIPTION
+{% endif %}
+{% if (monit_mail_message_date is defined) and not ((monit_mail_message_date == None) or (monit_mail_message_date == '')) %}
+Date        : {{(monit_mail_message_date|e)}}
+{% else %}
+Date        : $DATE
+{% endif %}
+
+--------------------------------------------------------------------------------
+SYSTEM
+--------------------------------------------------------------------------------
+
+Hostname    : {{ansible_hostname}}
+FQDN        : {{ansible_fqdn}}
+
+--------------------------------------------------------------------------------
+OPERATING SYSTEM
+--------------------------------------------------------------------------------
+
+Type        : {{ansible_system}}
+Family      : {{ansible_os_family}}
+Distribution: {{ansible_distribution}}
+Version     : {{ansible_distribution_version}}
+Architecture: {{ansible_architecture}}
+
+--------------------------------------------------------------------------------
+KERNEL
+--------------------------------------------------------------------------------
+
+Type        : {{ansible_system}}
+Version     : {{ansible_kernel}}
+
+--------------------------------------------------------------------------------
+MAIL
+--------------------------------------------------------------------------------
+
+{% if (monit_mail_from is defined) and not ((monit_mail_from == None) or (monit_mail_from == '')) %}
+Sender      : {{(monit_mail_from|e)}}
+{% else %}
+Sender      : root@{{(ansible_domain|e)}}
+{% endif %}
+{% if (monit_mail_to is defined) and not ((monit_mail_to == None) or (monit_mail_to == '')) %}
+Recipient   : {{(monit_mail_to|e)}}
+{% else %}
+Recipient   : admin@{{(ansible_domain|e)}}
+{% endif %}
+{% if (monit_mail_subject is defined) and not ((monit_mail_subject == None) or (monit_mail_subject == '')) %}
+Subject     : {{monit_mail_subject}}
+{% else %}
+Subject     : Monit: $EVENT '$SERVICE' ({{ansible_hostname}})
+{% endif %}
+}
 #
 #
 ## You can set alert recipients whom will receive alerts if/when a 
@@ -115,6 +268,13 @@ set logfile syslog
 ## This filter is recommended to avoid getting alerts for trivial cases.
 #
 # set alert your-name@your.domain not on { instance, action }
+{% if (monit_mail_to is defined) and not ((monit_mail_to == None) or (monit_mail_to == '')) %}
+set alert {{(monit_mail_to|e)}} {% if (monit_mail_exclusions is defined) and not ((monit_mail_exclusions == None) or (monit_mail_exclusions == '') or (monit_mail_exclusions == [])) %}{ {% for mail_exclusion in (monit_mail_exclusions|sort) %}{{(mail_exclusion|e)}}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
+
+{% else %}
+#set alert {{(monit_mail_to|e)}} {% if (monit_mail_exclusions is defined) and not ((monit_mail_exclusions == None) or (monit_mail_exclusions == '') or (monit_mail_exclusions == [])) %}{% for mail_exclusion in (monit_mail_exclusions|sort) %}{{(mail_exclusion|e)}}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
+
+{% endif %}
 #
 #
 ## Monit has an embedded HTTP interface which can be used to view status of 
@@ -125,11 +285,22 @@ set logfile syslog
 ## commands to a running Monit daemon. See the Monit Wiki if you want to 
 ## enable SSL for the HTTP interface. 
 #
+{% if (monit_web_server_port is defined) and not ((monit_web_server_port == None) or (monit_web_server_port == '')) %}
+set httpd port {{(monit_web_server_port|int(2812))}} and
+{% else %}
 set httpd port 2812 and
-    use address localhost  # only accept connection from localhost
-    allow localhost        # allow localhost to connect to the server and
-    allow admin:monit      # require user 'admin' with password 'monit'
+{% endif %}
+{% if (monit_web_server_address is defined) and not ((monit_web_server_address == None) or (monit_web_server_address == '')) %}
+  use address {{(monit_web_server_address|e)}}
+{% else %}
+  use address localhost
+{% endif %}
+{% for item in monit_web_server_allow %}
+  {% if (item.user is defined) and not ((item.user == None) or (item.user == '')) %}allow {{(item.user|e)}} {% if (item.password is defined) and not ((item.password == None) or (item.password == '')) %}:{{(item.password|e)}}{% else %}{% endif %} {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}# {{(item.comment|e)}}{% else %}{% endif %}{% else %}{% endif %}
 
+{% endfor %}
+#
+#
 ###############################################################################
 ## Services
 ###############################################################################
@@ -183,9 +354,7 @@ set httpd port 2812 and
 #    if failed host www.tildeslash.com port 80 protocol http 
 #       and request "/somefile.html"
 #    then restart
-#    if failed port 443 type tcpssl protocol http
-#       with timeout 15 seconds
-#    then restart
+#    if failed port 443 protocol https with timeout 15 seconds then restart
 #    if 3 restarts within 5 cycles then unmonitor
 #    depends on apache_bin
 #    group server
@@ -267,5 +436,10 @@ set httpd port 2812 and
 ## It is possible to include additional configuration parts from other files or
 ## directories.
 #
-#  include /etc/monit.d/*
+{% if (monit_include is defined) and not ((monit_include == None) or (monit_include == '')) %}
+include {{(monit_include|e)}}
+{% else %}
+#  include /etc/monit.d/*.cfg
+{% endif %}
+#
 #

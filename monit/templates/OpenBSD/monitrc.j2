@@ -53,9 +53,8 @@ set daemon 60
 {% endif %}
 #
 #
-## Set syslog logging with the 'daemon' facility. If the FACILITY option is
-## omitted, Monit will use 'user' facility by default. If you want to log to 
-## a standalone log file instead, specify the full path to the log file
+## Set syslog logging. If you want to log to a standalone log file instead,
+## specify the full path to the log file
 #
 {% if (monit_log_file is defined) and not ((monit_log_file == None) or (monit_log_file == '')) %}
 set logfile {{(monit_log_file|e)}} facility {% if (monit_log_facility is defined) and not ((monit_log_facility == None) or (monit_log_facility == '')) %}{{(monit_log_facility|e)}}{% else %}user{% endif %}
@@ -84,6 +83,27 @@ set logfile syslog {% if (monit_log_facility is defined) and not ((monit_log_fac
 ## state will be lost on reboot which may be convenient in some situations.
 #
 # set statefile /var/.monit.state
+#
+#
+
+## Set limits for various tests. The following example shows the default values:
+##
+# set limits {
+#     programOutput:     512 B,    # check program's output truncate limit
+#     sendExpectBuffer:  256 B,    # limit for send/expect protocol test
+#     fileContentBuffer: 512 B,    # limit for file content test
+#     httpContentBuffer: 1 MB,     # limit for HTTP content test
+#     networkTimeout:    5 seconds # timeout for network I/O
+# }
+
+## Set global SSL options (just most common options showed, see manual for
+## full list).
+#
+# set ssl {
+#     verify     : enable, # verify SSL certificates (disabled by default but STRONGLY RECOMMENDED)
+#     selfsigned : allow   # allow self signed SSL certificates (reject by default)
+# }
+#
 #
 ## Set the list of mail servers for alert delivery. Multiple servers may be 
 ## specified using a comma separator. If the first mail server fails, Monit 
@@ -129,7 +149,7 @@ set mailserver {{(name|e)}} {% if (item.port is defined) and not ((item.port == 
 ## statement is missing::
 ## --8<--
 ## set mail-format {
-##      from: monit@$HOST
+##   from:    monit@$HOST
 ##   subject: monit alert --  $EVENT $SERVICE
 ##   message: $EVENT Service $SERVICE
 ##                 Date:        $DATE
@@ -290,14 +310,12 @@ set httpd port 2812 and
 ## usage. Each test specifies a resource, conditions and the action to be
 ## performed should a test fail.
 #
-#  check system myhost.mydomain.tld
+#  check system $HOST
 #    if loadavg (1min) > 4 then alert
 #    if loadavg (5min) > 2 then alert
+#    if cpu usage > 95% for 10 cycles then alert
 #    if memory usage > 75% then alert
 #    if swap usage > 25% then alert
-#    if cpu usage (user) > 70% then alert
-#    if cpu usage (system) > 30% then alert
-#    if cpu usage (wait) > 20% then alert
 #
 #    
 ## Check if a file exists, checksum, permissions, uid and gid. In addition
@@ -337,10 +355,8 @@ set httpd port 2812 and
 #    if failed host www.tildeslash.com port 80 protocol http 
 #       and request "/somefile.html"
 #    then restart
-#    if failed port 443 type tcpssl protocol http
-#       with timeout 15 seconds
-#    then restart
-#    if 3 restarts within 5 cycles then timeout
+#    if failed port 443 protocol https with timeout 15 seconds then restart
+#    if 3 restarts within 5 cycles then unmonitor
 #    depends on apache_bin
 #    group server
 #    

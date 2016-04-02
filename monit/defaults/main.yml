@@ -61,7 +61,7 @@ monit_mail_to: "admin@{{ansible_domain}}"
 
 monit_monit_config_template: 'default'
 
-monit_monitrc_template: 'default'
+monit_monitrc_template: "{{ansible_os_family}}"
 
 monit_name_default: ''
 
