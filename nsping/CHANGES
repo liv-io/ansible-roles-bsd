@@ -1,0 +1,43 @@
+--------------------------------------------------------------------------------
+CHANGES
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  This file lists changes made to the Ansible role.
+   |  _   _  |  The content is sorted in reverse chronological order and
+   | [_] [_] |  formatted to allow easy grepping by scripts.
+   |____~____|
+    ___//__//   The fields are:
+   /|     |/    B: bug
+  //|_____|     F: feature
+    _|| ||_     I: improvement
+   (__| |__)
+--------------------------------------------------------------------------------
+
+* Version 0.6.0 (2016-04-02)
+F: Add support for OpenBSD 5.9
+F: Drop support for OpenBSD 5.8
+
+* Version 0.5.0 (2016-02-27)
+F: Add support for OS family 'OpenBSD'
+
+* Version 0.4.0 (2016-01-21)
+F: Drop support for OS family 'Gentoo'
+
+* Version 0.3.3 (2015-11-17)
+I: Add missing Ansible tags
+
+* Version 0.3.2 (2014-12-23)
+I: Various small Ansible and Jinja2 improvements
+
+* Version 0.3.1 (2014-09-11)
+I: Change license from 'GPLv2' to 'Simplified BSD License'
+
+* Version 0.3.0 (2014-08-25)
+F: Add support for OS family 'FreeBSD'
+
+* Version 0.2.0 (2014-08-14)
+F: Remove support for OS family 'RedHat'
+
+* Version 0.1.0 (2014-05-04)
+F: Initial release

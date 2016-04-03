@@ -1,0 +1,36 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : nsping
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((nsping_state == 'false') or (nsping_state == 'no') or (nsping_state == 'remove') or (nsping_state == 'quiesce') or (nsping_state == 'inactive'))
+  tags:
+   - unix
+   - nsping
+
+- name: task include remove
+  include: remove.yml
+  when: (nsping_state == 'false') or (nsping_state == 'no') or (nsping_state == 'remove')
+  tags:
+   - unix
+   - nsping

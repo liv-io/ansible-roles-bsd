@@ -1,0 +1,138 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : nsping
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : net-analyzer
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: Simplified BSD License
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages nsping.
+
+Nsping uses DNS queries to monitor reachability and operation of name-servers,
+as well as the latency of DNS queries. It does this by sending random recursive
+DNS queries to the nameserver (avoiding the effects of DNS caching) and
+measuring the amount of time between the sending of the query and the receipt
+of the response packet.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: nsping
+    vars:
+     nsping_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: nsping
+    vars:
+     nsping_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: nsping
+    vars:
+     nsping_state: 'inactive'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  nsping_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  nsping
+    Version: >= 0.8
+    Name   :
+      FreeBSD 10: 'nsping'
+      OpenBSD 5 : 'nsping'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 10
+      Status: Testing
+
+  OpenBSD
+    Version: 5.9
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
