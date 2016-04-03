@@ -1,0 +1,36 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : pftop
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((pftop_state == 'false') or (pftop_state == 'no') or (pftop_state == 'remove') or (pftop_state == 'quiesce') or (pftop_state == 'inactive'))
+  tags:
+   - unix
+   - pftop
+
+- name: task include remove
+  include: remove.yml
+  when: (pftop_state == 'false') or (pftop_state == 'no') or (pftop_state == 'remove')
+  tags:
+   - unix
+   - pftop
