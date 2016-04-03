@@ -5,7 +5,7 @@ README
     ____|____
    |         |  Name   : colorls
    |  _   _  |  Type   : ansible role
-   | [_] [_] |  Group  : app-misc
+   | [_] [_] |  Group  : sys-apps
    |____~____|
     ___//__//   Authors: robomon community
    /|     |/    License: Simplified BSD License
