@@ -23,6 +23,6 @@
 
 - name: task include freebsd
   include: freebsd/main.yml
-  when: (ansible_os_family == 'FreeBSD')
+  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release == '10.3-RELEASE'))
   tags:
    - freebsd_rc
