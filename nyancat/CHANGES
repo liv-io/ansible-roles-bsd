@@ -14,5 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2016-04-09)
+F: Add support for FreeBSD 10.3-RELEASE
+F: Drop support for FreeBSD 10.2-RELEASE
+
 * Version 0.1.0 (2016-04-03)
 F: Initial release
