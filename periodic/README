@@ -263,11 +263,11 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10
+    Version: 10.3-RELEASE
       Status: Testing
 
   OpenBSD
-    Version: 10
+    Version: 10.3-RELEASE
       Status: Unsupported
 
 --------------------------------------------------------------------------------
