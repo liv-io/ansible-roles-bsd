@@ -37,13 +37,13 @@
 # Redhat or Fedora Core:
 #SECURE_LOG = /var/log/secure
 #
-# Mandrake, FreeBSD or OpenBSD: 
+# Mandrake, FreeBSD or OpenBSD:
 #SECURE_LOG = /var/log/auth.log
 #
 # SuSE:
 #SECURE_LOG = /var/log/messages
 #
-# Mac OS X (v10.4 or greater - 
+# Mac OS X (v10.4 or greater -
 #   also refer to:   http://www.denyhosts.net/faq.html#macos
 #SECURE_LOG = /private/var/log/asl.log
 #
@@ -82,7 +82,7 @@ HOSTS_DENY = /etc/hosts.block
 #             when DenyHosts is invoked with the --purge flag
 #
 #      format is: i[dhwmy]
-#      Where 'i' is an integer (eg. 7) 
+#      Where 'i' is an integer (eg. 7)
 #            'm' = minutes
 #            'h' = hours
 #            'd' = days
@@ -108,15 +108,15 @@ PURGE_DENY =
 
 #######################################################################
 #
-# PURGE_THRESHOLD: defines the maximum times a host will be purged.  
-# Once this value has been exceeded then this host will not be purged. 
+# PURGE_THRESHOLD: defines the maximum times a host will be purged.
+# Once this value has been exceeded then this host will not be purged.
 # Setting this parameter to 0 (the default) disables this feature.
 #
 # default: a denied host can be purged/re-added indefinitely
 #PURGE_THRESHOLD = 0
 #
-# a denied host will be purged at most 2 times. 
-#PURGE_THRESHOLD = 2 
+# a denied host will be purged at most 2 times.
+#PURGE_THRESHOLD = 2
 #
 #######################################################################
 
@@ -124,7 +124,7 @@ PURGE_DENY =
 #######################################################################
 #
 # BLOCK_SERVICE: the service name that should be blocked in HOSTS_DENY
-# 
+#
 # man 5 hosts_access for details
 #
 # eg.   sshd: 127.0.0.1  # will block sshd logins from 127.0.0.1
@@ -134,9 +134,9 @@ PURGE_DENY =
 # To block only sshd:
 #BLOCK_SERVICE = sshd
 # To only record the offending host and nothing else (if using
-# an auxilary file to list the hosts).  Refer to: 
+# an auxilary file to list the hosts).  Refer to:
 # http://denyhosts.sourceforge.net/faq.html#aux
-#BLOCK_SERVICE =    
+#BLOCK_SERVICE =
 #
 {% if (denyhosts_block_service is defined) and ((denyhosts_block_service == 'all') or (denyhosts_block_service == 'ALL') or (denyhosts_block_service == 'any') or (denyhosts_block_service == 'ANY')) %}
 BLOCK_SERVICE = ALL
@@ -149,7 +149,7 @@ BLOCK_SERVICE = sshd
 
 #######################################################################
 #
-# DENY_THRESHOLD_INVALID: block each host after the number of failed login 
+# DENY_THRESHOLD_INVALID: block each host after the number of failed login
 # attempts has exceeded this value.  This value applies to invalid
 # user login attempts (eg. non-existent user accounts)
 #
@@ -163,7 +163,7 @@ DENY_THRESHOLD_INVALID = 2
 
 #######################################################################
 #
-# DENY_THRESHOLD_VALID: block each host after the number of failed 
+# DENY_THRESHOLD_VALID: block each host after the number of failed
 # login attempts has exceeded this value.  This value applies to valid
 # user login attempts (eg. user accounts that exist in /etc/passwd) except
 # for the "root" user
@@ -178,8 +178,8 @@ DENY_THRESHOLD_VALID = 2
 
 #######################################################################
 #
-# DENY_THRESHOLD_ROOT: block each host after the number of failed 
-# login attempts has exceeded this value.  This value applies to 
+# DENY_THRESHOLD_ROOT: block each host after the number of failed
+# login attempts has exceeded this value.  This value applies to
 # "root" user login attempts only.
 #
 {% if (denyhosts_deny_threshold_root is defined) and not ((denyhosts_deny_threshold_root == None) or (denyhosts_deny_threshold_root == '')) %}
@@ -193,8 +193,8 @@ DENY_THRESHOLD_ROOT = 2
 
 #######################################################################
 #
-# DENY_THRESHOLD_RESTRICTED: block each host after the number of failed 
-# login attempts has exceeded this value.  This value applies to 
+# DENY_THRESHOLD_RESTRICTED: block each host after the number of failed
+# login attempts has exceeded this value.  This value applies to
 # usernames that appear in the WORK_DIR/restricted-usernames file only.
 #
 {% if (denyhosts_deny_threshold_restricted is defined) and not ((denyhosts_deny_threshold_restricted == None) or (denyhosts_deny_threshold_restricted == '')) %}
@@ -209,7 +209,7 @@ DENY_THRESHOLD_RESTRICTED = 2
 #######################################################################
 #
 # WORK_DIR: the path that DenyHosts will use for writing data to
-# (it will be created if it does not already exist).  
+# (it will be created if it does not already exist).
 #
 # Note: it is recommended that you use an absolute pathname
 # for this value (eg. /home/foo/denyhosts/data)
@@ -224,8 +224,8 @@ WORK_DIR = /usr/local/share/denyhosts/data
 #
 # SUSPICIOUS_LOGIN_REPORT_ALLOWED_HOSTS=YES|NO
 # If set to YES, if a suspicious login attempt results from an allowed-host
-# then it is considered suspicious.  If this is NO, then suspicious logins 
-# from allowed-hosts will not be reported.  All suspicious logins from 
+# then it is considered suspicious.  If this is NO, then suspicious logins
+# from allowed-hosts will not be reported.  All suspicious logins from
 # ip addresses that are not in allowed-hosts will always be reported.
 #
 SUSPICIOUS_LOGIN_REPORT_ALLOWED_HOSTS=YES
@@ -283,7 +283,7 @@ LOCK_FILE = /var/run/denyhosts.pid
 #######################################################################
 #
 # ADMIN_EMAIL: if you would like to receive emails regarding newly
-# restricted hosts and suspicious logins, set this address to 
+# restricted hosts and suspicious logins, set this address to
 # match your email address.  If you do not want to receive these reports
 # leave this field blank (or run with the --noemail option)
 #
@@ -300,8 +300,8 @@ ADMIN_EMAIL = {{(denyhosts_admin_email|e)}}
 
 #######################################################################
 #
-# SMTP_HOST and SMTP_PORT: if DenyHosts is configured to email 
-# reports (see ADMIN_EMAIL) then these settings specify the 
+# SMTP_HOST and SMTP_PORT: if DenyHosts is configured to email
+# reports (see ADMIN_EMAIL) then these settings specify the
 # email server address (SMTP_HOST) and the server port (SMTP_PORT)
 #
 {% if (denyhosts_smtp_host is defined) and not ((denyhosts_smtp_host == None) or (denyhosts_smtp_host == '')) %}
@@ -319,8 +319,8 @@ SMTP_PORT = {{(denyhosts_smtp_port|int(25))}}
 #######################################################################
 
 #######################################################################
-# 
-# SMTP_USERNAME and SMTP_PASSWORD: set these parameters if your 
+#
+# SMTP_USERNAME and SMTP_PASSWORD: set these parameters if your
 # smtp email server requires authentication
 #
 {% if (denyhosts_smtp_username is defined) and not ((denyhosts_smtp_username == None) or (denyhosts_smtp_username == '')) %}
@@ -406,7 +406,7 @@ SYSLOG_REPORT=NO
 # the hostname will be looked up.  If your versions of tcp_wrappers
 # and sshd sometimes log hostnames in addition to ip addresses
 # then you may wish to specify this option.
-# 
+#
 {% if (denyhosts_allowed_hosts_hostname_lookup is defined) and ((denyhosts_allowed_hosts_hostname_lookup == 'true') or (denyhosts_allowed_hosts_hostname_lookup == 'yes') or (denyhosts_allowed_hosts_hostname_lookup == 'enable')) %}
 ALLOWED_HOSTS_HOSTNAME_LOOKUP=YES
 {% else %}
@@ -415,17 +415,17 @@ ALLOWED_HOSTS_HOSTNAME_LOOKUP=NO
 #
 ######################################################################
 
-###################################################################### 
-# 
+######################################################################
+#
 # AGE_RESET_VALID: Specifies the period of time between failed login
-# attempts that, when exceeded will result in the failed count for 
-# this host to be reset to 0.  This value applies to login attempts 
-# to all valid users (those within /etc/passwd) with the 
+# attempts that, when exceeded will result in the failed count for
+# this host to be reset to 0.  This value applies to login attempts
+# to all valid users (those within /etc/passwd) with the
 # exception of root.  If not defined, this count will never
 # be reset.
 #
-# See the comments in the PURGE_DENY section (above) 
-# for details on specifying this value or for complete details 
+# See the comments in the PURGE_DENY section (above)
+# for details on specifying this value or for complete details
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if (denyhosts_age_reset_valid is defined) and not ((denyhosts_age_reset_valid == None) or (denyhosts_age_reset_valid == '') or (denyhosts_age_reset_valid == 'false') or (denyhosts_age_reset_valid == 'no') or (denyhosts_age_reset_valid == 'disable')) %}
@@ -436,16 +436,16 @@ AGE_RESET_VALID={{(denyhosts_age_reset_valid|e)}}
 #
 ######################################################################
 
-###################################################################### 
-# 
+######################################################################
+#
 # AGE_RESET_ROOT: Specifies the period of time between failed login
-# attempts that, when exceeded will result in the failed count for 
-# this host to be reset to 0.  This value applies to all login 
+# attempts that, when exceeded will result in the failed count for
+# this host to be reset to 0.  This value applies to all login
 # attempts to the "root" user account.  If not defined,
 # this count will never be reset.
 #
-# See the comments in the PURGE_DENY section (above) 
-# for details on specifying this value or for complete details 
+# See the comments in the PURGE_DENY section (above)
+# for details on specifying this value or for complete details
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if (denyhosts_age_reset_root is defined) and not ((denyhosts_age_reset_root == None) or (denyhosts_age_reset_root == '') or (denyhosts_age_reset_root == 'false') or (denyhosts_age_reset_root == 'no') or (denyhosts_age_reset_root == 'disable')) %}
@@ -456,16 +456,16 @@ AGE_RESET_ROOT={{(denyhosts_age_reset_root|e)}}
 #
 ######################################################################
 
-###################################################################### 
-# 
+######################################################################
+#
 # AGE_RESET_RESTRICTED: Specifies the period of time between failed login
-# attempts that, when exceeded will result in the failed count for 
-# this host to be reset to 0.  This value applies to all login 
-# attempts to entries found in the WORK_DIR/restricted-usernames file.  
+# attempts that, when exceeded will result in the failed count for
+# this host to be reset to 0.  This value applies to all login
+# attempts to entries found in the WORK_DIR/restricted-usernames file.
 # If not defined, the count will never be reset.
 #
-# See the comments in the PURGE_DENY section (above) 
-# for details on specifying this value or for complete details 
+# See the comments in the PURGE_DENY section (above)
+# for details on specifying this value or for complete details
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if (denyhosts_age_reset_restricted is defined) and not ((denyhosts_age_reset_restricted == None) or (denyhosts_age_reset_restricted == '') or (denyhosts_age_reset_restricted == 'false') or (denyhosts_age_reset_restricted == 'no') or (denyhosts_age_reset_restricted == 'disable')) %}
@@ -477,16 +477,16 @@ AGE_RESET_RESTRICTED={{(denyhosts_age_reset_restricted|e)}}
 ######################################################################
 
 
-###################################################################### 
-# 
+######################################################################
+#
 # AGE_RESET_INVALID: Specifies the period of time between failed login
-# attempts that, when exceeded will result in the failed count for 
-# this host to be reset to 0.  This value applies to login attempts 
-# made to any invalid username (those that do not appear 
+# attempts that, when exceeded will result in the failed count for
+# this host to be reset to 0.  This value applies to login attempts
+# made to any invalid username (those that do not appear
 # in /etc/passwd).  If not defined, count will never be reset.
 #
-# See the comments in the PURGE_DENY section (above) 
-# for details on specifying this value or for complete details 
+# See the comments in the PURGE_DENY section (above)
+# for details on specifying this value or for complete details
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if (denyhosts_age_reset_invalid is defined) and not ((denyhosts_age_reset_invalid == None) or (denyhosts_age_reset_invalid == '') or (denyhosts_age_reset_invalid == 'false') or (denyhosts_age_reset_invalid == 'no') or (denyhosts_age_reset_invalid == 'disable')) %}
@@ -502,7 +502,7 @@ AGE_RESET_INVALID={{(denyhosts_age_reset_invalid|e)}}
 #
 # RESET_ON_SUCCESS: If this parameter is set to "yes" then the
 # failed count for the respective ip address will be reset to 0
-# if the login is successful.  
+# if the login is successful.
 #
 # The default is RESET_ON_SUCCESS = no
 #
@@ -571,7 +571,7 @@ USERDEF_FAILED_ENTRY_REGEX=[a|A]uthentication error for (?P<invalid>invalid user
 #DAEMON_LOG = /var/log/denyhosts
 #
 # disable logging:
-#DAEMON_LOG = 
+#DAEMON_LOG =
 #
 {% if (denyhosts_daemon_log is defined) and not ((denyhosts_daemon_log == None) or (denyhosts_daemon_log == '')) %}
 DAEMON_LOG = {{(denyhosts_daemon_log|e)}}
@@ -582,25 +582,25 @@ DAEMON_LOG = /var/log/denyhosts
 ######################################################################
 
 #######################################################################
-# 
-# DAEMON_LOG_TIME_FORMAT: when DenyHosts is run in daemon mode 
-# (--daemon flag) this specifies the timestamp format of 
+#
+# DAEMON_LOG_TIME_FORMAT: when DenyHosts is run in daemon mode
+# (--daemon flag) this specifies the timestamp format of
 # the DAEMON_LOG messages (default is the ISO8061 format:
 # ie. 2005-07-22 10:38:01,745)
 #
 # for possible values for this parameter refer to: man strftime
 #
-# Jan 1 13:05:59   
+# Jan 1 13:05:59
 #DAEMON_LOG_TIME_FORMAT = %b %d %H:%M:%S
 #
-# Jan 1 01:05:59 
+# Jan 1 01:05:59
 #DAEMON_LOG_TIME_FORMAT = %b %d %I:%M:%S
 #
-###################################################################### 
+######################################################################
 
 #######################################################################
-# 
-# DAEMON_LOG_MESSAGE_FORMAT: when DenyHosts is run in daemon mode 
+#
+# DAEMON_LOG_MESSAGE_FORMAT: when DenyHosts is run in daemon mode
 # (--daemon flag) this specifies the message format of each logged
 # entry.  By default the following format is used:
 #
@@ -617,9 +617,9 @@ DAEMON_LOG = /var/log/denyhosts
 #DAEMON_LOG_MESSAGE_FORMAT = %(asctime)s - %(name)-12s: %(levelname)-8s %(message)s
 #
 #
-###################################################################### 
+######################################################################
 
- 
+
 #######################################################################
 #
 # DAEMON_SLEEP: when DenyHosts is run in daemon mode (--daemon flag)
@@ -658,13 +658,13 @@ DAEMON_PURGE = 1h
 #######################################################################
 #
 # Synchronization mode allows the DenyHosts daemon the ability
-# to periodically send and receive denied host data such that 
+# to periodically send and receive denied host data such that
 # DenyHosts daemons worldwide can automatically inform one
 # another regarding banned hosts.   This mode is disabled by
 # default, you must uncomment SYNC_SERVER to enable this mode.
 #
-# for more information, please refer to: 
-#        http:/denyhosts.sourceforge.net/faq.html#sync 
+# for more information, please refer to:
+#        http:/denyhosts.sourceforge.net/faq.html#sync
 #
 #######################################################################
 
@@ -676,7 +676,7 @@ DAEMON_PURGE = 1h
 # however, in the future, it may be possible for organizations to
 # install their own server for internal network synchronization
 #
-# To disable synchronization (the default), do nothing. 
+# To disable synchronization (the default), do nothing.
 #
 # To enable synchronization, you must uncomment the following line:
 #SYNC_SERVER = http://xmlrpc.denyhosts.net:9911
@@ -687,7 +687,7 @@ DAEMON_PURGE = 1h
 #
 # SYNC_INTERVAL: the interval of time to perform synchronizations if
 # SYNC_SERVER has been uncommented.  The default is 1 hour.
-# 
+#
 #SYNC_INTERVAL = 1h
 #
 #######################################################################
@@ -726,12 +726,12 @@ DAEMON_PURGE = 1h
 # filters the returned hosts to those that have been blocked this many
 # times by others.  That is, if set to 1, then if a single DenyHosts
 # server has denied an ip address then you will receive the denied host.
-# 
+#
 # See also SYNC_DOWNLOAD_RESILIENCY
 #
 #SYNC_DOWNLOAD_THRESHOLD = 10
 #
-# The default is SYNC_DOWNLOAD_THRESHOLD = 3 
+# The default is SYNC_DOWNLOAD_THRESHOLD = 3
 #
 #SYNC_DOWNLOAD_THRESHOLD = 3
 #
@@ -743,19 +743,19 @@ DAEMON_PURGE = 1h
 # value specified for this option limits the downloaded data
 # to this resiliency period or greater.
 #
-# Resiliency is defined as the timespan between a hackers first known 
+# Resiliency is defined as the timespan between a hackers first known
 # attack and it's most recent attack.  Example:
-# 
-# If the centralized   denyhosts.net server records an attack at 2 PM 
-# and then again at 5 PM, specifying a SYNC_DOWNLOAD_RESILIENCY = 4h 
+#
+# If the centralized   denyhosts.net server records an attack at 2 PM
+# and then again at 5 PM, specifying a SYNC_DOWNLOAD_RESILIENCY = 4h
 # will not download this ip address.
 #
-# However, if the attacker is recorded again at 6:15 PM then the 
-# ip address will be downloaded by your DenyHosts instance.  
+# However, if the attacker is recorded again at 6:15 PM then the
+# ip address will be downloaded by your DenyHosts instance.
 #
-# This value is used in conjunction with the SYNC_DOWNLOAD_THRESHOLD 
-# and only hosts that satisfy both values will be downloaded.  
-# This value has no effect if SYNC_DOWNLOAD_THRESHOLD = 1 
+# This value is used in conjunction with the SYNC_DOWNLOAD_THRESHOLD
+# and only hosts that satisfy both values will be downloaded.
+# This value has no effect if SYNC_DOWNLOAD_THRESHOLD = 1
 #
 # The default is SYNC_DOWNLOAD_RESILIENCY = 5h (5 hours)
 #
