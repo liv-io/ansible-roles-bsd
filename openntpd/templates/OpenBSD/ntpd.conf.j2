@@ -89,3 +89,10 @@ servers {{(server|e)}} {% if (item.weight is defined) and not ((item.weight == N
 
 # use all detected timedelta sensors
 #sensor *
+
+#-------------------------------------------------------------------------------
+# CONSTRAINT
+#-------------------------------------------------------------------------------
+
+# get the time constraint from a well-known HTTPS site
+#constraints from "https://www.google.com/search?q=openntpd"
