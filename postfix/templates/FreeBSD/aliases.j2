@@ -24,7 +24,7 @@
 #
 #-------------------------------------------------------------------------------
 
-# $FreeBSD: releng/10.1/etc/mail/aliases 243752 2012-12-01 15:11:46Z rwatson $
+# $FreeBSD: releng/10.3/etc/mail/aliases 243752 2012-12-01 15:11:46Z rwatson $
 #	@(#)aliases	5.3 (Berkeley) 5/24/90
 #
 #  Aliases in this file will NOT be expanded in the header from
@@ -43,7 +43,6 @@
 # you would do well in either reading root's mailbox or forwarding
 # root's email from here.
 
-# root:	me@my.domain
 {% if (postfix_root_mail_address is defined) and not ((postfix_root_mail_address == None) or (postfix_root_mail_address == '')) %}
 root: {{(postfix_root_mail_address|e)}}
 {% endif %}
