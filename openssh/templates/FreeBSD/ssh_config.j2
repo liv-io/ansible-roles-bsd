@@ -24,8 +24,8 @@
 #
 #-------------------------------------------------------------------------------
 
-#	$OpenBSD: ssh_config,v 1.28 2013/09/16 11:35:43 sthen Exp $
-#	$FreeBSD: releng/10.1/crypto/openssh/ssh_config 264692 2014-04-20 12:46:18Z des $
+#	$OpenBSD: ssh_config,v 1.30 2016/02/20 23:06:23 sobrado Exp $
+#	$FreeBSD: releng/10.3/crypto/openssh/ssh_config 296853 2016-03-14 13:05:13Z des $
 
 # This is the ssh client system-wide configuration file.  See
 # ssh_config(5) for more information.  This file provides defaults for
@@ -61,8 +61,10 @@
 #   IdentityFile ~/.ssh/identity
 #   IdentityFile ~/.ssh/id_rsa
 #   IdentityFile ~/.ssh/id_dsa
+#   IdentityFile ~/.ssh/id_ecdsa
+#   IdentityFile ~/.ssh/id_ed25519
 #   Port 22
-#   Protocol 2,1
+#   Protocol 2
 #   Cipher 3des
 #   Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc
 #   MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160
@@ -74,10 +76,15 @@
 #   ProxyCommand ssh -q -W %h:%p gateway.example.com
 #   RekeyLimit 1G 1h
 #   VerifyHostKeyDNS yes
-#   VersionAddendum FreeBSD-20140420
+#   VersionAddendum FreeBSD-20160310
 
 Host *
   Ciphers chacha20-poly1305@openssh.com,aes256-ctr,aes192-ctr
   MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160
   KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
   Protocol 2
+{% if (openssh_version_addendum is defined) and not ((openssh_version_addendum == None) or (openssh_version_addendum == '')) %}
+  VersionAddendum {{openssh_version_addendum}}
+{% else %}
+  VersionAddendum none
+{% endif %}
