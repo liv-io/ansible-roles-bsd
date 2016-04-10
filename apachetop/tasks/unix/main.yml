@@ -1,0 +1,36 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : apachetop
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((apachetop_state == 'false') or (apachetop_state == 'no') or (apachetop_state == 'remove') or (apachetop_state == 'quiesce') or (apachetop_state == 'inactive'))
+  tags:
+   - unix
+   - apachetop
+
+- name: task include remove
+  include: remove.yml
+  when: (apachetop_state == 'false') or (apachetop_state == 'no') or (apachetop_state == 'remove')
+  tags:
+   - unix
+   - apachetop
