@@ -1,0 +1,36 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : icmpinfo
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((icmpinfo_state == 'false') or (icmpinfo_state == 'no') or (icmpinfo_state == 'remove') or (icmpinfo_state == 'quiesce') or (icmpinfo_state == 'inactive'))
+  tags:
+   - unix
+   - icmpinfo
+
+- name: task include remove
+  include: remove.yml
+  when: (icmpinfo_state == 'false') or (icmpinfo_state == 'no') or (icmpinfo_state == 'remove')
+  tags:
+   - unix
+   - icmpinfo
