@@ -1,0 +1,36 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : bsd_diff
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((bsd_diff_state == 'false') or (bsd_diff_state == 'no') or (bsd_diff_state == 'remove') or (bsd_diff_state == 'quiesce') or (bsd_diff_state == 'inactive'))
+  tags:
+   - bsd
+   - bsd_diff
+
+- name: task include remove
+  include: remove.yml
+  when: (bsd_diff_state == 'false') or (bsd_diff_state == 'no') or (bsd_diff_state == 'remove')
+  tags:
+   - bsd
+   - bsd_diff

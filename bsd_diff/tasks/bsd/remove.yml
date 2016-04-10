@@ -1,0 +1,48 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : remove.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : bsd_diff
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+  tags:
+   - remove
+   - bsd
+   - bsd_diff
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package remove bsd-diff
+  pkgng:
+   state: 'absent'
+   name: "{{package_name_bsd_diff}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - remove
+   - bsd
+   - bsd_diff
