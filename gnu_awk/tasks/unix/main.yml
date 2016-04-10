@@ -1,0 +1,36 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : gnu_awk
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((gnu_awk_state == 'false') or (gnu_awk_state == 'no') or (gnu_awk_state == 'remove') or (gnu_awk_state == 'quiesce') or (gnu_awk_state == 'inactive'))
+  tags:
+   - unix
+   - gnu_awk
+
+- name: task include remove
+  include: remove.yml
+  when: (gnu_awk_state == 'false') or (gnu_awk_state == 'no') or (gnu_awk_state == 'remove')
+  tags:
+   - unix
+   - gnu_awk
