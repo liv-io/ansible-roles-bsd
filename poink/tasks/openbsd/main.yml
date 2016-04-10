@@ -1,0 +1,36 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : poink
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((poink_state == 'false') or (poink_state == 'no') or (poink_state == 'remove') or (poink_state == 'quiesce') or (poink_state == 'inactive'))
+  tags:
+   - openbsd
+   - poink
+
+- name: task include remove
+  include: remove.yml
+  when: (poink_state == 'false') or (poink_state == 'no') or (poink_state == 'remove')
+  tags:
+   - openbsd
+   - poink
