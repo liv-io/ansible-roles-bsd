@@ -1,0 +1,36 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : gnu_tar
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((gnu_tar_state == 'false') or (gnu_tar_state == 'no') or (gnu_tar_state == 'remove') or (gnu_tar_state == 'quiesce') or (gnu_tar_state == 'inactive'))
+  tags:
+   - unix
+   - gnu_tar
+
+- name: task include remove
+  include: remove.yml
+  when: (gnu_tar_state == 'false') or (gnu_tar_state == 'no') or (gnu_tar_state == 'remove')
+  tags:
+   - unix
+   - gnu_tar
