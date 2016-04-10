@@ -1,0 +1,28 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : gnu_sed
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include unix
+  include: unix/main.yml
+  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release == '10.3-RELEASE')) or ((ansible_os_family == 'OpenBSD') and (ansible_distribution_release == '5.9'))
+  tags:
+   - gnu_sed

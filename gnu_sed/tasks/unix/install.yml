@@ -1,0 +1,59 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : install.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : gnu_sed
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+  tags:
+   - install
+   - unix
+   - gnu_sed
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package install gnu-sed
+  pkgng:
+   state: 'present'
+   name: "{{package_name_gnu_sed}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - gnu_sed
+
+- name: package install gnu-sed
+  openbsd_pkg:
+   state: 'present'
+   name: "{{package_name_gnu_sed}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+   - packaging
+   - install
+   - unix
+   - gnu_sed

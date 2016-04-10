@@ -1,0 +1,139 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : gnu_sed
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : sys-apps
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: Simplified BSD License
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages gnu_sed.
+
+GNU sed is the Free Software Foundation's version of the sed editor. GNU sed
+isn't really a true text editor or text processor. Instead, it is used to filter
+text, i.e., it takes text input and performs some operation (or set of
+operations) on it and outputs the modified text. Sed is typically used for
+extracting part of a file using pattern matching or substituting multiple
+occurrences of a string within a file.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: gnu_sed
+    vars:
+     gnu_sed_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: gnu_sed
+    vars:
+     gnu_sed_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: gnu_sed
+    vars:
+     gnu_sed_state: 'inactive'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  gnu_sed_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  gnu-sed
+    Version: >= 4.2
+    Name   :
+      FreeBSD 10: 'gsed'
+      OpenBSD 5 : 'gsed'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 10.3-RELEASE
+      Status: Testing
+
+  OpenBSD
+    Version: 5.9
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
