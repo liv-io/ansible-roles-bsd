@@ -1,0 +1,114 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : nginx.conf
+#   |  _   _  |  Type   : nginx configuration file
+#   | [_] [_] |  Role   : nginx
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# CORE
+#-------------------------------------------------------------------------------
+
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+{% if (nginx_worker_rlimit_nofile is defined) and not ((nginx_worker_rlimit_nofile == None) or (nginx_worker_rlimit_nofile == '')) %}
+worker_rlimit_nofile {{(nginx_worker_rlimit_nofile|int(1024))}};
+{% else %}
+worker_rlimit_nofile 1024;
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# EVENTS
+#-------------------------------------------------------------------------------
+
+events {
+{% if (nginx_worker_connections is defined) and not ((nginx_worker_connections == None) or (nginx_worker_connections == '')) %}
+    worker_connections {{(nginx_worker_connections|int(1024))}};
+{% else %}
+    worker_connections 1024;
+{% endif %}
+}
+
+#-------------------------------------------------------------------------------
+# HTTP
+#-------------------------------------------------------------------------------
+
+http {
+
+    #---------------------------------------------------------------------------
+    # MIME
+    #---------------------------------------------------------------------------
+
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #---------------------------------------------------------------------------
+    # LOGGING
+    #---------------------------------------------------------------------------
+
+    # Main log format
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    # Main log format + SSL/TLS information
+    log_format main_ssl '$remote_addr - $remote_user [$time_local] "$request" '
+                        '$status $body_bytes_sent "$http_referer" '
+                        '"$http_user_agent" "$http_x_forwarded_for" '
+                        '$ssl_protocol/$ssl_cipher ';
+
+    #access_log  logs/access.log  main;
+
+    #---------------------------------------------------------------------------
+    # CORE
+    #---------------------------------------------------------------------------
+
+    #index             index.html index.htm;
+    sendfile           on;
+    #tcp_nopush        on;
+    #keepalive_timeout 0;
+    keepalive_timeout  65;
+    #gzip              on;
+
+    #---------------------------------------------------------------------------
+    # VHOSTS
+    #---------------------------------------------------------------------------
+
+    # Load modular configuration files from the /etc/nginx/vhosts.d directory.
+    include /etc/nginx/vhosts.d/*.conf;
+
+    #---------------------------------------------------------------------------
+    # SECURITY
+    #---------------------------------------------------------------------------
+
+    # Enables or disables emitting nginx version in error messages and in the
+    # "Server" response header field.
+    server_tokens off;
+
+}

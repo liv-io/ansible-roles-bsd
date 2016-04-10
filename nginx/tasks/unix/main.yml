@@ -1,0 +1,57 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : nginx
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((nginx_state == 'false') or (nginx_state == 'no') or (nginx_state == 'remove') or (nginx_state == 'quiesce') or (nginx_state == 'inactive'))
+  tags:
+   - unix
+   - nginx
+
+- name: task include config
+  include: config.yml
+  when: not ((nginx_state == 'false') or (nginx_state == 'no') or (nginx_state == 'remove') or (nginx_state == 'quiesce') or (nginx_state == 'inactive'))
+  tags:
+   - unix
+   - nginx
+
+- name: task include enable
+  include: enable.yml
+  when: (nginx_state == 'start') or (nginx_state == 'on') or (nginx_state == 'enable')
+  tags:
+   - unix
+   - nginx
+
+- name: task include disable
+  include: disable.yml
+  when: (nginx_state == 'stop') or (nginx_state == 'off') or (nginx_state == 'disable')
+  tags:
+   - unix
+   - nginx
+
+- name: task include remove
+  include: remove.yml
+  when: (nginx_state == 'false') or (nginx_state == 'no') or (nginx_state == 'remove')
+  tags:
+   - unix
+   - nginx

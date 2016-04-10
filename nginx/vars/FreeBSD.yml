@@ -1,0 +1,48 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : FreeBSD.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : nginx
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# log.dir
+file_path_log_dir_name: '/var/log/nginx'
+file_mode_log_dir_name: '0755'
+file_owner_log_dir_name: 'root'
+file_group_log_dir_name: 'wheel'
+
+# vhosts.d
+file_path_vhosts_d_name: "/etc/nginx/{{(nginx_vhosts_d_name|e)}}"
+file_mode_vhosts_d_name: '0755'
+file_owner_vhosts_d_name: 'root'
+file_group_vhosts_d_name: 'wheel'
+
+# nginx.conf
+file_path_nginx_conf: '/usr/local/etc/nginx/nginx.conf'
+
+# vhosts.d
+file_path_vhosts_d_name: "/usr/local/etc/nginx/{{(nginx_vhosts_d_name|e)}}"
+
+# nginx_enable
+file_path_nginx_enable: '/etc/rc.conf'
+file_line_nginx_enable: 'nginx_enable'

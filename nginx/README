@@ -1,0 +1,427 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : nginx
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : www-servers
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: Simplified BSD License
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages nginx.
+
+Nginx is a web server and a reverse proxy server for HTTP, SMTP, POP3 and IMAP
+protocols, with a strong focus on high concurrency, performance and low memory
+usage.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: nginx
+    vars:
+     nginx_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+     - role: nginx
+    vars:
+     nginx_state: 'enable'
+
+DISABLE
+  - hosts: all
+    roles:
+     - role: nginx
+    vars:
+     nginx_state: 'disable'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: nginx
+    vars:
+     nginx_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: nginx
+    vars:
+     nginx_state: 'inactive'
+
+CONFIG
+  vars:
+   nginx_vhost:
+    - name: "{{ansible_fqdn}}"
+      state: 'true'
+      listen: '*'
+      port: 80
+      custom_config:
+       - comment: 'Reverse Proxy'
+         config:
+          - 'location / {'
+          - '  proxy_pass http://localhost:8080;'
+          - '  proxy_set_header Host              $host;'
+          - '  proxy_set_header X-Real-IP         $remote_addr;'
+          - '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;'
+          - '  proxy_set_header X-Forwarded-Proto $scheme;'
+          - '}'
+
+    - name: "{{ansible_fqdn}}"
+      state: 'true'
+      listen: '*'
+      port: 443
+      hsts_state: 'true'
+      ssl_state: 'true'
+      ssl_certificate: "/etc/ssl/example/{{ansible_fqdn}}.crt"
+      ssl_certificate_key: "/etc/ssl/example/{{ansible_fqdn}}.key"
+      custom_config:
+       - comment: 'Reverse Proxy'
+         config:
+          - 'location / {'
+          - '  proxy_pass https://localhost:8443;'
+          - '  proxy_set_header Host              $host;'
+          - '  proxy_set_header X-Real-IP         $remote_addr;'
+          - '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;'
+          - '  proxy_set_header X-Forwarded-Proto $scheme;'
+          - '}'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+CONFIG
+  alias
+    Description: Define the 'alias' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['domain.tld', 'www.domain.tld', 'web.domain.tld]
+      None    : []
+
+  custom_config
+    Description: Define the 'custom_config' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{comment: 'Reverse Proxy',
+                  config: {'location / {',
+                           '  proxy_pass http://localhost:8080;',
+                           '  proxy_set_header Host              $host;',
+                           '  proxy_set_header X-Real-IP         $remote_addr;',
+                           '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;',
+                           '  proxy_set_header X-Forwarded-Proto $scheme;',
+                           '}'}}]
+      None: []
+
+  hsts_max_age
+    Description: Set the 'hsts_max_age' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : "{{nginx_hsts_max_age}}"
+    Options    :
+      Examples: '15768000' | '31536000' | '47304000'
+
+  hsts_state
+    Description: Control the 'hsts_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  listen
+    Description: Define the 'listen' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '*'
+    Options    :
+      Examples: '*' | '[::]' | '127.0.0.10' | '[:1]' | 'localhost'
+
+  name
+    Description: Define the 'name' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_fqdn}}"
+    Options    :
+      Examples: 'host.domain.tld'
+
+  port
+    Description: Set the 'port' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 80
+    Options    :
+      Examples: '80' | '8080' | '443' | 8443'
+
+  ssl_certificate
+    Description: Define the 'ssl_certificate_file' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: "/etc/ssl/example/{{ansible_fqdn}}.crt"
+      None    : ''
+
+  ssl_certificate_key
+    Description: Define the 'ssl_certificate_key' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: "/etc/ssl/example/{{ansible_fqdn}}.key"
+      None    : ''
+
+  ssl_cipher_suite
+    Description: Define the 'ssl_cipher_suite' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'AES256+EECDH:AES256+EDH'
+    Options    :
+      Examples: 'AES256+EECDH:AES256+EDH'
+
+  ssl_honor_cipher_order
+    Description: Control the 'ssl_honor_cipher_order' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  ssl_protocol
+    Description: Define the 'ssl_protocol' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['TLSv1', 'TLSv1.1', 'TLSv1.2']
+    Options    :
+      Examples: ['TLSv1', 'TLSv1.1', 'TLSv1.2']
+
+  ssl_state
+    Description: Control the 'ssl_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  xss_protection_state
+    Description: Control the 'xss_protection_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+ROLE
+  nginx_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+  nginx_hsts_max_age
+    Description: Set the 'nginx_hsts_max_age' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '31536000'
+    Options    :
+      Examples: '15768000' | '31536000' | '47304000'
+
+  nginx_nginx_conf_template
+    Description: Define the template source for 'nginx.conf.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
+                 'nginx/templates/example/nginx.conf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_os_family}}"
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  nginx_vhost
+    Description: Define the 'nginx_vhost' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: [{name: "{{ansible_fqdn}}", state: 'true', listen: '*', port: 80}] |
+                [{name: "{{ansible_fqdn}}", state: 'true', listen: '*', port: 443,
+                 hsts_state: 'true', ssl_state: 'true',
+                 ssl_certificate: "/etc/ssl/example/{{ansible_fqdn}}.crt",
+                 ssl_certificate_key: "/etc/ssl/example/{{ansible_fqdn}}.key"}]
+
+  nginx_vhosts_d_name
+    Description: Define the 'nginx_vhosts_d_name' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'vhosts.d'
+    Options    :
+      Examples: 'vhosts.d'
+
+  nginx_vhost_template
+    Description: Define the template source for 'vhost.conf.j2'.
+                 Any value other than "{{ansible_os_family}}" requires a Jinja2
+                 file to be created. The custom Jinja2 file for an example
+                 configuration called 'example' needs to be placed as follows:
+                 'nginx/templates/example/vhost.conf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'default'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  nginx_worker_connections
+    Description: Set the 'nginx_worker_connections' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 1024
+    Options    :
+      Examples: 256 | 512 | 1024 | 2048
+
+  nginx_worker_rlimit_nofile 
+    Description: Set the 'nginx_worker_rlimit_nofile' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 1024
+    Options    :
+      Examples: 256 | 512 | 1024 | 2048
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  nginx
+    Version: >= 1.8
+    Name   :
+      FreeBSD 10: 'nginx'
+      OpenBSD 5 : 'nginx'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 10.3-RELEASE
+      Status: Development
+
+  OpenBSD
+    Version: 5.9
+      Status: Development
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

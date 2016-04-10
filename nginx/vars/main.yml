@@ -1,0 +1,65 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : nginx
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# nginx
+package_name_nginx: 'nginx'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# nginx.conf
+file_src_nginx_conf: "../../templates/{{(nginx_nginx_conf_template|e)}}/nginx.conf.j2"
+file_path_nginx_conf: '/etc/nginx/nginx.conf'
+file_mode_nginx_conf: '0644'
+file_owner_nginx_conf: 'root'
+file_group_nginx_conf: 'wheel'
+
+# vhost
+file_mode_vhost: '0644'
+file_owner_vhost: 'root'
+file_group_vhost: 'wheel'
+
+# vhosts.d
+file_path_vhosts_d_name: "/etc/nginx/{{(nginx_vhosts_d_name|e)}}"
+file_mode_vhosts_d_name: '0755'
+file_owner_vhosts_d_name: 'root'
+file_group_vhosts_d_name: 'wheel'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check nginx
+command_cmd_check_nginx: 'nginx -t'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# nginx
+service_name_nginx: 'nginx'

@@ -1,0 +1,47 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : OpenBSD.yml
+#   |  _   _  |  Type   : ansible variable file
+#   | [_] [_] |  Role   : nginx
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check nginx
+command_cmd_check_nginx: 'rcctl check nginx'
+
+# disable nginx
+command_cmd_disable_nginx: 'rcctl disable nginx'
+
+# enable nginx
+command_cmd_enable_nginx: 'rcctl enable nginx'
+
+# info nginx
+raw_cmd_info_nginx: 'pkg_info | grep -q "^nginx.*"'
+
+# start nginx
+command_cmd_start_nginx: 'rcctl start nginx'
+
+# status nginx
+command_cmd_status_nginx: 'rcctl get nginx status'
+
+# stop nginx
+command_cmd_stop_nginx: 'rcctl stop nginx'
