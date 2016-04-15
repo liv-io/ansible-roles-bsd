@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : host_vars.yml
+#   |         |  Name   : all.yml
 #   |  _   _  |  Type   : ansible task file
 #   | [_] [_] |  Role   : openbsd_rc
 #   |____~____|
@@ -25,15 +25,15 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line config rc-host_vars
+- name: line config rc-all
   lineinfile:
    state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
    line: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}=\"{{item.value if (item.value is defined) and not ((item.value == None) or (item.value == '')) else ''}}\" # Ansible: {{(item.comment|e) if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) else item.name}}"
    regexp: "^{{item.name}}="
    dest: "{{(item.path|e) if (item.path is defined) and not ((item.path == None) or (item.path == '')) else (openbsd_rc_path_default|e)}}"
-  with_items: openbsd_rc_host_vars
+  with_items: openbsd_rc_all
   tags:
    - files
-   - host_vars
+   - all
    - openbsd
    - openbsd_rc

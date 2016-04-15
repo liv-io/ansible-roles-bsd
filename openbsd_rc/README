@@ -45,18 +45,19 @@ INACTIVE
 
 CONFIG
   vars:
-    openbsd_rc_group_vars:
+    openbsd_rc_all:
      - name: 'dhcpd_flags'
        value: 'NO'
        state: 'true'
        comment: "Disable service 'dhcpd'"
 
-    openbsd_rc_host_vars:
+    openbsd_rc_group:
      - name: 'nfs_server'
        value: 'YES'
        state: 'true'
        comment: 'Enable the NFS server'
 
+    openbsd_rc_host:
      - name: 'nfsd_flags'
        value: '-tun 8'
        state: 'true'
@@ -133,6 +134,42 @@ ROLE
     Options    :
       Install : 'true' | 'yes' | 'install'
       Inactive: 'quiesce' | 'inactive'
+
+  openbsd_rc_all
+    Description: Define the 'openbsd_rc_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'},
+                 {name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'}]
+      None    : []
+
+  openbsd_rc_group
+    Description: Define the 'openbsd_rc_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'},
+                 {name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'}]
+      None    : []
+
+  openbsd_rc_host
+    Description: Define the 'openbsd_rc_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'},
+                 {name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'}]
+      None    : []
 
   openbsd_rc_path_default
     Description: Define the default path of the 'rc' file.
