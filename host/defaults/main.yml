@@ -23,8 +23,10 @@
 
 host_state: 'install'
 
-host_host_vars: []
+host_all: []
 
-host_group_vars: []
+host_group: []
+
+host_host: []
 
 host_path_default: '/etc/hosts'

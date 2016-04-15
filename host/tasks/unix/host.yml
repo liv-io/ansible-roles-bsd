@@ -1,0 +1,39 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : host.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : host
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: host config host-host
+  lineinfile:
+   state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
+   line: "{{(item.ip|e) if (item.ip is defined) and not ((item.ip == None) or (item.ip == '')) else ''}} {{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}} {{item.aliases|join(' ') if (item.aliases is defined) and not ((item.aliases == None) or (item.aliases == '') or (item.aliases == [])) else ''}} # {{(item.comment|e) if (item.comment is defined) and not (item.comment == None) else item.name}} | Ansible: {{item.ip|md5}}"
+   regexp: '{{item.ip|md5}}$'
+   dest: "{{(item.path|e) if (item.path is defined) and not ((item.path == None) or (item.path == '')) else host_path_default}}"
+  with_items: host_host
+  tags:
+   - files
+   - host
+   - unix
+   - host

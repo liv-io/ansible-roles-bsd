@@ -45,20 +45,21 @@ INACTIVE
 
 CONFIG
   vars:
-    host_group_vars:
+    host_all:
      - name: 'host01.domain.tld'
        state: 'true'
        ip: '192.168.1.1'
        aliases: ['host01', 'hostname01.domain.tld', 'hostname01']
        comment: 'host01'
 
-    host_host_vars:
+    host_group:
      - name: 'host02.domain.tld'
        state: 'true'
        ip: '192.168.1.2'
        aliases: ['host02', 'hostname02.domain.tld', 'hostname02']
        comment: 'host02'
 
+    host_host:
      - name: 'host03.domain.tld'
        state: 'false'
        ip: '192.168.1.3'
@@ -148,6 +149,48 @@ ROLE
       Install : 'true' | 'yes' | 'install'
       Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
+
+  host_all
+    Description: Define the 'host_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'host01.domain.tld', state: 'true', ip: '192.168.1.1',
+                  aliases: {'host01', 'hostname01.domain.tld', 'hostname01'}, comment: 'host01'},
+                 {name: 'host02.domain.tld', state: 'true', ip: '192.168.1.2',
+                  aliases: ['host02', 'hostname02.domain.tld', 'hostname02'], comment: 'host02'}]
+      None    : []
+
+  host_group
+    Description: Define the 'host_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'host01.domain.tld', state: 'true', ip: '192.168.1.1',
+                  aliases: {'host01', 'hostname01.domain.tld', 'hostname01'}, comment: 'host01'},
+                 {name: 'host02.domain.tld', state: 'true', ip: '192.168.1.2',
+                  aliases: ['host02', 'hostname02.domain.tld', 'hostname02'], comment: 'host02'}]
+      None    : []
+
+  host_host
+    Description: Define the 'host_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'host01.domain.tld', state: 'true', ip: '192.168.1.1',
+                  aliases: {'host01', 'hostname01.domain.tld', 'hostname01'}, comment: 'host01'},
+                 {name: 'host02.domain.tld', state: 'true', ip: '192.168.1.2',
+                  aliases: ['host02', 'hostname02.domain.tld', 'hostname02'], comment: 'host02'}]
+      None    : []
 
   host_path_default
     Description: Define the default path of the hosts file.
