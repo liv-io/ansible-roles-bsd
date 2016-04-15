@@ -23,8 +23,10 @@
 
 freebsd_rc_state: 'install'
 
-freebsd_rc_host_vars: []
+freebsd_rc_all: []
 
-freebsd_rc_group_vars: []
+freebsd_rc_group: []
+
+freebsd_rc_host: []
 
 freebsd_rc_path_default: '/etc/rc.conf'

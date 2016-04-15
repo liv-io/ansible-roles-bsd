@@ -45,13 +45,13 @@ INACTIVE
 
 CONFIG
   vars:
-    freebsd_rc_group_vars:
+    freebsd_rc_all:
      - name: 'sshd_enable'
        value: 'YES'
        state: 'true'
        comment: 'Enable service OpenSSH'
 
-    freebsd_rc_host_vars:
+    freebsd_rc_group:
      - name: 'hostname'
        value: 'example01'
        state: 'true'
@@ -62,6 +62,7 @@ CONFIG
        state: 'true'
        comment: 'Set keymap'
 
+    freebsd_rc_host:
      - name: 'ifconfig_re0'
        value: 'inet 192.168.1.10 netmask 255.255.255.0'
        state: 'true'
@@ -157,6 +158,42 @@ ROLE
     Options    :
       Install : 'true' | 'yes' | 'install'
       Inactive: 'quiesce' | 'inactive'
+
+  freebsd_rc_all
+    Description: Define the 'freebsd_rc_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'sshd_enable', value: 'YES', state: 'true', comment: 'Enable service OpenSSH'},
+                 {name: 'hostname', value: 'example01', state: 'true', comment: 'Define short hostname'}]
+      None    : []
+
+  freebsd_rc_group
+    Description: Define the 'freebsd_rc_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'sshd_enable', value: 'YES', state: 'true', comment: 'Enable service OpenSSH'},
+                 {name: 'hostname', value: 'example01', state: 'true', comment: 'Define short hostname'}]
+      None    : []
+
+  freebsd_rc_host
+    Description: Define the 'freebsd_rc_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'sshd_enable', value: 'YES', state: 'true', comment: 'Enable service OpenSSH'},
+                 {name: 'hostname', value: 'example01', state: 'true', comment: 'Define short hostname'}]
+      None    : []
 
   freebsd_rc_path_default
     Description: Define the default path of the 'rc' file.
