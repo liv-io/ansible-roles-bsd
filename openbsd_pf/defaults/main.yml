@@ -23,18 +23,22 @@
 
 openbsd_pf_state: 'enable'
 
-openbsd_pf_blacklist_host_vars: []
+openbsd_pf_blacklist_all: []
 
-openbsd_pf_blacklist_group_vars: []
+openbsd_pf_blacklist_group: []
+
+openbsd_pf_blacklist_host: []
 
 openbsd_pf_filter_in_icmp: []
 
-openbsd_pf_filter_in_ip_host_vars: []
-
-openbsd_pf_filter_in_ip_group_vars:
+openbsd_pf_filter_in_ip_all:
  - {config: {'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state',
              'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state',
              'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state'}, comment: 'SSH: From private address space (RFC 1918)'}
+
+openbsd_pf_filter_in_ip_group: []
+
+openbsd_pf_filter_in_ip_host: []
 
 openbsd_pf_filter_in_policy: 'block'
 
@@ -42,20 +46,26 @@ openbsd_pf_filter_out_icmp:
  - {config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
              'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'}, comment: 'ICMP echo request: To any'}
 
-openbsd_pf_filter_out_ip_host_vars: []
+openbsd_pf_filter_out_ip_host: []
 
-openbsd_pf_filter_out_ip_group_vars:
+openbsd_pf_filter_out_ip_all:
  - {config: {'pass out inet proto tcp to any port 53 $tcp_state',
              'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'}
  - {config: {'pass out inet proto tcp to any port 80 $tcp_state'}, comment: 'HTTP: To any'}
  - {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'}
  - {config: {'pass out inet proto tcp to any port 443 $tcp_state'}, comment: 'HTTPS: To any'}
 
+openbsd_pf_filter_out_ip_group: []
+
+openbsd_pf_filter_out_ip_host: []
+
 openbsd_pf_filter_out_policy: 'block'
 
-openbsd_pf_macro_host_vars: []
+openbsd_pf_macro_all: []
 
-openbsd_pf_macro_group_vars: []
+openbsd_pf_macro_group: []
+
+openbsd_pf_macro_host: []
 
 openbsd_pf_macro_tcp_state: 'flags S/SA modulate state'
 
@@ -67,7 +77,7 @@ openbsd_pf_option_debug: 'crit'
 
 openbsd_pf_option_fingerprints: '/etc/pf.os'
 
-openbsd_pf_option_host_hostid: ''
+openbsd_pf_option_hostid: ''
 
 openbsd_pf_option_limit: []
 
@@ -97,7 +107,9 @@ openbsd_pf_scrub:
 
 openbsd_pf_table_blacklist: "{{file_path_pf_blacklist}}"
 
-openbsd_pf_table_host_vars: []
-
-openbsd_pf_table_group_vars:
+openbsd_pf_table_all:
  - {config: {'<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'}, comment: 'Table: private address space (RFC 1918)'}
+
+openbsd_pf_table_group: []
+
+openbsd_pf_table_host: []

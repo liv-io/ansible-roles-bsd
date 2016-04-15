@@ -42,30 +42,45 @@ tcp_state="{{openbsd_pf_macro_tcp_state}}"
 udp_state="{{openbsd_pf_macro_udp_state}}"
 {% endif %}
 
-# MACRO GROUP
-{% if (openbsd_pf_macro_group_vars is defined) and not ((openbsd_pf_macro_group_vars == None) or (openbsd_pf_macro_group_vars == '') or (openbsd_pf_macro_group_vars == [])) %}
-{% for macro_group_vars in openbsd_pf_macro_group_vars %}
-{% if (macro_group_vars.comment is defined) and not ((macro_group_vars.comment == None) or (macro_group_vars.comment == '')) %}
-# {{macro_group_vars.comment}}
+# ALL
+{% if (openbsd_pf_macro_all is defined) and not ((openbsd_pf_macro_all == None) or (openbsd_pf_macro_all == '') or (openbsd_pf_macro_all == [])) %}
+{% for macro_all in openbsd_pf_macro_all %}
+{% if (macro_all.comment is defined) and not ((macro_all.comment == None) or (macro_all.comment == '')) %}
+# {{macro_all.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in macro_group_vars.config %}
+{% for config in macro_all.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
 {% else %}
 {% endif %}
 
-# MACRO HOST
-{% if (openbsd_pf_macro_host_vars is defined) and not ((openbsd_pf_macro_host_vars == None) or (openbsd_pf_macro_host_vars == '') or (openbsd_pf_macro_host_vars == [])) %}
-{% for macro_host_vars in openbsd_pf_macro_host_vars %}
-{% if (macro_host_vars.comment is defined) and not ((macro_host_vars.comment == None) or (macro_host_vars.comment == '')) %}
-# {{macro_host_vars.comment}}
+# GROUP
+{% if (openbsd_pf_macro_group is defined) and not ((openbsd_pf_macro_group == None) or (openbsd_pf_macro_group == '') or (openbsd_pf_macro_group == [])) %}
+{% for macro_group in openbsd_pf_macro_group %}
+{% if (macro_group.comment is defined) and not ((macro_group.comment == None) or (macro_group.comment == '')) %}
+# {{macro_group.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in macro_host_vars.config %}
+{% for config in macro_group.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# HOST
+{% if (openbsd_pf_macro_host is defined) and not ((openbsd_pf_macro_host == None) or (openbsd_pf_macro_host == '') or (openbsd_pf_macro_host == [])) %}
+{% for macro_host in openbsd_pf_macro_host %}
+{% if (macro_host.comment is defined) and not ((macro_host.comment == None) or (macro_host.comment == '')) %}
+# {{macro_host.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in macro_host.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -81,15 +96,30 @@ udp_state="{{openbsd_pf_macro_udp_state}}"
 table <blacklist> persist file '{{openbsd_pf_table_blacklist}}'
 {% endif %}
 
-# GROUP
-{% if (openbsd_pf_table_group_vars is defined) and not ((openbsd_pf_table_group_vars == None) or (openbsd_pf_table_group_vars == '') or (openbsd_pf_table_group_vars == [])) %}
-{% for table_group_vars in openbsd_pf_table_group_vars %}
-{% if (table_group_vars.comment is defined) and not ((table_group_vars.comment == None) or (table_group_vars.comment == '')) %}
-# {{table_group_vars.comment}}
+# ALL
+{% if (openbsd_pf_table_all is defined) and not ((openbsd_pf_table_all == None) or (openbsd_pf_table_all == '') or (openbsd_pf_table_all == [])) %}
+{% for table_all in openbsd_pf_table_all %}
+{% if (table_all.comment is defined) and not ((table_all.comment == None) or (table_all.comment == '')) %}
+# {{table_all.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in table_group_vars.config %}
+{% for config in table_all.config %}
+table {{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# GROUP
+{% if (openbsd_pf_table_group is defined) and not ((openbsd_pf_table_group == None) or (openbsd_pf_table_group == '') or (openbsd_pf_table_group == [])) %}
+{% for table_group in openbsd_pf_table_group %}
+{% if (table_group.comment is defined) and not ((table_group.comment == None) or (table_group.comment == '')) %}
+# {{table_group.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in table_group.config %}
 table {{config}}
 {% endfor %}
 {% endfor %}
@@ -97,14 +127,14 @@ table {{config}}
 {% endif %}
 
 # HOST
-{% if (openbsd_pf_table_host_vars is defined) and not ((openbsd_pf_table_host_vars == None) or (openbsd_pf_table_host_vars == '') or (openbsd_pf_table_host_vars == [])) %}
-{% for table_host_vars in openbsd_pf_table_host_vars %}
-{% if (table_host_vars.comment is defined) and not ((table_host_vars.comment == None) or (table_host_vars.comment == '')) %}
-# {{table_host_vars.comment}}
+{% if (openbsd_pf_table_host is defined) and not ((openbsd_pf_table_host == None) or (openbsd_pf_table_host == '') or (openbsd_pf_table_host == [])) %}
+{% for table_host in openbsd_pf_table_host %}
+{% if (table_host.comment is defined) and not ((table_host.comment == None) or (table_host.comment == '')) %}
+# {{table_host.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in table_host_vars.config %}
+{% for config in table_host.config %}
 table {{config}}
 {% endfor %}
 {% endfor %}
@@ -153,8 +183,8 @@ set fingerprints '{{openbsd_pf_option_fingerprints}}'
 {% endif %}
 
 # Host ID
-{% if (openbsd_pf_option_host_hostid is defined) and not ((openbsd_pf_option_host_hostid == None) or (openbsd_pf_option_host_hostid == '')) %}
-set hostid {{openbsd_pf_option_host_hostid}}
+{% if (openbsd_pf_option_hostid is defined) and not ((openbsd_pf_option_hostid == None) or (openbsd_pf_option_hostid == '')) %}
+set hostid {{openbsd_pf_option_hostid}}
 {% endif %}
 
 # Limits
@@ -216,7 +246,7 @@ set skip on {% for option_skip in openbsd_pf_option_skip %}{{option_skip}}{% if 
 
 # State defaults
 {% if (openbsd_pf_option_state_defaults is defined) and not ((openbsd_pf_option_state_defaults == None) or (openbsd_pf_option_state_defaults == '') or (openbsd_pf_option_state_defaults == [])) %}
-set state-defaults {% for state_group_varss in openbsd_pf_option_state_defaults %}{{state_group_varss}}{% if not loop.last %}, {% endif %}{% endfor %}
+set state-defaults {% for state_groups in openbsd_pf_option_state_defaults %}{{state_groups}}{% if not loop.last %}, {% endif %}{% endfor %}
 
 {% endif %}
 
@@ -294,30 +324,45 @@ block in all
 {% else %}
 {% endif %}
 
-# IP GROUP
-{% if (openbsd_pf_filter_in_ip_group_vars is defined) and not ((openbsd_pf_filter_in_ip_group_vars == None) or (openbsd_pf_filter_in_ip_group_vars == '') or (openbsd_pf_filter_in_ip_group_vars == [])) %}
-{% for filter_in_ip_group_vars in openbsd_pf_filter_in_ip_group_vars %}
-{% if (filter_in_ip_group_vars.comment is defined) and not ((filter_in_ip_group_vars.comment == None) or (filter_in_ip_group_vars.comment == '')) %}
-# {{filter_in_ip_group_vars.comment}}
+# ALL
+{% if (openbsd_pf_filter_in_ip_all is defined) and not ((openbsd_pf_filter_in_ip_all == None) or (openbsd_pf_filter_in_ip_all == '') or (openbsd_pf_filter_in_ip_all == [])) %}
+{% for filter_in_ip_all in openbsd_pf_filter_in_ip_all %}
+{% if (filter_in_ip_all.comment is defined) and not ((filter_in_ip_all.comment == None) or (filter_in_ip_all.comment == '')) %}
+# {{filter_in_ip_all.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in filter_in_ip_group_vars.config %}
+{% for config in filter_in_ip_all.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
 {% else %}
 {% endif %}
 
-# IP HOST
-{% if (openbsd_pf_filter_in_ip_host_vars is defined) and not ((openbsd_pf_filter_in_ip_host_vars == None) or (openbsd_pf_filter_in_ip_host_vars == '') or (openbsd_pf_filter_in_ip_host_vars == [])) %}
-{% for filter_in_ip_host_vars in openbsd_pf_filter_in_ip_host_vars %}
-{% if (filter_in_ip_host_vars.comment is defined) and not ((filter_in_ip_host_vars.comment == None) or (filter_in_ip_host_vars.comment == '')) %}
-# {{filter_in_ip_host_vars.comment}}
+# GROUP
+{% if (openbsd_pf_filter_in_ip_group is defined) and not ((openbsd_pf_filter_in_ip_group == None) or (openbsd_pf_filter_in_ip_group == '') or (openbsd_pf_filter_in_ip_group == [])) %}
+{% for filter_in_ip_group in openbsd_pf_filter_in_ip_group %}
+{% if (filter_in_ip_group.comment is defined) and not ((filter_in_ip_group.comment == None) or (filter_in_ip_group.comment == '')) %}
+# {{filter_in_ip_group.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in filter_in_ip_host_vars.config %}
+{% for config in filter_in_ip_group.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# HOST
+{% if (openbsd_pf_filter_in_ip_host is defined) and not ((openbsd_pf_filter_in_ip_host == None) or (openbsd_pf_filter_in_ip_host == '') or (openbsd_pf_filter_in_ip_host == [])) %}
+{% for filter_in_ip_host in openbsd_pf_filter_in_ip_host %}
+{% if (filter_in_ip_host.comment is defined) and not ((filter_in_ip_host.comment == None) or (filter_in_ip_host.comment == '')) %}
+# {{filter_in_ip_host.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_in_ip_host.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -350,30 +395,45 @@ block out all
 {% else %}
 {% endif %}
 
-# IP GROUP
-{% if (openbsd_pf_filter_out_ip_group_vars is defined) and not ((openbsd_pf_filter_out_ip_group_vars == None) or (openbsd_pf_filter_out_ip_group_vars == '') or (openbsd_pf_filter_out_ip_group_vars == [])) %}
-{% for filter_out_ip_group_vars in openbsd_pf_filter_out_ip_group_vars %}
-{% if (filter_out_ip_group_vars.comment is defined) and not ((filter_out_ip_group_vars.comment == None) or (filter_out_ip_group_vars.comment == '')) %}
-# {{filter_out_ip_group_vars.comment}}
+# ALL
+{% if (openbsd_pf_filter_out_ip_all is defined) and not ((openbsd_pf_filter_out_ip_all == None) or (openbsd_pf_filter_out_ip_all == '') or (openbsd_pf_filter_out_ip_all == [])) %}
+{% for filter_out_ip_all in openbsd_pf_filter_out_ip_all %}
+{% if (filter_out_ip_all.comment is defined) and not ((filter_out_ip_all.comment == None) or (filter_out_ip_all.comment == '')) %}
+# {{filter_out_ip_all.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in filter_out_ip_group_vars.config %}
+{% for config in filter_out_ip_all.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
 {% else %}
 {% endif %}
 
-# IP HOST
-{% if (openbsd_pf_filter_out_ip_host_vars is defined) and not ((openbsd_pf_filter_out_ip_host_vars == None) or (openbsd_pf_filter_out_ip_host_vars == '') or (openbsd_pf_filter_out_ip_host_vars == [])) %}
-{% for filter_out_ip_host_vars in openbsd_pf_filter_out_ip_host_vars %}
-{% if (filter_out_ip_host_vars.comment is defined) and not ((filter_out_ip_host_vars.comment == None) or (filter_out_ip_host_vars.comment == '')) %}
-# {{filter_out_ip_host_vars.comment}}
+# GROUP
+{% if (openbsd_pf_filter_out_ip_group is defined) and not ((openbsd_pf_filter_out_ip_group == None) or (openbsd_pf_filter_out_ip_group == '') or (openbsd_pf_filter_out_ip_group == [])) %}
+{% for filter_out_ip_group in openbsd_pf_filter_out_ip_group %}
+{% if (filter_out_ip_group.comment is defined) and not ((filter_out_ip_group.comment == None) or (filter_out_ip_group.comment == '')) %}
+# {{filter_out_ip_group.comment}}
 {% else %}
 #
 {% endif %}
-{% for config in filter_out_ip_host_vars.config %}
+{% for config in filter_out_ip_group.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# HOST
+{% if (openbsd_pf_filter_out_ip_host is defined) and not ((openbsd_pf_filter_out_ip_host == None) or (openbsd_pf_filter_out_ip_host == '') or (openbsd_pf_filter_out_ip_host == [])) %}
+{% for filter_out_ip_host in openbsd_pf_filter_out_ip_host %}
+{% if (filter_out_ip_host.comment is defined) and not ((filter_out_ip_host.comment == None) or (filter_out_ip_host.comment == '')) %}
+# {{filter_out_ip_host.comment}}
+{% else %}
+#
+{% endif %}
+{% for config in filter_out_ip_host.config %}
 {{config}}
 {% endfor %}
 {% endfor %}

@@ -43,18 +43,15 @@ ENABLE
      - role: openbsd_pf
     vars:
      openbsd_pf_state: 'enable'
-     openbsd_pf_filter_in_ip_host_vars:
+     openbsd_pf_filter_in_ip_all:
+      - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
+     openbsd_pf_filter_in_ip_group:
       - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
       - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
       - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
       - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
       - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
-     openbsd_pf_filter_in_ip_group_vars:
-      - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
-     openbsd_pf_filter_out_ip_host_vars:
-      - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
-      - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
-     openbsd_pf_filter_out_ip_group_vars:
+     openbsd_pf_filter_out_ip_all:
       - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
                   'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
       - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
@@ -62,6 +59,9 @@ ENABLE
       - {config: {'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state'}, comment: 'HTTP: To internal mirror'}
       - {config: {'pass out inet proto udp to any 192.168.1.4 123 $udp_state'}, comment: 'NTP: To ntp server'}
       - {config: {'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state'}, comment: 'HTTPS: To internal mirror'}
+     openbsd_pf_filter_out_ip_group:
+      - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
+      - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
 
 DISABLE
   - hosts: all
@@ -69,18 +69,15 @@ DISABLE
      - role: openbsd_pf
     vars:
      openbsd_pf_state: 'disable'
-     openbsd_pf_filter_in_ip_host_vars:
+     openbsd_pf_filter_in_ip_all:
+      - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
+     openbsd_pf_filter_in_ip_group:
       - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
       - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
       - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
       - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
       - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
-     openbsd_pf_filter_in_ip_group_vars:
-      - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
-     openbsd_pf_filter_out_ip_host_vars:
-      - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
-      - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
-     openbsd_pf_filter_out_ip_group_vars:
+     openbsd_pf_filter_out_ip_all:
       - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
                   'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
       - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
@@ -88,6 +85,9 @@ DISABLE
       - {config: {'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state'}, comment: 'HTTP: To internal mirror'}
       - {config: {'pass out inet proto udp to any 192.168.1.4 123 $udp_state'}, comment: 'NTP: To ntp server'}
       - {config: {'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state'}, comment: 'HTTPS: To internal mirror'}
+     openbsd_pf_filter_out_ip_group:
+      - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
+      - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
 
 REMOVE
   - hosts: all
@@ -122,8 +122,8 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  openbsd_pf_blacklist_host_vars
-    Description: Define the 'openbsd_pf_blacklist_host_vars' option.
+  openbsd_pf_blacklist_all
+    Description: Define the 'openbsd_pf_blacklist_all' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -135,8 +135,21 @@ ROLE
                  {config: {'google.com'}, comment: 'Host: Domain'}]
       None    : []
 
-  openbsd_pf_blacklist_group_vars
-    Description: Define the 'openbsd_pf_blacklist_group_vars' option.
+  openbsd_pf_blacklist_group
+    Description: Define the 'openbsd_pf_blacklist_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'173.194.40.40'}, comment: 'IP: Single IP address'},
+                 {config: {'74.125.148.0/22'}, comment: 'IP: IP range'},
+                 {config: {'google.com'}, comment: 'Host: Domain'}]
+      None    : []
+
+  openbsd_pf_blacklist_host
+    Description: Define the 'openbsd_pf_blacklist_host' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -161,8 +174,24 @@ ROLE
                   comment: 'ICMP echo request: From any'}]
       None    : []
 
-  openbsd_pf_filter_in_ip_host_vars
-    Description: Define the 'openbsd_pf_filter_in_ip_host_vars' option.
+  openbsd_pf_filter_in_ip_all
+    Description: Define the 'openbsd_pf_filter_in_ip_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{config: {'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state',
+                            'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state',
+                            'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state'},
+                   comment: 'SSH: From private address space (RFC 1918)'}]
+    Options    :
+      Examples: [{config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state',
+                           'pass in inet proto tcp from 192.168.2.0/24 to port 22 $tcp_state'},
+                  comment: 'SSH: From internal networks'}]
+      None    : []
+
+  openbsd_pf_filter_in_ip_group
+    Description: Define the 'openbsd_pf_filter_in_ip_group' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -182,20 +211,25 @@ ROLE
                  {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}]
       None    : []
 
-  openbsd_pf_filter_in_ip_group_vars
-    Description: Define the 'openbsd_pf_filter_in_ip_group_vars' option.
+  openbsd_pf_filter_in_ip_host
+    Description: Define the 'openbsd_pf_filter_in_ip_host' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{config: {'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state',
-                            'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state',
-                            'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state'},
-                   comment: 'SSH: From private address space (RFC 1918)'}]
+    Default    : []
     Options    :
       Examples: [{config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state',
-                           'pass in inet proto tcp from 192.168.2.0/24 to port 22 $tcp_state'},
-                  comment: 'SSH: From internal networks'}]
+                           'pass in inet proto tcp from 192.168.2.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal networks'},
+                 {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'},
+                 {config: {'pass in inet proto tcp from any to port 53 $tcp_state',
+                           'pass in inet proto udp from any to port 53 $udp_state'}, comment: 'DNS: From any'},
+                 {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'},
+                 {config: {'pass in inet proto udp from 192.168.1.0/24 to port 123 $udp_state'}, comment: 'NTP: From internal network'},
+                 {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'},
+                 {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 514 $tcp_state'}, comment: 'From internal network'},
+                 {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'},
+                 {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}]
       None    : []
 
   openbsd_pf_filter_in_policy
@@ -224,20 +258,8 @@ ROLE
                   comment: 'ICMP echo request: To any'}]
       None    : []
 
-  openbsd_pf_filter_out_ip_host_vars
-    Description: Define the 'openbsd_pf_filter_out_ip_host_vars' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'pass out inet proto tcp to 192.168.1.0/24 port 22 $tcp_state'}, comment: 'SSH: To internal network'},
-                 {config: {'pass out inet proto tcp to 192.168.1.10 port 512 $tcp_state'}, comment: 'SYSLOG: To internal log server'}]
-      None    : []
-
-  openbsd_pf_filter_out_ip_group_vars
-    Description: Define the 'openbsd_pf_filter_out_ip_group_vars' option.
+  openbsd_pf_filter_out_ip_all
+    Description: Define the 'openbsd_pf_filter_out_ip_all' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -253,6 +275,30 @@ ROLE
                  {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'},
       None    : []
 
+  openbsd_pf_filter_out_ip_group
+    Description: Define the 'openbsd_pf_filter_out_ip_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'pass out inet proto tcp to 192.168.1.0/24 port 22 $tcp_state'}, comment: 'SSH: To internal network'},
+                 {config: {'pass out inet proto tcp to 192.168.1.10 port 512 $tcp_state'}, comment: 'SYSLOG: To internal log server'}]
+      None    : []
+
+  openbsd_pf_filter_out_ip_host
+    Description: Define the 'openbsd_pf_filter_out_ip_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'pass out inet proto tcp to 192.168.1.0/24 port 22 $tcp_state'}, comment: 'SSH: To internal network'},
+                 {config: {'pass out inet proto tcp to 192.168.1.10 port 512 $tcp_state'}, comment: 'SYSLOG: To internal log server'}]
+      None    : []
+
   openbsd_pf_filter_out_policy
     Description: Control the 'openbsd_pf_filter_out_policy' option.
     Implemented: 0.1
@@ -264,8 +310,8 @@ ROLE
       Block: 'block'
       Pass : 'pass'
 
-  openbsd_pf_macro_host_vars
-    Description: Define the 'openbsd_pf_macro_host_vars' option.
+  openbsd_pf_macro_all
+    Description: Define the 'openbsd_pf_macro_all' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -282,8 +328,26 @@ ROLE
                  {config: {"host_ntp='192.168.2.3'"}, comment: 'Host: ntp.domain.tld'}]
       None    : []
 
-  openbsd_pf_macro_group_vars
-    Description: Define the 'openbsd_pf_macro_group_vars' option.
+  openbsd_pf_macro_group
+    Description: Define the 'openbsd_pf_macro_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {"if_int='re1'"}, comment: 'Interface: internal'},
+                 {config: {"if_ext='re0'"}, comment: 'Interface: external'},
+                 {config: {"ip_1='192.168.1.1'"}, comment: 'IP: 192.168.1.1'},
+                 {config: {"ip_2='192.168.2.1'"}, comment: 'IP: 192.168.2.1'},
+                 {config: {"net_ext='192.168.1.0/24'"}, comment: 'Network: 192.168.1.0/24'},
+                 {config: {"net_int='192.168.2.0/24'"}, comment: 'Network: 192.168.2.0/24'},
+                 {config: {"host_dns='192.168.2.2'"}, comment: 'Host: dns.domain.tld'},
+                 {config: {"host_ntp='192.168.2.3'"}, comment: 'Host: ntp.domain.tld'}]
+      None    : []
+
+  openbsd_pf_macro_host
+    Description: Define the 'openbsd_pf_macro_host' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -362,8 +426,8 @@ ROLE
     Options    :
       Examples: '/etc/pf.os' | '/etc/pf.os-fingerprints'
 
-  openbsd_pf_option_host_hostid
-    Description: Define the 'openbsd_pf_option_host_hostid' option.
+  openbsd_pf_option_hostid
+    Description: Define the 'openbsd_pf_option_hostid' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -534,8 +598,20 @@ ROLE
     Options    :
       Examples: '/etc/pf.blacklist' | '/etc/pf.black-list'
 
-  openbsd_pf_table_host_vars
-    Description: Define the 'openbsd_pf_table_host_vars' option.
+  openbsd_pf_table_all
+    Description: Define the 'openbsd_pf_table_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{config: {'<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'},
+                   comment: 'Table: private address space (RFC 1918)'}]
+    Options    :
+      Examples: [{config: {"<spam> persist file '/etc/pf.spammers'"}, comment: 'Table: Spammers'}]
+      None    : []
+
+  openbsd_pf_table_group
+    Description: Define the 'openbsd_pf_table_group' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -545,14 +621,13 @@ ROLE
       Examples: [{config: {"<spam> persist file '/etc/pf.spammers'"}, comment: 'Table: Spammers'}]
       None    : []
 
-  openbsd_pf_table_group_vars
-    Description: Define the 'openbsd_pf_table_group_vars' option.
+  openbsd_pf_table_host
+    Description: Define the 'openbsd_pf_table_host' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{config: {'<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'},
-                   comment: 'Table: private address space (RFC 1918)'}]
+    Default    : []
     Options    :
       Examples: [{config: {"<spam> persist file '/etc/pf.spammers'"}, comment: 'Table: Spammers'}]
       None    : []
