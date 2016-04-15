@@ -28,15 +28,22 @@
    - unix
    - monit
 
-- name: task include host_vars
-  include: host_vars.yml
+- name: task include all
+  include: all.yml
   when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
   tags:
    - unix
    - monit
 
-- name: task include group_vars
-  include: group_vars.yml
+- name: task include group
+  include: group.yml
+  when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
+  tags:
+   - unix
+   - monit
+
+- name: task include host
+  include: host.yml
   when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
   tags:
    - unix

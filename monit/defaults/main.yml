@@ -23,13 +23,15 @@
 
 monit_state: 'enable'
 
-monit_host_vars: []
+monit_all: []
 
 monit_daemon_delay: 3
 
 monit_daemon_interval: 60
 
-monit_group_vars: []
+monit_group: []
+
+monit_host: []
 
 monit_include: "{{'/usr/local/etc/monit.d/*.cfg' if (ansible_os_family == 'FreeBSD') else '/etc/monit.d/*.cfg'}}"
 
@@ -49,7 +51,7 @@ monit_mail_message_description: '$DESCRIPTION'
 
 monit_mail_message_event: '$EVENT'
 
-monit_mail_message_host_vars: '$HOST'
+monit_mail_message_host: '$HOST'
 
 monit_mail_message_service: '$SERVICE'
 

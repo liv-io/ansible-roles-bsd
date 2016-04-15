@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : host_vars.yml
+#   |         |  Name   : host.yml
 #   |  _   _  |  Type   : ansible task file
 #   | [_] [_] |  Role   : monit
 #   |____~____|
@@ -28,7 +28,7 @@
    - "../../vars/{{ansible_os_family}}.yml"
    - "../../vars/main.yml"
   tags:
-   - host_vars
+   - host
    - unix
    - monit
 
@@ -36,35 +36,35 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create monit-host_vars
+- name: template create monit-host
   template:
    src: "{{file_src_monit_config}}"
-   dest: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else monit_name_group_vars}}.cfg"
+   dest: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else moni_name_default}}.cfg"
    mode: "{{file_mode_monit_config}}"
    owner: "{{file_owner_monit_config}}"
    group: "{{file_group_monit_config}}"
   notify:
    - command validate monit
    - service restart monit
-  with_items: monit_host_vars
+  with_items: monit_host
   when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
    - files
-   - host_vars
+   - host
    - unix
    - monit
 
-- name: file remove monit-host_vars
+- name: file remove monit-host
   file:
    state: 'absent'
-   path: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else monit_name_group_vars}}.cfg"
+   path: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else moni_name_default}}.cfg"
   notify:
    - command validate monit
    - service restart monit
-  with_items: monit_host_vars
+  with_items: monit_host
   when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
    - files
-   - host_vars
+   - host
    - unix
    - monit

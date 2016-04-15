@@ -88,7 +88,7 @@ INACTIVE
 
 CONFIG
   vars:
-    monit_group_vars:
+    monit_all:
      - name: 'openssh'
        state: 'true'
        comment: 'OpenSSH'
@@ -104,7 +104,7 @@ CONFIG
         - '  if failed host 127.0.0.1 port 22 type tcp protocol ssh with timeout 10 seconds then restart'
         - '  if 5 restarts within 5 cycles then timeout'
 
-    monit_host_vars:
+    monit_group:
      - name: 'pdns-server'
        state: 'true'
        comment: 'PowerDNS Server'
@@ -121,6 +121,7 @@ CONFIG
         - '  if failed host 127.0.0.1 port 53 type udp protocol dns then alert'
         - '  if 5 restarts within 5 cycles then timeout'
 
+    monit_host:
      - name: 'pdns-recursor'
        state: 'true'
        comment: 'PowerDNS Recursor'
@@ -222,24 +223,24 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  monit_host_vars
-    Description: Define the 'monit_host_vars' option.
+  monit_all
+    Description: Define the 'monit_all' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'apache', state: 'true', comment: Apache HTTP',
-                  config: {'check process apache with pidfile /run/apache2.pid',
-                           'group web',
-                           'start program = "/sbin/service apache2 start"',
-                           'stop program  = "/sbin/service apache2 stop"',
+      Examples: [{name: 'openssh', state: 'true', comment: OpenSSH',
+                  config: {'check process openssh with pidfile /run/sshd.pid',
+                           'group system',
+                           'start program = "/sbin/service sshd start"',
+                           'stop program  = "/sbin/service sshd stop"',
                            'if cpu > 60% for 2 cycles then alert',
                            'if cpu > 80% for 5 cycles then restart',
-                           'if totalmem > 512.0 MB for 2 cycles then alert',
-                           'if totalmem > 512.0 MB for 5 cycles then restart',
-                           'if failed host 127.0.0.1 port 80 type tcp protocol http with timeout 10 seconds then restart',
+                           'if totalmem > 256.0 MB for 2 cycles then alert',
+                           'if totalmem > 256.0 MB for 5 cycles then restart',
+                           'if failed host 127.0.0.1 port 22 type tcp protocol ssh with timeout 10 seconds then restart',
                            'if 5 restarts within 5 cycles then timeout'}]
       None    : []
 
@@ -265,24 +266,45 @@ ROLE
       Examples: 30 | 60 | 120 | 180 | 240 | 300
       None    : ''
 
-  monit_group_vars
-    Description: Define the 'monit_group_vars' option.
+  monit_group
+    Description: Define the 'monit_group' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'openssh', state: 'true', comment: OpenSSH',
-                  config: {'check process openssh with pidfile /run/sshd.pid',
-                           'group system',
-                           'start program = "/sbin/service sshd start"',
-                           'stop program  = "/sbin/service sshd stop"',
+      Examples: [{name: 'apache', state: 'true', comment: Apache HTTP',
+                  config: {'check process apache with pidfile /run/apache2.pid',
+                           'group web',
+                           'start program = "/sbin/service apache2 start"',
+                           'stop program  = "/sbin/service apache2 stop"',
                            'if cpu > 60% for 2 cycles then alert',
                            'if cpu > 80% for 5 cycles then restart',
-                           'if totalmem > 256.0 MB for 2 cycles then alert',
-                           'if totalmem > 256.0 MB for 5 cycles then restart',
-                           'if failed host 127.0.0.1 port 22 type tcp protocol ssh with timeout 10 seconds then restart',
+                           'if totalmem > 512.0 MB for 2 cycles then alert',
+                           'if totalmem > 512.0 MB for 5 cycles then restart',
+                           'if failed host 127.0.0.1 port 80 type tcp protocol http with timeout 10 seconds then restart',
+                           'if 5 restarts within 5 cycles then timeout'}]
+      None    : []
+
+  monit_host
+    Description: Define the 'monit_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'apache', state: 'true', comment: Apache HTTP',
+                  config: {'check process apache with pidfile /run/apache2.pid',
+                           'group web',
+                           'start program = "/sbin/service apache2 start"',
+                           'stop program  = "/sbin/service apache2 stop"',
+                           'if cpu > 60% for 2 cycles then alert',
+                           'if cpu > 80% for 5 cycles then restart',
+                           'if totalmem > 512.0 MB for 2 cycles then alert',
+                           'if totalmem > 512.0 MB for 5 cycles then restart',
+                           'if failed host 127.0.0.1 port 80 type tcp protocol http with timeout 10 seconds then restart',
                            'if 5 restarts within 5 cycles then timeout'}]
       None    : []
 

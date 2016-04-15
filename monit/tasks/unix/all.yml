@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : group_vars.yml
+#   |         |  Name   : all.yml
 #   |  _   _  |  Type   : ansible task file
 #   | [_] [_] |  Role   : monit
 #   |____~____|
@@ -28,7 +28,7 @@
    - "../../vars/{{ansible_os_family}}.yml"
    - "../../vars/main.yml"
   tags:
-   - group_vars
+   - all
    - unix
    - monit
 
@@ -36,7 +36,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create monit-group_vars
+- name: template create monit-all
   template:
    src: "{{file_src_monit_config}}"
    dest: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else moni_name_default}}.cfg"
@@ -46,25 +46,25 @@
   notify:
    - command validate monit
    - service restart monit
-  with_items: monit_group_vars
+  with_items: monit_all
   when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
    - files
-   - group_vars
+   - all
    - unix
    - monit
 
-- name: file remove monit-group_vars
+- name: file remove monit-all
   file:
    state: 'absent'
    path: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else moni_name_default}}.cfg"
   notify:
    - command validate monit
    - service restart monit
-  with_items: monit_group_vars
+  with_items: monit_all
   when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
    - files
-   - group_vars
+   - all
    - unix
    - monit
