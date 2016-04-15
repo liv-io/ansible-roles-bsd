@@ -23,13 +23,15 @@
 
 user_state: 'install'
 
-user_host_vars: []
+user_all: []
 
-user_group_vars: []
+user_group: []
 
 user_group_default: 'nobody'
 
 user_groups_default: ['nobody']
+
+user_host: []
 
 user_name_default: ''
 

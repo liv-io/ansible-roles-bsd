@@ -54,7 +54,7 @@ INACTIVE
 
 CONFIG
   vars:
-    user_group_vars:
+    user_all:
      - name: 'user01'
        state: 'true'
        comment: 'Example User 01'
@@ -70,6 +70,7 @@ CONFIG
         - state: 'true'
           key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAylF0+CUcLIiVcZNG3psSLzu5f4qS1yjMEPJhCiI9TCD7Vc3j+Z+o5J5SO7jt5FKzhx7vVndVMtASmTQppZ5L7d+qCNDO3rFwcM/VKKO7I8gU24tO4WKGK/3f8ACIxrfNHRslNJLjt6TFYc20ZU+60JF7objO/uN7Dh3BOhUKO8ZK8M9Tk5EnYQqm1jicfix/kozcHqzIKEM7+m3Uxq3t1sA6yRo3/R6RzTydWmvzX85852i0MBNTYM6SCy727aEJNZDPr3/rFCVd5Ai2j+z3vMjbkczNyNeifd8kCojdeDjkYEv4VQ3fG/0EsBXsXyVdzRHCAt31Yh77OlPWIR/2MQ== user01'
 
+    user_group:
      - name: 'user02'
        state: 'true'
        comment: 'Example User 02'
@@ -81,7 +82,7 @@ CONFIG
        shell: '/bin/bash'
        authorized_key: []
 
-    user_host_vars:
+    user_host:
      - name: 'user03'
        state: 'true'
        comment: 'Example User 03'
@@ -329,6 +330,32 @@ ROLE
       Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
+  user_all
+    Description: Define the 'user_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'user01', state: 'true', comment: 'Example User 01', uid: '1001', groups: {'group01'},
+                 groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
+                 password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
+      None    : []
+
+  user_group
+    Description: Define the 'user_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'user01', state: 'true', comment: 'Example User 01', uid: '1001', groups: {'group01'},
+                 groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
+                 password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
+      None    : []
+
   user_groups_default
     Description: Define the default groups for the user.
     Implemented: 0.2
@@ -340,6 +367,19 @@ ROLE
       Examples: ['group01'] |
                 ['group01', 'group02'] |
                 ['group01', 'group02', 'group03']
+
+  user_host
+    Description: Define the 'user_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'user01', state: 'true', comment: 'Example User 01', uid: '1001', groups: {'group01'},
+                 groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
+                 password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
+      None    : []
 
   user_password_default
     Description: Define the default password for the user.
