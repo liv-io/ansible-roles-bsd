@@ -1,0 +1,65 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : group.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : sudo
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+   - "../../vars/{{ansible_os_family}}.yml"
+   - "../../vars/main.yml"
+  tags:
+   - group
+   - unix
+   - sudo
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: template create sudo-group
+  template:
+   src: "{{file_src_sudo_config}}"
+   dest: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) and not (item.order == None) else ''}}{{'_' if (item.order is defined) and not (item.order == None) else ''}}{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else sudo_name_default}}"
+   mode: "{{file_mode_sudo_config}}"
+   owner: "{{file_owner_sudo_config}}"
+   group: "{{file_group_sudo_config}}"
+   validate: "{{file_validate_sudo_config}}"
+  with_items: sudo_group
+  when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  tags:
+   - files
+   - group
+   - unix
+   - sudo
+
+- name: file remove sudo-group
+  file:
+   state: 'absent'
+   path: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) and not (item.order == None) else ''}}{{'_' if (item.order is defined) and not (item.order == None) else ''}}{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else sudo_name_default}}"
+  with_items: sudo_group
+  when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  tags:
+   - files
+   - group
+   - unix
+   - sudo

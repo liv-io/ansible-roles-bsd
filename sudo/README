@@ -57,7 +57,7 @@ INACTIVE
 
 CONFIG
   vars:
-    sudo_group_vars:
+    sudo_all:
      - name: 'core'
        state: 'true'
        order: '10'
@@ -70,11 +70,7 @@ CONFIG
        comment: 'Ansible Configuration Management'
        config: ['ansible ALL=(root) NOPASSWD: ALL']
 
-     - name: 'obsolete'
-       state: 'false'
-       order: '23'
-
-    sudo_host_vars:
+    sudo_group:
      - name: 'sysadmin'
        state: 'true'
        order: '50'
@@ -93,6 +89,7 @@ CONFIG
        comment: 'Application Administrators'
        config: ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
 
+    sudo_host:
      - name: 'obsolete'
        state: 'false'
        order: '42'
@@ -173,6 +170,42 @@ ROLE
       Install : 'true' | 'yes' | 'install'
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
+
+  sudo_all
+    Description: Define the 'sudo_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'core', state: 'true', order: '10', comment: 'Core Sudoers', config: {'root ALL=(ALL) ALL'}},
+                 {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
+      None    : []
+
+  sudo_group
+    Description: Define the 'sudo_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'core', state: 'true', order: '10', comment: 'Core Sudoers', config: {'root ALL=(ALL) ALL'}},
+                 {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
+      None    : []
+
+  sudo_host
+    Description: Define the 'sudo_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'core', state: 'true', order: '10', comment: 'Core Sudoers', config: {'root ALL=(ALL) ALL'}},
+                 {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
+      None    : []
 
   sudo_name_default
     Description: Define the 'sudo_name_default' option.

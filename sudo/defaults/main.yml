@@ -23,9 +23,11 @@
 
 sudo_state: 'install'
 
-sudo_host_vars: []
+sudo_all: []
 
-sudo_group_vars: []
+sudo_group: []
+
+sudo_host: []
 
 sudo_name_default: 'default'
 
