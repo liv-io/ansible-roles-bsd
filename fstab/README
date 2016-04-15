@@ -50,7 +50,7 @@ INACTIVE
 
 CONFIG
   vars:
-    fstab_group_vars:
+    fstab_all:
      - filesystem: '192.168.1.10:/nfs'
        state: 'true'
        mountpoint: '/nfs'
@@ -60,7 +60,7 @@ CONFIG
        pass: 0
        comment: 'NFS File System'
 
-    fstab_host_vars:
+    fstab_group:
      - filesystem: '/dev/mapper/data-opt'
        state: 'true'
        mountpoint: '/opt'
@@ -70,6 +70,7 @@ CONFIG
        pass: 1
        comment: 'Optional File System'
 
+    fstab_host:
      - filesystem: '/dev/mapper/data-remove'
        state: 'false'
        mountpoint: '/remove'
@@ -181,6 +182,48 @@ ROLE
     Options    :
       Install : 'true' | 'yes' | 'install'
       Inactive: 'quiesce' | 'inactive'
+
+  fstab_all
+    Description: Define the 'fstab_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs',
+                  options: {'nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15'} dump: 0, pass: 0, comment: 'NFS File System'},
+                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs',
+                  options: {'defaults'}, dump: 1, pass: 1, comment: 'Optional File System'}]
+      None    : []
+
+  fstab_group
+    Description: Define the 'fstab_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs',
+                  options: {'nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15'} dump: 0, pass: 0, comment: 'NFS File System'},
+                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs',
+                  options: {'defaults'}, dump: 1, pass: 1, comment: 'Optional File System'}]
+      None    : []
+
+  fstab_host
+    Description: Define the 'fstab_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs',
+                  options: {'nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15'} dump: 0, pass: 0, comment: 'NFS File System'},
+                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs',
+                  options: {'defaults'}, dump: 1, pass: 1, comment: 'Optional File System'}]
+      None    : []
 
   fstab_path_default
     Description: Define the default path of the fstab file.
