@@ -4,7 +4,7 @@
 #-------------------------------------------------------------------------------
 #        o
 #    ____|____
-#   |         |  Name   : host_vars.yml
+#   |         |  Name   : all.yml
 #   |  _   _  |  Type   : ansible task file
 #   | [_] [_] |  Role   : group
 #   |____~____|
@@ -25,15 +25,15 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: group config group-host_vars
+- name: group config group-all
   group:
    state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
    name: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}"
    gid: "{{item.gid if (item.gid is defined) and not ((item.gid == None) or (item.gid == '')) else ''}}"
    system: "{{'yes' if (item.system is defined) and ((item.system == 'true') or (item.system == 'yes') or (item.system == 'enable')) else 'no'}}"
-  with_items: group_host_vars
+  with_items: group_all
   tags:
    - system
-   - host_vars
+   - all
    - unix
    - group
