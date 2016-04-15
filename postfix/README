@@ -103,8 +103,8 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  postfix_host_vars
-    Description: Define the 'postfix_host_vars' option.
+  postfix_all
+    Description: Define the 'postfix_all' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -112,19 +112,6 @@ ROLE
     Default    : []
     Options    :
       Examples: [{config: {'mynetworks = 168.100.189.0/28, 127.0.0.0/8',
-                 'mydestination = $myhostname, localhost.$mydomain, localhost'},
-                  comment: 'Custom configuration'}]
-      None    : []
-
-  postfix_group_vars
-    Description: Define the 'postfix_group_vars' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'mynetworks = 168.100.189.0/28, 127.0.0.0/8',                 
                  'mydestination = $myhostname, localhost.$mydomain, localhost'},
                   comment: 'Custom configuration'}]
       None    : []
@@ -138,6 +125,32 @@ ROLE
     Default    : "mx02.{{ansible_domain}}"
     Options    :
       Examples: 'mx02.domain.tld' | 'mail02.domain.tld'
+
+  postfix_group
+    Description: Define the 'postfix_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'mynetworks = 168.100.189.0/28, 127.0.0.0/8',
+                 'mydestination = $myhostname, localhost.$mydomain, localhost'},
+                  comment: 'Custom configuration'}]
+      None    : []
+
+  postfix_host
+    Description: Define the 'postfix_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'mynetworks = 168.100.189.0/28, 127.0.0.0/8',
+                 'mydestination = $myhostname, localhost.$mydomain, localhost'},
+                  comment: 'Custom configuration'}]
+      None    : []
 
   postfix_inet_interfaces
     Description: Define the 'postfix_inet_interfaces' option.

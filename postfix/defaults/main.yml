@@ -25,11 +25,13 @@ postfix_state: 'enable'
 
 postfix_aliases_template: "{{ansible_os_family}}"
 
-postfix_host_vars: []
-
-postfix_group_vars: []
+postfix_all: []
 
 postfix_fallback_relay: "mx02.{{ansible_domain}}"
+
+postfix_group: []
+
+postfix_host: []
 
 postfix_inet_interfaces: []
 

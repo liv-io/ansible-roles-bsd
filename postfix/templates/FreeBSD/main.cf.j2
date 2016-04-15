@@ -725,11 +725,11 @@ meta_directory = /usr/local/libexec/postfix
 shlib_directory = /usr/local/lib/postfix
 
 #-------------------------------------------------------------------------------
-# CUSTOM CONFIGURATION
+# ALL
 #-------------------------------------------------------------------------------
 
-{% if (postfix_host_vars is defined) and not ((postfix_host_vars == None) or (postfix_host_vars == '') or (postfix_host_vars == [])) %}
-{% for item in (postfix_host_vars|sort) %}
+{% if (postfix_all is defined) and not ((postfix_all == None) or (postfix_all == '') or (postfix_all == [])) %}
+{% for item in (postfix_all|sort) %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
 {% else %}
@@ -743,11 +743,29 @@ shlib_directory = /usr/local/lib/postfix
 {% endif %}
 
 #-------------------------------------------------------------------------------
-# DEFAULT CONFIGURATION
+# GROUP
 #-------------------------------------------------------------------------------
 
-{% if (postfix_group_vars is defined) and not ((postfix_group_vars == None) or (postfix_group_vars == '') or (postfix_group_vars == [])) %}
-{% for item in (postfix_group_vars|sort) %}
+{% if (postfix_group is defined) and not ((postfix_group == None) or (postfix_group == '') or (postfix_group == [])) %}
+{% for item in (postfix_group|sort) %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
+{% else %}
+#
+{% endif %}
+{% for config in (item.config|sort) %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# HOST
+#-------------------------------------------------------------------------------
+
+{% if (postfix_host is defined) and not ((postfix_host == None) or (postfix_host == '') or (postfix_host == [])) %}
+{% for item in (postfix_host|sort) %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
 {% else %}
