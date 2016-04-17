@@ -83,8 +83,3 @@ Host *
   MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160
   KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
   Protocol 2
-{% if (openssh_version_addendum is defined) and not ((openssh_version_addendum == None) or (openssh_version_addendum == '')) %}
-  VersionAddendum {{openssh_version_addendum}}
-{% else %}
-  VersionAddendum none
-{% endif %}
