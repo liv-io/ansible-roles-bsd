@@ -82,7 +82,6 @@ server {
   # SSL/TLS protocol versions
 {% if (item.ssl_protocol is defined) and not ((item.ssl_protocol == None) or (item.ssl_protocol == '') or (item.ssl_protocol == [])) %}
   ssl_protocols {% for ssl_protocol in item.ssl_protocol %}{{(ssl_protocol|e)}}{% if not loop.last %} {% endif %}{% endfor %};
-
 {% else %}
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 {% endif %}

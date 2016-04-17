@@ -14,5 +14,8 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2016-04-17)
+B: Remove unnecessary new-line after for-loop
+
 * Version 0.1.0 (2016-04-10)
 F: Initial release
