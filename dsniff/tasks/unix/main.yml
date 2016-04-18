@@ -1,0 +1,36 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : main.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : dsniff
+#   |____~____|
+#    ___//__//   Authors: robomon community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.robomon.org/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not ((dsniff_state == 'false') or (dsniff_state == 'no') or (dsniff_state == 'remove') or (dsniff_state == 'quiesce') or (dsniff_state == 'inactive'))
+  tags:
+   - unix
+   - dsniff
+
+- name: task include remove
+  include: remove.yml
+  when: (dsniff_state == 'false') or (dsniff_state == 'no') or (dsniff_state == 'remove')
+  tags:
+   - unix
+   - dsniff

@@ -1,0 +1,140 @@
+--------------------------------------------------------------------------------
+README
+--------------------------------------------------------------------------------
+        o
+    ____|____
+   |         |  Name   : dsniff
+   |  _   _  |  Type   : ansible role
+   | [_] [_] |  Group  : net-analyzer
+   |____~____|
+    ___//__//   Authors: robomon community
+   /|     |/    License: Simplified BSD License
+  //|_____|
+    _|| ||_     Webpage: http://www.robomon.org/
+   (__| |__)
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages dsniff.
+
+A collection of tools for network auditing and penetration testing. Dsniff,
+filesnarf, mailsnarf, msgsnarf, urlsnarf and webspy allow to passively monitor
+a network for interesting data (passwords, e-mail, files). Arpspoof, dnsspoof
+and macof facilitate the interception of network traffic normally unavailable
+to an attacker (e.g, due to layer-2 switching). Sshmitm and webmitm implement
+active monkey-in-the-middle attacks against redirected SSH and HTTPS sessions
+by exploiting weak bindings in ad-hoc PKI.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+     - role: dsniff
+    vars:
+     dsniff_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+     - role: dsniff
+    vars:
+     dsniff_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+     - role: dsniff
+    vars:
+     dsniff_state: 'inactive'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  dsniff_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  dsniff
+    Version: >= 2.4
+    Name   :
+      FreeBSD 10: 'idsniff'
+      OpenBSD 5 : 'dsniff'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 1.6
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 10.3-RELEASE
+      Status: Testing
+
+  OpenBSD
+    Version: 5.9
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
