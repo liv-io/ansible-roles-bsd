@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.8.1 (2016-04-24)
+I: Remove obsolete configuration 'status-utf8'
+
 * Version 0.8.0 (2016-04-09)
 F: Add support for FreeBSD 10.3-RELEASE
 F: Drop support for FreeBSD 10.2-RELEASE
