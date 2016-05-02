@@ -14,6 +14,9 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.10.1 (2016-05-02)
+B: Fix Ansible role dependencies
+
 * Version 0.10.0 (2016-05-02)
 F: Add support for 'shell_ftp_proxy' and 'shell_http_proxy' option
 

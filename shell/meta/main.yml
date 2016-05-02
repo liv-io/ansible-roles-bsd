@@ -22,5 +22,4 @@
 #-------------------------------------------------------------------------------
 
 dependencies:
- - {role: 'colorls', when: not ((shell_state == 'false') or (shell_state == 'no') or (shell_state == 'di
-sable') or (shell_state == 'quiesce') or (shell_state == 'inactive'))}
+ - {role: 'colorls', when: not ((shell_state == 'false') or (shell_state == 'no') or (shell_state == 'disable') or (shell_state == 'quiesce') or (shell_state == 'inactive'))}
