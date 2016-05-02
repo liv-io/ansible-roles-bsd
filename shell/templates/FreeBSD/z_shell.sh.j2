@@ -30,12 +30,12 @@
 
 {% if (shell_color_support is defined) and not ((shell_color_support == None) or (shell_color_support == 'false') or (shell_color_support == 'no') or (shell_color_support == 'disable')) %}
 # ls
-alias ls='ls -FI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}'
-alias la='ls -laF -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, list all files
-alias ll='ls -lFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}'  # long listing
-alias lr='ls -lRFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, list subdirectories recursively
-alias lt='ls -ltFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, sort by modification time
-alias lz='ls -lZFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '') or (shell_ls_time_style == 'false') or (shell_ls_time_style == 'no') or (shell_ls_time_style == 'disable')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, shellow MAC label
+alias ls='ls -FI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}'
+alias la='ls -laF -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, list all files
+alias ll='ls -lFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}'  # long listing
+alias lr='ls -lRFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, list subdirectories recursively
+alias lt='ls -ltFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, sort by modification time
+alias lz='ls -lZFI -G {% if (shell_ls_time_style is defined) and not ((shell_ls_time_style == None) or (shell_ls_time_style == '')) %}-D "{{(shell_ls_time_style|e)}}"{% endif %}' # long listing, shellow MAC label
 
 # grep
 alias grep='grep --color=auto'
@@ -62,25 +62,25 @@ alias ln='ln -i'
 # SHELL VARIABLES
 #-------------------------------------------------------------------------------
 
-{% if (shell_ftp_proxy is defined) and not ((shell_ftp_proxy == None) or (shell_ftp_proxy == 'false') or (shell_ftp_proxy == 'no') or (shell_ftp_proxy == 'disable')) %}
+{% if (shell_ftp_proxy is defined) and not ((shell_ftp_proxy == None) or (shell_ftp_proxy == '')) %}
 # ftp_proxy
 ftp_proxy='{{shell_ftp_proxy}}'
 export ftp_proxy
 {% endif %}
 
-{% if (shell_http_proxy is defined) and not ((shell_http_proxy == None) or (shell_http_proxy == 'false') or (shell_http_proxy == 'no') or (shell_http_proxy == 'disable')) %}
+{% if (shell_http_proxy is defined) and not ((shell_http_proxy == None) or (shell_http_proxy == '')) %}
 # http_proxy
 http_proxy='{{shell_http_proxy}}'
 export http_proxy
 {% endif %}
 
-{% if (shell_histsize is defined) and not ((shell_histsize == None) or (shell_histsize == '') or (shell_histsize == 'false') or (shell_histsize == 'no') or (shell_histsize == 'disable')) %}
+{% if (shell_histsize is defined) and not ((shell_histsize == None) or (shell_histsize == '')) %}
 # HISTSIZE
 HISTSIZE={{(shell_histsize|e)}}
 export HISTSIZE
 {% endif %}
 
-{% if (shell_pager is defined) and not ((shell_pager == None) or (shell_pager == '') or (shell_pager == 'false') or (shell_pager == 'no') or (shell_pager == 'disable')) %}
+{% if (shell_pager is defined) and not ((shell_pager == None) or (shell_pager == '')) %}
 # PAGER
 PAGER='{{(shell_pager|e)}}'
 export PAGER

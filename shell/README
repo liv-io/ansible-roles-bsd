@@ -85,7 +85,7 @@ ROLE
     Default    : ''
     Options    :
       Examples: 'ftp://proxy.domain.tld:3128'
-      Disable : '' | 'false' | 'no' | 'disable'
+      None    : ''
 
   shell_histsize
     Description: Set the size of the 'shell' history variable.
@@ -96,7 +96,7 @@ ROLE
     Default    : '262144'
     Options    :
       Examples: '32768' | '65536' | '131072' | '262144'
-      Disable : 'false' | 'no' | 'disable'
+      None    : ''
 
   shell_http_proxy
     Description: Define the 'shell_http_proxy' option.
@@ -107,7 +107,7 @@ ROLE
     Default    : ''
     Options    :
       Examples: 'http://proxy.domain.tld:3128'
-      Disable : '' | 'false' | 'no' | 'disable'
+      None    : ''
 
   shell_ls_time_style
     Description: Define the time format of the 'ls' command.
@@ -118,7 +118,7 @@ ROLE
     Default    : '%Y-%m-%d %H:%M:%S'
     Options    :
       Examples: '%Y-%m-%d %H:%M:%S' | '+%Y-%m-%d %H:%M:%S'
-      Disable : 'false' | 'no' | 'disable'
+      None    : ''
 
   shell_pager
     Description: Define the default 'PAGER' variable.
@@ -129,7 +129,7 @@ ROLE
     Default    : 'less'
     Options    :
       Examples: 'less' | 'more' | '/usr/bin/less' | '/usr/bin/more'
-      Disable : 'false' | 'no' | 'disable'
+      None    : ''
 
   shell_profile_template
     Description: Define the template source for 'profile.j2'.
