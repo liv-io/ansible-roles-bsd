@@ -62,6 +62,18 @@ alias ln='ln -i'
 # SHELL VARIABLES
 #-------------------------------------------------------------------------------
 
+{% if (shell_ftp_proxy is defined) and not ((shell_ftp_proxy == None) or (shell_ftp_proxy == 'false') or (shell_ftp_proxy == 'no') or (shell_ftp_proxy == 'disable')) %}
+# ftp_proxy
+ftp_proxy='{{shell_ftp_proxy}}'
+export ftp_proxy
+{% endif %}
+
+{% if (shell_http_proxy is defined) and not ((shell_http_proxy == None) or (shell_http_proxy == 'false') or (shell_http_proxy == 'no') or (shell_http_proxy == 'disable')) %}
+# http_proxy
+http_proxy='{{shell_http_proxy}}'
+export http_proxy
+{% endif %}
+
 {% if (shell_histsize is defined) and not ((shell_histsize == None) or (shell_histsize == '') or (shell_histsize == 'false') or (shell_histsize == 'no') or (shell_histsize == 'disable')) %}
 # HISTSIZE
 HISTSIZE={{(shell_histsize|e)}}

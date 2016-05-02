@@ -76,6 +76,17 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+  shell_ftp_proxy
+    Description: Define the 'shell_ftp_proxy' option.
+    Implemented: 0.10
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'ftp://proxy.domain.tld:3128'
+      Disable : '' | 'false' | 'no' | 'disable'
+
   shell_histsize
     Description: Set the size of the 'shell' history variable.
     Implemented: 0.2
@@ -86,6 +97,17 @@ ROLE
     Options    :
       Examples: '32768' | '65536' | '131072' | '262144'
       Disable : 'false' | 'no' | 'disable'
+
+  shell_http_proxy
+    Description: Define the 'shell_http_proxy' option.
+    Implemented: 0.10
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'http://proxy.domain.tld:3128'
+      Disable : '' | 'false' | 'no' | 'disable'
 
   shell_ls_time_style
     Description: Define the time format of the 'ls' command.
