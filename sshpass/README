@@ -32,23 +32,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: sshpass
+      - role: sshpass
     vars:
-     sshpass_state: 'install'
+      sshpass_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: sshpass
+      - role: sshpass
     vars:
-     sshpass_state: 'remove'
+      sshpass_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: sshpass
+      - role: sshpass
     vars:
-     sshpass_state: 'inactive'
+      sshpass_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -93,7 +93,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

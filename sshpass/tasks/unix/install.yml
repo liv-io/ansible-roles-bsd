@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - sshpass
+    - install
+    - unix
+    - sshpass
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,11 +40,11 @@
 
 - name: package install sshpass
   pkgng:
-   state: 'present'
-   name: "{{package_name_sshpass}}"
+    state: 'present'
+    name: "{{package_name_sshpass}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - sshpass
+    - packaging
+    - install
+    - unix
+    - sshpass
