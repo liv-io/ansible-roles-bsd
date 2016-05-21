@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((python_yaml_state == 'false') or (python_yaml_state == 'no') or (python_yaml_state == 'remove') or (python_yaml_state == 'quiesce') or (python_yaml_state == 'inactive'))
   tags:
-   - unix
-   - python_yaml
+    - unix
+    - python_yaml
 
 - name: task include remove
   include: remove.yml
   when: (python_yaml_state == 'false') or (python_yaml_state == 'no') or (python_yaml_state == 'remove')
   tags:
-   - unix
-   - python_yaml
+    - unix
+    - python_yaml
