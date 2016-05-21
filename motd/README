@@ -31,26 +31,26 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: motd
+      - role: motd
     vars:
-     motd_state: 'install'
-     motd_env_name: 'Testing'
-     motd_host_description: 'Test Host'
-     motd_motd_template: 'robomon'
+      motd_state: 'install'
+      motd_env_name: 'Testing'
+      motd_host_description: 'Test Host'
+      motd_motd_template: 'robomon'
 
 DISABLE
   - hosts: all
     roles:
-     - role: motd
+      - role: motd
     vars:
-     motd_state: 'disable'
+      motd_state: 'disable'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: motd
+      - role: motd
     vars:
-     motd_state: 'inactive'
+      motd_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -128,7 +128,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

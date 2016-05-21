@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((motd_state == 'false') or (motd_state == 'no') or (motd_state == 'disable') or (motd_state == 'quiesce') or (motd_state == 'inactive'))
   tags:
-   - unix
-   - motd
+    - unix
+    - motd
 
 - name: task include remove
   include: remove.yml
   when: (motd_state == 'false') or (motd_state == 'no') or (motd_state == 'disable')
   tags:
-   - unix
-   - motd
+    - unix
+    - motd

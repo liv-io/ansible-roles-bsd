@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_distribution}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - motd
+    - install
+    - unix
+    - motd
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,26 +40,26 @@
 
 - name: template create motd
   template:
-   src: "{{file_src_motd}}"
-   dest: "{{file_path_motd}}"
-   mode: "{{file_mode_motd}}"
-   owner: "{{file_owner_motd}}"
-   group: "{{file_group_motd}}"
+    src: "{{file_src_motd}}"
+    dest: "{{file_path_motd}}"
+    mode: "{{file_mode_motd}}"
+    owner: "{{file_owner_motd}}"
+    group: "{{file_group_motd}}"
   tags:
-   - files
-   - install
-   - unix
-   - motd
+    - files
+    - install
+    - unix
+    - motd
 
 - name: line disable motd-patch
   lineinfile:
-   state: 'present'
-   line: "#\t{{file_line_motd_patch}} # Ansible: Disable motd-patch"
-   regexp: "{{file_regexp_motd_patch}}"
-   dest: "{{file_path_motd_patch}}"
+    state: 'present'
+    line: "#\t{{file_line_motd_patch}} # Ansible: Disable motd-patch"
+    regexp: "{{file_regexp_motd_patch}}"
+    dest: "{{file_path_motd_patch}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - files
-   - install
-   - unix
-   - motd
+    - files
+    - install
+    - unix
+    - motd

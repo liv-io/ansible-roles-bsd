@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_distribution}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - motd
+    - remove
+    - unix
+    - motd
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,13 +40,13 @@
 
 - name: line enable motd-patch
   lineinfile:
-   state: 'present'
-   line: "\t{{file_line_motd_patch}} # Ansible: Enable motd-patch"
-   regexp: "{{file_regexp_motd_patch}}"
-   dest: "{{file_path_motd_patch}}"
+    state: 'present'
+    line: "\t{{file_line_motd_patch}} # Ansible: Enable motd-patch"
+    regexp: "{{file_regexp_motd_patch}}"
+    dest: "{{file_path_motd_patch}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - motd
+    - files
+    - remove
+    - unix
+    - motd
