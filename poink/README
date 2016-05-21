@@ -80,7 +80,7 @@ DEPENDENCIES
 
 PACKAGES
   poink
-    Version: >= 2.0
+    Version: >= 1.6
     Name   :
       OpenBSD 5: 'poink'
 
