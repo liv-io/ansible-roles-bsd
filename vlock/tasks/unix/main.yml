@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((vlock_state == 'false') or (vlock_state == 'no') or (vlock_state == 'remove') or (vlock_state == 'quiesce') or (vlock_state == 'inactive'))
   tags:
-   - unix
-   - vlock
+    - unix
+    - vlock
 
 - name: task include remove
   include: remove.yml
   when: (vlock_state == 'false') or (vlock_state == 'no') or (vlock_state == 'remove')
   tags:
-   - unix
-   - vlock
+    - unix
+    - vlock
