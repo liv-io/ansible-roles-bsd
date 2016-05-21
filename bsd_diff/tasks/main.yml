@@ -25,4 +25,4 @@
   include: bsd/main.yml
   when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release == '10.3-RELEASE'))
   tags:
-   - bsd_diff
+    - bsd_diff

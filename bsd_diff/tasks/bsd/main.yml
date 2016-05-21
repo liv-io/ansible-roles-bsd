@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((bsd_diff_state == 'false') or (bsd_diff_state == 'no') or (bsd_diff_state == 'remove') or (bsd_diff_state == 'quiesce') or (bsd_diff_state == 'inactive'))
   tags:
-   - bsd
-   - bsd_diff
+    - bsd
+    - bsd_diff
 
 - name: task include remove
   include: remove.yml
   when: (bsd_diff_state == 'false') or (bsd_diff_state == 'no') or (bsd_diff_state == 'remove')
   tags:
-   - bsd
-   - bsd_diff
+    - bsd
+    - bsd_diff
