@@ -31,37 +31,37 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: openbsd_rc
+      - role: openbsd_rc
     vars:
-     openbsd_rc_state: 'install'
-     openbsd_rc_path_default: '/etc/rc.conf.local'
+      openbsd_rc_state: 'install'
+      openbsd_rc_path_default: '/etc/rc.conf.local'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: openbsd_rc
+      - role: openbsd_rc
     vars:
-     openbsd_rc_state: 'inactive'
+      openbsd_rc_state: 'inactive'
 
 CONFIG
   vars:
     openbsd_rc_all:
-     - name: 'dhcpd_flags'
-       value: 'NO'
-       state: 'true'
-       comment: "Disable service 'dhcpd'"
+      - name: 'dhcpd_flags'
+        value: 'NO'
+        state: 'true'
+        comment: "Disable service 'dhcpd'"
 
     openbsd_rc_group:
-     - name: 'nfs_server'
-       value: 'YES'
-       state: 'true'
-       comment: 'Enable the NFS server'
+      - name: 'nfs_server'
+        value: 'YES'
+        state: 'true'
+        comment: 'Enable the NFS server'
 
     openbsd_rc_host:
-     - name: 'nfsd_flags'
-       value: '-tun 8'
-       state: 'true'
-       comment: 'Start 4 copies of the NFS server'
+      - name: 'nfsd_flags'
+        value: '-tun 8'
+        state: 'true'
+        comment: 'Start 4 copies of the NFS server'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -204,7 +204,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

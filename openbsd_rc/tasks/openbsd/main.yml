@@ -25,19 +25,19 @@
   include: all.yml
   when: not ((openbsd_rc_state == 'false') or (openbsd_rc_state == 'no') or (openbsd_rc_state == 'remove') or (openbsd_rc_state == 'quiesce') or (openbsd_rc_state == 'inactive'))
   tags:
-   - openbsd
-   - openbsd_rc
+    - openbsd
+    - openbsd_rc
 
 - name: task include group
   include: group.yml
   when: not ((openbsd_rc_state == 'false') or (openbsd_rc_state == 'no') or (openbsd_rc_state == 'remove') or (openbsd_rc_state == 'quiesce') or (openbsd_rc_state == 'inactive'))
   tags:
-   - openbsd
-   - openbsd_rc
+    - openbsd
+    - openbsd_rc
 
 - name: task include host
   include: host.yml
   when: not ((openbsd_rc_state == 'false') or (openbsd_rc_state == 'no') or (openbsd_rc_state == 'remove') or (openbsd_rc_state == 'quiesce') or (openbsd_rc_state == 'inactive'))
   tags:
-   - openbsd
-   - openbsd_rc
+    - openbsd
+    - openbsd_rc
