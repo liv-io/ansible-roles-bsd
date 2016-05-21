@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((ssldump_state == 'false') or (ssldump_state == 'no') or (ssldump_state == 'remove') or (ssldump_state == 'quiesce') or (ssldump_state == 'inactive'))
   tags:
-   - unix
-   - ssldump
+    - unix
+    - ssldump
 
 - name: task include remove
   include: remove.yml
   when: (ssldump_state == 'false') or (ssldump_state == 'no') or (ssldump_state == 'remove')
   tags:
-   - unix
-   - ssldump
+    - unix
+    - ssldump
