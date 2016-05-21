@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - monit
+    - remove
+    - unix
+    - monit
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -42,28 +44,28 @@
   failed_when: (register_info_monit.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - remove
-   - unix
-   - monit
+    - commands
+    - remove
+    - unix
+    - monit
 
 - name: command disable monit
   command: "{{command_cmd_disable_monit}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
   tags:
-   - commands
-   - remove
-   - unix
-   - monit
+    - commands
+    - remove
+    - unix
+    - monit
 
 - name: command stop monit
   command: "{{command_cmd_stop_monit}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
   tags:
-   - commands
-   - remove
-   - unix
-   - monit
+    - commands
+    - remove
+    - unix
+    - monit
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -71,25 +73,25 @@
 
 - name: package remove monit
   pkgng:
-   state: 'absent'
-   name: "{{package_name_monit}}"
+    state: 'absent'
+    name: "{{package_name_monit}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - monit
+    - packaging
+    - remove
+    - unix
+    - monit
 
 - name: package remove monit
   openbsd_pkg:
-   state: 'absent'
-   name: "{{package_name_monit}}"
+    state: 'absent'
+    name: "{{package_name_monit}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - monit
+    - packaging
+    - remove
+    - unix
+    - monit
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -97,33 +99,33 @@
 
 - name: line remove monit_enable
   lineinfile:
-   state: 'absent'
-   line: "{{file_line_monit_enable}}=\"NO\" # Ansible: Remove monit"
-   regexp: "^{{file_line_monit_enable}}="
-   dest: "{{file_path_monit_enable}}"
+    state: 'absent'
+    line: "{{file_line_monit_enable}}=\"NO\" # Ansible: Remove monit"
+    regexp: "^{{file_line_monit_enable}}="
+    dest: "{{file_path_monit_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - monit
+    - files
+    - remove
+    - unix
+    - monit
 
 - name: file remove monit.d
   file:
-   state: 'absent'
-   path: "{{file_path_monit_d}}"
+    state: 'absent'
+    path: "{{file_path_monit_d}}"
   tags:
-   - files
-   - remove
-   - unix
-   - monit
+    - files
+    - remove
+    - unix
+    - monit
 
 - name: file remove monitrc
   file:
-   state: 'absent'
-   path: "{{file_path_monitrc}}"
+    state: 'absent'
+    path: "{{file_path_monitrc}}"
   tags:
-   - files
-   - remove
-   - unix
-   - monit
+    - files
+    - remove
+    - unix
+    - monit

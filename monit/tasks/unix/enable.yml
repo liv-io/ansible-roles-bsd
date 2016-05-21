@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - enable
-   - unix
-   - monit
+    - enable
+    - unix
+    - monit
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,32 +40,32 @@
 
 - name: template create monitrc
   template:
-   src: "{{file_src_monitrc}}"
-   dest: "{{file_path_monitrc}}"
-   mode: "{{file_mode_monitrc}}"
-   owner: "{{file_owner_monitrc}}"
-   group: "{{file_group_monitrc}}"
+    src: "{{file_src_monitrc}}"
+    dest: "{{file_path_monitrc}}"
+    mode: "{{file_mode_monitrc}}"
+    owner: "{{file_owner_monitrc}}"
+    group: "{{file_group_monitrc}}"
   notify:
-   - command validate monit
-   - service restart monit
+    - command validate monit
+    - service restart monit
   tags:
-   - files
-   - enable
-   - unix
-   - monit
+    - files
+    - enable
+    - unix
+    - monit
 
 - name: line enable monit_enable
   lineinfile:
-   state: 'present'
-   line: "{{file_line_monit_enable}}=\"YES\" # Ansible: Enable monit"
-   regexp: "^{{file_line_monit_enable}}="
-   dest: "{{file_path_monit_enable}}"
+    state: 'present'
+    line: "{{file_line_monit_enable}}=\"YES\" # Ansible: Enable monit"
+    regexp: "^{{file_line_monit_enable}}="
+    dest: "{{file_path_monit_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - enable
-   - unix
-   - monit
+    - files
+    - enable
+    - unix
+    - monit
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -76,19 +78,19 @@
   failed_when: (register_status_monit.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - enable
-   - unix
-   - monit
+    - commands
+    - enable
+    - unix
+    - monit
 
 - name: command enable monit
   command: "{{command_cmd_enable_monit}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_monit.rc == 1)
   tags:
-   - commands
-   - enable
-   - unix
-   - monit
+    - commands
+    - enable
+    - unix
+    - monit
 
 - name: command check monit
   command: "{{command_cmd_check_monit}}"
@@ -97,19 +99,19 @@
   failed_when: (register_check_monit.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - enable
-   - unix
-   - monit
+    - commands
+    - enable
+    - unix
+    - monit
 
 - name: command start monit
   command: "{{command_cmd_start_monit}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_monit.rc == 1)
   tags:
-   - commands
-   - enable
-   - unix
-   - monit
+    - commands
+    - enable
+    - unix
+    - monit
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -117,12 +119,12 @@
 
 - name: service start monit
   service:
-   state: 'started'
-   enabled: 'yes'
-   name: "{{service_name_monit}}"
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_monit}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - system
-   - enable
-   - unix
-   - monit
+    - system
+    - enable
+    - unix
+    - monit

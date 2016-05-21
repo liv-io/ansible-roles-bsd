@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - group
-   - unix
-   - monit
+    - group
+    - unix
+    - monit
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,33 +40,33 @@
 
 - name: template create monit-group
   template:
-   src: "{{file_src_monit_config}}"
-   dest: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else moni_name_default}}.cfg"
-   mode: "{{file_mode_monit_config}}"
-   owner: "{{file_owner_monit_config}}"
-   group: "{{file_group_monit_config}}"
+    src: "{{file_src_monit_config}}"
+    dest: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else moni_name_default}}.cfg"
+    mode: "{{file_mode_monit_config}}"
+    owner: "{{file_owner_monit_config}}"
+    group: "{{file_group_monit_config}}"
   notify:
-   - command validate monit
-   - service restart monit
-  with_items: monit_group
+    - command validate monit
+    - service restart monit
+  with_items: "{{monit_group}}"
   when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
-   - files
-   - group
-   - unix
-   - monit
+    - files
+    - group
+    - unix
+    - monit
 
 - name: file remove monit-group
   file:
-   state: 'absent'
-   path: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else moni_name_default}}.cfg"
+    state: 'absent'
+    path: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else moni_name_default}}.cfg"
   notify:
-   - command validate monit
-   - service restart monit
-  with_items: monit_group
+    - command validate monit
+    - service restart monit
+  with_items: "{{monit_group}}"
   when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
-   - files
-   - group
-   - unix
-   - monit
+    - files
+    - group
+    - unix
+    - monit
