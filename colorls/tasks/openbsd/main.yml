@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((colorls_state == 'false') or (colorls_state == 'no') or (colorls_state == 'remove') or (colorls_state == 'quiesce') or (colorls_state == 'inactive'))
   tags:
-   - openbsd
-   - colorls
+    - openbsd
+    - colorls
 
 - name: task include remove
   include: remove.yml
   when: (colorls_state == 'false') or (colorls_state == 'no') or (colorls_state == 'remove')
   tags:
-   - openbsd
-   - colorls
+    - openbsd
+    - colorls
