@@ -30,27 +30,27 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: root
+      - role: root
     vars:
-     root_state: 'install'
-     root_password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
-     root_shell: '/bin/sh'
+      root_state: 'install'
+      root_password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
+      root_shell: '/bin/sh'
 
 REMOVE
   - hosts: all
     roles:
-     - role: root
+      - role: root
     vars:
-     root_state: 'remove'
-     root_password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
-     root_shell: '/bin/sh'
+      root_state: 'remove'
+      root_password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1'
+      root_shell: '/bin/sh'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: root
+      - role: root
     vars:
-     root_state: 'inactive'
+      root_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -212,7 +212,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

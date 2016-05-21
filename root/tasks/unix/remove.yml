@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - root
+    - remove
+    - unix
+    - root
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -38,12 +40,12 @@
 
 - name: authorized_key remove root
   authorized_key:
-   state: 'absent'
-   user: "{{authorized_key_user_root}}"
-   key: "{{'' if (root_authorized_key is defined) and ((root_authorized_key == 'false') or (root_authorized_key == 'no') or (root_authorized_key == 'remove')) else root_authorized_key}}"
-   key_options: "{{'' if (root_authorized_key_options is defined) and ((root_authorized_key_options == 'false') or (root_authorized_key_options == 'no') or (root_authorized_key_options == 'remove')) else root_authorized_key_options}}"
+    state: 'absent'
+    user: "{{authorized_key_user_root}}"
+    key: "{{'' if (root_authorized_key is defined) and ((root_authorized_key == 'false') or (root_authorized_key == 'no') or (root_authorized_key == 'remove')) else root_authorized_key}}"
+    key_options: "{{'' if (root_authorized_key_options is defined) and ((root_authorized_key_options == 'false') or (root_authorized_key_options == 'no') or (root_authorized_key_options == 'remove')) else root_authorized_key_options}}"
   tags:
-   - system
-   - remove
-   - unix
-   - root
+    - system
+    - remove
+    - unix
+    - root
