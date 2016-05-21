@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((unzip_state == 'false') or (unzip_state == 'no') or (unzip_state == 'remove') or (unzip_state == 'quiesce') or (unzip_state == 'inactive'))
   tags:
-   - unix
-   - unzip
+    - unix
+    - unzip
 
 - name: task include remove
   include: remove.yml
   when: (unzip_state == 'false') or (unzip_state == 'no') or (unzip_state == 'remove')
   tags:
-   - unix
-   - unzip
+    - unix
+    - unzip
