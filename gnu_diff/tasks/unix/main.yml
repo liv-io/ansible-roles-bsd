@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((gnu_diff_state == 'false') or (gnu_diff_state == 'no') or (gnu_diff_state == 'remove') or (gnu_diff_state == 'quiesce') or (gnu_diff_state == 'inactive'))
   tags:
-   - unix
-   - gnu_diff
+    - unix
+    - gnu_diff
 
 - name: task include remove
   include: remove.yml
   when: (gnu_diff_state == 'false') or (gnu_diff_state == 'no') or (gnu_diff_state == 'remove')
   tags:
-   - unix
-   - gnu_diff
+    - unix
+    - gnu_diff

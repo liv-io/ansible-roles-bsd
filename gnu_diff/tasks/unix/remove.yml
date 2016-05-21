@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - gnu_diff
+    - remove
+    - unix
+    - gnu_diff
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package remove gnu-diff
   pkgng:
-   state: 'absent'
-   name: "{{package_name_gnu_diff}}"
+    state: 'absent'
+    name: "{{package_name_gnu_diff}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - gnu_diff
+    - packaging
+    - remove
+    - unix
+    - gnu_diff
 
 - name: package remove gnu-diff
   openbsd_pkg:
-   state: 'absent'
-   name: "{{package_name_gnu_diff}}"
+    state: 'absent'
+    name: "{{package_name_gnu_diff}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - gnu_diff
+    - packaging
+    - remove
+    - unix
+    - gnu_diff
