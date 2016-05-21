@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((echoping_state == 'false') or (echoping_state == 'no') or (echoping_state == 'remove') or (echoping_state == 'quiesce') or (echoping_state == 'inactive'))
   tags:
-   - unix
-   - echoping
+    - unix
+    - echoping
 
 - name: task include remove
   include: remove.yml
   when: (echoping_state == 'false') or (echoping_state == 'no') or (echoping_state == 'remove')
   tags:
-   - unix
-   - echoping
+    - unix
+    - echoping

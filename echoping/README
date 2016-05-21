@@ -18,8 +18,8 @@ DESCRIPTION
 
 This role manages echoping.
 
-"echoping" is a small program to test (approximatively) performances of a 
-remote host by sending it TCP "echo" (or other protocol) packets.
+"echoping" is a small program to test (approximatively) performances of a remote
+host by sending it TCP "echo" (or other protocol) packets.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.
@@ -31,23 +31,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: echoping
+      - role: echoping
     vars:
-     echoping_state: 'install'
+      echoping_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: echoping
+      - role: echoping
     vars:
-     echoping_state: 'remove'
+      echoping_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: echoping
+      - role: echoping
     vars:
-     echoping_state: 'inactive'
+      echoping_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -93,7 +93,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
