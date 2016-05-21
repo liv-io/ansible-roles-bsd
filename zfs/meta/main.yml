@@ -22,5 +22,5 @@
 #-------------------------------------------------------------------------------
 
 dependencies:
- - {role: 'common'}
- - {role: 'mailx', when: (zfs_monitor_mail_state == 'true') or (zfs_monitor_mail_state == 'yes') or (zfs_monitor_mail_state == 'enable')}
+  - {role: 'common'}
+  - {role: 'mailx', when: (zfs_monitor_mail_state == 'true') or (zfs_monitor_mail_state == 'yes') or (zfs_monitor_mail_state == 'enable')}
