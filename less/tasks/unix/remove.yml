@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - less
+    - remove
+    - unix
+    - less
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,11 +40,11 @@
 
 - name: package remove less
   pkgng:
-   state: 'absent'
-   name: "{{package_name_less}}"
+    state: 'absent'
+    name: "{{package_name_less}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - less
+    - packaging
+    - remove
+    - unix
+    - less
