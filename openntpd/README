@@ -33,41 +33,41 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: openntpd
+      - role: openntpd
     vars:
-     openntpd_state: 'install'
+      openntpd_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
-     - role: openntpd
+      - role: openntpd
     vars:
-     openntpd_state: 'enable'
-     openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                        type: 'single', comment: 'Server: Single NTP servers'}]
+      openntpd_state: 'enable'
+      openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                         type: 'single', comment: 'Server: Single NTP servers'}]
 
 DISABLE
   - hosts: all
     roles:
-     - role: openntpd
+      - role: openntpd
     vars:
-     openntpd_state: 'disable'
-     openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                        type: 'single', comment: 'Server: Single NTP servers'}]
+      openntpd_state: 'disable'
+      openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                         type: 'single', comment: 'Server: Single NTP servers'}]
 
 REMOVE
   - hosts: all
     roles:
-     - role: openntpd
+      - role: openntpd
     vars:
-     openntpd_state: 'remove'
+      openntpd_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: openntpd
+      - role: openntpd
     vars:
-     openntpd_state: 'inactive'
+      openntpd_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -156,7 +156,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

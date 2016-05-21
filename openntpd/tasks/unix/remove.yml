@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - openntpd
+    - remove
+    - unix
+    - openntpd
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -43,19 +45,19 @@
   failed_when: (register_status_openntpd.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - remove
-   - unix
-   - openntpd
+    - commands
+    - remove
+    - unix
+    - openntpd
 
 - name: command disable openntpd
   command: "{{command_cmd_disable_openntpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
   tags:
-   - commands
-   - remove
-   - unix
-   - openntpd
+    - commands
+    - remove
+    - unix
+    - openntpd
 
 - name: command check openntpd
   command: "{{command_cmd_check_openntpd}}"
@@ -64,19 +66,19 @@
   failed_when: (register_check_openntpd.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - remove
-   - unix
-   - openntpd
+    - commands
+    - remove
+    - unix
+    - openntpd
 
 - name: command stop openntpd
   command: "{{command_cmd_stop_openntpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
   tags:
-   - commands
-   - remove
-   - unix
-   - openntpd
+    - commands
+    - remove
+    - unix
+    - openntpd
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -84,14 +86,14 @@
 
 - name: package remove openntpd
   pkgng:
-   state: 'absent'
-   name: "{{package_name_openntpd}}"
+    state: 'absent'
+    name: "{{package_name_openntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - openntpd
+    - packaging
+    - remove
+    - unix
+    - openntpd
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -99,24 +101,24 @@
 
 - name: line remove openntpd_enable
   lineinfile:
-   state: 'absent'
-   line: "{{file_line_openntpd_enable}}=\"NO\" # Ansible: Remove openntpd"
-   regexp: "^{{file_line_openntpd_enable}}="
-   dest: "{{file_path_openntpd_enable}}"
+    state: 'absent'
+    line: "{{file_line_openntpd_enable}}=\"NO\" # Ansible: Remove openntpd"
+    regexp: "^{{file_line_openntpd_enable}}="
+    dest: "{{file_path_openntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - openntpd
+    - files
+    - remove
+    - unix
+    - openntpd
 
 - name: file remove ntpd.conf
   file:
-   state: 'absent'
-   path: "{{file_path_ntpd_conf}}"
+    state: 'absent'
+    path: "{{file_path_ntpd_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - openntpd
+    - files
+    - remove
+    - unix
+    - openntpd
