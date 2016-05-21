@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_distribution}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - bsd
-   - passwd
+    - install
+    - bsd
+    - passwd
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,39 +40,39 @@
 
 - name: file ensure master.passwd
   file:
-   state: 'file'
-   dest: "{{file_path_master_passwd}}"
-   mode: "{{file_mode_master_passwd}}"
-   owner: "{{file_owner_master_passwd}}"
-   group: "{{file_group_master_passwd}}"
+    state: 'file'
+    dest: "{{file_path_master_passwd}}"
+    mode: "{{file_mode_master_passwd}}"
+    owner: "{{file_owner_master_passwd}}"
+    group: "{{file_group_master_passwd}}"
   tags:
-   - files
-   - install
-   - bsd
-   - passwd
+    - files
+    - install
+    - bsd
+    - passwd
 
 - name: file ensure pwd.db
   file:
-   state: 'file'
-   dest: "{{file_path_pwd_db}}"
-   mode: "{{file_mode_pwd_db}}"
-   owner: "{{file_owner_pwd_db}}"
-   group: "{{file_group_pwd_db}}"
+    state: 'file'
+    dest: "{{file_path_pwd_db}}"
+    mode: "{{file_mode_pwd_db}}"
+    owner: "{{file_owner_pwd_db}}"
+    group: "{{file_group_pwd_db}}"
   tags:
-   - files
-   - install
-   - bsd
-   - passwd
+    - files
+    - install
+    - bsd
+    - passwd
 
 - name: file ensure spwd.db
   file:
-   state: 'file'
-   dest: "{{file_path_spwd_db}}"
-   mode: "{{file_mode_spwd_db}}"
-   owner: "{{file_owner_spwd_db}}"
-   group: "{{file_group_spwd_db}}"
+    state: 'file'
+    dest: "{{file_path_spwd_db}}"
+    mode: "{{file_mode_spwd_db}}"
+    owner: "{{file_owner_spwd_db}}"
+    group: "{{file_group_spwd_db}}"
   tags:
-   - files
-   - install
-   - bsd
-   - passwd
+    - files
+    - install
+    - bsd
+    - passwd

@@ -25,10 +25,10 @@
   include: unix/main.yml
   when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release == '10.3-RELEASE')) or ((ansible_os_family == 'OpenBSD') and (ansible_distribution_release == '5.9'))
   tags:
-   - passwd
+    - passwd
 
 - name: task include bsd
   include: bsd/main.yml
   when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release == '10.3-RELEASE')) or ((ansible_os_family == 'OpenBSD') and (ansible_distribution_release == '5.9'))
   tags:
-   - passwd
+    - passwd

@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_distribution}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - passwd
+    - install
+    - unix
+    - passwd
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,13 +40,13 @@
 
 - name: file ensure passwd
   file:
-   state: 'file'
-   dest: "{{file_path_passwd}}"
-   mode: "{{file_mode_passwd}}"
-   owner: "{{file_owner_passwd}}"
-   group: "{{file_group_passwd}}"
+    state: 'file'
+    dest: "{{file_path_passwd}}"
+    mode: "{{file_mode_passwd}}"
+    owner: "{{file_owner_passwd}}"
+    group: "{{file_group_passwd}}"
   tags:
-   - files
-   - install
-   - unix
-   - passwd
+    - files
+    - install
+    - unix
+    - passwd
