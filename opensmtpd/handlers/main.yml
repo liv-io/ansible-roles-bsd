@@ -24,9 +24,11 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../vars/{{ansible_os_family}}.yml"
-   - "../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -41,10 +43,10 @@
 
 - name: service start opensmtpd
   service:
-   state: 'started'
-   name: "{{service_name_opensmtpd}}"
+    state: 'started'
+    name: "{{service_name_opensmtpd}}"
 
 - name: service restart opensmtpd
   service:
-   state: 'restarted'
-   name: "{{service_name_opensmtpd}}"
+    state: 'restarted'
+    name: "{{service_name_opensmtpd}}"

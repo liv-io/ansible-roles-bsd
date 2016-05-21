@@ -25,26 +25,26 @@
   include: install.yml
   when: not ((opensmtpd_state == 'false') or (opensmtpd_state == 'no') or (opensmtpd_state == 'remove') or (opensmtpd_state == 'quiesce') or (opensmtpd_state == 'inactive'))
   tags:
-   - unix
-   - opensmtpd
+    - unix
+    - opensmtpd
 
 - name: task include enable
   include: enable.yml
   when: (opensmtpd_state == 'start') or (opensmtpd_state == 'on') or (opensmtpd_state == 'enable')
   tags:
-   - unix
-   - opensmtpd
+    - unix
+    - opensmtpd
 
 - name: task include disable
   include: disable.yml
   when: (opensmtpd_state == 'stop') or (opensmtpd_state == 'off') or (opensmtpd_state == 'disable')
   tags:
-   - unix
-   - opensmtpd
+    - unix
+    - opensmtpd
 
 - name: task include remove
   include: remove.yml
   when: (opensmtpd_state == 'false') or (opensmtpd_state == 'no') or (opensmtpd_state == 'remove')
   tags:
-   - unix
-   - opensmtpd
+    - unix
+    - opensmtpd

@@ -32,51 +32,51 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: opensmtpd
+      - role: opensmtpd
     vars:
-     opensmtpd_state: 'install'
+      opensmtpd_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
-     - role: opensmtpd
+      - role: opensmtpd
     vars:
-     opensmtpd_state: 'enable'
-     opensmtpd_accept_all:
-      - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
-      - {config: {'accept for any relay via tls+auth://mail.domain.tld auth <secrets>'}, comment: 'Accept: Relay'}
-     opensmtpd_table_all:
-      - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}
-      - {config: {'table secrets file:/usr/local/etc/mail/secrets'}, comment: 'Table: Secrets'}
-     opensmtpd_root_mail_address: 'root@domain.tld'
+      opensmtpd_state: 'enable'
+      opensmtpd_accept_all:
+        - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
+        - {config: {'accept for any relay via tls+auth://mail.domain.tld auth <secrets>'}, comment: 'Accept: Relay'}
+      opensmtpd_table_all:
+        - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}
+        - {config: {'table secrets file:/usr/local/etc/mail/secrets'}, comment: 'Table: Secrets'}
+      opensmtpd_root_mail_address: 'root@domain.tld'
 
 DISABLE
   - hosts: all
     roles:
-     - role: opensmtpd
+      - role: opensmtpd
     vars:
-     opensmtpd_state: 'disable'
-     opensmtpd_accept_all:
-      - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
-      - {config: {'accept for any relay via tls+auth://mail.domain.tld auth <secrets>'}, comment: 'Accept: Relay'}
-     opensmtpd_table_all:
-      - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}
-      - {config: {'table secrets file:/usr/local/etc/mail/secrets'}, comment: 'Table: Secrets'}
-     opensmtpd_root_mail_address: 'root@domain.tld'
+      opensmtpd_state: 'disable'
+      opensmtpd_accept_all:
+        - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
+        - {config: {'accept for any relay via tls+auth://mail.domain.tld auth <secrets>'}, comment: 'Accept: Relay'}
+      opensmtpd_table_all:
+        - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}
+        - {config: {'table secrets file:/usr/local/etc/mail/secrets'}, comment: 'Table: Secrets'}
+      opensmtpd_root_mail_address: 'root@domain.tld'
 
 REMOVE
   - hosts: all
     roles:
-     - role: opensmtpd
+      - role: opensmtpd
     vars:
-     opensmtpd_state: 'remove'
+      opensmtpd_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: opensmtpd
+      - role: opensmtpd
     vars:
-     opensmtpd_state: 'inactive'
+      opensmtpd_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -265,7 +265,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - enable
-   - unix
-   - opensmtpd
+    - enable
+    - unix
+    - opensmtpd
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,47 +40,47 @@
 
 - name: template create aliases
   template:
-   src: "{{file_src_aliases}}"
-   dest: "{{file_path_aliases}}"
-   mode: "{{file_mode_aliases}}"
-   owner: "{{file_owner_aliases}}"
-   group: "{{file_group_aliases}}"
+    src: "{{file_src_aliases}}"
+    dest: "{{file_path_aliases}}"
+    mode: "{{file_mode_aliases}}"
+    owner: "{{file_owner_aliases}}"
+    group: "{{file_group_aliases}}"
   notify:
-   - service start opensmtpd
-   - command smtpctl aliases
-   - service restart opensmtpd
+    - service start opensmtpd
+    - command smtpctl aliases
+    - service restart opensmtpd
   tags:
-   - files
-   - enable
-   - unix
-   - opensmtpd
+    - files
+    - enable
+    - unix
+    - opensmtpd
 
 - name: template create smtpd.conf
   template:
-   src: "{{file_src_smtpd_conf}}"
-   dest: "{{file_path_smtpd_conf}}"
-   mode: "{{file_mode_smtpd_conf}}"
-   owner: "{{file_owner_smtpd_conf}}"
-   group: "{{file_group_smtpd_conf}}"
+    src: "{{file_src_smtpd_conf}}"
+    dest: "{{file_path_smtpd_conf}}"
+    mode: "{{file_mode_smtpd_conf}}"
+    owner: "{{file_owner_smtpd_conf}}"
+    group: "{{file_group_smtpd_conf}}"
   notify: service restart opensmtpd
   tags:
-   - files
-   - enable
-   - unix
-   - opensmtpd
+    - files
+    - enable
+    - unix
+    - opensmtpd
 
 - name: line enable smtpd_enable
   lineinfile:
-   state: 'present'
-   line: "{{file_line_smtpd_enable}}=\"YES\" # Ansible: Enable opensmtpd"
-   regexp: "^{{file_line_smtpd_enable}}="
-   dest: "{{file_path_smtpd_enable}}"
+    state: 'present'
+    line: "{{file_line_smtpd_enable}}=\"YES\" # Ansible: Enable opensmtpd"
+    regexp: "^{{file_line_smtpd_enable}}="
+    dest: "{{file_path_smtpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - enable
-   - unix
-   - opensmtpd
+    - files
+    - enable
+    - unix
+    - opensmtpd
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -91,19 +93,19 @@
   failed_when: (register_status_opensmtpd.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - enable
-   - unix
-   - opensmtpd
+    - commands
+    - enable
+    - unix
+    - opensmtpd
 
 - name: command enable opensmtpd
   command: "{{command_cmd_enable_opensmtpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 1)
   tags:
-   - commands
-   - enable
-   - unix
-   - opensmtpd
+    - commands
+    - enable
+    - unix
+    - opensmtpd
 
 - name: command check opensmtpd
   command: "{{command_cmd_check_opensmtpd}}"
@@ -112,19 +114,19 @@
   failed_when: (register_check_opensmtpd.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - enable
-   - unix
-   - opensmtpd
+    - commands
+    - enable
+    - unix
+    - opensmtpd
 
 - name: command start opensmtpd
   command: "{{command_cmd_start_opensmtpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 1)
   tags:
-   - commands
-   - enable
-   - unix
-   - opensmtpd
+    - commands
+    - enable
+    - unix
+    - opensmtpd
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -132,12 +134,12 @@
 
 - name: service start opensmtpd
   service:
-   state: 'started'
-   enabled: 'yes'
-   name: "{{service_name_opensmtpd}}"
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_opensmtpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - system
-   - enable
-   - unix
-   - opensmtpd
+    - system
+    - enable
+    - unix
+    - opensmtpd
