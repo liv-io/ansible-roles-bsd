@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - netcat
+    - install
+    - unix
+    - netcat
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,11 +40,11 @@
 
 - name: package install netcat
   pkgng:
-   state: 'present'
-   name: "{{package_name_netcat}}"
+    state: 'present'
+    name: "{{package_name_netcat}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - netcat
+    - packaging
+    - install
+    - unix
+    - netcat
