@@ -35,23 +35,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: vim
+      - role: vim
     vars:
-     vim_state: 'install'
+      vim_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: vim
+      - role: vim
     vars:
-     vim_state: 'remove'
+      vim_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: vim
+      - role: vim
     vars:
-     vim_state: 'inactive'
+      vim_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -111,7 +111,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

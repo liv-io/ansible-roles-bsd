@@ -1,4 +1,4 @@
----
+--
 #-------------------------------------------------------------------------------
 # INFORMATION
 #-------------------------------------------------------------------------------
@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - vim
+    - remove
+    - unix
+    - vim
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,25 +40,25 @@
 
 - name: package remove vim
   pkgng:
-   state: 'absent'
-   name: "{{package_name_vim}}"
+    state: 'absent'
+    name: "{{package_name_vim}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - vim
+    - packaging
+    - remove
+    - unix
+    - vim
 
 - name: package remove vim
   openbsd_pkg:
-   state: 'absent'
-   name: "{{package_name_vim}}"
+    state: 'absent'
+    name: "{{package_name_vim}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - vim
+    - packaging
+    - remove
+    - unix
+    - vim
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -64,10 +66,10 @@
 
 - name: file remove vimrc
   file:
-   state: 'absent'
-   path: "{{file_path_vimrc}}"
+    state: 'absent'
+    path: "{{file_path_vimrc}}"
   tags:
-   - files
-   - remove
-   - unix
-   - vim
+    - files
+    - remove
+    - unix
+    - vim

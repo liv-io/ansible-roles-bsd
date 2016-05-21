@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - vim
+    - install
+    - unix
+    - vim
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,25 +40,25 @@
 
 - name: package install vim
   pkgng:
-   state: 'present'
-   name: "{{package_name_vim}}"
+    state: 'present'
+    name: "{{package_name_vim}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - vim
+    - packaging
+    - install
+    - unix
+    - vim
 
 - name: package install vim
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_vim}}"
+    state: 'present'
+    name: "{{package_name_vim}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - vim
+    - packaging
+    - install
+    - unix
+    - vim
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -64,13 +66,13 @@
 
 - name: template create vimrc
   template:
-   src: "{{file_src_vimrc}}"
-   dest: "{{file_path_vimrc}}"
-   mode: "{{file_mode_vimrc}}"
-   owner: "{{file_owner_vimrc}}"
-   group: "{{file_group_vimrc}}"
+    src: "{{file_src_vimrc}}"
+    dest: "{{file_path_vimrc}}"
+    mode: "{{file_mode_vimrc}}"
+    owner: "{{file_owner_vimrc}}"
+    group: "{{file_group_vimrc}}"
   tags:
-   - files
-   - install
-   - unix
-   - vim
+    - files
+    - install
+    - unix
+    - vim
