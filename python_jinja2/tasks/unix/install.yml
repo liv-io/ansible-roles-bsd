@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - python_jinja2
+    - install
+    - unix
+    - python_jinja2
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package install python-jinja2
   pkgng:
-   state: 'present'
-   name: "{{package_name_python_jinja2}}"
+    state: 'present'
+    name: "{{package_name_python_jinja2}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - python_jinja2
+    - packaging
+    - install
+    - unix
+    - python_jinja2
 
 - name: package install python-jinja2
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_python_jinja2}}"
+    state: 'present'
+    name: "{{package_name_python_jinja2}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - python_jinja2
+    - packaging
+    - install
+    - unix
+    - python_jinja2
