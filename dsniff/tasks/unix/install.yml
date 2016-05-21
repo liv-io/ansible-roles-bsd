@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - dsniff
+    - install
+    - unix
+    - dsniff
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package install dsniff
   pkgng:
-   state: 'present'
-   name: "{{package_name_dsniff}}"
+    state: 'present'
+    name: "{{package_name_dsniff}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - dsniff
+    - packaging
+    - install
+    - unix
+    - dsniff
 
 - name: package install dsniff
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_dsniff}}"
+    state: 'present'
+    name: "{{package_name_dsniff}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - dsniff
+    - packaging
+    - install
+    - unix
+    - dsniff
