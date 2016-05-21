@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((shell_state == 'false') or (shell_state == 'no') or (shell_state == 'remove') or (shell_state == 'quiesce') or (shell_state == 'inactive'))
   tags:
-   - unix
-   - shell
+    - unix
+    - shell
 
 - name: task include remove
   include: remove.yml
   when: (shell_state == 'false') or (shell_state == 'no') or (shell_state == 'remove')
   tags:
-   - unix
-   - shell
+    - unix
+    - shell
