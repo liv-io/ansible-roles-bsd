@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - multitail
+    - install
+    - unix
+    - multitail
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package install multitail
   pkgng:
-   state: 'present'
-   name: "{{package_name_multitail}}"
+    state: 'present'
+    name: "{{package_name_multitail}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - multitail
+    - packaging
+    - install
+    - unix
+    - multitail
 
 - name: package install multitail
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_multitail}}"
+    state: 'present'
+    name: "{{package_name_multitail}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - multitail
+    - packaging
+    - install
+    - unix
+    - multitail
