@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - postfix
+    - remove
+    - unix
+    - postfix
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,14 +40,14 @@
 
 - name: package remove postfix
   pkgng:
-   state: 'absent'
-   name: "{{package_name_postfix}}"
+    state: 'absent'
+    name: "{{package_name_postfix}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - postfix
+    - packaging
+    - remove
+    - unix
+    - postfix
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -53,43 +55,43 @@
 
 - name: line remove postfix_enable
   lineinfile:
-   state: 'absent'
-   line: "{{file_line_postfix_enable}}=\"NO\" # Ansible: Remove postfix"
-   regexp: "^{{file_line_postfix_enable}}="
-   dest: "{{file_path_postfix_enable}}"
+    state: 'absent'
+    line: "{{file_line_postfix_enable}}=\"NO\" # Ansible: Remove postfix"
+    regexp: "^{{file_line_postfix_enable}}="
+    dest: "{{file_path_postfix_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - postfix
+    - files
+    - remove
+    - unix
+    - postfix
 
 - name: file remove aliases
   file:
-   state: 'absent'
-   path: "{{file_path_aliases}}"
+    state: 'absent'
+    path: "{{file_path_aliases}}"
   tags:
-   - files
-   - remove
-   - unix
-   - postfix
+    - files
+    - remove
+    - unix
+    - postfix
 
 - name: file remove main.cf
   file:
-   state: 'absent'
-   path: "{{file_path_main_cf}}"
+    state: 'absent'
+    path: "{{file_path_main_cf}}"
   tags:
-   - files
-   - remove
-   - unix
-   - postfix
+    - files
+    - remove
+    - unix
+    - postfix
 
 - name: file remove master.cf
   file:
-   state: 'absent'
-   path: "{{file_path_master_cf}}"
+    state: 'absent'
+    path: "{{file_path_master_cf}}"
   tags:
-   - files
-   - remove
-   - unix
-   - postfix
+    - files
+    - remove
+    - unix
+    - postfix
