@@ -26,7 +26,7 @@
 #-------------------------------------------------------------------------------
 
 # pkg.conf
-file_src_pkg_conf: "../../templates/{{(openbsd_pkg_pkg_conf_template|e)}}/pkg.conf.j2"
+file_src_pkg_conf: "templates/{{(openbsd_pkg_pkg_conf_template|e)}}/pkg.conf.j2"
 file_path_pkg_conf: '/etc/pkg.conf'
 file_mode_pkg_conf: '0644'
 file_owner_pkg_conf: 'root'

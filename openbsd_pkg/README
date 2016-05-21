@@ -31,25 +31,25 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: openbsd_pkg
+      - role: openbsd_pkg
     vars:
-     openbsd_pkg_state: 'install'
-     openbsd_pkg_installpath:
-      - {path: {'http://mirror.switch.ch/ftp/pub/OpenBSD/%c/packages/%a/'}, comment: 'OpenBSD Packages'}
+      openbsd_pkg_state: 'install'
+      openbsd_pkg_installpath:
+        - {path: {'http://mirror.switch.ch/ftp/pub/OpenBSD/%c/packages/%a/'}, comment: 'OpenBSD Packages'}
 
 REMOVE
   - hosts: all
     roles:
-     - role: openbsd_pkg
+      - role: openbsd_pkg
     vars:
-     openbsd_pkg_state: 'remove'
+      openbsd_pkg_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: openbsd_pkg
+      - role: openbsd_pkg
     vars:
-     openbsd_pkg_state: 'inactive'
+      openbsd_pkg_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -150,7 +150,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

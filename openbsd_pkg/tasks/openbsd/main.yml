@@ -25,5 +25,5 @@
   include: install.yml
   when: not ((openbsd_pkg_state == 'false') or (openbsd_pkg_state == 'no') or (openbsd_pkg_state == 'remove') or (openbsd_pkg_state == 'quiesce') or (openbsd_pkg_state == 'inactive'))
   tags:
-   - openbsd
-   - openbsd_pkg
+    - openbsd
+    - openbsd_pkg
