@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - bash
+    - remove
+    - unix
+    - bash
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,25 +40,25 @@
 
 - name: package remove bash
   pkgng:
-   state: 'absent'
-   name: "{{package_name_bash}}"
+    state: 'absent'
+    name: "{{package_name_bash}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - bash
+    - packaging
+    - remove
+    - unix
+    - bash
 
 - name: package remove bash
   openbsd_pkg:
-   state: 'absent'
-   name: "{{package_name_bash}}"
+    state: 'absent'
+    name: "{{package_name_bash}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - bash
+    - packaging
+    - remove
+    - unix
+    - bash
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -64,20 +66,20 @@
 
 - name: file remove bash.bash
   file:
-   state: 'absent'
-   path: "{{file_path_bash_bash}}"
+    state: 'absent'
+    path: "{{file_path_bash_bash}}"
   tags:
-   - files
-   - remove
-   - unix
-   - bash
+    - files
+    - remove
+    - unix
+    - bash
 
 - name: file remove zz_bash.bash
   file:
-   state: 'absent'
-   path: "{{file_path_zz_bash_bash}}"
+    state: 'absent'
+    path: "{{file_path_zz_bash_bash}}"
   tags:
-   - files
-   - remove
-   - unix
-   - bash
+    - files
+    - remove
+    - unix
+    - bash
