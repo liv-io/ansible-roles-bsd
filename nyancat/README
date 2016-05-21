@@ -31,23 +31,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: nyancat
+      - role: nyancat
     vars:
-     nyancat_state: 'install'
+      nyancat_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: nyancat
+      - role: nyancat
     vars:
-     nyancat_state: 'remove'
+      nyancat_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: nyancat
+      - role: nyancat
     vars:
-     nyancat_state: 'inactive'
+      nyancat_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -93,7 +93,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
