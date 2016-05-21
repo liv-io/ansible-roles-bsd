@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - sysbench
+    - install
+    - unix
+    - sysbench
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package install sysbench
   pkgng:
-   state: 'present'
-   name: "{{package_name_sysbench}}"
+    state: 'present'
+    name: "{{package_name_sysbench}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - sysbench
+    - packaging
+    - install
+    - unix
+    - sysbench
 
 - name: package install sysbench
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_sysbench}}"
+    state: 'present'
+    name: "{{package_name_sysbench}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - sysbench
+    - packaging
+    - install
+    - unix
+    - sysbench
