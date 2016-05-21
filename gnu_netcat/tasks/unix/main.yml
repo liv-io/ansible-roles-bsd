@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((gnu_netcat_state == 'false') or (gnu_netcat_state == 'no') or (gnu_netcat_state == 'remove') or (gnu_netcat_state == 'quiesce') or (gnu_netcat_state == 'inactive'))
   tags:
-   - unix
-   - gnu_netcat
+    - unix
+    - gnu_netcat
 
 - name: task include remove
   include: remove.yml
   when: (gnu_netcat_state == 'false') or (gnu_netcat_state == 'no') or (gnu_netcat_state == 'remove')
   tags:
-   - unix
-   - gnu_netcat
+    - unix
+    - gnu_netcat
