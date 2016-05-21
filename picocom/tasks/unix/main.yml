@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((picocom_state == 'false') or (picocom_state == 'no') or (picocom_state == 'remove') or (picocom_state == 'quiesce') or (picocom_state == 'inactive'))
   tags:
-   - unix
-   - picocom
+    - unix
+    - picocom
 
 - name: task include remove
   include: remove.yml
   when: (picocom_state == 'false') or (picocom_state == 'no') or (picocom_state == 'remove')
   tags:
-   - unix
-   - picocom
+    - unix
+    - picocom

@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - picocom
+    - install
+    - unix
+    - picocom
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package install picocom
   pkgng:
-   state: 'present'
-   name: "{{package_name_picocom}}"
+    state: 'present'
+    name: "{{package_name_picocom}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - picocom
+    - packaging
+    - install
+    - unix
+    - picocom
 
 - name: package install picocom
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_picocom}}"
+    state: 'present'
+    name: "{{package_name_picocom}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - picocom
+    - packaging
+    - install
+    - unix
+    - picocom
