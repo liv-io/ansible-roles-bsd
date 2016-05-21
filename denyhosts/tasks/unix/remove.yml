@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - denyhosts
+    - remove
+    - unix
+    - denyhosts
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,14 +40,14 @@
 
 - name: package remove denyhosts
   pkgng:
-   state: 'absent'
-   name: "{{package_name_denyhosts}}"
+    state: 'absent'
+    name: "{{package_name_denyhosts}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - denyhosts
+    - packaging
+    - remove
+    - unix
+    - denyhosts
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -53,80 +55,80 @@
 
 - name: line remove denyhosts_enable
   lineinfile:
-   state: 'absent'
-   line: "{{file_line_denyhosts_enable}}=\"NO\" # Ansible: Remove denyhosts"
-   regexp: "^{{file_line_denyhosts_enable}}="
-   dest: "{{file_path_denyhosts_enable}}"
+    state: 'absent'
+    line: "{{file_line_denyhosts_enable}}=\"NO\" # Ansible: Remove denyhosts"
+    regexp: "^{{file_line_denyhosts_enable}}="
+    dest: "{{file_path_denyhosts_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - denyhosts
+    - files
+    - remove
+    - unix
+    - denyhosts
 
 - name: line remove syslogd_flags
   lineinfile:
-   state: 'absent'
-   line: "{{file_line_syslogd_flags}}=\"-c\" # Ansible: Config denyhosts"
-   regexp: "^{{file_line_syslogd_flags}}="
-   dest: "{{file_path_syslogd_flags}}"
+    state: 'absent'
+    line: "{{file_line_syslogd_flags}}=\"-c\" # Ansible: Config denyhosts"
+    regexp: "^{{file_line_syslogd_flags}}="
+    dest: "{{file_path_syslogd_flags}}"
   notify: service restart syslog
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - denyhosts
+    - files
+    - remove
+    - unix
+    - denyhosts
 
 - name: file remove allowed-hosts
   file:
-   state: 'absent'
-   path: "{{file_path_allowed_hosts}}"
+    state: 'absent'
+    path: "{{file_path_allowed_hosts}}"
   tags:
-   - files
-   - remove
-   - unix
-   - denyhosts
+    - files
+    - remove
+    - unix
+    - denyhosts
 
 - name: file remove denyhosts.conf
   file:
-   state: 'absent'
-   path: "{{file_path_denyhosts_conf}}"
+    state: 'absent'
+    path: "{{file_path_denyhosts_conf}}"
   tags:
-   - files
-   - remove
-   - unix
-   - denyhosts
+    - files
+    - remove
+    - unix
+    - denyhosts
 
 - name: file remove hosts.allow
   file:
-   state: 'absent'
-   path: "{{file_path_hosts_allow}}"
+    state: 'absent'
+    path: "{{file_path_hosts_allow}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - denyhosts
+    - files
+    - remove
+    - unix
+    - denyhosts
 
 - name: file remove hosts.block
   file:
-   state: 'absent'
-   path: "{{file_path_hosts.block}}"
+    state: 'absent'
+    path: "{{file_path_hosts.block}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - denyhosts
+    - files
+    - remove
+    - unix
+    - denyhosts
 
 - name: file remove data.dir
   file:
-   state: 'absent'
-   path: "{{file_path_data_dir}}"
+    state: 'absent'
+    path: "{{file_path_data_dir}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - denyhosts
+    - files
+    - remove
+    - unix
+    - denyhosts

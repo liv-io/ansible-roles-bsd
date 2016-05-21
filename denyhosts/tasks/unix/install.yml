@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - denyhosts
+    - install
+    - unix
+    - denyhosts
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,28 +40,28 @@
 
 - name: stat file hosts.block
   stat:
-   path: "{{file_path_hosts_block}}"
+    path: "{{file_path_hosts_block}}"
   register: register_hosts_block
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - install
-   - unix
-   - denyhosts
+    - files
+    - install
+    - unix
+    - denyhosts
 
 - name: template create hosts.block
   template:
-   src: "{{file_src_hosts_block}}"
-   dest: "{{file_path_hosts_block}}"
-   mode: "{{file_mode_hosts_block}}"
-   owner: "{{file_owner_hosts_block}}"
-   group: "{{file_group_hosts_block}}"
+    src: "{{file_src_hosts_block}}"
+    dest: "{{file_path_hosts_block}}"
+    mode: "{{file_mode_hosts_block}}"
+    owner: "{{file_owner_hosts_block}}"
+    group: "{{file_group_hosts_block}}"
   when: (ansible_os_family == 'FreeBSD') and not (register_hosts_block.stat.exists)
   tags:
-   - files
-   - install
-   - unix
-   - denyhosts
+    - files
+    - install
+    - unix
+    - denyhosts
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -67,11 +69,11 @@
 
 - name: package install denyhosts
   pkgng:
-   state: 'present'
-   name: "{{package_name_denyhosts}}"
+    state: 'present'
+    name: "{{package_name_denyhosts}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - denyhosts
+    - packaging
+    - install
+    - unix
+    - denyhosts

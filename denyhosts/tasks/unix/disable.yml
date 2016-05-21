@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - disable
-   - unix
-   - denyhosts
+    - disable
+    - unix
+    - denyhosts
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,84 +40,84 @@
 
 - name: file create data.dir
   file:
-   state: 'directory'
-   path: "{{file_path_data_dir}}"
-   mode: "{{file_mode_data_dir}}"
-   owner: "{{file_owner_data_dir}}"
-   group: "{{file_group_data_dir}}"
+    state: 'directory'
+    path: "{{file_path_data_dir}}"
+    mode: "{{file_mode_data_dir}}"
+    owner: "{{file_owner_data_dir}}"
+    group: "{{file_group_data_dir}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - disable
-   - unix
-   - denyhosts
+    - files
+    - disable
+    - unix
+    - denyhosts
 
 - name: template create allowed-hosts
   template:
-   src: "{{file_src_allowed_hosts}}"
-   dest: "{{file_path_allowed_hosts}}"
-   mode: "{{file_mode_allowed_hosts}}"
-   owner: "{{file_owner_allowed_hosts}}"
-   group: "{{file_group_allowed_hosts}}"
+    src: "{{file_src_allowed_hosts}}"
+    dest: "{{file_path_allowed_hosts}}"
+    mode: "{{file_mode_allowed_hosts}}"
+    owner: "{{file_owner_allowed_hosts}}"
+    group: "{{file_group_allowed_hosts}}"
   tags:
-   - files
-   - disable
-   - unix
-   - denyhosts
+    - files
+    - disable
+    - unix
+    - denyhosts
 
 - name: template create denyhosts.conf
   template:
-   src: "{{file_src_denyhosts_conf}}"
-   dest: "{{file_path_denyhosts_conf}}"
-   mode: "{{file_mode_denyhosts_conf}}"
-   owner: "{{file_owner_denyhosts_conf}}"
-   group: "{{file_group_denyhosts_conf}}"
+    src: "{{file_src_denyhosts_conf}}"
+    dest: "{{file_path_denyhosts_conf}}"
+    mode: "{{file_mode_denyhosts_conf}}"
+    owner: "{{file_owner_denyhosts_conf}}"
+    group: "{{file_group_denyhosts_conf}}"
   tags:
-   - files
-   - disable
-   - unix
-   - denyhosts
+    - files
+    - disable
+    - unix
+    - denyhosts
 
 - name: line disable denyhosts_enable
   lineinfile:
-   state: 'present'
-   line: "{{file_line_denyhosts_enable}}=\"NO\" # Ansible: Disable denyhosts"
-   regexp: "^{{file_line_denyhosts_enable}}="
-   dest: "{{file_path_denyhosts_enable}}"
+    state: 'present'
+    line: "{{file_line_denyhosts_enable}}=\"NO\" # Ansible: Disable denyhosts"
+    regexp: "^{{file_line_denyhosts_enable}}="
+    dest: "{{file_path_denyhosts_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - disable
-   - unix
-   - denyhosts
+    - files
+    - disable
+    - unix
+    - denyhosts
 
 - name: template create hosts.allow
   template:
-   src: "{{file_src_hosts_allow}}"
-   dest: "{{file_path_hosts_allow}}"
-   mode: "{{file_mode_hosts_allow}}"
-   owner: "{{file_owner_hosts_allow}}"
-   group: "{{file_group_hosts_allow}}"
+    src: "{{file_src_hosts_allow}}"
+    dest: "{{file_path_hosts_allow}}"
+    mode: "{{file_mode_hosts_allow}}"
+    owner: "{{file_owner_hosts_allow}}"
+    group: "{{file_group_hosts_allow}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - disable
-   - unix
-   - denyhosts
+    - files
+    - disable
+    - unix
+    - denyhosts
 
 - name: line create syslogd_flags
   lineinfile:
-   state: 'present'
-   line: "{{file_line_syslogd_flags}}=\"-c\" # Ansible: Config denyhosts"
-   regexp: "^{{file_line_syslogd_flags}}="
-   dest: "{{file_path_syslogd_flags}}"
+    state: 'present'
+    line: "{{file_line_syslogd_flags}}=\"-c\" # Ansible: Config denyhosts"
+    regexp: "^{{file_line_syslogd_flags}}="
+    dest: "{{file_path_syslogd_flags}}"
   notify: service restart syslog
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - disable
-   - unix
-   - denyhosts
+    - files
+    - disable
+    - unix
+    - denyhosts
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -123,12 +125,12 @@
 
 - name: service stop denyhosts
   service:
-   state: 'stopped'
-   enabled: 'no'
-   name: "{{service_name_denyhosts}}"
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_denyhosts}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - system
-   - disable
-   - unix
-   - denyhosts
+    - system
+    - disable
+    - unix
+    - denyhosts

@@ -35,51 +35,51 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: denyhosts
+      - role: denyhosts
     vars:
-     denyhosts_state: 'install'
+      denyhosts_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
-     - role: denyhosts
+      - role: denyhosts
     vars:
-     denyhosts_state: 'enable'
-     denyhosts_admin_email: 'root@domain.tld'
-     denyhosts_allowed_hosts:
-      - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
-     denyhosts_block_service: 'sshd'
-     denyhosts_deny_threshold_invalid: '3'
-     denyhosts_deny_threshold_valid: '5'
-     denyhosts_reset_on_success: 'disable'
+      denyhosts_state: 'enable'
+      denyhosts_admin_email: 'root@domain.tld'
+      denyhosts_allowed_hosts:
+        - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
+      denyhosts_block_service: 'sshd'
+      denyhosts_deny_threshold_invalid: '3'
+      denyhosts_deny_threshold_valid: '5'
+      denyhosts_reset_on_success: 'disable'
 
 DISABLE
   - hosts: all
     roles:
-     - role: denyhosts
+      - role: denyhosts
     vars:
-     denyhosts_state: 'enable'
-     denyhosts_admin_email: 'root@domain.tld'
-     denyhosts_allowed_hosts:
-      - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
-     denyhosts_block_service: 'sshd'
-     denyhosts_deny_threshold_invalid: '3'
-     denyhosts_deny_threshold_valid: '5'
-     denyhosts_reset_on_success: 'disable'
+      denyhosts_state: 'enable'
+      denyhosts_admin_email: 'root@domain.tld'
+      denyhosts_allowed_hosts:
+        - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
+      denyhosts_block_service: 'sshd'
+      denyhosts_deny_threshold_invalid: '3'
+      denyhosts_deny_threshold_valid: '5'
+      denyhosts_reset_on_success: 'disable'
 
 REMOVE
   - hosts: all
     roles:
-     - role: denyhosts
+      - role: denyhosts
     vars:
-     denyhosts_state: 'remove'
+      denyhosts_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: denyhosts
+      - role: denyhosts
     vars:
-     denyhosts_state: 'inactive'
+      denyhosts_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -442,7 +442,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
