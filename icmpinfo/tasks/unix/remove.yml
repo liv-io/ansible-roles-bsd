@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - icmpinfo
+    - remove
+    - unix
+    - icmpinfo
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package remove icmpinfo
   pkgng:
-   state: 'absent'
-   name: "{{package_name_icmpinfo}}"
+    state: 'absent'
+    name: "{{package_name_icmpinfo}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - icmpinfo
+    - packaging
+    - remove
+    - unix
+    - icmpinfo
 
 - name: package remove icmpinfo
   openbsd_pkg:
-   state: 'absent'
-   name: "{{package_name_icmpinfo}}"
+    state: 'absent'
+    name: "{{package_name_icmpinfo}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - icmpinfo
+    - packaging
+    - remove
+    - unix
+    - icmpinfo

@@ -31,23 +31,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: icmpinfo
+      - role: icmpinfo
     vars:
-     icmpinfo_state: 'install'
+      icmpinfo_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: icmpinfo
+      - role: icmpinfo
     vars:
-     icmpinfo_state: 'remove'
+      icmpinfo_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: icmpinfo
+      - role: icmpinfo
     vars:
-     icmpinfo_state: 'inactive'
+      icmpinfo_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -93,7 +93,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

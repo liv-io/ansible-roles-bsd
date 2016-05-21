@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((icmpinfo_state == 'false') or (icmpinfo_state == 'no') or (icmpinfo_state == 'remove') or (icmpinfo_state == 'quiesce') or (icmpinfo_state == 'inactive'))
   tags:
-   - unix
-   - icmpinfo
+    - unix
+    - icmpinfo
 
 - name: task include remove
   include: remove.yml
   when: (icmpinfo_state == 'false') or (icmpinfo_state == 'no') or (icmpinfo_state == 'remove')
   tags:
-   - unix
-   - icmpinfo
+    - unix
+    - icmpinfo
