@@ -35,23 +35,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: rsync
+      - role: rsync
     vars:
-     rsync_state: 'install'
+      rsync_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: rsync
+      - role: rsync
     vars:
-     rsync_state: 'remove'
+      rsync_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: rsync
+      - role: rsync
     vars:
-     rsync_state: 'inactive'
+      rsync_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -97,7 +97,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

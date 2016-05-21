@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - rsync
+    - install
+    - unix
+    - rsync
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package install rsync
   pkgng:
-   state: 'present'
-   name: "{{package_name_rsync}}"
+    state: 'present'
+    name: "{{package_name_rsync}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - rsync
+    - packaging
+    - install
+    - unix
+    - rsync
 
 - name: package install rsync
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_rsync}}"
+    state: 'present'
+    name: "{{package_name_rsync}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - rsync
+    - packaging
+    - install
+    - unix
+    - rsync
