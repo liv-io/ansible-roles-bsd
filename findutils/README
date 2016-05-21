@@ -34,23 +34,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: findutils
+      - role: findutils
     vars:
-     findutils_state: 'install'
+      findutils_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: findutils
+      - role: findutils
     vars:
-     findutils_state: 'remove'
+      findutils_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: findutils
+      - role: findutils
     vars:
-     findutils_state: 'inactive'
+      findutils_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -96,7 +96,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
