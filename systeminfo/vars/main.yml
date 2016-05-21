@@ -32,35 +32,35 @@ systeminfo_userland_type: 'BSD'
 file_path_common_info_dir: "/{{(common_info_dir_partition|e)}}/{{(common_root_dir_name|e)}}/{{(common_info_dir_name|e)}}"
 
 # ansible.info
-file_src_ansible_info: "../../templates/default/ansible.info.j2"
+file_src_ansible_info: "templates/default/ansible.info.j2"
 file_path_ansible_info: "{{file_path_common_info_dir}}/ansible.info"
 file_mode_ansible_info: '0644'
 file_owner_ansible_info: 'root'
 file_group_ansible_info: 'wheel'
 
 # operation.info
-file_src_operation_info: "../../templates/default/operation.info.j2"
+file_src_operation_info: "templates/default/operation.info.j2"
 file_path_operation_info: "{{file_path_common_info_dir}}/operation.info"
 file_mode_operation_info: '0644'
 file_owner_operation_info: 'root'
 file_group_operation_info: 'wheel'
 
 # freebsd.info
-file_src_freebsd_info: "../../templates/default/freebsd.info.j2"
+file_src_freebsd_info: "templates/default/freebsd.info.j2"
 file_path_freebsd_info: "{{file_path_common_info_dir}}/freebsd.info"
 file_mode_freebsd_info: '0644'
 file_owner_freebsd_info: 'root'
 file_group_freebsd_info: 'wheel'
 
 # openbsd.info
-file_src_openbsd_info: "../../templates/default/openbsd.info.j2"
+file_src_openbsd_info: "templates/default/openbsd.info.j2"
 file_path_openbsd_info: "{{file_path_common_info_dir}}/openbsd.info"
 file_mode_openbsd_info: '0644'
 file_owner_openbsd_info: 'root'
 file_group_openbsd_info: 'wheel'
 
 # system.info
-file_src_system_info: "../../templates/default/system.info.j2"
+file_src_system_info: "templates/default/system.info.j2"
 file_path_system_info: "{{file_path_common_info_dir}}/system.info"
 file_mode_system_info: '0644'
 file_owner_system_info: 'root'

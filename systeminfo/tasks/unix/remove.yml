@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - systeminfo
+    - remove
+    - unix
+    - systeminfo
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,52 +40,52 @@
 
 - name: file remove ansible.info
   file:
-   state: 'absent'
-   path: "{{file_path_ansible_info}}"
+    state: 'absent'
+    path: "{{file_path_ansible_info}}"
   tags:
-   - files
-   - remove
-   - unix
-   - systeminfo
+    - files
+    - remove
+    - unix
+    - systeminfo
 
 - name: file remove operation.info
   file:
-   state: 'absent'
-   path: "{{file_path_operation_info}}"
+    state: 'absent'
+    path: "{{file_path_operation_info}}"
   tags:
-   - files
-   - remove
-   - unix
-   - systeminfo
+    - files
+    - remove
+    - unix
+    - systeminfo
 
 - name: file remove freebsd.info
   file:
-   state: 'absent'
-   path: "{{file_path_freebsd_info}}"
+    state: 'absent'
+    path: "{{file_path_freebsd_info}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - systeminfo
+    - files
+    - remove
+    - unix
+    - systeminfo
 
 - name: file remove openbsd.info
   file:
-   state: 'absent'
-   path: "{{file_path_openbsd_info}}"
+    state: 'absent'
+    path: "{{file_path_openbsd_info}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - systeminfo
+    - files
+    - remove
+    - unix
+    - systeminfo
 
 - name: file remove system.info
   file:
-   state: 'absent'
-   path: "{{file_path_system_info}}"
+    state: 'absent'
+    path: "{{file_path_system_info}}"
   tags:
-   - files
-   - remove
-   - unix
-   - systeminfo
+    - files
+    - remove
+    - unix
+    - systeminfo
