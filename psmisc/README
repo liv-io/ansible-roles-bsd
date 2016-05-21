@@ -35,23 +35,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: psmisc
+      - role: psmisc
     vars:
-     psmisc_state: 'install'
+      psmisc_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: psmisc
+      - role: psmisc
     vars:
-     psmisc_state: 'remove'
+      psmisc_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: psmisc
+      - role: psmisc
     vars:
-     psmisc_state: 'inactive'
+      psmisc_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -96,7 +96,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
