@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - enable
-   - unix
-   - openssh
+    - enable
+    - unix
+    - openssh
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,81 +40,81 @@
 
 - name: template create banner
   template:
-   src: "{{file_src_banner}}"
-   dest: "{{file_path_banner}}"
-   mode: "{{file_mode_banner}}"
-   owner: "{{file_owner_banner}}"
-   group: "{{file_group_banner}}"
+    src: "{{file_src_banner}}"
+    dest: "{{file_path_banner}}"
+    mode: "{{file_mode_banner}}"
+    owner: "{{file_owner_banner}}"
+    group: "{{file_group_banner}}"
   notify:
-   - command validate openssh
-   - service reload openssh
+    - command validate openssh
+    - service reload openssh
   tags:
-   - files
-   - enable
-   - unix
-   - openssh
+    - files
+    - enable
+    - unix
+    - openssh
 
 - name: template create moduli
   template:
-   src: "{{file_src_moduli}}"
-   dest: "{{file_path_moduli}}"
-   mode: "{{file_mode_moduli}}"
-   owner: "{{file_owner_moduli}}"
-   group: "{{file_group_moduli}}"
+    src: "{{file_src_moduli}}"
+    dest: "{{file_path_moduli}}"
+    mode: "{{file_mode_moduli}}"
+    owner: "{{file_owner_moduli}}"
+    group: "{{file_group_moduli}}"
   notify:
-   - command validate openssh
-   - service reload openssh
+    - command validate openssh
+    - service reload openssh
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - enable
-   - unix
-   - openssh
+    - files
+    - enable
+    - unix
+    - openssh
 
 - name: template create ssh_config
   template:
-   src: "{{file_src_ssh_config}}"
-   dest: "{{file_path_ssh_config}}"
-   mode: "{{file_mode_ssh_config}}"
-   owner: "{{file_owner_ssh_config}}"
-   group: "{{file_group_ssh_config}}"
+    src: "{{file_src_ssh_config}}"
+    dest: "{{file_path_ssh_config}}"
+    mode: "{{file_mode_ssh_config}}"
+    owner: "{{file_owner_ssh_config}}"
+    group: "{{file_group_ssh_config}}"
   notify:
-   - command validate openssh
-   - service reload openssh
+    - command validate openssh
+    - service reload openssh
   tags:
-   - files
-   - enable
-   - unix
-   - openssh
+    - files
+    - enable
+    - unix
+    - openssh
 
 - name: template create sshd_config
   template:
-   src: "{{file_src_sshd_config}}"
-   dest: "{{file_path_sshd_config}}"
-   mode: "{{file_mode_sshd_config}}"
-   owner: "{{file_owner_sshd_config}}"
-   group: "{{file_group_sshd_config}}"
+    src: "{{file_src_sshd_config}}"
+    dest: "{{file_path_sshd_config}}"
+    mode: "{{file_mode_sshd_config}}"
+    owner: "{{file_owner_sshd_config}}"
+    group: "{{file_group_sshd_config}}"
   notify:
-   - command validate openssh
-   - service reload openssh
+    - command validate openssh
+    - service reload openssh
   tags:
-   - files
-   - enable
-   - unix
-   - openssh
+    - files
+    - enable
+    - unix
+    - openssh
 
 - name: line enable sshd_enable
   lineinfile:
-   state: 'present'
-   line: "{{file_line_sshd_enable}}=\"YES\" # Ansible: Enable openssh"
-   regexp: "^{{file_line_sshd_enable}}="
-   dest: "{{file_path_sshd_enable}}"
+    state: 'present'
+    line: "{{file_line_sshd_enable}}=\"YES\" # Ansible: Enable openssh"
+    regexp: "^{{file_line_sshd_enable}}="
+    dest: "{{file_path_sshd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - enable
-   - unix
-   - openssh
+    - files
+    - enable
+    - unix
+    - openssh
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -125,19 +127,19 @@
   failed_when: (register_status_openssh.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - enable
-   - unix
-   - openssh
+    - commands
+    - enable
+    - unix
+    - openssh
 
 - name: command enable openssh
   command: "{{command_cmd_enable_openssh}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_openssh.rc == 1)
   tags:
-   - commands
-   - enable
-   - unix
-   - openssh
+    - commands
+    - enable
+    - unix
+    - openssh
 
 - name: command check openssh
   command: "{{command_cmd_check_openssh}}"
@@ -146,19 +148,19 @@
   failed_when: (register_check_openssh.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - enable
-   - unix
-   - openssh
+    - commands
+    - enable
+    - unix
+    - openssh
 
 - name: command start openssh
   command: "{{command_cmd_start_openssh}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_openssh.rc == 1)
   tags:
-   - commands
-   - enable
-   - unix
-   - openssh
+    - commands
+    - enable
+    - unix
+    - openssh
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -166,12 +168,12 @@
 
 - name: service start openssh
   service:
-   state: 'started'
-   enabled: 'yes'
-   name: "{{service_name_openssh}}"
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_openssh}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - system
-   - enable
-   - unix
-   - openssh
+    - system
+    - enable
+    - unix
+    - openssh

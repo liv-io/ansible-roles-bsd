@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - disable
-   - unix
-   - openssh
+    - disable
+    - unix
+    - openssh
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,69 +40,69 @@
 
 - name: template create banner
   template:
-   src: "{{file_src_banner}}"
-   dest: "{{file_path_banner}}"
-   mode: "{{file_mode_banner}}"
-   owner: "{{file_owner_banner}}"
-   group: "{{file_group_banner}}"
+    src: "{{file_src_banner}}"
+    dest: "{{file_path_banner}}"
+    mode: "{{file_mode_banner}}"
+    owner: "{{file_owner_banner}}"
+    group: "{{file_group_banner}}"
   tags:
-   - files
-   - disable
-   - unix
-   - openssh
+    - files
+    - disable
+    - unix
+    - openssh
 
 - name: template create moduli
   template:
-   src: "{{file_src_moduli}}"
-   dest: "{{file_path_moduli}}"
-   mode: "{{file_mode_moduli}}"
-   owner: "{{file_owner_moduli}}"
-   group: "{{file_group_moduli}}"
+    src: "{{file_src_moduli}}"
+    dest: "{{file_path_moduli}}"
+    mode: "{{file_mode_moduli}}"
+    owner: "{{file_owner_moduli}}"
+    group: "{{file_group_moduli}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - disable
-   - unix
-   - openssh
+    - files
+    - disable
+    - unix
+    - openssh
 
 - name: template create ssh_config
   template:
-   src: "{{file_src_ssh_config}}"
-   dest: "{{file_path_ssh_config}}"
-   mode: "{{file_mode_ssh_config}}"
-   owner: "{{file_owner_ssh_config}}"
-   group: "{{file_group_ssh_config}}"
+    src: "{{file_src_ssh_config}}"
+    dest: "{{file_path_ssh_config}}"
+    mode: "{{file_mode_ssh_config}}"
+    owner: "{{file_owner_ssh_config}}"
+    group: "{{file_group_ssh_config}}"
   tags:
-   - files
-   - disable
-   - unix
-   - openssh
+    - files
+    - disable
+    - unix
+    - openssh
 
 - name: template create sshd_config
   template:
-   src: "{{file_src_sshd_config}}"
-   dest: "{{file_path_sshd_config}}"
-   mode: "{{file_mode_sshd_config}}"
-   owner: "{{file_owner_sshd_config}}"
-   group: "{{file_group_sshd_config}}"
+    src: "{{file_src_sshd_config}}"
+    dest: "{{file_path_sshd_config}}"
+    mode: "{{file_mode_sshd_config}}"
+    owner: "{{file_owner_sshd_config}}"
+    group: "{{file_group_sshd_config}}"
   tags:
-   - files
-   - disable
-   - unix
-   - openssh
+    - files
+    - disable
+    - unix
+    - openssh
 
 - name: line disable sshd_enable
   lineinfile:
-   state: 'present'
-   line: "{{file_line_sshd_enable}}=\"NO\" # Ansible: Disable openssh"
-   regexp: "^{{file_line_sshd_enable}}="
-   dest: "{{file_path_sshd_enable}}"
+    state: 'present'
+    line: "{{file_line_sshd_enable}}=\"NO\" # Ansible: Disable openssh"
+    regexp: "^{{file_line_sshd_enable}}="
+    dest: "{{file_path_sshd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - disable
-   - unix
-   - openssh
+    - files
+    - disable
+    - unix
+    - openssh
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -113,19 +115,19 @@
   failed_when: (register_status_openssh.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - disable
-   - unix
-   - openssh
+    - commands
+    - disable
+    - unix
+    - openssh
 
 - name: command disable openssh
   command: "{{command_cmd_disable_openssh}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_openssh.rc == 0)
   tags:
-   - commands
-   - disable
-   - unix
-   - openssh
+    - commands
+    - disable
+    - unix
+    - openssh
 
 - name: command check openssh
   command: "{{command_cmd_check_openssh}}"
@@ -134,19 +136,19 @@
   failed_when: (register_check_openssh.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - disable
-   - unix
-   - openssh
+    - commands
+    - disable
+    - unix
+    - openssh
 
 - name: command stop openssh
   command: "{{command_cmd_stop_openssh}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_openssh.rc == 0)
   tags:
-   - commands
-   - disable
-   - unix
-   - openssh
+    - commands
+    - disable
+    - unix
+    - openssh
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -154,12 +156,12 @@
 
 - name: service stop openssh
   service:
-   state: 'stopped'
-   enabled: 'no'
-   name: "{{service_name_openssh}}"
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_openssh}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - system
-   - disable
-   - unix
-   - openssh
+    - system
+    - disable
+    - unix
+    - openssh

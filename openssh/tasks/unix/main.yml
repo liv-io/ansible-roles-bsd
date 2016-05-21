@@ -25,19 +25,19 @@
   include: install.yml
   when: not ((openssh_state == 'false') or (openssh_state == 'no') or (openssh_state == 'remove') or (openssh_state == 'quiesce') or (openssh_state == 'inactive'))
   tags:
-   - unix
-   - openssh
+    - unix
+    - openssh
 
 - name: task include enable
   include: enable.yml
   when: (openssh_state == 'start') or (openssh_state == 'on') or (openssh_state == 'enable')
   tags:
-   - unix
-   - openssh
+    - unix
+    - openssh
 
 - name: task include disable
   include: disable.yml
   when: (openssh_state == 'stop') or (openssh_state == 'off') or (openssh_state == 'disable')
   tags:
-   - unix
-   - openssh
+    - unix
+    - openssh
