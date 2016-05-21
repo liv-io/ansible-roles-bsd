@@ -78,7 +78,7 @@ DEPENDENCIES
 
 PACKAGES
   mytop
-    Version: >= 2.0
+    Version: >= 1.6
     Name   :
       FreeBSD 10: 'mytop'
       OpenBSD 5 : 'mytop'
