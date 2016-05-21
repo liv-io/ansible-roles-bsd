@@ -34,23 +34,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: zsh
+      - role: zsh
     vars:
-     zsh_state: 'install'
+      zsh_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: zsh
+      - role: zsh
     vars:
-     zsh_state: 'remove'
+      zsh_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: zsh
+      - role: zsh
     vars:
-     zsh_state: 'inactive'
+      zsh_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -96,7 +96,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

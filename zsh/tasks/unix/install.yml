@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - zsh
+    - install
+    - unix
+    - zsh
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package install zsh
   pkgng:
-   state: 'present'
-   name: "{{package_name_zsh}}"
+    state: 'present'
+    name: "{{package_name_zsh}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - zsh
+    - packaging
+    - install
+    - unix
+    - zsh
 
 - name: package install zsh
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_zsh}}"
+    state: 'present'
+    name: "{{package_name_zsh}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - zsh
+    - packaging
+    - install
+    - unix
+    - zsh

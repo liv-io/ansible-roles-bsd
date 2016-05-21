@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((zsh_state == 'false') or (zsh_state == 'no') or (zsh_state == 'remove') or (zsh_state == 'quiesce') or (zsh_state == 'inactive'))
   tags:
-   - unix
-   - zsh
+    - unix
+    - zsh
 
 - name: task include remove
   include: remove.yml
   when: (zsh_state == 'false') or (zsh_state == 'no') or (zsh_state == 'remove')
   tags:
-   - unix
-   - zsh
+    - unix
+    - zsh
