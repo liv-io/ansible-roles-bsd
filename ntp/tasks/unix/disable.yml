@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - disable
-   - unix
-   - ntp
+    - disable
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,51 +40,51 @@
 
 - name: template create ntp.conf
   template:
-   src: "{{file_src_ntp_conf}}"
-   dest: "{{file_path_ntp_conf}}"
-   mode: "{{file_mode_ntp_conf}}"
-   owner: "{{file_owner_ntp_conf}}"
-   group: "{{file_group_ntp_conf}}"
+    src: "{{file_src_ntp_conf}}"
+    dest: "{{file_path_ntp_conf}}"
+    mode: "{{file_mode_ntp_conf}}"
+    owner: "{{file_owner_ntp_conf}}"
+    group: "{{file_group_ntp_conf}}"
   tags:
-   - files
-   - disable
-   - unix
-   - ntp
+    - files
+    - disable
+    - unix
+    - ntp
 
 - name: template create ntp_update-time.sh
   file:
-   state: 'absent'
-   path: "{{file_path_ntp_update_time_sh}}"
+    state: 'absent'
+    path: "{{file_path_ntp_update_time_sh}}"
   tags:
-   - files
-   - disable
-   - unix
-   - ntp
+    - files
+    - disable
+    - unix
+    - ntp
 
 - name: line config ntp_update-time
   lineinfile:
-   state: 'absent'
-   line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
-   regexp: "# Ansible: ntp_update-time$"
-   dest: "{{file_path_ntp_update_time}}"
+    state: 'absent'
+    line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
+    regexp: "# Ansible: ntp_update-time$"
+    dest: "{{file_path_ntp_update_time}}"
   tags:
-   - files
-   - disable
-   - unix
-   - ntp
+    - files
+    - disable
+    - unix
+    - ntp
 
 - name: line disable ntpd_enable
   lineinfile:
-   state: 'present'
-   line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Disable ntp"
-   regexp: "^{{file_line_ntpd_enable}}="
-   dest: "{{file_path_ntpd_enable}}"
+    state: 'present'
+    line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Disable ntp"
+    regexp: "^{{file_line_ntpd_enable}}="
+    dest: "{{file_path_ntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - disable
-   - unix
-   - ntp
+    - files
+    - disable
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -95,19 +97,19 @@
   failed_when: (register_status_ntp.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - disable
-   - unix
-   - ntp
+    - commands
+    - disable
+    - unix
+    - ntp
 
 - name: command disable ntp
   command: "{{command_cmd_disable_ntp}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_ntp.rc == 0)
   tags:
-   - commands
-   - disable
-   - unix
-   - ntp
+    - commands
+    - disable
+    - unix
+    - ntp
 
 - name: command check ntp
   command: "{{command_cmd_check_ntp}}"
@@ -116,19 +118,19 @@
   failed_when: (register_check_ntp.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - disable
-   - unix
-   - ntp
+    - commands
+    - disable
+    - unix
+    - ntp
 
 - name: command stop ntp
   command: "{{command_cmd_stop_ntp}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_ntp.rc == 0)
   tags:
-   - commands
-   - disable
-   - unix
-   - ntp
+    - commands
+    - disable
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -136,12 +138,12 @@
 
 - name: service stop ntp
   service:
-   state: 'stopped'
-   enabled: 'no'
-   name: "{{service_name_ntp}}"
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_ntp}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - system
-   - disable
-   - unix
-   - ntp
+    - system
+    - disable
+    - unix
+    - ntp

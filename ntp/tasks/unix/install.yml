@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - ntp
+    - install
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -43,19 +45,19 @@
   failed_when: (register_status_openntpd.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - disable
-   - unix
-   - ntp
+    - commands
+    - disable
+    - unix
+    - ntp
 
 - name: command disable openntpd
   command: "{{command_cmd_disable_openntpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
   tags:
-   - commands
-   - disable
-   - unix
-   - ntp
+    - commands
+    - disable
+    - unix
+    - ntp
 
 - name: command check openntpd
   command: "{{command_cmd_check_openntpd}}"
@@ -64,19 +66,19 @@
   failed_when: (register_check_openntpd.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - disable
-   - unix
-   - ntp
+    - commands
+    - disable
+    - unix
+    - ntp
 
 - name: command stop openntpd
   command: "{{command_cmd_stop_openntpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
   tags:
-   - commands
-   - disable
-   - unix
-   - ntp
+    - commands
+    - disable
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -84,25 +86,25 @@
 
 - name: package install ntp
   pkgng:
-   state: 'present'
-   name: "{{package_name_ntp}}"
+    state: 'present'
+    name: "{{package_name_ntp}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - ntp
+    - packaging
+    - install
+    - unix
+    - ntp
 
 - name: package install ntp
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_ntp}}"
+    state: 'present'
+    name: "{{package_name_ntp}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - ntp
+    - packaging
+    - install
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -110,13 +112,13 @@
 
 - name: file create ntp-script.dir
   file:
-   state: 'directory'
-   path: "{{file_path_ntp_script_dir}}"
-   mode: "{{file_mode_ntp_script_dir}}"
-   owner: "{{file_owner_ntp_script_dir}}"
-   group: "{{file_group_ntp_script_dir}}"
+    state: 'directory'
+    path: "{{file_path_ntp_script_dir}}"
+    mode: "{{file_mode_ntp_script_dir}}"
+    owner: "{{file_owner_ntp_script_dir}}"
+    group: "{{file_group_ntp_script_dir}}"
   tags:
-   - files
-   - install
-   - unix
-   - ntp
+    - files
+    - install
+    - unix
+    - ntp

@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - enable
-   - unix
-   - ntp
+    - enable
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,52 +40,52 @@
 
 - name: template create ntp.conf
   template:
-   src: "{{file_src_ntp_conf}}"
-   dest: "{{file_path_ntp_conf}}"
-   mode: "{{file_mode_ntp_conf}}"
-   owner: "{{file_owner_ntp_conf}}"
-   group: "{{file_group_ntp_conf}}"
+    src: "{{file_src_ntp_conf}}"
+    dest: "{{file_path_ntp_conf}}"
+    mode: "{{file_mode_ntp_conf}}"
+    owner: "{{file_owner_ntp_conf}}"
+    group: "{{file_group_ntp_conf}}"
   notify: service restart ntp
   tags:
-   - files
-   - enable
-   - unix
-   - ntp
+    - files
+    - enable
+    - unix
+    - ntp
 
 - name: file remove ntp_update-time.sh
   file:
-   state: 'absent'
-   path: "{{file_path_ntp_update_time_sh}}"
+    state: 'absent'
+    path: "{{file_path_ntp_update_time_sh}}"
   tags:
-   - files
-   - enable
-   - unix
-   - ntp
+    - files
+    - enable
+    - unix
+    - ntp
 
 - name: line config ntp_update-time
   lineinfile:
-   state: 'absent'
-   line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
-   regexp: "# Ansible: ntp_update-time$"
-   dest: "{{file_path_ntp_update_time}}"
+    state: 'absent'
+    line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
+    regexp: "# Ansible: ntp_update-time$"
+    dest: "{{file_path_ntp_update_time}}"
   tags:
-   - files
-   - enable
-   - unix
-   - ntp
+    - files
+    - enable
+    - unix
+    - ntp
 
 - name: file config rc.conf
   lineinfile:
-   state: 'present'
-   line: "{{file_line_rc_conf}}=\"YES\" # Ansible: Enable ntp"
-   regexp: "^{{file_line_rc_conf}}="
-   dest: "{{file_path_rc_conf}}"
+    state: 'present'
+    line: "{{file_line_rc_conf}}=\"YES\" # Ansible: Enable ntp"
+    regexp: "^{{file_line_rc_conf}}="
+    dest: "{{file_path_rc_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - enable
-   - unix
-   - ntp
+    - files
+    - enable
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -96,19 +98,19 @@
   failed_when: (register_status_ntp.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - enable
-   - unix
-   - ntp
+    - commands
+    - enable
+    - unix
+    - ntp
 
 - name: command enable ntp
   command: "{{command_cmd_enable_ntp}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_ntp.rc == 1)
   tags:
-   - commands
-   - enable
-   - unix
-   - ntp
+    - commands
+    - enable
+    - unix
+    - ntp
 
 - name: command check ntp
   command: "{{command_cmd_check_ntp}}"
@@ -117,19 +119,19 @@
   failed_when: (register_check_ntp.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - enable
-   - unix
-   - ntp
+    - commands
+    - enable
+    - unix
+    - ntp
 
 - name: command start ntp
   command: "{{command_cmd_start_ntp}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_ntp.rc == 1)
   tags:
-   - commands
-   - enable
-   - unix
-   - ntp
+    - commands
+    - enable
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -137,12 +139,12 @@
 
 - name: service start ntp
   service:
-   state: 'started'
-   enabled: 'yes'
-   name: "{{service_name_ntp}}"
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_ntp}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - system
-   - enable
-   - unix
-   - ntp
+    - system
+    - enable
+    - unix
+    - ntp

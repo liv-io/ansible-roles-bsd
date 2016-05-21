@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - ntp
+    - remove
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -42,28 +44,28 @@
   failed_when: (register_info_ntp.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - remove
-   - unix
-   - ntp
+    - commands
+    - remove
+    - unix
+    - ntp
 
 - name: command disable ntp
   command: "{{command_cmd_disable_ntp}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_ntp.rc == 0)
   tags:
-   - commands
-   - remove
-   - unix
-   - ntp
+    - commands
+    - remove
+    - unix
+    - ntp
 
 - name: command stop ntp
   command: "{{command_cmd_stop_ntp}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_ntp.rc == 0)
   tags:
-   - commands
-   - remove
-   - unix
-   - ntp
+    - commands
+    - remove
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -71,27 +73,27 @@
 
 - name: package remove ntp
   pkgng:
-   state: 'absent'
-   name: "{{package_name_ntp}}"
+    state: 'absent'
+    name: "{{package_name_ntp}}"
   register: register_freebsd_ntp
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - ntp
+    - packaging
+    - remove
+    - unix
+    - ntp
 
 - name: package remove ntp
   openbsd_pkg:
-   state: 'absent'
-   name: "{{package_name_ntp}}"
+    state: 'absent'
+    name: "{{package_name_ntp}}"
   register: register_freebsd_ntp
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - ntp
+    - packaging
+    - remove
+    - unix
+    - ntp
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -99,55 +101,55 @@
 
 - name: line remove ntpd_enable
   lineinfile:
-   state: 'absent'
-   line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Remove ntp"
-   regexp: "^{{file_line_ntpd_enable}}="
-   dest: "{{file_path_ntpd_enable}}"
+    state: 'absent'
+    line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Remove ntp"
+    regexp: "^{{file_line_ntpd_enable}}="
+    dest: "{{file_path_ntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - ntp
+    - files
+    - remove
+    - unix
+    - ntp
 
 - name: line config ntp_update-time
   lineinfile:
-   state: 'absent'
-   line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
-   regexp: "# Ansible: ntp_update-time$"
-   dest: "{{file_path_ntp_update_time}}"
+    state: 'absent'
+    line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
+    regexp: "# Ansible: ntp_update-time$"
+    dest: "{{file_path_ntp_update_time}}"
   tags:
-   - files
-   - remove
-   - unix
-   - ntp
+    - files
+    - remove
+    - unix
+    - ntp
 
 - name: file remove ntp_update-time.sh
   file:
-   state: 'absent'
-   path: "{{file_path_ntp_update_time_sh}}"
+    state: 'absent'
+    path: "{{file_path_ntp_update_time_sh}}"
   tags:
-   - files
-   - remove
-   - unix
-   - ntp
+    - files
+    - remove
+    - unix
+    - ntp
 
 - name: file remove ntp-script.dir
   file:
-   state: 'absent'
-   path: "{{file_path_ntp_script_dir}}"
+    state: 'absent'
+    path: "{{file_path_ntp_script_dir}}"
   tags:
-   - files
-   - remove
-   - unix
-   - ntp
+    - files
+    - remove
+    - unix
+    - ntp
 
 - name: file remove ntp.conf
   file:
-   state: 'absent'
-   path: "{{file_path_ntp_conf}}"
+    state: 'absent'
+    path: "{{file_path_ntp_conf}}"
   tags:
-   - files
-   - remove
-   - unix
-   - ntp
+    - files
+    - remove
+    - unix
+    - ntp
