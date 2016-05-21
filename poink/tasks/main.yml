@@ -25,4 +25,4 @@
   include: openbsd/main.yml
   when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_release == '5.9'))
   tags:
-   - poink
+    - poink

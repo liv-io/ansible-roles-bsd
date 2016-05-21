@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - openbsd
-   - poink
+    - install
+    - openbsd
+    - poink
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,11 +40,11 @@
 
 - name: package install poink
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_poink}}"
+    state: 'present'
+    name: "{{package_name_poink}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - openbsd
-   - poink
+    - packaging
+    - install
+    - openbsd
+    - poink
