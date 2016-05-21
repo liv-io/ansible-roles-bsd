@@ -31,40 +31,40 @@ USAGE
 INSTALL
   - host: all
     roles:
-     - role: host
+      - role: host
     vars:
-     host_state: 'install'
-     host_path_default: '/etc/hosts'
+      host_state: 'install'
+      host_path_default: '/etc/hosts'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: host
+      - role: host
     vars:
-     host_state: 'inactive'
+      host_state: 'inactive'
 
 CONFIG
   vars:
     host_all:
-     - name: 'host01.domain.tld'
-       state: 'true'
-       ip: '192.168.1.1'
-       aliases: ['host01', 'hostname01.domain.tld', 'hostname01']
-       comment: 'host01'
+      - name: 'host01.domain.tld'
+        state: 'true'
+        ip: '192.168.1.1'
+        aliases: ['host01', 'hostname01.domain.tld', 'hostname01']
+        comment: 'host01'
 
     host_group:
-     - name: 'host02.domain.tld'
-       state: 'true'
-       ip: '192.168.1.2'
-       aliases: ['host02', 'hostname02.domain.tld', 'hostname02']
-       comment: 'host02'
+      - name: 'host02.domain.tld'
+        state: 'true'
+        ip: '192.168.1.2'
+        aliases: ['host02', 'hostname02.domain.tld', 'hostname02']
+        comment: 'host02'
 
     host_host:
-     - name: 'host03.domain.tld'
-       state: 'false'
-       ip: '192.168.1.3'
-       aliases: ['host03', 'hostname03.domain.tld', 'hostname03']
-       comment: 'host03'
+      - name: 'host03.domain.tld'
+        state: 'false'
+        ip: '192.168.1.3'
+        aliases: ['host03', 'hostname03.domain.tld', 'hostname03']
+        comment: 'host03'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -224,7 +224,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
