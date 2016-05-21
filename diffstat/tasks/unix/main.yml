@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((diffstat_state == 'false') or (diffstat_state == 'no') or (diffstat_state == 'remove') or (diffstat_state == 'quiesce') or (diffstat_state == 'inactive'))
   tags:
-   - unix
-   - diffstat
+    - unix
+    - diffstat
 
 - name: task include remove
   include: remove.yml
   when: (diffstat_state == 'false') or (diffstat_state == 'no') or (diffstat_state == 'remove')
   tags:
-   - unix
-   - diffstat
+    - unix
+    - diffstat

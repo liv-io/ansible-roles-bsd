@@ -33,23 +33,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: diffstat
+      - role: diffstat
     vars:
-     diffstat_state: 'install'
+      diffstat_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: diffstat
+      - role: diffstat
     vars:
-     diffstat_state: 'remove'
+      diffstat_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: diffstat
+      - role: diffstat
     vars:
-     diffstat_state: 'inactive'
+      diffstat_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -95,7 +95,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
