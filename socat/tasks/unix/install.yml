@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - socat
+    - install
+    - unix
+    - socat
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package install socat
   pkgng:
-   state: 'present'
-   name: "{{package_name_socat}}"
+    state: 'present'
+    name: "{{package_name_socat}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - socat
+    - packaging
+    - install
+    - unix
+    - socat
 
 - name: package install socat
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_socat}}"
+    state: 'present'
+    name: "{{package_name_socat}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - socat
+    - packaging
+    - install
+    - unix
+    - socat

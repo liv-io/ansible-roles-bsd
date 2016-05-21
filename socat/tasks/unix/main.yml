@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((socat_state == 'false') or (socat_state == 'no') or (socat_state == 'remove') or (socat_state == 'quiesce') or (socat_state == 'inactive'))
   tags:
-   - unix
-   - socat
+    - unix
+    - socat
 
 - name: task include remove
   include: remove.yml
   when: (socat_state == 'false') or (socat_state == 'no') or (socat_state == 'remove')
   tags:
-   - unix
-   - socat
+    - unix
+    - socat
