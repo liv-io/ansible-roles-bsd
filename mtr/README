@@ -33,23 +33,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: mtr
+      - role: mtr
     vars:
-     mtr_state: 'install'
+      mtr_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: mtr
+      - role: mtr
     vars:
-     mtr_state: 'remove'
+      mtr_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: mtr
+      - role: mtr
     vars:
-     mtr_state: 'inactive'
+      mtr_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -95,7 +95,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

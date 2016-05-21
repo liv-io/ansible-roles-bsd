@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((mtr_state == 'false') or (mtr_state == 'no') or (mtr_state == 'remove') or (mtr_state == 'quiesce') or (mtr_state == 'inactive'))
   tags:
-   - unix
-   - mtr
+    - unix
+    - mtr
 
 - name: task include remove
   include: remove.yml
   when: (mtr_state == 'false') or (mtr_state == 'no') or (mtr_state == 'remove')
   tags:
-   - unix
-   - mtr
+    - unix
+    - mtr
