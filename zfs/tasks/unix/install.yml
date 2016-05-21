@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - zfs
+    - install
+    - unix
+    - zfs
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,26 +40,26 @@
 
 - name: file create zfs-script.dir
   file:
-   state: 'directory'
-   path: "{{file_path_zfs_script_dir}}"
-   mode: "{{file_mode_zfs_script_dir}}"
-   owner: "{{file_owner_zfs_script_dir}}"
-   group: "{{file_group_zfs_script_dir}}"
+    state: 'directory'
+    path: "{{file_path_zfs_script_dir}}"
+    mode: "{{file_mode_zfs_script_dir}}"
+    owner: "{{file_owner_zfs_script_dir}}"
+    group: "{{file_group_zfs_script_dir}}"
   tags:
-   - files
-   - install
-   - unix
-   - zfs
+    - files
+    - install
+    - unix
+    - zfs
 
 - name: template create zfs_scrub-pools.sh
   template:
-   src: "{{file_src_zfs_scrub_pools_sh}}"
-   dest: "{{file_path_zfs_scrub_pools_sh}}"
-   mode: "{{file_mode_zfs_scrub_pools_sh}}"
-   owner: "{{file_owner_zfs_scrub_pools_sh}}"
-   group: "{{file_group_zfs_scrub_pools_sh}}"
+    src: "{{file_src_zfs_scrub_pools_sh}}"
+    dest: "{{file_path_zfs_scrub_pools_sh}}"
+    mode: "{{file_mode_zfs_scrub_pools_sh}}"
+    owner: "{{file_owner_zfs_scrub_pools_sh}}"
+    group: "{{file_group_zfs_scrub_pools_sh}}"
   tags:
-   - files
-   - install
-   - unix
-   - zfs
+    - files
+    - install
+    - unix
+    - zfs

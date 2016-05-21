@@ -31,47 +31,47 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: zfs
+      - role: zfs
     vars:
-     zfs_state: 'install'
+      zfs_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
-     - role: zfs
+      - role: zfs
     vars:
-     zfs_state: 'enable'
-     zfs_scrub_pools_state: 'enable'
-     zfs_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
-     zfs_monitor_mail_recipient: ["user@domain.tld"]
-     zfs_monitor_mail_sender: 'root@domain.tld'
-     zfs_monitor_mail_state: 'true'
+      zfs_state: 'enable'
+      zfs_scrub_pools_state: 'enable'
+      zfs_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
+      zfs_monitor_mail_recipient: ["user@domain.tld"]
+      zfs_monitor_mail_sender: 'root@domain.tld'
+      zfs_monitor_mail_state: 'true'
 
 DISABLE
   - hosts: all
     roles:
-     - role: zfs
+      - role: zfs
     vars:
-     zfs_state: 'disable'
-     zfs_scrub_pools_state: 'disable'
-     zfs_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
-     zfs_monitor_mail_recipient: ["user@domain.tld"]
-     zfs_monitor_mail_sender: 'root@domain.tld'
-     zfs_monitor_mail_state: 'true'
+      zfs_state: 'disable'
+      zfs_scrub_pools_state: 'disable'
+      zfs_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
+      zfs_monitor_mail_recipient: ["user@domain.tld"]
+      zfs_monitor_mail_sender: 'root@domain.tld'
+      zfs_monitor_mail_state: 'true'
 
 REMOVE
   - hosts: all
     roles:
-     - role: zfs
+      - role: zfs
     vars:
-     zfs_state: 'remove'
+      zfs_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: zfs
+      - role: zfs
     vars:
-     zfs_state: 'inactive'
+      zfs_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -233,7 +233,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

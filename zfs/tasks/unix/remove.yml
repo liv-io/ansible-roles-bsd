@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - zfs
+    - remove
+    - unix
+    - zfs
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,33 +40,33 @@
 
 - name: line remove zfs_scrub-pools
   lineinfile:
-   state: 'absent'
-   line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
-   regexp: "# Ansible: zfs_scrub-pools$"
-   dest: "{{file_path_zfs_scrub_pools}}"
+    state: 'absent'
+    line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
+    regexp: "# Ansible: zfs_scrub-pools$"
+    dest: "{{file_path_zfs_scrub_pools}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - zfs
+    - files
+    - remove
+    - unix
+    - zfs
 
 - name: file remove zfs_scrub-pools.sh
   file:
-   state: 'absent'
-   path: "{{file_path_zfs_scrub_pools_sh}}"
+    state: 'absent'
+    path: "{{file_path_zfs_scrub_pools_sh}}"
   tags:
-   - files
-   - remove
-   - unix
-   - zfs
+    - files
+    - remove
+    - unix
+    - zfs
 
 - name: file remove zfs-script.dir
   file:
-   state: 'absent'
-   path: "{{file_path_zfs_script_dir}}"
+    state: 'absent'
+    path: "{{file_path_zfs_script_dir}}"
   tags:
-   - files
-   - remove
-   - unix
-   - zfs
+    - files
+    - remove
+    - unix
+    - zfs
