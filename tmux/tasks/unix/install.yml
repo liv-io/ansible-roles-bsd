@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - tmux
+    - install
+    - unix
+    - tmux
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,14 +40,14 @@
 
 - name: package install tmux
   pkgng:
-   state: 'present'
-   name: "{{package_name_tmux}}"
+    state: 'present'
+    name: "{{package_name_tmux}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - tmux
+    - packaging
+    - install
+    - unix
+    - tmux
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -53,13 +55,13 @@
 
 - name: template create tmux.conf
   template:
-   src: "{{file_src_tmux_conf}}"
-   dest: "{{file_path_tmux_conf}}"
-   mode: "{{file_mode_tmux_conf}}"
-   owner: "{{file_owner_tmux_conf}}"
-   group: "{{file_group_tmux_conf}}"
+    src: "{{file_src_tmux_conf}}"
+    dest: "{{file_path_tmux_conf}}"
+    mode: "{{file_mode_tmux_conf}}"
+    owner: "{{file_owner_tmux_conf}}"
+    group: "{{file_group_tmux_conf}}"
   tags:
-   - files
-   - install
-   - unix
-   - tmux
+    - files
+    - install
+    - unix
+    - tmux

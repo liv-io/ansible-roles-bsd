@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((tmux_state == 'false') or (tmux_state == 'no') or (tmux_state == 'remove') or (tmux_state == 'quiesce') or (tmux_state == 'inactive'))
   tags:
-   - unix
-   - tmux
+    - unix
+    - tmux
 
 - name: task include remove
   include: remove.yml
   when: (tmux_state == 'false') or (tmux_state == 'no') or (tmux_state == 'remove')
   tags:
-   - unix
-   - tmux
+    - unix
+    - tmux

@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - tmux
+    - remove
+    - unix
+    - tmux
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,14 +40,14 @@
 
 - name: package remove tmux
   pkgng:
-   state: 'absent'
-   name: "{{package_name_tmux}}"
+    state: 'absent'
+    name: "{{package_name_tmux}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - tmux
+    - packaging
+    - remove
+    - unix
+    - tmux
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -53,10 +55,10 @@
 
 - name: file remove tmux.conf
   file:
-   state: 'absent'
-   path: "{{file_path_tmux_conf}}"
+    state: 'absent'
+    path: "{{file_path_tmux_conf}}"
   tags:
-   - files
-   - remove
-   - unix
-   - tmux
+    - files
+    - remove
+    - unix
+    - tmux
