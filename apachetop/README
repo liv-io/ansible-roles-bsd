@@ -31,23 +31,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: apachetop
+      - role: apachetop
     vars:
-     apachetop_state: 'install'
+      apachetop_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: apachetop
+      - role: apachetop
     vars:
-     apachetop_state: 'remove'
+      apachetop_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: apachetop
+      - role: apachetop
     vars:
-     apachetop_state: 'inactive'
+      apachetop_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -93,7 +93,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

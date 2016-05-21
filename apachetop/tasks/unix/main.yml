@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((apachetop_state == 'false') or (apachetop_state == 'no') or (apachetop_state == 'remove') or (apachetop_state == 'quiesce') or (apachetop_state == 'inactive'))
   tags:
-   - unix
-   - apachetop
+    - unix
+    - apachetop
 
 - name: task include remove
   include: remove.yml
   when: (apachetop_state == 'false') or (apachetop_state == 'no') or (apachetop_state == 'remove')
   tags:
-   - unix
-   - apachetop
+    - unix
+    - apachetop
