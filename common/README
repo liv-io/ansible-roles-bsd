@@ -30,27 +30,27 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: common
+      - role: common
     vars:
-     common_state: 'install'
-     common_info_dir_name: 'information'
-     common_root_dir_name: 'robomon'
+      common_state: 'install'
+      common_info_dir_name: 'information'
+      common_root_dir_name: 'robomon'
 
 REMOVE
   - hosts: all
     roles:
-     - role: common
+      - role: common
     vars:
-     common_state: 'remove'
-     common_info_dir_name: 'information'
-     common_root_dir_name: 'robomon'
+      common_state: 'remove'
+      common_info_dir_name: 'information'
+      common_root_dir_name: 'robomon'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: common
+      - role: common
     vars:
-     common_state: 'inactive'
+      common_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -201,7 +201,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

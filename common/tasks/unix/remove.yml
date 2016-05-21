@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - common
+    - remove
+    - unix
+    - common
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,10 +40,10 @@
 
 - name: file remove README
   file:
-   state: 'absent'
-   path: "{{file_path_readme}}"
+    state: 'absent'
+    path: "{{file_path_readme}}"
   tags:
-   - files
-   - remove
-   - unix
-   - common
+    - files
+    - remove
+    - unix
+    - common

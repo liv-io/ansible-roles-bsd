@@ -69,7 +69,7 @@ file_owner_common_system_dir: 'root'
 file_group_common_system_dir: 'wheel'
 
 # README
-file_src_readme: "../../templates/default/README.j2"
+file_src_readme: "templates/default/README.j2"
 file_path_readme: "{{file_path_common_root_dir}}/README"
 file_mode_readme: '0644'
 file_owner_readme: 'root'
