@@ -30,23 +30,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: nano
+      - role: nano
     vars:
-     nano_state: 'install'
+      nano_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: nano
+      - role: nano
     vars:
-     nano_state: 'remove'
+      nano_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: nano
+      - role: nano
     vars:
-     nano_state: 'inactive'
+      nano_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -92,7 +92,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
