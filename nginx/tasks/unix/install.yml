@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - nginx
+    - install
+    - unix
+    - nginx
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,25 +40,25 @@
 
 - name: package install nginx
   pkgng:
-   state: 'present'
-   name: "{{package_name_nginx}}"
+    state: 'present'
+    name: "{{package_name_nginx}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - nginx
+    - packaging
+    - install
+    - unix
+    - nginx
 
 - name: package install nginx
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_nginx}}"
+    state: 'present'
+    name: "{{package_name_nginx}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - nginx
+    - packaging
+    - install
+    - unix
+    - nginx
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -64,27 +66,27 @@
 
 - name: file create log.dir
   file:
-   state: 'directory'
-   path: "{{file_path_log_dir_name}}"
-   mode: "{{file_mode_log_dir_name}}"
-   owner: "{{file_owner_log_dir_name}}"
-   group: "{{file_group_log_dir_name}}"
+    state: 'directory'
+    path: "{{file_path_log_dir_name}}"
+    mode: "{{file_mode_log_dir_name}}"
+    owner: "{{file_owner_log_dir_name}}"
+    group: "{{file_group_log_dir_name}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - install
-   - unix
-   - nginx
+    - files
+    - install
+    - unix
+    - nginx
 
 - name: file create vhosts.d
   file:
-   state: 'directory'
-   path: "{{file_path_vhosts_d_name}}"
-   mode: "{{file_mode_vhosts_d_name}}"
-   owner: "{{file_owner_vhosts_d_name}}"
-   group: "{{file_group_vhosts_d_name}}"
+    state: 'directory'
+    path: "{{file_path_vhosts_d_name}}"
+    mode: "{{file_mode_vhosts_d_name}}"
+    owner: "{{file_owner_vhosts_d_name}}"
+    group: "{{file_group_vhosts_d_name}}"
   tags:
-   - files
-   - install
-   - unix
-   - nginx
+    - files
+    - install
+    - unix
+    - nginx

@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - config
-   - unix
-   - nginx
+    - config
+    - unix
+    - nginx
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,33 +40,33 @@
 
 - name: template create vhost
   template:
-   src: "../../templates/{{(item.template|e) if (item.template is defined) and not ((item.template == None) or (item.template == '')) else nginx_vhost_template}}/vhost.conf.j2"
-   dest: "{{file_path_vhosts_d_name}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else nginx_name}}-{{(item.port|int(80)) if (item.port is defined) and not ((item.port == None) or (item.port == '')) else nginx_port}}.conf"
-   mode: "{{file_mode_vhost}}"
-   owner: "{{file_owner_vhost}}"
-   group: "{{file_group_vhost}}"
-  with_items: nginx_vhost
+    src: "templates/{{(item.template|e) if (item.template is defined) and not ((item.template == None) or (item.template == '')) else nginx_vhost_template}}/vhost.conf.j2"
+    dest: "{{file_path_vhosts_d_name}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else nginx_name}}-{{(item.port|int(80)) if (item.port is defined) and not ((item.port == None) or (item.port == '')) else nginx_port}}.conf"
+    mode: "{{file_mode_vhost}}"
+    owner: "{{file_owner_vhost}}"
+    group: "{{file_group_vhost}}"
+  with_items: "{{nginx_vhost}}"
   notify:
-   - command check nginx
-   - service reload nginx
+    - command check nginx
+    - service reload nginx
   when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
-   - files
-   - config
-   - unix
-   - nginx
+    - files
+    - config
+    - unix
+    - nginx
 
 - name: file remove vhost
   file:
-   state: 'absent'
-   path: "{{file_path_vhosts_d_name}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else nginx_name}}-{{(item.port|int(80)) if (item.port is defined) and not ((item.port == None) or (item.port == '')) else nginx_port}}.conf"
-  with_items: nginx_vhost
+    state: 'absent'
+    path: "{{file_path_vhosts_d_name}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else nginx_name}}-{{(item.port|int(80)) if (item.port is defined) and not ((item.port == None) or (item.port == '')) else nginx_port}}.conf"
+  with_items: "{{nginx_vhost}}"
   notify:
-   - command check nginx
-   - service reload nginx
+    - command check nginx
+    - service reload nginx
   when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
-   - files
-   - config
-   - unix
-   - nginx
+    - files
+    - config
+    - unix
+    - nginx

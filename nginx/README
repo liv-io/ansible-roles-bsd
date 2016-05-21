@@ -32,74 +32,74 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: nginx
+      - role: nginx
     vars:
-     nginx_state: 'install'
+      nginx_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
-     - role: nginx
+      - role: nginx
     vars:
-     nginx_state: 'enable'
+      nginx_state: 'enable'
 
 DISABLE
   - hosts: all
     roles:
-     - role: nginx
+      - role: nginx
     vars:
-     nginx_state: 'disable'
+      nginx_state: 'disable'
 
 REMOVE
   - hosts: all
     roles:
-     - role: nginx
+      - role: nginx
     vars:
-     nginx_state: 'remove'
+      nginx_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: nginx
+      - role: nginx
     vars:
-     nginx_state: 'inactive'
+      nginx_state: 'inactive'
 
 CONFIG
   vars:
-   nginx_vhost:
-    - name: "{{ansible_fqdn}}"
-      state: 'true'
-      listen: '*'
-      port: 80
-      custom_config:
-       - comment: 'Reverse Proxy'
-         config:
-          - 'location / {'
-          - '  proxy_pass http://localhost:8080;'
-          - '  proxy_set_header Host              $host;'
-          - '  proxy_set_header X-Real-IP         $remote_addr;'
-          - '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;'
-          - '  proxy_set_header X-Forwarded-Proto $scheme;'
-          - '}'
+    nginx_vhost:
+      - name: "{{ansible_fqdn}}"
+        state: 'true'
+        listen: '*'
+        port: 80
+        custom_config:
+          - comment: 'Reverse Proxy'
+            config:
+              - 'location / {'
+              - '  proxy_pass http://localhost:8080;'
+              - '  proxy_set_header Host              $host;'
+              - '  proxy_set_header X-Real-IP         $remote_addr;'
+              - '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;'
+              - '  proxy_set_header X-Forwarded-Proto $scheme;'
+              - '}'
 
-    - name: "{{ansible_fqdn}}"
-      state: 'true'
-      listen: '*'
-      port: 443
-      hsts_state: 'true'
-      ssl_state: 'true'
-      ssl_certificate: "/etc/ssl/example/{{ansible_fqdn}}.crt"
-      ssl_certificate_key: "/etc/ssl/example/{{ansible_fqdn}}.key"
-      custom_config:
-       - comment: 'Reverse Proxy'
-         config:
-          - 'location / {'
-          - '  proxy_pass https://localhost:8443;'
-          - '  proxy_set_header Host              $host;'
-          - '  proxy_set_header X-Real-IP         $remote_addr;'
-          - '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;'
-          - '  proxy_set_header X-Forwarded-Proto $scheme;'
-          - '}'
+     - name: "{{ansible_fqdn}}"
+       state: 'true'
+       listen: '*'
+       port: 443
+       hsts_state: 'true'
+       ssl_state: 'true'
+       ssl_certificate: "/etc/ssl/example/{{ansible_fqdn}}.crt"
+       ssl_certificate_key: "/etc/ssl/example/{{ansible_fqdn}}.key"
+       custom_config:
+         - comment: 'Reverse Proxy'
+           config:
+             - 'location / {'
+             - '  proxy_pass https://localhost:8443;'
+             - '  proxy_set_header Host              $host;'
+             - '  proxy_set_header X-Real-IP         $remote_addr;'
+             - '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;'
+             - '  proxy_set_header X-Forwarded-Proto $scheme;'
+             - '}'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -348,7 +348,7 @@ ROLE
     Options    :
       Examples: 256 | 512 | 1024 | 2048
 
-  nginx_worker_rlimit_nofile 
+  nginx_worker_rlimit_nofile
     Description: Set the 'nginx_worker_rlimit_nofile' option.
     Implemented: 0.1
     Required   : False
@@ -385,7 +385,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

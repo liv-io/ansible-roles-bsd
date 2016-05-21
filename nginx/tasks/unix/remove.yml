@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - nginx
+    - remove
+    - unix
+    - nginx
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -42,28 +44,28 @@
   failed_when: (register_info_nginx.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - remove
-   - unix
-   - nginx
+    - commands
+    - remove
+    - unix
+    - nginx
 
 - name: command disable nginx
   command: "{{command_cmd_disable_nginx}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
-   - commands
-   - remove
-   - unix
-   - nginx
+    - commands
+    - remove
+    - unix
+    - nginx
 
 - name: command stop nginx
   command: "{{command_cmd_stop_nginx}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
-   - commands
-   - remove
-   - unix
-   - nginx
+    - commands
+    - remove
+    - unix
+    - nginx
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -71,25 +73,25 @@
 
 - name: package remove nginx
   pkgng:
-   state: 'absent'
-   name: "{{package_name_nginx}}"
+    state: 'absent'
+    name: "{{package_name_nginx}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - nginx
+    - packaging
+    - remove
+    - unix
+    - nginx
 
 - name: package remove nginx
   openbsd_pkg:
-   state: 'absent'
-   name: "{{package_name_nginx}}"
+    state: 'absent'
+    name: "{{package_name_nginx}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - nginx
+    - packaging
+    - remove
+    - unix
+    - nginx
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -97,44 +99,44 @@
 
 - name: line remove nginx_enable
   lineinfile:
-   state: 'absent'
-   line: "{{file_line_nginx_enable}}=\"NO\" # Ansible: Remove nginx"
-   regexp: "^{{file_line_nginx_enable}}="
-   dest: "{{file_path_nginx_enable}}"
+    state: 'absent'
+    line: "{{file_line_nginx_enable}}=\"NO\" # Ansible: Remove nginx"
+    regexp: "^{{file_line_nginx_enable}}="
+    dest: "{{file_path_nginx_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - nginx
+    - files
+    - remove
+    - unix
+    - nginx
 
 - name: file remove nginx.conf
   file:
-   state: 'absent'
-   path: "{{file_path_nginx_conf}}"
+    state: 'absent'
+    path: "{{file_path_nginx_conf}}"
   tags:
-   - files
-   - remove
-   - unix
-   - nginx
+    - files
+    - remove
+    - unix
+    - nginx
 
 - name: file remove log.dir
   file:
-   state: 'absent'
-   path: "{{file_path_log_dir_name}}"
+    state: 'absent'
+    path: "{{file_path_log_dir_name}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - remove
-   - unix
-   - nginx
+    - files
+    - remove
+    - unix
+    - nginx
 
 - name: file remove vhosts.d
   file:
-   state: 'absent'
-   path: "{{file_path_vhosts_d_name}}"
+    state: 'absent'
+    path: "{{file_path_vhosts_d_name}}"
   tags:
-   - files
-   - remove
-   - unix
-   - nginx
+    - files
+    - remove
+    - unix
+    - nginx

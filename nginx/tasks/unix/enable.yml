@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - enable
-   - unix
-   - nginx
+    - enable
+    - unix
+    - nginx
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,32 +40,32 @@
 
 - name: template create nginx.conf
   template:
-   src: "{{file_src_nginx_conf}}"
-   dest: "{{file_path_nginx_conf}}"
-   mode: "{{file_mode_nginx_conf}}"
-   owner: "{{file_owner_nginx_conf}}"
-   group: "{{file_group_nginx_conf}}"
+    src: "{{file_src_nginx_conf}}"
+    dest: "{{file_path_nginx_conf}}"
+    mode: "{{file_mode_nginx_conf}}"
+    owner: "{{file_owner_nginx_conf}}"
+    group: "{{file_group_nginx_conf}}"
   notify:
-   - command check nginx
-   - service reload nginx
+    - command check nginx
+    - service reload nginx
   tags:
-   - files
-   - enable
-   - unix
-   - nginx
+    - files
+    - enable
+    - unix
+    - nginx
 
 - name: line enable nginx_enable
   lineinfile:
-   state: 'present'
-   line: "{{file_line_nginx_enable}}=\"YES\" # Ansible: Enable nginx"
-   regexp: "^{{file_line_nginx_enable}}="
-   dest: "{{file_path_nginx_enable}}"
+    state: 'present'
+    line: "{{file_line_nginx_enable}}=\"YES\" # Ansible: Enable nginx"
+    regexp: "^{{file_line_nginx_enable}}="
+    dest: "{{file_path_nginx_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - files
-   - enable
-   - unix
-   - nginx
+    - files
+    - enable
+    - unix
+    - nginx
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -76,19 +78,19 @@
   failed_when: (register_status_nginx.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - enable
-   - unix
-   - nginx
+    - commands
+    - enable
+    - unix
+    - nginx
 
 - name: command enable nginx
   command: "{{command_cmd_enable_nginx}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 1)
   tags:
-   - commands
-   - enable
-   - unix
-   - nginx
+    - commands
+    - enable
+    - unix
+    - nginx
 
 - name: command check nginx
   command: "{{command_cmd_check_nginx}}"
@@ -97,19 +99,19 @@
   failed_when: (register_check_nginx.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - commands
-   - enable
-   - unix
-   - nginx
+    - commands
+    - enable
+    - unix
+    - nginx
 
 - name: command start nginx
   command: "{{command_cmd_start_nginx}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 1)
   tags:
-   - commands
-   - enable
-   - unix
-   - nginx
+    - commands
+    - enable
+    - unix
+    - nginx
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -117,12 +119,12 @@
 
 - name: service start nginx
   service:
-   state: 'started'
-   enabled: 'yes'
-   name: "{{service_name_nginx}}"
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_nginx}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - system
-   - enable
-   - unix
-   - nginx
+    - system
+    - enable
+    - unix
+    - nginx

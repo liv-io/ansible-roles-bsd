@@ -33,7 +33,7 @@ package_name_nginx: 'nginx'
 #-------------------------------------------------------------------------------
 
 # nginx.conf
-file_src_nginx_conf: "../../templates/{{(nginx_nginx_conf_template|e)}}/nginx.conf.j2"
+file_src_nginx_conf: "templates/{{(nginx_nginx_conf_template|e)}}/nginx.conf.j2"
 file_path_nginx_conf: '/etc/nginx/nginx.conf'
 file_mode_nginx_conf: '0644'
 file_owner_nginx_conf: 'root'
