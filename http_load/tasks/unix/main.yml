@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((http_load_state == 'false') or (http_load_state == 'no') or (http_load_state == 'remove') or (http_load_state == 'quiesce') or (http_load_state == 'inactive'))
   tags:
-   - unix
-   - http_load
+    - unix
+    - http_load
 
 - name: task include remove
   include: remove.yml
   when: (http_load_state == 'false') or (http_load_state == 'no') or (http_load_state == 'remove')
   tags:
-   - unix
-   - http_load
+    - unix
+    - http_load

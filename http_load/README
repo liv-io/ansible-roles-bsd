@@ -31,23 +31,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: http_load
+      - role: http_load
     vars:
-     http_load_state: 'install'
+      http_load_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: http_load
+      - role: http_load
     vars:
-     http_load_state: 'remove'
+      http_load_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: http_load
+      - role: http_load
     vars:
-     http_load_state: 'inactive'
+      http_load_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -93,7 +93,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - http_load
+    - install
+    - unix
+    - http_load
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package install http_load
   pkgng:
-   state: 'present'
-   name: "{{package_name_http_load}}"
+    state: 'present'
+    name: "{{package_name_http_load}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - http_load
+    - packaging
+    - install
+    - unix
+    - http_load
 
 - name: package install http_load
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_http_load}}"
+    state: 'present'
+    name: "{{package_name_http_load}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - http_load
+    - packaging
+    - install
+    - unix
+    - http_load
