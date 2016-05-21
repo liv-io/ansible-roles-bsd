@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - gnu_grep
+    - install
+    - unix
+    - gnu_grep
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package install gnu-grep
   pkgng:
-   state: 'present'
-   name: "{{package_name_gnu_grep}}"
+    state: 'present'
+    name: "{{package_name_gnu_grep}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - gnu_grep
+    - packaging
+    - install
+    - unix
+    - gnu_grep
 
 - name: package install gnu-grep
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_gnu_grep}}"
+    state: 'present'
+    name: "{{package_name_gnu_grep}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - gnu_grep
+    - packaging
+    - install
+    - unix
+    - gnu_grep
