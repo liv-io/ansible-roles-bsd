@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - freebsd
-   - periodic
+    - remove
+    - freebsd
+    - periodic
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,10 +40,10 @@
 
 - name: file remove periodic.conf
   file:
-   state: 'absent'
-   path: "{{file_path_periodic_conf}}"
+    state: 'absent'
+    path: "{{file_path_periodic_conf}}"
   tags:
-   - files
-   - remove
-   - freebsd
-   - periodic
+    - files
+    - remove
+    - freebsd
+    - periodic

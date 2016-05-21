@@ -30,26 +30,26 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: periodic
+      - role: periodic
     vars:
-     periodic_state: 'install'
-     periodic_daily_show_info: 'false'
-     periodic_monthly_show_info: 'false'
-     periodic_weekly_show_info: 'false'
+      periodic_state: 'install'
+      periodic_daily_show_info: 'false'
+      periodic_monthly_show_info: 'false'
+      periodic_weekly_show_info: 'false'
 
 REMOVE
   - hosts: all
     roles:
-     - role: periodic
+      - role: periodic
     vars:
-     periodic_state: 'remove'
+      periodic_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: periodic
+      - role: periodic
     vars:
-     periodic_state: 'inactive'
+      periodic_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -233,7 +233,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
