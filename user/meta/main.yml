@@ -22,5 +22,5 @@
 #-------------------------------------------------------------------------------
 
 dependencies:
- - {role: 'group', when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable') or (user_state == 'quiesce') or (user_state == 'inactive'))}
- - {role: 'passwd', when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable') or (user_state == 'quiesce') or (user_state == 'inactive'))}
+  - {role: 'group', when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable') or (user_state == 'quiesce') or (user_state == 'inactive'))}
+  - {role: 'passwd', when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable') or (user_state == 'quiesce') or (user_state == 'inactive'))}
