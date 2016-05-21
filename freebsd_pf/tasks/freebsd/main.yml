@@ -25,19 +25,19 @@
   include: enable.yml
   when: (freebsd_pf_state == 'start') or (freebsd_pf_state == 'on') or (freebsd_pf_state == 'enable')
   tags:
-   - freebsd
-   - freebsd_pf
+    - freebsd
+    - freebsd_pf
 
 - name: task include disable
   include: disable.yml
   when: (freebsd_pf_state == 'stop') or (freebsd_pf_state == 'off') or (freebsd_pf_state == 'disable')
   tags:
-   - freebsd
-   - freebsd_pf
+    - freebsd
+    - freebsd_pf
 
 - name: task include remove
   include: remove.yml
   when: (freebsd_pf_state == 'false') or (freebsd_pf_state == 'no') or (freebsd_pf_state == 'remove')
   tags:
-   - freebsd
-   - freebsd_pf
+    - freebsd
+    - freebsd_pf
