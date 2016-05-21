@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((patchutils_state == 'false') or (patchutils_state == 'no') or (patchutils_state == 'remove') or (patchutils_state == 'quiesce') or (patchutils_state == 'inactive'))
   tags:
-   - unix
-   - patchutils
+    - unix
+    - patchutils
 
 - name: task include remove
   include: remove.yml
   when: (patchutils_state == 'false') or (patchutils_state == 'no') or (patchutils_state == 'remove')
   tags:
-   - unix
-   - patchutils
+    - unix
+    - patchutils
