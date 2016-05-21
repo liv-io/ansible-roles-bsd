@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((usbutils_state == 'false') or (usbutils_state == 'no') or (usbutils_state == 'remove') or (usbutils_state == 'quiesce') or (usbutils_state == 'inactive'))
   tags:
-   - unix
-   - usbutils
+    - unix
+    - usbutils
 
 - name: task include remove
   include: remove.yml
   when: (usbutils_state == 'false') or (usbutils_state == 'no') or (usbutils_state == 'remove')
   tags:
-   - unix
-   - usbutils
+    - unix
+    - usbutils
