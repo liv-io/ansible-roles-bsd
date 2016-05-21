@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((splint_state == 'false') or (splint_state == 'no') or (splint_state == 'remove') or (splint_state == 'quiesce') or (splint_state == 'inactive'))
   tags:
-   - unix
-   - splint
+    - unix
+    - splint
 
 - name: task include remove
   include: remove.yml
   when: (splint_state == 'false') or (splint_state == 'no') or (splint_state == 'remove')
   tags:
-   - unix
-   - splint
+    - unix
+    - splint
