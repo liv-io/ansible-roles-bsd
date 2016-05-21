@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - openbsd
-   - openbsd_pf
+    - remove
+    - openbsd
+    - openbsd_pf
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -42,19 +44,19 @@
   changed_when: (register_status_pf.rc > 1)
   failed_when: (register_status_pf.rc > 1)
   tags:
-   - commands
-   - remove
-   - openbsd
-   - openbsd_pf
+    - commands
+    - remove
+    - openbsd
+    - openbsd_pf
 
 - name: command disable pf
   command: "{{command_cmd_disable_pf}}"
   when: (register_status_pf.rc == 0)
   tags:
-   - commands
-   - remove
-   - openbsd
-   - openbsd_pf
+    - commands
+    - remove
+    - openbsd
+    - openbsd_pf
 
 - name: command check pf
   raw: "{{raw_cmd_check_pf}}"
@@ -62,19 +64,19 @@
   changed_when: (register_check_pf.rc > 1)
   failed_when: (register_check_pf.rc > 1)
   tags:
-   - commands
-   - remove
-   - openbsd
-   - openbsd_pf
+    - commands
+    - remove
+    - openbsd
+    - openbsd_pf
 
 - name: command stop pf
   command: "{{command_cmd_stop_pf}}"
   when: (register_check_pf.rc == 0)
   tags:
-   - commands
-   - remove
-   - openbsd
-   - openbsd_pf
+    - commands
+    - remove
+    - openbsd
+    - openbsd_pf
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -82,10 +84,10 @@
 
 - name: file remove pf.blacklist
   file:
-   state: 'absent'
-   path: "{{file_path_pf_blacklist}}"
+    state: 'absent'
+    path: "{{file_path_pf_blacklist}}"
   tags:
-   - files
-   - remove
-   - openbsd
-   - openbsd_pf
+    - files
+    - remove
+    - openbsd
+    - openbsd_pf

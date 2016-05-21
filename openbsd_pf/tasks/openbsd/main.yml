@@ -25,19 +25,19 @@
   include: enable.yml
   when: (openbsd_pf_state == 'start') or (openbsd_pf_state == 'on') or (openbsd_pf_state == 'enable')
   tags:
-   - openbsd
-   - openbsd_pf
+    - openbsd
+    - openbsd_pf
 
 - name: task include disable
   include: disable.yml
   when: (openbsd_pf_state == 'stop') or (openbsd_pf_state == 'off') or (openbsd_pf_state == 'disable')
   tags:
-   - openbsd
-   - openbsd_pf
+    - openbsd
+    - openbsd_pf
 
 - name: task include remove
   include: remove.yml
   when: (openbsd_pf_state == 'false') or (openbsd_pf_state == 'no') or (openbsd_pf_state == 'remove')
   tags:
-   - openbsd
-   - openbsd_pf
+    - openbsd
+    - openbsd_pf

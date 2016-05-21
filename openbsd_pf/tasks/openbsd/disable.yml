@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - disable
-   - openbsd
-   - openbsd_pf
+    - disable
+    - openbsd
+    - openbsd_pf
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,29 +40,29 @@
 
 - name: template create pf.blacklist
   template:
-   src: "{{file_src_pf_blacklist}}"
-   dest: "{{file_path_pf_blacklist}}"
-   mode: "{{file_mode_pf_blacklist}}"
-   owner: "{{file_owner_pf_blacklist}}"
-   group: "{{file_group_pf_blacklist}}"
+    src: "{{file_src_pf_blacklist}}"
+    dest: "{{file_path_pf_blacklist}}"
+    mode: "{{file_mode_pf_blacklist}}"
+    owner: "{{file_owner_pf_blacklist}}"
+    group: "{{file_group_pf_blacklist}}"
   tags:
-   - files
-   - disable
-   - openbsd
-   - openbsd_pf
+    - files
+    - disable
+    - openbsd
+    - openbsd_pf
 
 - name: template create pf.conf
   template:
-   src: "{{file_src_pf_conf}}"
-   dest: "{{file_path_pf_conf}}"
-   mode: "{{file_mode_pf_conf}}"
-   owner: "{{file_owner_pf_conf}}"
-   group: "{{file_group_pf_conf}}"
+    src: "{{file_src_pf_conf}}"
+    dest: "{{file_path_pf_conf}}"
+    mode: "{{file_mode_pf_conf}}"
+    owner: "{{file_owner_pf_conf}}"
+    group: "{{file_group_pf_conf}}"
   tags:
-   - files
-   - disable
-   - openbsd
-   - openbsd_pf
+    - files
+    - disable
+    - openbsd
+    - openbsd_pf
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -72,19 +74,19 @@
   changed_when: (register_status_pf.rc > 1)
   failed_when: (register_status_pf.rc > 1)
   tags:
-   - commands
-   - disable
-   - openbsd
-   - openbsd_pf
+    - commands
+    - disable
+    - openbsd
+    - openbsd_pf
 
 - name: command disable pf
   command: "{{command_cmd_disable_pf}}"
   when: (register_status_pf.rc == 0)
   tags:
-   - commands
-   - disable
-   - openbsd
-   - openbsd_pf
+    - commands
+    - disable
+    - openbsd
+    - openbsd_pf
 
 - name: command check pf
   raw: "{{raw_cmd_check_pf}}"
@@ -92,16 +94,16 @@
   changed_when: (register_check_pf.rc > 1)
   failed_when: (register_check_pf.rc > 1)
   tags:
-   - commands
-   - disable
-   - openbsd
-   - openbsd_pf
+    - commands
+    - disable
+    - openbsd
+    - openbsd_pf
 
 - name: command stop pf
   command: "{{command_cmd_stop_pf}}"
   when: (register_check_pf.rc == 0)
   tags:
-   - commands
-   - disable
-   - openbsd
-   - openbsd_pf
+    - commands
+    - disable
+    - openbsd
+    - openbsd_pf

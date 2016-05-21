@@ -46,8 +46,6 @@ openbsd_pf_filter_out_icmp:
  - {config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
              'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'}, comment: 'ICMP echo request: To any'}
 
-openbsd_pf_filter_out_ip_host: []
-
 openbsd_pf_filter_out_ip_all:
  - {config: {'pass out inet proto tcp to any port 53 $tcp_state',
              'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'}
