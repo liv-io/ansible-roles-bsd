@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - moreutils
+    - remove
+    - unix
+    - moreutils
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package remove moreutils
   pkgng:
-   state: 'absent'
-   name: "{{package_name_moreutils}}"
+    state: 'absent'
+    name: "{{package_name_moreutils}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - moreutils
+    - packaging
+    - remove
+    - unix
+    - moreutils
 
 - name: package remove moreutils
   openbsd_pkg:
-   state: 'absent'
-   name: "{{package_name_moreutils}}"
+    state: 'absent'
+    name: "{{package_name_moreutils}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - moreutils
+    - packaging
+    - remove
+    - unix
+    - moreutils
