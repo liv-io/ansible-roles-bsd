@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((sdparm_state == 'false') or (sdparm_state == 'no') or (sdparm_state == 'remove') or (sdparm_state == 'quiesce') or (sdparm_state == 'inactive'))
   tags:
-   - unix
-   - sdparm
+    - unix
+    - sdparm
 
 - name: task include remove
   include: remove.yml
   when: (sdparm_state == 'false') or (sdparm_state == 'no') or (sdparm_state == 'remove')
   tags:
-   - unix
-   - sdparm
+    - unix
+    - sdparm
