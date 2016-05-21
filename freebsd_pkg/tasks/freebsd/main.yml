@@ -25,5 +25,5 @@
   include: install.yml
   when: not ((freebsd_pkg_state == 'false') or (freebsd_pkg_state == 'no') or (freebsd_pkg_state == 'remove') or (freebsd_pkg_state == 'quiesce') or (freebsd_pkg_state == 'inactive'))
   tags:
-   - freebsd
-   - freebsd_pkg
+    - freebsd
+    - freebsd_pkg
