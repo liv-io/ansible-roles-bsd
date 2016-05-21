@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - gnu_awk
+    - remove
+    - unix
+    - gnu_awk
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package remove gnu-awk
   pkgng:
-   state: 'absent'
-   name: "{{package_name_gnu_awk}}"
+    state: 'absent'
+    name: "{{package_name_gnu_awk}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - gnu_awk
+    - packaging
+    - remove
+    - unix
+    - gnu_awk
 
 - name: package remove gnu-awk
   openbsd_pkg:
-   state: 'absent'
-   name: "{{package_name_gnu_awk}}"
+    state: 'absent'
+    name: "{{package_name_gnu_awk}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - gnu_awk
+    - packaging
+    - remove
+    - unix
+    - gnu_awk

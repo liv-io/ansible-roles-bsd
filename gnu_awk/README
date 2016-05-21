@@ -34,23 +34,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: gnu_awk
+      - role: gnu_awk
     vars:
-     gnu_awk_state: 'install'
+      gnu_awk_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: gnu_awk
+      - role: gnu_awk
     vars:
-     gnu_awk_state: 'remove'
+      gnu_awk_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: gnu_awk
+      - role: gnu_awk
     vars:
-     gnu_awk_state: 'inactive'
+      gnu_awk_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -96,7 +96,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
