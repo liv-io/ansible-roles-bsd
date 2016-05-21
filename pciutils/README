@@ -32,23 +32,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: pciutils
+      - role: pciutils
     vars:
-     pciutils_state: 'install'
+      pciutils_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: pciutils
+      - role: pciutils
     vars:
-     pciutils_state: 'remove'
+      pciutils_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: pciutils
+      - role: pciutils
     vars:
-     pciutils_state: 'inactive'
+      pciutils_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -94,7 +94,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

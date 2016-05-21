@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((pciutils_state == 'false') or (pciutils_state == 'no') or (pciutils_state == 'remove') or (pciutils_state == 'quiesce') or (pciutils_state == 'inactive'))
   tags:
-   - unix
-   - pciutils
+    - unix
+    - pciutils
 
 - name: task include remove
   include: remove.yml
   when: (pciutils_state == 'false') or (pciutils_state == 'no') or (pciutils_state == 'remove')
   tags:
-   - unix
-   - pciutils
+    - unix
+    - pciutils
