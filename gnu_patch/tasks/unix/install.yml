@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - gnu_patch
+    - install
+    - unix
+    - gnu_patch
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,22 +40,22 @@
 
 - name: package install gnu-patch
   pkgng:
-   state: 'present'
-   name: "{{package_name_gnu_patch}}"
+    state: 'present'
+    name: "{{package_name_gnu_patch}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - gnu_patch
+    - packaging
+    - install
+    - unix
+    - gnu_patch
 
 - name: package install gnu-patch
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_gnu_patch}}"
+    state: 'present'
+    name: "{{package_name_gnu_patch}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - gnu_patch
+    - packaging
+    - install
+    - unix
+    - gnu_patch

@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((gnu_patch_state == 'false') or (gnu_patch_state == 'no') or (gnu_patch_state == 'remove') or (gnu_patch_state == 'quiesce') or (gnu_patch_state == 'inactive'))
   tags:
-   - unix
-   - gnu_patch
+    - unix
+    - gnu_patch
 
 - name: task include remove
   include: remove.yml
   when: (gnu_patch_state == 'false') or (gnu_patch_state == 'no') or (gnu_patch_state == 'remove')
   tags:
-   - unix
-   - gnu_patch
+    - unix
+    - gnu_patch

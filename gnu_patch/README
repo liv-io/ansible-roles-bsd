@@ -33,23 +33,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: gnu_patch
+      - role: gnu_patch
     vars:
-     gnu_patch_state: 'install'
+      gnu_patch_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: gnu_patch
+      - role: gnu_patch
     vars:
-     gnu_patch_state: 'remove'
+      gnu_patch_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: gnu_patch
+      - role: gnu_patch
     vars:
-     gnu_patch_state: 'inactive'
+      gnu_patch_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -95,7 +95,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
