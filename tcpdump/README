@@ -33,23 +33,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: tcpdump
+      - role: tcpdump
     vars:
-     tcpdump_state: 'install'
+      tcpdump_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: tcpdump
+      - role: tcpdump
     vars:
-     tcpdump_state: 'remove'
+      tcpdump_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: tcpdump
+      - role: tcpdump
     vars:
-     tcpdump_state: 'inactive'
+      tcpdump_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -94,7 +94,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
