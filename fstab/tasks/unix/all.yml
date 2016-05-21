@@ -27,13 +27,13 @@
 
 - name: fstab config fstab-all
   lineinfile:
-   state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
-   line: "{{(item.filesystem|e) if (item.filesystem is defined) and not ((item.filesystem == None) or (item.filesystem == '')) else ''}}  {{(item.mountpoint|e) if (item.mountpoint is defined) and not ((item.mountpoint == None) or (item.mountpoint == '')) else ''}}  {{(item.type|e) if (item.type is defined) and not ((item.type == None) or (item.type == '')) else ''}}  {{(item.options|join(',')) if (item.options is defined) and not ((item.options == None) or (item.options == '')) else 'defaults'}}  {{(item.dump|int(0)) if (item.dump is defined) and not ((item.dump == None) or (item.dump == '')) else 0}} {{(item.pass|int(0)) if (item.pass is defined) and not ((item.pass == None) or (item.pass == '')) else 0}} # {{(item.comment|e) if (item.comment is defined) and not (item.comment == None) else ''}} | Ansible: {{item.mountpoint|md5}}"
-   regexp: '{{item.mountpoint|md5}}$'
-   dest: "{{(item.path|e) if (item.path is defined) and not ((item.path == None) or (item.path == '')) else fstab_path_default}}"
-  with_items: fstab_all
+    state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
+    line: "{{(item.filesystem|e) if (item.filesystem is defined) and not ((item.filesystem == None) or (item.filesystem == '')) else ''}}  {{(item.mountpoint|e) if (item.mountpoint is defined) and not ((item.mountpoint == None) or (item.mountpoint == '')) else ''}}  {{(item.type|e) if (item.type is defined) and not ((item.type == None) or (item.type == '')) else ''}}  {{(item.options|join(',')) if (item.options is defined) and not ((item.options == None) or (item.options == '')) else 'defaults'}}  {{(item.dump|int(0)) if (item.dump is defined) and not ((item.dump == None) or (item.dump == '')) else 0}} {{(item.pass|int(0)) if (item.pass is defined) and not ((item.pass == None) or (item.pass == '')) else 0}} # {{(item.comment|e) if (item.comment is defined) and not (item.comment == None) else ''}} | Ansible: {{item.mountpoint|md5}}"
+    regexp: '{{item.mountpoint|md5}}$'
+    dest: "{{(item.path|e) if (item.path is defined) and not ((item.path == None) or (item.path == '')) else fstab_path_default}}"
+  with_items: "{{fstab_all}}"
   tags:
-   - files
-   - all
-   - unix
-   - fstab
+    - files
+    - all
+    - unix
+    - fstab

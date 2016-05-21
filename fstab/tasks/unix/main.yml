@@ -25,19 +25,19 @@
   include: all.yml
   when: not ((fstab_state == 'false') or (fstab_state == 'no') or (fstab_state == 'remove') or (fstab_state == 'quiesce') or (fstab_state == 'inactive'))
   tags:
-   - unix
-   - fstab
+    - unix
+    - fstab
 
 - name: task include group
   include: group.yml
   when: not ((fstab_state == 'false') or (fstab_state == 'no') or (fstab_state == 'remove') or (fstab_state == 'quiesce') or (fstab_state == 'inactive'))
   tags:
-   - unix
-   - fstab
+    - unix
+    - fstab
 
 - name: task include host
   include: host.yml
   when: not ((fstab_state == 'false') or (fstab_state == 'no') or (fstab_state == 'remove') or (fstab_state == 'quiesce') or (fstab_state == 'inactive'))
   tags:
-   - unix
-   - fstab
+    - unix
+    - fstab

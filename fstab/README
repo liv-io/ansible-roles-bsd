@@ -36,49 +36,49 @@ USAGE
 INSTALL
   - fstab: all
     roles:
-     - role: fstab
+      - role: fstab
     vars:
-     fstab_state: 'install'
-     fstab_path_default: '/etc/fstab'
+      fstab_state: 'install'
+      fstab_path_default: '/etc/fstab'
 
 INACTIVE
   - fstabs: all
     roles:
-     - role: fstab
+      - role: fstab
     vars:
-     fstab_state: 'inactive'
+      fstab_state: 'inactive'
 
 CONFIG
   vars:
     fstab_all:
-     - filesystem: '192.168.1.10:/nfs'
-       state: 'true'
-       mountpoint: '/nfs'
-       type: 'nfs'
-       options: ['nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15']
-       dump: 0
-       pass: 0
-       comment: 'NFS File System'
+      - filesystem: '192.168.1.10:/nfs'
+        state: 'true'
+        mountpoint: '/nfs'
+        type: 'nfs'
+        options: ['nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15']
+        dump: 0
+        pass: 0
+        comment: 'NFS File System'
 
     fstab_group:
-     - filesystem: '/dev/mapper/data-opt'
-       state: 'true'
-       mountpoint: '/opt'
-       type: 'xfs'
-       options: ['defaults']
-       dump: 1
-       pass: 1
-       comment: 'Optional File System'
+      - filesystem: '/dev/mapper/data-opt'
+        state: 'true'
+        mountpoint: '/opt'
+        type: 'xfs'
+        options: ['defaults']
+        dump: 1
+        pass: 1
+        comment: 'Optional File System'
 
     fstab_host:
-     - filesystem: '/dev/mapper/data-remove'
-       state: 'false'
-       mountpoint: '/remove'
-       type: 'ext4'
-       options: []
-       dump: 0
-       pass: 0
-       comment: 'Unused File System'
+      - filesystem: '/dev/mapper/data-remove'
+        state: 'false'
+        mountpoint: '/remove'
+        type: 'ext4'
+        options: []
+        dump: 0
+        pass: 0
+        comment: 'Unused File System'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -257,7 +257,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
