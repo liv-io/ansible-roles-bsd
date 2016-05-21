@@ -35,23 +35,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: gnu_tar
+      - role: gnu_tar
     vars:
-     gnu_tar_state: 'install'
+      gnu_tar_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: gnu_tar
+      - role: gnu_tar
     vars:
-     gnu_tar_state: 'remove'
+      gnu_tar_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: gnu_tar
+      - role: gnu_tar
     vars:
-     gnu_tar_state: 'inactive'
+      gnu_tar_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -97,7 +97,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
