@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - hping3
+    - remove
+    - unix
+    - hping3
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,11 +40,11 @@
 
 - name: package remove hping3
   pkgng:
-   state: 'absent'
-   name: "{{package_name_hping3}}"
+    state: 'absent'
+    name: "{{package_name_hping3}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - hping3
+    - packaging
+    - remove
+    - unix
+    - hping3

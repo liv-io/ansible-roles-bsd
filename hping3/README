@@ -32,23 +32,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: hping3
+      - role: hping3
     vars:
-     hping3_state: 'install'
+      hping3_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: hping3
+      - role: hping3
     vars:
-     hping3_state: 'remove'
+      hping3_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: hping3
+      - role: hping3
     vars:
-     hping3_state: 'inactive'
+      hping3_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -93,7 +93,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
