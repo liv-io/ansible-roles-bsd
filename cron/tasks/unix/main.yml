@@ -25,26 +25,26 @@
   include: install.yml
   when: not ((cron_state == 'false') or (cron_state == 'no') or (cron_state == 'remove') or (cron_state == 'quiesce') or (cron_state == 'inactive'))
   tags:
-   - unix
-   - cron
+    - unix
+    - cron
 
 - name: task include enable
   include: enable.yml
   when: (cron_state == 'start') or (cron_state == 'on') or (cron_state == 'enable')
   tags:
-   - unix
-   - cron
+    - unix
+    - cron
 
 - name: task include disable
   include: disable.yml
   when: (cron_state == 'stop') or (cron_state == 'off') or (cron_state == 'disable')
   tags:
-   - unix
-   - cron
+    - unix
+    - cron
 
 - name: task include remove
   include: remove.yml
   when: (cron_state == 'false') or (cron_state == 'no') or (cron_state == 'remove')
   tags:
-   - unix
-   - cron
+    - unix
+    - cron
