@@ -31,40 +31,40 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: group
+      - role: group
     vars:
-     group_state: 'install'
+      group_state: 'install'
 
 DISABLE
   - hosts: all
     roles:
-     - role: group
+      - role: group
     vars:
-     group_state: 'disable'
+      group_state: 'disable'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: group
+      - role: group
     vars:
-     group_state: 'inactive'
+      group_state: 'inactive'
 
 CONFIG
   vars:
     group_all:
-     - name: 'group01'
-       state: 'true'
-       gid: '2001'
+      - name: 'group01'
+        state: 'true'
+        gid: '2001'
 
     group_group:
-     - name: 'group02'
-       state: 'true'
-       gid: '2002'
+      - name: 'group02'
+        state: 'true'
+        gid: '2002'
 
     group_host:
-     - state: 'false'
-       name: 'group03'
-       gid: '2003'
+      - state: 'false'
+        name: 'group03'
+        gid: '2003'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -184,7 +184,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_distribution}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - group
+    - install
+    - unix
+    - group
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -38,13 +40,13 @@
 
 - name: file ensure group
   file:
-   state: 'file'
-   dest: "{{file_path_group}}"
-   mode: "{{file_mode_group}}"
-   owner: "{{file_owner_group}}"
-   group: "{{file_group_group}}"
+    state: 'file'
+    dest: "{{file_path_group}}"
+    mode: "{{file_mode_group}}"
+    owner: "{{file_owner_group}}"
+    group: "{{file_group_group}}"
   tags:
-   - files
-   - install
-   - unix
-   - group
+    - files
+    - install
+    - unix
+    - group
