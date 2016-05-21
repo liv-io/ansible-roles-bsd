@@ -31,23 +31,23 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: gnu_watch
+      - role: gnu_watch
     vars:
-     gnu_watch_state: 'install'
+      gnu_watch_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: gnu_watch
+      - role: gnu_watch
     vars:
-     gnu_watch_state: 'remove'
+      gnu_watch_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: gnu_watch
+      - role: gnu_watch
     vars:
-     gnu_watch_state: 'inactive'
+      gnu_watch_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -93,7 +93,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
