@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_distribution}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - install
-   - unix
-   - sudo
+    - install
+    - unix
+    - sudo
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,25 +40,25 @@
 
 - name: package install sudo
   pkgng:
-   state: 'present'
-   name: "{{package_name_sudo}}"
+    state: 'present'
+    name: "{{package_name_sudo}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - sudo
+    - packaging
+    - install
+    - unix
+    - sudo
 
 - name: package install sudo
   openbsd_pkg:
-   state: 'present'
-   name: "{{package_name_sudo}}"
+    state: 'present'
+    name: "{{package_name_sudo}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - install
-   - unix
-   - sudo
+    - packaging
+    - install
+    - unix
+    - sudo
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -64,27 +66,27 @@
 
 - name: template create sudoers
   template:
-   src: "{{file_src_sudoers}}"
-   dest: "{{file_path_sudoers}}"
-   mode: "{{file_mode_sudoers}}"
-   owner: "{{file_owner_sudoers}}"
-   group: "{{file_group_sudoers}}"
-   validate: "{{file_validate_sudoers}}"
+    src: "{{file_src_sudoers}}"
+    dest: "{{file_path_sudoers}}"
+    mode: "{{file_mode_sudoers}}"
+    owner: "{{file_owner_sudoers}}"
+    group: "{{file_group_sudoers}}"
+    validate: "{{file_validate_sudoers}}"
   tags:
-   - files
-   - install
-   - unix
-   - sudo
+    - files
+    - install
+    - unix
+    - sudo
 
 - name: file create sudoers.d
   file:
-   state: 'directory'
-   path: "{{file_path_sudoers_d}}"
-   mode: "{{file_mode_sudoers_d}}"
-   owner: "{{file_owner_sudoers_d}}"
-   group: "{{file_group_sudoers_d}}"
+    state: 'directory'
+    path: "{{file_path_sudoers_d}}"
+    mode: "{{file_mode_sudoers_d}}"
+    owner: "{{file_owner_sudoers_d}}"
+    group: "{{file_group_sudoers_d}}"
   tags:
-   - files
-   - install
-   - unix
-   - sudo
+    - files
+    - install
+    - unix
+    - sudo

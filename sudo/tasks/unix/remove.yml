@@ -24,13 +24,15 @@
 - name: include variables
   include_vars: "{{item}}"
   with_first_found:
-   - "../../vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-   - "../../vars/{{ansible_os_family}}.yml"
-   - "../../vars/main.yml"
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - "vars/main.yml"
+      skip: true
   tags:
-   - remove
-   - unix
-   - sudo
+    - remove
+    - unix
+    - sudo
 
 #-------------------------------------------------------------------------------
 # PACKAGING
@@ -38,25 +40,25 @@
 
 - name: package remove sudo
   pkgng:
-   state: 'absent'
-   name: "{{package_name_sudo}}"
+    state: 'absent'
+    name: "{{package_name_sudo}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - sudo
+    - packaging
+    - remove
+    - unix
+    - sudo
 
 - name: package remove sudo
   openbsd_pkg:
-   state: 'absent'
-   name: "{{package_name_sudo}}"
+    state: 'absent'
+    name: "{{package_name_sudo}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-   - packaging
-   - remove
-   - unix
-   - sudo
+    - packaging
+    - remove
+    - unix
+    - sudo
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -64,20 +66,20 @@
 
 - name: file remove sudoers.d
   file:
-   state: 'absent'
-   path: "{{file_path_sudoers_d}}"
+    state: 'absent'
+    path: "{{file_path_sudoers_d}}"
   tags:
-   - files
-   - remove
-   - unix
-   - sudo
+    - files
+    - remove
+    - unix
+    - sudo
 
 - name: file remove sudoers
   file:
-   state: 'absent'
-   path: "{{file_path_sudoers}}"
+    state: 'absent'
+    path: "{{file_path_sudoers}}"
   tags:
-   - files
-   - remove
-   - unix
-   - sudo
+    - files
+    - remove
+    - unix
+    - sudo

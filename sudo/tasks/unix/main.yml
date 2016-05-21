@@ -25,33 +25,33 @@
   include: install.yml
   when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove') or (sudo_state == 'quiesce') or (sudo_state == 'inactive'))
   tags:
-   - unix
-   - sudo
+    - unix
+    - sudo
 
 - name: task include all
   include: all.yml
   when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove') or (sudo_state == 'quiesce') or (sudo_state == 'inactive'))
   tags:
-   - unix
-   - sudo
+    - unix
+    - sudo
 
 - name: task include group
   include: group.yml
   when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove') or (sudo_state == 'quiesce') or (sudo_state == 'inactive'))
   tags:
-   - unix
-   - sudo
+    - unix
+    - sudo
 
 - name: task include host
   include: host.yml
   when: not ((sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove') or (sudo_state == 'quiesce') or (sudo_state == 'inactive'))
   tags:
-   - unix
-   - sudo
+    - unix
+    - sudo
 
 - name: task include remove
   include: remove.yml
   when: (sudo_state == 'false') or (sudo_state == 'no') or (sudo_state == 'remove')
   tags:
-   - unix
-   - sudo
+    - unix
+    - sudo

@@ -37,62 +37,62 @@ USAGE
 INSTALL
   - sudo: all
     roles:
-     - role: sudo
+      - role: sudo
     vars:
-     sudo_state: 'install'
+      sudo_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-     - role: sudo
+      - role: sudo
     vars:
-     sudo_state: 'remove'
+      sudo_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: sudo
+      - role: sudo
     vars:
-     sudo_state: 'inactive'
+      sudo_state: 'inactive'
 
 CONFIG
   vars:
     sudo_all:
-     - name: 'core'
-       state: 'true'
-       order: '10'
-       comment: 'Core Sudoers'
-       config: ['root ALL=(ALL) ALL']
+      - name: 'core'
+        state: 'true'
+        order: '10'
+        comment: 'Core Sudoers'
+        config: ['root ALL=(ALL) ALL']
 
-     - name: 'ansible'
-       state: 'true'
-       order: '20'
-       comment: 'Ansible Configuration Management'
-       config: ['ansible ALL=(root) NOPASSWD: ALL']
+      - name: 'ansible'
+        state: 'true'
+        order: '20'
+        comment: 'Ansible Configuration Management'
+        config: ['ansible ALL=(root) NOPASSWD: ALL']
 
     sudo_group:
-     - name: 'sysadmin'
-       state: 'true'
-       order: '50'
-       comment: 'System Administrators'
-       config: ['%sysadmin ALL=(ALL) ALL']
+      - name: 'sysadmin'
+        state: 'true'
+        order: '50'
+        comment: 'System Administrators'
+        config: ['%sysadmin ALL=(ALL) ALL']
 
-     - name: 'dbadmin'
-       state: 'true'
-       order: '51'
-       comment: 'Database Administrators'
-       config: ['%dbadmin ALL=(root) service mysqld restart, service mysql restart']
+      - name: 'dbadmin'
+        state: 'true'
+        order: '51'
+        comment: 'Database Administrators'
+        config: ['%dbadmin ALL=(root) service mysqld restart, service mysql restart']
 
-     - name: 'appadmin'
-       state: 'true'
-       order: '52'
-       comment: 'Application Administrators'
-       config: ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
+      - name: 'appadmin'
+        state: 'true'
+        order: '52'
+        comment: 'Application Administrators'
+        config: ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
 
     sudo_host:
-     - name: 'obsolete'
-       state: 'false'
-       order: '42'
+      - name: 'obsolete'
+        state: 'false'
+        order: '42'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -272,7 +272,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4
