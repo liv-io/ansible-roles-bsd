@@ -31,57 +31,57 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-     - role: freebsd_rc
+      - role: freebsd_rc
     vars:
-     freebsd_rc_state: 'install'
-     freebsd_rc_path_default: '/etc/rc.conf'
+      freebsd_rc_state: 'install'
+      freebsd_rc_path_default: '/etc/rc.conf'
 
 INACTIVE
   - hosts: all
     roles:
-     - role: freebsd_rc
+      - role: freebsd_rc
     vars:
-     freebsd_rc_state: 'inactive'
+      freebsd_rc_state: 'inactive'
 
 CONFIG
   vars:
     freebsd_rc_all:
-     - name: 'sshd_enable'
-       value: 'YES'
-       state: 'true'
-       comment: 'Enable service OpenSSH'
+      - name: 'sshd_enable'
+        value: 'YES'
+        state: 'true'
+        comment: 'Enable service OpenSSH'
 
     freebsd_rc_group:
-     - name: 'hostname'
-       value: 'example01'
-       state: 'true'
-       comment: 'Define short hostname'
+      - name: 'hostname'
+        value: 'example01'
+        state: 'true'
+        comment: 'Define short hostname'
 
-     - name: 'keymap'
-       value: 'swissgerman.iso.kbd'
-       state: 'true'
-       comment: 'Set keymap'
+      - name: 'keymap'
+        value: 'swissgerman.iso.kbd'
+        state: 'true'
+        comment: 'Set keymap'
 
     freebsd_rc_host:
-     - name: 'ifconfig_re0'
-       value: 'inet 192.168.1.10 netmask 255.255.255.0'
-       state: 'true'
-       comment: 'Define primary IP address'
+      - name: 'ifconfig_re0'
+        value: 'inet 192.168.1.10 netmask 255.255.255.0'
+        state: 'true'
+        comment: 'Define primary IP address'
 
-     - name: 'defaultrouter'
-       value: '192.168.1.1'
-       state: 'true'
-       comment: 'Define gateway'
+      - name: 'defaultrouter'
+        value: '192.168.1.1'
+        state: 'true'
+        comment: 'Define gateway'
 
-     - name: 'ifconfig_re1'
-       value: 'inet 192.168.2.10 netmask 255.255.255.0'
-       state: 'true'
-       comment: 'Define secondary IP address'
+      - name: 'ifconfig_re1'
+        value: 'inet 192.168.2.10 netmask 255.255.255.0'
+        state: 'true'
+        comment: 'Define secondary IP address'
 
-     - name: 'ifconfig_re2'
-       value: 'inet 192.168.3.10 netmask 255.255.255.0'
-       state: 'true'
-       comment: 'Define tertiary IP address'
+      - name: 'ifconfig_re2'
+        value: 'inet 192.168.3.10 netmask 255.255.255.0'
+        state: 'true'
+        comment: 'Define tertiary IP address'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -228,7 +228,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 1.6
+    Version: >= 2.0
 
   Python
     Version: >= 2.4

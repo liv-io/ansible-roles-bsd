@@ -25,4 +25,4 @@
   include: freebsd/main.yml
   when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release == '10.3-RELEASE'))
   tags:
-   - freebsd_rc
+    - freebsd_rc

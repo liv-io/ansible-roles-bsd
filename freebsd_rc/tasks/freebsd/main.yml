@@ -25,19 +25,19 @@
   include: all.yml
   when: not ((freebsd_rc_state == 'false') or (freebsd_rc_state == 'no') or (freebsd_rc_state == 'remove') or (freebsd_rc_state == 'quiesce') or (freebsd_rc_state == 'inactive'))
   tags:
-   - freebsd
-   - freebsd_rc
+    - freebsd
+    - freebsd_rc
 
 - name: task include group
   include: group.yml
   when: not ((freebsd_rc_state == 'false') or (freebsd_rc_state == 'no') or (freebsd_rc_state == 'remove') or (freebsd_rc_state == 'quiesce') or (freebsd_rc_state == 'inactive'))
   tags:
-   - freebsd
-   - freebsd_rc
+    - freebsd
+    - freebsd_rc
 
 - name: task include host
   include: host.yml
   when: not ((freebsd_rc_state == 'false') or (freebsd_rc_state == 'no') or (freebsd_rc_state == 'remove') or (freebsd_rc_state == 'quiesce') or (freebsd_rc_state == 'inactive'))
   tags:
-   - freebsd
-   - freebsd_rc
+    - freebsd
+    - freebsd_rc
