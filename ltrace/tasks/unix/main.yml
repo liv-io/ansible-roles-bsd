@@ -25,12 +25,12 @@
   include: install.yml
   when: not ((ltrace_state == 'false') or (ltrace_state == 'no') or (ltrace_state == 'remove') or (ltrace_state == 'quiesce') or (ltrace_state == 'inactive'))
   tags:
-   - unix
-   - ltrace
+    - unix
+    - ltrace
 
 - name: task include remove
   include: remove.yml
   when: (ltrace_state == 'false') or (ltrace_state == 'no') or (ltrace_state == 'remove')
   tags:
-   - unix
-   - ltrace
+    - unix
+    - ltrace
