@@ -25,19 +25,19 @@
   include: all.yml
   when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable') or (user_state == 'quiesce') or (user_state == 'inactive'))
   tags:
-   - unix
-   - user
+    - unix
+    - user
 
 - name: task include group
   include: group.yml
   when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable') or (user_state == 'quiesce') or (user_state == 'inactive'))
   tags:
-   - unix
-   - user
+    - unix
+    - user
 
 - name: task include host
   include: host.yml
   when: not ((user_state == 'false') or (user_state == 'no') or (user_state == 'disable') or (user_state == 'quiesce') or (user_state == 'inactive'))
   tags:
-   - unix
-   - user
+    - unix
+    - user
