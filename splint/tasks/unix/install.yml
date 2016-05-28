@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install splint
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_splint}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - splint
-
-- name: package install splint
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_splint}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
