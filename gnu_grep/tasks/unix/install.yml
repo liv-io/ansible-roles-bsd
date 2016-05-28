@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install gnu-grep
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_gnu_grep}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - gnu_grep
-
-- name: package install gnu-grep
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_gnu_grep}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
