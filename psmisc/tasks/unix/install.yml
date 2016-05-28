@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install psmisc
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_psmisc}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install

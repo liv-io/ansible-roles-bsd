@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove psmisc
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_psmisc}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - remove
