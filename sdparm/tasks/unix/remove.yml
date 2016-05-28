@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove sdparm
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_sdparm}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - remove
