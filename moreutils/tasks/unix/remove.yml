@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove moreutils
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_moreutils}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - moreutils
-
-- name: package remove moreutils
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_moreutils}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove

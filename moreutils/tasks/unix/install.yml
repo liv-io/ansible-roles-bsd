@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install moreutils
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_moreutils}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - moreutils
-
-- name: package install moreutils
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_moreutils}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
