@@ -72,21 +72,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove nginx
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_nginx}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - nginx
-
-- name: package remove nginx
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_nginx}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove

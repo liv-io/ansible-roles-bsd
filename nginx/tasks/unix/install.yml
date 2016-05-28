@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install nginx
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_nginx}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - nginx
-
-- name: package install nginx
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_nginx}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
