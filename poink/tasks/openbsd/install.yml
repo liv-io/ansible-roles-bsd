@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install poink
-  openbsd_pkg:
+  package:
     state: 'present'
     name: "{{package_name_poink}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
