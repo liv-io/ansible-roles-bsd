@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install freecolor
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_freecolor}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install
