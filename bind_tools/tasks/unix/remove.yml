@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove bind-tools
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_bind_tools}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - remove

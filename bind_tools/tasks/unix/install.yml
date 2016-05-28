@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install bind-tools
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_bind_tools}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install
