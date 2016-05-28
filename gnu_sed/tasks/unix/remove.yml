@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove gnu-sed
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_gnu_sed}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - gnu_sed
-
-- name: package remove gnu-sed
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_gnu_sed}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove

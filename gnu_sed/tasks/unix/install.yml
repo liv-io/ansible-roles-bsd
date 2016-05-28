@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install gnu-sed
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_gnu_sed}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - gnu_sed
-
-- name: package install gnu-sed
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_gnu_sed}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
