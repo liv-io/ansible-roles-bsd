@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove bash
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_bash}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - bash
-
-- name: package remove bash
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_bash}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove

@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install bash
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_bash}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - bash
-
-- name: package install bash
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_bash}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
