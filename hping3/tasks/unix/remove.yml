@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove hping3
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_hping3}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - remove

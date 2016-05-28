@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install hping3
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_hping3}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install
