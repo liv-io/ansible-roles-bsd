@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install nload
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_nload}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - nload
-
-- name: package install nload
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_nload}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install

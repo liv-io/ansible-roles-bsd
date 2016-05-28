@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove nload
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_nload}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - nload
-
-- name: package remove nload
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_nload}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove
