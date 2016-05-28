@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install openssl
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_openssl}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - openssl
-
-- name: package install openssl
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_openssl}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
