@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install gnu-watch
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_gnu_watch}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - gnu_watch
-
-- name: package install gnu-watch
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_gnu_watch}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install

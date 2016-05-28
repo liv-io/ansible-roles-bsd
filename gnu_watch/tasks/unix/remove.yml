@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove gnu-watch
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_gnu_watch}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - gnu_watch
-
-- name: package remove gnu-watch
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_gnu_watch}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove
