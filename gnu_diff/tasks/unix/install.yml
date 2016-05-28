@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install gnu-diff
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_gnu_diff}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - gnu_diff
-
-- name: package install gnu-diff
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_gnu_diff}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
