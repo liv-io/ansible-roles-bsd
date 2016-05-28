@@ -39,11 +39,10 @@
 #-------------------------------------------------------------------------------
 
 - name: package install postfix
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_postfix}}"
   register: register_freebsd_postfix
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install
