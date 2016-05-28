@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install http_load
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_http_load}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - http_load
-
-- name: package install http_load
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_http_load}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
