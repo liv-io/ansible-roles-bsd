@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install ssldump
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_ssldump}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - ssldump
-
-- name: package install ssldump
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_ssldump}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
