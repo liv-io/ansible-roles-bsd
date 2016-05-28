@@ -39,7 +39,7 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove tmux
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_tmux}}"
   when: (ansible_os_family == 'FreeBSD')

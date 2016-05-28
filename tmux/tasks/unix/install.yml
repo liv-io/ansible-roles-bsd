@@ -39,7 +39,7 @@
 #-------------------------------------------------------------------------------
 
 - name: package install tmux
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_tmux}}"
   when: (ansible_os_family == 'FreeBSD')
