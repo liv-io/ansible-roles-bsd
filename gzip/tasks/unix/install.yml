@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install gzip
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_gzip}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install

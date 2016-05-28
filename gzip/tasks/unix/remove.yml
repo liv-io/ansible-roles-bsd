@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove gzip
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_gzip}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - remove
