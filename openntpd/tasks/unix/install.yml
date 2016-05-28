@@ -39,7 +39,7 @@
 #-------------------------------------------------------------------------------
 
 - name: package install openntpd
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_openntpd}}"
   when: (ansible_os_family == 'FreeBSD')
