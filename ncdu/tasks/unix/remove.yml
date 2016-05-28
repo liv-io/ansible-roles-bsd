@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove ncdu
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_ncdu}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - ncdu
-
-- name: package remove ncdu
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_ncdu}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove
