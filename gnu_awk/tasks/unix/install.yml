@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install gnu-awk
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_gnu_awk}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - gnu_awk
-
-- name: package install gnu-awk
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_gnu_awk}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
