@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install mtr
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_mtr}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - mtr
-
-- name: package install mtr
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_mtr}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
