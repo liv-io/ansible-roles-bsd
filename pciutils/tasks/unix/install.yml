@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install pciutils
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_pciutils}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - pciutils
-
-- name: package install pciutils
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_pciutils}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
