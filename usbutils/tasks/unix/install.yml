@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install usbutils
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_usbutils}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - usbutils
-
-- name: package install usbutils
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_usbutils}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
