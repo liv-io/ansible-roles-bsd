@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install colordiff
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_colordiff}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - colordiff
-
-- name: package install colordiff
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_colordiff}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
