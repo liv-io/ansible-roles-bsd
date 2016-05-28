@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install minicom
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_minicom}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - minicom
-
-- name: package install minicom
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_minicom}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
