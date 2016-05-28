@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install gnu-patch
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_gnu_patch}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - gnu_patch
-
-- name: package install gnu-patch
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_gnu_patch}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
