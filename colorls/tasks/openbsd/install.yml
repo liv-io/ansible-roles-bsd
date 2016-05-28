@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install colorls
-  openbsd_pkg:
+  package:
     state: 'present'
     name: "{{package_name_colorls}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install

@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove colorls
-  openbsd_pkg:
+  package:
     state: 'absent'
     name: "{{package_name_colorls}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove
