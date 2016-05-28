@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install mailx
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_mailx}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install

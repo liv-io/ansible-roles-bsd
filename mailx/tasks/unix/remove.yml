@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove mailx
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_mailx}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - remove
