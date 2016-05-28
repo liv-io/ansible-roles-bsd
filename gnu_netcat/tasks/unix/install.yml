@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install gnu-netcat
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_gnu_netcat}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install

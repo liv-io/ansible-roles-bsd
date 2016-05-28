@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove gnu-netcat
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_gnu_netcat}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - remove
