@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install ltrace
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_ltrace}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install
