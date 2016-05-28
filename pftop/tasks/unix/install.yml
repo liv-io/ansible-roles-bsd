@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install pftop
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_pftop}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - pftop
-
-- name: package install pftop
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_pftop}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
