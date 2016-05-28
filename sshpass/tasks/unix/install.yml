@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install sshpass
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_sshpass}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install
