@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install socat
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_socat}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - socat
-
-- name: package install socat
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_socat}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
