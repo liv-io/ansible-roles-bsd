@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install rsync
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_rsync}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - rsync
-
-- name: package install rsync
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_rsync}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
