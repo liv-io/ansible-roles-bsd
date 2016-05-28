@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove vlock
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_vlock}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - remove

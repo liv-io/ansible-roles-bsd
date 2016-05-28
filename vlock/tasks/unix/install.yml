@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install vlock
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_vlock}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install
