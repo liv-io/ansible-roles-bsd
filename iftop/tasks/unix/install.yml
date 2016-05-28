@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install iftop
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_iftop}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - iftop
-
-- name: package install iftop
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_iftop}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
