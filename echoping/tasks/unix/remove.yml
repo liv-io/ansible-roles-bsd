@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove echoping
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_echoping}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - echoping
-
-- name: package remove echoping
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_echoping}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove

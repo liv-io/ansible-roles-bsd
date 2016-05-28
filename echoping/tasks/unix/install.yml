@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install echoping
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_echoping}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - echoping
-
-- name: package install echoping
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_echoping}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
