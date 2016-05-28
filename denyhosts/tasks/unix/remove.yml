@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove denyhosts
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_denyhosts}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - remove

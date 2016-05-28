@@ -68,10 +68,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install denyhosts
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_denyhosts}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install
