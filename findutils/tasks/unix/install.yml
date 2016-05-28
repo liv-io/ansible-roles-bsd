@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install findutils
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_findutils}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - findutils
-
-- name: package install findutils
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_findutils}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
