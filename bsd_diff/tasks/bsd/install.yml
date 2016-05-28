@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install bsd-diff
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_bsd_diff}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install
