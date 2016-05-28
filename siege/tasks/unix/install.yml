@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install siege
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_siege}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - siege
-
-- name: package install siege
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_siege}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
