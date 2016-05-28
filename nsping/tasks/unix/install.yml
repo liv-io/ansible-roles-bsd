@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install nsping
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_nsping}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - nsping
-
-- name: package install nsping
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_nsping}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
