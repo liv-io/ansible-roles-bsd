@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install screen
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_screen}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - screen
-
-- name: package install screen
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_screen}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
