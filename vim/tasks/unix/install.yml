@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install vim
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_vim}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - vim
-
-- name: package install vim
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_vim}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
