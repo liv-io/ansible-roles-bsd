@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove fping
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_fping}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - fping
-
-- name: package remove fping
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_fping}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove
