@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install nyancat
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_nyancat}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - nyancat
-
-- name: package install nyancat
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_nyancat}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
