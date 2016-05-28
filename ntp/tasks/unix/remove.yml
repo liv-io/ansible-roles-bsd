@@ -72,23 +72,10 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove ntp
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_ntp}}"
   register: register_freebsd_ntp
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - ntp
-
-- name: package remove ntp
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_ntp}}"
-  register: register_freebsd_ntp
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove
