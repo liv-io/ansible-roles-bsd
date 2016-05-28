@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install zsh
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_zsh}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - zsh
-
-- name: package install zsh
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_zsh}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
