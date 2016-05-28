@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install bsd-grep
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_bsd_grep}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install
