@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install wget
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_wget}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - wget
-
-- name: package install wget
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_wget}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
