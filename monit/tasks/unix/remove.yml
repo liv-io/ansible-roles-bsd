@@ -72,21 +72,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove monit
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_monit}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - monit
-
-- name: package remove monit
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_monit}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove
