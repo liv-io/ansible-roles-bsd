@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install patchutils
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_patchutils}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - patchutils
-
-- name: package install patchutils
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_patchutils}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
