@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install apachetop
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_apachetop}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - apachetop
-
-- name: package install apachetop
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_apachetop}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install

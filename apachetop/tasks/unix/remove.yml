@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove apachetop
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_apachetop}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - apachetop
-
-- name: package remove apachetop
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_apachetop}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove
