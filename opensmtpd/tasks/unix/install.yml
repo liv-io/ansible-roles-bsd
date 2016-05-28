@@ -39,7 +39,7 @@
 #-------------------------------------------------------------------------------
 
 - name: package install opensmtpd
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_opensmtpd}}"
   register: register_freebsd_opensmtpd

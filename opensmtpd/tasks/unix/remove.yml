@@ -85,7 +85,7 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove opensmtpd
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_opensmtpd}}"
   register: register_freebsd_opensmtpd
