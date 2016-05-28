@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install hping2
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_hping2}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - hping2
-
-- name: package install hping2
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_hping2}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
