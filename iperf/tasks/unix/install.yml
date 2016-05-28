@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install iperf
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_iperf}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - iperf
-
-- name: package install iperf
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_iperf}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
