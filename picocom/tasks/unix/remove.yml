@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove picocom
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_picocom}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - picocom
-
-- name: package remove picocom
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_picocom}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove

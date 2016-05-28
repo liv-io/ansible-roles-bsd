@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install picocom
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_picocom}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - picocom
-
-- name: package install picocom
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_picocom}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
