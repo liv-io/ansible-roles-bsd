@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install nmap
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_nmap}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - nmap
-
-- name: package install nmap
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_nmap}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
