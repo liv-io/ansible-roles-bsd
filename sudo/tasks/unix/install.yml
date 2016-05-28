@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install sudo
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_sudo}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - sudo
-
-- name: package install sudo
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_sudo}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install

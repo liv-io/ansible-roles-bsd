@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove sudo
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_sudo}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - sudo
-
-- name: package remove sudo
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_sudo}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove
