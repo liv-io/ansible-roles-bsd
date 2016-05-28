@@ -39,10 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install scrub
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_scrub}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - packaging
     - install
