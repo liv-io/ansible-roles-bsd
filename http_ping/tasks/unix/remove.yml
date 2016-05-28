@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove http_ping
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_http_ping}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - http_ping
-
-- name: package remove http_ping
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_http_ping}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove
