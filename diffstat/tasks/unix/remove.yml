@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package remove diffstat
-  pkgng:
+  package:
     state: 'absent'
     name: "{{package_name_diffstat}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - remove
-    - unix
-    - diffstat
-
-- name: package remove diffstat
-  openbsd_pkg:
-    state: 'absent'
-    name: "{{package_name_diffstat}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - remove
