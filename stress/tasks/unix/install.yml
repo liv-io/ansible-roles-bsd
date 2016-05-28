@@ -39,21 +39,9 @@
 #-------------------------------------------------------------------------------
 
 - name: package install stress
-  pkgng:
+  package:
     state: 'present'
     name: "{{package_name_stress}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - packaging
-    - install
-    - unix
-    - stress
-
-- name: package install stress
-  openbsd_pkg:
-    state: 'present'
-    name: "{{package_name_stress}}"
-  when: (ansible_os_family == 'OpenBSD')
   tags:
     - packaging
     - install
