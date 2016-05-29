@@ -130,7 +130,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-RELEASE
+    Version: 10.3-*
       Status: Testing
 
   OpenBSD
