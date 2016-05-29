@@ -23,6 +23,6 @@
 
 - name: task include bsd
   include: bsd/main.yml
-  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release == '10.3-RELEASE'))
+  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("10\.3-*")))
   tags:
     - bsd_grep
