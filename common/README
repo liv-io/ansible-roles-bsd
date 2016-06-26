@@ -7,10 +7,10 @@ README
    |  _   _  |  Type   : ansible role
    | [_] [_] |  Group  : sys-admin
    |____~____|
-    ___//__//   Authors: robomon community
+    ___//__//   Authors: liv community
    /|     |/    License: Simplified BSD License
   //|_____|
-    _|| ||_     Webpage: http://www.robomon.org/
+    _|| ||_     Webpage: http://www.liv.io/
    (__| |__)
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -34,7 +34,7 @@ INSTALL
     vars:
       common_state: 'install'
       common_info_dir_name: 'information'
-      common_root_dir_name: 'robomon'
+      common_root_dir_name: 'liv'
 
 REMOVE
   - hosts: all
@@ -43,7 +43,7 @@ REMOVE
     vars:
       common_state: 'remove'
       common_info_dir_name: 'information'
-      common_root_dir_name: 'robomon'
+      common_root_dir_name: 'liv'
 
 INACTIVE
   - hosts: all

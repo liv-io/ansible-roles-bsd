@@ -7,10 +7,10 @@ README
    |  _   _  |  Type   : ansible role
    | [_] [_] |  Group  : sys-core
    |____~____|
-    ___//__//   Authors: robomon community
+    ___//__//   Authors: liv community
    /|     |/    License: Simplified BSD License
   //|_____|
-    _|| ||_     Webpage: http://www.robomon.org/
+    _|| ||_     Webpage: http://www.liv.io/
    (__| |__)
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -36,7 +36,7 @@ INSTALL
       motd_state: 'install'
       motd_env_name: 'Testing'
       motd_host_description: 'Test Host'
-      motd_motd_template: 'robomon'
+      motd_motd_template: 'liv'
 
 DISABLE
   - hosts: all
@@ -102,7 +102,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'robomon'
+    Default    : 'liv'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 

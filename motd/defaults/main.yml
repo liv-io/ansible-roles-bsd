@@ -8,10 +8,10 @@
 #   |  _   _  |  Type   : ansible default file
 #   | [_] [_] |  Role   : motd
 #   |____~____|
-#    ___//__//   Authors: robomon community
+#    ___//__//   Authors: liv community
 #   /|     |/    License: Simplified BSD License
 #  //|_____|
-#    _|| ||_     Webpage: http://www.robomon.org/
+#    _|| ||_     Webpage: http://www.liv.io/
 #   (__| |__)
 #-------------------------------------------------------------------------------
 # DESCRIPTION
@@ -27,4 +27,4 @@ motd_env_name: 'Production'
 
 motd_host_description: ''
 
-motd_motd_template: 'robomon'
+motd_motd_template: 'liv'
