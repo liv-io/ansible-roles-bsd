@@ -34,7 +34,6 @@ file_group_opt_dir: 'wheel'
 # opt.link
 file_src_opt_link: '/usr/local/opt'
 file_path_opt_link: '/opt'
-file_mode_opt_link: '0755'
 file_owner_opt_link: 'root'
 file_group_opt_link: 'wheel'
 

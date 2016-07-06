@@ -56,7 +56,6 @@
     state: 'link'
     src: "{{file_src_opt_link}}"
     path: "{{file_path_opt_link}}"
-    mode: "{{file_mode_opt_link}}"
     owner: "{{file_owner_opt_link}}"
     group: "{{file_group_opt_link}}"
   when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'OpenBSD')
