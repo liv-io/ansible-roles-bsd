@@ -1,0 +1,52 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#        o
+#    ____|____
+#   |         |  Name   : install.yml
+#   |  _   _  |  Type   : ansible task file
+#   | [_] [_] |  Role   : signify
+#   |____~____|
+#    ___//__//   Authors: liv community
+#   /|     |/    License: Simplified BSD License
+#  //|_____|
+#    _|| ||_     Webpage: http://www.liv.io/
+#   (__| |__)
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - install
+    - openbsd
+    - signify
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: file create signify.dir
+  copy:
+    src: "{{file_src_signify_dir}}"
+    dest: "{{file_path_signify_dir}}"
+    mode: "{{file_mode_signify_dir}}"
+    owner: "{{file_owner_signify_dir}}"
+    group: "{{file_group_signify_dir}}"
+  tags:
+    - files
+    - install
+    - openbsd
+    - signify
