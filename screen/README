@@ -82,7 +82,7 @@ PACKAGES
     Version: >= 4.0
     Name   :
       FreeBSD 10: 'screen'
-      OpenBSD 5 : 'screen'
+      OpenBSD 6 : 'screen'
 
 ROLES
 
@@ -128,7 +128,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
