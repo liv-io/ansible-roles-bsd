@@ -43,26 +43,26 @@ file_group_pf_blacklist: 'wheel'
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-# check pf
-raw_cmd_check_pf: 'pfctl -s info | grep -iq "^status: enabled.*"'
+# check openbsd_pf
+raw_cmd_check_openbsd_pf: 'pfctl -s info | grep -iq "^status: enabled.*"'
 
-# disable pf
-command_cmd_disable_pf: 'rcctl disable pf'
+# disable openbsd_pf
+command_cmd_disable_openbsd_pf: 'rcctl disable pf'
 
-# enable pf
-command_cmd_enable_pf: 'rcctl enable pf'
+# enable openbsd_pf
+command_cmd_enable_openbsd_pf: 'rcctl enable pf'
 
-# reload pf
-command_cmd_reload_pf: "pfctl -f {{file_path_pf_conf}}"
+# reload openbsd_pf
+command_cmd_reload_openbsd_pf: "pfctl -f {{file_path_pf_conf}}"
 
-# start pf
-command_cmd_start_pf: 'pfctl -e'
+# start openbsd_pf
+command_cmd_start_openbsd_pf: 'pfctl -e'
 
-# status pf
-command_cmd_status_pf: 'rcctl get pf status'
+# status openbsd_pf
+command_cmd_status_openbsd_pf: 'rcctl get pf status'
 
-# stop pf
-command_cmd_stop_pf: 'pfctl -d'
+# stop openbsd_pf
+command_cmd_stop_openbsd_pf: 'pfctl -d'
 
-# validate pf
-command_cmd_validate_pf: "pfctl -nf {{file_path_pf_conf}}"
+# validate openbsd_pf
+command_cmd_validate_openbsd_pf: "pfctl -nf {{file_path_pf_conf}}"

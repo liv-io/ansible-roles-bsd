@@ -46,8 +46,8 @@
     owner: "{{file_owner_pf_blacklist}}"
     group: "{{file_group_pf_blacklist}}"
   notify:
-    - command validate pf
-    - command reload pf
+    - command validate openbsd_pf
+    - command reload openbsd_pf
   tags:
     - files
     - enable
@@ -62,8 +62,8 @@
     owner: "{{file_owner_pf_conf}}"
     group: "{{file_group_pf_conf}}"
   notify:
-    - command validate pf
-    - command reload pf
+    - command validate openbsd_pf
+    - command reload openbsd_pf
   tags:
     - files
     - enable
@@ -74,40 +74,40 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command status pf
-  command: "{{command_cmd_status_pf}}"
-  register: register_status_pf
-  changed_when: (register_status_pf.rc > 1)
-  failed_when: (register_status_pf.rc > 1)
+- name: command status openbsd_pf
+  command: "{{command_cmd_status_openbsd_pf}}"
+  register: register_status_openbsd_pf
+  changed_when: (register_status_openbsd_pf.rc > 1)
+  failed_when: (register_status_openbsd_pf.rc > 1)
   tags:
     - commands
     - enable
     - openbsd
     - openbsd_pf
 
-- name: command enable pf
-  command: "{{command_cmd_enable_pf}}"
-  when: (register_status_pf.rc == 1)
+- name: command enable openbsd_pf
+  command: "{{command_cmd_enable_openbsd_pf}}"
+  when: (register_status_openbsd_pf.rc == 1)
   tags:
     - commands
     - enable
     - openbsd
     - openbsd_pf
 
-- name: command check pf
-  raw: "{{raw_cmd_check_pf}}"
-  register: register_check_pf
-  changed_when: (register_check_pf.rc > 1)
-  failed_when: (register_check_pf.rc > 1)
+- name: command check openbsd_pf
+  raw: "{{raw_cmd_check_openbsd_pf}}"
+  register: register_check_openbsd_pf
+  changed_when: (register_check_openbsd_pf.rc > 1)
+  failed_when: (register_check_openbsd_pf.rc > 1)
   tags:
     - commands
     - enable
     - openbsd
     - openbsd_pf
 
-- name: command start pf
-  command: "{{command_cmd_start_pf}}"
-  when: (register_check_pf.rc == 1)
+- name: command start openbsd_pf
+  command: "{{command_cmd_start_openbsd_pf}}"
+  when: (register_check_openbsd_pf.rc == 1)
   tags:
     - commands
     - enable

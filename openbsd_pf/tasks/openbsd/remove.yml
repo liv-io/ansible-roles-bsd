@@ -38,40 +38,40 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command status pf
-  command: "{{command_cmd_status_pf}}"
-  register: register_status_pf
-  changed_when: (register_status_pf.rc > 1)
-  failed_when: (register_status_pf.rc > 1)
+- name: command status openbsd_pf
+  command: "{{command_cmd_status_openbsd_pf}}"
+  register: register_status_openbsd_pf
+  changed_when: (register_status_openbsd_pf.rc > 1)
+  failed_when: (register_status_openbsd_pf.rc > 1)
   tags:
     - commands
     - remove
     - openbsd
     - openbsd_pf
 
-- name: command disable pf
-  command: "{{command_cmd_disable_pf}}"
-  when: (register_status_pf.rc == 0)
+- name: command disable openbsd_pf
+  command: "{{command_cmd_disable_openbsd_pf}}"
+  when: (register_status_openbsd_pf.rc == 0)
   tags:
     - commands
     - remove
     - openbsd
     - openbsd_pf
 
-- name: command check pf
-  raw: "{{raw_cmd_check_pf}}"
-  register: register_check_pf
-  changed_when: (register_check_pf.rc > 1)
-  failed_when: (register_check_pf.rc > 1)
+- name: command check openbsd_pf
+  raw: "{{raw_cmd_check_openbsd_pf}}"
+  register: register_check_openbsd_pf
+  changed_when: (register_check_openbsd_pf.rc > 1)
+  failed_when: (register_check_openbsd_pf.rc > 1)
   tags:
     - commands
     - remove
     - openbsd
     - openbsd_pf
 
-- name: command stop pf
-  command: "{{command_cmd_stop_pf}}"
-  when: (register_check_pf.rc == 0)
+- name: command stop openbsd_pf
+  command: "{{command_cmd_stop_openbsd_pf}}"
+  when: (register_check_openbsd_pf.rc == 0)
   tags:
     - commands
     - remove
