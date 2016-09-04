@@ -84,7 +84,7 @@ PACKAGES
     Version: >= 3.1
     Name   :
       FreeBSD 10: 'trafshow'
-      OpenBSD 5 : 'trafshow'
+      OpenBSD 6 : 'trafshow'
 
 ROLES
 
@@ -130,7 +130,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
