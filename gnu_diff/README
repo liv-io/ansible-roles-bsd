@@ -85,7 +85,7 @@ PACKAGES
     Version: >= 3.3
     Name   :
       FreeBSD 10: 'diffutils'
-      OpenBSD 5 : 'gdiff'
+      OpenBSD 6 : 'gdiff'
 
 ROLES
 
@@ -131,7 +131,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
