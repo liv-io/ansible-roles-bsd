@@ -95,7 +95,7 @@ PACKAGES
     Version: >= 0.4
     Name   :
       FreeBSD 10: 'sysbench'
-      OpenBSD 5 : 'sysbench'
+      OpenBSD 6 : 'sysbench'
 
 ROLES
 
@@ -141,7 +141,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
