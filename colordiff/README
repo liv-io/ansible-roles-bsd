@@ -81,7 +81,7 @@ PACKAGES
     Version: >= 1.0
     Name   :
       FreeBSD 10: 'colordiff'
-      OpenBSD 5 : 'colordiff'
+      OpenBSD 6 : 'colordiff'
 
 ROLES
 
@@ -127,7 +127,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
