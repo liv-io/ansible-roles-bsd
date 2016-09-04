@@ -23,6 +23,6 @@
 
 - name: task include unix
   include: unix/main.yml
-  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("10\.3-*"))) or ((ansible_os_family == 'OpenBSD') and (ansible_distribution_release == '5.9'))
+  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("10\.3-*"))) or ((ansible_os_family == 'OpenBSD') and (ansible_distribution_release == '6.0'))
   tags:
     - ngrep
