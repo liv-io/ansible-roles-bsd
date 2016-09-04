@@ -24,59 +24,10 @@
 #
 #-------------------------------------------------------------------------------
 
-#	$OpenBSD: smtpd.conf,v 1.8 2015/12/21 16:25:44 sunil Exp $
+#	$OpenBSD: smtpd.conf,v 1.9 2016/05/03 18:43:45 jung Exp $
 
 # This is the smtpd server system-wide configuration file.
 # See smtpd.conf(5) for more information.
-
-#-------------------------------------------------------------------------------
-# LISTEN
-#-------------------------------------------------------------------------------
-
-# ALL
-{% if (opensmtpd_listen_all is defined) and not ((opensmtpd_listen_all == None) or (opensmtpd_listen_all == '') or (opensmtpd_listen_all == [])) %}
-{% for item in opensmtpd_listen_all %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
-# {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
-{% for config in item.config %}
-{{config}}
-{% endfor %}
-{% endfor %}
-{% else %}
-{% endif %}
-
-# GROUP
-{% if (opensmtpd_listen_group is defined) and not ((opensmtpd_listen_group == None) or (opensmtpd_listen_group == '') or (opensmtpd_listen_group == [])) %}
-{% for item in opensmtpd_listen_group %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
-# {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
-{% for config in item.config %}
-{{config}}
-{% endfor %}
-{% endfor %}
-{% else %}
-{% endif %}
-
-# HOST
-{% if (opensmtpd_listen_host is defined) and not ((opensmtpd_listen_host == None) or (opensmtpd_listen_host == '') or (opensmtpd_listen_host == [])) %}
-{% for item in opensmtpd_listen_host %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
-# {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
-{% for config in item.config %}
-{{config}}
-{% endfor %}
-{% endfor %}
-{% else %}
-{% endif %}
 
 #-------------------------------------------------------------------------------
 # TABLE
@@ -115,6 +66,55 @@
 # HOST
 {% if (opensmtpd_table_host is defined) and not ((opensmtpd_table_host == None) or (opensmtpd_table_host == '') or (opensmtpd_table_host == [])) %}
 {% for item in opensmtpd_table_host %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
+{% else %}
+#
+{% endif %}
+{% for config in item.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# LISTEN
+#-------------------------------------------------------------------------------
+
+# ALL
+{% if (opensmtpd_listen_all is defined) and not ((opensmtpd_listen_all == None) or (opensmtpd_listen_all == '') or (opensmtpd_listen_all == [])) %}
+{% for item in opensmtpd_listen_all %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
+{% else %}
+#
+{% endif %}
+{% for config in item.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# GROUP
+{% if (opensmtpd_listen_group is defined) and not ((opensmtpd_listen_group == None) or (opensmtpd_listen_group == '') or (opensmtpd_listen_group == [])) %}
+{% for item in opensmtpd_listen_group %}
+{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+# {{(item.comment|e)}}
+{% else %}
+#
+{% endif %}
+{% for config in item.config %}
+{{config}}
+{% endfor %}
+{% endfor %}
+{% else %}
+{% endif %}
+
+# HOST
+{% if (opensmtpd_listen_host is defined) and not ((opensmtpd_listen_host == None) or (opensmtpd_listen_host == '') or (opensmtpd_listen_host == [])) %}
+{% for item in opensmtpd_listen_host %}
 {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
 {% else %}
