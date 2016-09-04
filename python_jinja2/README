@@ -86,7 +86,7 @@ PACKAGES
     Version: >= 2.2
     Name   :
       FreeBSD 10: 'py27-Jinja2'
-      OpenBSD 5 : 'py-jinja2'
+      OpenBSD 6 : 'py-jinja2'
 
 ROLES
 
@@ -132,7 +132,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
