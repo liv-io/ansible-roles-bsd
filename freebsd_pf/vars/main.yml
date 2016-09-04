@@ -55,24 +55,24 @@ file_line_gateway_ipv6: 'ipv6_gateway_enable'
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-# check pf
-command_cmd_check_pf: 'pfctl -e'
+# check freebsd_pf
+command_cmd_check_freebsd_pf: 'pfctl -e'
 
-# reload pf
-command_cmd_reload_pf: "pfctl -f {{file_path_pf_conf}}"
+# reload freebsd_pf
+command_cmd_reload_freebsd_pf: "pfctl -f {{file_path_pf_conf}}"
 
-# start pf
-command_cmd_start_pf: 'pfctl -e'
+# start freebsd_pf
+command_cmd_start_freebsd_pf: 'pfctl -e'
 
-# stop pf
-command_cmd_stop_pf: 'pfctl -d'
+# stop freebsd_pf
+command_cmd_stop_freebsd_pf: 'pfctl -d'
 
-# validate pf
-command_cmd_validate_pf: "pfctl -nf {{file_path_pf_conf}}"
+# validate freebsd_pf
+command_cmd_validate_freebsd_pf: "pfctl -nf {{file_path_pf_conf}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-# pf
-service_name_pf: 'pf'
+# freebsd_pf
+service_name_freebsd_pf: 'pf'

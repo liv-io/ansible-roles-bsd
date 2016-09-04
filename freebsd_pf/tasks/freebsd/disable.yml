@@ -133,11 +133,11 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service stop pf
+- name: service stop freebsd_pf
   service:
     state: 'stopped'
     enabled: 'no'
-    name: "{{service_name_pf}}"
+    name: "{{service_name_freebsd_pf}}"
   tags:
     - system
     - disable

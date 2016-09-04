@@ -34,8 +34,8 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command validate pf
-  command: "{{command_cmd_validate_pf}}"
+- name: command validate freebsd_pf
+  command: "{{command_cmd_validate_freebsd_pf}}"
 
-- name: command reload pf
-  command: "{{command_cmd_reload_pf}}"
+- name: command reload freebsd_pf
+  command: "{{command_cmd_reload_freebsd_pf}}"

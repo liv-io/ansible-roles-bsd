@@ -46,8 +46,8 @@
     owner: "{{file_owner_pf_blacklist}}"
     group: "{{file_group_pf_blacklist}}"
   notify:
-    - command validate pf
-    - command reload pf
+    - command validate freebsd_pf
+    - command reload freebsd_pf
   tags:
     - files
     - enable
@@ -62,8 +62,8 @@
     owner: "{{file_owner_pf_conf}}"
     group: "{{file_group_pf_conf}}"
   notify:
-    - command validate pf
-    - command reload pf
+    - command validate freebsd_pf
+    - command reload freebsd_pf
   tags:
     - files
     - enable
@@ -139,11 +139,11 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service start pf
+- name: service start freebsd_pf
   service:
     state: 'started'
     enabled: 'yes'
-    name: "{{service_name_pf}}"
+    name: "{{service_name_freebsd_pf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - system
