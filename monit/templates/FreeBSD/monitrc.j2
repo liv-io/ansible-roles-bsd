@@ -56,13 +56,8 @@ set daemon 60
 ## Set syslog logging. If you want to log to a standalone log file instead,
 ## specify the full path to the log file
 #
-{% if (monit_log_file is defined) and not ((monit_log_file == None) or (monit_log_file == '')) %}
-set logfile {{(monit_log_file|e)}} facility {% if (monit_log_facility is defined) and not ((monit_log_facility == None) or (monit_log_facility == '')) %}{{(monit_log_facility|e)}}{% else %}user{% endif %}
+set logfile syslog
 
-{% else %}
-set logfile syslog {% if (monit_log_facility is defined) and not ((monit_log_facility == None) or (monit_log_facility == '')) %}{{(monit_log_facility|e)}}{% else %}user{% endif %}
-
-{% endif %}
 #
 #
 ## Set the location of the Monit lock file which stores the process id of the

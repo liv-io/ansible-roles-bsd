@@ -56,13 +56,8 @@ set daemon 60
 ## Set syslog logging. If you want to log to a standalone log file instead,
 ## specify the full path to the log file
 #
-{% if (monit_log_file is defined) and not ((monit_log_file == None) or (monit_log_file == '')) %}
-set logfile {{(monit_log_file|e)}} facility {% if (monit_log_facility is defined) and not ((monit_log_facility == None) or (monit_log_facility == '')) %}{{(monit_log_facility|e)}}{% else %}user{% endif %}
+set logfile syslog
 
-{% else %}
-set logfile syslog {% if (monit_log_facility is defined) and not ((monit_log_facility == None) or (monit_log_facility == '')) %}{{(monit_log_facility|e)}}{% else %}user{% endif %}
-
-{% endif %}
 #
 #
 ## Set the location of the Monit lock file which stores the process id of the
@@ -134,12 +129,14 @@ set mailserver {{(name|e)}} {% if (item.port is defined) and not ((item.port == 
 #
 #
 ## Send status and events to M/Monit (for more informations about M/Monit 
-## see http://mmonit.com/). By default Monit registers credentials with 
+## see https://mmonit.com/). By default Monit registers credentials with 
 ## M/Monit so M/Monit can smoothly communicate back to Monit and you don't
 ## have to register Monit credentials manually in M/Monit. It is possible to
 ## disable credential registration using the commented out option below. 
 ## Though, if safety is a concern we recommend instead using https when
-## communicating with M/Monit and send credentials encrypted.
+## communicating with M/Monit and send credentials encrypted. The password
+## should be URL encoded if it contains URL-significant characters like
+## ":", "?", "@".
 #
 # set mmonit http://monit:monit@192.168.1.10:8080/collector
 #     # and register without credentials     # Don't register credentials
@@ -149,7 +146,7 @@ set mailserver {{(name|e)}} {% if (item.port is defined) and not ((item.port == 
 ## statement is missing::
 ## --8<--
 ## set mail-format {
-##   from:    monit@$HOST
+##   from:    Monit <monit@$HOST>
 ##   subject: monit alert --  $EVENT $SERVICE
 ##   message: $EVENT Service $SERVICE
 ##                 Date:        $DATE

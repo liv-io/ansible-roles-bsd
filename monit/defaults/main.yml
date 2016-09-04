@@ -35,10 +35,6 @@ monit_host: []
 
 monit_include: "{{'/usr/local/etc/monit.d/*.cfg' if (ansible_os_family == 'FreeBSD') else '/etc/monit.d/*.cfg'}}"
 
-monit_log_facility: 'log_daemon'
-
-monit_log_file: 'syslog'
-
 monit_mail_exclusions: []
 
 monit_mail_from: "monit@{{ansible_domain}}"

@@ -321,26 +321,6 @@ ROLE
       Examples: '/etc/monit.d/*.cfg' | '/usr/local/etc/monit.d/*.cfg'
       None    : ''
 
-  monit_log_facility
-    Description: Define the 'monit_log_facility' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'log_daemon'
-    Options    :
-      Examples: 'log_daemon' | 'user'
-
-  monit_log_file
-    Description: Define the 'monit_log_file' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'syslog'
-    Options    :
-      Examples: 'syslog' | '/var/log/monit/monit.log'
-
   monit_mail_exclusions
     Description: Define the 'monit_mail_exclusions' option.
     Implemented: 0.1
@@ -540,7 +520,7 @@ PACKAGES
     Version: >= 5.9
     Name   :
       FreeBSD 10: 'monit'
-      OpenBSD 5 : 'monit'
+      OpenBSD 6 : 'monit'
 
 ROLES
 
@@ -586,7 +566,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
