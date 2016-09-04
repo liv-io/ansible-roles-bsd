@@ -82,7 +82,7 @@ PACKAGES
     Version: >= 2.13
     Name   :
       FreeBSD 10: 'arping'
-      OpenBSD 5 : 'arping'
+      OpenBSD 6 : 'arping'
 
 ROLES
 
@@ -128,7 +128,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
