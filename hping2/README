@@ -82,7 +82,7 @@ PACKAGES
     Version: >= 2.0
     Name   :
       FreeBSD 10: 'hping
-      OpenBSD 5 : 'hping
+      OpenBSD 6 : 'hping
 
 ROLES
 
@@ -128,7 +128,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
