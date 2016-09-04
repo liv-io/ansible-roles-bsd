@@ -249,7 +249,7 @@ PACKAGES
     Version: >= 4.2
     Name   :
       FreeBSD 10: 'ntp'
-      OpenBSD 5 : 'ntp'
+      OpenBSD 6 : 'ntp'
 
 ROLES
   common
@@ -298,7 +298,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
