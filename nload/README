@@ -83,7 +83,7 @@ PACKAGES
     Version: >= 0.7
     Name   :
       FreeBSD 10: 'nload'
-      OpenBSD 5 : 'nload'
+      OpenBSD 6 : 'nload'
 
 ROLES
 
@@ -129,7 +129,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
