@@ -83,7 +83,7 @@ PACKAGES
     Version: >= 0.75
     Name   :
       FreeBSD 10: 'mtr-nox11'
-      OpenBSD 5 : 'mtr'
+      OpenBSD 6 : 'mtr'
 
 ROLES
 
@@ -129,7 +129,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
