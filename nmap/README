@@ -89,7 +89,7 @@ PACKAGES
     Version: >= 5.51
     Name   :
       FreeBSD 10: 'nmap'
-      OpenBSD 5 : 'nmap'
+      OpenBSD 6 : 'nmap'
 
 ROLES
 
@@ -135,7 +135,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
