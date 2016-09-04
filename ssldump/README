@@ -86,7 +86,7 @@ PACKAGES
     Version: >= 0.9
     Name   :
       FreeBSD 10: 'ssldump'
-      OpenBSD 5 : 'ssldump'
+      OpenBSD 6 : 'ssldump'
 
 ROLES
 
@@ -132,7 +132,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
