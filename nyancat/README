@@ -81,7 +81,7 @@ PACKAGES
     Version: >= 1.2
     Name   :
       FreeBSD 10: 'nyancat'
-      OpenBSD 5 : 'nyancat'
+      OpenBSD 6 : 'nyancat'
 
 ROLES
 
@@ -127,7 +127,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
