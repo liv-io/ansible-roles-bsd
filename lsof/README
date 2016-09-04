@@ -81,7 +81,7 @@ PACKAGES
     Version: >= 4.8
     Name   :
       FreeBSD 10: 'lsof'
-      OpenBSD 5 : 'lsof'
+      OpenBSD 6 : 'lsof'
 
 ROLES
 
@@ -127,7 +127,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
