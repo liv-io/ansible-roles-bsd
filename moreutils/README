@@ -97,7 +97,7 @@ PACKAGES
     Version: >= 0.40
     Name   :
       FreeBSD 10: 'moreutils'
-      OpenBSD 5 : 'moreutils'
+      OpenBSD 6 : 'moreutils'
 
 ROLES
 
@@ -143,7 +143,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
