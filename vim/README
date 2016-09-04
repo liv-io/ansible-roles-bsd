@@ -99,7 +99,7 @@ PACKAGES
     Version: >= 7.2
     Name   :
       FreeBSD 10: 'vim-lite'
-      OpenBSD 5 : 'vim'
+      OpenBSD 6 : 'vim'
 
 ROLES
 
@@ -145,7 +145,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
