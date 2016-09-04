@@ -83,7 +83,7 @@ PACKAGES
     Version: >= 2.7
     Name   :
       FreeBSD 10: 'patch'
-      OpenBSD 5 : 'gpatch'
+      OpenBSD 6 : 'gpatch'
 
 ROLES
 
@@ -129,7 +129,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
