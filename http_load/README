@@ -81,7 +81,7 @@ PACKAGES
     Version: >= 20140814
     Name   :
       FreeBSD 10: 'http_load'
-      OpenBSD 5 : 'http_load'
+      OpenBSD 6 : 'http_load'
 
 ROLES
 
@@ -127,7 +127,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
