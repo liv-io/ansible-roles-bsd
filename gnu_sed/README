@@ -85,7 +85,7 @@ PACKAGES
     Version: >= 4.2
     Name   :
       FreeBSD 10: 'gsed'
-      OpenBSD 5 : 'gsed'
+      OpenBSD 6 : 'gsed'
 
 ROLES
 
@@ -131,7 +131,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
