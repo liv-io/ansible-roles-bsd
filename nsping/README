@@ -84,7 +84,7 @@ PACKAGES
     Version: >= 0.8
     Name   :
       FreeBSD 10: 'nsping'
-      OpenBSD 5 : 'nsping'
+      OpenBSD 6 : 'nsping'
 
 ROLES
 
@@ -130,7 +130,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
