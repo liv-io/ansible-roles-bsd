@@ -82,7 +82,7 @@ PACKAGES
     Version: >= 3.0
     Name   :
       FreeBSD 10: 'zip'
-      OpenBSD 5 : 'zip'
+      OpenBSD 6 : 'zip'
 
 ROLES
 
@@ -128,7 +128,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 5.9
+    Version: 6.0
       Status: Testing
 
 --------------------------------------------------------------------------------
