@@ -116,7 +116,7 @@
 - name: line remove sendmail_enable
   lineinfile:
     state: 'absent'
-    line: "{{file_line_sendmail_enable}}=\"NO\" # Ansible: Remove sendmail"
+    line: "{{file_line_sendmail_enable}}=\"NONE\" # Ansible: Remove sendmail"
     regexp: "^{{file_line_sendmail_enable}}="
     dest: "{{file_path_sendmail_enable}}"
   when: (ansible_os_family == 'FreeBSD')
