@@ -83,7 +83,7 @@ PACKAGES
   findutils
     Version: >= 4.4
     Name   :
-      FreeBSD 10: 'findutils'
+      FreeBSD 11: 'findutils'
       OpenBSD 6 : 'findutils'
 
 ROLES
@@ -126,7 +126,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
