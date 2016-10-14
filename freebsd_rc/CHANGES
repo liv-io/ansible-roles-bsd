@@ -14,6 +14,10 @@ CHANGES
    (__| |__)
 --------------------------------------------------------------------------------
 
+* Version 0.6.0 (2016-10-14)
+F: Add support for FreeBSD 11.0-RELEASE
+F: Drop support for FreeBSD 10.3-RELEASE
+
 * Version 0.5.2 (2016-09-03)
 I: Update support information of OpenBSD
 
