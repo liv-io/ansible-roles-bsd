@@ -83,7 +83,7 @@ PACKAGES
   gnu-awk
     Version: >= 4.1
     Name   :
-      FreeBSD 10: 'gawk'
+      FreeBSD 11: 'gawk'
       OpenBSD 6 : 'gawk'
 
 ROLES
@@ -126,7 +126,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
