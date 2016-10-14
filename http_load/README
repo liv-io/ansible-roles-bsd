@@ -80,7 +80,7 @@ PACKAGES
   http_load
     Version: >= 20140814
     Name   :
-      FreeBSD 10: 'http_load'
+      FreeBSD 11: 'http_load'
       OpenBSD 6 : 'http_load'
 
 ROLES
@@ -123,7 +123,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
