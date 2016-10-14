@@ -84,7 +84,7 @@ PACKAGES
   scrub
     Version: >= 2.2
     Name   :
-      FreeBSD 10: 'diskscrub'
+      FreeBSD 11: 'diskscrub'
 
 ROLES
 
@@ -126,7 +126,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
