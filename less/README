@@ -82,7 +82,7 @@ PACKAGES
   less
     Version: >= 436
     Name   :
-      FreeBSD 10: 'less'
+      FreeBSD 11: 'less'
 
 ROLES
 
@@ -124,7 +124,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
