@@ -83,7 +83,7 @@ PACKAGES
   pv
     Version: >= 1.1
     Name   :
-      FreeBSD 10: 'pv'
+      FreeBSD 11: 'pv'
       OpenBSD 6 : 'pv'
 
 ROLES
@@ -126,7 +126,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
