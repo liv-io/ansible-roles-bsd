@@ -84,7 +84,7 @@ PACKAGES
   vlock
     Version: >= 1.3
     Name   :
-      FreeBSD 10: 'vlock'
+      FreeBSD 11: 'vlock'
 
 ROLES
 
@@ -126,7 +126,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
