@@ -81,7 +81,7 @@ PACKAGES
   zip
     Version: >= 3.0
     Name   :
-      FreeBSD 10: 'zip'
+      FreeBSD 11: 'zip'
       OpenBSD 6 : 'zip'
 
 ROLES
@@ -124,7 +124,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
