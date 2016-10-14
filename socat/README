@@ -83,7 +83,7 @@ PACKAGES
   socat
     Version: >= 1.7.2.3
     Name   :
-      FreeBSD 10: 'socat'
+      FreeBSD 11: 'socat'
       OpenBSD 6 : 'socat'
 
 ROLES
@@ -126,7 +126,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
