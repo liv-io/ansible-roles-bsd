@@ -372,7 +372,7 @@ PACKAGES
   nginx
     Version: >= 1.8
     Name   :
-      FreeBSD 10: 'nginx'
+      FreeBSD 11: 'nginx'
       OpenBSD 6 : 'nginx'
 
 ROLES
@@ -415,7 +415,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Development
 
   OpenBSD
