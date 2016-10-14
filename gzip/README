@@ -82,7 +82,7 @@ PACKAGES
   gzip
     Version: >= 1.3
     Name   :
-      FreeBSD 10: 'gzip'
+      FreeBSD 11: 'gzip'
 
 ROLES
 
@@ -124,7 +124,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
