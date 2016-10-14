@@ -82,7 +82,7 @@ PACKAGES
   tcpdump
     Version: >= 4.0
     Name   :
-      FreeBSD 10: 'tcpdump'
+      FreeBSD 11: 'tcpdump'
 
 ROLES
 
@@ -124,7 +124,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
