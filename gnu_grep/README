@@ -81,7 +81,7 @@ PACKAGES
   gnu-grep
     Version: >= 2.6
     Name   :
-      FreeBSD 10: 'gnugrep'
+      FreeBSD 11: 'gnugrep'
       OpenBSD 6 : 'ggrep'
 
 ROLES
@@ -124,7 +124,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
