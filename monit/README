@@ -519,7 +519,7 @@ PACKAGES
   monit
     Version: >= 5.9
     Name   :
-      FreeBSD 10: 'monit'
+      FreeBSD 11: 'monit'
       OpenBSD 6 : 'monit'
 
 ROLES
@@ -562,7 +562,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
