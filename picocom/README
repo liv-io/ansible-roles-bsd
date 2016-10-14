@@ -82,7 +82,7 @@ PACKAGES
   picocom
     Version: >= 1.7
     Name   :
-      FreeBSD 10: 'picocom'
+      FreeBSD 11: 'picocom'
       OpenBSD 6 : 'picocom'
 
 ROLES
@@ -125,7 +125,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
