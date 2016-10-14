@@ -82,7 +82,7 @@ PACKAGES
   diffstat
     Version: >= 1.5
     Name   :
-      FreeBSD 10: 'diffstat'
+      FreeBSD 11: 'diffstat'
       OpenBSD 6 : 'diffstat'
 
 ROLES
@@ -125,7 +125,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
