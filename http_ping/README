@@ -80,7 +80,7 @@ PACKAGES
   http_ping
     Version: >= 20050629
     Name   :
-      FreeBSD 10: 'http_ping'
+      FreeBSD 11: 'http_ping'
       OpenBSD 6 : 'http_ping'
 
 ROLES
@@ -123,7 +123,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
