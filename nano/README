@@ -79,7 +79,7 @@ PACKAGES
   nano
     Version: >= 2.0
     Name   :
-      FreeBSD 10: 'nano'
+      FreeBSD 11: 'nano'
       OpenBSD 6 : 'nano'
 
 ROLES
@@ -122,7 +122,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
