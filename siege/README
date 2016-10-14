@@ -84,7 +84,7 @@ PACKAGES
   siege
     Version: >= 2.70
     Name   :
-      FreeBSD 10: 'siege'
+      FreeBSD 11: 'siege'
       OpenBSD 6 : 'siege'
 
 ROLES
@@ -127,7 +127,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
