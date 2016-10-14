@@ -85,7 +85,7 @@ PACKAGES
   ngrep
     Version: >= 1.45
     Name   :
-      FreeBSD 10: 'ngrep'
+      FreeBSD 11: 'ngrep'
       OpenBSD 6 : 'ngrep'
 
 ROLES
@@ -128,7 +128,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
