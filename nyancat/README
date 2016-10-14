@@ -80,7 +80,7 @@ PACKAGES
   nyancat
     Version: >= 1.2
     Name   :
-      FreeBSD 10: 'nyancat'
+      FreeBSD 11: 'nyancat'
       OpenBSD 6 : 'nyancat'
 
 ROLES
@@ -123,7 +123,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
