@@ -80,7 +80,7 @@ PACKAGES
   lsof
     Version: >= 4.8
     Name   :
-      FreeBSD 10: 'lsof'
+      FreeBSD 11: 'lsof'
       OpenBSD 6 : 'lsof'
 
 ROLES
@@ -123,7 +123,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
