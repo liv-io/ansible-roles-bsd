@@ -80,7 +80,7 @@ PACKAGES
   apachetop
     Version: >= 0.12
     Name   :
-      FreeBSD 10: 'apachetop'
+      FreeBSD 11: 'apachetop'
       OpenBSD 6 : 'apachetop'
 
 ROLES
@@ -123,7 +123,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
