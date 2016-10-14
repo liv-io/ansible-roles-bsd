@@ -84,7 +84,7 @@ PACKAGES
   traceroute
     Version: >= 2.0
     Name   :
-      FreeBSD 10: 'traceroute'
+      FreeBSD 11: 'traceroute'
 
 ROLES
 
@@ -126,7 +126,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
