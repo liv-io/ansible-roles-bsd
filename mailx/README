@@ -90,7 +90,7 @@ PACKAGES
   mailx
     Version: >= 0.5
     Name   :
-      FreeBSD 10: 'mailx'
+      FreeBSD 11: 'mailx'
 
 ROLES
 
@@ -132,7 +132,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
