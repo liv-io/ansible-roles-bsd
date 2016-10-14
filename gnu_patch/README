@@ -82,7 +82,7 @@ PACKAGES
   gnu-patch
     Version: >= 2.7
     Name   :
-      FreeBSD 10: 'patch'
+      FreeBSD 11: 'patch'
       OpenBSD 6 : 'gpatch'
 
 ROLES
@@ -125,7 +125,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
