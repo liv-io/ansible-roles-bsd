@@ -84,7 +84,7 @@ PACKAGES
   curl
     Version: >= 7.19
     Name   :
-      FreeBSD 10: 'curl'
+      FreeBSD 11: 'curl'
       OpenBSD 6 : 'curl'
 
 ROLES
@@ -127,7 +127,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
