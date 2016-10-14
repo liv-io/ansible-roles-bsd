@@ -26,12 +26,13 @@
 
 #
 # hosts.allow access control file for "tcp wrapped" applications.
-# $FreeBSD: releng/10.3/etc/hosts.allow 161710 2006-08-29 09:20:48Z ru $
+# $FreeBSD: releng/11.0/etc/hosts.allow 276163 2014-12-24 01:50:44Z smh $
 #
 # NOTE: The hosts.deny file is deprecated.
 #       Place both 'allow' and 'deny' rules in the hosts.allow file.
-#	See hosts_options(5) for the format of this file.
-#	hosts_access(5) no longer fully applies.
+#       See hosts_options(5) for the format of this file.
+#       hosts_access(5) no longer fully applies.
+#
 
 {% if (denyhosts_block_service is defined) and ((denyhosts_block_service == 'all') or (denyhosts_block_service == 'ALL') or (denyhosts_block_service == 'any') or (denyhosts_block_service == 'ANY')) %}
 ALL : /etc/hosts.block : deny
