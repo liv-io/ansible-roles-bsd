@@ -86,7 +86,7 @@ PACKAGES
   python-paramiko
     Version: >= 1.7
     Name   :
-      FreeBSD 10: 'py27-paramiko'
+      FreeBSD 11: 'py27-paramiko'
       OpenBSD 6 : 'py-paramiko'
 
 ROLES
@@ -129,7 +129,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
