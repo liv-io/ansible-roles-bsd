@@ -83,7 +83,7 @@ PACKAGES
   unzip
     Version: >= 6.0
     Name   :
-      FreeBSD 10: 'unzip'
+      FreeBSD 11: 'unzip'
       OpenBSD 6 : 'unzip'
 
 ROLES
@@ -126,7 +126,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
