@@ -80,7 +80,7 @@ PACKAGES
   gnu-watch
     Version: >= 3.2
     Name   :
-      FreeBSD 10: 'gnu-watch'
+      FreeBSD 11: 'gnu-watch'
       OpenBSD 6 : 'gnuwatch'
 
 ROLES
@@ -123,7 +123,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
