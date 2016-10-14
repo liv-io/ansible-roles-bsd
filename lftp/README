@@ -82,7 +82,7 @@ PACKAGES
   lftp
     Version: >= 4.0
     Name   :
-      FreeBSD 10: 'lftp'
+      FreeBSD 11: 'lftp'
       OpenBSD 6 : 'lftp'
 
 ROLES
@@ -125,7 +125,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
