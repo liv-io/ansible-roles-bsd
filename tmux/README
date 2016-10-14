@@ -95,7 +95,7 @@ PACKAGES
   tmux
     Version: >= 1.8
     Name   :
-      FreeBSD 10: 'tmux'
+      FreeBSD 11: 'tmux'
 
 ROLES
 
@@ -137,7 +137,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
