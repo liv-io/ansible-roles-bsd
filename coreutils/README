@@ -80,7 +80,7 @@ PACKAGES
   coreutils
     Version: >= 8.2
     Name   :
-      FreeBSD 10: 'coreutils'
+      FreeBSD 11: 'coreutils'
       OpenBSD 6 : 'coreutils'
 
 ROLES
@@ -123,7 +123,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
