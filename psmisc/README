@@ -84,7 +84,7 @@ PACKAGES
   psmisc
     Version: >= 22.6
     Name   :
-      FreeBSD 10: 'psmisc'
+      FreeBSD 11: 'psmisc'
 
 ROLES
 
@@ -126,7 +126,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
