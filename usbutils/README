@@ -79,7 +79,7 @@ PACKAGES
   usbutils
     Version: >= 0.86_2
     Name   :
-      FreeBSD 10: 'usbutils'
+      FreeBSD 11: 'usbutils'
 
   usbutils
     Version: >= 007p0
@@ -126,7 +126,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
