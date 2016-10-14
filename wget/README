@@ -84,7 +84,7 @@ PACKAGES
   wget
     Version: >= 1.12
     Name   :
-      FreeBSD 10: 'wget'
+      FreeBSD 11: 'wget'
       OpenBSD 6 : 'wget'
 
 ROLES
@@ -127,7 +127,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 10.3-*
+    Version: 11.0-*
       Status: Testing
 
   OpenBSD
