@@ -1,17 +1,14 @@
 --------------------------------------------------------------------------------
 README
 --------------------------------------------------------------------------------
-        o
-    ____|____
-   |         |  Name   : openssh
-   |  _   _  |  Type   : ansible role
-   | [_] [_] |  Group  : net-misc
-   |____~____|
-    ___//__//   Authors: liv community
-   /|     |/    License: Simplified BSD License
-  //|_____|
-    _|| ||_     Webpage: http://www.liv.io/
-   (__| |__)
+
+   _ _         Name   : openssh
+  | (_)_   __  Type   : ansible role
+  | | \ \ / /  Group  : net-misc
+  | | |\ V /
+  |_|_| \_/    Authors: liv community
+               License: Simplified BSD License
+
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
@@ -276,7 +273,6 @@ ROLE
 
   openssh_password_authentication
     Description: Control the 'openssh_password_authentication'
-                 option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -331,7 +327,6 @@ ROLE
 
   openssh_pubkey_authentication
     Description: Control the 'openssh_pubkey_authentication'
-                 option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
