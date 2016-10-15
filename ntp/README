@@ -1,17 +1,14 @@
 --------------------------------------------------------------------------------
 README
 --------------------------------------------------------------------------------
-        o
-    ____|____
-   |         |  Name   : ntp
-   |  _   _  |  Type   : ansible role
-   | [_] [_] |  Group  : net-misc
-   |____~____|
-    ___//__//   Authors: liv community
-   /|     |/    License: Simplified BSD License
-  //|_____|
-    _|| ||_     Webpage: http://www.liv.io/
-   (__| |__)
+
+   _ _         Name   : ntp
+  | (_)_   __  Type   : ansible role
+  | | \ \ / /  Group  : net-misc
+  | | |\ V /
+  |_|_| \_/    Authors: liv community
+               License: Simplified BSD License
+
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
@@ -44,7 +41,6 @@ ENABLE
     vars:
       ntp_state: 'enable'
       ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                    option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
                     comment: 'Server: domain.tld'}]
 
 DISABLE
@@ -54,7 +50,6 @@ DISABLE
     vars:
       ntp_state: 'disable'
       ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                    option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
                     comment: 'Server: domain.tld'}]
 
 CRONJOB
@@ -64,7 +59,6 @@ CRONJOB
     vars:
       ntp_state: 'cronjob'
       ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                    option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
                     comment: 'Server: domain.tld'}]
       ntp_ntp_update_time_interval: 15
 
@@ -225,11 +219,9 @@ ROLE
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : [{server: {'ntp'},
-                   option: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'},
                    comment: 'Server: ntp'}]
     Options    :
       Examples: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                  option: {'iburst', 'prefer', 'minpoll 4', 'maxpoll 6'},
                   comment: 'Server: domain.tld'}]
       None    : []
 
