@@ -1,17 +1,14 @@
 --------------------------------------------------------------------------------
 README
 --------------------------------------------------------------------------------
-        o
-    ____|____
-   |         |  Name   : zsh
-   |  _   _  |  Type   : ansible role
-   | [_] [_] |  Group  : app-shells
-   |____~____|
-    ___//__//   Authors: liv community
-   /|     |/    License: Simplified BSD License
-  //|_____|
-    _|| ||_     Webpage: http://www.liv.io/
-   (__| |__)
+
+   _ _         Name   : zsh
+  | (_)_   __  Type   : ansible role
+  | | \ \ / /  Group  : app-shells
+  | | |\ V /
+  |_|_| \_/    Authors: liv community
+               License: Simplified BSD License
+
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
