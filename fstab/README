@@ -1,17 +1,14 @@
 --------------------------------------------------------------------------------
 README
 --------------------------------------------------------------------------------
-        o
-    ____|____
-   |         |  Name   : fstab
-   |  _   _  |  Type   : ansible role
-   | [_] [_] |  Group  : sys-core
-   |____~____|
-    ___//__//   Authors: liv community
-   /|     |/    License: Simplified BSD License
-  //|_____|
-    _|| ||_     Webpage: http://www.liv.io/
-   (__| |__)
+
+   _ _         Name   : fstab
+  | (_)_   __  Type   : ansible role
+  | | \ \ / /  Group  : sys-core
+  | | |\ V /
+  |_|_| \_/    Authors: liv community
+               License: Simplified BSD License
+
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
@@ -55,7 +52,6 @@ CONFIG
         state: 'true'
         mountpoint: '/nfs'
         type: 'nfs'
-        options: ['nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15']
         dump: 0
         pass: 0
         comment: 'NFS File System'
@@ -65,7 +61,6 @@ CONFIG
         state: 'true'
         mountpoint: '/opt'
         type: 'xfs'
-        options: ['defaults']
         dump: 1
         pass: 1
         comment: 'Optional File System'
@@ -75,7 +70,6 @@ CONFIG
         state: 'false'
         mountpoint: '/remove'
         type: 'ext4'
-        options: []
         dump: 0
         pass: 0
         comment: 'Unused File System'
@@ -192,9 +186,7 @@ ROLE
     Default    : []
     Options    :
       Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs',
-                  options: {'nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15'} dump: 0, pass: 0, comment: 'NFS File System'},
                  {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs',
-                  options: {'defaults'}, dump: 1, pass: 1, comment: 'Optional File System'}]
       None    : []
 
   fstab_group
@@ -206,9 +198,7 @@ ROLE
     Default    : []
     Options    :
       Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs',
-                  options: {'nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15'} dump: 0, pass: 0, comment: 'NFS File System'},
                  {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs',
-                  options: {'defaults'}, dump: 1, pass: 1, comment: 'Optional File System'}]
       None    : []
 
   fstab_host
@@ -220,9 +210,7 @@ ROLE
     Default    : []
     Options    :
       Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs',
-                  options: {'nfsvers=4', 'bg', 'soft', 'intr', 'tcp', 'timeo=15'} dump: 0, pass: 0, comment: 'NFS File System'},
                  {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs',
-                  options: {'defaults'}, dump: 1, pass: 1, comment: 'Optional File System'}]
       None    : []
 
   fstab_path_default
