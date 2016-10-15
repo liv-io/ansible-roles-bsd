@@ -1,17 +1,14 @@
 --------------------------------------------------------------------------------
 README
 --------------------------------------------------------------------------------
-        o
-    ____|____
-   |         |  Name   : systeminfo
-   |  _   _  |  Type   : ansible role
-   | [_] [_] |  Group  : app-admin
-   |____~____|
-    ___//__//   Authors: liv community
-   /|     |/    License: Simplified BSD License
-  //|_____|
-    _|| ||_     Webpage: http://www.liv.io/
-   (__| |__)
+
+   _ _         Name   : systeminfo
+  | (_)_   __  Type   : ansible role
+  | | \ \ / /  Group  : app-admin
+  | | |\ V /
+  |_|_| \_/    Authors: liv community
+               License: Simplified BSD License
+
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
@@ -160,7 +157,6 @@ ROLE
   systeminfo_services
     Description: Define the 'systeminfo_services' option.
                  Use this variable to define the services installed and running
-                 on the managed node.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
