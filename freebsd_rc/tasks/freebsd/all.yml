@@ -2,17 +2,14 @@
 #-------------------------------------------------------------------------------
 # INFORMATION
 #-------------------------------------------------------------------------------
-#        o
-#    ____|____
-#   |         |  Name   : all.yml
-#   |  _   _  |  Type   : ansible task file
-#   | [_] [_] |  Role   : freebsd_rc
-#   |____~____|
-#    ___//__//   Authors: liv community
-#   /|     |/    License: Simplified BSD License
-#  //|_____|
-#    _|| ||_     Webpage: http://www.liv.io/
-#   (__| |__)
+#
+#   _ _         Name   : all.yml
+#  | (_)_   __  Type   : ansible task file
+#  | | \ \ / /  Role   : freebsd_rc
+#  | | |\ V /
+#  |_|_| \_/    Authors: liv community
+#               License: Simplified BSD License
+#
 #-------------------------------------------------------------------------------
 # DESCRIPTION
 #-------------------------------------------------------------------------------
