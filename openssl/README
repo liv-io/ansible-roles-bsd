@@ -1,17 +1,14 @@
 --------------------------------------------------------------------------------
 README
 --------------------------------------------------------------------------------
-        o
-    ____|____
-   |         |  Name   : openssl
-   |  _   _  |  Type   : ansible role
-   | [_] [_] |  Group  : dev-libs
-   |____~____|
-    ___//__//   Authors: liv community
-   /|     |/    License: Simplified BSD License
-  //|_____|
-    _|| ||_     Webpage: http://www.liv.io/
-   (__| |__)
+
+   _ _         Name   : openssl
+  | (_)_   __  Type   : ansible role
+  | | \ \ / /  Group  : dev-libs
+  | | |\ V /
+  |_|_| \_/    Authors: liv community
+               License: Simplified BSD License
+
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
