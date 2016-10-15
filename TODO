@@ -1,17 +1,14 @@
 --------------------------------------------------------------------------------
 TODO
 --------------------------------------------------------------------------------
-        o
-    ____|____
-   |         |  Name   : TODO
-   |  _   _  |  Type   : ansible roles
-   | [_] [_] |  Summary: ansible roles
-   |____~____|
-    ___//__//   Authors: liv community
-   /|     |/    License: Simplified BSD License
-  //|_____|
-    _|| ||_     Webpage: http://www.liv.io/
-   (__| |__)
+
+   _ _         Name   : TODO
+  | (_)_   __  Type   : ansible roles
+  | | \ \ / /  Summary: ansible roles
+  | | |\ V /
+  |_|_| \_/    Authors: liv community
+               License: Simplified BSD License
+
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
