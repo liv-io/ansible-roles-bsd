@@ -1,17 +1,14 @@
 --------------------------------------------------------------------------------
 README
 --------------------------------------------------------------------------------
-        o
-    ____|____
-   |         |  Name   : sudo
-   |  _   _  |  Type   : ansible role
-   | [_] [_] |  Group  : app-admin
-   |____~____|
-    ___//__//   Authors: liv community
-   /|     |/    License: Simplified BSD License
-  //|_____|
-    _|| ||_     Webpage: http://www.liv.io/
-   (__| |__)
+
+   _ _         Name   : sudo
+  | (_)_   __  Type   : ansible role
+  | | \ \ / /  Group  : app-admin
+  | | |\ V /
+  |_|_| \_/    Authors: liv community
+               License: Simplified BSD License
+
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
@@ -60,39 +57,33 @@ CONFIG
     sudo_all:
       - name: 'core'
         state: 'true'
-        order: '10'
         comment: 'Core Sudoers'
         config: ['root ALL=(ALL) ALL']
 
       - name: 'ansible'
         state: 'true'
-        order: '20'
         comment: 'Ansible Configuration Management'
         config: ['ansible ALL=(root) NOPASSWD: ALL']
 
     sudo_group:
       - name: 'sysadmin'
         state: 'true'
-        order: '50'
         comment: 'System Administrators'
         config: ['%sysadmin ALL=(ALL) ALL']
 
       - name: 'dbadmin'
         state: 'true'
-        order: '51'
         comment: 'Database Administrators'
         config: ['%dbadmin ALL=(root) service mysqld restart, service mysql restart']
 
       - name: 'appadmin'
         state: 'true'
-        order: '52'
         comment: 'Application Administrators'
         config: ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
 
     sudo_host:
       - name: 'obsolete'
         state: 'false'
-        order: '42'
 
 --------------------------------------------------------------------------------
 VARIABLES
