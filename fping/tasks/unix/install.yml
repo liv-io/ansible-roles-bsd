@@ -2,17 +2,14 @@
 #-------------------------------------------------------------------------------
 # INFORMATION
 #-------------------------------------------------------------------------------
-#        o
-#    ____|____
-#   |         |  Name   : install.yml
-#   |  _   _  |  Type   : ansible task file
-#   | [_] [_] |  Role   : fping
-#   |____~____|
-#    ___//__//   Authors: liv community
-#   /|     |/    License: Simplified BSD License
-#  //|_____|
-#    _|| ||_     Webpage: http://www.liv.io/
-#   (__| |__)
+#
+#   _ _         Name   : install.yml
+#  | (_)_   __  Type   : ansible task file
+#  | | \ \ / /  Role   : fping
+#  | | |\ V /
+#  |_|_| \_/    Authors: liv community
+#               License: Simplified BSD License
+#
 #-------------------------------------------------------------------------------
 # DESCRIPTION
 #-------------------------------------------------------------------------------
