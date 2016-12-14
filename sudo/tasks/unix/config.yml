@@ -3,7 +3,7 @@
 # INFORMATION
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : group.yml
+#   _ _         Name   : config.yml
 #  | (_)_   __  Type   : ansible task file
 #  | | \ \ / /  Role   : sudo
 #  | | |\ V /
@@ -27,7 +27,7 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - group
+    - config
     - unix
     - sudo
 
@@ -35,7 +35,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create sudo-group
+- name: template create sudo-config
   template:
     src: "{{file_src_sudo_config}}"
     dest: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) and not (item.order == None) else ''}}{{'_' if (item.order is defined) and not (item.order == None) else ''}}{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else sudo_name_default}}"
@@ -43,22 +43,22 @@
     owner: "{{file_owner_sudo_config}}"
     group: "{{file_group_sudo_config}}"
     validate: "{{file_validate_sudo_config}}"
-  with_items: "{{sudo_group}}"
+  with_items: "{{sudo_all + sudo_group + sudo_all}}"
   when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
     - files
-    - group
+    - config
     - unix
     - sudo
 
-- name: file remove sudo-group
+- name: file remove sudo-config
   file:
     state: 'absent'
     path: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) and not (item.order == None) else ''}}{{'_' if (item.order is defined) and not (item.order == None) else ''}}{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else sudo_name_default}}"
-  with_items: "{{sudo_group}}"
+  with_items: "{{sudo_all + sudo_group + sudo_host}}"
   when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
   tags:
     - files
-    - group
+    - config
     - unix
     - sudo
