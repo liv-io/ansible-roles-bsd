@@ -18,22 +18,8 @@
 #
 #-------------------------------------------------------------------------------
 
-- name: task include all
-  include: all.yml
-  when: not ((host_state == 'false') or (host_state == 'no') or (host_state == 'disable') or (host_state == 'quiesce') or (host_state == 'inactive'))
-  tags:
-    - unix
-    - host
-
-- name: task include group
-  include: group.yml
-  when: not ((host_state == 'false') or (host_state == 'no') or (host_state == 'disable') or (host_state == 'quiesce') or (host_state == 'inactive'))
-  tags:
-    - unix
-    - host
-
-- name: task include host
-  include: host.yml
+- name: task include config
+  include: config.yml
   when: not ((host_state == 'false') or (host_state == 'no') or (host_state == 'disable') or (host_state == 'quiesce') or (host_state == 'inactive'))
   tags:
     - unix
