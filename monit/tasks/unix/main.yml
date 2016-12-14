@@ -25,22 +25,8 @@
     - unix
     - monit
 
-- name: task include all
-  include: all.yml
-  when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
-  tags:
-    - unix
-    - monit
-
-- name: task include group
-  include: group.yml
-  when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
-  tags:
-    - unix
-    - monit
-
-- name: task include host
-  include: host.yml
+- name: task include config
+  include: config.yml
   when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
   tags:
     - unix
