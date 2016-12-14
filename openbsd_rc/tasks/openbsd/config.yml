@@ -3,7 +3,7 @@
 # INFORMATION
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : host.yml
+#   _ _         Name   : config.yml
 #  | (_)_   __  Type   : ansible task file
 #  | | \ \ / /  Role   : openbsd_rc
 #  | | |\ V /
@@ -22,15 +22,15 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line config rc-host
+- name: line config rc-config
   lineinfile:
     state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
     line: "{{item.name if (item.name is defined) and not ((item.name == None) or (item.name == '')) else ''}}=\"{{item.value if (item.value is defined) and not ((item.value == None) or (item.value == '')) else ''}}\" # Ansible: {{(item.comment|e) if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) else item.name}}"
     regexp: "^{{item.name}}="
     dest: "{{(item.path|e) if (item.path is defined) and not ((item.path == None) or (item.path == '')) else (openbsd_rc_path_default|e)}}"
-  with_items: "{{openbsd_rc_host}}"
+  with_items: "{{openbsd_rc_all + openbsd_rc_group + openbsd_rc_host}}"
   tags:
     - files
-    - host
+    - config
     - openbsd
     - openbsd_rc
