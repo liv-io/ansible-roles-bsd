@@ -60,15 +60,15 @@ server {
 
 {% if (item.hsts_state is defined) and ((item.hsts_state == 'true') or (item.hsts_state == 'yes') or (item.hsts_state == 'enable')) %}
   # HTTP Strict Transport Security (HSTS)
-  add_header Strict-Transport-Security 'max-age={% if (item.hsts_max_age is defined) and ((item.hsts_max_age == 'true') or (item.hsts_max_age == 'yes') or (item.hsts_max_age == 'enable')) %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{(nginx_hsts_max_age|e)}}{% endif %}';
+  add_header Strict-Transport-Security 'max-age={% if (item.hsts_max_age is defined) and ((item.hsts_max_age == 'true') or (item.hsts_max_age == 'yes') or (item.hsts_max_age == 'enable')) %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{(nginx_hsts_max_age|e)}}{% endif %}' always;
 {% endif %}
 {% if (item.xss_protection_state is defined) and ((item.xss_protection_state == 'true') or (item.xss_protection_state == 'yes') or (item.xss_protection_state == 'enable')) %}
   # X-Frame-Options: Disable frame embedding (phishing, clickjacking prevention)
-  add_header X-Frame-Options 'DENY';
+  add_header X-Frame-Options 'DENY' always;
   # X-Content-Type-Options: Disable MIME-sniffing (drive-by download attacks prevention)
-  add_header X-Content-Type-Options 'nosniff';
+  add_header X-Content-Type-Options 'nosniff' always;
   # X-XSS-Protection: Enable XSS filter (cross-site scripting prevention)
-  add_header X-XSS-Protection '1; mode=block';
+  add_header X-XSS-Protection '1; mode=block' always;
 {% endif %}
 
 {% if (item.ssl_state is defined) and ((item.ssl_state == 'true') or (item.ssl_state == 'yes') or (item.ssl_state == 'enable')) %}
