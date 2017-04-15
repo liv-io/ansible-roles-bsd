@@ -237,7 +237,11 @@ X11Forwarding yes
 X11Forwarding no
 {% endif %}
 {% if (openssh_x11_forwarding is defined) and ((openssh_x11_forwarding == 'true') or (openssh_x11_forwarding == 'yes') or (openssh_x11_forwarding == 'enable')) %}
-#X11DisplayOffset 10
+{% if (openssh_x11_display_offset is defined) and not ((openssh_x11_display_offset == None) or (openssh_x11_display_offset == '')) %}
+X11DisplayOffset {{(openssh_x11_display_offset|int(10))}}
+{% else %}
+X11DisplayOffset 10
+{% endif %}
 {% if (openssh_x11_use_localhost is defined) and ((openssh_x11_use_localhost == 'true') or (openssh_x11_use_localhost == 'yes') or (openssh_x11_use_localhost == 'enable')) %}
 X11UseLocalhost yes
 {% else %}

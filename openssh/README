@@ -407,6 +407,16 @@ ROLE
     Options    :
       Examples: 'hostname' | 'Operating System'
 
+  openssh_x11_display_offset
+    Description: Define the 'openssh_x11_display_offset' option.
+    Implemented: 0.18
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 22
+    Options    :
+      Examples: 10 | 15
+
   openssh_x11_forwarding
     Description: Control the 'openssh_x11_forwarding' option.
     Implemented: 0.1

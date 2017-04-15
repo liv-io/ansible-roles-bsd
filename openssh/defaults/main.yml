@@ -76,6 +76,8 @@ openssh_use_dns: 'no'
 
 openssh_version_addendum: 'none'
 
+openssh_x11_display_offset: 10
+
 openssh_x11_forwarding: 'no'
 
 openssh_x11_use_localhost: 'yes'
