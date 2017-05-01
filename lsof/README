@@ -124,8 +124,8 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 6.0
-      Status: Testing
+    Version: 6.1
+      Status: Unsupported
 
 --------------------------------------------------------------------------------
 OTHER
