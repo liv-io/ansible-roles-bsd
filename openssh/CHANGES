@@ -14,6 +14,10 @@ CHANGES
 
 --------------------------------------------------------------------------------
 
+* Version 0.19.0 (2017-04-16)
+F: Add support for OpenBSD 6.1
+F: Drop support for OpenBSD 6.0
+
 * Version 0.18.0 (2017-02-28)
 F: Add 'openssh_x11_display_offset' option to configure 'X11DisplayOffset'
 

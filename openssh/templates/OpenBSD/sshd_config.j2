@@ -21,7 +21,7 @@
 #
 #-------------------------------------------------------------------------------
 
-#	$OpenBSD: sshd_config,v 1.99 2016/07/11 03:19:44 tedu Exp $
+#	$OpenBSD: sshd_config,v 1.101 2017/03/14 07:19:07 djm Exp $
 
 # This is the sshd server system-wide configuration file.  See
 # sshd_config(5) for more information.
@@ -71,13 +71,6 @@ ListenAddress {{listen_address}}
 {% endif %}
 
 #-------------------------------------------------------------------------------
-# PROTOCOL
-#-------------------------------------------------------------------------------
-
-# The default requires explicit activation of protocol 1
-Protocol 2
-
-#-------------------------------------------------------------------------------
 # HOST KEY
 #-------------------------------------------------------------------------------
 
@@ -86,9 +79,6 @@ Protocol 2
 HostKey {{(host_key|e)}}
 {% endfor %}
 {% else %}
-# HostKey for protocol version 1
-#HostKey /etc/ssh/ssh_host_key
-# HostKeys for protocol version 2
 HostKey /etc/ssh/ssh_host_rsa_key
 #HostKey /etc/ssh/ssh_host_dsa_key
 #HostKey /etc/ssh/ssh_host_ecdsa_key
@@ -130,10 +120,6 @@ MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-
 
 #-------------------------------------------------------------------------------
 
-# Lifetime and size of ephemeral version 1 server key
-#KeyRegenerationInterval 1h
-#ServerKeyBits 1024
-
 # Ciphers and keying
 #RekeyLimit default none
 
@@ -142,7 +128,6 @@ MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-
 #-------------------------------------------------------------------------------
 
 # Logging
-# obsoletes QuietMode and FascistLogging
 #SyslogFacility AUTH
 #LogLevel INFO
 
@@ -158,11 +143,6 @@ MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-
 #MaxAuthTries 6
 #MaxSessions 10
 
-{% if (openssh_rsa_authentication is defined) and ((openssh_rsa_authentication == 'false') or (openssh_rsa_authentication == 'no') or (openssh_rsa_authentication == 'disable')) %}
-RSAAuthentication no
-{% else %}
-RSAAuthentication yes
-{% endif %}
 {% if (openssh_pubkey_authentication is defined) and ((openssh_pubkey_authentication == 'false') or (openssh_pubkey_authentication == 'no') or (openssh_pubkey_authentication == 'disable')) %}
 PubkeyAuthentication no
 {% else %}
@@ -179,11 +159,9 @@ AuthorizedKeysFile	.ssh/authorized_keys
 #AuthorizedKeysCommandUser nobody
 
 # For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
-RhostsRSAAuthentication no
-# similar for protocol version 2
 HostbasedAuthentication no
 # Change to yes if you don't trust ~/.ssh/known_hosts for
-# RhostsRSAAuthentication and HostbasedAuthentication
+# HostbasedAuthentication
 #IgnoreUserKnownHosts no
 # Don't read the user's ~/.rhosts and ~/.shosts files
 IgnoreRhosts yes
@@ -206,7 +184,6 @@ ChallengeResponseAuthentication no
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
 #GatewayPorts no
-
 {% if (openssh_x11_forwarding is defined) and ((openssh_x11_forwarding == 'true') or (openssh_x11_forwarding == 'yes') or (openssh_x11_forwarding == 'enable')) %}
 X11Forwarding yes
 {% else %}
@@ -246,7 +223,6 @@ TCPKeepAlive no
 TCPKeepAlive yes
 {% endif %}
 #UseLogin no
-UsePrivilegeSeparation sandbox
 #PermitUserEnvironment no
 {% if (openssh_compression is defined) and ((openssh_compression == 'true') or (openssh_compression == 'yes') or (openssh_compression == 'enable')) %}
 Compression yes
