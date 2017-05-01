@@ -20,6 +20,6 @@
 
 - name: task include unix
   include: unix/main.yml
-  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("11\.0-*"))) or ((ansible_os_family == 'OpenBSD') and (ansible_distribution_release == '6.0'))
+  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("11\.0-*"))) or ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version == '6.1'))
   tags:
     - git
