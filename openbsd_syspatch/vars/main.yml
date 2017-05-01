@@ -1,0 +1,30 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+#   _ _         Name   : main.yml
+#  | (_)_   __  Type   : ansible variable file
+#  | | \ \ / /  Role   : openbsd_syspatch
+#  | | |\ V /
+#  |_|_| \_/    Authors: liv community
+#               License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# installurl
+file_src_installurl: "templates/{{(openbsd_syspatch_installurl_template|e)}}/installurl.j2"
+file_path_installurl: '/etc/installurl'
+file_mode_installurl: '0644'
+file_owner_installurl: 'root'
+file_group_installurl: 'wheel'

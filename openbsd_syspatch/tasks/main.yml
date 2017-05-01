@@ -1,0 +1,25 @@
+---
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+#   _ _         Name   : main.yml
+#  | (_)_   __  Type   : ansible task file
+#  | | \ \ / /  Role   : openbsd_syspatch
+#  | | |\ V /
+#  |_|_| \_/    Authors: liv community
+#               License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+# DESCRIPTION
+#-------------------------------------------------------------------------------
+#
+#
+#
+#-------------------------------------------------------------------------------
+
+- name: task include openbsd
+  include: openbsd/main.yml
+  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version == '6.1'))
+  tags:
+    - openbsd_syspatch
