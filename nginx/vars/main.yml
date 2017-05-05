@@ -36,6 +36,9 @@ file_mode_nginx_conf: '0644'
 file_owner_nginx_conf: 'root'
 file_group_nginx_conf: 'wheel'
 
+# dhparam.pem
+file_path_dhparam_pem: '/etc/nginx/dhparam.pem'
+
 # vhost
 file_mode_vhost: '0644'
 file_owner_vhost: 'root'
@@ -53,6 +56,9 @@ file_group_vhosts_d_name: 'wheel'
 
 # check nginx
 command_cmd_check_nginx: 'nginx -t'
+
+# generate dhparam
+command_shell_generate_dhparam: "openssl dhparam -dsaparam 4096 -out {{file_path_dhparam_pem}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM

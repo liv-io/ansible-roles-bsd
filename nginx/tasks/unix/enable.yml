@@ -64,6 +64,16 @@
     - unix
     - nginx
 
+- name: stat file dhparam.pem
+  stat:
+    path: "{{file_path_dhparam_pem}}"
+  register: register_dhparam_pem
+  tags:
+    - files
+    - install
+    - unix
+    - nginx
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
@@ -107,6 +117,18 @@
   tags:
     - commands
     - enable
+    - unix
+    - nginx
+
+- name: command generate dhparam
+  shell: "{{command_shell_generate_dhparam}}"
+  when: (register_dhparam_pem.stat.exists == False)
+  notify:
+    - command check nginx
+    - service reload nginx
+  tags:
+    - commands
+    - install
     - unix
     - nginx
 
