@@ -24,4 +24,4 @@ motd_env_name: 'Production'
 
 motd_host_description: ''
 
-motd_motd_template: 'liv'
+motd_motd_template: "{{ansible_os_family}}"

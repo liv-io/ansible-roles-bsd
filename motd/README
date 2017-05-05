@@ -33,7 +33,6 @@ INSTALL
       motd_state: 'install'
       motd_env_name: 'Testing'
       motd_host_description: 'Test Host'
-      motd_motd_template: 'liv'
 
 DISABLE
   - hosts: all
@@ -99,7 +98,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'liv'
+    Default    : "{{ansible_os_family}}"
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
