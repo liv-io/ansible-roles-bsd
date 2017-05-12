@@ -31,7 +31,7 @@ INSTALL
     vars:
       openbsd_syspatch_state: 'install'
       openbsd_syspatch_installurl:
-        - {url: {'http://mirror.switch.ch/ftp/pub/OpenBSD/'}, comment: 'OpenBSD Packages'}
+        - {url: {'http://mirror.switch.ch/ftp/pub/OpenBSD'}, comment: 'OpenBSD Packages'}
 
 REMOVE
   - hosts: all
@@ -70,11 +70,11 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{url: {'http://ftp.OpenBSD.org/pub/OpenBSD/'}, comment: 'OpenBSD Packages'}]
+    Default    : [{url: {'http://ftp.OpenBSD.org/pub/OpenBSD'}, comment: 'OpenBSD Packages'}]
     Options    :
-      Examples: [{url: {'http://mirror.switch.ch/ftp/pub/OpenBSD/'}, comment: 'OpenBSD Packages'}]
-                [{url: {'https://ftp.eu.openbsd.org/pub/OpenBSD/',
-                        'https://ftp2.eu.openbsd.org/pub/OpenBSD/'}, comment: 'OpenBSD Packages'}]
+      Examples: [{url: {'http://mirror.switch.ch/ftp/pub/OpenBSD'}, comment: 'OpenBSD Packages'}]
+                [{url: {'https://ftp.eu.openbsd.org/pub/OpenBSD',
+                        'https://ftp2.eu.openbsd.org/pub/OpenBSD'}, comment: 'OpenBSD Packages'}]
       None    : []
 
   openbsd_syspatch_installurl_template

@@ -14,5 +14,8 @@ CHANGES
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2017-05-12)
+I: Remove unnecessary trailing slash in URL
+
 * Version 0.1.0 (2017-04-16)
 F: Initial release
