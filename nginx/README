@@ -215,6 +215,16 @@ CONFIG
     Options    :
       Examples: 'AES256+EECDH:AES256+EDH'
 
+  ssl_ecdh_curve
+    Description: Define the 'ssl_ecdh_curve' option.
+    Implemented: 0.7
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'secp384r1'
+    Options    :
+      Examples: 'secp384r1' | 'auto' | 'prime256v1:secp384r1'
+
   ssl_honor_cipher_order
     Description: Control the 'ssl_honor_cipher_order' option.
     Implemented: 0.1

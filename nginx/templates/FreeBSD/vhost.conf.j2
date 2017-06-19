@@ -94,6 +94,12 @@ server {
 {% else %}
   ssl_ciphers 'AES256+EECDH:AES256+EDH';
 {% endif %}
+  # ECDHE ciphers curve
+{% if (item.ssl_ecdh_curve is defined) and not ((item.ssl_ecdh_curve == None) or (item.ssl_ecdh_curve == '') or (item.ssl_ecdh_curve == [])) %}
+  ssl_ecdh_curve '{{(item.ssl_ecdh_curve|e)}}';
+{% else %}
+  ssl_ecdh_curve 'secp384r1';
+{% endif %}
   # Server PEM-encoded X.509 certificate file
 {% if (item.ssl_certificate is defined) and not ((item.ssl_certificate == None) or (item.ssl_certificate == '')) %}
   ssl_certificate '{{(item.ssl_certificate|e)}}';

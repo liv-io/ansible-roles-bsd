@@ -14,6 +14,9 @@ CHANGES
 
 --------------------------------------------------------------------------------
 
+* Version 0.7.0 (2017-06-19)
+F: Add option to specify a curve for ECDHE ciphers (ssl_ecdh_curve)
+
 * Version 0.6.0 (2017-05-05)
 F: Add DH parameters for DHE ciphers
 

@@ -94,6 +94,12 @@ server {
 {% else %}
   ssl_ciphers 'AES256+EECDH:AES256+EDH';
 {% endif %}
+  # ECDHE ciphers curve
+{% if (item.ssl_ecdh_curve is defined) and not ((item.ssl_ecdh_curve == None) or (item.ssl_ecdh_curve == '') or (item.ssl_ecdh_curve == [])) %}
+  ssl_ecdh_curve '{{(item.ssl_ecdh_curve|e)}}';
+{% else %}
+  ssl_ecdh_curve 'secp384r1';
+{% endif %}
   # DH parameters for DHE ciphers
   ssl_dhparam '{{file_path_dhparam_pem}}';
   # Server PEM-encoded X.509 certificate file
