@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : monit-config
 #  | (_)_   __  Type   : monit configuration file
@@ -14,18 +12,9 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
-# {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
-#
-#-------------------------------------------------------------------------------
 
-{% if (item.config is defined) and not ((item.config == None) or (item.config == '') or (item.config == [])) %}
+# {{(item.comment|e)}}
+{% if (item.config is defined) and not ((item.config == '') or (item.config == [])) %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}

@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,44 +9,38 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
+  when: not (monit_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - monit
 
 - name: task include config
   include: config.yml
-  when: not ((monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove') or (monit_state == 'quiesce') or (monit_state == 'inactive'))
+  when: not (monit_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - monit
 
 - name: task include enable
   include: enable.yml
-  when: (monit_state == 'start') or (monit_state == 'on') or (monit_state == 'enable')
+  when: (monit_state|match('start|on|enable'))
   tags:
     - unix
     - monit
 
 - name: task include disable
   include: disable.yml
-  when: (monit_state == 'stop') or (monit_state == 'off') or (monit_state == 'disable')
+  when: (monit_state|match('stop|off|disable'))
   tags:
     - unix
     - monit
 
 - name: task include remove
   include: remove.yml
-  when: (monit_state == 'false') or (monit_state == 'no') or (monit_state == 'remove')
+  when: (monit_state|match('false|no|remove'))
   tags:
     - unix
     - monit

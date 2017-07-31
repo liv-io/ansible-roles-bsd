@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : monitrc
 #  | (_)_   __  Type   : monit configuration file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -39,14 +31,9 @@
 ##
 ## Start Monit in the background (run as a daemon):
 #
-{% if (monit_daemon_interval is defined) and not ((monit_daemon_interval == None) or (monit_daemon_interval == '')) %}
 set daemon {{(monit_daemon_interval|int(60))}}
-{% else %}
-set daemon 60
-{% endif %}
-{% if (monit_daemon_delay is defined) and not ((monit_daemon_delay == None) or (monit_daemon_delay == '')) %}
+{% if not (monit_daemon_delay == '') %}
   with start delay {{(monit_daemon_delay|int(3))}}
-{% else %}
 {% endif %}
 #
 #
@@ -102,14 +89,13 @@ set logfile syslog
 # will use the second mail server in the list and so on. By default Monit uses 
 # port 25 - it is possible to override this with the PORT option.
 #
-{% if (monit_mail_server is defined) and not ((monit_mail_server == None) or (monit_mail_server == '') or (monit_mail_server == [])) %}
+{% if not ((monit_mail_server == '') or (monit_mail_server == [])) %}
 {% for item in monit_mail_server %}
 {% for name in item.name %}
-set mailserver {{(name|e)}} {% if (item.port is defined) and not ((item.port == None) or (item.port == '')) %}port {{(item.port|int(25))}}{% else %}{% endif %}{% if not loop.last %},{% endif %} {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}# {{(item.comment|e)}}{% else %}{% endif %}
+set mailserver {{(name|e)}} {% if (item.port is defined) and not (item.port == '') %}port {{(item.port|int(25))}}{% else %}{% endif %}{% if not loop.last %},{% endif %} {% if (item.comment is defined) %}# {{(item.comment|e)}}{% endif %}
 
 {% endfor %}
 {% endfor %}
-{% else %}
 {% endif %}
 #
 #
@@ -159,50 +145,18 @@ set mailserver {{(name|e)}} {% if (item.port is defined) and not ((item.port == 
 ## are expanded at runtime. For example, to override the sender, use:
 #
 set mail-format {
-{% if (monit_mail_from is defined) and not ((monit_mail_from == None) or (monit_mail_from == '')) %}
      from: {{(monit_mail_from|e)}}
-{% else %}
-     from: admin@{{ansible_domain}}
-{% endif %}
-{% if (monit_mail_subject is defined) and not ((monit_mail_subject == None) or (monit_mail_subject == '')) %}
   subject: {{monit_mail_subject}}
-{% else %}
-  subject: Monit: $EVENT '$SERVICE' ({{ansible_hostname}})
-{% endif %}
   message: --------------------------------------------------------------------------------
 MONIT
 --------------------------------------------------------------------------------
 
-{% if (monit_mail_message_host is defined) and not ((monit_mail_message_host == None) or (monit_mail_message_host == '')) %}
 Host        : {{(monit_mail_message_host|e)}}
-{% else %}
-Host        : $HOST
-{% endif %}
-{% if (monit_mail_message_service is defined) and not ((monit_mail_message_service == None) or (monit_mail_message_service == '')) %}
 Service     : {{(monit_mail_message_service|e)}}
-{% else %}
-Service     : $SERVICE
-{% endif %}
-{% if (monit_mail_message_event is defined) and not ((monit_mail_message_event == None) or (monit_mail_message_event == '')) %}
 Event       : {{(monit_mail_message_event|e)}}
-{% else %}
-Event       : $EVENT
-{% endif %}
-{% if (monit_mail_message_action is defined) and not ((monit_mail_message_action == None) or (monit_mail_message_action == '')) %}
 Action      : {{(monit_mail_message_action|e)}}
-{% else %}
-Action      : $ACTION
-{% endif %}
-{% if (monit_mail_message_description is defined) and not ((monit_mail_message_description == None) or (monit_mail_message_description == '')) %}
 Description : {{(monit_mail_message_description|e)}}
-{% else %}
-Description : $DESCRIPTION
-{% endif %}
-{% if (monit_mail_message_date is defined) and not ((monit_mail_message_date == None) or (monit_mail_message_date == '')) %}
 Date        : {{(monit_mail_message_date|e)}}
-{% else %}
-Date        : $DATE
-{% endif %}
 
 --------------------------------------------------------------------------------
 SYSTEM
@@ -232,21 +186,9 @@ Version     : {{ansible_kernel}}
 MAIL
 --------------------------------------------------------------------------------
 
-{% if (monit_mail_from is defined) and not ((monit_mail_from == None) or (monit_mail_from == '')) %}
 Sender      : {{(monit_mail_from|e)}}
-{% else %}
-Sender      : root@{{(ansible_domain|e)}}
-{% endif %}
-{% if (monit_mail_to is defined) and not ((monit_mail_to == None) or (monit_mail_to == '')) %}
 Recipient   : {{(monit_mail_to|e)}}
-{% else %}
-Recipient   : admin@{{(ansible_domain|e)}}
-{% endif %}
-{% if (monit_mail_subject is defined) and not ((monit_mail_subject == None) or (monit_mail_subject == '')) %}
 Subject     : {{monit_mail_subject}}
-{% else %}
-Subject     : Monit: $EVENT '$SERVICE' ({{ansible_hostname}})
-{% endif %}
 }
 #
 #
@@ -260,12 +202,8 @@ Subject     : Monit: $EVENT '$SERVICE' ({{ansible_hostname}})
 ## This filter is recommended to avoid getting alerts for trivial cases.
 #
 # set alert your-name@your.domain not on { instance, action }
-{% if (monit_mail_to is defined) and not ((monit_mail_to == None) or (monit_mail_to == '')) %}
-set alert {{(monit_mail_to|e)}} {% if (monit_mail_exclusions is defined) and not ((monit_mail_exclusions == None) or (monit_mail_exclusions == '') or (monit_mail_exclusions == [])) %}{ {% for mail_exclusion in (monit_mail_exclusions|sort) %}{{(mail_exclusion|e)}}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
-
-{% else %}
-#set alert {{(monit_mail_to|e)}} {% if (monit_mail_exclusions is defined) and not ((monit_mail_exclusions == None) or (monit_mail_exclusions == '') or (monit_mail_exclusions == [])) %}{% for mail_exclusion in (monit_mail_exclusions|sort) %}{{(mail_exclusion|e)}}{% if not loop.last %}, {% endif %}{% endfor %}{% endif %}
-
+{% if not (monit_mail_to|match('false|no|disable')) %}
+set alert {{(monit_mail_to|e)}} {% if (monit_mail_exclusions is defined) and not ((monit_mail_exclusions == '') or (monit_mail_exclusions == [])) %}{ {% for mail_exclusion in (monit_mail_exclusions|sort) %}{{(mail_exclusion|e)}}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
 {% endif %}
 #
 #
@@ -277,18 +215,10 @@ set alert {{(monit_mail_to|e)}} {% if (monit_mail_exclusions is defined) and not
 ## commands to a running Monit daemon. See the Monit Wiki if you want to 
 ## enable SSL for the HTTP interface. 
 #
-{% if (monit_web_server_port is defined) and not ((monit_web_server_port == None) or (monit_web_server_port == '')) %}
 set httpd port {{(monit_web_server_port|int(2812))}} and
-{% else %}
-set httpd port 2812 and
-{% endif %}
-{% if (monit_web_server_address is defined) and not ((monit_web_server_address == None) or (monit_web_server_address == '')) %}
   use address {{(monit_web_server_address|e)}}
-{% else %}
-  use address localhost
-{% endif %}
 {% for item in monit_web_server_allow %}
-  {% if (item.user is defined) and not ((item.user == None) or (item.user == '')) %}allow {{(item.user|e)}} {% if (item.password is defined) and not ((item.password == None) or (item.password == '')) %}:{{(item.password|e)}}{% else %}{% endif %} {% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}# {{(item.comment|e)}}{% else %}{% endif %}{% else %}{% endif %}
+  {% if (item.user is defined) and not (item.user == '') %}allow {{(item.user|e)}} {% if (item.password is defined) and not (item.password == '') %}:{{(item.password|e)}}{% else %}{% endif %} {% if (item.comment is defined) and not (item.comment == '') %}# {{(item.comment|e)}}{% else %}{% endif %}{% else %}{% endif %}
 
 {% endfor %}
 #
@@ -428,10 +358,6 @@ set httpd port 2812 and
 ## It is possible to include additional configuration parts from other files or
 ## directories.
 #
-{% if (monit_include is defined) and not ((monit_include == None) or (monit_include == '')) %}
 include {{(monit_include|e)}}
-{% else %}
-#  include /etc/monit.d/*.cfg
-{% endif %}
 #
 #

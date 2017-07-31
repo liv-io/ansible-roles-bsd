@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : config.yml
 #  | (_)_   __  Type   : ansible task file
@@ -9,12 +7,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -38,7 +30,7 @@
 - name: template create monit-config
   template:
     src: "{{file_src_monit_config}}"
-    dest: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else moni_name_default}}.cfg"
+    dest: "{{file_path_monit_d}}/{{(item.name|e)}}.cfg"
     mode: "{{file_mode_monit_config}}"
     owner: "{{file_owner_monit_config}}"
     group: "{{file_group_monit_config}}"
@@ -46,7 +38,7 @@
     - command validate monit
     - service restart monit
   with_items: "{{monit_all + monit_group + monit_host}}"
-  when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  when: not (item.state|match('false|no|remove'))
   tags:
     - files
     - config
@@ -56,12 +48,12 @@
 - name: file remove monit-config
   file:
     state: 'absent'
-    path: "{{file_path_monit_d}}/{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else moni_name_default}}.cfg"
+    path: "{{file_path_monit_d}}/{{(item.name|e)}}.cfg"
   notify:
     - command validate monit
     - service restart monit
   with_items: "{{monit_all + monit_group + monit_host}}"
-  when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  when: (item.state|match('false|no|remove'))
   tags:
     - files
     - config

@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : monit
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -158,7 +158,7 @@ CONFIG
     Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : "{{monit_name_default}}"
+    Default    : ''
     Options    :
       Examples: 'openssh' | 'openntpd' | 'opensmtpd' | 'apache' | 'mariadb'
 
@@ -250,7 +250,6 @@ ROLE
     Default    : 3
     Options    :
       Examples: 3 | 5 | 10 | 15 | 20
-      None    : ''
 
   monit_daemon_interval
     Description: Set the 'monit_daemon_interval' option.
@@ -316,7 +315,6 @@ ROLE
       Other  : '/etc/monit.d/*.cfg'
     Options    :
       Examples: '/etc/monit.d/*.cfg' | '/usr/local/etc/monit.d/*.cfg'
-      None    : ''
 
   monit_mail_exclusions
     Description: Define the 'monit_mail_exclusions' option.
@@ -460,17 +458,6 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  monit_name_default
-    Description: Define the 'monit_name_default' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: 'apache' | 'mariadb' | 'postfix'
-      None    : ''
-
   monit_web_server_address
     Description: Define the 'monit_web_server_address' option.
     Implemented: 0.1
@@ -560,11 +547,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.0-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.1
-      Status: Testing
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER
