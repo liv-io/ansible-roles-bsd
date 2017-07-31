@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : user
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -31,7 +31,7 @@ INSTALL
       - role: user
     vars:
       user_state: 'install'
-      user_groups_default: ['nobody']
+      user_groups_default: 'nobody'
       user_password_default: '!'
       user_shell_default: '/bin/bash'
 
@@ -123,7 +123,6 @@ CONFIG (user)
     Default    : ''
     Options    :
       Examples: 'user01' | 'user02' | 'user03'
-      None    : ''
 
   comment
     Description: Define a comment for the user.
@@ -458,11 +457,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.0-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.1
-      Status: Testing
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER
