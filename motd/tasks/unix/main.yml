@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((motd_state == 'false') or (motd_state == 'no') or (motd_state == 'disable') or (motd_state == 'quiesce') or (motd_state == 'inactive'))
+  when: not (motd_state|match('false|no|disable|quiesce|inactive'))
   tags:
     - unix
     - motd
 
 - name: task include remove
   include: remove.yml
-  when: (motd_state == 'false') or (motd_state == 'no') or (motd_state == 'disable')
+  when: (motd_state|match('false|no|disable'))
   tags:
     - unix
     - motd
