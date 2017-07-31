@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : system.info
 #  | (_)_   __  Type   : information file
@@ -14,12 +12,6 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-# This file holds information about this system.
-#
-#-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -27,13 +19,9 @@
 
 {% if (ansible_hostname is defined) %}
 Hostname: {{ansible_hostname}}
-{% else %}
-Hostname:
 {% endif %}
 {% if (ansible_fqdn is defined) %}
 FQDN    : {{ansible_fqdn}}
-{% else %}
-FQDN    :
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -42,30 +30,18 @@ FQDN    :
 
 {% if (ansible_system is defined) %}
 Type        : {{ansible_system}}
-{% else %}
-Type        :
 {% endif %}
 {% if (ansible_os_family is defined) %}
 Family      : {{ansible_os_family}}
-{% else %}
-Family      :
 {% endif %}
 {% if (ansible_distribution is defined) %}
 Distribution: {{ansible_distribution}}
-{% else %}
-Distribution:
 {% endif %}
-{% if (ansible_distribution_release is defined) and (ansible_os_family == 'OpenBSD') %}
+{% if (ansible_distribution_release is defined) %}
 Version     : {{ansible_distribution_release}}
-{% elif (ansible_distribution_version is defined) %}
-Version     : {{ansible_distribution_version}}
-{% else %}
-Version     :
 {% endif %}
 {% if (ansible_architecture is defined) %}
 Architecture: {{ansible_architecture}}
-{% else %}
-Architecture:
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -74,33 +50,21 @@ Architecture:
 
 {% if (ansible_system is defined) %}
 Type   : {{ansible_system}}
-{% else %}
-Type   :
 {% endif %}
 {% if (ansible_kernel is defined) %}
 Version: {{ansible_kernel}}
-{% else %}
-Version:
 {% endif %}
 
 #-------------------------------------------------------------------------------
 # USERLAND
 #-------------------------------------------------------------------------------
 
-{% if (systeminfo_userland_type is defined) and not ((systeminfo_userland_type == None) or (systeminfo_userland_type == '')) %}
 Type          : {{systeminfo_userland_type}}
-{% else %}
-Type          :
-{% endif %}
 {% if (ansible_userspace_architecture is defined) %}
 Achitecture   : {{ansible_userspace_architecture}}
-{% else %}
-Achitecture   :
 {% endif %}
 {% if (ansible_python_version is defined) %}
 Python Version: {{ansible_python_version}}
-{% else %}
-Python Version:
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -109,28 +73,18 @@ Python Version:
 
 {% if (ansible_default_ipv4.interface is defined) %}
 IPv4 Interface: {{ansible_default_ipv4.interface}}
-{% else %}
-IPv4 Interface:
 {% endif %}
 {% if (ansible_default_ipv4.address is defined) %}
 IPv4 Address  : {{ansible_default_ipv4.address}}
-{% else %}
-IPv4 Address  :
 {% endif %}
 {% if (ansible_default_ipv4.netmask is defined) %}
 IPv4 Netmask  : {{ansible_default_ipv4.netmask}}
-{% else %}
-IPv4 Netmask  :
 {% endif %}
 {% if (ansible_default_ipv4.network is defined) %}
 IPv4 Network  : {{ansible_default_ipv4.network}}
-{% else %}
-IPv4 Network  :
 {% endif %}
 {% if (ansible_default_ipv4.gateway is defined) %}
 IPv4 Gateway  : {{ansible_default_ipv4.gateway}}
-{% else %}
-IPv4 Gateway  :
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -139,21 +93,13 @@ IPv4 Gateway  :
 
 {% if (ansible_system_vendor is defined) %}
 Hardware Vendor: {{ansible_system_vendor}}
-{% else %}
-Hardware Vendor:
 {% endif %}
 {% if (ansible_processor_count is defined) %}
 Processor Count: {{ansible_processor_count}}
-{% else %}
-Processor Count:
 {% endif %}
 {% if (ansible_processor_cores is defined) %}
 Processor Cores: {{ansible_processor_cores}}
-{% else %}
-Processor Cores:
 {% endif %}
 {% if (ansible_memtotal_mb is defined) %}
 Memory Size    : {{ansible_memtotal_mb}} MB
-{% else %}
-Memory Size    :
 {% endif %}

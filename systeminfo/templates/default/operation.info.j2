@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : operation.info
 #  | (_)_   __  Type   : information file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-# This file holds information on how to operate this system.
 #
 #-------------------------------------------------------------------------------
 
@@ -33,7 +25,7 @@
 #-------------------------------------------------------------------------------
 
 # The following services are installed and running on this system:
-{% if (systeminfo_services is defined) and not ((systeminfo_services == None) or (systeminfo_services == '') or (systeminfo_services == [])) %}
+{% if not ((systeminfo_services == '') or (systeminfo_services == [])) %}
 {% for operation_services in systeminfo_services %}
  - {{operation_services}}
 {% endfor %}
@@ -44,7 +36,7 @@
 #-------------------------------------------------------------------------------
 
 # Be aware of the following facts when administrating this system:
-{% if (systeminfo_administration is defined) and not ((systeminfo_administration == None) or (systeminfo_administration == '') or (systeminfo_administration == [])) %}
+{% if not ((systeminfo_administration == '') or (systeminfo_administration == [])) %}
 {% for operation_administration in systeminfo_administration %}
 {{operation_administration}}
 {% endfor %}
@@ -55,7 +47,7 @@
 #-------------------------------------------------------------------------------
 
 # Stick to the following procedure to patch this system:
-{% if (systeminfo_patching is defined) and not ((systeminfo_patching == None) or (systeminfo_patching == '') or (systeminfo_patching == [])) %}
+{% if not ((systeminfo_patching == '') or (systeminfo_patching == [])) %}
 {% for operation_patching in systeminfo_patching %}
 {{operation_patching}}
 {% endfor %}
@@ -66,7 +58,7 @@
 #-------------------------------------------------------------------------------
 
 # Additional information about this system:
-{% if (systeminfo_other is defined) and not ((systeminfo_other == None) or (systeminfo_other == '') or (systeminfo_other == [])) %}
+{% if not ((systeminfo_other == '') or (systeminfo_other == [])) %}
 {% for operation_other in systeminfo_other %}
 {{operation_other}}
 {% endfor %}
