@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : mtr
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -80,7 +80,7 @@ PACKAGES
     Version: >= 0.75
     Name   :
       FreeBSD 11: 'mtr-nox11'
-      OpenBSD 6 : 'mtr'
+      OpenBSD 6 : 'mtr--'
 
 ROLES
 
@@ -123,11 +123,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.0-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.1
-      Status: Testing
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER
