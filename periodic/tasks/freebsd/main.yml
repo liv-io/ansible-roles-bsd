@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((periodic_state == 'false') or (periodic_state == 'no') or (periodic_state == 'remove') or (periodic_state == 'quiesce') or (periodic_state == 'inactive'))
+  when: not (periodic_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - freebsd
     - periodic
 
 - name: task include remove
   include: remove.yml
-  when: (periodic_state == 'false') or (periodic_state == 'no') or (periodic_state == 'remove')
+  when: (periodic_state|match('false|no|remove'))
   tags:
     - freebsd
     - periodic
