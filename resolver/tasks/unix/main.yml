@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,16 +9,10 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((resolver_state == 'false') or (resolver_state == 'no') or (resolver_state == 'disable') or (resolver_state == 'quiesce') or (resolver_state == 'inactive'))
+  when: not (resolver_state|match('false|no|disable|quiesce|inactive'))
   tags:
     - unix
     - resolver
