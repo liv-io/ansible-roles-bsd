@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((multitail_state == 'false') or (multitail_state == 'no') or (multitail_state == 'remove') or (multitail_state == 'quiesce') or (multitail_state == 'inactive'))
+  when: not (multitail_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - multitail
 
 - name: task include remove
   include: remove.yml
-  when: (multitail_state == 'false') or (multitail_state == 'no') or (multitail_state == 'remove')
+  when: (multitail_state|match('false|no|remove'))
   tags:
     - unix
     - multitail
