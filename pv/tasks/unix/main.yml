@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((pv_state == 'false') or (pv_state == 'no') or (pv_state == 'remove') or (pv_state == 'quiesce') or (pv_state == 'inactive'))
+  when: not (pv_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - pv
 
 - name: task include remove
   include: remove.yml
-  when: (pv_state == 'false') or (pv_state == 'no') or (pv_state == 'remove')
+  when: (pv_state|match('false|no|remove'))
   tags:
     - unix
     - pv
