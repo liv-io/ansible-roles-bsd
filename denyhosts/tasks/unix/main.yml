@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,37 +9,31 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((denyhosts_state == 'false') or (denyhosts_state == 'no') or (denyhosts_state == 'remove') or (denyhosts_state == 'quiesce') or (denyhosts_state == 'inactive'))
+  when: not (denyhosts_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - denyhosts
 
 - name: task include enable
   include: enable.yml
-  when: (denyhosts_state == 'start') or (denyhosts_state == 'on') or (denyhosts_state == 'enable')
+  when: (denyhosts_state|match('start|on|enable'))
   tags:
     - unix
     - denyhosts
 
 - name: task include disable
   include: disable.yml
-  when: (denyhosts_state == 'stop') or (denyhosts_state == 'off') or (denyhosts_state == 'disable')
+  when: (denyhosts_state|match('stop|off|disable'))
   tags:
     - unix
     - denyhosts
 
 - name: task include remove
   include: remove.yml
-  when: (denyhosts_state == 'false') or (denyhosts_state == 'no') or (denyhosts_state == 'remove')
+  when: (denyhosts_state|match('false|no|remove'))
   tags:
     - unix
     - denyhosts

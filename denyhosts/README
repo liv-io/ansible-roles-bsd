@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : denyhosts
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -46,9 +46,9 @@ ENABLE
       denyhosts_allowed_hosts:
         - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
       denyhosts_block_service: 'sshd'
-      denyhosts_deny_threshold_invalid: '3'
-      denyhosts_deny_threshold_valid: '5'
-      denyhosts_reset_on_success: 'disable'
+      denyhosts_deny_threshold_invalid: 3
+      denyhosts_deny_threshold_valid: 5
+      denyhosts_reset_on_success: 'false'
 
 DISABLE
   - hosts: all
@@ -60,9 +60,9 @@ DISABLE
       denyhosts_allowed_hosts:
         - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
       denyhosts_block_service: 'sshd'
-      denyhosts_deny_threshold_invalid: '3'
-      denyhosts_deny_threshold_valid: '5'
-      denyhosts_reset_on_success: 'disable'
+      denyhosts_deny_threshold_invalid: 3
+      denyhosts_deny_threshold_valid: 5
+      denyhosts_reset_on_success: 'false'
 
 REMOVE
   - hosts: all
@@ -106,7 +106,7 @@ ROLE
     Default    : "root@{{ansible_domain}}"
     Options    :
       Examples: 'user' | 'user@localhost' | 'user.domain.tld'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_age_reset_invalid
     Description: Set the 'denyhosts_age_reset_invalid' option.
@@ -114,7 +114,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'disable'
+    Default    : 'false'
     Options    :
       Examples: '10d' | '15d'
       Disable : 'false' | 'no' | 'disable'
@@ -125,7 +125,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'disable'
+    Default    : 'false'
     Options    :
       Examples: '20d' | '25d'
       Disable : 'false' | 'no' | 'disable'
@@ -136,7 +136,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'disable'
+    Default    : 'false'
     Options    :
       Examples: '20d' | '25d'
       Disable : 'false' | 'no' | 'disable'
@@ -147,7 +147,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'disable'
+    Default    : 'false'
     Options    :
       Examples: '5d' | '10d'
       Disable : 'false' | 'no' | 'disable'
@@ -171,7 +171,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'disable'
+    Default    : 'false'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
@@ -198,8 +198,8 @@ ROLE
     Type       : String
     Default    : 'sshd'
     Options    :
-      ALL: 'all' | 'ALL' | 'any' | 'ANY'
-      SSH: 'sshd' | 'SSHD' | 'ssh' | 'SSH'
+      ALL: 'all' | 'any'
+      SSH: 'sshd' | 'ssh'
 
   denyhosts_daemon_sleep
     Description: Set the 'denyhosts_daemon_sleep' option.
@@ -240,10 +240,10 @@ ROLE
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : String
-    Default    : '2'
+    Type       : Integer
+    Default    : 2
     Options    :
-      Examples: '3' | '4'
+      Examples: 3 | 4
 
   denyhosts_deny_threshold_restricted
     Description: Set the 'denyhosts_deny_threshold_restricted' option.
@@ -251,9 +251,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '2'
+    Default    : 2
     Options    :
-      Examples: '1' | '2'
+      Examples: 1 | 2
 
   denyhosts_deny_threshold_root
     Description: Set the 'denyhosts_deny_threshold_root' option.
@@ -261,19 +261,19 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '2'
+    Default    : 2
     Options    :
-      Examples: '2' | '3'
+      Examples: 2 | 3
 
   denyhosts_deny_threshold_valid
     Description: Set the 'denyhosts_deny_threshold_valid' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : String
-    Default    : '2'
+    Type       : Integer
+    Default    : 2
     Options    :
-      Examples: '4' | '5'
+      Examples: 4 | 5
 
   denyhosts_hostname_lookup
     Description: Control the 'denyhosts_hostname_lookup' option.
@@ -281,7 +281,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'disable'
+    Default    : 'false'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
@@ -320,10 +320,10 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'disable'
+    Default    : 'false'
     Options    :
       Examples: '30m' | '1h' | '2d' | '3w' | '4y'
-      Disable : 'false' | 'no' | 'disable' | 'never'
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_reset_on_success
     Description: Control the 'denyhosts_reset_on_success' option.
@@ -345,7 +345,7 @@ ROLE
     Default    : 'localhost'
     Options    :
       Examples: 'localhost' | 'host' | 'host@domain.tld'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_smtp_from
     Description: Define the 'denyhosts_smtp_from' option.
@@ -357,7 +357,7 @@ ROLE
     Options    :
       Examples: 'Comment user' | 'Comment user@localhost' |
                 'Comment user@domain.tld' | 'user@domain.tld'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_smtp_password
     Description: Define the 'denyhosts_smtp_password' option.
@@ -365,10 +365,10 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : ''
+    Default    : 'false'
     Options    :
       Examples: '8PMx3WTty.zdDk_ZfrcTa6MAC-gewa4A'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_smtp_port
     Description: Set the 'denyhosts_smtp_port' option.
@@ -389,7 +389,7 @@ ROLE
     Default    : "DenyHosts: Report ({{ansible_hostname}})"
     Options    :
       Examples: 'DenyHost' | 'DenyHosts Report'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_smtp_username
     Description: Define the 'denyhosts_smtp_username' option.
@@ -397,10 +397,10 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : ''
+    Default    : 'false'
     Options    :
       Examples: 'username' | 'username@domain.tld'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   denyhosts_syslog_report
     Description: Control the 'denyhosts_syslog_report' option.
@@ -408,7 +408,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'disable'
+    Default    : 'false'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
@@ -470,7 +470,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.0-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.1

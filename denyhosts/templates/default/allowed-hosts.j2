@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : allowed-hosts
 #  | (_)_   __  Type   : denyhosts configuration file
@@ -14,20 +12,10 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
-{% if (denyhosts_allowed_hosts is defined) and not ((denyhosts_allowed_hosts == None) or (denyhosts_allowed_hosts == '') or (denyhosts_allowed_hosts == [])) %}
+{% if not ((denyhosts_allowed_hosts == '') or (denyhosts_allowed_hosts == [])) %}
 {% for item in denyhosts_allowed_hosts %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{item.comment}}
-{% else %}
-#
-{% endif %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}

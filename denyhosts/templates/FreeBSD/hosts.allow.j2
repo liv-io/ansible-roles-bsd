@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : hosts.allow
 #  | (_)_   __  Type   : hosts configuration file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -31,7 +23,7 @@
 #       hosts_access(5) no longer fully applies.
 #
 
-{% if (denyhosts_block_service is defined) and ((denyhosts_block_service == 'all') or (denyhosts_block_service == 'ALL') or (denyhosts_block_service == 'any') or (denyhosts_block_service == 'ANY')) %}
+{% if (denyhosts_block_service|match('all|any')) %}
 ALL : /etc/hosts.block : deny
 ALL : ALL : allow
 {% else %}

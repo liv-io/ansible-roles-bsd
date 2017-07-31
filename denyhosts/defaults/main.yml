@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible default file
@@ -11,29 +9,23 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 denyhosts_state: 'enable'
 
 denyhosts_admin_email: "root@{{ansible_domain}}"
 
-denyhosts_age_reset_invalid: ''
+denyhosts_age_reset_invalid: 'false'
 
-denyhosts_age_reset_restricted: ''
+denyhosts_age_reset_restricted: 'false'
 
-denyhosts_age_reset_root: ''
+denyhosts_age_reset_root: 'false'
 
-denyhosts_age_reset_valid: ''
+denyhosts_age_reset_valid: 'false'
 
 denyhosts_allowed_hosts:
  - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
 
-denyhosts_allowed_hosts_hostname_lookup: 'disable'
+denyhosts_allowed_hosts_hostname_lookup: 'false'
 
 denyhosts_allowed_hosts_template: 'default'
 
@@ -45,21 +37,21 @@ denyhosts_daemon_purge: '1h'
 
 denyhosts_denyhosts_conf_template: "{{ansible_os_family}}"
 
-denyhosts_deny_threshold_invalid: '2'
+denyhosts_deny_threshold_invalid: 2
 
-denyhosts_deny_threshold_restricted: '2'
+denyhosts_deny_threshold_restricted: 2
 
-denyhosts_deny_threshold_root: '2'
+denyhosts_deny_threshold_root: 2
 
-denyhosts_deny_threshold_valid: '2'
+denyhosts_deny_threshold_valid: 2
 
-denyhosts_hostname_lookup: 'disable'
+denyhosts_hostname_lookup: 'false'
 
 denyhosts_hosts_allow_template: "{{ansible_os_family}}"
 
 denyhosts_hosts_block_template: "{{ansible_os_family}}"
 
-denyhosts_purge_deny: 'disable'
+denyhosts_purge_deny: 'false'
 
 denyhosts_reset_on_success: 'enable'
 
@@ -67,12 +59,12 @@ denyhosts_smtp_host: 'localhost'
 
 denyhosts_smtp_from: "root@{{ansible_domain}}"
 
-denyhosts_smtp_password: ''
+denyhosts_smtp_password: 'false'
 
 denyhosts_smtp_port: '25'
 
 denyhosts_smtp_subject: "DenyHosts: Report ({{ansible_hostname}})"
 
-denyhosts_smtp_username: ''
+denyhosts_smtp_username: 'false'
 
-denyhosts_syslog_report: 'disable'
+denyhosts_syslog_report: 'false'
