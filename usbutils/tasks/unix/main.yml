@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((usbutils_state == 'false') or (usbutils_state == 'no') or (usbutils_state == 'remove') or (usbutils_state == 'quiesce') or (usbutils_state == 'inactive'))
+  when: not (usbutils_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - usbutils
 
 - name: task include remove
   include: remove.yml
-  when: (usbutils_state == 'false') or (usbutils_state == 'no') or (usbutils_state == 'remove')
+  when: (usbutils_state|match('false|no|remove'))
   tags:
     - unix
     - usbutils
