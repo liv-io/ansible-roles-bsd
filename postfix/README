@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : postfix
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -167,7 +167,7 @@ ROLE
     Type       : String
     Default    : 'ipv4'
     Options    :
-      IPv4/IPv6: 'any' | 'ANY' | 'all' | 'ALL'
+      IPv4/IPv6: 'any' | 'all'
       IPv4     : 'inet' | 'ipv4'
       IPv6     : 'inet6' | 'ipv6'
 
@@ -287,7 +287,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.0-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.1

@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.cf
 #  | (_)_   __  Type   : postfix configuration file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -116,9 +108,7 @@ mail_owner = postfix
 #
 #myhostname = host.domain.tld
 #myhostname = virtual.domain.tld
-{% if (postfix_myhostname is defined) and not ((postfix_myhostname == None) or (postfix_myhostname == '')) %}
 myhostname = {{(postfix_myhostname|e)}}
-{% endif %}
 
 # The mydomain parameter specifies the local internet domain name.
 # The default is to use $myhostname minus the first component.
@@ -158,7 +148,7 @@ myhostname = {{(postfix_myhostname|e)}}
 #inet_interfaces = all
 #inet_interfaces = $myhostname
 #inet_interfaces = $myhostname, localhost
-{% if (postfix_inet_interfaces is defined) and not ((postfix_inet_interfaces == None) or (postfix_inet_interfaces == '') or (postfix_inet_interfaces == [])) %}
+{% if not ((postfix_inet_interfaces == '') or (postfix_inet_interfaces == [])) %}
 inet_interfaces = {% for inet_interfaces in postfix_inet_interfaces %}{{inet_interfaces}}{% if not loop.last %}, {% endif %}{% endfor %}
 {% else %}
 inet_interfaces = localhost
@@ -362,13 +352,9 @@ mynetworks_style = host
 #relayhost = uucphost
 #relayhost = [an.ip.add.ress]
 
-{% if (postfix_relayhost is defined) and not ((postfix_relayhost == None) or (postfix_relayhost == '')) %}
 relayhost = {{(postfix_relayhost|e)}}
-{% endif %}
 
-{% if (postfix_fallback_relay is defined) and not ((postfix_fallback_relay == None) or (postfix_fallback_relay == '')) %}
 fallback_relay = {{(postfix_fallback_relay|e)}}
-{% endif %}
 
 # REJECTING UNKNOWN RELAY USERS
 #
@@ -711,9 +697,9 @@ sample_directory = /usr/local/etc/postfix
 # readme_directory: The location of the Postfix README files.
 #
 readme_directory = /usr/local/share/doc/postfix
-{% if (postfix_inet_protocols is defined) and ((postfix_inet_protocols == 'inet') or (postfix_inet_protocols == 'ipv4')) %}
+{% if (postfix_inet_protocols|match('inet|ipv4')) %}
 inet_protocols = ipv4
-{% elif (postfix_inet_protocols is defined) and ((postfix_inet_protocols == 'inet6') or (postfix_inet_protocols == 'ipv6')) %}
+{% elif (postfix_inet_protocols|match('inet6|ipv6')) %}
 inet_protocols = ipv6
 {% else %}
 inet_protocols = all
@@ -725,13 +711,9 @@ shlib_directory = /usr/local/lib/postfix
 # ALL
 #-------------------------------------------------------------------------------
 
-{% if (postfix_all is defined) and not ((postfix_all == None) or (postfix_all == '') or (postfix_all == [])) %}
+{% if not ((postfix_all == '') or (postfix_all == [])) %}
 {% for item in (postfix_all|sort) %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in (item.config|sort) %}
 {{config}}
 {% endfor %}
@@ -743,13 +725,9 @@ shlib_directory = /usr/local/lib/postfix
 # GROUP
 #-------------------------------------------------------------------------------
 
-{% if (postfix_group is defined) and not ((postfix_group == None) or (postfix_group == '') or (postfix_group == [])) %}
+{% if not ((postfix_group == '') or (postfix_group == [])) %}
 {% for item in (postfix_group|sort) %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in (item.config|sort) %}
 {{config}}
 {% endfor %}
@@ -761,13 +739,9 @@ shlib_directory = /usr/local/lib/postfix
 # HOST
 #-------------------------------------------------------------------------------
 
-{% if (postfix_host is defined) and not ((postfix_host == None) or (postfix_host == '') or (postfix_host == [])) %}
+{% if not ((postfix_host == '') or (postfix_host == [])) %}
 {% for item in (postfix_host|sort) %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in (item.config|sort) %}
 {{config}}
 {% endfor %}
