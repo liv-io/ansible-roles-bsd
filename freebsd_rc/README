@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : freebsd_rc
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -118,7 +118,6 @@ CONFIG
     Options    :
       Examples: 'hostname' | 'keymap' | 'ifconfig_re0' | 'defaultrouter' |
                 'sshd_enable'
-      None    : ''
 
   path
     Description: Define the path of the 'rc' file.
@@ -129,7 +128,6 @@ CONFIG
     Default    : "{{freebsd_rc_path_default}}"
     Options    :
       Examples: '/etc/rc.conf'
-      None    : ''
 
   value
     Description: Define the value of the 'rc' entry.
@@ -142,7 +140,6 @@ CONFIG
       Examples: 'example01' | 'swissgerman.iso.kbd' |
                 'inet 192.168.1.10 netmask 255.255.255.0' |
                 '192.168.1.1' | 'YES' | 'NO'
-      None    : ''
 
 ROLE
   freebsd_rc_state
@@ -201,7 +198,6 @@ ROLE
     Default    : '/etc/rc.conf'
     Options    :
       Examples: '/etc/rc.conf'
-      None    : ''
 
 --------------------------------------------------------------------------------
 CONFLICTS
@@ -256,7 +252,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.0-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.1
