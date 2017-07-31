@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : remove.yml
 #  | (_)_   __  Type   : ansible task file
@@ -9,12 +7,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -39,8 +31,8 @@
   authorized_key:
     state: 'absent'
     user: "{{authorized_key_user_root}}"
-    key: "{{'' if (root_authorized_key is defined) and ((root_authorized_key == 'false') or (root_authorized_key == 'no') or (root_authorized_key == 'remove')) else root_authorized_key}}"
-    key_options: "{{'' if (root_authorized_key_options is defined) and ((root_authorized_key_options == 'false') or (root_authorized_key_options == 'no') or (root_authorized_key_options == 'remove')) else root_authorized_key_options}}"
+    key: "{{'' if (root_authorized_key|match('false|no|remove')) else root_authorized_key}}"
+    key_options: "{{'' if (root_authorized_key_options|match('false|no|remove')) else root_authorized_key_options}}"
   tags:
     - system
     - remove
