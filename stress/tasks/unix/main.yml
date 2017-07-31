@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((stress_state == 'false') or (stress_state == 'no') or (stress_state == 'remove') or (stress_state == 'quiesce') or (stress_state == 'inactive'))
+  when: not (stress_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - stress
 
 - name: task include remove
   include: remove.yml
-  when: (stress_state == 'false') or (stress_state == 'no') or (stress_state == 'remove')
+  when: (stress_state|match('false|no|remove'))
   tags:
     - unix
     - stress
