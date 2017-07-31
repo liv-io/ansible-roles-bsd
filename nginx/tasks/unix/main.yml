@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,44 +9,38 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((nginx_state == 'false') or (nginx_state == 'no') or (nginx_state == 'remove') or (nginx_state == 'quiesce') or (nginx_state == 'inactive'))
+  when: not (nginx_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - nginx
 
 - name: task include config
   include: config.yml
-  when: not ((nginx_state == 'false') or (nginx_state == 'no') or (nginx_state == 'remove') or (nginx_state == 'quiesce') or (nginx_state == 'inactive'))
+  when: not (nginx_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - nginx
 
 - name: task include enable
   include: enable.yml
-  when: (nginx_state == 'start') or (nginx_state == 'on') or (nginx_state == 'enable')
+  when: (nginx_state|match('start|on|enable'))
   tags:
     - unix
     - nginx
 
 - name: task include disable
   include: disable.yml
-  when: (nginx_state == 'stop') or (nginx_state == 'off') or (nginx_state == 'disable')
+  when: (nginx_state|match('stop|off|disable'))
   tags:
     - unix
     - nginx
 
 - name: task include remove
   include: remove.yml
-  when: (nginx_state == 'false') or (nginx_state == 'no') or (nginx_state == 'remove')
+  when: (nginx_state|match('false|no|remove'))
   tags:
     - unix
     - nginx

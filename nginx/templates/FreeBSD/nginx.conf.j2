@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : nginx.conf
 #  | (_)_   __  Type   : nginx configuration file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -34,22 +26,14 @@ worker_processes  1;
 
 #pid        logs/nginx.pid;
 
-{% if (nginx_worker_rlimit_nofile is defined) and not ((nginx_worker_rlimit_nofile == None) or (nginx_worker_rlimit_nofile == '')) %}
 worker_rlimit_nofile {{(nginx_worker_rlimit_nofile|int(1024))}};
-{% else %}
-worker_rlimit_nofile 1024;
-{% endif %}
 
 #-------------------------------------------------------------------------------
 # EVENTS
 #-------------------------------------------------------------------------------
 
 events {
-{% if (nginx_worker_connections is defined) and not ((nginx_worker_connections == None) or (nginx_worker_connections == '')) %}
     worker_connections {{(nginx_worker_connections|int(1024))}};
-{% else %}
-    worker_connections 1024;
-{% endif %}
 }
 
 #-------------------------------------------------------------------------------

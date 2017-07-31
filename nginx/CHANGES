@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-CHANGES
---------------------------------------------------------------------------------
 
    _ _
   | (_)_   __  This file lists changes made to the Ansible role.
@@ -13,6 +11,9 @@ CHANGES
  B: bug                    I: improvement            F: feature
 
 --------------------------------------------------------------------------------
+
+* Version 0.7.1 (2017-08-01)
+I: Improve and cleanup Ansible role
 
 * Version 0.7.0 (2017-06-19)
 F: Add option to specify a curve for ECDHE ciphers (ssl_ecdh_curve)

@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : nginx-config
 #  | (_)_   __  Type   : nginx configuration file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -28,41 +20,41 @@ server {
   #-----------------------------------------------------------------------------
 
   # Listen
-{% if (item.listen is defined) and not ((item.listen == None) or (item.listen == '')) %}
-  listen {{(item.listen|e)}}{% if (item.port is defined) and not ((item.port == None) or (item.port == '')) %}:{{(item.port|int(80))}}{% endif %}{% if (item.ssl_state is defined) and ((item.ssl_state == 'true') or (item.ssl_state == 'yes') or (item.ssl_state == 'enable')) %} ssl{% endif %};
+{% if (item.listen is defined) and not (item.listen == '') %}
+  listen {{(item.listen|e)}}{% if (item.port is defined) and not (item.port == '') %}:{{(item.port|int(80))}}{% endif %}{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %} ssl{% endif %};
 {% else %}
-  listen *:{% if (item.port is defined) and not ((item.port == None) or (item.port == '')) %}{{(item.port|int(80))}}{% endif %}{% if (item.ssl_state is defined) and ((item.ssl_state == 'true') or (item.ssl_state == 'yes') or (item.ssl_state == 'enable')) %} ssl{% endif %};
+  listen *:{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(80))}}{% endif %}{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %} ssl{% endif %};
 {% endif %}
   # Server name
-{% if (item.name is defined) and not ((item.name == None) or (item.name == '')) %}
-  server_name {{(item.name|e)}}{% if (item.alias is defined) and not ((item.alias == None) or (item.alias == '') or (item.alias == [])) %} {% for alias in item.alias %}{{(alias|e)}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
+{% if (item.name is defined) and not (item.name == '') %}
+  server_name {{(item.name|e)}}{% if (item.alias is defined) and not ((item.alias == '') or (item.alias == [])) %} {% for alias in item.alias %}{{(alias|e)}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
 {% else %}
-  server_name {{ansible_fqdn}} {% if (item.alias is defined) and not ((item.alias == None) or (item.alias == '') or (item.alias == [])) %} {% for alias in item.alias %}{{(alias|e)}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
+  server_name {{ansible_fqdn}} {% if (item.alias is defined) and not ((item.alias == '') or (item.alias == [])) %} {% for alias in item.alias %}{{(alias|e)}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
 {% endif %}
 
   #-----------------------------------------------------------------------------
   # LOG
   #-----------------------------------------------------------------------------
 
-{% if (item.ssl_state is defined) and ((item.ssl_state == 'true') or (item.ssl_state == 'yes') or (item.ssl_state == 'enable')) %}
+{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %}
   # Logging options
-  error_log logs/{% if (item.name is defined) and not ((item.name == None) or (item.name == '')) %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not ((item.port == None) or (item.port == '')) %}{{(item.port|int(80))}}{% else %}{{(nginx_port|e)}}{% endif %}_error.log;
-  access_log logs/{% if (item.name is defined) and not ((item.name == None) or (item.name == '')) %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not ((item.port == None) or (item.port == '')) %}{{(item.port|int(80))}}{% else %}{{(nginx_port|e)}}{% endif %}_access.log main_ssl;
+  error_log logs/{% if (item.name is defined) and not (item.name == '') %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(443))}}{% else %}{{(nginx_port|e)}}{% endif %}_error.log;
+  access_log logs/{% if (item.name is defined) and not (item.name == '') %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(443))}}{% else %}{{(nginx_port|e)}}{% endif %}_access.log main_ssl;
 {% else %}
   # Logging options
-  error_log logs/{% if (item.name is defined) and not ((item.name == None) or (item.name == '')) %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not ((item.port == None) or (item.port == '')) %}{{(item.port|int(80))}}{% else %}{{(nginx_port|e)}}{% endif %}_error.log;
-  access_log logs/{% if (item.name is defined) and not ((item.name == None) or (item.name == '')) %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not ((item.port == None) or (item.port == '')) %}{{(item.port|int(80))}}{% else %}{{(nginx_port|e)}}{% endif %}_access.log main;
+  error_log logs/{% if (item.name is defined) and not (item.name == '') %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(80))}}{% else %}{{(nginx_port|e)}}{% endif %}_error.log;
+  access_log logs/{% if (item.name is defined) and not (item.name == '') %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(80))}}{% else %}{{(nginx_port|e)}}{% endif %}_access.log main;
 {% endif %}
 
   #-----------------------------------------------------------------------------
   # HEADER
   #-----------------------------------------------------------------------------
 
-{% if (item.hsts_state is defined) and ((item.hsts_state == 'true') or (item.hsts_state == 'yes') or (item.hsts_state == 'enable')) %}
+{% if (item.hsts_state is defined) and (item.hsts_state|match('true|yes|enable')) %}
   # HTTP Strict Transport Security (HSTS)
-  add_header Strict-Transport-Security 'max-age={% if (item.hsts_max_age is defined) and ((item.hsts_max_age == 'true') or (item.hsts_max_age == 'yes') or (item.hsts_max_age == 'enable')) %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{(nginx_hsts_max_age|e)}}{% endif %}' always;
+  add_header Strict-Transport-Security 'max-age={% if (item.hsts_max_age is defined) and (item.hsts_max_age|match('true|yes|enable')) %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{(nginx_hsts_max_age|e)}}{% endif %}' always;
 {% endif %}
-{% if (item.xss_protection_state is defined) and ((item.xss_protection_state == 'true') or (item.xss_protection_state == 'yes') or (item.xss_protection_state == 'enable')) %}
+{% if (item.xss_protection_state is defined) and (item.xss_protection_state|match('true|yes|enable')) %}
   # X-Frame-Options: Disable frame embedding (phishing, clickjacking prevention)
   add_header X-Frame-Options 'DENY' always;
   # X-Content-Type-Options: Disable MIME-sniffing (drive-by download attacks prevention)
@@ -71,31 +63,31 @@ server {
   add_header X-XSS-Protection '1; mode=block' always;
 {% endif %}
 
-{% if (item.ssl_state is defined) and ((item.ssl_state == 'true') or (item.ssl_state == 'yes') or (item.ssl_state == 'enable')) %}
+{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %}
   #-----------------------------------------------------------------------------
   # SSL
   #-----------------------------------------------------------------------------
 
   # SSL/TLS protocol versions
-{% if (item.ssl_protocol is defined) and not ((item.ssl_protocol == None) or (item.ssl_protocol == '') or (item.ssl_protocol == [])) %}
+{% if (item.ssl_protocol is defined) and not ((item.ssl_protocol == '') or (item.ssl_protocol == [])) %}
   ssl_protocols {% for ssl_protocol in item.ssl_protocol %}{{(ssl_protocol|e)}}{% if not loop.last %} {% endif %}{% endfor %};
 {% else %}
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 {% endif %}
   # Option to prefer the server's cipher preference order
-{% if (item.ssl_honor_cipher_order is defined) and ((item.ssl_honor_cipher_order == 'false') or (item.ssl_honor_cipher_order == 'no') or (item.ssl_honor_cipher_order == 'disable')) %}
+{% if (item.ssl_honor_cipher_order is defined) and (item.ssl_honor_cipher_order|match('false|no|disable')) %}
   ssl_prefer_server_ciphers off;
 {% else %}
   ssl_prefer_server_ciphers on;
 {% endif %}
   # Cipher Suite available for negotiation in SSL handshake
-{% if (item.ssl_cipher_suite is defined) and not ((item.ssl_cipher_suite == None) or (item.ssl_cipher_suite == '') or (item.ssl_cipher_suite == [])) %}
+{% if (item.ssl_cipher_suite is defined) and not ((item.ssl_cipher_suite == '') or (item.ssl_cipher_suite == [])) %}
   ssl_ciphers '{{(item.ssl_cipher_suite|e)}}';
 {% else %}
   ssl_ciphers 'AES256+EECDH:AES256+EDH';
 {% endif %}
   # ECDHE ciphers curve
-{% if (item.ssl_ecdh_curve is defined) and not ((item.ssl_ecdh_curve == None) or (item.ssl_ecdh_curve == '') or (item.ssl_ecdh_curve == [])) %}
+{% if (item.ssl_ecdh_curve is defined) and not ((item.ssl_ecdh_curve == '') or (item.ssl_ecdh_curve == [])) %}
   ssl_ecdh_curve '{{(item.ssl_ecdh_curve|e)}}';
 {% else %}
   ssl_ecdh_curve 'secp384r1';
@@ -103,13 +95,13 @@ server {
   # DH parameters for DHE ciphers
   ssl_dhparam '{{file_path_dhparam_pem}}';
   # Server PEM-encoded X.509 certificate file
-{% if (item.ssl_certificate is defined) and not ((item.ssl_certificate == None) or (item.ssl_certificate == '')) %}
+{% if (item.ssl_certificate is defined) and not (item.ssl_certificate == '') %}
   ssl_certificate '{{(item.ssl_certificate|e)}}';
 {% else %}
   #ssl_certificate '';
 {% endif %}
   # Server PEM-encoded private key file
-{% if (item.ssl_certificate_key is defined) and not ((item.ssl_certificate_key == None) or (item.ssl_certificate_key == '')) %}
+{% if (item.ssl_certificate_key is defined) and not (item.ssl_certificate_key == '') %}
   ssl_certificate_key '{{(item.ssl_certificate_key|e)}}';
 {% else %}
   #ssl_certificate_key '';
@@ -120,9 +112,9 @@ server {
   # CUSTOM CONFIGURATION
   #-----------------------------------------------------------------------------
 
-{% if (item.custom_config is defined) and not ((item.custom_config == None) or (item.custom_config == '') or (item.custom_config == [])) %}
+{% if (item.custom_config is defined) and not ((item.custom_config == '') or (item.custom_config == [])) %}
 {% for item in item.custom_config %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+{% if (item.comment is defined) and not (item.comment == '') %}
   #-----------------------------------------------------------------------------
   # {{(item.comment|upper)}}
   #-----------------------------------------------------------------------------
