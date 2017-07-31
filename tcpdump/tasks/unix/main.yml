@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((tcpdump_state == 'false') or (tcpdump_state == 'no') or (tcpdump_state == 'remove') or (tcpdump_state == 'quiesce') or (tcpdump_state == 'inactive'))
+  when: not (tcpdump_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - tcpdump
 
 - name: task include remove
   include: remove.yml
-  when: (tcpdump_state == 'false') or (tcpdump_state == 'no') or (tcpdump_state == 'remove')
+  when: (tcpdump_state|match('false|no|remove'))
   tags:
     - unix
     - tcpdump
