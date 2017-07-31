@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((bind_tools_state == 'false') or (bind_tools_state == 'no') or (bind_tools_state == 'remove') or (bind_tools_state == 'quiesce') or (bind_tools_state == 'inactive'))
+  when: not (bind_tools_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - bind_tools
 
 - name: task include remove
   include: remove.yml
-  when: (bind_tools_state == 'false') or (bind_tools_state == 'no') or (bind_tools_state == 'remove')
+  when: (bind_tools_state|match('false|no|remove'))
   tags:
     - unix
     - bind_tools
