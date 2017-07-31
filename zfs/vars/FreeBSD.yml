@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : FreeBSD.yml
 #  | (_)_   __  Type   : ansible variable file
@@ -11,17 +9,11 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
 # zfs_scrub-pools
-file_line_zfs_scrub_pools: "{% if (zfs_scrub_pools_cron_minute is defined) and ((zfs_scrub_pools_cron_minute|int(20)) > 59) %}59{% elif (zfs_scrub_pools_cron_minute is defined) and ((zfs_scrub_pools_cron_minute|int(20)) < 1) %}1{% else %}{{zfs_scrub_pools_cron_minute}}{% endif %} {% if (zfs_scrub_pools_cron_hour is defined) and ((zfs_scrub_pools_cron_hour|int(2)) > 24) %}0{% elif (zfs_scrub_pools_cron_hour is defined) and ((zfs_scrub_pools_cron_hour|int(2)) < 0) %}0{% else %}{{zfs_scrub_pools_cron_hour}}{% endif %} * * {% if (zfs_scrub_pools_cron_weekday is defined) and ((zfs_scrub_pools_cron_weekday|int(6)) > 7) %}7{% elif (zfs_scrub_pools_cron_weekday is defined) and ((zfs_scrub_pools_cron_weekday|int(6)) < 1) %}0{% else %}{{zfs_scrub_pools_cron_weekday}}{% endif %} {{file_owner_zfs_scrub_pools_sh}} {{file_path_zfs_scrub_pools_sh}}"
+file_line_zfs_scrub_pools: "{% if ((zfs_scrub_pools_cron_minute|int(20)) > 59) %}59{% elif ((zfs_scrub_pools_cron_minute|int(20)) < 1) %}1{% else %}{{zfs_scrub_pools_cron_minute}}{% endif %} {% if ((zfs_scrub_pools_cron_hour|int(2)) > 24) %}0{% elif ((zfs_scrub_pools_cron_hour|int(2)) < 0) %}0{% else %}{{zfs_scrub_pools_cron_hour}}{% endif %} * * {% if ((zfs_scrub_pools_cron_weekday|int(6)) > 7) %}7{% elif ((zfs_scrub_pools_cron_weekday|int(6)) < 1) %}0{% else %}{{zfs_scrub_pools_cron_weekday}}{% endif %} {{file_owner_zfs_scrub_pools_sh}} {{file_path_zfs_scrub_pools_sh}}"
 file_path_zfs_scrub_pools: '/etc/crontab'

@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible meta file
@@ -11,13 +9,7 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 dependencies:
-  - {role: 'common'}
-  - {role: 'mailx', when: (zfs_monitor_mail_state == 'true') or (zfs_monitor_mail_state == 'yes') or (zfs_monitor_mail_state == 'enable')}
+  - {role: 'common', when: not (zfs_state|match('false|no|remove|quiesce|inactive'))}
+  - {role: 'mailx', when: (zfs_monitor_mail_state|match('true|yes|enable'))}
