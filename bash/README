@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : bash
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -85,7 +85,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'enable'
+    Default    : 'true'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
@@ -96,7 +96,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'enable'
+    Default    : 'true'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
@@ -107,7 +107,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'enable'
+    Default    : 'true'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
@@ -119,9 +119,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : ''
+    Default    : 'false'
     Options    :
-      Examples: ''
+      Examples: 'ignoreboth' | 'ignoredups' | 'ignorespace'
       Disable : 'false' | 'no' | 'disable'
 
   bash_histfilesize
@@ -130,21 +130,21 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '262144'
+    Default    : 262144
     Options    :
       Examples: '32768' | '65536' | '131072' | '262144'
       Disable : 'false' | 'no' | 'disable'
 
   bash_histignore
-    Description: Define patterns to decide which command lines should be saved
-                 in the Bash history.
+    Description: Define patterns to decide which command lines should not be
+                 saved in the Bash history.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : ''
+    Default    : 'false'
     Options    :
-      Examples: ''
+      Examples: 'fg:bg'
       Disable : 'false' | 'no' | 'disable'
 
   bash_history_readonly
@@ -153,7 +153,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'enable'
+    Default    : 'true'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
@@ -164,7 +164,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '262144'
+    Default    : 262144
     Options    :
       Examples: '32768' | '65536' | '131072' | '262144'
       Disable : 'false' | 'no' | 'disable'
@@ -197,7 +197,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '1800'
+    Default    : 1800
     Options    :
       Examples: '300' | '600' | '1200' | '1800'
       Disable : 'false' | 'no' | 'disable'
@@ -208,7 +208,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'enable'
+    Default    : 'true'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
@@ -286,11 +286,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.0-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.1
-      Status: Testing
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER

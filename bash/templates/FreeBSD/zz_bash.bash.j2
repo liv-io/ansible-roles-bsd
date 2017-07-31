@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : zz_bash.bash
 #  | (_)_   __  Type   : environment variable configuration file
@@ -14,26 +12,20 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-# This file defines environment variables for Bash.
-#
-#-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # SHELL OPTIONS
 #-------------------------------------------------------------------------------
 
 # checkwinsize
-{% if (bash_checkwinsize is defined) and ((bash_checkwinsize == 'false') or (bash_checkwinsize == 'no') or (bash_checkwinsize == 'disable')) %}
+{% if (bash_checkwinsize|match('false|no|disable')) %}
 shopt -d checkwinsize
 {% else %}
 shopt -s checkwinsize
 {% endif %}
 
 # histappend
-{% if (bash_histappend is defined) and ((bash_histappend == 'false') or (bash_histappend == 'no') or (bash_histappend == 'disable')) %}
+{% if (bash_histappend|match('false|no|disable')) %}
 shopt -d histappend
 {% else %}
 shopt -s histappend
@@ -43,66 +35,66 @@ shopt -s histappend
 # SHELL VARIABLES
 #-------------------------------------------------------------------------------
 
-{% if (bash_histcontrol is defined) and not ((bash_histcontrol == None) or (bash_histcontrol == 'false') or (bash_histcontrol == 'no') or (bash_histcontrol == 'disable')) %}
+{% if not (bash_histcontrol|match('false|no|disable')) %}
 # HISTCONTROL
 HISTCONTROL='{{(bash_histcontrol|e)}}'
-{% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
+{% if not (bash_history_readonly|match('false|no|disable')) %}
 readonly HISTCONTROL
 {% endif %}
 export HISTCONTROL
 {% endif %}
 
-{% if (bash_histfilesize is defined) and not ((bash_histfilesize == None) or (bash_histfilesize == '') or (bash_histfilesize == 'false') or (bash_histfilesize == 'no') or (bash_histfilesize == 'disable')) %}
+{% if not (bash_histfilesize|match('false|no|disable')) %}
 # HISTFILESIZE
-HISTFILESIZE={{(bash_histfilesize|e)}}
-{% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
+HISTFILESIZE={{(bash_histfilesize|int)}}
+{% if not (bash_history_readonly|match('false|no|disable')) %}
 readonly HISTFILESIZE
 {% endif %}
 export HISTFILESIZE
 {% endif %}
 
-{% if (bash_histignore is defined) and not ((bash_histignore == None) or (bash_histignore == 'false') or (bash_histignore == 'no') or (bash_histignore == 'disable')) %}
+{% if not (bash_histignore|match('false|no|disable')) %}
 # HISTIGNORE
 HISTIGNORE='{{(bash_histignore|e)}}'
-{% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
+{% if not (bash_history_readonly|match('false|no|disable')) %}
 readonly HISTIGNORE
 {% endif %}
 export HISTIGNORE
 {% endif %}
 
-{% if (bash_histsize is defined) and not ((bash_histsize == None) or (bash_histsize == '') or (bash_histsize == 'false') or (bash_histsize == 'no') or (bash_histsize == 'disable')) %}
+{% if not (bash_histsize|match('false|no|disable')) %}
 # HISTSIZE
-HISTSIZE={{(bash_histsize|e)}}
-{% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
+HISTSIZE={{(bash_histsize|int)}}
+{% if not (bash_history_readonly|match('false|no|disable')) %}
 readonly HISTSIZE
 {% endif %}
 export HISTSIZE
 {% endif %}
 
-{% if (bash_histtimeformat is defined) and not ((bash_histtimeformat == None) or (bash_histtimeformat == 'false') or (bash_histtimeformat == 'no') or (bash_histtimeformat == 'disable')) %}
+{% if not (bash_histtimeformat|match('false|no|disable')) %}
 # HISTTIMEFORMAT
 HISTTIMEFORMAT='{{(bash_histtimeformat|e)}}'
 {% endif %}
 
-{% if (bash_prompt_command is defined) and not ((bash_prompt_command == None) or (bash_prompt_command == '') or (bash_prompt_command == 'false') or (bash_prompt_command == 'no') or (bash_prompt_command == 'disable')) %}
+{% if not (bash_prompt_command|match('false|no|disable')) %}
 # PROMPT_COMMAND
 PROMPT_COMMAND='{{(bash_prompt_command|e)}}'
-{% if (bash_history_readonly is defined) and not ((bash_history_readonly == 'false') or (bash_history_readonly == 'no') or (bash_history_readonly == 'disable')) %}
+{% if not (bash_history_readonly|match('false|no|disable')) %}
 readonly PROMPT_COMMAND
 {% endif %}
 export PROMPT_COMMAND
 {% endif %}
 
-{% if (bash_tmout is defined) and not ((bash_tmout == None) or (bash_tmout == '') or (bash_tmout == 'false') or (bash_tmout == 'no') or (bash_tmout == 'disable')) %}
+{% if not (bash_tmout|match('false|no|disable')) %}
 # TMOUT
-TMOUT={{(bash_tmout|e)}}
-{% if (bash_tmout_readonly is defined) and not ((bash_tmout_readonly == 'false') or (bash_tmout_readonly == 'no') or (bash_tmout_readonly == 'disable')) %}
+TMOUT={{(bash_tmout|int)}}
+{% if not (bash_tmout_readonly|match('false|no|disable')) %}
 readonly TMOUT
 {% endif %}
 export TMOUT
 {% endif %}
 
-{% if (bash_color_prompt is defined) and not ((bash_color_prompt == None) or (bash_color_prompt == 'false') or (bash_color_prompt == 'no') or (bash_color_prompt == 'disable')) %}
+{% if not (bash_color_prompt|match('false|no|disable')) %}
 #-------------------------------------------------------------------------------
 # COLOR PROMPT
 #-------------------------------------------------------------------------------
