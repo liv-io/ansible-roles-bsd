@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : openbsd_rc
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -96,7 +96,6 @@ CONFIG
     Default    : ''
     Options    :
       Examples: 'sshd_class' | 'sshd_flags' | 'nfs_server' | 'nfsd_flags'
-      None    : ''
 
   path
     Description: Define the path of the 'rc' file.
@@ -107,7 +106,6 @@ CONFIG
     Default    : "{{openbsd_rc_path_default}}"
     Options    :
       Examples: '/etc/rc.conf.local'
-      None    : ''
 
   value
     Description: Define the value of the 'rc' entry.
@@ -118,7 +116,6 @@ CONFIG
     Default    : ''
     Options    :
       Examples: 'YES' | 'NO' | 'root' | '30'
-      None    : ''
 
 ROLE
   openbsd_rc_state
@@ -141,7 +138,7 @@ ROLE
     Default    : []
     Options    :
       Examples: [{name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'},
-                 {name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'}]
+                 {name: 'nfsd_flags', value: '-tun 8', state: 'true', comment: 'Start 4 copies of the NFS server'}]
       None    : []
 
   openbsd_rc_group
@@ -153,7 +150,7 @@ ROLE
     Default    : []
     Options    :
       Examples: [{name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'},
-                 {name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'}]
+                 {name: 'nfsd_flags', value: '-tun 8', state: 'true', comment: 'Start 4 copies of the NFS server'}]
       None    : []
 
   openbsd_rc_host
@@ -165,7 +162,7 @@ ROLE
     Default    : []
     Options    :
       Examples: [{name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'},
-                 {name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'}]
+                 {name: 'nfsd_flags', value: '-tun 8', state: 'true', comment: 'Start 4 copies of the NFS server'}]
       None    : []
 
   openbsd_rc_path_default
@@ -177,7 +174,6 @@ ROLE
     Default    : '/etc/rc.conf.local'
     Options    :
       Examples: '/etc/rc.conf.local'
-      None    : ''
 
 --------------------------------------------------------------------------------
 CONFLICTS
@@ -236,7 +232,7 @@ OPERATING SYSTEMS
 
   OpenBSD
     Version: 6.1
-      Status: Testing
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER
