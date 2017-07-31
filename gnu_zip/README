@@ -1,8 +1,6 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
-   _ _         Name   : gzip
+   _ _         Name   : gnu_zip
   | (_)_   __  Type   : ansible role
   | | \ \ / /  Group  : app-arch
   | | |\ V /
@@ -10,12 +8,14 @@ README
                License: Simplified BSD License
 
 --------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
 
-This role manages gzip.
+This role manages gnu_zip.
 
-The gzip package contains the popular GNU gzip data compression program. Gzipped
+The gnu_zip package contains the popular GNU gnu_zip data compression program. Gzipped
 files have a .gz extension.
 Gzip should be installed on your system, because it is a very commonly used data
 compression program.
@@ -30,30 +30,30 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-      - role: gzip
+      - role: gnu_zip
     vars:
-      gzip_state: 'install'
+      gnu_zip_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-      - role: gzip
+      - role: gnu_zip
     vars:
-      gzip_state: 'gzip'
+      gnu_zip_state: 'gnu_zip'
 
 INACTIVE
   - hosts: all
     roles:
-      - role: gzip
+      - role: gnu_zip
     vars:
-      gzip_state: 'inactive'
+      gnu_zip_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
 
 ROLE
-  gzip_state
+  gnu_zip_state
     Description: Control the state of the role.
     Implemented: 0.1
     Required   : False
@@ -76,7 +76,7 @@ DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  gzip
+  gnu_zip
     Version: >= 1.3
     Name   :
       FreeBSD 11: 'gzip'
@@ -122,7 +122,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.0-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.1

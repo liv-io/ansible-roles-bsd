@@ -1,20 +1,12 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
-#   _ _         Name   : remove.yml
+#   _ _         Name   : install.yml
 #  | (_)_   __  Type   : ansible task file
-#  | | \ \ / /  Role   : gzip
+#  | | \ \ / /  Role   : gnu_zip
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -27,20 +19,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
+    - install
     - unix
-    - gzip
+    - gnu_zip
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove gzip
+- name: package install gnu-zip
   package:
-    state: 'absent'
-    name: "{{package_name_gzip}}"
+    state: 'present'
+    name: "{{package_name_gnu_zip}}"
   tags:
     - packaging
-    - remove
+    - install
     - unix
-    - gzip
+    - gnu_zip

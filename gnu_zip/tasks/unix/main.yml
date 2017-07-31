@@ -1,0 +1,25 @@
+---
+#-------------------------------------------------------------------------------
+#
+#   _ _         Name   : main.yml
+#  | (_)_   __  Type   : ansible task file
+#  | | \ \ / /  Role   : gnu_zip
+#  | | |\ V /
+#  |_|_| \_/    Authors: liv community
+#               License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+- name: task include install
+  include: install.yml
+  when: not (gnu_zip_state|match('false|no|remove|quiesce|inactive'))
+  tags:
+    - unix
+    - gnu_zip
+
+- name: task include remove
+  include: remove.yml
+  when: (gnu_zip_state|match('false|no|remove'))
+  tags:
+    - unix
+    - gnu_zip

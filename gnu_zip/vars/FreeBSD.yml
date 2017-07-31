@@ -1,25 +1,18 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
-#  | (_)_   __  Type   : ansible task file
-#  | | \ \ / /  Role   : gzip
+#  | (_)_   __  Type   : ansible variable file
+#  | | \ \ / /  Role   : gnu_zip
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
+
 #-------------------------------------------------------------------------------
-#
-#
-#
+# PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: task include unix
-  include: unix/main.yml
-  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("11\.0-*")))
-  tags:
-    - gzip
+# gzip
+package_name_gnu_zip: 'gzip'
