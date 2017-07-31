@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((coreutils_state == 'false') or (coreutils_state == 'no') or (coreutils_state == 'remove') or (coreutils_state == 'quiesce') or (coreutils_state == 'inactive'))
+  when: not (coreutils_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - coreutils
 
 - name: task include remove
   include: remove.yml
-  when: (coreutils_state == 'false') or (coreutils_state == 'no') or (coreutils_state == 'remove')
+  when: (coreutils_state|match('false|no|remove'))
   tags:
     - unix
     - coreutils
