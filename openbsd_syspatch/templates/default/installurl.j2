@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : installurl
 #  | (_)_   __  Type   : syspatch configuration file
@@ -14,23 +12,15 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # INSTALLURL
 #-------------------------------------------------------------------------------
 
-{% if (openbsd_syspatch_installurl is defined) and not ((openbsd_syspatch_installurl == None) or (openbsd_syspatch_installurl == '') or (openbsd_syspatch_installurl == [])) %}
+{% if (openbsd_syspatch_installurl is defined) and not ((openbsd_syspatch_installurl == '') or (openbsd_syspatch_installurl == [])) %}
 {% for item in openbsd_syspatch_installurl %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+{% if (item.comment is defined) %}
 # {{item.comment}}
-{% else %}
-#
 {% endif %}
 {% for url in (item.url) %}
 {{url}}
