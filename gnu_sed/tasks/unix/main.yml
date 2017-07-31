@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((gnu_sed_state == 'false') or (gnu_sed_state == 'no') or (gnu_sed_state == 'remove') or (gnu_sed_state == 'quiesce') or (gnu_sed_state == 'inactive'))
+  when: not (gnu_sed_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - gnu_sed
 
 - name: task include remove
   include: remove.yml
-  when: (gnu_sed_state == 'false') or (gnu_sed_state == 'no') or (gnu_sed_state == 'remove')
+  when: (gnu_sed_state|match('false|no|remove'))
   tags:
     - unix
     - gnu_sed
