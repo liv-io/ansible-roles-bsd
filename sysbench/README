@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : sysbench
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -92,7 +92,7 @@ PACKAGES
     Version: >= 0.4
     Name   :
       FreeBSD 11: 'sysbench'
-      OpenBSD 6 : 'sysbench'
+      OpenBSD 6 : 'sysbench--'
 
 ROLES
 
@@ -135,11 +135,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.0-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.1
-      Status: Testing
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER

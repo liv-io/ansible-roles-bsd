@@ -1,7 +1,7 @@
 ---
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : main.yml
+#   _ _         Name   : OpenBSD.yml
 #  | (_)_   __  Type   : ansible variable file
 #  | | \ \ / /  Role   : sysbench
 #  | | |\ V /
@@ -14,5 +14,5 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-# sysbench
-package_name_sysbench: 'sysbench'
+# sysbench--
+package_name_sysbench: 'sysbench--'
