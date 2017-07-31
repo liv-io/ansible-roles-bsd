@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,16 +9,10 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((passwd_state == 'false') or (passwd_state == 'no') or (passwd_state == 'disable') or (passwd_state == 'quiesce') or (passwd_state == 'inactive'))
+  when: not (passwd_state|match('false|no|disable|quiesce|inactive'))
   tags:
     - bsd
     - passwd
