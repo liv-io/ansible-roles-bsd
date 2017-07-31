@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : z_shell.sh
 #  | (_)_   __  Type   : environment variable configuration file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-# This file defines environment variables for Shell.
 #
 #-------------------------------------------------------------------------------
 
@@ -35,7 +27,7 @@ alias ll='ls -lFT'  # long listing
 alias lr='ls -lRFT' # long listing, list subdirectories recursively
 alias lt='ls -ltFT' # long listing, sort by modification time
 
-{% if (shell_safety is defined) and not ((shell_safety == None) or (shell_safety == 'false') or (shell_safety == 'no') or (shell_safety == 'disable')) %}
+{% if not (shell_safety|match('false|no|disable')) %}
 # Shell safety
 alias cp='cp -i'
 alias mv='mv -i'
@@ -46,25 +38,25 @@ alias rm='rm -i'
 # SHELL VARIABLES
 #-------------------------------------------------------------------------------
 
-{% if (shell_ftp_proxy is defined) and not ((shell_ftp_proxy == None) or (shell_ftp_proxy == '')) %}
+{% if not (shell_ftp_proxy|match('false|no|disable')) %}
 # ftp_proxy
 ftp_proxy='{{shell_ftp_proxy}}'
 export ftp_proxy
 {% endif %}
 
-{% if (shell_http_proxy is defined) and not ((shell_http_proxy == None) or (shell_http_proxy == '')) %}
+{% if not (shell_http_proxy|match('false|no|disable')) %}
 # http_proxy
 http_proxy='{{shell_http_proxy}}'
 export http_proxy
 {% endif %}
 
-{% if (shell_histsize is defined) and not ((shell_histsize == None) or (shell_histsize == '')) %}
+{% if not (shell_histsize|match('false|no|disable')) %}
 # HISTSIZE
-HISTSIZE={{(shell_histsize|e)}}
+HISTSIZE={{(shell_histsize|int)}}
 export HISTSIZE
 {% endif %}
 
-{% if (shell_pager is defined) and not ((shell_pager == None) or (shell_pager == '')) %}
+{% if not (shell_pager|match('false|no|disable')) %}
 # PAGER
 PAGER='{{(shell_pager|e)}}'
 export PAGER

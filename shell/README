@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : shell
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -82,7 +82,7 @@ ROLE
     Default    : ''
     Options    :
       Examples: 'ftp://proxy.domain.tld:3128'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   shell_histsize
     Description: Set the size of the 'shell' history variable.
@@ -93,7 +93,7 @@ ROLE
     Default    : '262144'
     Options    :
       Examples: '32768' | '65536' | '131072' | '262144'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   shell_http_proxy
     Description: Define the 'shell_http_proxy' option.
@@ -104,7 +104,7 @@ ROLE
     Default    : ''
     Options    :
       Examples: 'http://proxy.domain.tld:3128'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   shell_ls_time_style
     Description: Define the time format of the 'ls' command.
@@ -115,7 +115,7 @@ ROLE
     Default    : '%Y-%m-%d %H:%M:%S'
     Options    :
       Examples: '%Y-%m-%d %H:%M:%S' | '+%Y-%m-%d %H:%M:%S'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   shell_pager
     Description: Define the default 'PAGER' variable.
@@ -126,7 +126,7 @@ ROLE
     Default    : 'less'
     Options    :
       Examples: 'less' | 'more' | '/usr/bin/less' | '/usr/bin/more'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   shell_profile_template
     Description: Define the template source for 'profile.j2'.
@@ -236,11 +236,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.0-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.1
-      Status: Testing
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER

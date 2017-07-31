@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible default file
@@ -11,22 +9,16 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 shell_state: 'install'
 
-shell_color_support: 'enable'
+shell_color_support: 'true'
 
-shell_ftp_proxy: ''
+shell_ftp_proxy: 'none'
 
 shell_histsize: '262144'
 
-shell_http_proxy: ''
+shell_http_proxy: 'none'
 
 shell_ls_time_style: '%Y-%m-%d %H:%M:%S'
 
@@ -34,7 +26,7 @@ shell_pager: 'less'
 
 shell_profile_template: "{{ansible_os_family}}"
 
-shell_safety: 'enable'
+shell_safety: 'true'
 
 shell_shell_sh_template: "{{ansible_os_family}}"
 
