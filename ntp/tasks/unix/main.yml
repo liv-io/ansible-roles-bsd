@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,44 +9,38 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((ntp_state == 'false') or (ntp_state == 'no') or (ntp_state == 'remove') or (ntp_state == 'quiesce') or (ntp_state == 'inactive'))
+  when: not (ntp_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - ntp
 
 - name: task include enable
   include: enable.yml
-  when: (ntp_state == 'start') or (ntp_state == 'on') or (ntp_state == 'enable')
+  when: (ntp_state|match('start|on|enable'))
   tags:
     - unix
     - ntp
 
 - name: task include disable
   include: disable.yml
-  when: (ntp_state == 'stop') or (ntp_state == 'off') or (ntp_state == 'disable')
+  when: (ntp_state|match('stop|off|disable'))
   tags:
     - unix
     - ntp
 
 - name: task include cronjob
   include: cronjob.yml
-  when: (ntp_state == 'cron') or (ntp_state == 'cronjob')
+  when: (ntp_state|match('cron|cronjob'))
   tags:
     - unix
     - ntp
 
 - name: task include remove
   include: remove.yml
-  when: (ntp_state == 'false') or (ntp_state == 'no') or (ntp_state == 'remove')
+  when: (ntp_state|match('false|no|remove'))
   tags:
     - unix
     - ntp

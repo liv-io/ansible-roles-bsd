@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : ntp.conf
 #  | (_)_   __  Type   : ntp configuration file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -35,7 +27,7 @@
 
 # Monitoring facility.
 # See the ntpdc(8) program and the monlist command or further information.
-{% if (ntp_monitor is defined) and ((ntp_monitor == 'true') or (ntp_monitor == 'yes') or (ntp_monitor == 'enable')) %}
+{% if (ntp_monitor|match('true|yesenable')) %}
 enable monitor
 {% else %}
 disable monitor
@@ -65,13 +57,9 @@ disable monitor
 # server 1.CC.pool.ntp.org iburst
 # server 2.CC.pool.ntp.org iburst
 
-{% if (ntp_server is defined) and not ((ntp_server == None) or (ntp_server == '') or (ntp_server == [])) %}
+{% if not ((ntp_server == '') or (ntp_server == [])) %}
 {% for item in (ntp_server|sort) %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for server in (item.server|sort) %}
 server {{(server|e)}} {% for option in (item.option|sort) %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
@@ -113,13 +101,9 @@ server {{(server|e)}} {% for option in (item.option|sort) %}{{option}}{% if not 
 #restrict -6 ::1
 #restrict 127.127.1.0
 
-{% if (ntp_restrict is defined) and not ((ntp_restrict == None) or (ntp_restrict == '') or (ntp_restrict == [])) %}
+{% if not ((ntp_restrict == '') or (ntp_restrict == [])) %}
 {% for item in (ntp_restrict|sort) %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 restrict {% for config in (item.config|sort) %}{{config}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}

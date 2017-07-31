@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : OpenBSD.yml
 #  | (_)_   __  Type   : ansible variable file
@@ -11,19 +9,13 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
 # ntp_update-time
-file_line_ntp_update_time: "*/{% if (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) > 59) %}59{% elif (ntp_ntp_update_time_interval is defined) and ((ntp_ntp_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntp_ntp_update_time_interval|int(10))}}{% endif %}    *       *       *       *       {{(file_path_ntp_update_time_sh|e)}}"
+file_line_ntp_update_time: "*/{% if ((ntp_ntp_update_time_interval|int(10)) > 59) %}59{% elif ((ntp_ntp_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntp_ntp_update_time_interval|int(10))}}{% endif %}    *       *       *       *       {{(file_path_ntp_update_time_sh|e)}}"
 file_path_ntp_update_time: '/var/cron/tabs/root'
 
 #-------------------------------------------------------------------------------

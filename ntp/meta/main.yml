@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible meta file
@@ -11,13 +9,7 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 dependencies:
-  - {role: 'common', when: (ntp_state == 'cron') or (ntp_state == 'cronjob')}
-  - {role: 'mailx', when: (ntp_monitor_mail_state == 'true') or (ntp_monitor_mail_state == 'yes') or (ntp_monitor_mail_state == 'enable')}
+  - {role: 'common', when: (ntp_state|match('cron|cronjob'))}
+  - {role: 'mailx', when: (ntp_monitor_mail_state|match('true|yes|enable'))}
