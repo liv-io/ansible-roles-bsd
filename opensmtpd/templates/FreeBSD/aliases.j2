@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : aliases
 #  | (_)_   __  Type   : opensmtpd configuration file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -40,9 +32,7 @@
 # you would do well in either reading root's mailbox or forwarding
 # root's email from here.
 
-{% if (opensmtpd_root_mail_address is defined) and not ((opensmtpd_root_mail_address == None) or (opensmtpd_root_mail_address == '')) %}
 root: {{(opensmtpd_root_mail_address|e)}}
-{% endif %}
 
 # Basic system aliases -- these MUST be present
 MAILER-DAEMON: postmaster

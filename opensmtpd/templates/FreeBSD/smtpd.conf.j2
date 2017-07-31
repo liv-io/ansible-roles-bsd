@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : smtpd.conf
 #  | (_)_   __  Type   : opensmtpd configuration file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -29,13 +21,9 @@
 #-------------------------------------------------------------------------------
 
 # ALL
-{% if (opensmtpd_listen_all is defined) and not ((opensmtpd_listen_all == None) or (opensmtpd_listen_all == '') or (opensmtpd_listen_all == [])) %}
+{% if not ((opensmtpd_listen_all == '') or (opensmtpd_listen_all == [])) %}
 {% for item in opensmtpd_listen_all %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -44,13 +32,9 @@
 {% endif %}
 
 # GROUP
-{% if (opensmtpd_listen_group is defined) and not ((opensmtpd_listen_group == None) or (opensmtpd_listen_group == '') or (opensmtpd_listen_group == [])) %}
+{% if not ((opensmtpd_listen_group == '') or (opensmtpd_listen_group == [])) %}
 {% for item in opensmtpd_listen_group %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -59,13 +43,9 @@
 {% endif %}
 
 # HOST
-{% if (opensmtpd_listen_host is defined) and not ((opensmtpd_listen_host == None) or (opensmtpd_listen_host == '') or (opensmtpd_listen_host == [])) %}
+{% if not ((opensmtpd_listen_host == '') or (opensmtpd_listen_host == [])) %}
 {% for item in opensmtpd_listen_host %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -78,13 +58,9 @@
 #-------------------------------------------------------------------------------
 
 # ALL
-{% if (opensmtpd_table_all is defined) and not ((opensmtpd_table_all == None) or (opensmtpd_table_all == '') or (opensmtpd_table_all == [])) %}
+{% if not ((opensmtpd_table_all == '') or (opensmtpd_table_all == [])) %}
 {% for item in opensmtpd_table_all %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -93,13 +69,9 @@
 {% endif %}
 
 # GROUP
-{% if (opensmtpd_table_group is defined) and not ((opensmtpd_table_group == None) or (opensmtpd_table_group == '') or (opensmtpd_table_group == [])) %}
+{% if not ((opensmtpd_table_group == '') or (opensmtpd_table_group == [])) %}
 {% for item in opensmtpd_table_group %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -108,13 +80,9 @@
 {% endif %}
 
 # HOST
-{% if (opensmtpd_table_host is defined) and not ((opensmtpd_table_host == None) or (opensmtpd_table_host == '') or (opensmtpd_table_host == [])) %}
+{% if not ((opensmtpd_table_host == '') or (opensmtpd_table_host == [])) %}
 {% for item in opensmtpd_table_host %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -127,13 +95,9 @@
 #-------------------------------------------------------------------------------
 
 # ALL
-{% if (opensmtpd_accept_all is defined) and not ((opensmtpd_accept_all == None) or (opensmtpd_accept_all == '') or (opensmtpd_accept_all == [])) %}
+{% if not ((opensmtpd_accept_all == '') or (opensmtpd_accept_all == [])) %}
 {% for item in opensmtpd_accept_all %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -142,13 +106,9 @@
 {% endif %}
 
 # GROUP
-{% if (opensmtpd_accept_group is defined) and not ((opensmtpd_accept_group == None) or (opensmtpd_accept_group == '') or (opensmtpd_accept_group == [])) %}
+{% if not ((opensmtpd_accept_group == '') or (opensmtpd_accept_group == [])) %}
 {% for item in opensmtpd_accept_group %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -157,13 +117,9 @@
 {% endif %}
 
 # HOST
-{% if (opensmtpd_accept_host is defined) and not ((opensmtpd_accept_host == None) or (opensmtpd_accept_host == '') or (opensmtpd_accept_host == [])) %}
+{% if not ((opensmtpd_accept_host == '') or (opensmtpd_accept_host == [])) %}
 {% for item in opensmtpd_accept_host %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{(item.comment|e)}}
-{% else %}
-#
-{% endif %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
