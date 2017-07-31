@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible default file
@@ -9,12 +7,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -76,11 +68,11 @@ freebsd_pf_option_debug: 'urgent'
 
 freebsd_pf_option_fingerprints: '/etc/pf.os'
 
-freebsd_pf_option_hostid: ''
+freebsd_pf_option_hostid: 'false'
 
 freebsd_pf_option_limit: []
 
-freebsd_pf_option_loginterface: 'none'
+freebsd_pf_option_loginterface: 'false'
 
 freebsd_pf_option_optimization: 'normal'
 

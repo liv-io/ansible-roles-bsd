@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : freebsd_pf
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -446,10 +446,10 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : ''
+    Default    : 'false'
     Options    :
       Examples: '1' | '2' | '3'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   freebsd_pf_option_limit
     Description: Define the 'freebsd_pf_option_limit' option.
@@ -472,10 +472,10 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'none'
+    Default    : 'false'
     Options    :
       Examples: 'em0' | 'ed1' | 'wlan2'
-      None    : 'none' | 'false' | 'no' | 'disable'
+      Disable : 'false' | 'no' | 'disable'
 
   freebsd_pf_option_optimization
     Description: Control the 'freebsd_pf_option_optimization' option.
@@ -501,7 +501,7 @@ ROLE
     Options    :
       Basic  : 'basic'
       Profile: 'profile'
-      None   : 'none' | 'false' | 'no' | 'disable'
+      Disable: 'false' | 'no' | 'disable'
 
   freebsd_pf_option_skip
     Description: Define the 'freebsd_pf_option_skip' option.
@@ -743,7 +743,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.0-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.1
