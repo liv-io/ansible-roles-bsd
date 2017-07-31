@@ -1,6 +1,4 @@
 --------------------------------------------------------------------------------
-README
---------------------------------------------------------------------------------
 
    _ _         Name   : openbsd_pf
   | (_)_   __  Type   : ansible role
@@ -8,6 +6,8 @@ README
   | | |\ V /
   |_|_| \_/    Authors: liv community
                License: Simplified BSD License
+
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 DESCRIPTION
@@ -429,10 +429,10 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : ''
+    Default    : 'false'
     Options    :
       Examples: '1' | '2' | '3'
-      None    : ''
+      Disable : 'false' | 'no' | 'disable'
 
   openbsd_pf_option_limit
     Description: Define the 'openbsd_pf_option_limit' option.

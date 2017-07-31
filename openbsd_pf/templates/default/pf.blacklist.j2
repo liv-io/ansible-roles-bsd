@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : pf.blacklist
 #  | (_)_   __  Type   : pf configuration file
@@ -14,21 +12,11 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 # ALL
-{% if (openbsd_pf_blacklist_all is defined) and not ((openbsd_pf_blacklist_all == None) or (openbsd_pf_blacklist_all == '') or (openbsd_pf_blacklist_all == [])) %}
+{% if not ((openbsd_pf_blacklist_all == '') or (openbsd_pf_blacklist_all == [])) %}
 {% for blacklist_all in openbsd_pf_blacklist_all %}
-{% if (blacklist_all.comment is defined) and not ((blacklist_all.comment == None) or (blacklist_all.comment == '')) %}
 # {{blacklist_all.comment}}
-{% else %}
-#
-{% endif %}
 {% for config in blacklist_all.config %}
 {{config}}
 {% endfor %}
@@ -37,13 +25,9 @@
 {% endif %}
 
 # GROUP
-{% if (openbsd_pf_blacklist_group is defined) and not ((openbsd_pf_blacklist_group == None) or (openbsd_pf_blacklist_group == '') or (openbsd_pf_blacklist_group == [])) %}
+{% if not ((openbsd_pf_blacklist_group == '') or (openbsd_pf_blacklist_group == [])) %}
 {% for blacklist_group in openbsd_pf_blacklist_group %}
-{% if (blacklist_group.comment is defined) and not ((blacklist_group.comment == None) or (blacklist_group.comment == '')) %}
 # {{blacklist_group.comment}}
-{% else %}
-#
-{% endif %}
 {% for config in blacklist_group.config %}
 {{config}}
 {% endfor %}
@@ -52,13 +36,9 @@
 {% endif %}
 
 # HOST
-{% if (openbsd_pf_blacklist_host is defined) and not ((openbsd_pf_blacklist_host == None) or (openbsd_pf_blacklist_host == '') or (openbsd_pf_blacklist_host == [])) %}
+{% if not ((openbsd_pf_blacklist_host == '') or (openbsd_pf_blacklist_host == [])) %}
 {% for blacklist_host in openbsd_pf_blacklist_host %}
-{% if (blacklist_host.comment is defined) and not ((blacklist_host.comment == None) or (blacklist_host.comment == '')) %}
 # {{blacklist_host.comment}}
-{% else %}
-#
-{% endif %}
 {% for config in blacklist_host.config %}
 {{config}}
 {% endfor %}
