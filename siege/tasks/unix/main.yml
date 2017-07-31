@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((siege_state == 'false') or (siege_state == 'no') or (siege_state == 'remove') or (siege_state == 'quiesce') or (siege_state == 'inactive'))
+  when: not (siege_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - siege
 
 - name: task include remove
   include: remove.yml
-  when: (siege_state == 'false') or (siege_state == 'no') or (siege_state == 'remove')
+  when: (siege_state|match('false|no|remove'))
   tags:
     - unix
     - siege
