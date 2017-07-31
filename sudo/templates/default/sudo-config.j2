@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : sudo-config
 #  | (_)_   __  Type   : sudo configuration file
@@ -14,20 +12,10 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
-{% if (item.config is defined) and not ((item.config == None) or (item.config == '') or (item.config == [])) %}
+{% if (item.config is defined) and not ((item.config == '') or (item.config == [])) %}
 {% for config in item.config %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
 # {{item.comment}}
-{% else %}
-#
-{% endif %}
 {{config}}
 {% endfor %}
 {% endif %}

@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : config.yml
 #  | (_)_   __  Type   : ansible task file
@@ -9,12 +7,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -38,13 +30,13 @@
 - name: template create sudo-config
   template:
     src: "{{file_src_sudo_config}}"
-    dest: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) and not (item.order == None) else ''}}{{'_' if (item.order is defined) and not (item.order == None) else ''}}{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else sudo_name_default}}"
+    dest: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) else ''}}{{'_' if (item.order is defined) else ''}}{{(item.name|e) if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
     mode: "{{file_mode_sudo_config}}"
     owner: "{{file_owner_sudo_config}}"
     group: "{{file_group_sudo_config}}"
     validate: "{{file_validate_sudo_config}}"
   with_items: "{{sudo_all + sudo_group + sudo_all}}"
-  when: (item.state is defined) and not ((item.state == None) or (item.state == '') or (item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  when: not (item.state|match('false|no|remove'))
   tags:
     - files
     - config
@@ -54,9 +46,9 @@
 - name: file remove sudo-config
   file:
     state: 'absent'
-    path: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) and not (item.order == None) else ''}}{{'_' if (item.order is defined) and not (item.order == None) else ''}}{{(item.name|e) if (item.name is defined) and not ((item.name == None) or (item.name == '')) else sudo_name_default}}"
+    path: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) else ''}}{{'_' if (item.order is defined) else ''}}{{(item.name|e) if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
   with_items: "{{sudo_all + sudo_group + sudo_host}}"
-  when: (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove'))
+  when: (item.state|match('false|no|remove'))
   tags:
     - files
     - config
