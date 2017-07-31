@@ -1,7 +1,5 @@
 ---
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : main.yml
 #  | (_)_   __  Type   : ansible task file
@@ -11,23 +9,17 @@
 #               License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
-#
-#-------------------------------------------------------------------------------
 
 - name: task include install
   include: install.yml
-  when: not ((tcpreplay_state == 'false') or (tcpreplay_state == 'no') or (tcpreplay_state == 'remove') or (tcpreplay_state == 'quiesce') or (tcpreplay_state == 'inactive'))
+  when: not (tcpreplay_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - tcpreplay
 
 - name: task include remove
   include: remove.yml
-  when: (tcpreplay_state == 'false') or (tcpreplay_state == 'no') or (tcpreplay_state == 'remove')
+  when: (tcpreplay_state|match('false|no|remove'))
   tags:
     - unix
     - tcpreplay
