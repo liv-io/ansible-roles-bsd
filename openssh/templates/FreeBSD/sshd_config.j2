@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : sshd_config
 #  | (_)_   __  Type   : openssh configuration file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -41,7 +33,7 @@
 # PORT
 #-------------------------------------------------------------------------------
 
-{% if (openssh_port is defined) and not ((openssh_port == None) or (openssh_port == '') or (openssh_port == [])) %}
+{% if not ((openssh_port == '') or (openssh_port == [])) %}
 {% for port in openssh_port %}
 Port {{(port|int(22))}}
 {% endfor %}
@@ -52,11 +44,11 @@ Port 22
 # ADDRESS FAMILY
 #-------------------------------------------------------------------------------
 
-{% if (openssh_address_family is defined) and ((openssh_address_family == 'any') or (openssh_address_family == 'ANY') or (openssh_address_family == 'all') or (openssh_address_family == 'ALL')) %}
+{% if (openssh_address_family|match('any|all')) %}
 AddressFamily any
-{% elif (openssh_address_family is defined) and ((openssh_address_family == 'inet') or (openssh_address_family == 'ipv4')) %}
+{% elif (openssh_address_family|match('inet|ipv4')) %}
 AddressFamily inet
-{% elif (openssh_address_family is defined) and ((openssh_address_family == 'inet6') or (openssh_address_family == 'ipv6')) %}
+{% elif (openssh_address_family|match('inet6|ipv6')) %}
 AddressFamily inet6
 {% else %}
 #AddressFamily
@@ -66,7 +58,7 @@ AddressFamily inet6
 # LISTEN ADDRESS
 #-------------------------------------------------------------------------------
 
-{% if (openssh_listen_address is defined) and not ((openssh_listen_address == None) or (openssh_listen_address == '') or (openssh_listen_address == [])) %}
+{% if not ((openssh_listen_address == '') or (openssh_listen_address == [])) %}
 {% for listen_address in openssh_listen_address %}
 ListenAddress {{listen_address}}
 {% endfor %}
@@ -86,7 +78,7 @@ Protocol 2
 # HOST KEY
 #-------------------------------------------------------------------------------
 
-{% if (openssh_host_key is defined) and not ((openssh_host_key == None) or (openssh_host_key == '') or (openssh_host_key == [])) %}
+{% if not ((openssh_host_key == '') or (openssh_host_key == [])) %}
 {% for host_key in openssh_host_key %}
 HostKey {{(host_key|e)}}
 {% endfor %}
@@ -104,7 +96,7 @@ HostKey /etc/ssh/ssh_host_ed25519_key
 # CIPHERS
 #-------------------------------------------------------------------------------
 
-{% if (openssh_ciphers is defined) and not ((openssh_ciphers == None) or (openssh_ciphers == '') or (openssh_ciphers == [])) %}
+{% if not ((openssh_ciphers == '') or (openssh_ciphers == [])) %}
 Ciphers {% for ciphers in openssh_ciphers %}{{ciphers}}{% if not loop.last %},{% endif %}{% endfor %}
 
 {% else %}
@@ -115,7 +107,7 @@ Ciphers chacha20-poly1305@openssh.com,aes256-ctr,aes192-ctr
 # KEY EXCHANGE ALGORITHMS
 #-------------------------------------------------------------------------------
 
-{% if (openssh_kex_algorithms is defined) and not ((openssh_kex_algorithms == None) or (openssh_kex_algorithms == '') or (openssh_kex_algorithms == [])) %}
+{% if not ((openssh_kex_algorithms == '') or (openssh_kex_algorithms == [])) %}
 KexAlgorithms {% for kex_algorithms in openssh_kex_algorithms %}{{kex_algorithms}}{% if not loop.last %},{% endif %}{% endfor %}
 
 {% else %}
@@ -126,7 +118,7 @@ KexAlgorithms curve25519-sha256@libssh.org
 # MESSAGE AUTHENTICATION CODE ALGORITHMS
 #-------------------------------------------------------------------------------
 
-{% if (openssh_macs is defined) and not ((openssh_macs == None) or (openssh_macs == '') or (openssh_macs == [])) %}
+{% if not ((openssh_macs == '') or (openssh_macs == [])) %}
 MACs {% for macs in openssh_macs %}{{macs}}{% if not loop.last %},{% endif %}{% endfor %}
 
 {% else %}
@@ -163,12 +155,12 @@ MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-
 #MaxAuthTries 6
 #MaxSessions 10
 
-{% if (openssh_rsa_authentication is defined) and ((openssh_rsa_authentication == 'false') or (openssh_rsa_authentication == 'no') or (openssh_rsa_authentication == 'disable')) %}
+{% if (openssh_rsa_authentication|match('false|no|disable')) %}
 RSAAuthentication no
 {% else %}
 RSAAuthentication yes
 {% endif %}
-{% if (openssh_pubkey_authentication is defined) and ((openssh_pubkey_authentication == 'false') or (openssh_pubkey_authentication == 'no') or (openssh_pubkey_authentication == 'disable')) %}
+{% if (openssh_pubkey_authentication|match('false|no|disable')) %}
 PubkeyAuthentication no
 {% else %}
 PubkeyAuthentication yes
@@ -193,7 +185,7 @@ HostbasedAuthentication no
 IgnoreRhosts yes
 
 # Change to yes to enable built-in password authentication.
-{% if (openssh_password_authentication is defined) and ((openssh_password_authentication == 'false') or (openssh_password_authentication == 'no') or (openssh_password_authentication == 'disable')) %}
+{% if (openssh_password_authentication|match('false|no|disable')) %}
 PasswordAuthentication no
 {% else %}
 PasswordAuthentication yes
@@ -231,18 +223,14 @@ UsePAM yes
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
 #GatewayPorts no
-{% if (openssh_x11_forwarding is defined) and ((openssh_x11_forwarding == 'true') or (openssh_x11_forwarding == 'yes') or (openssh_x11_forwarding == 'enable')) %}
+{% if (openssh_x11_forwarding|match('true|yes|enable')) %}
 X11Forwarding yes
 {% else %}
 X11Forwarding no
 {% endif %}
-{% if (openssh_x11_forwarding is defined) and ((openssh_x11_forwarding == 'true') or (openssh_x11_forwarding == 'yes') or (openssh_x11_forwarding == 'enable')) %}
-{% if (openssh_x11_display_offset is defined) and not ((openssh_x11_display_offset == None) or (openssh_x11_display_offset == '')) %}
+{% if (openssh_x11_forwarding|match('true|yes|enable')) %}
 X11DisplayOffset {{(openssh_x11_display_offset|int(10))}}
-{% else %}
-X11DisplayOffset 10
-{% endif %}
-{% if (openssh_x11_use_localhost is defined) and ((openssh_x11_use_localhost == 'true') or (openssh_x11_use_localhost == 'yes') or (openssh_x11_use_localhost == 'enable')) %}
+{% if (openssh_x11_use_localhost|match('true|yes|enable')) %}
 X11UseLocalhost yes
 {% else %}
 X11UseLocalhost no
@@ -254,17 +242,17 @@ X11UseLocalhost no
 #-------------------------------------------------------------------------------
 
 #PermitTTY yes
-{% if (openssh_print_motd is defined) and ((openssh_print_motd == 'true') or (openssh_print_motd == 'yes') or (openssh_print_motd == 'enable')) %}
+{% if (openssh_print_motd|match('true|yes|enable')) %}
 PrintMotd yes
 {% else %}
 PrintMotd no
 {% endif %}
-{% if (openssh_print_last_log is defined) and ((openssh_print_last_log == 'false') or (openssh_print_last_log == 'no') or (openssh_print_last_log == 'disable')) %}
+{% if (openssh_print_last_log|match('false|no|disable')) %}
 PrintLastLog no
 {% else %}
 PrintLastLog yes
 {% endif %}
-{% if (openssh_tcp_keep_alive is defined) and ((openssh_tcp_keep_alive == 'false') or (openssh_tcp_keep_alive == 'no') or (openssh_tcp_keep_alive == 'disable')) %}
+{% if (openssh_tcp_keep_alive|match('false|no|disable')) %}
 TCPKeepAlive no
 {% else %}
 TCPKeepAlive yes
@@ -272,16 +260,16 @@ TCPKeepAlive yes
 #UseLogin no
 UsePrivilegeSeparation sandbox
 #PermitUserEnvironment no
-{% if (openssh_compression is defined) and ((openssh_compression == 'true') or (openssh_compression == 'yes') or (openssh_compression == 'enable')) %}
+{% if (openssh_compression|match('true|yes|enable')) %}
 Compression yes
-{% elif (openssh_compression is defined) and ((openssh_compression == 'false') or (openssh_compression == 'no') or (openssh_compression == 'disable')) %}
+{% elif (openssh_compression|match('false|no|disable')) %}
 Compression no
 {% else %}
 Compression delayed
 {% endif %}
 #ClientAliveInterval 0
 #ClientAliveCountMax 3
-{% if (openssh_use_dns is defined) and ((openssh_use_dns == 'true') or (openssh_use_dns == 'yes') or (openssh_use_dns == 'enable')) %}
+{% if (openssh_use_dns|match('true|yes|enable')) %}
 UseDNS yes
 {% else %}
 UseDNS no
@@ -290,18 +278,14 @@ UseDNS no
 #MaxStartups 10:30:100
 #PermitTunnel no
 #ChrootDirectory none
-{% if (openssh_version_addendum is defined) and not ((openssh_version_addendum == None) or (openssh_version_addendum == '')) %}
 VersionAddendum {{openssh_version_addendum}}
-{% else %}
-VersionAddendum none
-{% endif %}
 
 #-------------------------------------------------------------------------------
 # BANNER
 #-------------------------------------------------------------------------------
 
 # no default banner path
-{% if (openssh_banner is defined) and ((openssh_banner == 'false') or (openssh_banner == 'no') or (openssh_banner == 'disable')) %}
+{% if (openssh_banner|match('false|no|disable')) %}
 Banner none
 {% else %}
 Banner {{file_path_banner}}
@@ -318,7 +302,7 @@ Subsystem	sftp	/usr/libexec/sftp-server
 # CONDITIONAL
 #-------------------------------------------------------------------------------
 
-{% if (openssh_match is defined) and not ((openssh_match == None) or (openssh_match == '') or (openssh_match == [])) %}
+{% if not ((openssh_match == '') or (openssh_match == [])) %}
 {% for match in openssh_match %}
 Match {{match.type}} {{match.name}}
 {% for key, value in (match.config.items()|sort) %}
@@ -340,14 +324,14 @@ Match {{match.type}} {{match.name}}
 #-------------------------------------------------------------------------------
 
 # Specifies whether root can log in using ssh.
-{% if (openssh_permit_root_login is defined) and ((openssh_permit_root_login == 'true') or (openssh_permit_root_login == 'yes') or (openssh_permit_root_login == 'enable')) %}
+{% if (openssh_permit_root_login|match('true|yes|enable')) %}
 PermitRootLogin yes
 {% else %}
 PermitRootLogin no
 {% endif %}
 
 # Login is disallowed for user names that match one of the patterns.
-{% if (openssh_deny_users is defined) and not ((openssh_deny_users == None) or (openssh_deny_users == '') or (openssh_deny_users == [])) %}
+{% if not ((openssh_deny_users == '') or (openssh_deny_users == [])) %}
 DenyUsers {% for deny_users in openssh_deny_users %}{{deny_users}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
@@ -356,7 +340,7 @@ DenyUsers {% for deny_users in openssh_deny_users %}{{deny_users}}{% if not loop
 {% endif %}
 
 # Login is allowed only for user names that match one of the patterns.
-{% if (openssh_allow_users is defined) and not ((openssh_allow_users == None) or (openssh_allow_users == '') or (openssh_allow_users == [])) %}
+{% if not ((openssh_allow_users == '') or (openssh_allow_users == [])) %}
 AllowUsers {% for allow_users in openssh_allow_users %}{{allow_users}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
@@ -366,7 +350,7 @@ AllowUsers {% for allow_users in openssh_allow_users %}{{allow_users}}{% if not 
 
 # Login is disallowed for users whose primary group or
 # supplementary group list matches one of the patterns.
-{% if (openssh_deny_groups is defined) and not ((openssh_deny_groups == None) or (openssh_deny_groups == '') or (openssh_deny_groups == [])) %}
+{% if not ((openssh_deny_groups == '') or (openssh_deny_groups == [])) %}
 DenyGroups {% for deny_groups in openssh_deny_groups %}{{deny_groups}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
@@ -376,7 +360,7 @@ DenyGroups {% for deny_groups in openssh_deny_groups %}{{deny_groups}}{% if not 
 
 # Login is allowed only for users whose primary group or
 # supplementary group list matches one of the patterns.
-{% if (openssh_allow_groups is defined) and not ((openssh_allow_groups == None) or (openssh_allow_groups == '') or (openssh_allow_groups == [])) %}
+{% if not ((openssh_allow_groups == '') or (openssh_allow_groups == [])) %}
 AllowGroups {% for allow_groups in openssh_allow_groups %}{{allow_groups}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
