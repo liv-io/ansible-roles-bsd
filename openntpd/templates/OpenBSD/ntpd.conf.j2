@@ -3,8 +3,6 @@
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
 #
 #   _ _         Name   : openntpd.conf
 #  | (_)_   __  Type   : openntpd configuration file
@@ -12,12 +10,6 @@
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
-# DESCRIPTION
-#-------------------------------------------------------------------------------
-#
-#
 #
 #-------------------------------------------------------------------------------
 
@@ -32,12 +24,10 @@
 # Addresses to listen on (ntpd does not listen by default)
 #listen on *
 
-{% if (openntpd_listen is defined) and not ((openntpd_listen == None) or (openntpd_listen == '') or (openntpd_listen == [])) %}
+{% if (openntpd_listen is defined) and not ((openntpd_listen == '') or (openntpd_listen == [])) %}
 {% for item in (openntpd_listen|sort) %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+{% if (item.comment is defined) %}
 # {{(item.comment|e)}}
-{% else %}
-#
 {% endif %}
 {% for config in (item.config|sort) %}
 listen on {{config}}
@@ -57,19 +47,17 @@ listen on {{config}}
 # see http://support.ntp.org/bin/view/Servers/NTPPoolServers
 #servers pool.ntp.org
 
-{% if (openntpd_server is defined) and not ((openntpd_server == None) or (openntpd_server == '') or (openntpd_server == [])) %}
+{% if (openntpd_server is defined) and not ((openntpd_server == '') or (openntpd_server == [])) %}
 {% for item in (openntpd_server|sort) %}
-{% if (item.comment is defined) and not ((item.comment == None) or (item.comment == '')) %}
+{% if (item.comment is defined) %}
 # {{(item.comment|e)}}
-{% else %}
-#
 {% endif %}
 {% for server in (item.server|sort) %}
 {% if (item.type is defined) and ((item.type == 'single') or (item.type == 'server')) %}
-server {{(server|e)}} {% if (item.weight is defined) and not ((item.weight == None) or (item.weight == '')) %}weight {{(item.weight|int(1))}}{% endif %}
+server {{(server|e)}} {% if (item.weight is defined) and not (item.weight == '') %}weight {{(item.weight|int(1))}}{% endif %}
 
 {% else %}
-servers {{(server|e)}} {% if (item.weight is defined) and not ((item.weight == None) or (item.weight == '')) %}weight {{(item.weight|int(1))}}{% endif %}
+servers {{(server|e)}} {% if (item.weight is defined) and not (item.weight == '') %}weight {{(item.weight|int(1))}}{% endif %}
 
 {% endif %}
 {% endfor %}
