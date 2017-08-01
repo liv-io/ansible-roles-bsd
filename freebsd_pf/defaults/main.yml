@@ -21,9 +21,9 @@ freebsd_pf_blacklist_host: []
 freebsd_pf_filter_in_icmp: []
 
 freebsd_pf_filter_in_ip_all:
- - {config: {'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state',
-             'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state',
-             'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state'}, comment: 'SSH: From private address space (RFC 1918)'}
+  - {config: {'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state',
+              'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state',
+              'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state'}, comment: 'SSH: From private address space (RFC 1918)'}
 
 freebsd_pf_filter_in_ip_group: []
 
@@ -32,15 +32,15 @@ freebsd_pf_filter_in_ip_host: []
 freebsd_pf_filter_in_policy: 'block'
 
 freebsd_pf_filter_out_icmp:
- - {config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
-             'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'}, comment: 'ICMP echo request: To any'}
+  - {config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
+              'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'}, comment: 'ICMP echo request: To any'}
 
 freebsd_pf_filter_out_ip_all:
- - {config: {'pass out inet proto tcp to any port 53 $tcp_state',
-             'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'}
- - {config: {'pass out inet proto tcp to any port 80 $tcp_state'}, comment: 'HTTP: To any'}
- - {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'}
- - {config: {'pass out inet proto tcp to any port 443 $tcp_state'}, comment: 'HTTPS: To any'}
+  - {config: {'pass out inet proto tcp to any port 53 $tcp_state',
+              'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'}
+  - {config: {'pass out inet proto tcp to any port 80 $tcp_state'}, comment: 'HTTP: To any'}
+  - {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'}
+  - {config: {'pass out inet proto tcp to any port 443 $tcp_state'}, comment: 'HTTPS: To any'}
 
 freebsd_pf_filter_out_ip_group: []
 
@@ -91,13 +91,13 @@ freebsd_pf_pf_blacklist_template: 'default'
 freebsd_pf_pf_conf_template: 'default'
 
 freebsd_pf_scrub:
- - {config: {'in all fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'}
- - {config: {'out all random-id fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}
+  - {config: {'in all fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'}
+  - {config: {'out all random-id fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}
 
 freebsd_pf_table_blacklist: "{{file_path_pf_blacklist}}"
 
 freebsd_pf_table_all:
- - {config: {'<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'}, comment: 'Table: private address space (RFC 1918)'}
+  - {config: {'<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'}, comment: 'Table: private address space (RFC 1918)'}
 
 freebsd_pf_table_group: []
 
