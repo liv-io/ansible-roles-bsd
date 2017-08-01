@@ -79,7 +79,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : ''
+    Default    : 'false'
     Options    :
       Examples: 'ftp://proxy.domain.tld:3128'
       Disable : 'false' | 'no' | 'disable'
@@ -101,7 +101,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : ''
+    Default    : 'false'
     Options    :
       Examples: 'http://proxy.domain.tld:3128'
       Disable : 'false' | 'no' | 'disable'

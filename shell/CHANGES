@@ -12,6 +12,9 @@
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.1 (2017-08-01)
+B: Fix default values of 'shell_ftp_proxy' and 'shell_http_proxy' option
+
 * Version 1.0.0 (2017-08-01)
 I: Stabilize, improve and cleanup Ansible role
 
