@@ -13,6 +13,6 @@
 openbsd_syspatch_state: 'install'
 
 openbsd_syspatch_installurl:
- - {url: {'http://ftp.OpenBSD.org/pub/OpenBSD'}, comment: 'OpenBSD Packages'}
+  - {url: {'http://ftp.OpenBSD.org/pub/OpenBSD'}, comment: 'OpenBSD Packages'}
 
 openbsd_syspatch_installurl_template: 'default'
