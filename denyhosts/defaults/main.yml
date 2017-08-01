@@ -23,7 +23,7 @@ denyhosts_age_reset_root: 'false'
 denyhosts_age_reset_valid: 'false'
 
 denyhosts_allowed_hosts:
- - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
+  - {config: {'127.0.0.1'}, comment: 'Allow from localhost'}
 
 denyhosts_allowed_hosts_hostname_lookup: 'false'
 
