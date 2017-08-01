@@ -12,6 +12,9 @@
 
 --------------------------------------------------------------------------------
 
+* Version 0.5.2 (2017-08-01)
+I: Improve option 'openbsd_pf_option_loginterface'
+
 * Version 0.5.1 (2017-08-01)
 I: Improve and cleanup Ansible role
 

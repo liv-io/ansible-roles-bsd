@@ -68,7 +68,7 @@ openbsd_pf_option_hostid: 'false'
 
 openbsd_pf_option_limit: []
 
-openbsd_pf_option_loginterface: 'none'
+openbsd_pf_option_loginterface: 'false'
 
 openbsd_pf_option_optimization: 'normal'
 
