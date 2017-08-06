@@ -35,7 +35,7 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
-    - disable
+    - install
     - unix
     - ntp
 
@@ -44,7 +44,7 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
   tags:
     - commands
-    - disable
+    - install
     - unix
     - ntp
 
@@ -56,7 +56,7 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
-    - disable
+    - install
     - unix
     - ntp
 
@@ -65,7 +65,7 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
   tags:
     - commands
-    - disable
+    - install
     - unix
     - ntp
 
