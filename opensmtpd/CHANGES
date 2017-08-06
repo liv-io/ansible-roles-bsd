@@ -12,6 +12,9 @@
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.1 (2017-08-06)
+I: Revise Ansible tags
+
 * Version 1.0.0 (2017-08-01)
 I: Stabilize, improve and cleanup Ansible role
 
