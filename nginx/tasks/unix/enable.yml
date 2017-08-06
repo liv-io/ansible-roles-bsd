@@ -62,7 +62,7 @@
   register: register_dhparam_pem
   tags:
     - files
-    - install
+    - enable
     - unix
     - nginx
 
@@ -120,7 +120,7 @@
     - service reload nginx
   tags:
     - commands
-    - install
+    - enable
     - unix
     - nginx
 
