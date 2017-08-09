@@ -5,10 +5,9 @@
 #  | (_)_   __  Type   : ansible task file
 #  | | \ \ / /  Role   : lsof
 #  | | |\ V /
-#  |_|_| \_/    Authors: robomon community
+#  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
 #
-#    _|| ||_     Webpage: http://www.robomon.org/
 #-------------------------------------------------------------------------------
 
 - name: task include unix
