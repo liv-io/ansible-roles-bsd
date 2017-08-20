@@ -1,12 +1,12 @@
 ---
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : install.yml
-#  | (_)_   __  Type   : ansible task file
-#  | | \ \ / /  Role   : traceroute
-#  | | |\ V /
-#  |_|_| \_/    Authors: liv community
-#               License: Simplified BSD License
+# Name   : install.yml
+# Type   : ansible task file
+# Role   : traceroute
+#
+# Authors: liv community
+# License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
 
