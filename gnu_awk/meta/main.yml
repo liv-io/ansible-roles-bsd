@@ -1,12 +1,12 @@
 ---
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : main.yml
-#  | (_)_   __  Type   : ansible meta file
-#  | | \ \ / /  Role   : gnu_awk
-#  | | |\ V /
-#  |_|_| \_/    Authors: liv community
-#               License: Simplified BSD License
+# Name   : main.yml
+# Type   : ansible meta file
+# Role   : gnu_awk
+#
+# Authors: liv community
+# License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
 
