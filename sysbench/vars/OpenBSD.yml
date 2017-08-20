@@ -1,12 +1,12 @@
 ---
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : OpenBSD.yml
-#  | (_)_   __  Type   : ansible variable file
-#  | | \ \ / /  Role   : sysbench
-#  | | |\ V /
-#  |_|_| \_/    Authors: liv community
-#               License: Simplified BSD License
+# Name   : OpenBSD.yml
+# Type   : ansible variable file
+# Role   : sysbench
+#
+# Authors: liv community
+# License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
 
