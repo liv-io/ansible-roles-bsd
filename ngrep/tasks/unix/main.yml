@@ -1,12 +1,12 @@
 ---
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : main.yml
-#  | (_)_   __  Type   : ansible task file
-#  | | \ \ / /  Role   : ngrep
-#  | | |\ V /
-#  |_|_| \_/    Authors: liv community
-#               License: Simplified BSD License
+# Name   : main.yml
+# Type   : ansible task file
+# Role   : ngrep
+#
+# Authors: liv community
+# License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
 
