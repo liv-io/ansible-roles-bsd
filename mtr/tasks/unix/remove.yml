@@ -1,12 +1,12 @@
 ---
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : remove.yml
-#  | (_)_   __  Type   : ansible task file
-#  | | \ \ / /  Role   : mtr
-#  | | |\ V /
-#  |_|_| \_/    Authors: liv community
-#               License: Simplified BSD License
+# Name   : remove.yml
+# Type   : ansible task file
+# Role   : mtr
+#
+# Authors: liv community
+# License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
 
