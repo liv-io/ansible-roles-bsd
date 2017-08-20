@@ -1,12 +1,12 @@
 ---
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : main.yml
-#  | (_)_   __  Type   : ansible default file
-#  | | \ \ / /  Role   : zfs
-#  | | |\ V /
-#  |_|_| \_/    Authors: liv community
-#               License: Simplified BSD License
+# Name   : main.yml
+# Type   : ansible default file
+# Role   : zfs
+#
+# Authors: liv community
+# License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
 
