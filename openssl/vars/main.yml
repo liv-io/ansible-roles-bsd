@@ -1,12 +1,12 @@
 ---
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : main.yml
-#  | (_)_   __  Type   : ansible variable file
-#  | | \ \ / /  Role   : openssl
-#  | | |\ V /
-#  |_|_| \_/    Authors: liv community
-#               License: Simplified BSD License
+# Name   : main.yml
+# Type   : ansible variable file
+# Role   : openssl
+#
+# Authors: liv community
+# License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
 
