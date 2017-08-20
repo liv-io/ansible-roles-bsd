@@ -1,12 +1,12 @@
 ---
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : enable.yml
-#  | (_)_   __  Type   : ansible task file
-#  | | \ \ / /  Role   : postfix
-#  | | |\ V /
-#  |_|_| \_/    Authors: liv community
-#               License: Simplified BSD License
+# Name   : enable.yml
+# Type   : ansible task file
+# Role   : postfix
+#
+# Authors: liv community
+# License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
 
