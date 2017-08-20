@@ -1,12 +1,12 @@
 ---
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : FreeBSD.yml
-#  | (_)_   __  Type   : ansible variable file
-#  | | \ \ / /  Role   : monit
-#  | | |\ V /
-#  |_|_| \_/    Authors: liv community
-#               License: Simplified BSD License
+# Name   : FreeBSD.yml
+# Type   : ansible variable file
+# Role   : monit
+#
+# Authors: liv community
+# License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
 
