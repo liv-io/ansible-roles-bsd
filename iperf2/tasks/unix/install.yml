@@ -3,7 +3,7 @@
 #
 #   _ _         Name   : install.yml
 #  | (_)_   __  Type   : ansible task file
-#  | | \ \ / /  Role   : iperf
+#  | | \ \ / /  Role   : iperf2
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
@@ -21,18 +21,18 @@
   tags:
     - install
     - unix
-    - iperf
+    - iperf2
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package install iperf
+- name: package install iperf2
   package:
     state: 'present'
-    name: "{{package_name_iperf}}"
+    name: "{{package_name_iperf2}}"
   tags:
     - packaging
     - install
     - unix
-    - iperf
+    - iperf2

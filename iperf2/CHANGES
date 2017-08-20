@@ -12,6 +12,9 @@
 
 --------------------------------------------------------------------------------
 
+* Version 2.0.0 (2017-08-20)
+I: Rename Ansible role from 'iperf' to 'iperf2'
+
 * Version 1.0.0 (2017-08-01)
 I: Stabilize, improve and cleanup Ansible role
 

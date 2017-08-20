@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : iperf
+   _ _         Name   : iperf2
   | (_)_   __  Type   : ansible role
   | | \ \ / /  Group  : net-misc
   | | |\ V /
@@ -13,7 +13,7 @@
 DESCRIPTION
 --------------------------------------------------------------------------------
 
-This role manages iperf.
+This role manages iperf2.
 
 Iperf is a tool to measure maximum TCP bandwidth, allowing the tuning of various
 parameters and UDP characteristics. Iperf reports bandwidth, delay jitter,
@@ -29,30 +29,30 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-      - role: iperf
+      - role: iperf2
     vars:
-      iperf_state: 'install'
+      iperf2_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
-      - role: iperf
+      - role: iperf2
     vars:
-      iperf_state: 'remove'
+      iperf2_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-      - role: iperf
+      - role: iperf2
     vars:
-      iperf_state: 'inactive'
+      iperf2_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
 
 ROLE
-  iperf_state
+  iperf2_state
     Description: Control the state of the role.
     Implemented: 0.1
     Required   : False
@@ -75,7 +75,7 @@ DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  iperf
+  iperf2
     Version: >= 2.0
     Name   :
       FreeBSD 11: 'iperf'

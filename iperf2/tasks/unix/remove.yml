@@ -3,7 +3,7 @@
 #
 #   _ _         Name   : remove.yml
 #  | (_)_   __  Type   : ansible task file
-#  | | \ \ / /  Role   : iperf
+#  | | \ \ / /  Role   : iperf2
 #  | | |\ V /
 #  |_|_| \_/    Authors: liv community
 #               License: Simplified BSD License
@@ -21,18 +21,18 @@
   tags:
     - remove
     - unix
-    - iperf
+    - iperf2
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove iperf
+- name: package remove iperf2
   package:
     state: 'absent'
-    name: "{{package_name_iperf}}"
+    name: "{{package_name_iperf2}}"
   tags:
     - packaging
     - remove
     - unix
-    - iperf
+    - iperf2
