@@ -1,0 +1,38 @@
+---
+#-------------------------------------------------------------------------------
+#
+#   _ _         Name   : remove.yml
+#  | (_)_   __  Type   : ansible task file
+#  | | \ \ / /  Role   : iperf3
+#  | | |\ V /
+#  |_|_| \_/    Authors: liv community
+#               License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - remove
+    - unix
+    - iperf3
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package remove iperf3
+  package:
+    state: 'absent'
+    name: "{{package_name_iperf3}}"
+  tags:
+    - packaging
+    - remove
+    - unix
+    - iperf3

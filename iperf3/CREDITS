@@ -1,0 +1,19 @@
+--------------------------------------------------------------------------------
+
+               This file lists people that have contributed to the Ansible
+   _ _         role. The content is sorted by name and formatted to allow
+  | (_)_   __  easy grepping by scripts.
+  | | \ \ / /
+  | | |\ V /   The fields are:
+  |_|_| \_/    N: name                        P: PGP key ID and fingerprint
+               E: e-mail                      D: description
+               W: webpage                     S: snail-mail address
+
+--------------------------------------------------------------------------------
+
+N: l
+E: l@liv.io
+W: https://liv.io/
+P: 4096R/0D57B5DB 506A 86D0 7FF0 3E8E BC6E B518 1D62 64FC 0D57 B5DB
+D: Original author
+S: (ask for current address)
