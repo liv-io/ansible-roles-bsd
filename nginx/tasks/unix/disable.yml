@@ -1,12 +1,12 @@
 ---
 #-------------------------------------------------------------------------------
 #
-#   _ _         Name   : disable.yml
-#  | (_)_   __  Type   : ansible task file
-#  | | \ \ / /  Role   : nginx
-#  | | |\ V /
-#  |_|_| \_/    Authors: liv community
-#               License: Simplified BSD License
+# Name   : disable.yml
+# Type   : ansible task file
+# Role   : nginx
+#
+# Authors: liv community
+# License: Simplified BSD License
 #
 #-------------------------------------------------------------------------------
 
