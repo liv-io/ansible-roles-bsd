@@ -12,6 +12,6 @@
 
 - name: task include unix
   include: unix/main.yml
-  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("11\.0-*")))
+  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("11\.1-*")))
   tags:
     - gnu_netcat
