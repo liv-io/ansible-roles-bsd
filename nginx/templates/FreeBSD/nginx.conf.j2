@@ -20,20 +20,23 @@
 #user  nobody;
 worker_processes  1;
 
-#error_log  logs/error.log;
-#error_log  logs/error.log  notice;
-#error_log  logs/error.log  info;
+# This default error log path is compiled-in to make sure configuration parsing
+# errors are logged somewhere, especially during unattended boot when stderr
+# isn't normally logged anywhere. This path will be touched on every nginx
+# start regardless of error log location configured here. See
+# https://trac.nginx.org/nginx/ticket/147 for more info. 
+#
+#error_log  /var/log/nginx/error.log;
+#
 
 #pid        logs/nginx.pid;
-
-worker_rlimit_nofile {{(nginx_worker_rlimit_nofile|int(1024))}};
 
 #-------------------------------------------------------------------------------
 # EVENTS
 #-------------------------------------------------------------------------------
 
 events {
-    worker_connections {{(nginx_worker_connections|int(1024))}};
+    worker_connections  1024;
 }
 
 #-------------------------------------------------------------------------------
@@ -70,12 +73,13 @@ http {
     # CORE
     #---------------------------------------------------------------------------
 
-    #index             index.html index.htm;
-    sendfile           on;
-    #tcp_nopush        on;
-    #keepalive_timeout 0;
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
     keepalive_timeout  65;
-    #gzip              on;
+
+    #gzip  on;
 
     #---------------------------------------------------------------------------
     # VHOSTS
