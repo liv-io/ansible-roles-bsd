@@ -46,7 +46,7 @@ AddressFamily inet
 {% elif (openssh_address_family|match('inet6|ipv6')) %}
 AddressFamily inet6
 {% else %}
-#AddressFamily
+#AddressFamily any
 {% endif %}
 
 #-------------------------------------------------------------------------------
