@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : mytop
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : dev-db
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : mytop
+Type   : ansible role
+Group  : dev-db
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

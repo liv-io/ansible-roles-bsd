@@ -1,13 +1,15 @@
 --------------------------------------------------------------------------------
 
-               This file lists people that have contributed to the Ansible
-   _ _         role. The content is sorted by name and formatted to allow
-  | (_)_   __  easy grepping by scripts.
-  | | \ \ / /
-  | | |\ V /   The fields are:
-  |_|_| \_/    N: name                        P: PGP key ID and fingerprint
-               E: e-mail                      D: description
-               W: webpage                     S: snail-mail address
+This file lists people that have contributed to the Ansible role. The content
+is sorted by name and formatted to allow easy grepping by scripts.
+
+The fields are:
+N: name
+E: e-mail
+W: webpage
+P: PGP key ID and fingerprint
+D: description
+S: snail-mail address
 
 --------------------------------------------------------------------------------
 

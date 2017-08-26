@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : tcpreplay
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : net-analyzer
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : tcpreplay
+Type   : ansible role
+Group  : net-analyzer
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : lftp
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : net-ftp
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : lftp
+Type   : ansible role
+Group  : net-ftp
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

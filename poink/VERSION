@@ -1,18 +1,1 @@
---------------------------------------------------------------------------------
-
-   _ _
-  | (_)_   __  This file holds the current version of the
-  | | \ \ / /  Ansible role.
-  | | |\ V /   It follows semantic versioning guidelines.
-  |_|_| \_/
-
-
- The format is:
- MAJOR.MINOR.PATCH
- MAJOR: incompatible API change
- MINOR: backwards-compatible feature
- PATCH: backwards-compatible bug fix
-
---------------------------------------------------------------------------------
-
 1.0.0

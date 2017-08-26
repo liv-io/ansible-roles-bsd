@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : vlock
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : app-misc
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : vlock
+Type   : ansible role
+Group  : app-misc
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

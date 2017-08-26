@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : sshpass
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : net-misc
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : sshpass
+Type   : ansible role
+Group  : net-misc
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

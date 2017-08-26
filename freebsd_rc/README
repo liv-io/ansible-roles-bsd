@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : freebsd_rc
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : sys-core
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : freebsd_rc
+Type   : ansible role
+Group  : sys-core
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : patchutils
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : dev-util
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : patchutils
+Type   : ansible role
+Group  : dev-util
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

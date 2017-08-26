@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : nano
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : app-editors
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : nano
+Type   : ansible role
+Group  : app-editors
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

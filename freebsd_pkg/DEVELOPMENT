@@ -1,10 +1,6 @@
 --------------------------------------------------------------------------------
 
-   _ _         This Ansible role is still in active development. Please use
-  | (_)_   __  with caution.
-  | | \ \ / /
-  | | |\ V /   Warning:
-  |_|_| \_/    This Ansible role may harm your system!
-
+This Ansible role is still in active development. Please use with caution.
+Warning: This Ansible role may harm your system!
 
 --------------------------------------------------------------------------------

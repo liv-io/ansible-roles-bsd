@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : ncdu
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : sys-fs
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : ncdu
+Type   : ansible role
+Group  : sys-fs
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

@@ -1,10 +1,10 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : README
-  | (_)_   __  Type   : Ansible roles
-  | | \ \ / /  Summary: Ansible roles for FreeBSD and OpenBSD
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : README
+Type   : Ansible roles
+Summary: Ansible roles for FreeBSD and OpenBSD
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------

@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : psmisc
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : sys-process
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : psmisc
+Type   : ansible role
+Group  : sys-process
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

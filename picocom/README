@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : picocom
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : net-dialup
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : picocom
+Type   : ansible role
+Group  : net-dialup
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

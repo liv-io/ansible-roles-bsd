@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : opensmtpd
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : mail-mta
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : opensmtpd
+Type   : ansible role
+Group  : mail-mta
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : python_yaml
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : dev-python
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : python_yaml
+Type   : ansible role
+Group  : dev-python
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

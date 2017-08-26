@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : periodic
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : sys-core
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : periodic
+Type   : ansible role
+Group  : sys-core
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

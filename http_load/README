@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : http_load
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : app-benchmarks
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : http_load
+Type   : ansible role
+Group  : app-benchmarks
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : zsh
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : app-shells
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : zsh
+Type   : ansible role
+Group  : app-shells
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

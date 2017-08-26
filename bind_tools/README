@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : bind_tools
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : net-dns
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : bind_tools
+Type   : ansible role
+Group  : net-dns
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

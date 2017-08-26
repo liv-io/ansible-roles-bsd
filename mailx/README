@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : mailx
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : mail-client
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : mailx
+Type   : ansible role
+Group  : mail-client
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

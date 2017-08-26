@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : unzip
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : app-arch
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : unzip
+Type   : ansible role
+Group  : app-arch
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

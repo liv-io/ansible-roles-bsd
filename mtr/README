@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : mtr
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : net-analyzer
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : mtr
+Type   : ansible role
+Group  : net-analyzer
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

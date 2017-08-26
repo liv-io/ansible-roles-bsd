@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : python_jinja2
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : dev-python
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : python_jinja2
+Type   : ansible role
+Group  : dev-python
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : arping
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : net-analyzer
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : arping
+Type   : ansible role
+Group  : net-analyzer
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

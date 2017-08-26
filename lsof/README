@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : lsof
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : sys-process
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : lsof
+Type   : ansible role
+Group  : sys-process
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

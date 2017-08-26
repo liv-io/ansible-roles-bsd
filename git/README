@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : git
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : dev-vcs
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : git
+Type   : ansible role
+Group  : dev-vcs
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

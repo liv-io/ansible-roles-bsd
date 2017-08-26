@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : sudo
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : app-admin
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : sudo
+Type   : ansible role
+Group  : app-admin
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : sdparm
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : sys-apps
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : sdparm
+Type   : ansible role
+Group  : sys-apps
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

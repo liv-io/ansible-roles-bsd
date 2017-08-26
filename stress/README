@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : stress
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : app-benchmarks
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : stress
+Type   : ansible role
+Group  : app-benchmarks
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

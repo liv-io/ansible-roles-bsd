@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : multitail
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : app-text
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : multitail
+Type   : ansible role
+Group  : app-text
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : common
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : sys-admin
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : common
+Type   : ansible role
+Group  : sys-admin
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

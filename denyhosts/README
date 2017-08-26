@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : denyhosts
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : app-admin
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : denyhosts
+Type   : ansible role
+Group  : app-admin
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

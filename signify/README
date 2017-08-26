@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : signify
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : sys-core
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : signify
+Type   : ansible role
+Group  : sys-core
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 

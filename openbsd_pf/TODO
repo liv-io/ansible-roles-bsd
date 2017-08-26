@@ -1,11 +1,6 @@
 --------------------------------------------------------------------------------
 
-   _ _
-  | (_)_   __  This file lists pending tasks for this Ansible role.
-  | | \ \ / /
-  | | |\ V /
-  |_|_| \_/
-
+This file lists pending tasks for this Ansible role.
 
 --------------------------------------------------------------------------------
 
@@ -20,19 +15,6 @@ IMPROVEMENTS
 --------------------------------------------------------------------------------
 FEATURES
 --------------------------------------------------------------------------------
-
-VARIABLES
-  openbsd_pf_anchors
-    Description: Add support for 'anchors' pf option
-
-  openbsd_pf_queueing
-    Description: Add support for 'queueing' pf option
-
-  openbsd_pf_ipv4_forwarding
-    Description: Add support for 'ip.forwarding' sysctl option
-
-  openbsd_pf_ipv6_forwarding
-    Description: Add support for 'ip6.forwarding' sysctl option
 
 --------------------------------------------------------------------------------
 SUPPORT

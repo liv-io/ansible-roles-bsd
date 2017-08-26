@@ -1,11 +1,11 @@
 --------------------------------------------------------------------------------
 
-   _ _         Name   : openssl
-  | (_)_   __  Type   : ansible role
-  | | \ \ / /  Group  : dev-libs
-  | | |\ V /
-  |_|_| \_/    Authors: liv community
-               License: Simplified BSD License
+Name   : openssl
+Type   : ansible role
+Group  : dev-libs
+
+Authors: liv community
+License: Simplified BSD License
 
 --------------------------------------------------------------------------------
 
