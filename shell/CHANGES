@@ -12,6 +12,10 @@
 
 --------------------------------------------------------------------------------
 
+* Version 1.1.0 (2017-08-26)
+F: Add support for FreeBSD 11.1-RELEASE
+F: Drop support for FreeBSD 11.0-RELEASE
+
 * Version 1.0.1 (2017-08-01)
 B: Fix default values of 'shell_ftp_proxy' and 'shell_http_proxy' option
 
