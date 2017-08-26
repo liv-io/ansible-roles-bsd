@@ -12,6 +12,10 @@
 
 --------------------------------------------------------------------------------
 
+* Version 2.1.0 (2017-08-26)
+F: Add support for FreeBSD 11.1-RELEASE
+F: Drop support for FreeBSD 11.0-RELEASE
+
 * Version 2.0.0 (2017-08-20)
 I: Rename Ansible role from 'iperf' to 'iperf2'
 
