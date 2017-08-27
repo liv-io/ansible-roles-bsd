@@ -22,17 +22,5 @@ file_line_smtpd_enable: 'smtpd_enable'
 file_path_sendmail_enable: '/etc/rc.conf'
 file_line_sendmail_enable: 'sendmail_enable'
 
-# sendmail_msp_queue_enable
-file_path_sendmail_msp_queue_enable: '/etc/rc.conf'
-file_line_sendmail_msp_queue_enable: 'sendmail_msp_queue_enable'
-
-# sendmail_outbound_enable
-file_path_sendmail_outbound_enable: '/etc/rc.conf'
-file_line_sendmail_outbound_enable: 'sendmail_outbound_enable'
-
-# sendmail_submit_enable
-file_path_sendmail_submit_enable: '/etc/rc.conf'
-file_line_sendmail_submit_enable: 'sendmail_submit_enable'
-
 # smtpd.conf
 file_path_smtpd_conf: '/usr/local/etc/mail/smtpd.conf'
