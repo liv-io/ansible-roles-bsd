@@ -1,14 +1,4 @@
 ---
-#-------------------------------------------------------------------------------
-#
-# Name   : main.yml
-# Type   : ansible variable file
-# Role   : denyhosts
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
 
 # denyhosts_daemon_log
 denyhosts_daemon_log: '/var/log/denyhosts'

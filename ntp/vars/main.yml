@@ -1,14 +1,4 @@
 ---
-#-------------------------------------------------------------------------------
-#
-# Name   : main.yml
-# Type   : ansible variable file
-# Role   : ntp
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
 
 # ntp_command
 ntp_command: 'ntpdate -s -b'

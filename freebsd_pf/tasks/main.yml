@@ -1,14 +1,4 @@
 ---
-#-------------------------------------------------------------------------------
-#
-# Name   : main.yml
-# Type   : ansible task file
-# Role   : freebsd_pf
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
 
 - name: task include freebsd
   include: freebsd/main.yml

@@ -1,13 +1,3 @@
 ---
-#-------------------------------------------------------------------------------
-#
-# Name   : main.yml
-# Type   : ansible default file
-# Role   : trafshow
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
 
 trafshow_state: 'install'

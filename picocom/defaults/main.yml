@@ -1,13 +1,3 @@
 ---
-#-------------------------------------------------------------------------------
-#
-# Name   : main.yml
-# Type   : ansible default file
-# Role   : picocom
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
 
 picocom_state: 'install'

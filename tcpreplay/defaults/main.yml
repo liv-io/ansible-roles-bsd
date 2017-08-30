@@ -1,13 +1,3 @@
 ---
-#-------------------------------------------------------------------------------
-#
-# Name   : main.yml
-# Type   : ansible default file
-# Role   : tcpreplay
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
 
 tcpreplay_state: 'install'

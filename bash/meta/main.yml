@@ -1,14 +1,4 @@
 ---
-#-------------------------------------------------------------------------------
-#
-# Name   : main.yml
-# Type   : ansible meta file
-# Role   : bash
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
 
 dependencies:
   - {role: 'shell', when: not (bash_state|match('false|no|remove|quiesce|inactive'))}

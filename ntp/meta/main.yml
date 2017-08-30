@@ -1,14 +1,4 @@
 ---
-#-------------------------------------------------------------------------------
-#
-# Name   : main.yml
-# Type   : ansible meta file
-# Role   : ntp
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
 
 dependencies:
   - {role: 'common', when: (ntp_state|match('cron|cronjob'))}

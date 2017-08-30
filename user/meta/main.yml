@@ -1,14 +1,4 @@
 ---
-#-------------------------------------------------------------------------------
-#
-# Name   : main.yml
-# Type   : ansible meta file
-# Role   : user
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
 
 dependencies:
   - {role: 'group', when: not (user_state|match('false|no|disable|quiesce|inactive'))}

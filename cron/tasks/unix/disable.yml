@@ -1,13 +1,7 @@
 ---
+
 #-------------------------------------------------------------------------------
-#
-# Name   : disable.yml
-# Type   : ansible task file
-# Role   : cron
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
+# VARIABLES
 #-------------------------------------------------------------------------------
 
 - name: include variables

@@ -1,14 +1,4 @@
 ---
-#-------------------------------------------------------------------------------
-#
-# Name   : main.yml
-# Type   : ansible meta file
-# Role   : openbsd_syspatch
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
 
 dependencies:
   - {role: 'signify', when: not (openbsd_syspatch_state|match('false|no|disable|quiesce|inactive'))}

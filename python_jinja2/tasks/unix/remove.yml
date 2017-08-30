@@ -1,13 +1,7 @@
 ---
+
 #-------------------------------------------------------------------------------
-#
-# Name   : remove.yml
-# Type   : ansible task file
-# Role   : python_jinja2
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
+# VARIABLES
 #-------------------------------------------------------------------------------
 
 - name: include variables

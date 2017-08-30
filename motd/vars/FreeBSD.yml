@@ -1,14 +1,4 @@
 ---
-#-------------------------------------------------------------------------------
-#
-# Name   : FreeBSD.yml
-# Type   : ansible variable file
-# Role   : motd
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
 
 # motd_os_color
 motd_os_color: '0;31m'

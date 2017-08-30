@@ -1,13 +1,7 @@
 ---
+
 #-------------------------------------------------------------------------------
-#
-# Name   : install.yml
-# Type   : ansible task file
-# Role   : group
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
+# VARIABLES
 #-------------------------------------------------------------------------------
 
 - name: include variables
