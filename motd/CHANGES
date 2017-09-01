@@ -11,6 +11,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.1.1 (2017-09-01)
+I: Minor 'motd' style improvement
+
 * Version 1.1.0 (2017-08-26)
 F: Add support for FreeBSD 11.1-RELEASE
 F: Drop support for FreeBSD 11.0-RELEASE
