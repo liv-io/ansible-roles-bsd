@@ -10,7 +10,7 @@
     line: "{{item.name}}=\"{{item.value if not (item.value == '') else ''}}\" # Ansible: {{(item.comment|e) if (item.comment is defined) else ''}}"
     regexp: "^{{item.name}}="
     dest: "{{(item.path|e) if (item.path is defined) and not (item.path == '') else (openbsd_rc_path_default|e)}}"
-  with_items: "{{openbsd_rc_all}}"
+  with_items: "{{openbsd_rc_all + openbsd_rc_group + openbsd_rc_host}}"
   tags:
     - files
     - config

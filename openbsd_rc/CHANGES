@@ -11,6 +11,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.1 (2017-09-03)
+B: Add missing 'with_items' attributes
+
 * Version 1.0.0 (2017-08-01)
 I: Stabilize, improve and cleanup Ansible role
 
