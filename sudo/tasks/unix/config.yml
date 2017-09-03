@@ -29,7 +29,7 @@
     owner: "{{file_owner_sudo_config}}"
     group: "{{file_group_sudo_config}}"
     validate: "{{file_validate_sudo_config}}"
-  with_items: "{{sudo_all + sudo_group + sudo_all}}"
+  with_items: "{{sudo_all + sudo_group + sudo_host}}"
   when: not (item.state|match('false|no|remove'))
   tags:
     - files
