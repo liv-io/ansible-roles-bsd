@@ -2,7 +2,7 @@
 
 Name   : zfs_stats
 Type   : ansible role
-Group  : dev-libs
+Group  : sys-apps
 
 Authors: liv community
 License: Simplified BSD License
@@ -68,6 +68,7 @@ CONFLICTS
 --------------------------------------------------------------------------------
 
 ROLES
+  zfs_stats_lite
 
 --------------------------------------------------------------------------------
 DEPENDENCIES
