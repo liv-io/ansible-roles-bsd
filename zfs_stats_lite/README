@@ -1,0 +1,132 @@
+--------------------------------------------------------------------------------
+
+Name   : zfs_stats_lite
+Type   : ansible role
+Group  : sys-apps
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages zfs_stats_lite.
+
+zfs-stats displays ZFS statistics in human-readable format including
+ARC, L2ARC, zfetch (DMU) and vdev cache statistics.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: zfs_stats_lite
+    vars:
+      zfs_stats_lite_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: zfs_stats_lite
+    vars:
+      zfs_stats_lite_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: zfs_stats_lite
+    vars:
+      zfs_stats_lite_state: 'inactive'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  zfs_stats_lite_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+  zfs_stats_lite
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  zfs_stats_lite
+    Version: >= 1.0
+    Name   :
+      FreeBSD 11: 'zfs-stats'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 2.0
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 11.1-*
+      Status: Stable
+
+  OpenBSD
+    Version: 6.1
+      Status: Unsupported
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

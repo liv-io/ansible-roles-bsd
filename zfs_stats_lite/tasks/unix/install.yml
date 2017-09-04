@@ -1,0 +1,32 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: include variables
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - install
+    - unix
+    - zfs_stats_lite
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: package install zfs_stats_lite
+  package:
+    state: 'present'
+    name: "{{package_name_zfs_stats_lite}}"
+  tags:
+    - packaging
+    - install
+    - unix
+    - zfs_stats_lite
