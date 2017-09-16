@@ -4,7 +4,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: host config host-config
+- name: line config hosts
   lineinfile:
     state: "{{'absent' if (item.state is defined) and ((item.state == 'false') or (item.state == 'no') or (item.state == 'remove')) else 'present'}}"
     line: "{{(item.ip|e)}} {{(item.name|e)}} {{item.aliases|join(' ') if (item.aliases is defined) and not ((item.aliases == '') or (item.aliases == [])) else ''}} # {{(item.comment|e) if (item.comment is defined) else ''}} | Ansible: {{item.ip|md5}}"
