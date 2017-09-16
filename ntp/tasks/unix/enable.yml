@@ -57,12 +57,12 @@
     - unix
     - ntp
 
-- name: file config rc.conf
+- name: line enable ntpd_enable
   lineinfile:
     state: 'present'
-    line: "{{file_line_rc_conf}}=\"YES\" # Ansible: Enable ntp"
-    regexp: "^{{file_line_rc_conf}}="
-    dest: "{{file_path_rc_conf}}"
+    line: "{{file_path_ntpd_enable}}=\"YES\" # Ansible: Enable ntp"
+    regexp: "^{{file_line_ntpd_enable}}="
+    dest: "{{file_path_ntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
