@@ -26,7 +26,7 @@ openssh_kex_algorithms: ['curve25519-sha256@libssh.org']
 
 openssh_listen_address: ['0.0.0.0']
 
-openssh_macs: ['hmac-sha2-512-etm@openssh.com', 'hmac-sha2-256-etm@openssh.com', 'hmac-ripemd160-etm@openssh.com', 'hmac-sha2-512', 'hmac-sha2-256', 'hmac-ripemd160']
+openssh_macs: ['hmac-sha2-512-etm@openssh.com', 'hmac-sha2-256-etm@openssh.com', 'hmac-sha2-512', 'hmac-sha2-256']
 
 openssh_match: []
 
