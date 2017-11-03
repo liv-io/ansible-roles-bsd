@@ -11,6 +11,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.6.0 (2017-10-18)
+F: Add support for OpenBSD 6.2
+F: Drop support for OpenBSD 6.1
+
 * Version 0.5.2 (2017-08-01)
 I: Improve option 'openbsd_pf_option_loginterface'
 
