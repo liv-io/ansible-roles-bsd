@@ -2,6 +2,6 @@
 
 - name: task include openbsd
   include: openbsd/main.yml
-  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version == '6.1'))
+  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version == '6.2'))
   tags:
     - openbsd_rc
