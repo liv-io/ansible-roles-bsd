@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.2.0 (2017-11-06)
+F: Add M:Tier public key for OpenBSD 6.2
+F: Remove M:Tier public key for OpenBSD 6.0
+
 * Version 1.1.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
 F: Drop support for OpenBSD 6.1

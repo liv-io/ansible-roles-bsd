@@ -1,8 +1,7 @@
 ---
 
-# TODO
-#- name: task include openbsd
-#  include: openbsd/main.yml
-#  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version == '6.2'))
-#  tags:
-#    - signify
+- name: task include openbsd
+  include: openbsd/main.yml
+  when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version == '6.2'))
+  tags:
+    - signify
