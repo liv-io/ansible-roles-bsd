@@ -1,0 +1,22 @@
+---
+
+- name: 'task include install'
+  include: install.yml
+  when: not (sysctl_state|match('false|no|remove|quiesce|inactive'))
+  tags:
+    - unix
+    - sysctl
+
+- name: 'task include config'
+  include: config.yml
+  when: not (sysctl_state|match('false|no|remove|quiesce|inactive'))
+  tags:
+    - unix
+    - sysctl
+
+- name: 'task include remove'
+  include: remove.yml
+  when: (sysctl_state|match('false|no|remove'))
+  tags:
+    - unix
+    - sysctl

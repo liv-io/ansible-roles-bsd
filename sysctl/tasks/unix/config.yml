@@ -1,0 +1,37 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line config sysctl.conf'
+  lineinfile:
+    state: "{{'absent' if (item.state is defined) and (item.state|match('false|no|remove')) else 'present'}}"
+    mode: "{{file_mode_sysctl_conf}}"
+    owner: "{{file_owner_sysctl_conf}}"
+    group: "{{file_group_sysctl_conf}}"
+    line: "{{item.key}}={{item.value}} # {{(item.comment|e) if (item.comment is defined) else ''}}"
+    regexp: '^{{item.key}}='
+    dest: "{{file_path_sysctl_conf}}"
+  with_items: "{{sysctl_all + sysctl_group + sysctl_host + sysctl_dependencies}}"
+  tags:
+    - files
+    - config
+    - unix
+    - sysctl
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command config sysctl'
+  shell: "sysctl -aq | grep -q '{{item.key}}={{item.value}}' || sysctl -q {{item.key}}={{item.value}} && true"
+  register: "register_config_sysctl"
+  changed_when: (register_config_sysctl.rc > 1)
+  failed_when: (register_config_sysctl.rc > 1)
+  with_items: "{{sysctl_all + sysctl_group + sysctl_host + sysctl_dependencies}}"
+  tags:
+    - commands
+    - config
+    - unix
+    - sysctl

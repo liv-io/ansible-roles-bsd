@@ -1,0 +1,213 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : sysctl
+Type   : ansible role
+Group  : sys-core
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages sysctl.
+
+The sysctl utility retrieves kernel state and allows processes with appropriate
+privilege to set kernel state. The state to be retrieved or set is described
+using a "Management Information Base" (MIB) style name, described as a dotted
+set of components.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: sysctl
+    vars:
+      sysctl_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: sysctl
+    vars:
+      sysctl_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: sysctl
+    vars:
+      sysctl_state: 'inactive'
+
+CONFIG
+  vars:
+    sysctl_all:
+      - name: 'net.inet.carp.preempt'
+        state: 'true'
+        value: '1'
+
+    sysctl_dependencies
+      - name: 'net.inet.carp.allow'
+        state: 'true'
+        value: '1'
+
+    sysctl_group:
+      - name: 'net.inet.ip.ttl'
+        state: 'false'
+        value: '64'
+
+    sysctl_host:
+      - name: 'kern.hostname'
+        state: 'true'
+        value: 'host.domain.tld'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  sysctl_state
+      Description: Control the state of the role.
+      Implemented: 0.1
+      Required   : False
+      Value      : Predetermined
+      Type       : String
+      Default    : 'install'
+      Options    :
+        Install : 'true' | 'yes' | 'install'
+        Remove  : 'false' | 'no' | 'remove'
+        Inactive: 'quiesce' | 'inactive'
+
+  sysctl_all
+    Description: Define the 'sysctl_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'net.inet.carp.preempt', value: '1'}},
+                 {name: 'net.inet.carp.allow', value: '1'}}]
+      None    : []
+
+  sysctl_dependencies
+    Description: Define the 'sysctl_dependencies' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'net.inet.carp.preempt', value: '1'}},
+                 {name: 'net.inet.carp.allow', value: '1'}}]
+      None    : []
+
+  sysctl_group
+    Description: Define the 'sysctl_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'net.inet.carp.preempt', value: '1'}},
+                 {name: 'net.inet.carp.allow', value: '1'}}]
+      None    : []
+
+  sysctl_host
+    Description: Define the 'sysctl_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'net.inet.carp.preempt', value: '1'}},
+                 {name: 'net.inet.carp.allow', value: '1'}}]
+      None    : []
+
+  sysctl_sysctl_conf_template
+    Description: Define the template source for 'sysctl.conf.j2'.
+                 Any value other than 'default' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'sysctl/templates/example/sysctl.conf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'default'
+    Options    :
+      Examples: 'example' | 'environment' | 'sysctl'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 2.0
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 11.1-*
+      Status: Unsupported
+
+  OpenBSD
+    Version: 6.2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

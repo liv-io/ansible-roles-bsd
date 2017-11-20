@@ -1,0 +1,12 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# sysctl.conf
+file_src_sysctl_conf: "templates/{{(sysctl_sysctl_conf_template|e)}}/sysctl.conf.j2"
+file_path_sysctl_conf: '/etc/sysctl.conf'
+file_mode_sysctl_conf: '0644'
+file_owner_sysctl_conf: 'root'
+file_group_sysctl_conf: 'wheel'
