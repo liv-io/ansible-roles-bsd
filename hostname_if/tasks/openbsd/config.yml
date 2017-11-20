@@ -1,0 +1,70 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - config
+    - openbsd
+    - hostname_if
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'template create hostname.if'
+  template:
+    src: "templates/{{(item.template|e) if (item.template is defined) and not (item.template == '') else hostname_if_hostname_if_template}}/hostname.if.j2"
+    dest: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
+    mode: "{{file_mode_hostname_if}}"
+    owner: "{{file_owner_hostname_if}}"
+    group: "{{file_group_hostname_if}}"
+  with_items: "{{hostname_if_all + hostname_if_group + hostname_if_host + hostname_if_dependencies}}"
+  notify:
+    - 'command run netstart'
+  when: not (item.state|default('')|match('false|no|remove'))
+  tags:
+    - files
+    - config
+    - openbsd
+    - hostname_if
+
+- name: 'file remove hostname.if'
+  file:
+    state: 'absent'
+    path: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
+  with_items: "{{hostname_if_all + hostname_if_group + hostname_if_host + hostname_if_dependencies}}"
+  notify:
+    - 'command run netstart'
+  when: (item.state|default('')|match('false|no|remove'))
+  tags:
+    - files
+    - config
+    - openbsd
+    - hostname_if
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command destroy ifconfig'
+  shell: "ifconfig {{item.interface}} destroy"
+  register: "register_check_ifconfig"
+  changed_when: (register_check_ifconfig.rc > 1)
+  failed_when: (register_check_ifconfig.rc > 1)
+  with_items: "{{hostname_if_all + hostname_if_group + hostname_if_host + hostname_if_dependencies}}"
+  when: (item.state|default('')|match('false|no|remove')) and (item.interface in ansible_interfaces)
+  tags:
+    - commands
+    - config
+    - openbsd
+    - hostname_if

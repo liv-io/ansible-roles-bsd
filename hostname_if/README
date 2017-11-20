@@ -1,0 +1,306 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : hostname_if
+Type   : ansible role
+Group  : sys-core
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+This role manages hostname.
+
+The hostname.* files contain information regarding the configuration of each
+network interface. One file should exist for each interface that is to be
+configured, such as hostname.fxp0 or hostname.bridge0. A configuration file is
+not needed for lo0.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: hostname
+    vars:
+      hostname_state: 'install'
+      hostname_if_carp_allow: 'true'
+      hostname_if_carp_preempt: 'true'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: hostname
+    vars:
+      hostname_state: 'inactive'
+
+CONFIG
+  vars:
+    hostname_if_all:
+      - interface: pfsync0
+        interfaces:
+          - { type: 'pfsync', syncdev: 'vio0', description: 'pfsync' }
+      - interface: vio0
+        interfaces:
+          - { ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt' }
+        routes:
+          - { network: 'default', gateway: '10.1.1.1' }
+      - interface: 'vio2'
+        description: 'zone'
+      - interface: 'vlan300'
+        interfaces:
+          - { ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base' }
+      - interface: 'carp300'
+        interfaces:
+          - { type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base' }
+
+    hostname_if_dependencies:
+      - interface: 'pfsync0'
+        interfaces:
+          - { type: 'pfsync', syncdev: 'vio0', description: 'pfsync' }
+      - interface: 'vio0'
+        interfaces:
+          - { ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt' }
+        routes:
+          - { network: 'default', gateway: '10.1.1.1' }
+      - interface: 'vio2'
+        description: 'zone'
+      - interface: 'vlan300'
+        interfaces:
+          - { ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base' }
+      - interface: 'carp300'
+        interfaces:
+          - { type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base' }
+
+    hostname_if_group:
+      - interface: 'vio0'
+        interfaces:
+          - { ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt' }
+        routes:
+          - { network: 'default', gateway: '10.1.1.1' }
+      - interface: 'vio1'
+        description: 'zone'
+      - interface: 'vlan301'
+        interfaces:
+          - { ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio1', description: 'v_w_int_db' }
+
+    hostname_if_host:
+      - interface: 'vio0'
+        interfaces:
+          - { ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt' }
+        routes:
+          - { network: 'default', gateway: '10.1.1.1' }
+      - interface: 'vio1'
+        description: 'zone'
+      - interface: 'vlan301'
+        interfaces:
+          - { ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio1', description: 'v_w_int_db' }
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  hostname_if_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Inactive: 'quiesce' | 'inactive'
+
+  hostname_if_all
+    Description: Define the 'hostname_if_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{interface: 'pfsync0', interfaces: [{type: 'pfsync', syncdev: 'vio0', description: 'pfsync'}]},
+                 {interface: 'vio0', interfaces: [{ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt'}],
+                                     routes: [{network: 'default', gateway: '10.1.1.1'}]},
+                 {interface: 'vio1', description: 'transit'},
+                 {interface: 'vlan1000', interfaces: [{ip: '10.250.0.1', netmask: '255.255.255.0', vnetid: '100', vlandev: 'vio1', description: 'v_z_base_transit'}]},
+                 {interface: 'vlan1001', interfaces: [{ip: '10.250.1.1', netmask: '255.255.255.0', vnetid: '101', vlandev: 'vio1', description: 'v_z_prd_transit'}]},
+                 {interface: 'vio2', description: 'zone'},
+                 {interface: 'vlan300', interfaces: [{ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base'}]},
+                 {interface: 'carp300', interfaces: [{type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base'}]},
+                 {interface: 'vlan301', interfaces: [{ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio2', description: 'v_w_int_db'}]},
+                 {interface: 'vlan302', interfaces: [{ip: '10.13.2.1', netmask: '255.255.255.0', vnetid: '302', vlandev: 'vio2', description: 'v_w_int_app'}]}]
+      None    : []
+
+  hostname_if_carp_allow
+    Description: Control the 'hostname_if_carp_allow' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  hostname_if_carp_preempt
+    Description: Control the 'hostname_if_carp_preempt' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  hostname_if_dependencies
+    Description: Define the 'hostname_if_dependencies' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{interface: 'pfsync0', interfaces: [{type: 'pfsync', syncdev: 'vio0', description: 'pfsync'}]},
+                 {interface: 'vio0', interfaces: [{ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt'}],
+                                     routes: [{network: 'default', gateway: '10.1.1.1'}]},
+                 {interface: 'vio1', description: 'transit'},
+                 {interface: 'vlan1000', interfaces: [{ip: '10.250.0.1', netmask: '255.255.255.0', vnetid: '100', vlandev: 'vio1', description: 'v_z_base_transit'}]},
+                 {interface: 'vlan1001', interfaces: [{ip: '10.250.1.1', netmask: '255.255.255.0', vnetid: '101', vlandev: 'vio1', description: 'v_z_prd_transit'}]},
+                 {interface: 'vio2', description: 'zone'},
+                 {interface: 'vlan300', interfaces: [{ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base'}]},
+                 {interface: 'carp300', interfaces: [{type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base'}]},
+                 {interface: 'vlan301', interfaces: [{ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio2', description: 'v_w_int_db'}]},
+                 {interface: 'vlan302', interfaces: [{ip: '10.13.2.1', netmask: '255.255.255.0', vnetid: '302', vlandev: 'vio2', description: 'v_w_int_app'}]}]
+      None    : []
+
+  hostname_if_group
+    Description: Define the 'hostname_if_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{interface: 'pfsync0', interfaces: [{type: 'pfsync', syncdev: 'vio0', description: 'pfsync'}]},
+                 {interface: 'vio0', interfaces: [{ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt'}],
+                                     routes: [{network: 'default', gateway: '10.1.1.1'}]},
+                 {interface: 'vio1', description: 'transit'},
+                 {interface: 'vlan1000', interfaces: [{ip: '10.250.0.1', netmask: '255.255.255.0', vnetid: '100', vlandev: 'vio1', description: 'v_z_base_transit'}]},
+                 {interface: 'vlan1001', interfaces: [{ip: '10.250.1.1', netmask: '255.255.255.0', vnetid: '101', vlandev: 'vio1', description: 'v_z_prd_transit'}]},
+                 {interface: 'vio2', description: 'zone'},
+                 {interface: 'vlan300', interfaces: [{ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base'}]},
+                 {interface: 'carp300', interfaces: [{type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base'}]},
+                 {interface: 'vlan301', interfaces: [{ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio2', description: 'v_w_int_db'}]},
+                 {interface: 'vlan302', interfaces: [{ip: '10.13.2.1', netmask: '255.255.255.0', vnetid: '302', vlandev: 'vio2', description: 'v_w_int_app'}]}]
+      None    : []
+
+  hostname_if_host
+    Description: Define the 'hostname_if_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{interface: 'pfsync0', interfaces: [{type: 'pfsync', syncdev: 'vio0', description: 'pfsync'}]},
+                 {interface: 'vio0', interfaces: [{ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt'}],
+                                     routes: [{network: 'default', gateway: '10.1.1.1'}]},
+                 {interface: 'vio1', description: 'transit'},
+                 {interface: 'vlan1000', interfaces: [{ip: '10.250.0.1', netmask: '255.255.255.0', vnetid: '100', vlandev: 'vio1', description: 'v_z_base_transit'}]},
+                 {interface: 'vlan1001', interfaces: [{ip: '10.250.1.1', netmask: '255.255.255.0', vnetid: '101', vlandev: 'vio1', description: 'v_z_prd_transit'}]},
+                 {interface: 'vio2', description: 'zone'},
+                 {interface: 'vlan300', interfaces: [{ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base'}]},
+                 {interface: 'carp300', interfaces: [{type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base'}]},
+                 {interface: 'vlan301', interfaces: [{ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio2', description: 'v_w_int_db'}]},
+                 {interface: 'vlan302', interfaces: [{ip: '10.13.2.1', netmask: '255.255.255.0', vnetid: '302', vlandev: 'vio2', description: 'v_w_int_app'}]}]
+      None    : []
+
+  hostname_if_hostname_if_template
+    Description: Define the template source for 'hostname.if.j2'.
+                 Any value other than 'default' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'hostname/templates/example/hostname.if.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'default'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+  sysctl
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 2.0
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 11.1-*
+      Status: Unsupported
+
+  OpenBSD
+    Version: 6.2
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
