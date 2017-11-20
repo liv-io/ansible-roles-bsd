@@ -1,0 +1,51 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : tables.conf
+# Type   : pf configuration file
+# Role   : openbsd_pf
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+
+#-------------------------------------------------------------------------------
+# TABLES
+#-------------------------------------------------------------------------------
+
+# ALL
+
+{% for all in openbsd_pf_tables_all|default([]) %}
+{% if (all.comment is defined) and not (all.comment == '') %}
+# {{all.comment}}
+{% endif %}
+table {% if (all.name is defined) and not (all.name == '') %}<{{all.name}}> {% endif %}
+{%- if (all.attribute is defined) and (all.attribute|match('counters')) %}counters{% elif (all.attribute is defined) and (all.attribute|match('counters')) %}persistq {% else %}const {% endif %}
+{ {% for value in all.value|default([]) %}
+{{value}}{% if not loop.last %}, {% endif %}
+{%- endfor %} }
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# GROUP
+
+#-------------------------------------------------------------------------------
+
+# HOST
+
+#-------------------------------------------------------------------------------
+
+# DEPENDENCIES
+
+#-------------------------------------------------------------------------------

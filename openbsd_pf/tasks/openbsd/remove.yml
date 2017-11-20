@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command status openbsd_pf
+- name: 'command status openbsd_pf'
   command: "{{command_cmd_status_openbsd_pf}}"
   register: register_status_openbsd_pf
   changed_when: (register_status_openbsd_pf.rc > 1)
@@ -32,7 +32,7 @@
     - openbsd
     - openbsd_pf
 
-- name: command disable openbsd_pf
+- name: 'command disable openbsd_pf'
   command: "{{command_cmd_disable_openbsd_pf}}"
   when: (register_status_openbsd_pf.rc == 0)
   tags:
@@ -41,7 +41,7 @@
     - openbsd
     - openbsd_pf
 
-- name: command check openbsd_pf
+- name: 'command check openbsd_pf'
   raw: "{{raw_cmd_check_openbsd_pf}}"
   register: register_check_openbsd_pf
   changed_when: (register_check_openbsd_pf.rc > 1)
@@ -52,7 +52,7 @@
     - openbsd
     - openbsd_pf
 
-- name: command stop openbsd_pf
+- name: 'command stop openbsd_pf'
   command: "{{command_cmd_stop_openbsd_pf}}"
   when: (register_check_openbsd_pf.rc == 0)
   tags:
@@ -65,10 +65,90 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file remove pf.blacklist
+- name: 'file remove anchors.conf'
   file:
     state: 'absent'
-    path: "{{file_path_pf_blacklist}}"
+    path: "{{file_path_anchors_conf}}"
+  tags:
+    - files
+    - remove
+    - openbsd
+    - openbsd_pf
+
+- name: 'file remove filters.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_filters_conf}}"
+  tags:
+    - files
+    - remove
+    - openbsd
+    - openbsd_pf
+
+- name: 'file remove macros.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_macros_conf}}"
+  tags:
+    - files
+    - remove
+    - openbsd
+    - openbsd_pf
+
+- name: 'file remove normalization.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_normalization_conf}}"
+  tags:
+    - files
+    - remove
+    - openbsd
+    - openbsd_pf
+
+- name: 'file remove options.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_options_conf}}"
+  tags:
+    - files
+    - remove
+    - openbsd
+    - openbsd_pf
+
+- name: 'file remove queues.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_queues_conf}}"
+  tags:
+    - files
+    - remove
+    - openbsd
+    - openbsd_pf
+
+- name: 'file remove tables.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_tables_conf}}"
+  tags:
+    - files
+    - remove
+    - openbsd
+    - openbsd_pf
+
+- name: 'file remove pf.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_pf_conf}}"
+  tags:
+    - files
+    - remove
+    - openbsd
+    - openbsd_pf
+
+- name: 'file remove pf.dir'
+  file:
+    state: 'absent'
+    path: "{{file_path_ntp_script_dir}}"
   tags:
     - files
     - remove

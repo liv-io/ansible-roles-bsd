@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,23 +21,119 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create pf.blacklist
+- name: 'template create anchors.conf'
   template:
-    src: "{{file_src_pf_blacklist}}"
-    dest: "{{file_path_pf_blacklist}}"
-    mode: "{{file_mode_pf_blacklist}}"
-    owner: "{{file_owner_pf_blacklist}}"
-    group: "{{file_group_pf_blacklist}}"
+    src: "{{file_src_anchors_conf}}"
+    dest: "{{file_path_anchors_conf}}"
+    mode: "{{file_mode_anchors_conf}}"
+    owner: "{{file_owner_anchors_conf}}"
+    group: "{{file_group_anchors_conf}}"
   notify:
-    - command validate openbsd_pf
-    - command reload openbsd_pf
+    - 'command validate openbsd_pf'
+    - 'command reload openbsd_pf'
   tags:
     - files
     - enable
     - openbsd
     - openbsd_pf
 
-- name: template create pf.conf
+- name: 'template create filters.conf'
+  template:
+    src: "{{file_src_filters_conf}}"
+    dest: "{{file_path_filters_conf}}"
+    mode: "{{file_mode_filters_conf}}"
+    owner: "{{file_owner_filters_conf}}"
+    group: "{{file_group_filters_conf}}"
+  notify:
+    - 'command validate openbsd_pf'
+    - 'command reload openbsd_pf'
+  tags:
+    - files
+    - enable
+    - openbsd
+    - openbsd_pf
+
+- name: 'template create macros.conf'
+  template:
+    src: "{{file_src_macros_conf}}"
+    dest: "{{file_path_macros_conf}}"
+    mode: "{{file_mode_macros_conf}}"
+    owner: "{{file_owner_macros_conf}}"
+    group: "{{file_group_macros_conf}}"
+  notify:
+    - 'command validate openbsd_pf'
+    - 'command reload openbsd_pf'
+  tags:
+    - files
+    - enable
+    - openbsd
+    - openbsd_pf
+
+- name: 'template create normalization.conf'
+  template:
+    src: "{{file_src_normalization_conf}}"
+    dest: "{{file_path_normalization_conf}}"
+    mode: "{{file_mode_normalization_conf}}"
+    owner: "{{file_owner_normalization_conf}}"
+    group: "{{file_group_normalization_conf}}"
+  notify:
+    - 'command validate openbsd_pf'
+    - 'command reload openbsd_pf'
+  tags:
+    - files
+    - enable
+    - openbsd
+    - openbsd_pf
+
+- name: 'template create options.conf'
+  template:
+    src: "{{file_src_options_conf}}"
+    dest: "{{file_path_options_conf}}"
+    mode: "{{file_mode_options_conf}}"
+    owner: "{{file_owner_options_conf}}"
+    group: "{{file_group_options_conf}}"
+  notify:
+    - 'command validate openbsd_pf'
+    - 'command reload openbsd_pf'
+  tags:
+    - files
+    - enable
+    - openbsd
+    - openbsd_pf
+
+- name: 'template create queues.conf'
+  template:
+    src: "{{file_src_queues_conf}}"
+    dest: "{{file_path_queues_conf}}"
+    mode: "{{file_mode_queues_conf}}"
+    owner: "{{file_owner_queues_conf}}"
+    group: "{{file_group_queues_conf}}"
+  notify:
+    - 'command validate openbsd_pf'
+    - 'command reload openbsd_pf'
+  tags:
+    - files
+    - enable
+    - openbsd
+    - openbsd_pf
+
+- name: 'template create tables.conf'
+  template:
+    src: "{{file_src_tables_conf}}"
+    dest: "{{file_path_tables_conf}}"
+    mode: "{{file_mode_tables_conf}}"
+    owner: "{{file_owner_tables_conf}}"
+    group: "{{file_group_tables_conf}}"
+  notify:
+    - 'command validate openbsd_pf'
+    - 'command reload openbsd_pf'
+  tags:
+    - files
+    - enable
+    - openbsd
+    - openbsd_pf
+
+- name: 'template create pf.conf'
   template:
     src: "{{file_src_pf_conf}}"
     dest: "{{file_path_pf_conf}}"
@@ -45,8 +141,8 @@
     owner: "{{file_owner_pf_conf}}"
     group: "{{file_group_pf_conf}}"
   notify:
-    - command validate openbsd_pf
-    - command reload openbsd_pf
+    - 'command validate openbsd_pf'
+    - 'command reload openbsd_pf'
   tags:
     - files
     - enable
@@ -57,7 +153,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command status openbsd_pf
+- name: 'command status openbsd_pf'
   command: "{{command_cmd_status_openbsd_pf}}"
   register: register_status_openbsd_pf
   changed_when: (register_status_openbsd_pf.rc > 1)
@@ -68,7 +164,7 @@
     - openbsd
     - openbsd_pf
 
-- name: command enable openbsd_pf
+- name: 'command enable openbsd_pf'
   command: "{{command_cmd_enable_openbsd_pf}}"
   when: (register_status_openbsd_pf.rc == 1)
   tags:
@@ -77,7 +173,7 @@
     - openbsd
     - openbsd_pf
 
-- name: command check openbsd_pf
+- name: 'command check openbsd_pf'
   raw: "{{raw_cmd_check_openbsd_pf}}"
   register: register_check_openbsd_pf
   changed_when: (register_check_openbsd_pf.rc > 1)
@@ -88,7 +184,7 @@
     - openbsd
     - openbsd_pf
 
-- name: command start openbsd_pf
+- name: 'command start openbsd_pf'
   command: "{{command_cmd_start_openbsd_pf}}"
   when: (register_check_openbsd_pf.rc == 1)
   tags:

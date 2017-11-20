@@ -1,0 +1,150 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : macros.conf
+# Type   : pf configuration file
+# Role   : openbsd_pf
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# STATES
+#-------------------------------------------------------------------------------
+
+# ALL
+
+{% for all in openbsd_pf_macros_state_all|default([]) %}
+{% if (all.comment is defined) and not (all.comment == '') %}
+# {{all.comment}}
+{% endif %}
+{%- if (all.name is defined) and not (all.name == '') %}{{all.name}}{% endif %}
+='{% for option in all.options|default([]) %}
+{{option}}{% if not loop.last %} {% endif %}
+{%- endfor %}'
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# GROUP
+
+{% for group in openbsd_pf_macros_state_group|default([]) %}
+{% if (group.comment is defined) and not (group.comment == '') %}
+# {{group.comment}}
+{% endif %}
+{%- if (group.name is defined) and not (group.name == '') %}{{group.name}}{% endif %}
+='{% for option in group.options|default([]) %}
+{{option}}{% if not loop.last %} {% endif %}
+{%- endfor %}'
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# HOST
+
+{% for host in openbsd_pf_macros_state_host|default([]) %}
+{% if (host.comment is defined) and not (host.comment == '') %}
+# {{host.comment}}
+{% endif %}
+{%- if (host.name is defined) and not (host.name == '') %}{{host.name}}{% endif %}
+='{% for option in host.options|default([]) %}
+{{option}}{% if not loop.last %} {% endif %}
+{%- endfor %}'
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# DEPENDENCIES
+
+{% for dependencies in openbsd_pf_macros_state_dependencies|default([]) %}
+{% if (dependencies.comment is defined) and not (dependencies.comment == '') %}
+# {{dependencies.comment}}
+{% endif %}
+{%- if (dependencies.name is defined) and not (dependencies.name == '') %}{{dependencies.name}}{% endif %}
+='{% for option in dependencies.options|default([]) %}
+{{option}}{% if not loop.last %} {% endif %}
+{%- endfor %}'
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+# MACROS
+#-------------------------------------------------------------------------------
+
+# ALL
+
+{% for all in openbsd_pf_macros_all|default([]) %}
+{% if (all.comment is defined) and not (all.comment == '') %}
+# {{all.comment}}
+{% endif %}
+{%- if (all.name is defined) and not (all.name == '') %}{{all.name}}{% endif %}
+='{{all.value}}'
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# GROUP
+
+{% for group in openbsd_pf_macros_group|default([]) %}
+{% if (group.comment is defined) and not (group.comment == '') %}
+# {{group.comment}}
+{% endif %}
+{%- if (group.name is defined) and not (group.name == '') %}{{group.name}}{% endif %}
+='{{group.value}}'
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# HOST
+
+{% for host in openbsd_pf_macros_host|default([]) %}
+{% if (host.comment is defined) and not (host.comment == '') %}
+# {{host.comment}}
+{% endif %}
+{%- if (host.name is defined) and not (host.name == '') %}{{host.name}}{% endif %}
+='{{host.value}}'
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# DEPENDENCIES 
+
+{% for dependencies in openbsd_pf_macros_dependencies|default([]) %}
+{% if (dependencies.comment is defined) and not (dependencies.comment == '') %}
+# {{dependencies.comment}}
+{% endif %}
+{%- if (dependencies.name is defined) and not (dependencies.name == '') %}{{dependencies.name}}{% endif %}
+='{{dependencies.value}}'
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+
+#-------------------------------------------------------------------------------
