@@ -1,0 +1,37 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - install
+    - openbsd
+    - hostname
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'template create myname'
+  template:
+    src: "{{file_src_myname}}"
+    dest: "{{file_path_myname}}"
+    mode: "{{file_mode_myname}}"
+    owner: "{{file_owner_myname}}"
+    group: "{{file_group_myname}}"
+  notify:
+    - 'command run netstart'
+  tags:
+    - files
+    - install
+    - openbsd
+    - hostname

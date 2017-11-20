@@ -1,0 +1,8 @@
+---
+
+- name: 'task include install'
+  include: install.yml
+  when: not (hostname_state|match('false|no|remove|quiesce|inactive'))
+  tags:
+    - openbsd
+    - hostname

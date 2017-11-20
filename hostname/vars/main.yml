@@ -1,0 +1,19 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# myname
+file_src_myname: "templates/{{(hostname_myname_template|e)}}/myname.j2"
+file_path_myname: '/etc/myname'
+file_mode_myname: '0644'
+file_owner_myname: 'root'
+file_group_myname: 'wheel'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# run netstart
+command_cmd_run_netstart: 'sh /etc/netstart'
