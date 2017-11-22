@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package install vim
+- name: 'package install vim'
   package:
     state: 'present'
     name: "{{package_name_vim}}"
@@ -35,7 +35,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create vimrc
+- name: 'template create vimrc'
   template:
     src: "{{file_src_vimrc}}"
     dest: "{{file_path_vimrc}}"
