@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file create profile.d
+- name: 'file create profile.d'
   file:
     state: 'directory'
     path: "{{file_path_profile_d}}"
@@ -34,7 +34,7 @@
     - unix
     - shell
 
-- name: template create profile
+- name: 'template create profile'
   template:
     src: "{{file_src_profile}}"
     dest: "{{file_path_profile}}"
@@ -47,7 +47,7 @@
     - unix
     - shell
 
-- name: template create shell.sh
+- name: 'template create shell.sh'
   template:
     src: "{{file_src_shell_shell}}"
     dest: "{{file_path_shell_shell}}"
@@ -60,7 +60,7 @@
     - unix
     - shell
 
-- name: template create z_shell.sh
+- name: 'template create z_shell.sh'
   template:
     src: "{{file_src_z_shell_shell}}"
     dest: "{{file_path_z_shell_shell}}"
