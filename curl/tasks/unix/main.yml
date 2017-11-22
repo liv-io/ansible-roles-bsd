@@ -1,13 +1,13 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (curl_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - curl
 
-- name: task include remove
+- name: 'task include remove'
   include: remove.yml
   when: (curl_state|match('false|no|remove'))
   tags:
