@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command status openntpd
+- name: 'command status openntpd'
   command: "{{command_cmd_status_openntpd}}"
   register: register_status_openntpd
   changed_when: (register_status_openntpd.rc > 1)
@@ -33,7 +33,7 @@
     - unix
     - openntpd
 
-- name: command disable openntpd
+- name: 'command disable openntpd'
   command: "{{command_cmd_disable_openntpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
   tags:
@@ -42,7 +42,7 @@
     - unix
     - openntpd
 
-- name: command check openntpd
+- name: 'command check openntpd'
   command: "{{command_cmd_check_openntpd}}"
   register: register_check_openntpd
   changed_when: (register_check_openntpd.rc > 1)
@@ -54,7 +54,7 @@
     - unix
     - openntpd
 
-- name: command stop openntpd
+- name: 'command stop openntpd'
   command: "{{command_cmd_stop_openntpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
   tags:
@@ -67,7 +67,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove openntpd
+- name: 'package remove openntpd'
   package:
     state: 'absent'
     name: "{{package_name_openntpd}}"
@@ -82,7 +82,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line remove openntpd_enable
+- name: 'line remove openntpd_enable'
   lineinfile:
     state: 'absent'
     line: "{{file_line_openntpd_enable}}=\"NO\" # Ansible: Remove openntpd"
@@ -95,7 +95,7 @@
     - unix
     - openntpd
 
-- name: file remove ntpd.conf
+- name: 'file remove ntpd.conf'
   file:
     state: 'absent'
     path: "{{file_path_ntpd_conf}}"

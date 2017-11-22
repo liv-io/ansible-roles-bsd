@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create ntpd.conf
+- name: 'template create ntpd.conf'
   template:
     src: "{{file_src_ntpd_conf}}"
     dest: "{{file_path_ntpd_conf}}"
@@ -35,7 +35,7 @@
     - unix
     - openntpd
 
-- name: line enable openntpd_enable
+- name: 'line enable openntpd_enable'
   lineinfile:
     state: 'present'
     line: "{{file_line_openntpd_enable}}=\"YES\" # Ansible: Enable openntpd"
@@ -52,7 +52,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command status openntpd
+- name: 'command status openntpd'
   command: "{{command_cmd_status_openntpd}}"
   register: register_status_openntpd
   changed_when: (register_status_openntpd.rc > 1)
@@ -64,7 +64,7 @@
     - unix
     - openntpd
 
-- name: command enable openntpd
+- name: 'command enable openntpd'
   command: "{{command_cmd_enable_openntpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 1)
   tags:
@@ -73,7 +73,7 @@
     - unix
     - openntpd
 
-- name: command check openntpd
+- name: 'command check openntpd'
   command: "{{command_cmd_check_openntpd}}"
   register: register_check_openntpd
   changed_when: (register_check_openntpd.rc > 1)
@@ -85,7 +85,7 @@
     - unix
     - openntpd
 
-- name: command start openntpd
+- name: 'command start openntpd'
   command: "{{command_cmd_start_openntpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 1)
   tags:
@@ -98,7 +98,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service start ntpd
+- name: 'service start ntpd'
   service:
     state: 'started'
     enabled: 'yes'
