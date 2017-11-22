@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file create data.dir
+- name: 'file create data.dir'
   file:
     state: 'directory'
     path: "{{file_path_data_dir}}"
@@ -35,7 +35,7 @@
     - unix
     - denyhosts
 
-- name: template create allowed-hosts
+- name: 'template create allowed-hosts'
   template:
     src: "{{file_src_allowed_hosts}}"
     dest: "{{file_path_allowed_hosts}}"
@@ -48,7 +48,7 @@
     - unix
     - denyhosts
 
-- name: template create denyhosts.conf
+- name: 'template create denyhosts.conf'
   template:
     src: "{{file_src_denyhosts_conf}}"
     dest: "{{file_path_denyhosts_conf}}"
@@ -61,7 +61,7 @@
     - unix
     - denyhosts
 
-- name: line disable denyhosts_enable
+- name: 'line disable denyhosts_enable'
   lineinfile:
     state: 'present'
     line: "{{file_line_denyhosts_enable}}=\"NO\" # Ansible: Disable denyhosts"
@@ -74,7 +74,7 @@
     - unix
     - denyhosts
 
-- name: template create hosts.allow
+- name: 'template create hosts.allow'
   template:
     src: "{{file_src_hosts_allow}}"
     dest: "{{file_path_hosts_allow}}"
@@ -88,7 +88,7 @@
     - unix
     - denyhosts
 
-- name: line create syslogd_flags
+- name: 'line create syslogd_flags'
   lineinfile:
     state: 'present'
     line: "{{file_line_syslogd_flags}}=\"-c\" # Ansible: Config denyhosts"
@@ -106,7 +106,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service stop denyhosts
+- name: 'service stop denyhosts'
   service:
     state: 'stopped'
     enabled: 'no'

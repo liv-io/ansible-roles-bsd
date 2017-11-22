@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: stat file hosts.block
+- name: 'stat file hosts.block'
   stat:
     path: "{{file_path_hosts_block}}"
   register: register_hosts_block
@@ -32,7 +32,7 @@
     - unix
     - denyhosts
 
-- name: template create hosts.block
+- name: 'template create hosts.block'
   template:
     src: "{{file_src_hosts_block}}"
     dest: "{{file_path_hosts_block}}"
@@ -50,7 +50,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package install denyhosts
+- name: 'package install denyhosts'
   package:
     state: 'present'
     name: "{{package_name_denyhosts}}"

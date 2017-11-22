@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove denyhosts
+- name: 'package remove denyhosts'
   package:
     state: 'absent'
     name: "{{package_name_denyhosts}}"
@@ -35,7 +35,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line remove denyhosts_enable
+- name: 'line remove denyhosts_enable'
   lineinfile:
     state: 'absent'
     line: "{{file_line_denyhosts_enable}}=\"NO\" # Ansible: Remove denyhosts"
@@ -48,7 +48,7 @@
     - unix
     - denyhosts
 
-- name: line remove syslogd_flags
+- name: 'line remove syslogd_flags'
   lineinfile:
     state: 'absent'
     line: "{{file_line_syslogd_flags}}=\"-c\" # Ansible: Config denyhosts"
@@ -62,7 +62,7 @@
     - unix
     - denyhosts
 
-- name: file remove allowed-hosts
+- name: 'file remove allowed-hosts'
   file:
     state: 'absent'
     path: "{{file_path_allowed_hosts}}"
@@ -72,7 +72,7 @@
     - unix
     - denyhosts
 
-- name: file remove denyhosts.conf
+- name: 'file remove denyhosts.conf'
   file:
     state: 'absent'
     path: "{{file_path_denyhosts_conf}}"
@@ -82,7 +82,7 @@
     - unix
     - denyhosts
 
-- name: file remove hosts.allow
+- name: 'file remove hosts.allow'
   file:
     state: 'absent'
     path: "{{file_path_hosts_allow}}"
@@ -93,7 +93,7 @@
     - unix
     - denyhosts
 
-- name: file remove hosts.block
+- name: 'file remove hosts.block'
   file:
     state: 'absent'
     path: "{{file_path_hosts.block}}"
@@ -104,7 +104,7 @@
     - unix
     - denyhosts
 
-- name: file remove data.dir
+- name: 'file remove data.dir'
   file:
     state: 'absent'
     path: "{{file_path_data_dir}}"
