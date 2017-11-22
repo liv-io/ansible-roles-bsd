@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create pkg.conf
+- name: 'template create pkg.conf'
   template:
     src: "{{file_src_pkg_conf}}"
     dest: "{{file_path_pkg_conf}}"
