@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file ensure master.passwd
+- name: 'file ensure master.passwd'
   file:
     state: 'file'
     dest: "{{file_path_master_passwd}}"
@@ -34,7 +34,7 @@
     - bsd
     - passwd
 
-- name: file ensure pwd.db
+- name: 'file ensure pwd.db'
   file:
     state: 'file'
     dest: "{{file_path_pwd_db}}"
@@ -47,7 +47,7 @@
     - bsd
     - passwd
 
-- name: file ensure spwd.db
+- name: 'file ensure spwd.db'
   file:
     state: 'file'
     dest: "{{file_path_spwd_db}}"
