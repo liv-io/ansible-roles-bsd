@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -17,14 +17,14 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command validate openssh
+- name: 'command validate openssh'
   command: "{{command_cmd_validate_openssh}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service reload openssh
+- name: 'service reload openssh'
   service:
     state: 'reloaded'
     name: "{{service_name_openssh}}"

@@ -1,20 +1,20 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (openssh_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - openssh
 
-- name: task include enable
+- name: 'task include enable'
   include: enable.yml
   when: (openssh_state|match('start|on|enable'))
   tags:
     - unix
     - openssh
 
-- name: task include disable
+- name: 'task include disable'
   include: disable.yml
   when: (openssh_state|match('stop|off|disable'))
   tags:
