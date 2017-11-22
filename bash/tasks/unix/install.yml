@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package install bash
+- name: 'package install bash'
   package:
     state: 'present'
     name: "{{package_name_bash}}"
@@ -35,7 +35,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create bash.bash
+- name: 'template create bash.bash'
   template:
     src: "{{file_src_bash_bash}}"
     dest: "{{file_path_bash_bash}}"
@@ -48,7 +48,7 @@
     - unix
     - bash
 
-- name: template create zz_bash.bash
+- name: 'template create zz_bash.bash'
   template:
     src: "{{file_src_zz_bash_bash}}"
     dest: "{{file_path_zz_bash_bash}}"

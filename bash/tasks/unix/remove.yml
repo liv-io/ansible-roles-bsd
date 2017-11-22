@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove bash
+- name: 'package remove bash'
   package:
     state: 'absent'
     name: "{{package_name_bash}}"
@@ -35,7 +35,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file remove bash.bash
+- name: 'file remove bash.bash'
   file:
     state: 'absent'
     path: "{{file_path_bash_bash}}"
@@ -45,7 +45,7 @@
     - unix
     - bash
 
-- name: file remove zz_bash.bash
+- name: 'file remove zz_bash.bash'
   file:
     state: 'absent'
     path: "{{file_path_zz_bash_bash}}"
