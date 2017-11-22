@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file create signify.dir
+- name: 'file create signify.dir'
   copy:
     src: "{{file_src_signify_dir}}"
     dest: "{{file_path_signify_dir}}"
