@@ -1,6 +1,6 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (openbsd_syspatch_state|match('false|no|remove|quiesce|inactive'))
   tags:

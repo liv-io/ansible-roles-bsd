@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create installurl
+- name: 'template create installurl'
   template:
     src: "{{file_src_installurl}}"
     dest: "{{file_path_installurl}}"
