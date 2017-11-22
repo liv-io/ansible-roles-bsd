@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command info monit
+- name: 'command info monit'
   raw: "{{raw_cmd_info_monit}}"
   register: register_info_monit
   failed_when: (register_info_monit.rc > 1)
@@ -32,7 +32,7 @@
     - unix
     - monit
 
-- name: command disable monit
+- name: 'command disable monit'
   command: "{{command_cmd_disable_monit}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
   tags:
@@ -41,7 +41,7 @@
     - unix
     - monit
 
-- name: command stop monit
+- name: 'command stop monit'
   command: "{{command_cmd_stop_monit}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
   tags:
@@ -54,7 +54,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove monit
+- name: 'package remove monit'
   package:
     state: 'absent'
     name: "{{package_name_monit}}"
@@ -68,7 +68,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line remove monit_enable
+- name: 'line remove monit_enable'
   lineinfile:
     state: 'absent'
     line: "{{file_line_monit_enable}}=\"NO\" # Ansible: Remove monit"
@@ -81,7 +81,7 @@
     - unix
     - monit
 
-- name: file remove monit.d
+- name: 'file remove monit.d'
   file:
     state: 'absent'
     path: "{{file_path_monit_d}}"
@@ -91,7 +91,7 @@
     - unix
     - monit
 
-- name: file remove monitrc
+- name: 'file remove monitrc'
   file:
     state: 'absent'
     path: "{{file_path_monitrc}}"

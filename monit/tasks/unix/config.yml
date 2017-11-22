@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create monit-config
+- name: 'template create monit-config'
   template:
     src: "{{file_src_monit_config}}"
     dest: "{{file_path_monit_d}}/{{(item.name|e)}}.cfg"
@@ -39,7 +39,7 @@
     - unix
     - monit
 
-- name: file remove monit-config
+- name: 'file remove monit-config'
   file:
     state: 'absent'
     path: "{{file_path_monit_d}}/{{(item.name|e)}}.cfg"
