@@ -1,13 +1,13 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (nload_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - nload
 
-- name: task include remove
+- name: 'task include remove'
   include: remove.yml
   when: (nload_state|match('false|no|remove'))
   tags:
