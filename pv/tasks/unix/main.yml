@@ -1,13 +1,13 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (pv_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - pv
 
-- name: task include remove
+- name: 'task include remove'
   include: remove.yml
   when: (pv_state|match('false|no|remove'))
   tags:
