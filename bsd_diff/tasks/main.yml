@@ -1,6 +1,6 @@
 ---
 
-- name: task include bsd
+- name: 'task include bsd'
   include: bsd/main.yml
   when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("11\.1-*")))
   tags:
