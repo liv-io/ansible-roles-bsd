@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create aliases
+- name: 'template create aliases'
   template:
     src: "{{file_src_aliases}}"
     dest: "{{file_path_aliases}}"
@@ -38,7 +38,7 @@
     - unix
     - opensmtpd
 
-- name: template create smtpd.conf
+- name: 'template create smtpd.conf'
   template:
     src: "{{file_src_smtpd_conf}}"
     dest: "{{file_path_smtpd_conf}}"
@@ -52,7 +52,7 @@
     - unix
     - opensmtpd
 
-- name: line enable smtpd_enable
+- name: 'line enable smtpd_enable'
   lineinfile:
     state: 'present'
     line: "{{file_line_smtpd_enable}}=\"YES\" # Ansible: Enable opensmtpd"
@@ -69,7 +69,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command status opensmtpd
+- name: 'command status opensmtpd'
   command: "{{command_cmd_status_opensmtpd}}"
   register: register_status_opensmtpd
   changed_when: (register_status_opensmtpd.rc > 1)
@@ -81,7 +81,7 @@
     - unix
     - opensmtpd
 
-- name: command enable opensmtpd
+- name: 'command enable opensmtpd'
   command: "{{command_cmd_enable_opensmtpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 1)
   tags:
@@ -90,7 +90,7 @@
     - unix
     - opensmtpd
 
-- name: command check opensmtpd
+- name: 'command check opensmtpd'
   command: "{{command_cmd_check_opensmtpd}}"
   register: register_check_opensmtpd
   changed_when: (register_check_opensmtpd.rc > 1)
@@ -102,7 +102,7 @@
     - unix
     - opensmtpd
 
-- name: command start opensmtpd
+- name: 'command start opensmtpd'
   command: "{{command_cmd_start_opensmtpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 1)
   tags:
@@ -115,7 +115,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service start opensmtpd
+- name: 'service start opensmtpd'
   service:
     state: 'started'
     enabled: 'yes'

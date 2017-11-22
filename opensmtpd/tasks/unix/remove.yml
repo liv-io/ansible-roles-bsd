@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command status opensmtpd
+- name: 'command status opensmtpd'
   command: "{{command_cmd_status_opensmtpd}}"
   register: register_status_opensmtpd
   changed_when: (register_status_opensmtpd.rc > 1)
@@ -33,7 +33,7 @@
     - unix
     - opensmtpd
 
-- name: command disable opensmtpd
+- name: 'command disable opensmtpd'
   command: "{{command_cmd_disable_opensmtpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 0)
   tags:
@@ -42,7 +42,7 @@
     - unix
     - opensmtpd
 
-- name: command check opensmtpd
+- name: 'command check opensmtpd'
   command: "{{command_cmd_check_opensmtpd}}"
   register: register_check_opensmtpd
   changed_when: (register_check_opensmtpd.rc > 1)
@@ -54,7 +54,7 @@
     - unix
     - opensmtpd
 
-- name: command stop opensmtpd
+- name: 'command stop opensmtpd'
   command: "{{command_cmd_stop_opensmtpd}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 0)
   tags:
@@ -67,7 +67,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove opensmtpd
+- name: 'package remove opensmtpd'
   package:
     state: 'absent'
     name: "{{package_name_opensmtpd}}"
@@ -83,7 +83,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line remove smtpd_enable
+- name: 'line remove smtpd_enable'
   lineinfile:
     state: 'absent'
     line: "{{file_line_smtpd_enable}}=\"NO\" # Ansible: Remove opensmtpd"
@@ -96,7 +96,7 @@
     - unix
     - opensmtpd
 
-- name: line remove sendmail_enable
+- name: 'line remove sendmail_enable'
   lineinfile:
     state: 'absent'
     line: "{{file_line_sendmail_enable}}=\"NONE\" # Ansible: Remove sendmail"
@@ -109,7 +109,7 @@
     - unix
     - opensmtpd
 
-- name: file remove aliases
+- name: 'file remove aliases'
   file:
     state: 'absent'
     path: "{{file_path_aliases}}"
@@ -120,7 +120,7 @@
     - unix
     - opensmtpd
 
-- name: file remove smtpd.conf
+- name: 'file remove smtpd.conf'
   file:
     state: 'absent'
     path: "{{file_path_smtpd_conf}}"

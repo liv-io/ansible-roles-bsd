@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -17,19 +17,19 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command smtpctl aliases
+- name: 'command smtpctl aliases'
   command: "{{command_cmd_smtpctl_aliases}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service start opensmtpd
+- name: 'service start opensmtpd'
   service:
     state: 'started'
     name: "{{service_name_opensmtpd}}"
 
-- name: service restart opensmtpd
+- name: 'service restart opensmtpd'
   service:
     state: 'restarted'
     name: "{{service_name_opensmtpd}}"
