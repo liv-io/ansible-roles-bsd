@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove tmux
+- name: 'package remove tmux'
   package:
     state: 'absent'
     name: "{{package_name_tmux}}"
@@ -36,7 +36,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file remove tmux.conf
+- name: 'file remove tmux.conf'
   file:
     state: 'absent'
     path: "{{file_path_tmux_conf}}"
