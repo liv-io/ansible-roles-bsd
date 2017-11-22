@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file create opt.dir
+- name: 'file create opt.dir'
   file:
     state: 'directory'
     path: "{{file_path_opt_dir}}"
@@ -34,7 +34,7 @@
     - unix
     - common
 
-- name: file create opt.link
+- name: 'file create opt.link'
   file:
     state: 'link'
     src: "{{file_src_opt_link}}"
@@ -48,7 +48,7 @@
     - unix
     - common
 
-- name: file create common-root.dir
+- name: 'file create common-root.dir'
   file:
     state: 'directory'
     path: "{{file_path_common_root_dir}}"
@@ -61,7 +61,7 @@
     - unix
     - common
 
-- name: file create common-backup.dir
+- name: 'file create common-backup.dir'
   file:
     state: 'directory'
     path: "{{file_path_common_backup_dir}}"
@@ -74,7 +74,7 @@
     - unix
     - common
 
-- name: file create common-info.dir
+- name: 'file create common-info.dir'
   file:
     state: 'directory'
     path: "{{file_path_common_info_dir}}"
@@ -87,7 +87,7 @@
     - unix
     - common
 
-- name: file create common-script.dir
+- name: 'file create common-script.dir'
   file:
     state: 'directory'
     path: "{{file_path_common_script_dir}}"
@@ -100,7 +100,7 @@
     - unix
     - common
 
-- name: file create common-system.dir
+- name: 'file create common-system.dir'
   file:
     state: 'directory'
     path: "{{file_path_common_system_dir}}"
@@ -113,7 +113,7 @@
     - unix
     - common
 
-- name: template create README
+- name: 'template create README'
   template:
     src: "{{file_src_readme}}"
     dest: "{{file_path_readme}}"
