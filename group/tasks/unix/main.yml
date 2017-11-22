@@ -1,13 +1,13 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (group_state|match('false|no|disable|quiesce|inactive'))
   tags:
     - unix
     - group
 
-- name: task include config
+- name: 'task include config'
   include: config.yml
   when: not (group_state|match('false|no|disable|quiesce|inactive'))
   tags:
