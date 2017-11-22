@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create ansible.info
+- name: 'template create ansible.info'
   template:
     src: "{{file_src_ansible_info}}"
     dest: "{{file_path_ansible_info}}"
@@ -34,7 +34,7 @@
     - unix
     - systeminfo
 
-- name: template create operation.info
+- name: 'template create operation.info'
   template:
     src: "{{file_src_operation_info}}"
     dest: "{{file_path_operation_info}}"
@@ -47,7 +47,7 @@
     - unix
     - systeminfo
 
-- name: template create freebsd.info
+- name: 'template create freebsd.info'
   template:
     src: "{{file_src_freebsd_info}}"
     dest: "{{file_path_freebsd_info}}"
@@ -61,7 +61,7 @@
     - unix
     - systeminfo
 
-- name: template create openbsd.info
+- name: 'template create openbsd.info'
   template:
     src: "{{file_src_openbsd_info}}"
     dest: "{{file_path_openbsd_info}}"
@@ -75,7 +75,7 @@
     - unix
     - systeminfo
 
-- name: template create system.info
+- name: 'template create system.info'
   template:
     src: "{{file_src_system_info}}"
     dest: "{{file_path_system_info}}"

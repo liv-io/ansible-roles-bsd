@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file remove ansible.info
+- name: 'file remove ansible.info'
   file:
     state: 'absent'
     path: "{{file_path_ansible_info}}"
@@ -31,7 +31,7 @@
     - unix
     - systeminfo
 
-- name: file remove operation.info
+- name: 'file remove operation.info'
   file:
     state: 'absent'
     path: "{{file_path_operation_info}}"
@@ -41,7 +41,7 @@
     - unix
     - systeminfo
 
-- name: file remove freebsd.info
+- name: 'file remove freebsd.info'
   file:
     state: 'absent'
     path: "{{file_path_freebsd_info}}"
@@ -52,7 +52,7 @@
     - unix
     - systeminfo
 
-- name: file remove openbsd.info
+- name: 'file remove openbsd.info'
   file:
     state: 'absent'
     path: "{{file_path_openbsd_info}}"
@@ -63,7 +63,7 @@
     - unix
     - systeminfo
 
-- name: file remove system.info
+- name: 'file remove system.info'
   file:
     state: 'absent'
     path: "{{file_path_system_info}}"
