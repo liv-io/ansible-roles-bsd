@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove sudo
+- name: 'package remove sudo'
   package:
     state: 'absent'
     name: "{{package_name_sudo}}"
@@ -35,7 +35,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file remove sudoers.d
+- name: 'file remove sudoers.d'
   file:
     state: 'absent'
     path: "{{file_path_sudoers_d}}"
@@ -45,7 +45,7 @@
     - unix
     - sudo
 
-- name: file remove sudoers
+- name: 'file remove sudoers'
   file:
     state: 'absent'
     path: "{{file_path_sudoers}}"

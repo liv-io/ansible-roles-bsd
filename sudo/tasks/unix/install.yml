@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package install sudo
+- name: 'package install sudo'
   package:
     state: 'present'
     name: "{{package_name_sudo}}"
@@ -35,7 +35,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create sudoers
+- name: 'template create sudoers'
   template:
     src: "{{file_src_sudoers}}"
     dest: "{{file_path_sudoers}}"
@@ -49,7 +49,7 @@
     - unix
     - sudo
 
-- name: file create sudoers.d
+- name: 'file create sudoers.d'
   file:
     state: 'directory'
     path: "{{file_path_sudoers_d}}"

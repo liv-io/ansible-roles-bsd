@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create sudo-config
+- name: 'template create sudo-config'
   template:
     src: "{{file_src_sudo_config}}"
     dest: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) else ''}}{{'_' if (item.order is defined) else ''}}{{(item.name|e) if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
@@ -37,7 +37,7 @@
     - unix
     - sudo
 
-- name: file remove sudo-config
+- name: 'file remove sudo-config'
   file:
     state: 'absent'
     path: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) else ''}}{{'_' if (item.order is defined) else ''}}{{(item.name|e) if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
