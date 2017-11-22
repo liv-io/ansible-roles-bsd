@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -17,7 +17,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service restart ntp
+- name: 'service restart ntp'
   service:
     state: 'restarted'
     name: "{{service_name_ntp}}"

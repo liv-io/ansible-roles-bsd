@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command status ntp
+- name: 'command status ntp'
   command: "{{command_cmd_status_ntp}}"
   register: register_status_ntp
   changed_when: (register_status_ntp.rc > 1)
@@ -33,7 +33,7 @@
     - unix
     - ntp
 
-- name: command disable ntp
+- name: 'command disable ntp'
   command: "{{command_cmd_disable_ntp}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_ntp.rc == 0)
   tags:
@@ -42,7 +42,7 @@
     - unix
     - ntp
 
-- name: command check ntp
+- name: 'command check ntp'
   command: "{{command_cmd_check_ntp}}"
   register: register_check_ntp
   changed_when: (register_check_ntp.rc > 1)
@@ -54,7 +54,7 @@
     - unix
     - ntp
 
-- name: command stop ntp
+- name: 'command stop ntp'
   command: "{{command_cmd_stop_ntp}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_ntp.rc == 0)
   tags:
@@ -67,7 +67,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service stop ntp
+- name: 'service stop ntp'
   service:
     state: 'stopped'
     enabled: 'no'
@@ -83,7 +83,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line disable ntpd_enable
+- name: 'line disable ntpd_enable'
   lineinfile:
     state: 'present'
     line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Disable ntp"
@@ -96,7 +96,7 @@
     - unix
     - ntp
 
-- name: template create ntp.conf
+- name: 'template create ntp.conf'
   template:
     src: "{{file_src_ntp_conf}}"
     dest: "{{file_path_ntp_conf}}"
@@ -109,7 +109,7 @@
     - unix
     - ntp
 
-- name: template create ntp_update-time.sh
+- name: 'template create ntp_update-time.sh'
   template:
     src: "{{file_src_ntp_update_time_sh}}"
     dest: "{{file_path_ntp_update_time_sh}}"
@@ -122,7 +122,7 @@
     - unix
     - ntp
 
-- name: line config ntp_update-time
+- name: 'line config ntp_update-time'
   lineinfile:
     state: 'present'
     line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"

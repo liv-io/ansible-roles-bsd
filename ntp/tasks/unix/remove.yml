@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command info ntp
+- name: 'command info ntp'
   raw: "{{raw_cmd_info_ntp}}"
   register: register_info_ntp
   failed_when: (register_info_ntp.rc > 1)
@@ -32,7 +32,7 @@
     - unix
     - ntp
 
-- name: command disable ntp
+- name: 'command disable ntp'
   command: "{{command_cmd_disable_ntp}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_ntp.rc == 0)
   tags:
@@ -41,7 +41,7 @@
     - unix
     - ntp
 
-- name: command stop ntp
+- name: 'command stop ntp'
   command: "{{command_cmd_stop_ntp}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_ntp.rc == 0)
   tags:
@@ -54,7 +54,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove ntp
+- name: 'package remove ntp'
   package:
     state: 'absent'
     name: "{{package_name_ntp}}"
@@ -69,7 +69,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line remove ntpd_enable
+- name: 'line remove ntpd_enable'
   lineinfile:
     state: 'absent'
     line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Remove ntp"
@@ -82,7 +82,7 @@
     - unix
     - ntp
 
-- name: line config ntp_update-time
+- name: 'line config ntp_update-time'
   lineinfile:
     state: 'absent'
     line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
@@ -94,7 +94,7 @@
     - unix
     - ntp
 
-- name: file remove ntp_update-time.sh
+- name: 'file remove ntp_update-time.sh'
   file:
     state: 'absent'
     path: "{{file_path_ntp_update_time_sh}}"
@@ -104,7 +104,7 @@
     - unix
     - ntp
 
-- name: file remove ntp-script.dir
+- name: 'file remove ntp-script.dir'
   file:
     state: 'absent'
     path: "{{file_path_ntp_script_dir}}"
@@ -114,7 +114,7 @@
     - unix
     - ntp
 
-- name: file remove ntp.conf
+- name: 'file remove ntp.conf'
   file:
     state: 'absent'
     path: "{{file_path_ntp_conf}}"

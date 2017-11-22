@@ -1,34 +1,34 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (ntp_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - ntp
 
-- name: task include enable
+- name: 'task include enable'
   include: enable.yml
   when: (ntp_state|match('start|on|enable'))
   tags:
     - unix
     - ntp
 
-- name: task include disable
+- name: 'task include disable'
   include: disable.yml
   when: (ntp_state|match('stop|off|disable'))
   tags:
     - unix
     - ntp
 
-- name: task include cronjob
+- name: 'task include cronjob'
   include: cronjob.yml
   when: (ntp_state|match('cron|cronjob'))
   tags:
     - unix
     - ntp
 
-- name: task include remove
+- name: 'task include remove'
   include: remove.yml
   when: (ntp_state|match('false|no|remove'))
   tags:
