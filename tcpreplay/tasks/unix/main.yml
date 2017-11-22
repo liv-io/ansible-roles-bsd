@@ -1,13 +1,13 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (tcpreplay_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - tcpreplay
 
-- name: task include remove
+- name: 'task include remove'
   include: remove.yml
   when: (tcpreplay_state|match('false|no|remove'))
   tags:
