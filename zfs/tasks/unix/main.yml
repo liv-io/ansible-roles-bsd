@@ -1,27 +1,27 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (zfs_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - zfs
 
-- name: task include enable
+- name: 'task include enable'
   include: enable.yml
   when: (zfs_state|match('start|on|enable'))
   tags:
     - unix
     - zfs
 
-- name: task include disable
+- name: 'task include disable'
   include: disable.yml
   when: (zfs_state|match('stop|off|disable'))
   tags:
     - unix
     - zfs
 
-- name: task include remove
+- name: 'task include remove'
   include: remove.yml
   when: (zfs_state|match('false|no|remove'))
   tags:

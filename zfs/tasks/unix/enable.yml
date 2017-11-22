@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line add zfs_scrub-pools
+- name: 'line add zfs_scrub-pools'
   lineinfile:
     state: 'present'
     line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
@@ -34,7 +34,7 @@
     - unix
     - zfs
 
-- name: line remove zfs_scrub-pools
+- name: 'line remove zfs_scrub-pools'
   lineinfile:
     state: 'absent'
     line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
