@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: group create root
+- name: 'group create root'
   group:
     state: 'present'
     name: "{{group_name_root}}"
@@ -33,7 +33,7 @@
     - unix
     - root
 
-- name: user create root
+- name: 'user create root'
   user:
     state: 'present'
     name: "{{user_name_root}}"
@@ -56,7 +56,7 @@
     - unix
     - root
 
-- name: authorized_key create root
+- name: 'authorized_key create root'
   authorized_key:
     state: "{{'absent' if (root_authorized_key_state|match('false|no|remove')) else 'present'}}"
     user: "{{authorized_key_user_root}}"
@@ -72,7 +72,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file create root.dir
+- name: 'file create root.dir'
   file:
     state: 'directory'
     path: "{{file_path_root_dir}}"

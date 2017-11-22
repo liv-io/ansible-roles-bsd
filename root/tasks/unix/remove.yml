@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: authorized_key remove root
+- name: 'authorized_key remove root'
   authorized_key:
     state: 'absent'
     user: "{{authorized_key_user_root}}"
