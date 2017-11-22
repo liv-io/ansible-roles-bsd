@@ -1,13 +1,13 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (pwgen_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - pwgen
 
-- name: task include remove
+- name: 'task include remove'
   include: remove.yml
   when: (pwgen_state|match('false|no|remove'))
   tags:
