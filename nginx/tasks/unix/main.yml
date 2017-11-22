@@ -1,34 +1,34 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (nginx_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - nginx
 
-- name: task include config
+- name: 'task include config'
   include: config.yml
   when: not (nginx_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - nginx
 
-- name: task include enable
+- name: 'task include enable'
   include: enable.yml
   when: (nginx_state|match('start|on|enable'))
   tags:
     - unix
     - nginx
 
-- name: task include disable
+- name: 'task include disable'
   include: disable.yml
   when: (nginx_state|match('stop|off|disable'))
   tags:
     - unix
     - nginx
 
-- name: task include remove
+- name: 'task include remove'
   include: remove.yml
   when: (nginx_state|match('false|no|remove'))
   tags:

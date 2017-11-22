@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -17,19 +17,19 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command check nginx
+- name: 'command check nginx'
   command: "{{command_cmd_check_nginx}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service restart nginx
+- name: 'service restart nginx'
   service:
     state: 'restarted'
     name: "{{service_name_nginx}}"
 
-- name: service reload nginx
+- name: 'service reload nginx'
   service:
     state: 'reloaded'
     name: "{{service_name_nginx}}"

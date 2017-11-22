@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create vhost
+- name: 'template create vhost'
   template:
     src: "templates/{{(item.template|e) if (item.template is defined) and not (item.template == '') else nginx_vhost_template}}/vhost.conf.j2"
     dest: "{{file_path_vhosts_d_name}}/{{(item.name|e)}}-{{(item.port|int(80))}}.conf"
@@ -39,7 +39,7 @@
     - unix
     - nginx
 
-- name: file remove vhost
+- name: 'file remove vhost'
   file:
     state: 'absent'
     path: "{{file_path_vhosts_d_name}}/{{(item.name|e)}}-{{(item.port|int(80))}}.conf"

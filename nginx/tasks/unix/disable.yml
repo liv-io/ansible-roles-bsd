@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create nginx.conf
+- name: 'template create nginx.conf'
   template:
     src: "{{file_src_nginx_conf}}"
     dest: "{{file_path_nginx_conf}}"
@@ -35,7 +35,7 @@
     - unix
     - nginx
 
-- name: line disable nginx_enable
+- name: 'line disable nginx_enable'
   lineinfile:
     state: 'present'
     line: "{{file_line_nginx_enable}}=\"NO\" # Ansible: Disable nginx"
@@ -52,7 +52,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command status nginx
+- name: 'command status nginx'
   command: "{{command_cmd_status_nginx}}"
   register: register_status_nginx
   changed_when: (register_status_nginx.rc > 1)
@@ -64,7 +64,7 @@
     - unix
     - nginx
 
-- name: command disable nginx
+- name: 'command disable nginx'
   command: "{{command_cmd_disable_nginx}}"
   when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 0)
   tags:
@@ -73,7 +73,7 @@
     - unix
     - nginx
 
-- name: command check nginx
+- name: 'command check nginx'
   command: "{{command_cmd_check_nginx}}"
   register: register_check_nginx
   changed_when: (register_check_nginx.rc > 1)
@@ -85,7 +85,7 @@
     - unix
     - nginx
 
-- name: command stop nginx
+- name: 'command stop nginx'
   command: "{{command_cmd_stop_nginx}}"
   when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 0)
   tags:
@@ -98,7 +98,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service stop nginx
+- name: 'service stop nginx'
   service:
     state: 'stopped'
     enabled: 'no'

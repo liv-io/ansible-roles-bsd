@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package install nginx
+- name: 'package install nginx'
   package:
     state: 'present'
     name: "{{package_name_nginx}}"
@@ -35,7 +35,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file create log.dir
+- name: 'file create log.dir'
   file:
     state: 'directory'
     path: "{{file_path_log_dir_name}}"
@@ -49,7 +49,7 @@
     - unix
     - nginx
 
-- name: file create vhosts.d
+- name: 'file create vhosts.d'
   file:
     state: 'directory'
     path: "{{file_path_vhosts_d_name}}"

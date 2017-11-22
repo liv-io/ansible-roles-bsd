@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command info nginx
+- name: 'command info nginx'
   raw: "{{raw_cmd_info_nginx}}"
   register: register_info_nginx
   failed_when: (register_info_nginx.rc > 1)
@@ -32,7 +32,7 @@
     - unix
     - nginx
 
-- name: command disable nginx
+- name: 'command disable nginx'
   command: "{{command_cmd_disable_nginx}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
@@ -41,7 +41,7 @@
     - unix
     - nginx
 
-- name: command stop nginx
+- name: 'command stop nginx'
   command: "{{command_cmd_stop_nginx}}"
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
@@ -54,7 +54,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove nginx
+- name: 'package remove nginx'
   package:
     state: 'absent'
     name: "{{package_name_nginx}}"
@@ -68,7 +68,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line remove nginx_enable
+- name: 'line remove nginx_enable'
   lineinfile:
     state: 'absent'
     line: "{{file_line_nginx_enable}}=\"NO\" # Ansible: Remove nginx"
@@ -81,7 +81,7 @@
     - unix
     - nginx
 
-- name: file remove nginx.conf
+- name: 'file remove nginx.conf'
   file:
     state: 'absent'
     path: "{{file_path_nginx_conf}}"
@@ -91,7 +91,7 @@
     - unix
     - nginx
 
-- name: file remove log.dir
+- name: 'file remove log.dir'
   file:
     state: 'absent'
     path: "{{file_path_log_dir_name}}"
@@ -102,7 +102,7 @@
     - unix
     - nginx
 
-- name: file remove vhosts.d
+- name: 'file remove vhosts.d'
   file:
     state: 'absent'
     path: "{{file_path_vhosts_d_name}}"
