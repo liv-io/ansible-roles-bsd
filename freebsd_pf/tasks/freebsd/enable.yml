@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create pf.blacklist
+- name: 'template create pf.blacklist'
   template:
     src: "{{file_src_pf_blacklist}}"
     dest: "{{file_path_pf_blacklist}}"
@@ -37,7 +37,7 @@
     - freebsd
     - freebsd_pf
 
-- name: template create pf.conf
+- name: 'template create pf.conf'
   template:
     src: "{{file_src_pf_conf}}"
     dest: "{{file_path_pf_conf}}"
@@ -53,7 +53,7 @@
     - freebsd
     - freebsd_pf
 
-- name: line enable pf_enable
+- name: 'line enable pf_enable'
   lineinfile:
     state: 'present'
     line: "{{file_line_pf_enable}}=\"YES\" # Ansible: Enable pf"
@@ -66,7 +66,7 @@
     - freebsd
     - freebsd_pf
 
-- name: line enable gateway-ipv4
+- name: 'line enable gateway-ipv4'
   lineinfile:
     state: 'present'
     line: "{{file_line_gateway_ipv4}}=\"YES\" # Ansible: Enable gateway-ipv4"
@@ -79,7 +79,7 @@
     - freebsd
     - freebsd_pf
 
-- name: line disable gateway-ipv4
+- name: 'line disable gateway-ipv4'
   lineinfile:
     state: 'present'
     line: "{{file_line_gateway_ipv4}}=\"NO\" # Ansible: Disable gateway-ipv4"
@@ -92,7 +92,7 @@
     - freebsd
     - freebsd_pf
 
-- name: line enable gateway-ipv6
+- name: 'line enable gateway-ipv6'
   lineinfile:
     state: 'present'
     line: "{{file_line_gateway_ipv6}}=\"YES\" # Ansible: Enable gateway-ipv6"
@@ -105,7 +105,7 @@
     - freebsd
     - freebsd_pf
 
-- name: line disable gateway-ipv6
+- name: 'line disable gateway-ipv6'
   lineinfile:
     state: 'present'
     line: "{{file_line_gateway_ipv6}}=\"NO\" # Ansible: Disable gateway-ipv6"
@@ -122,7 +122,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service start freebsd_pf
+- name: 'service start freebsd_pf'
   service:
     state: 'started'
     enabled: 'yes'

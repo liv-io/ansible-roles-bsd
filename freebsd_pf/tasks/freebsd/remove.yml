@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service stop freebsd_pf
+- name: 'service stop freebsd_pf'
   service:
     state: 'stopped'
     enabled: 'no'
@@ -37,7 +37,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: file remove pf.conf
+- name: 'file remove pf.conf'
   file:
     state: 'absent'
     path: "{{file_path_pf_conf}}"
@@ -47,7 +47,7 @@
     - freebsd
     - freebsd_pf
 
-- name: file remove pf.blacklist
+- name: 'file remove pf.blacklist'
   file:
     state: 'absent'
     path: "{{file_path_pf_blacklist}}"
@@ -57,7 +57,7 @@
     - freebsd
     - freebsd_pf
 
-- name: line remove pf_enable
+- name: 'line remove pf_enable'
   lineinfile:
     state: 'absent'
     line: "{{file_line_pf_enable}}=\"NO\" # Ansible: Remove pf"
@@ -70,7 +70,7 @@
     - freebsd
     - freebsd_pf
 
-- name: line remove gateway-ipv4
+- name: 'line remove gateway-ipv4'
   lineinfile:
     state: 'absent'
     line: "{{file_line_gateway_ipv4}}=\"NO\" # Ansible: Remove gateway-ipv4"
@@ -83,7 +83,7 @@
     - freebsd
     - freebsd_pf
 
-- name: line remove gateway-ipv6
+- name: 'line remove gateway-ipv6'
   lineinfile:
     state: 'absent'
     line: "{{file_line_gateway_ipv6}}=\"NO\" # Ansible: Remove gateway-ipv6"

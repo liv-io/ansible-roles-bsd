@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -17,8 +17,8 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command validate freebsd_pf
+- name: 'command validate freebsd_pf'
   command: "{{command_cmd_validate_freebsd_pf}}"
 
-- name: command reload freebsd_pf
+- name: 'command reload freebsd_pf'
   command: "{{command_cmd_reload_freebsd_pf}}"
