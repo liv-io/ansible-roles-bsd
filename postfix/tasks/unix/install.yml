@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package install postfix
+- name: 'package install postfix'
   package:
     state: 'present'
     name: "{{package_name_postfix}}"
@@ -36,7 +36,7 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command pkill opensmtpd
+- name: 'command pkill opensmtpd'
   shell: "{{command_shell_pkill_opensmtpd}}"
   when: (register_freebsd_postfix|changed)
   tags:
@@ -45,7 +45,7 @@
     - unix
     - postfix
 
-- name: command pkill sendmail
+- name: 'command pkill sendmail'
   shell: "{{command_shell_pkill_sendmail}}"
   when: (register_freebsd_postfix|changed)
   tags:

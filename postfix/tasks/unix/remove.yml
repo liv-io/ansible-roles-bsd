@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: package remove postfix
+- name: 'package remove postfix'
   package:
     state: 'absent'
     name: "{{package_name_postfix}}"
@@ -35,7 +35,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line remove postfix_enable
+- name: 'line remove postfix_enable'
   lineinfile:
     state: 'absent'
     line: "{{file_line_postfix_enable}}=\"NO\" # Ansible: Remove postfix"
@@ -48,7 +48,7 @@
     - unix
     - postfix
 
-- name: file remove aliases
+- name: 'file remove aliases'
   file:
     state: 'absent'
     path: "{{file_path_aliases}}"
@@ -58,7 +58,7 @@
     - unix
     - postfix
 
-- name: file remove main.cf
+- name: 'file remove main.cf'
   file:
     state: 'absent'
     path: "{{file_path_main_cf}}"
@@ -68,7 +68,7 @@
     - unix
     - postfix
 
-- name: file remove master.cf
+- name: 'file remove master.cf'
   file:
     state: 'absent'
     path: "{{file_path_master_cf}}"

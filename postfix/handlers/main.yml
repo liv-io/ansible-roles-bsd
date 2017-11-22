@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -17,14 +17,14 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: command newaliases
+- name: 'command newaliases'
   command: "{{command_cmd_newaliases}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service restart postfix
+- name: 'service restart postfix'
   service:
     state: 'restarted'
     name: "{{service_name_postfix}}"

@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create aliases
+- name: 'template create aliases'
   template:
     src: "{{file_src_aliases}}"
     dest: "{{file_path_aliases}}"
@@ -34,7 +34,7 @@
     - unix
     - postfix
 
-- name: template create main.cf
+- name: 'template create main.cf'
   template:
     src: "{{file_src_main_cf}}"
     dest: "{{file_path_main_cf}}"
@@ -47,7 +47,7 @@
     - unix
     - postfix
 
-- name: template create master.cf
+- name: 'template create master.cf'
   template:
     src: "{{file_src_master_cf}}"
     dest: "{{file_path_master_cf}}"
@@ -60,7 +60,7 @@
     - unix
     - postfix
 
-- name: line disable postfix_enable
+- name: 'line disable postfix_enable'
   lineinfile:
     state: 'present'
     line: "{{file_line_postfix_enable}}=\"NO\" # Ansible: Disable postfix"
@@ -77,7 +77,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service stop postfix
+- name: 'service stop postfix'
   service:
     state: 'stopped'
     enabled: 'no'
