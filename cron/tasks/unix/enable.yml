@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line enable cron_enable
+- name: 'line enable cron_enable'
   lineinfile:
     state: 'present'
     line: "{{file_line_cron_enable}}=\"YES\" # Ansible: Enable cron"
@@ -38,7 +38,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: service start cron
+- name: 'service start cron'
   service:
     state: 'started'
     enabled: 'yes'
