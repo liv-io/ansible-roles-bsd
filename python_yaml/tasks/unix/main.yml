@@ -1,13 +1,13 @@
 ---
 
-- name: task include install
+- name: 'task include install'
   include: install.yml
   when: not (python_yaml_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - unix
     - python_yaml
 
-- name: task include remove
+- name: 'task include remove'
   include: remove.yml
   when: (python_yaml_state|match('false|no|remove'))
   tags:
