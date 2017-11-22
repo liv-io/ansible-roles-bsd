@@ -1,6 +1,6 @@
 ---
 
-- name: task include config
+- name: 'task include config'
   include: config.yml
   when: not (user_state|match('false|no|disable|quiesce|inactive'))
   tags:
