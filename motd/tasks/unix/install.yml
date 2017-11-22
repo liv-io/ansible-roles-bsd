@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: template create motd
+- name: 'template create motd'
   template:
     src: "{{file_src_motd}}"
     dest: "{{file_path_motd}}"
@@ -34,7 +34,7 @@
     - unix
     - motd
 
-- name: line disable motd-patch
+- name: 'line disable motd-patch'
   lineinfile:
     state: 'present'
     line: "#\t{{file_line_motd_patch}} # Ansible: Disable motd-patch"

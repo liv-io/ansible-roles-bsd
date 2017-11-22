@@ -4,7 +4,7 @@
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-- name: include variables
+- name: 'include variables'
   include_vars: "{{item}}"
   with_first_found:
     - files:
@@ -21,7 +21,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: line enable motd-patch
+- name: 'line enable motd-patch'
   lineinfile:
     state: 'present'
     line: "\t{{file_line_motd_patch}} # Ansible: Enable motd-patch"
