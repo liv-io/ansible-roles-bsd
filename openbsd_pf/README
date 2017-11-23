@@ -430,8 +430,8 @@ ROLE
       Examples: '1' | '2' | '3'
       Disable : 'false' | 'no' | 'disable'
 
-  openbsd_pf_options_limit
-    Description: Define the 'openbsd_pf_options_limit' option.
+  openbsd_pf_options_limits
+    Description: Define the 'openbsd_pf_options_limits' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -526,8 +526,8 @@ ROLE
       Floating: 'floating'
       If-Bound: 'if-bound'
 
-  openbsd_pf_options_timeout
-    Description: Define the 'openbsd_pf_options_timeout' option.
+  openbsd_pf_options_timeouts
+    Description: Define the 'openbsd_pf_options_timeouts' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary

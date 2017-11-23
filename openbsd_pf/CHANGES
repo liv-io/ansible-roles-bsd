@@ -13,7 +13,12 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.6.1 (2017-11-23)
+I: Improve variable names of 'openbsd_pf_options_limits' and 'openbsd_pf_options_timeouts'
+
 * Version 0.6.0 (2017-11-20)
+F: Add support for OpenBSD 6.2
+F: Drop support for OpenBSD 6.1
 I: Redesign, improve and cleanup Ansible role
 
 * Version 0.5.2 (2017-08-01)

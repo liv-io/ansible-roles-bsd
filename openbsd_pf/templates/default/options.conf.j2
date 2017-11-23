@@ -55,7 +55,7 @@ set hostid {{openbsd_pf_options_hostid}}
 {% endif %}
 
 # Limits
-{% for limit in openbsd_pf_options_limit|default([]) %}
+{% for limit in openbsd_pf_options_limits|default([]) %}
 {% if (limit.comment is defined) and not (limit.comment == '') %}
 # {{limit.comment}}
 {% endif %}
@@ -120,7 +120,7 @@ set state-policy if-bound
 {% endif %}
 
 # Timeouts
-{% for timeout in openbsd_pf_options_timeout|default([]) %}
+{% for timeout in openbsd_pf_options_timeouts|default([]) %}
 {% if (timeout.comment is defined) and not (timeout.comment == '') %}
 # {{timeout.comment}}
 {% endif %}

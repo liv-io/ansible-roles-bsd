@@ -65,7 +65,7 @@ openbsd_pf_options_fingerprints: '/etc/pf.os'
 
 openbsd_pf_options_hostid: 'false'
 
-openbsd_pf_options_limit: []
+openbsd_pf_options_limits: []
 
 openbsd_pf_options_loginterface: 'false'
 
@@ -81,7 +81,7 @@ openbsd_pf_options_state_defaults: []
 
 openbsd_pf_options_state_policy: 'floating'
 
-openbsd_pf_options_timeout: []
+openbsd_pf_options_timeouts: []
 
 openbsd_pf_pf_conf_template: 'default'
 
