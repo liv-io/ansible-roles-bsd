@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.6.2 (2017-11-24)
+B: Fix multiple bugs in 'filters.conf.j2' template
+
 * Version 0.6.1 (2017-11-23)
 I: Improve variable names of 'openbsd_pf_options_limits' and 'openbsd_pf_options_timeouts'
 
