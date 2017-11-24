@@ -249,11 +249,6 @@ PrintMotd yes
 {% else %}
 PrintMotd no
 {% endif %}
-{% if (openssh_print_last_log|match('false|no|disable')) %}
-PrintLastLog no
-{% else %}
-PrintLastLog yes
-{% endif %}
 {% if (openssh_tcp_keep_alive|match('false|no|disable')) %}
 TCPKeepAlive no
 {% else %}

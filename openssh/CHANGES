@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.2.1 (2017-11-24)
+B: Remove unsupported option 'PrintLastLog' on FreeBSD
+
 * Version 1.2.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
 F: Drop support for OpenBSD 6.1
