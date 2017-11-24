@@ -18,24 +18,88 @@
     - freebsd_pf
 
 #-------------------------------------------------------------------------------
-# SYSTEM
+# FILES
 #-------------------------------------------------------------------------------
 
-- name: 'service stop freebsd_pf'
-  service:
-    state: 'stopped'
-    enabled: 'no'
-    name: "{{service_name_freebsd_pf}}"
-  when: (ansible_os_family == 'FreeBSD')
+- name: 'file remove anchors.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_anchors_conf}}"
   tags:
-    - system
+    - files
     - remove
     - freebsd
     - freebsd_pf
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
+- name: 'file remove filters.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_filters_conf}}"
+  tags:
+    - files
+    - remove
+    - freebsd
+    - freebsd_pf
+
+- name: 'file remove macros.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_macros_conf}}"
+  tags:
+    - files
+    - remove
+    - freebsd
+    - freebsd_pf
+
+- name: 'file remove normalization.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_normalization_conf}}"
+  tags:
+    - files
+    - remove
+    - freebsd
+    - freebsd_pf
+
+- name: 'file remove options.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_options_conf}}"
+  tags:
+    - files
+    - remove
+    - freebsd
+    - freebsd_pf
+
+- name: 'file remove queues.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_queues_conf}}"
+  tags:
+    - files
+    - remove
+    - freebsd
+    - freebsd_pf
+
+- name: 'file remove tables.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_tables_conf}}"
+  tags:
+    - files
+    - remove
+    - freebsd
+    - freebsd_pf
+
+- name: 'file remove translations.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_translations_conf}}"
+  tags:
+    - files
+    - remove
+    - freebsd
+    - freebsd_pf
 
 - name: 'file remove pf.conf'
   file:
@@ -47,10 +111,10 @@
     - freebsd
     - freebsd_pf
 
-- name: 'file remove pf.blacklist'
+- name: 'file remove pf.dir'
   file:
     state: 'absent'
-    path: "{{file_path_pf_blacklist}}"
+    path: "{{file_path_ntp_script_dir}}"
   tags:
     - files
     - remove

@@ -1,5 +1,12 @@
 ---
 
+- name: 'task include install'
+  include: install.yml
+  when: not (freebsd_pf_state|match('false|no|remove|quiesce|inactive'))
+  tags:
+    - freebsd
+    - freebsd_pf
+
 - name: 'task include enable'
   include: enable.yml
   when: (freebsd_pf_state|match('start|on|enable'))

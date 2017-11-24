@@ -1,0 +1,55 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : normalization.conf
+# Type   : pf configuration file
+# Role   : freebsd_pf
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INCLUDES
+#-------------------------------------------------------------------------------
+
+# MACROS
+include '/etc/pf/macros.conf'
+
+# TABLES
+include '/etc/pf/tables.conf'
+
+#-------------------------------------------------------------------------------
+# SCRUB
+#-------------------------------------------------------------------------------
+
+{% for scrub in freebsd_pf_normalization_scrub|default([]) %}
+{% if (scrub.comment is defined) and not (scrub.comment == '') %}
+# {{scrub.comment}}
+{% endif %}
+{%- if (scrub.action is defined) and (scrub.action|match('scrub')) %}scrub {% endif %}
+{%- if (scrub.direction is defined) and (scrub.direction|match('in')) %}in {% else %}out {% endif %}
+{%- if (scrub.sources is defined) and not (scrub.sources == []) %}from { {% endif %}
+{% for source in scrub.sources|default([]) %}
+{{source}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (scrub.sources is defined) and not (scrub.sources == []) %}} {% endif %}
+{%- if (scrub.destinations is defined) and not (scrub.destinations == []) %}to { {% endif %}
+{% for destination in scrub.destinations|default([]) %}
+{{destination}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (scrub.destinations is defined) and not (scrub.destinations == []) %}} {% endif %}
+{% for option in scrub.options|default([]) %}
+{{option}}{% if not loop.last %} {% else %}{% endif %}
+{% endfor %}
+{% if not loop.last %}
+
+{% endif %}
+
+{% endfor %}

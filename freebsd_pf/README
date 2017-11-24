@@ -40,51 +40,13 @@ ENABLE
       - role: freebsd_pf
     vars:
       freebsd_pf_state: 'enable'
-      freebsd_pf_filter_in_ip_all:
-        - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
-      freebsd_pf_filter_in_ip_host:
-        - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
-        - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
-        - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
-        - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
-        - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
-      freebsd_pf_filter_out_ip_all:
-        - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
-                    'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
-        - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
-                    'pass out inet proto udp to 192.168.1.3 port 53 $udp_state'}, comment: 'DNS: To secondary dns server'}
-        - {config: {'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state'}, comment: 'HTTP: To internal mirror'}
-        - {config: {'pass out inet proto udp to any 192.168.1.4 123 $udp_state'}, comment: 'NTP: To ntp server'}
-        - {config: {'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state'}, comment: 'HTTPS: To internal mirror'}
-      freebsd_pf_filter_out_ip_host:
-        - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
-        - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
 
 DISABLE
   - hosts: all
     roles:
       - role: freebsd_pf
     vars:
-      freebsd_pf_state: 'disable'
-      freebsd_pf_filter_in_ip_all:
-        - {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal network'}
-      freebsd_pf_filter_in_ip_host:
-        - {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'}
-        - {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'}
-        - {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'}
-        - {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'}
-        - {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}
-      freebsd_pf_filter_out_ip_all:
-        - {config: {'pass out inet proto tcp to 192.168.1.2 port 53 $tcp_state',
-                    'pass out inet proto udp to 192.168.1.2 port 53 $udp_state'}, comment: 'DNS: To primary dns server'}
-        - {config: {'pass out inet proto tcp to 192.168.1.3 port 53 $tcp_state',
-                    'pass out inet proto udp to 192.168.1.3 port 53 $udp_state'}, comment: 'DNS: To secondary dns server'}
-        - {config: {'pass out inet proto tcp to 192.168.1.5 port 80 $tcp_state'}, comment: 'HTTP: To internal mirror'}
-        - {config: {'pass out inet proto udp to any 192.168.1.4 123 $udp_state'}, comment: 'NTP: To ntp server'}
-        - {config: {'pass out inet proto tcp to any 192.168.1.5 443 $tcp_state'}, comment: 'HTTPS: To internal mirror'}
-      freebsd_pf_filter_out_ip_host:
-        - {config: {'pass out inet proto tcp to any port 25 $tcp_state'}, comment: 'SMTP: To any'}
-        - {config: {'pass out inet proto tcp to any port 587 $tcp_state'}, comment: 'SMTPS: To any'}
+     freebsd_pf_state: 'disable'
 
 REMOVE
   - hosts: all
@@ -99,6 +61,25 @@ INACTIVE
       - role: freebsd_pf
     vars:
       freebsd_pf_state: 'inactive'
+
+CONFIG
+  vars:
+    freebsd_pf_filters_all:
+      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Reply: From any'}
+      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
+      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
+      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'}
+      - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'}
+      - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'}
+      - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'}
+      - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'10.11.1.11', '10.21.1.11'}, ports: {'domain'}, state: '$default_tcp', comment: 'DNS: To dns servers'}
+      - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'10.11.1.11', '10.21.1.11'}, ports: {'domain'}, state: '$default_udp', comment: 'DNS: To dns servers'}
+      - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'10.2.1.11', '10.2.1.12', '10.2.1.13', '10.2.1.14'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To ntp servers'}
+      - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'10.2.1.15'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To package repository'}
+    freebsd_pf_filters_group:
+      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'}
+      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'}
+      - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -119,193 +100,116 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  freebsd_pf_blacklist_all
-    Description: Define the 'freebsd_pf_blacklist_all' option.
+  freebsd_pf_anchors_conf_template
+    Description: Define the template source for 'anchors.conf.j2'.
+                 Any value other than 'default' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'freebsd_pf/templates/example/anchors.conf.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'173.194.40.40'}, comment: 'IP: Single IP address'},
-                 {config: {'74.125.148.0/22'}, comment: 'IP: IP range'},
-                 {config: {'google.com'}, comment: 'Host: Domain'}]
-      None    : []
-
-  freebsd_pf_blacklist_group
-    Description: Define the 'freebsd_pf_blacklist_group' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'173.194.40.40'}, comment: 'IP: Single IP address'},
-                 {config: {'74.125.148.0/22'}, comment: 'IP: IP range'},
-                 {config: {'google.com'}, comment: 'Host: Domain'}]
-      None    : []
-
-  freebsd_pf_blacklist_host
-    Description: Define the 'freebsd_pf_blacklist_host' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'173.194.40.40'}, comment: 'IP: Single IP address'},
-                 {config: {'74.125.148.0/22'}, comment: 'IP: IP range'},
-                 {config: {'google.com'}, comment: 'Host: Domain'}]
-      None    : []
-
-  freebsd_pf_filter_in_icmp
-    Description: Define the 'freebsd_pf_filter_in_icmp' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'pass in inet proto icmp icmp-type echoreq $udp_state'},
-                           'pass in inet6 proto icmp6 icmp6-type echoreq $udp_state'},
-                  comment: 'ICMP echo request: From any'}]
-      None    : []
-
-  freebsd_pf_filter_in_ip_all
-    Description: Define the 'freebsd_pf_filter_in_ip_all' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{config: {'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state',
-                            'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state',
-                            'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state'},
-                   comment: 'SSH: From private address space (RFC 1918)'}]
-    Options    :
-      Examples: [{config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state',
-                           'pass in inet proto tcp from 192.168.2.0/24 to port 22 $tcp_state'},
-                  comment: 'SSH: From internal networks'}]
-      None    : []
-
-  freebsd_pf_filter_in_ip_group
-    Description: Define the 'freebsd_pf_filter_in_ip_group' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state',
-                           'pass in inet proto tcp from 192.168.2.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal networks'},
-                 {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'},
-                 {config: {'pass in inet proto tcp from any to port 53 $tcp_state',
-                           'pass in inet proto udp from any to port 53 $udp_state'}, comment: 'DNS: From any'},
-                 {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'},
-                 {config: {'pass in inet proto udp from 192.168.1.0/24 to port 123 $udp_state'}, comment: 'NTP: From internal network'},
-                 {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'},
-                 {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 514 $tcp_state'}, comment: 'From internal network'},
-                 {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'},
-                 {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}]
-      None    : []
-
-  freebsd_pf_filter_in_ip_host
-    Description: Define the 'freebsd_pf_filter_in_ip_host' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'pass in inet proto tcp from 192.168.1.0/24 to port 22 $tcp_state',
-                           'pass in inet proto tcp from 192.168.2.0/24 to port 22 $tcp_state'}, comment: 'SSH: From internal networks'},
-                 {config: {'pass in inet proto tcp from any to port 25 $tcp_state'}, comment: 'SMTP: From any'},
-                 {config: {'pass in inet proto tcp from any to port 53 $tcp_state',
-                           'pass in inet proto udp from any to port 53 $udp_state'}, comment: 'DNS: From any'},
-                 {config: {'pass in inet proto tcp from any to port 80 $tcp_state'}, comment: 'HTTP: From any'},
-                 {config: {'pass in inet proto udp from 192.168.1.0/24 to port 123 $udp_state'}, comment: 'NTP: From internal network'},
-                 {config: {'pass in inet proto tcp from any to port 443 $tcp_state'}, comment: 'HTTPS: From any'},
-                 {config: {'pass in inet proto tcp from 192.168.1.0/24 to port 514 $tcp_state'}, comment: 'From internal network'},
-                 {config: {'pass in inet proto tcp from any to port 587 $tcp_state'}, comment: 'SMTPS: From any'},
-                 {config: {'pass in inet proto tcp from any to port 993 $tcp_state'}, comment: 'IMAPS: From any'}]
-      None    : []
-
-  freebsd_pf_filter_in_policy
-    Description: Control the 'freebsd_pf_filter_in_policy' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Predetermined
     Type       : String
-    Default    : 'block'
+    Default    : 'default'
     Options    :
-      Block: 'block'
-      Pass : 'pass'
+      Examples: 'example' | 'environment' | 'hostname'
 
-  freebsd_pf_filter_out_icmp
-    Description: Define the 'freebsd_pf_filter_out_icmp' option.
+  freebsd_pf_filters_all
+    Description: Define the 'freebsd_pf_filters_all' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
-                            'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'},
-                   comment: 'ICMP echo request: To any'}]
+    Default    : [{action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Reply: From any'},
+                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'},
+                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'},
+                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_tcp', comment: 'DNS: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_udp', comment: 'DNS: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}]
     Options    :
-      Examples: [{config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
-                           'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'},
-                  comment: 'ICMP echo request: To any'}]
+      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Reply: From any'},
+                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'},
+                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'},
+                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_tcp', comment: 'DNS: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_udp', comment: 'DNS: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To any'},
+                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}]
       None    : []
 
-  freebsd_pf_filter_out_ip_all
-    Description: Define the 'freebsd_pf_filter_out_ip_all' option.
+  freebsd_pf_filters_conf_template
+    Description: Define the template source for 'filters.conf.j2'.
+                 Any value other than 'default' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'freebsd_pf/templates/example/filters.conf.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{config: {'pass out inet proto tcp to any port 53 $tcp_state,
-                            'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'},
-                  {config: {'pass out inet proto tcp to any port 80 $tcp_state'}, comment: 'HTTP: To any'},
-                  {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'},
-                  {config: {'pass out inet proto tcp to any port 443 $tcp_state'}, comment: 'HTTPS: To any'}]
-    Options    :
-      Examples: [{config: {'pass out inet proto tcp to any port 53 $tcp_state,
-                           'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'},
-                 {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'},
-      None    : []
-
-  freebsd_pf_filter_out_ip_group
-    Description: Define the 'freebsd_pf_filter_out_ip_group' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'pass out inet proto tcp to 192.168.1.0/24 port 22 $tcp_state'}, comment: 'SSH: To internal network'},
-                 {config: {'pass out inet proto tcp to 192.168.1.10 port 512 $tcp_state'}, comment: 'SYSLOG: To internal log server'}]
-      None    : []
-
-  freebsd_pf_filter_out_ip_host
-    Description: Define the 'freebsd_pf_filter_out_ip_host' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'pass out inet proto tcp to 192.168.1.0/24 port 22 $tcp_state'}, comment: 'SSH: To internal network'},
-                 {config: {'pass out inet proto tcp to 192.168.1.10 port 512 $tcp_state'}, comment: 'SYSLOG: To internal log server'}]
-      None    : []
-
-  freebsd_pf_filter_out_policy
-    Description: Control the 'freebsd_pf_filter_out_policy' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Predetermined
     Type       : String
-    Default    : 'block'
+    Default    : 'default'
     Options    :
-      Block: 'block'
-      Pass : 'pass'
+      Examples: 'example' | 'environment' | 'hostname'
+
+  freebsd_pf_filters_dependencies
+    Description: Define the 'freebsd_pf_filters_dependencies' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'},
+                 {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'},
+                 {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}]
+      None    : []
+
+  freebsd_pf_filters_group
+    Description: Define the 'freebsd_pf_filters_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'},
+                 {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'},
+                 {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}]
+      None    : []
+
+  freebsd_pf_filters_host
+    Description: Define the 'freebsd_pf_filters_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'},
+                 {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'},
+                 {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}]
+      None    : []
+
+  freebsd_pf_filters_policies
+    Description: Define the 'freebsd_pf_filters_policies' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{action: 'block', direction: 'in', log: 'true', comment: 'Default incoming policy'},
+                  {action: 'block', direction: 'out', log: 'false', comment: 'Default outgoing policy'}]
+    Options    :
+      Examples: [{action: 'block', direction: 'in', log: 'true', comment: 'Default incoming policy'},
+                 {action: 'pass', direction: 'out', log: 'true', comment: 'Default outgoing policy'}]
+      None    : []
 
   freebsd_pf_gateway_ipv4_state
     Description: Control the 'freebsd_pf_gateway_ipv4_state' option.
@@ -329,109 +233,203 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  freebsd_pf_macro_all
-    Description: Define the 'freebsd_pf_macro_all' option.
+  freebsd_pf_macros_all
+    Description: Define the 'freebsd_pf_macros_all' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {"if_int='re1'"}, comment: 'Interface: internal'},
-                 {config: {"if_ext='re0'"}, comment: 'Interface: external'},
-                 {config: {"ip_1='192.168.1.1'"}, comment: 'IP: 192.168.1.1'},
-                 {config: {"ip_2='192.168.2.1'"}, comment: 'IP: 192.168.2.1'},
-                 {config: {"net_ext='192.168.1.0/24'"}, comment: 'Network: 192.168.1.0/24'},
-                 {config: {"net_int='192.168.2.0/24'"}, comment: 'Network: 192.168.2.0/24'},
-                 {config: {"host_dns='192.168.2.2'"}, comment: 'Host: dns.domain.tld'},
-                 {config: {"host_ntp='192.168.2.3'"}, comment: 'Host: ntp.domain.tld'}]
+      Examples: [{name: 'h_ns01', value: '10.11.1.11', comment: 'dns server 01'},
+                 {name: 'h_ns02', value: '10.21.1.11', comment: 'dns server 02'},
+                 {name: 'g_ns', value: '{ $h_ns01, $h_ns02 }', comment: 'dns servers'},
+                 {name: 'h_ntp01', value: '10.2.1.11', comment: 'ntp server 01'},
+                 {name: 'h_ntp02', value: '10.2.1.12', comment: 'ntp server 02'},
+                 {name: 'h_ntp03', value: '10.2.1.13', comment: 'ntp server 03'},
+                 {name: 'h_ntp04', value: '10.2.1.14', comment: 'ntp server 04'},
+                 {name: 'g_ntp', value: '{ $h_ntp01, $h_ntp02, $h_ntp03, $h_ntp04 }', comment: 'ntp servers'}]
       None    : []
 
-  freebsd_pf_macro_group
-    Description: Define the 'freebsd_pf_macro_group' option.
+  freebsd_pf_macros_conf_template
+    Description: Define the template source for 'macros.conf.j2'.
+                 Any value other than 'default' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'freebsd_pf/templates/example/macros.conf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'default'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  freebsd_pf_macros_dependencies
+    Description: Define the 'freebsd_pf_macros_dependencies' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {"if_int='re1'"}, comment: 'Interface: internal'},
-                 {config: {"if_ext='re0'"}, comment: 'Interface: external'},
-                 {config: {"ip_1='192.168.1.1'"}, comment: 'IP: 192.168.1.1'},
-                 {config: {"ip_2='192.168.2.1'"}, comment: 'IP: 192.168.2.1'},
-                 {config: {"net_ext='192.168.1.0/24'"}, comment: 'Network: 192.168.1.0/24'},
-                 {config: {"net_int='192.168.2.0/24'"}, comment: 'Network: 192.168.2.0/24'},
-                 {config: {"host_dns='192.168.2.2'"}, comment: 'Host: dns.domain.tld'},
-                 {config: {"host_ntp='192.168.2.3'"}, comment: 'Host: ntp.domain.tld'}]
+      Examples: [{name: 'h_mirror', value: '10.2.1.15', comment: 'package repository'},
+                 {name: 'h_fproxy', value: '10.2.1.16', comment: 'forward proxy'},
+                 {name: 'h_rproxy', value: '10.2.1.17', comment: 'reverse proxy'}]
       None    : []
 
-  freebsd_pf_macro_host
-    Description: Define the 'freebsd_pf_macro_host' option.
+  freebsd_pf_macros_group
+    Description: Define the 'freebsd_pf_macros_group' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {"if_int='re1'"}, comment: 'Interface: internal'},
-                 {config: {"if_ext='re0'"}, comment: 'Interface: external'},
-                 {config: {"ip_1='192.168.1.1'"}, comment: 'IP: 192.168.1.1'},
-                 {config: {"ip_2='192.168.2.1'"}, comment: 'IP: 192.168.2.1'},
-                 {config: {"net_ext='192.168.1.0/24'"}, comment: 'Network: 192.168.1.0/24'},
-                 {config: {"net_int='192.168.2.0/24'"}, comment: 'Network: 192.168.2.0/24'},
-                 {config: {"host_dns='192.168.2.2'"}, comment: 'Host: dns.domain.tld'},
-                 {config: {"host_ntp='192.168.2.3'"}, comment: 'Host: ntp.domain.tld'}]
+      Examples: [{name: 'h_mirror', value: '10.2.1.15', comment: 'package repository'},
+                 {name: 'h_fproxy', value: '10.2.1.16', comment: 'forward proxy'},
+                 {name: 'h_rproxy', value: '10.2.1.17', comment: 'reverse proxy'}]
       None    : []
 
-  freebsd_pf_macro_tcp_state
-    Description: Define the 'freebsd_pf_macro_tcp_state' option.
+  freebsd_pf_macros_host
+    Description: Define the 'freebsd_pf_macros_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'h_mirror', value: '10.2.1.15', comment: 'package repository'},
+                 {name: 'h_fproxy', value: '10.2.1.16', comment: 'forward proxy'},
+                 {name: 'h_rproxy', value: '10.2.1.17', comment: 'reverse proxy'}]
+      None    : []
+
+  freebsd_pf_macros_state_all
+    Description: Define the 'freebsd_pf_macros_state_all' option.
                  The flags 'S/SA' are safe when using scrubbing. Use the flags
                  'S/SFRA' when scrubbing is disabled.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : String
-    Default    : 'flags S/SA modulate state'
+    Type       : Array/Hash
+    Default    : [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
+                  {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
     Options    :
-      Examples: 'flags S/SA modulate state' |
-                'flags S/SFRA modulate state'
+      Examples: [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
+                 {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
+      None    : []
 
-  freebsd_pf_macro_udp_state
-    Description: Define the 'freebsd_pf_macro_udp_state' option.
+  freebsd_pf_macros_state_dependencies
+    Description: Define the 'freebsd_pf_macros_state_dependencies' option.
+                 The flags 'S/SA' are safe when using scrubbing. Use the flags
+                 'S/SFRA' when scrubbing is disabled.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
+                 {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
+      None    : []
+
+  freebsd_pf_macros_state_group
+    Description: Define the 'freebsd_pf_macros_state_group' option.
+                 The flags 'S/SA' are safe when using scrubbing. Use the flags
+                 'S/SFRA' when scrubbing is disabled.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
+                 {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
+      None    : []
+
+  freebsd_pf_macros_state_host
+    Description: Define the 'freebsd_pf_macros_state_host' option.
+                 The flags 'S/SA' are safe when using scrubbing. Use the flags
+                 'S/SFRA' when scrubbing is disabled.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
+                 {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
+      None    : []
+
+  freebsd_pf_normalization_conf_template
+    Description: Define the template source for 'normalization.conf.j2'.
+                 Any value other than 'default' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'freebsd_pf/templates/example/normalization.conf.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'keep state'
+    Default    : 'default'
     Options    :
-      Examples: 'keep state'
+      Examples: 'example' | 'environment' | 'hostname'
 
-  freebsd_pf_option_block_policy
-    Description: Control the 'freebsd_pf_option_block_policy' option.
+  freebsd_pf_normalization_scrub
+    Description: Define the 'freebsd_pf_normalization_scrub' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{action: 'match', direction: 'in', sources: {'any'}, destinations: {'any'}, options: {'fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'},
+                  {action: 'match', direction: 'out', sources: {'any'}, destinations: {'any'}, options: {'random-id', 'fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}]
+    Options    :
+      Examples: [{action: 'match', direction: 'in', sources: {'any'}, destinations: {'any'}, options: {'fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'},
+                 {action: 'match', direction: 'out', sources: {'any'}, destinations: {'any'}, options: {'random-id', 'fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}]
+      None    : []
+
+  freebsd_pf_options_block_policy
+    Description: Control the 'freebsd_pf_options_block_policy' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
     Default    : 'drop'
     Options    :
-      Drop  : 'drop'
       Return: 'return'
+      Block : 'block'
+      Drop  : 'drop'
 
-  freebsd_pf_option_debug
-    Description: Control the 'freebsd_pf_option_debug' option.
+  freebsd_pf_options_conf_template
+    Description: Define the template source for 'options.conf.j2'.
+                 Any value other than 'default' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'freebsd_pf/templates/example/options.conf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'default'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  freebsd_pf_options_debug
+    Description: Control the 'freebsd_pf_options_debug' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'urgent'
+    Default    : 'crit'
     Options    :
-      None  : 'none'
-      Urgent: 'urgent'
-      Misc  : 'misc'
       Loud  : 'loud'
+      Misc  : 'misc'
+      Urgent: 'crit'
+      Debug : 'debug'
+      None  : 'none'
 
-  freebsd_pf_option_fingerprints
-    Description: Define the 'freebsd_pf_option_fingerprints' option.
+  freebsd_pf_options_fingerprints
+    Description: Define the 'freebsd_pf_options_fingerprints' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -440,8 +438,8 @@ ROLE
     Options    :
       Examples: '/etc/pf.os' | '/etc/pf.os-fingerprints'
 
-  freebsd_pf_option_hostid
-    Description: Define the 'freebsd_pf_option_hostid' option.
+  freebsd_pf_options_hostid
+    Description: Define the 'freebsd_pf_options_hostid' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -451,23 +449,23 @@ ROLE
       Examples: '1' | '2' | '3'
       Disable : 'false' | 'no' | 'disable'
 
-  freebsd_pf_option_limit
-    Description: Define the 'freebsd_pf_option_limit' option.
+  freebsd_pf_options_limits
+    Description: Define the 'freebsd_pf_options_limits' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {'states 20000'}, comment: 'Limit: Maximum entries for state table'},
-                 {config: {'frags 20000'}, comment: 'Limit: Maximum entries for fragment reassembly'},
-                 {config: {'src-nodes 2000'}, comment: 'Limit: Maximum entries for tracking source IP addresses'},
-                 {config: {'tables 1000'}, comment: 'Limit: Maximum of tables'},
-                 {config: {'table-entries 100000'}, comment: 'Limit: Overall maximum of addresses'}]
+      Examples: [{name: 'states', value: '20000', comment: 'Limit: Maximum entries for state table'},
+                 {name: 'frags', value: '20000', comment: 'Limit: Maximum entries for fragment reassembly'},
+                 {name: 'src-nodes', value: '2000', comment: 'Limit: Maximum entries for tracking source IP addresses'},
+                 {name: 'tables', value: '1000', comment: 'Limit: Maximum of tables'},
+                 {name: 'table-entries', value: '100000', comment: 'Limit: Overall maximum of addresses'}]
       None    : []
 
-  freebsd_pf_option_loginterface
-    Description: Define the 'freebsd_pf_option_loginterface' option.
+  freebsd_pf_options_loginterface
+    Description: Define the 'freebsd_pf_options_loginterface' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -475,10 +473,10 @@ ROLE
     Default    : 'false'
     Options    :
       Examples: 'em0' | 'ed1' | 'wlan2'
-      Disable : 'false' | 'no' | 'disable'
+      None    : 'false' | 'no' | 'disable'
 
-  freebsd_pf_option_optimization
-    Description: Control the 'freebsd_pf_option_optimization' option.
+  freebsd_pf_options_optimization
+    Description: Control the 'freebsd_pf_options_optimization' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -491,8 +489,19 @@ ROLE
       Aggressive  : 'aggressive'
       Conservative: 'conservative'
 
-  freebsd_pf_option_ruleset_optimization
-    Description: Control the 'freebsd_pf_option_ruleset_optimization' option.
+  freebsd_pf_options_require_order
+    Description: Control the 'freebsd_pf_options_require_order' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'yes'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  freebsd_pf_options_ruleset_optimization
+    Description: Control the 'freebsd_pf_options_ruleset_optimization' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -501,10 +510,10 @@ ROLE
     Options    :
       Basic  : 'basic'
       Profile: 'profile'
-      Disable: 'false' | 'no' | 'disable'
+      None   : 'false' | 'no' | 'disable'
 
-  freebsd_pf_option_skip
-    Description: Define the 'freebsd_pf_option_skip' option.
+  freebsd_pf_options_skip
+    Description: Define the 'freebsd_pf_options_skip' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -514,8 +523,8 @@ ROLE
       Examples: ['lo'] | ['lo', 'em0']
       None    : []
 
-  freebsd_pf_option_state_defaults
-    Description: Define the 'freebsd_pf_option_state_defaults' option.
+  freebsd_pf_options_state_defaults
+    Description: Define the 'freebsd_pf_options_state_defaults' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -525,8 +534,8 @@ ROLE
       Examples: ['pflow', 'no-sync']
       None    : []
 
-  freebsd_pf_option_state_policy
-    Description: Control the 'freebsd_pf_option_state_policy' option.
+  freebsd_pf_options_state_policy
+    Description: Control the 'freebsd_pf_options_state_policy' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -536,33 +545,19 @@ ROLE
       Floating: 'floating'
       If-Bound: 'if-bound'
 
-  freebsd_pf_option_timeout
-    Description: Define the 'freebsd_pf_option_timeout' option.
+  freebsd_pf_options_timeouts
+    Description: Define the 'freebsd_pf_options_timeouts' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {'tcp.first 120'}, comment: 'State after the first packet'},
-                 {config: {'tcp.established 86400'}, comment: 'Fully established state'}] |
-                [{config: {'adaptive.start 6000'}, comment: 'Adaptive scaling start'},
-                 {config: {'adaptive.end 12000'}, comment: 'Adaptive scaling end'}]
+      Examples: [{name: 'tcp.first', value: '120', comment: 'State after the first packet'},
+                 {name: 'tcp.established', value: '86400', comment: 'Fully established state'}] |
+                [{name: 'adaptive.start', value: '6000', comment: 'Adaptive scaling start'},
+                 {name: 'adaptive.end', value: '12000', comment: 'Adaptive scaling end'}]
       None    : []
-
-  freebsd_pf_pf_blacklist_template
-    Description: Define the template source for 'pf.blacklist.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
-                 'freebsd_pf/templates/example/pf.blacklist.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'default'
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
 
   freebsd_pf_pf_conf_template
     Description: Define the template source for 'pf.conf.j2'.
@@ -578,116 +573,168 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  freebsd_pf_scrub
-    Description: Define the 'freebsd_pf_scrub' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{config: {'in all fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'},
-                  {config: {'out all random-id fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}]
-    Options    :
-      Examples: [{config: {'in all fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'},
-                 {config: {'out all random-id fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}] |
-                [{config: {'in all fragment drop-ovl'}, comment: 'Scrub: Incoming traffic normalization'},
-                 {config: {'out all random-id fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}]
-      None    : []
-
-  freebsd_pf_table_blacklist
-    Description: Define the 'freebsd_pf_table_blacklist' option.
+  freebsd_pf_pf_dir_name
+    Description: Define the 'freebsd_pf_pf_dir_name' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : "{{file_path_freebsd_pf_blacklist}}"
+    Default    : 'pf'
     Options    :
-      Examples: '/etc/pf.blacklist' | '/etc/pf.black-list'
+      Examples: 'pf' | 'pf.d' | 'pf.conf.d'
 
-  freebsd_pf_table_all
-    Description: Define the 'freebsd_pf_table_all' option.
+  freebsd_pf_queues_conf_template
+    Description: Define the template source for 'queues.conf.j2'.
+                 Any value other than 'default' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'freebsd_pf/templates/example/queues.conf.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : [{config: {'<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'},
-                   comment: 'Table: private address space (RFC 1918)'}]
-    Options    :
-      Examples: [{config: {"<spam> persist file '/etc/pf.spammers'"}, comment: 'Table: Spammers'}]
-      None    : []
-
-  freebsd_pf_table_group
-    Description: Define the 'freebsd_pf_table_group' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {"<spam> persist file '/etc/pf.spammers'"}, comment: 'Table: Spammers'}]
-      None    : []
-
-  freebsd_pf_table_host
-    Description: Define the 'freebsd_pf_table_host' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {"<spam> persist file '/etc/pf.spammers'"}, comment: 'Table: Spammers'}]
-      None    : []
-
-  freebsd_pf_table_require_order
-    Description: Control the 'freebsd_pf_table_require_order' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Predetermined
     Type       : String
-    Default    : 'yes'
+    Default    : 'default'
     Options    :
-      Yes: 'true' | 'yes' | 'install'
-      No : 'false' | 'no' | 'disable'
+      Examples: 'example' | 'environment' | 'hostname'
 
-  freebsd_pf_translation_all
-    Description: Define the 'freebsd_pf_translation_all' option.
-    Implemented: 0.2
+  freebsd_pf_tables_all
+    Description: Define the 'freebsd_pf_tables_all' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : []
+    Default    : {name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
     Options    :
-      Examples: [{config: {'no nat on $if_int inet proto { tcp, udp } from $if_int to $net_local'}, comment: 'NONAT: for if_int'},
-                 {config: {'nat on $if_ext inet from $host_sys to any -> $ip_1'}, comment: 'SNAT: host_sys to ip_1'},
-                 {config: {'rdr on $if_ext inet proto tcp to $ip_2 port 80 -> $host_proxy'}, comment: 'DNAT/HTTP: From any to host_proxy'},
-                 {config: {'rdr on $if_ext inet proto tcp to $ip_2 port 443 -> $host_proxy'}, comment: 'DNAT/HTTPS: From any to host_proxy'}]
+      Examples: [{name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
       None    : []
 
-  freebsd_pf_translation_group
-    Description: Define the 'freebsd_pf_translation_group' option.
-    Implemented: 0.2
+  freebsd_pf_tables_conf_template
+    Description: Define the template source for 'tables.conf.j2'.
+                 Any value other than 'default' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'freebsd_pf/templates/example/tables.conf.j2'
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'default'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  freebsd_pf_tables_dependencies
+    Description: Define the 'freebsd_pf_tables_dependencies' option.
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {'no nat on $if_int inet proto { tcp, udp } from $if_int to $net_local'}, comment: 'NONAT: for if_int'},
-                 {config: {'nat on $if_ext inet from $host_sys to any -> $ip_1'}, comment: 'SNAT: host_sys to ip_1'},
-                 {config: {'rdr on $if_ext inet proto tcp to $ip_2 port 80 -> $host_proxy'}, comment: 'DNAT/HTTP: From any to host_proxy'},
-                 {config: {'rdr on $if_ext inet proto tcp to $ip_2 port 443 -> $host_proxy'}, comment: 'DNAT/HTTPS: From any to host_proxy'}]
+      Examples: [{name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
       None    : []
 
-  freebsd_pf_translation_host
-    Description: Define the 'freebsd_pf_translation_host' option.
+  freebsd_pf_tables_group
+    Description: Define the 'freebsd_pf_tables_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
+      None    : []
+
+  freebsd_pf_tables_host
+    Description: Define the 'freebsd_pf_tables_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
+      None    : []
+
+  freebsd_pf_translations_all
+   Description: Define the 'freebsd_pf_translations_all' option.
     Implemented: 0.2
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {'no nat on $if_int inet proto { tcp, udp } from $if_int to $net_local'}, comment: 'NONAT: for if_int'},
-                 {config: {'nat on $if_ext inet from $host_sys to any -> $ip_1'}, comment: 'SNAT: host_sys to ip_1'},
-                 {config: {'rdr on $if_ext inet proto tcp to $ip_2 port 80 -> $host_proxy'}, comment: 'DNAT/HTTP: From any to host_proxy'},
-                 {config: {'rdr on $if_ext inet proto tcp to $ip_2 port 443 -> $host_proxy'}, comment: 'DNAT/HTTPS: From any to host_proxy'}]
+      Examples: [{action: 'nonat', interfaces: {'$i_int'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$i_int'}, destinations: {'$n_dmz', '$n_int'}, comment: 'NONAT: For i_int'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$h_ns01'}, destinations: {'any'}, map: '$a_12', comment: 'SNAT: From h_ns01 to 1.1.1.12'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$h_ns02'}, destinations: {'any'}, map: '$a_13', comment: 'SNAT: From h_ns02 to 1.1.1.13'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$n_dmz'}, destinations: {'any'}, map: '$a_11', comment: 'SNAT: From n_dmz to 1.1.1.11'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$n_int'}, destinations: {'any'}, map: '$a_10', comment: 'SNAT: From n_int to 10.1.1.10'},
+                 {action: 'rdr', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'any'}, destinations: {'$a_12'}, ports: {'53'}, rdr: '$h_ns01', comment: 'DNAT/DNS: From any to name server'},
+                 {action: 'rdr', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'any'}, destinations: {'$a_13'}, ports: {'53'}, rdr: '$h_ns02', comment: 'DNAT/DNS: From any to name server'}]
+      None    : []
+
+  freebsd_pf_translations_conf_template
+    Description: Define the template source for 'translations.conf.j2'.
+                 Any value other than 'default' requires a Jinja2 file to be
+                 created. The custom Jinja2 file for an example configuration
+                 called 'example' needs to be placed as follows:
+                 'freebsd_pf/templates/example/translations.conf.j2'
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'default'
+    Options    :
+      Examples: 'example' | 'environment' | 'hostname'
+
+  freebsd_pf_translations_dependencies
+    Description: Define the 'freebsd_pf_translations_dependencies' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+      Examples: [{action: 'nonat', interfaces: {'$i_int'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$i_int'}, destinations: {'$n_dmz', '$n_int'}, comment: 'NONAT: For i_int'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$h_ns01'}, destinations: {'any'}, map: '$a_12', comment: 'SNAT: From h_ns01 to 1.1.1.12'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$h_ns02'}, destinations: {'any'}, map: '$a_13', comment: 'SNAT: From h_ns02 to 1.1.1.13'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$n_dmz'}, destinations: {'any'}, map: '$a_11', comment: 'SNAT: From n_dmz to 1.1.1.11'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$n_int'}, destinations: {'any'}, map: '$a_10', comment: 'SNAT: From n_int to 10.1.1.10'},
+                 {action: 'rdr', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'any'}, destinations: {'$a_12'}, ports: {'53'}, rdr: '$h_ns01', comment: 'DNAT/DNS: From any to name server'},
+                 {action: 'rdr', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'any'}, destinations: {'$a_13'}, ports: {'53'}, rdr: '$h_ns02', comment: 'DNAT/DNS: From any to name server'}]
+    Options    :
+      Examples: []
+      None    : []
+
+  freebsd_pf_translations_group
+   Description: Define the 'freebsd_pf_translations_group' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+      Examples: [{action: 'nonat', interfaces: {'$i_int'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$i_int'}, destinations: {'$n_dmz', '$n_int'}, comment: 'NONAT: For i_int'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$h_ns01'}, destinations: {'any'}, map: '$a_12', comment: 'SNAT: From h_ns01 to 1.1.1.12'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$h_ns02'}, destinations: {'any'}, map: '$a_13', comment: 'SNAT: From h_ns02 to 1.1.1.13'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$n_dmz'}, destinations: {'any'}, map: '$a_11', comment: 'SNAT: From n_dmz to 1.1.1.11'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$n_int'}, destinations: {'any'}, map: '$a_10', comment: 'SNAT: From n_int to 10.1.1.10'},
+                 {action: 'rdr', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'any'}, destinations: {'$a_12'}, ports: {'53'}, rdr: '$h_ns01', comment: 'DNAT/DNS: From any to name server'},
+                 {action: 'rdr', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'any'}, destinations: {'$a_13'}, ports: {'53'}, rdr: '$h_ns02', comment: 'DNAT/DNS: From any to name server'}]
+    Options    :
+      Examples: []
+      None    : []
+
+  freebsd_pf_translations_host
+   Description: Define the 'freebsd_pf_translations_host' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+      Examples: [{action: 'nonat', interfaces: {'$i_int'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$i_int'}, destinations: {'$n_dmz', '$n_int'}, comment: 'NONAT: For i_int'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$h_ns01'}, destinations: {'any'}, map: '$a_12', comment: 'SNAT: From h_ns01 to 1.1.1.12'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$h_ns02'}, destinations: {'any'}, map: '$a_13', comment: 'SNAT: From h_ns02 to 1.1.1.13'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$n_dmz'}, destinations: {'any'}, map: '$a_11', comment: 'SNAT: From n_dmz to 1.1.1.11'},
+                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$n_int'}, destinations: {'any'}, map: '$a_10', comment: 'SNAT: From n_int to 10.1.1.10'},
+                 {action: 'rdr', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'any'}, destinations: {'$a_12'}, ports: {'53'}, rdr: '$h_ns01', comment: 'DNAT/DNS: From any to name server'},
+                 {action: 'rdr', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'any'}, destinations: {'$a_13'}, ports: {'53'}, rdr: '$h_ns02', comment: 'DNAT/DNS: From any to name server'}]
+    Options    :
+      Examples: []
       None    : []
 
 --------------------------------------------------------------------------------

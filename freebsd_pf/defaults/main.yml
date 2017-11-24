@@ -2,101 +2,114 @@
 
 freebsd_pf_state: 'enable'
 
-freebsd_pf_blacklist_all: []
+freebsd_pf_anchors_conf_template: 'default'
 
-freebsd_pf_blacklist_group: []
+freebsd_pf_filters_all:
+  - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Reply: From any'}
+  - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
+  - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
+  - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'}
+  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'}
+  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'}
+  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'}
+  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_tcp', comment: 'DNS: To any'}
+  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'domain'}, state: '$default_udp', comment: 'DNS: To any'}
+  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To any'}
+  - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}
 
-freebsd_pf_blacklist_host: []
+freebsd_pf_filters_conf_template: 'default'
 
-freebsd_pf_filter_in_icmp: []
+freebsd_pf_filters_dependencies: []
 
-freebsd_pf_filter_in_ip_all:
-  - {config: {'pass in inet proto tcp from 192.168.0.0/16 to port 22 $tcp_state',
-              'pass in inet proto tcp from 172.16.0.0/12 to port 22 $tcp_state',
-              'pass in inet proto tcp from 10.0.0.0/8 to port 22 $tcp_state'}, comment: 'SSH: From private address space (RFC 1918)'}
+freebsd_pf_filters_group: []
 
-freebsd_pf_filter_in_ip_group: []
+freebsd_pf_filters_host: []
 
-freebsd_pf_filter_in_ip_host: []
-
-freebsd_pf_filter_in_policy: 'block'
-
-freebsd_pf_filter_out_icmp:
-  - {config: {'pass out inet proto icmp icmp-type echoreq $udp_state',
-              'pass out inet6 proto icmp6 icmp6-type echoreq $udp_state'}, comment: 'ICMP echo request: To any'}
-
-freebsd_pf_filter_out_ip_all:
-  - {config: {'pass out inet proto tcp to any port 53 $tcp_state',
-              'pass out inet proto udp to any port 53 $udp_state'}, comment: 'DNS: To any'}
-  - {config: {'pass out inet proto tcp to any port 80 $tcp_state'}, comment: 'HTTP: To any'}
-  - {config: {'pass out inet proto udp to any port 123 $udp_state'}, comment: 'NTP: To any'}
-  - {config: {'pass out inet proto tcp to any port 443 $tcp_state'}, comment: 'HTTPS: To any'}
-
-freebsd_pf_filter_out_ip_group: []
-
-freebsd_pf_filter_out_ip_host: []
-
-freebsd_pf_filter_out_policy: 'block'
+freebsd_pf_filters_policies:
+  - {action: 'block', direction: 'in', log: 'true', comment: 'Default incoming policy'}
+  - {action: 'block', direction: 'out', log: 'false', comment: 'Default outgoing policy'}
 
 freebsd_pf_gateway_ipv4_state: 'false'
 
 freebsd_pf_gateway_ipv6_state: 'false'
 
-freebsd_pf_macro_all: []
+freebsd_pf_macros_all: []
 
-freebsd_pf_macro_group: []
+freebsd_pf_macros_conf_template: 'default'
 
-freebsd_pf_macro_host: []
+freebsd_pf_macros_dependencies: []
 
-freebsd_pf_macro_tcp_state: 'flags S/SA modulate state'
+freebsd_pf_macros_group: []
 
-freebsd_pf_macro_udp_state: 'keep state'
+freebsd_pf_macros_host: []
 
-freebsd_pf_option_block_policy: 'drop'
+freebsd_pf_macros_state_all:
+  - {name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'}
+  - {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}
 
-freebsd_pf_option_debug: 'urgent'
+freebsd_pf_macros_state_dependencies: []
 
-freebsd_pf_option_fingerprints: '/etc/pf.os'
+freebsd_pf_macros_state_group: []
 
-freebsd_pf_option_hostid: 'false'
+freebsd_pf_macros_state_host: []
 
-freebsd_pf_option_limit: []
+freebsd_pf_normalization_conf_template: 'default'
 
-freebsd_pf_option_loginterface: 'false'
+freebsd_pf_normalization_scrub:
+  - {action: 'scrub', direction: 'in', sources: {'any'}, destinations: {'any'}, options: {'fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'}
+  - {action: 'scrub', direction: 'out', sources: {'any'}, destinations: {'any'}, options: {'random-id', 'fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}
 
-freebsd_pf_option_optimization: 'normal'
+freebsd_pf_options_block_policy: 'drop'
 
-freebsd_pf_option_ruleset_optimization: 'basic'
+freebsd_pf_options_conf_template: 'default'
 
-freebsd_pf_option_skip: ['lo']
+freebsd_pf_options_debug: 'urgent'
 
-freebsd_pf_option_state_defaults: []
+freebsd_pf_options_fingerprints: '/etc/pf.os'
 
-freebsd_pf_option_state_policy: 'floating'
+freebsd_pf_options_hostid: 'false'
 
-freebsd_pf_option_timeout: []
+freebsd_pf_options_limits: []
 
-freebsd_pf_pf_blacklist_template: 'default'
+freebsd_pf_options_loginterface: 'false'
+
+freebsd_pf_options_optimization: 'normal'
+
+freebsd_pf_options_require_order: 'yes'
+
+freebsd_pf_options_ruleset_optimization: 'basic'
+
+freebsd_pf_options_skip: ['lo']
+
+freebsd_pf_options_state_defaults: []
+
+freebsd_pf_options_state_policy: 'floating'
+
+freebsd_pf_options_timeouts: []
 
 freebsd_pf_pf_conf_template: 'default'
 
-freebsd_pf_scrub:
-  - {config: {'in all fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'}
-  - {config: {'out all random-id fragment reassemble'}, comment: 'Scrub: Outgoing traffic normalization'}
+freebsd_pf_pf_dir_name: 'pf'
 
-freebsd_pf_table_blacklist: "{{file_path_pf_blacklist}}"
+freebsd_pf_queues_conf_template: 'default'
 
-freebsd_pf_table_all:
-  - {config: {'<rfc1918> const { 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 }'}, comment: 'Table: private address space (RFC 1918)'}
+freebsd_pf_tables_all:
+  - {name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}
 
-freebsd_pf_table_group: []
+freebsd_pf_tables_conf_template: 'default'
 
-freebsd_pf_table_host: []
+freebsd_pf_tables_dependencies: []
 
-freebsd_pf_table_require_order: 'yes'
+freebsd_pf_tables_group: []
 
-freebsd_pf_translation_all: []
+freebsd_pf_tables_host: []
 
-freebsd_pf_translation_group: []
+freebsd_pf_translations_all: []
 
-freebsd_pf_translation_host: []
+freebsd_pf_translations_conf_template: 'default'
+
+freebsd_pf_translations_dependencies: []
+
+freebsd_pf_translations_group: []
+
+freebsd_pf_translations_host: []

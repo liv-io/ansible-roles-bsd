@@ -1,0 +1,122 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : options.conf
+# Type   : pf configuration file
+# Role   : freebsd_pf
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# OPTIONS
+#-------------------------------------------------------------------------------
+
+# Block policy (block, drop, return)
+{% if (freebsd_pf_options_block_policy|match('return')) %}
+set block-policy return
+{% elif (freebsd_pf_options_block_policy|match('block')) %}
+{% else %}
+set block-policy drop
+{% endif %}
+
+# Debugging level (none, urgent, misc, loud)
+{% if (freebsd_pf_options_debug|match('none')) %}
+set debug none
+{% elif (freebsd_pf_options_debug|match('misc')) %}
+set debug misc
+{% elif (freebsd_pf_options_debug|match('loud')) %}
+set debug loud
+{% else %}
+set debug urgent
+{% endif %}
+
+# Operating system fingerprints
+set fingerprints '{{freebsd_pf_options_fingerprints}}'
+
+# Host ID
+{% if not (freebsd_pf_options_hostid|match('false|no|disable|none')) %}
+set hostid {{freebsd_pf_options_hostid}}
+{% endif %}
+
+# Limits
+{% for limit in freebsd_pf_options_limits|default([]) %}
+{% if (limit.comment is defined) and not (limit.comment == '') %}
+# {{limit.comment}}
+{% endif %}
+set limit {% if (limit.name is defined) and not (limit.name == '') %}{{limit.name}} {% endif %}
+{% if (limit.value is defined) and not (limit.value == '') %}{{limit.value}}{% endif %}
+
+{% endfor %}
+
+# Log interface (none, <interface>)
+{% if not (freebsd_pf_options_loginterface|match('false|no|disable|none')) %}
+set loginterface {{freebsd_pf_options_loginterface}}
+{% else %}
+set loginterface none
+{% endif %}
+
+# Optimization (normal, high-latency, satellite, aggressive, conservative)
+{% if (freebsd_pf_options_optimization|match('high-latency')) %}
+set optimization high-latency
+{% elif (freebsd_pf_options_optimization|match('satellite')) %}
+set optimization satellite
+{% elif (freebsd_pf_options_optimization|match('aggressive')) %}
+set optimization aggressive
+{% elif (freebsd_pf_options_optimization|match('conservative')) %}
+set optimization conservative
+{% else %}
+set optimization normal
+{% endif %}
+
+# Require order
+{% if not (freebsd_pf_options_require_order|match('false|no|disable')) %}
+set require-order yes
+{% else %}
+set require-order no
+{% endif %}
+
+# Ruleset optimization (none, basic, profile)
+{% if (freebsd_pf_options_ruleset_optimization|match('basic')) %}
+set ruleset-optimization basic
+{% elif (freebsd_pf_options_ruleset_optimization|match('profile')) %}
+set ruleset-optimization profile
+{% else %}
+set ruleset-optimization none
+{% endif %}
+
+# Skip
+{% if not ((freebsd_pf_options_skip == '') or (freebsd_pf_options_skip == [])) %}
+set skip on {% for option_skip in freebsd_pf_options_skip %}{{option_skip}}{% if not loop.last %}, {% endif %}{% endfor %}
+
+{% endif %}
+
+# State defaults
+{% if not ((freebsd_pf_options_state_defaults == '') or (freebsd_pf_options_state_defaults == [])) %}
+set state-defaults {% for state_groups in freebsd_pf_options_state_defaults %}{{state_groups}}{% if not loop.last %}, {% endif %}{% endfor %}
+
+{% endif %}
+
+# State policy (if-bound, floating)
+{% if (freebsd_pf_options_state_policy|match('floating')) %}
+set state-policy floating
+{% else %}
+set state-policy if-bound
+{% endif %}
+
+# Timeouts
+{% for timeout in freebsd_pf_options_timeouts|default([]) %}
+{% if (timeout.comment is defined) and not (timeout.comment == '') %}
+# {{timeout.comment}}
+{% endif %}
+set timeout {% if (timeout.name is defined) and not (timeout.name == '') %}{{timeout.name}} {% endif %}
+{% if (timeout.value is defined) and not (timeout.value == '') %}{{timeout.value}}{% endif %}
+
+{% endfor %}

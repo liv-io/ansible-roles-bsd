@@ -1,0 +1,229 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : filters.conf
+# Type   : pf configuration file
+# Role   : freebsd_pf
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INCLUDES
+#-------------------------------------------------------------------------------
+
+# MACROS
+include '/etc/pf/macros.conf'
+
+# TABLES
+include '/etc/pf/tables.conf'
+
+# QUEUES
+include '/etc/pf/queues.conf'
+
+#-------------------------------------------------------------------------------
+# POLICY
+#-------------------------------------------------------------------------------
+
+{% for policy in freebsd_pf_filters_policies %}
+{% if (policy.comment is defined) and not (policy.comment == '') %}
+# {{policy.comment}}
+{% endif %}
+{%- if (policy.action is defined) and (policy.action|match('pass')) %}pass {% else %}block {% endif %}
+{%- if (policy.direction is defined) and (policy.direction|match('in')) %}in {% else %}out {% endif %}
+{%- if (policy.log is defined) and (policy.log|match('true|yes|enable')) %}log {% else %}{% endif %}all
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+# FILTERS
+#-------------------------------------------------------------------------------
+
+# ALL
+
+{% for all in freebsd_pf_filters_all|default([]) %}
+{% if (all.comment is defined) and not (all.comment == '') %}
+# {{all.comment}}
+{% endif %}
+{%- if (all.action is defined) and (all.action|match('block')) %}block {% else %}pass {% endif %}
+{%- if (all.direction is defined) and (all.direction|match('in')) %}in {% else %}out {% endif %}
+{%- if (all.interfaces is defined) and not (all.interfaces == []) %}on { {% endif %}
+{% for source in all.interfaces|default([]) %}
+{{source}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (all.interfaces is defined) and not (all.interfaces == []) %}} {% endif %}
+{%- if (all.version is defined) and (all.version|match('inet6|ipv6')) %}inet6 {% elif (all.version is defined) and (all.version|match('inet|ipv4')) %}inet {% endif %}
+{%- if (all.protocols is defined) and not (all.protocols == []) %}proto { {% endif %}
+{% for protocol in all.protocols|default([]) %}
+{{protocol}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (all.protocols is defined) and not (all.protocols == []) %}} {% endif %}
+{%- if (all.sources is defined) and not (all.sources == []) %}from { {% endif %}
+{% for source in all.sources|default([]) %}
+{{source}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (all.sources is defined) and not (all.sources == []) %}} {% endif %}
+{%- if (all.destinations is defined) and not (all.destinations == []) %}to { {% endif %}
+{% for destination in all.destinations|default([]) %}
+{{destination}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (all.destinations is defined) and not (all.destinations == []) %}} {% endif %}
+{%- if (all.ports is defined) and not (all.ports == []) %}port { {% endif %}
+{% for port in all.ports|default([]) %}
+{{port}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (all.ports is defined) and not (all.ports == []) %}} {% endif %}
+{%- if (all.type is defined) and (all.type|match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (all.type is defined) and (all.type|match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
+{%- if (all.code is defined) and not (all.code == '') %}{{all.code}} {% endif %}
+{% if (all.state is defined) and not (all.state == '') %}{{all.state}}{% endif %}
+{% if not loop.last %}
+
+{% endif %}
+
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# GROUP
+
+{% for group in freebsd_pf_filters_group|default([]) %}
+{% if (group.comment is defined) and not (group.comment == '') %}
+# {{group.comment}}
+{% endif %}
+{%- if (group.action is defined) and (group.action|match('block')) %}block {% else %}pass {% endif %}
+{%- if (group.direction is defined) and (group.direction|match('in')) %}in {% else %}out {% endif %}
+{%- if (group.interfaces is defined) and not (group.interfaces == []) %}on { {% endif %}
+{% for source in group.interfaces|default([]) %}
+{{source}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (group.interfaces is defined) and not (group.interfaces == []) %}} {% endif %}
+{%- if (group.version is defined) and (group.version|match('inet6|ipv6')) %}inet6 {% elif (group.version is defined) and (group.version|match('inet|ipv4')) %}inet {% endif %}
+{%- if (group.protocols is defined) and not (group.protocols == []) %}proto { {% endif %}
+{% for protocol in group.protocols|default([]) %}
+{{protocol}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (group.protocols is defined) and not (group.protocols == []) %}} {% endif %}
+{%- if (group.sources is defined) and not (group.sources == []) %}from { {% endif %}
+{% for source in group.sources|default([]) %}
+{{source}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (group.sources is defined) and not (group.sources == []) %}} {% endif %}
+{%- if (group.destinations is defined) and not (group.destinations == []) %}to { {% endif %}
+{% for destination in group.destinations|default([]) %}
+{{destination}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (group.destinations is defined) and not (group.destinations == []) %}} {% endif %}
+{%- if (group.ports is defined) and not (group.ports == []) %}port { {% endif %}
+{% for port in group.ports|default([]) %}
+{{port}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (group.ports is defined) and not (group.ports == []) %}} {% endif %}
+{%- if (group.type is defined) and (group.type|match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (group.type is defined) and (group.type|match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
+{%- if (group.code is defined) and not (group.code == '') %}{{group.code}} {% endif %}
+{% if (group.state is defined) and not (group.state == '') %}{{group.state}}{% endif %}
+{% if not loop.last %}
+
+{% endif %}
+
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# HOST
+
+{% for host in freebsd_pf_filters_host|default([]) %}
+{% if (host.comment is defined) and not (host.comment == '') %}
+# {{host.comment}}
+{% endif %}
+{%- if (host.action is defined) and (host.action|match('block')) %}block {% else %}pass {% endif %}
+{%- if (host.direction is defined) and (host.direction|match('in')) %}in {% else %}out {% endif %}
+{%- if (host.interfaces is defined) and not (host.interfaces == []) %}on { {% endif %}
+{% for source in host.interfaces|default([]) %}
+{{source}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (host.interfaces is defined) and not (host.interfaces == []) %}} {% endif %}
+{%- if (host.version is defined) and (host.version|match('inet6|ipv6')) %}inet6 {% elif (host.version is defined) and (host.version|match('inet|ipv4')) %}inet {% endif %}
+{%- if (host.protocols is defined) and not (host.protocols == []) %}proto { {% endif %}
+{% for protocol in host.protocols|default([]) %}
+{{protocol}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (host.protocols is defined) and not (host.protocols == []) %}} {% endif %}
+{%- if (host.sources is defined) and not (host.sources == []) %}from { {% endif %}
+{% for source in host.sources|default([]) %}
+{{source}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (host.sources is defined) and not (host.sources == []) %}} {% endif %}
+{%- if (host.destinations is defined) and not (host.destinations == []) %}to { {% endif %}
+{% for destination in host.destinations|default([]) %}
+{{destination}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (host.destinations is defined) and not (host.destinations == []) %}} {% endif %}
+{%- if (host.ports is defined) and not (host.ports == []) %}port { {% endif %}
+{% for port in host.ports|default([]) %}
+{{port}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (host.ports is defined) and not (host.ports == []) %}} {% endif %}
+{%- if (host.type is defined) and (host.type|match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (host.type is defined) and (host.type|match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
+{%- if (host.code is defined) and not (host.code == '') %}{{host.code}} {% endif %}
+{% if (host.state is defined) and not (host.state == '') %}{{host.state}}{% endif %}
+{% if not loop.last %}
+
+{% endif %}
+
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# DEPENDENCIES
+
+{% for dependencies in freebsd_pf_filters_dependencies|default([]) %}
+{% if (dependencies.comment is defined) and not (dependencies.comment == '') %}
+# {{dependencies.comment}}
+{% endif %}
+{%- if (dependencies.action is defined) and (dependencies.action|match('block')) %}block {% else %}pass {% endif %}
+{%- if (dependencies.direction is defined) and (dependencies.direction|match('in')) %}in {% else %}out {% endif %}
+{%- if (dependencies.interfaces is defined) and not (dependencies.interfaces == []) %}on { {% endif %}
+{% for source in dependencies.interfaces|default([]) %}
+{{source}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (dependencies.interfaces is defined) and not (dependencies.interfaces == []) %}} {% endif %}
+{%- if (dependencies.version is defined) and (dependencies.version|match('inet6|ipv6')) %}inet6 {% elif (dependencies.version is defined) and (dependencies.version|match('inet|ipv4')) %}inet {% endif %}
+{%- if (dependencies.protocols is defined) and not (dependencies.protocols == []) %}proto { {% endif %}
+{% for protocol in dependencies.protocols|default([]) %}
+{{protocol}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (dependencies.protocols is defined) and not (dependencies.protocols == []) %}} {% endif %}
+{%- if (dependencies.sources is defined) and not (dependencies.sources == []) %}from { {% endif %}
+{% for source in dependencies.sources|default([]) %}
+{{source}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (dependencies.sources is defined) and not (dependencies.sources == []) %}} {% endif %}
+{%- if (dependencies.destinations is defined) and not (dependencies.destinations == []) %}to { {% endif %}
+{% for destination in dependencies.destinations|default([]) %}
+{{destination}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (dependencies.destinations is defined) and not (dependencies.destinations == []) %}} {% endif %}
+{%- if (dependencies.ports is defined) and not (dependencies.ports == []) %}port { {% endif %}
+{% for port in dependencies.ports|default([]) %}
+{{port}}{% if not loop.last %}, {% else %} {% endif %}
+{% endfor %}
+{%- if (dependencies.ports is defined) and not (dependencies.ports == []) %}} {% endif %}
+{%- if (dependencies.type is defined) and (dependencies.type|match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (dependencies.type is defined) and (dependencies.type|match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
+{%- if (dependencies.code is defined) and not (dependencies.code == '') %}{{dependencies.code}} {% endif %}
+{% if (dependencies.state is defined) and not (dependencies.state == '') %}{{dependencies.state}}{% endif %}
+{% if not loop.last %}
+
+{% endif %}
+
+{% endfor %}
+
+#-------------------------------------------------------------------------------

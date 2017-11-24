@@ -6,7 +6,7 @@
 # INFORMATION
 #-------------------------------------------------------------------------------
 #
-# Name   : pf.conf
+# Name   : anchors.conf
 # Type   : pf configuration file
 # Role   : freebsd_pf
 #
@@ -15,25 +15,6 @@
 #
 #-------------------------------------------------------------------------------
 
-#	$OpenBSD: pf.conf,v 1.54 2014/08/23 05:49:42 deraadt Exp $
-#
-# See pf.conf(5) and /etc/examples/pf.conf
-
 #-------------------------------------------------------------------------------
-# INCLUDES
-#-------------------------------------------------------------------------------
-
-# OPTIONS
-include '/etc/pf/options.conf'
-
-# NORMALIZATION
-include '/etc/pf/normalization.conf'
-
 # ANCHORS
-include '/etc/pf/anchors.conf'
-
-# TRANSLATIONS
-include '/etc/pf/translations.conf'
-
-# FILTERS
-include '/etc/pf/filters.conf'
+#-------------------------------------------------------------------------------
