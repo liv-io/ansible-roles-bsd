@@ -185,41 +185,41 @@ include '/etc/pf/queues.conf'
 
 # DEPENDENCIES
 
-{% for host in openbsd_pf_filters_host|default([]) %}
-{% if (host.comment is defined) and not (host.comment == '') %}
-# {{host.comment}}
+{% for dependencies in openbsd_pf_filters_dependencies|default([]) %}
+{% if (dependencies.comment is defined) and not (dependencies.comment == '') %}
+# {{dependencies.comment}}
 {% endif %}
-{%- if (host.action is defined) and (host.action|match('block')) %}block {% else %}pass {% endif %}
-{%- if (host.direction is defined) and (host.direction|match('in')) %}in {% else %}out {% endif %}
-{%- if (host.interfaces is defined) and not (host.interfaces == []) %}on { {% endif %}
-{% for source in host.interfaces|default([]) %}
+{%- if (dependencies.action is defined) and (dependencies.action|match('block')) %}block {% else %}pass {% endif %}
+{%- if (dependencies.direction is defined) and (dependencies.direction|match('in')) %}in {% else %}out {% endif %}
+{%- if (dependencies.interfaces is defined) and not (dependencies.interfaces == []) %}on { {% endif %}
+{% for source in dependencies.interfaces|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
-{%- if (host.interfaces is defined) and not (host.interfaces == []) %}} {% endif %}
-{%- if (host.version is defined) and (host.version|match('inet6|ipv6')) %}inet6 {% elif (host.version is defined) and (host.version|match('inet|ipv4')) %}inet {% endif %}
-{%- if (host.protocols is defined) and not (host.protocols == []) %}proto { {% endif %}
-{% for protocol in host.protocols|default([]) %}
+{%- if (dependencies.interfaces is defined) and not (dependencies.interfaces == []) %}} {% endif %}
+{%- if (dependencies.version is defined) and (dependencies.version|match('inet6|ipv6')) %}inet6 {% elif (dependencies.version is defined) and (dependencies.version|match('inet|ipv4')) %}inet {% endif %}
+{%- if (dependencies.protocols is defined) and not (dependencies.protocols == []) %}proto { {% endif %}
+{% for protocol in dependencies.protocols|default([]) %}
 {{protocol}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
-{%- if (host.protocols is defined) and not (host.protocols == []) %}} {% endif %}
-{%- if (host.sources is defined) and not (host.sources == []) %}from { {% endif %}
-{% for source in host.sources|default([]) %}
+{%- if (dependencies.protocols is defined) and not (dependencies.protocols == []) %}} {% endif %}
+{%- if (dependencies.sources is defined) and not (dependencies.sources == []) %}from { {% endif %}
+{% for source in dependencies.sources|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
-{%- if (host.sources is defined) and not (host.sources == []) %}} {% endif %}
-{%- if (host.destinations is defined) and not (host.destinations == []) %}to { {% endif %}
-{% for destination in host.destinations|default([]) %}
+{%- if (dependencies.sources is defined) and not (dependencies.sources == []) %}} {% endif %}
+{%- if (dependencies.destinations is defined) and not (dependencies.destinations == []) %}to { {% endif %}
+{% for destination in dependencies.destinations|default([]) %}
 {{destination}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
-{%- if (host.destinations is defined) and not (host.destinations == []) %}} {% endif %}
-{%- if (host.ports is defined) and not (host.ports == []) %}port { {% endif %}
-{% for port in host.ports|default([]) %}
+{%- if (dependencies.destinations is defined) and not (dependencies.destinations == []) %}} {% endif %}
+{%- if (dependencies.ports is defined) and not (dependencies.ports == []) %}port { {% endif %}
+{% for port in dependencies.ports|default([]) %}
 {{port}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
-{%- if (host.ports is defined) and not (host.ports == []) %}} {% endif %}
-{%- if (host.type is defined) and (host.type|match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (host.type is defined) and (host.type|match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
-{%- if (host.code is defined) and not (host.code == '') %}{{host.code}} {% endif %}
-{% if (host.state is defined) and not (host.state == '') %}{{host.state}}{% endif %}
+{%- if (dependencies.ports is defined) and not (dependencies.ports == []) %}} {% endif %}
+{%- if (dependencies.type is defined) and (dependencies.type|match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (dependencies.type is defined) and (dependencies.type|match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
+{%- if (dependencies.code is defined) and not (dependencies.code == '') %}{{dependencies.code}} {% endif %}
+{% if (dependencies.state is defined) and not (dependencies.state == '') %}{{dependencies.state}}{% endif %}
 {% if not loop.last %}
 
 {% endif %}
