@@ -198,6 +198,28 @@ ROLE
                  {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
       None    : []
 
+  sudo_insults
+    Description: Control the 'sudo_insults' option.
+    Implemented: 1.3
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  sudo_lecture
+    Description: Control the 'sudo_lecture' option.
+    Implemented: 1.3
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   sudo_name_default
     Description: Define the 'sudo_name_default' option.
     Implemented: 0.1

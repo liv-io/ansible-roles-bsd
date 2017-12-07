@@ -44,8 +44,19 @@ Defaults:%wsrc env_keep +="SUBPACKAGE WRKOBJDIR SUDO_PORT_V1"
 # Uncomment to preserve the default proxy host variable
 #Defaults env_keep +="ftp_proxy http_proxy"
 
+# Uncomment to disable the insults for incorrect passwords
+{% if (sudo_insults|match('true|yes|enable')) %}
+Defaults insults
+{% else %}
+Defaults !insults
+{% endif %}
+
 # Uncomment to disable the lecture the first time you run sudo
-#Defaults !lecture
+{% if (sudo_lecture|match('true|yes|enable')) %}
+Defaults lecture
+{% else %}
+Defaults !lecture
+{% endif %}
 
 # Uncomment to preserve the environment for users in group wheel
 #Defaults:%wheel !env_reset

@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.3.0 (2017-12-07)
+F: Add options 'sudo_insults' and 'sudo_lecture'
+
 * Version 1.2.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
 F: Drop support for OpenBSD 6.1
