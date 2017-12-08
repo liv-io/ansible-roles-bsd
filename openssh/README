@@ -272,7 +272,7 @@ ROLE
       Examples: 'example' | 'environment' | 'hostname'
 
   openssh_password_authentication
-    Description: Control the 'openssh_password_authentication'
+    Description: Control the 'openssh_password_authentication' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -326,7 +326,7 @@ ROLE
       Disable: 'false' | 'no' | 'disable'
 
   openssh_pubkey_authentication
-    Description: Control the 'openssh_pubkey_authentication'
+    Description: Control the 'openssh_pubkey_authentication' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined

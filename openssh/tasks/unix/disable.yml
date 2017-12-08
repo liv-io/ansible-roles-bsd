@@ -96,6 +96,7 @@
   register: register_status_openssh
   changed_when: (register_status_openssh.rc > 1)
   failed_when: (register_status_openssh.rc > 1)
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
@@ -105,6 +106,7 @@
 
 - name: 'command disable openssh'
   command: "{{command_cmd_disable_openssh}}"
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openssh.rc == 0)
   tags:
     - commands
@@ -117,6 +119,7 @@
   register: register_check_openssh
   changed_when: (register_check_openssh.rc > 1)
   failed_when: (register_check_openssh.rc > 1)
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
@@ -126,6 +129,7 @@
 
 - name: 'command stop openssh'
   command: "{{command_cmd_stop_openssh}}"
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openssh.rc == 0)
   tags:
     - commands
