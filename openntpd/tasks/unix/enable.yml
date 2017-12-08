@@ -57,6 +57,7 @@
   register: register_status_openntpd
   changed_when: (register_status_openntpd.rc > 1)
   failed_when: (register_status_openntpd.rc > 1)
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
@@ -66,6 +67,7 @@
 
 - name: 'command enable openntpd'
   command: "{{command_cmd_enable_openntpd}}"
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 1)
   tags:
     - commands
@@ -78,6 +80,7 @@
   register: register_check_openntpd
   changed_when: (register_check_openntpd.rc > 1)
   failed_when: (register_check_openntpd.rc > 1)
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
@@ -87,6 +90,7 @@
 
 - name: 'command start openntpd'
   command: "{{command_cmd_start_openntpd}}"
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 1)
   tags:
     - commands
