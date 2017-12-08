@@ -57,6 +57,7 @@
   register: register_status_nginx
   changed_when: (register_status_nginx.rc > 1)
   failed_when: (register_status_nginx.rc > 1)
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
@@ -66,6 +67,7 @@
 
 - name: 'command disable nginx'
   command: "{{command_cmd_disable_nginx}}"
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 0)
   tags:
     - commands
@@ -78,6 +80,7 @@
   register: register_check_nginx
   changed_when: (register_check_nginx.rc > 1)
   failed_when: (register_check_nginx.rc > 1)
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
@@ -87,6 +90,7 @@
 
 - name: 'command stop nginx'
   command: "{{command_cmd_stop_nginx}}"
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 0)
   tags:
     - commands

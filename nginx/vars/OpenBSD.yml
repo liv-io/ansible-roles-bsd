@@ -14,7 +14,7 @@ command_cmd_disable_nginx: 'rcctl disable nginx'
 command_cmd_enable_nginx: 'rcctl enable nginx'
 
 # info nginx
-raw_cmd_info_nginx: 'pkg_info | grep -q "^nginx.*"'
+shell_cmd_info_nginx: 'pkg_info | grep -q "^nginx-[0-9]\..*"'
 
 # start nginx
 command_cmd_start_nginx: 'rcctl start nginx'
