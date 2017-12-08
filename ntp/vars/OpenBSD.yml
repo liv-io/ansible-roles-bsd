@@ -22,7 +22,7 @@ command_cmd_disable_ntp: 'rcctl disable xntpd'
 command_cmd_enable_ntp: 'rcctl enable xntpd'
 
 # info ntp
-raw_cmd_info_ntp: 'pkg_info | grep -q "^ntp.*"'
+shell_cmd_info_ntp: 'pkg_info | grep -q "^ntp-[0-9]\..*"'
 
 # start ntp
 command_cmd_start_ntp: 'rcctl start xntpd'

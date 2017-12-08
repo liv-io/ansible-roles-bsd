@@ -26,6 +26,7 @@
   register: register_status_ntp
   changed_when: (register_status_ntp.rc > 1)
   failed_when: (register_status_ntp.rc > 1)
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
@@ -35,6 +36,7 @@
 
 - name: 'command disable ntp'
   command: "{{command_cmd_disable_ntp}}"
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_ntp.rc == 0)
   tags:
     - commands
@@ -47,6 +49,7 @@
   register: register_check_ntp
   changed_when: (register_check_ntp.rc > 1)
   failed_when: (register_check_ntp.rc > 1)
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
@@ -56,6 +59,7 @@
 
 - name: 'command stop ntp'
   command: "{{command_cmd_stop_ntp}}"
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_ntp.rc == 0)
   tags:
     - commands
