@@ -69,6 +69,7 @@
   register: register_status_opensmtpd
   changed_when: (register_status_opensmtpd.rc > 1)
   failed_when: (register_status_opensmtpd.rc > 1)
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
@@ -78,6 +79,7 @@
 
 - name: 'command disable opensmtpd'
   command: "{{command_cmd_disable_opensmtpd}}"
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 0)
   tags:
     - commands
@@ -90,6 +92,7 @@
   register: register_check_opensmtpd
   changed_when: (register_check_opensmtpd.rc > 1)
   failed_when: (register_check_opensmtpd.rc > 1)
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
@@ -99,6 +102,7 @@
 
 - name: 'command stop opensmtpd'
   command: "{{command_cmd_stop_opensmtpd}}"
+  check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 0)
   tags:
     - commands
