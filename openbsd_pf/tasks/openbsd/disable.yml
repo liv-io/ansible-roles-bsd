@@ -134,6 +134,7 @@
   register: register_status_openbsd_pf
   changed_when: (register_status_openbsd_pf.rc > 1)
   failed_when: (register_status_openbsd_pf.rc > 1)
+  check_mode: 'no'
   tags:
     - commands
     - disable
@@ -143,6 +144,7 @@
 - name: 'command disable openbsd_pf'
   command: "{{command_cmd_disable_openbsd_pf}}"
   when: (register_status_openbsd_pf.rc == 0)
+  check_mode: 'no'
   tags:
     - commands
     - disable
@@ -150,10 +152,11 @@
     - openbsd_pf
 
 - name: 'command check openbsd_pf'
-  raw: "{{raw_cmd_check_openbsd_pf}}"
+  shell: "{{shell_cmd_check_openbsd_pf}}"
   register: register_check_openbsd_pf
   changed_when: (register_check_openbsd_pf.rc > 1)
   failed_when: (register_check_openbsd_pf.rc > 1)
+  check_mode: 'no'
   tags:
     - commands
     - disable
@@ -163,6 +166,7 @@
 - name: 'command stop openbsd_pf'
   command: "{{command_cmd_stop_openbsd_pf}}"
   when: (register_check_openbsd_pf.rc == 0)
+  check_mode: 'no'
   tags:
     - commands
     - disable
