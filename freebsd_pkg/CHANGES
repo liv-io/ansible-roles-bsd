@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.6.0 (2017-12-15)
+F: Add option 'freebsd_pkg_release' to set package release
+
 * Version 0.5.1 (2017-10-18)
 I: Update support information of OpenBSD
 
