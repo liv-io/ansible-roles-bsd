@@ -50,16 +50,6 @@
     - unix
     - nginx
 
-- name: 'stat file dhparam.pem'
-  stat:
-    path: "{{file_path_dhparam_pem}}"
-  register: register_dhparam_pem
-  tags:
-    - files
-    - enable
-    - unix
-    - nginx
-
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
@@ -104,19 +94,6 @@
   command: "{{command_cmd_start_nginx}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 1)
-  tags:
-    - commands
-    - enable
-    - unix
-    - nginx
-
-- name: 'command generate dhparam'
-  shell: "{{command_shell_generate_dhparam}}"
-  check_mode: 'no'
-  when: (register_dhparam_pem.stat.exists == False)
-  notify:
-    - command check nginx
-    - service reload nginx
   tags:
     - commands
     - enable

@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.9.2 (2017-12-26)
+I: Move 'command generate dhparam' task
+
 * Version 0.9.1 (2017-12-08)
 I: Ensure role works in check mode
 I: Avoid usage of raw module
