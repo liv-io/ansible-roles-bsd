@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : stress
-Type   : ansible role
-Group  : app-benchmarks
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages stress.
 
 stress is not a benchmark, but is rather a tool designed to put given subsytems
 under a specified load. Instances in which this is useful include those in which

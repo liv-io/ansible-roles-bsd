@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : hostname_if
-Type   : ansible role
-Group  : sys-core
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages hostname.
 
 The hostname.* files contain information regarding the configuration of each
 network interface. One file should exist for each interface that is to be

@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : zsh
-Type   : ansible role
-Group  : app-shells
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages zsh.
 
 The zsh shell is a command interpreter usable as an interactive login shell and
 as a shell script command processor. Zsh resembles the ksh shell (the Korn

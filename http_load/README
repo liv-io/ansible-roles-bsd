@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : http_load
-Type   : ansible role
-Group  : app-benchmarks
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages http_load.
 
 http_load runs multiple HTTP fetches in parallel, to test the throughput
 of a web server.

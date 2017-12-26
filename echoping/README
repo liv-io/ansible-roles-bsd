@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : echoping
-Type   : ansible role
-Group  : net-analyzer
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages echoping.
 
 "echoping" is a small program to test (approximatively) performances of a remote
 host by sending it TCP "echo" (or other protocol) packets.

@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : freebsd_pkg
-Type   : ansible role
-Group  : sys-core
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages freebsd_pkg.
 
 FreeBSD package management tool. Pkg provides an interface for manipulating
 packages: registering, adding, removing and upgrading packages.

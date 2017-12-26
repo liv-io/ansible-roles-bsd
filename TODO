@@ -4,7 +4,6 @@ INFORMATION
 
 Name   : TODO
 Type   : Ansible roles
-Summary: Ansible roles for FreeBSD and OpenBSD
 
 Authors: liv community
 License: Simplified BSD License

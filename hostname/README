@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : hostname
-Type   : ansible role
-Group  : sys-core
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages hostname.
 
 The hostname utility is used to set or print the name of the current host.
 If no argument is given, the name of the current host is printed.

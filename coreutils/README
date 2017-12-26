@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : coreutils
-Type   : ansible role
-Group  : sys-apps
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages coreutils.
 
 These are the GNU core utilities. This package is the combination of the old GNU
 fileutils, sh-utils, and textutils packages.

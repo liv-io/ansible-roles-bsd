@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : vlock
-Type   : ansible role
-Group  : app-misc
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages vlock.
 
 The vlock program locks one or more sessions on the console. Vlock can lock the
 current terminal (local or remote) or the entire virtual console system, which

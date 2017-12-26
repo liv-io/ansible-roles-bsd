@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : minicom
-Type   : ansible role
-Group  : net-dialup
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages minicom.
 
 Minicom is a simple text-based modem control and terminal emulation program
 somewhat similar to MSDOS Telix. Minicom includes a dialing directory, full ANSI

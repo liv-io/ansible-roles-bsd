@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : gnu_sed
-Type   : ansible role
-Group  : sys-apps
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages gnu_sed.
 
 GNU sed is the Free Software Foundation's version of the sed editor. GNU sed
 isn't really a true text editor or text processor. Instead, it is used to filter

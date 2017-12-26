@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : freebsd_pf
-Type   : ansible role
-Group  : net-firewall
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages freebsd_pf.
 
 PF (Packet Filter) is a BSD licensed stateful packet filter, a central piece of
 software for firewalling. PF is developed on OpenBSD, but has been ported to

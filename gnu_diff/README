@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : gnu_diff
-Type   : ansible role
-Group  : sys-apps
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages gnu_diff.
 
 GNU versions of diff utilities. You can use the diff command to show differences
 between two files, or each corresponding file in two directories. diff outputs

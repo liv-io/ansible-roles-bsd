@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : sysbench
-Type   : ansible role
-Group  : app-benchmarks
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages sysbench.
 
 SysBench is a modular, cross-platform and multi-threaded benchmark tool for
 evaluating OS parameters that are important for a system running a database

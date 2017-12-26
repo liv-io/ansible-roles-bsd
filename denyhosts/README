@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : denyhosts
-Type   : ansible role
-Group  : app-admin
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages denyhosts.
 
 DenyHosts is a Python script that analyzes the sshd server log messages to
 determine which hosts are attempting to hack into your system. It also

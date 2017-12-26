@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : ngrep
-Type   : ansible role
-Group  : net-analyzer
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages ngrep.
 
 ngrep strives to provide most of GNU grep's common features, applying them to
 the network layer. ngrep is a pcap-aware tool that will allow you to specify

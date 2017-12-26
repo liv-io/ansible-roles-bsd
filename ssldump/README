@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : ssldump
-Type   : ansible role
-Group  : net-analyzer
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages ssldump.
 
 This program is an SSLv3/TLS network protocol analyzer. It identifies TCP
 connections on the chosen network interface and attempts to interpret them as

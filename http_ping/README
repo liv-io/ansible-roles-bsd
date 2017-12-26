@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : http_ping
-Type   : ansible role
-Group  : net-analyzer
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages http_ping.
 
 http_ping is like the regular ping command, except that it sends HTTP
 requests instead of ICMP echo requests.

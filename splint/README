@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : splint
-Type   : ansible role
-Group  : dev-util
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages splint.
 
 Splint is a tool for statically checking C programs for coding errors and
 security vulnerabilities. With minimal effort, Splint can be used as a better

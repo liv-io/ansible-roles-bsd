@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : gnu_tar
-Type   : ansible role
-Group  : sys-apps
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages gnu_tar.
 
 The Free Software Foundation's tape archiver. GNU tar saves many files together
 into a single tape or disk archive, and can restore individual files from the

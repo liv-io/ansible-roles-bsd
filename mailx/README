@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : mailx
-Type   : ansible role
-Group  : mail-client
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages mailx.
 
 Mailx is an enhanced mail command, which provides the functionality of the POSIX
 mailx command, as well as SysV mail and Berkeley Mail (from which it is

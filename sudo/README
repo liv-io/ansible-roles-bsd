@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : sudo
-Type   : ansible role
-Group  : app-admin
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages sudo.
 
 Sudo (superuser do) allows a system administrator to give certain users (or
 groups of users) the ability to run some (or all) commands as root while logging

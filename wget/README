@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : wget
-Type   : ansible role
-Group  : net-misc
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages wget.
 
 GNU Wget is a file retrieval utility which can use either the HTTP or FTP
 protocols. Wget features include the ability to work in the background while you

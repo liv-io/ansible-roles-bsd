@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : ltrace
-Type   : ansible role
-Group  : dev-util
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages ltrace.
 
 Ltrace is a debugging program which runs a specified command until the command
 exits. While the command is executing, ltrace intercepts and records both the

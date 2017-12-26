@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : apachetop
-Type   : ansible role
-Group  : app-admin
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages apachetop.
 
 ApacheTop is a curses-based top-like display for Apache information, including
 requests per second, bytes per second, most popular URLs, etc.

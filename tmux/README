@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : tmux
-Type   : ansible role
-Group  : app-misc
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages tmux.
 
 tmux is a "terminal multiplexer." It enables a number of terminals (or windows)
 to be accessed and controlled from a single terminal. tmux is intended to be a

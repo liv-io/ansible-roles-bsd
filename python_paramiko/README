@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : python_paramiko
-Type   : ansible role
-Group  : dev-python
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages python_paramiko.
 
 Paramiko (a combination of the esperanto words for "paranoid" and "friend") is
 a module for python 2.3 or greater that implements the SSH2 protocol for secure

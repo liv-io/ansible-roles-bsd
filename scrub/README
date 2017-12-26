@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : scrub
-Type   : ansible role
-Group  : app-misc
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages scrub.
 
 Scrub writes patterns on files or disk devices to make retrieving the data more
 difficult. It operates in one of three modes: 1) the special file corresponding

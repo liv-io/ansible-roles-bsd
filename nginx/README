@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : nginx
-Type   : ansible role
-Group  : www-servers
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages nginx.
 
 Nginx is a web server and a reverse proxy server for HTTP, SMTP, POP3 and IMAP
 protocols, with a strong focus on high concurrency, performance and low memory

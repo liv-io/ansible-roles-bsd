@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : multitail
-Type   : ansible role
-Group  : app-text
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages multitail.
 
 MultiTail lets you view one or multiple files like the original tail program.
 The difference is that it creates multiple windows on your console

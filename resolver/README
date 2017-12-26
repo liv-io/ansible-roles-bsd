@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : resolver
-Type   : ansible role
-Group  : sys-core
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages resolver.
 
 The resolver configuration file contains information that is read by the
 resolver routines the first time they are invoked by a process. The file is

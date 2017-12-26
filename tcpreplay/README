@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : tcpreplay
-Type   : ansible role
-Group  : net-analyzer
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages tcpreplay.
 
 Tcpreplay is a tool to replay captured network traffic. Currently, tcpreplay
 supports pcap (tcpdump) and snoop capture formats. Also included, is tcpprep a

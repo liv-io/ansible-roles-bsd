@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : openssl
-Type   : ansible role
-Group  : dev-libs
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages openssl.
 
 The OpenSSL toolkit provides support for secure communications between machines.
 OpenSSL includes a certificate management tool and shared libraries which

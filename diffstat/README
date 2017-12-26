@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : diffstat
-Type   : ansible role
-Group  : dev-util
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages diffstat.
 
 The diff command compares files line by line. Diffstat reads the output of the
 diff command and displays a histogram of the insertions, deletions and

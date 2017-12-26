@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : fstab
-Type   : ansible role
-Group  : sys-core
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages fstab.
 
 The file fstab contains descriptive information about the various file systems.
 fstab is only read by programs, and not written; it is the duty of the system

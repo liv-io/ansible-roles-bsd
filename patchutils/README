@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : patchutils
-Type   : ansible role
-Group  : dev-util
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages patchutils.
 
 This is a collection of programs that can manipulate patch files in a variety of
 ways, such as interpolating between two pre-patches, combining two incremental

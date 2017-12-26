@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : cron
-Type   : ansible role
-Group  : sys-process
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages cron.
 
 Cronie contains the standard UNIX daemon crond that runs specified programs at
 scheduled times and related tools. It is a fork of the original vixie-cron and

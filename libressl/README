@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : libressl
-Type   : ansible role
-Group  : dev-libs
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages libressl.
 
 LibreSSL is an open-source implementation of the Secure Sockets Layer (SSL) and
 Transport Layer Security (TLS) protocols. It was forked from the OpenSSL

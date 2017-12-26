@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : lftp
-Type   : ansible role
-Group  : net-ftp
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages lftp.
 
 LFTP is a sophisticated ftp/http file transfer program. Like bash, it has job
 control and uses the readline library for input. It has bookmarks, built-in

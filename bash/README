@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : bash
-Type   : ansible role
-Group  : app-shells
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages bash.
 
 The GNU Bourne Again shell (Bash) is a shell or command language interpreter
 that is compatible with the Bourne shell (sh). Bash incorporates useful features

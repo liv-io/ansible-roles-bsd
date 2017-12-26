@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : python_yaml
-Type   : ansible role
-Group  : dev-python
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages python_yaml.
 
 YAML is a data serialization format designed for human readability and
 interaction with scripting languages. PyYAML is a YAML parser and emitter for

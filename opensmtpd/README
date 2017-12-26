@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : opensmtpd
-Type   : ansible role
-Group  : mail-mta
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages opensmtpd.
 
 OpenSMTPD is a FREE implementation of the server-side SMTP protocol as defined
 by RFC 5321, with some additional standard extensions. It allows ordinary

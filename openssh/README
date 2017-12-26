@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : openssh
-Type   : ansible role
-Group  : net-misc
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages openssh.
 
 SSH (Secure SHell) is a program for logging into and executing commands on a
 remote machine. SSH is intended to replace rlogin and rsh, and to provide secure

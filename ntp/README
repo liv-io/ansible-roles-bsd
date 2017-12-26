@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : ntp
-Type   : ansible role
-Group  : net-misc
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages ntp.
 
 The Network Time Protocol (NTP) is used to synchronize a computer's time with
 another reference time source. This package includes ntpd (a daemon which

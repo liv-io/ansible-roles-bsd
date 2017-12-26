@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : picocom
-Type   : ansible role
-Group  : net-dialup
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages picocom.
 
 Picocom is a minimal dumb-terminal emulation program. It was designed to serve
 as a simple, manual, modem configuration, testing, and debugging tool. Picocom

@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : lsof
-Type   : ansible role
-Group  : sys-process
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages lsof.
 
 Lsof stands for LiSt Open Files, and it does just that: it lists information
 about files that are open by the processes running on a UNIX system.

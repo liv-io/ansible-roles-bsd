@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : dsniff
-Type   : ansible role
-Group  : net-analyzer
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages dsniff.
 
 A collection of tools for network auditing and penetration testing. Dsniff,
 filesnarf, mailsnarf, msgsnarf, urlsnarf and webspy allow to passively monitor

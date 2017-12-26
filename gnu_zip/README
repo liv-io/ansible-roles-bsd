@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : gnu_zip
-Type   : ansible role
-Group  : app-arch
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages gnu_zip.
 
 The gnu-zip package contains the popular GNU gnu-zip data compression program.
 Gzipped files have a .gz extension. Gzip should be installed on your system,

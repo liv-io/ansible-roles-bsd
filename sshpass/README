@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : sshpass
-Type   : ansible role
-Group  : net-misc
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages sshpass.
 
 Tool for non-interactively performing password authentication with so called
 "interactive keyboard password authentication" of SSH. Most users should use

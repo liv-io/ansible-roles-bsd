@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : pwgen
-Type   : ansible role
-Group  : app-admin
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages pwgen.
 
 pwgen generates random, meaningless but pronounceable passwords. These passwords
 contain either only lowercase letters, or upper and lower case, or upper case,

@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : bind_tools
-Type   : ansible role
-Group  : net-dns
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages bind_tools.
 
 Bind-tools contains a collection of utilities for querying DNS (Domain Name
 System) name servers to find out information about Internet hosts. These tools

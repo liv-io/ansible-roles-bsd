@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : screen
-Type   : ansible role
-Group  : app-misc
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages screen.
 
 The screen utility allows you to have multiple logins on just one terminal.
 Screen is useful for users who telnet into a machine or are connected via a dumb

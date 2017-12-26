@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : unzip
-Type   : ansible role
-Group  : app-arch
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages unzip.
 
 The unzip utility is used to list, test, or extract files from a zip archive.
 Zip archives are commonly found on MS-DOS systems. The zip utility, included in

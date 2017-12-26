@@ -3,8 +3,7 @@ INFORMATION
 --------------------------------------------------------------------------------
 
 Name   : vim
-Type   : ansible role
-Group  : app-editors
+Type   : Ansible role
 
 Authors: liv community
 License: Simplified BSD License
@@ -12,8 +11,6 @@ License: Simplified BSD License
 --------------------------------------------------------------------------------
 DESCRIPTION
 --------------------------------------------------------------------------------
-
-This role manages vim.
 
 VIM (VIsual editor iMproved) is an updated and improved version of the vi
 editor. Vi was the first real screen-based editor for UNIX, and is still very
