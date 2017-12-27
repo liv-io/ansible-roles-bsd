@@ -40,7 +40,7 @@ for shell in /etc/profile.d/*.sh ; do
 done
 
 # Source Bash specific environment variables
-if [ "$SHELL" = "/usr/local/bin/bash" ]; then
+if [ $(echo $0 | tr -d '-') == 'bash' ]; then
   for bash in /etc/profile.d/*.bash ; do
     [ -r "$bash" ] && . "$bash"
   done
