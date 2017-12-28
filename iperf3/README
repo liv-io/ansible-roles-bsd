@@ -72,7 +72,7 @@ DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  iperf
+  iperf3
     Version: >= 2.0
     Name   :
       FreeBSD 11: 'iperf3'
