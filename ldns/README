@@ -1,0 +1,130 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : ldns
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+Ldns is a library to simplify implementation of recent DNS RFCs. The goal is to
+allow depelopers to easily create software conforming to current RFCs and
+experimental software for current Internet drafts. Because ldns is written in C
+it should be a lot faster than Perl or other scripting languages.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: ldns
+    vars:
+      ldns_state: 'install'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: ldns
+    vars:
+      ldns_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: ldns
+    vars:
+      ldns_state: 'inactive'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  ldns_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  ldns
+    Version: >= 1.0
+    Name   :
+      FreeBSD 11: 'ldns'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 2.0
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 11.1-*
+      Status: Stable
+
+  OpenBSD
+    Version: 6.2
+      Status: Unsupported
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------
