@@ -72,7 +72,7 @@ DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  gnu_zip
+  gnu-zip
     Version: >= 1.3
     Name   :
       FreeBSD 11: 'gzip'
