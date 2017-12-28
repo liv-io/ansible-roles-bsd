@@ -1,0 +1,15 @@
+---
+
+- name: 'task include install'
+  include: install.yml
+  when: not (drill_state|match('false|no|remove|quiesce|inactive'))
+  tags:
+    - unix
+    - drill
+
+- name: 'task include remove'
+  include: remove.yml
+  when: (drill_state|match('false|no|remove'))
+  tags:
+    - unix
+    - drill
