@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.13.1 (2017-12-29)
+I: Improve 'resolver_nameserver' option
+
 * Version 0.13.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
 F: Drop support for OpenBSD 6.1

@@ -27,8 +27,9 @@ search {% for search in resolver_search %}{{(search|e)}}{% if not loop.last %} {
 {% endif %}
 
 # Name server IP address
-{% if not ((resolver_nameserver == '') or (resolver_nameserver == [])) %}
-{% for nameserver in resolver_nameserver %}
-nameserver {{(nameserver|e)}}
-{% endfor %}
+{% for nameserver in resolver_nameserver|default([]) %}
+{% if (nameserver.comment is defined) and not (nameserver.comment == '') %}
+# {{nameserver.comment}}
 {% endif %}
+nameserver {{nameserver.server}}
+{% endfor %}
