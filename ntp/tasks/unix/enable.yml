@@ -28,7 +28,7 @@
     mode: "{{file_mode_ntp_conf}}"
     owner: "{{file_owner_ntp_conf}}"
     group: "{{file_group_ntp_conf}}"
-  notify: service restart ntp
+  notify: 'service restart ntp'
   tags:
     - files
     - enable
