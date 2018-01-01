@@ -29,8 +29,8 @@
     owner: "{{file_owner_aliases}}"
     group: "{{file_group_aliases}}"
   notify:
-    - command newaliases
-    - service restart postfix
+    - 'command newaliases'
+    - 'service restart postfix'
   tags:
     - files
     - enable
@@ -44,7 +44,7 @@
     mode: "{{file_mode_main_cf}}"
     owner: "{{file_owner_main_cf}}"
     group: "{{file_group_main_cf}}"
-  notify: service restart postfix
+  notify: 'service restart postfix'
   tags:
     - files
     - enable
@@ -58,7 +58,7 @@
     mode: "{{file_mode_master_cf}}"
     owner: "{{file_owner_master_cf}}"
     group: "{{file_group_master_cf}}"
-  notify: service restart postfix
+  notify: 'service restart postfix'
   tags:
     - files
     - enable
