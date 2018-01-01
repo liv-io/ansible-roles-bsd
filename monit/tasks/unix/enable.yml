@@ -29,8 +29,8 @@
     owner: "{{file_owner_monitrc}}"
     group: "{{file_group_monitrc}}"
   notify:
-    - command validate monit
-    - service restart monit
+    - 'command validate monit'
+    - 'service restart monit'
   tags:
     - files
     - enable

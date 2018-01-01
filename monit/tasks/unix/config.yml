@@ -29,8 +29,8 @@
     owner: "{{file_owner_monit_config}}"
     group: "{{file_group_monit_config}}"
   notify:
-    - command validate monit
-    - service restart monit
+    - 'command validate monit'
+    - 'service restart monit'
   with_items: "{{monit_all + monit_group + monit_host}}"
   when: not (item.state|match('false|no|remove'))
   tags:
@@ -44,8 +44,8 @@
     state: 'absent'
     path: "{{file_path_monit_d}}/{{(item.name|e)}}.cfg"
   notify:
-    - command validate monit
-    - service restart monit
+    - 'command validate monit'
+    - 'service restart monit'
   with_items: "{{monit_all + monit_group + monit_host}}"
   when: (item.state|match('false|no|remove'))
   tags:
