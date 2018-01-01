@@ -28,7 +28,7 @@
     mode: "{{file_mode_ntpd_conf}}"
     owner: "{{file_owner_ntpd_conf}}"
     group: "{{file_group_ntpd_conf}}"
-  notify: service restart openntpd
+  notify: 'service restart openntpd'
   tags:
     - files
     - enable
