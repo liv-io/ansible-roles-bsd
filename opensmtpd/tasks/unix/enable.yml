@@ -29,9 +29,9 @@
     owner: "{{file_owner_aliases}}"
     group: "{{file_group_aliases}}"
   notify:
-    - service start opensmtpd
-    - command smtpctl aliases
-    - service restart opensmtpd
+    - 'service start opensmtpd'
+    - 'command smtpctl aliases'
+    - 'service restart opensmtpd'
   tags:
     - files
     - enable
@@ -45,7 +45,7 @@
     mode: "{{file_mode_smtpd_conf}}"
     owner: "{{file_owner_smtpd_conf}}"
     group: "{{file_group_smtpd_conf}}"
-  notify: service restart opensmtpd
+  notify: 'service restart opensmtpd'
   tags:
     - files
     - enable
