@@ -42,7 +42,7 @@
     mode: "{{file_mode_allowed_hosts}}"
     owner: "{{file_owner_allowed_hosts}}"
     group: "{{file_group_allowed_hosts}}"
-  notify: service restart denyhosts
+  notify: 'service restart denyhosts'
   tags:
     - files
     - enable
@@ -56,7 +56,7 @@
     mode: "{{file_mode_denyhosts_conf}}"
     owner: "{{file_owner_denyhosts_conf}}"
     group: "{{file_group_denyhosts_conf}}"
-  notify: service restart denyhosts
+  notify: 'service restart denyhosts'
   tags:
     - files
     - enable
@@ -96,7 +96,7 @@
     line: "{{file_line_syslogd_flags}}=\"-c\" # Ansible: Config denyhosts"
     regexp: "^{{file_line_syslogd_flags}}="
     dest: "{{file_path_syslogd_flags}}"
-  notify: service restart syslog
+  notify: 'service restart syslog'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files

@@ -54,7 +54,7 @@
     line: "{{file_line_syslogd_flags}}=\"-c\" # Ansible: Config denyhosts"
     regexp: "^{{file_line_syslogd_flags}}="
     dest: "{{file_path_syslogd_flags}}"
-  notify: service restart syslog
+  notify: 'service restart syslog'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
