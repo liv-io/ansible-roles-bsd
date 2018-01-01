@@ -29,8 +29,8 @@
     owner: "{{file_owner_banner}}"
     group: "{{file_group_banner}}"
   notify:
-    - command validate openssh
-    - service reload openssh
+    - 'command validate openssh'
+    - 'service reload openssh'
   tags:
     - files
     - enable
@@ -45,8 +45,8 @@
     owner: "{{file_owner_moduli}}"
     group: "{{file_group_moduli}}"
   notify:
-    - command validate openssh
-    - service reload openssh
+    - 'command validate openssh'
+    - 'service reload openssh'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
@@ -62,8 +62,8 @@
     owner: "{{file_owner_ssh_config}}"
     group: "{{file_group_ssh_config}}"
   notify:
-    - command validate openssh
-    - service reload openssh
+    - 'command validate openssh'
+    - 'service reload openssh'
   tags:
     - files
     - enable
@@ -78,8 +78,8 @@
     owner: "{{file_owner_sshd_config}}"
     group: "{{file_group_sshd_config}}"
   notify:
-    - command validate openssh
-    - service reload openssh
+    - 'command validate openssh'
+    - 'service reload openssh'
   tags:
     - files
     - enable
