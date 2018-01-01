@@ -28,7 +28,7 @@
     mode: "{{file_mode_nginx_conf}}"
     owner: "{{file_owner_nginx_conf}}"
     group: "{{file_group_nginx_conf}}"
-  notify: command check nginx
+  notify: 'command check nginx'
   tags:
     - files
     - disable

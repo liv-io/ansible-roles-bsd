@@ -30,8 +30,8 @@
     group: "{{file_group_vhost}}"
   with_items: "{{nginx_vhost}}"
   notify:
-    - command check nginx
-    - service reload nginx
+    - 'command check nginx'
+    - 'service reload nginx'
   when: not (item.state|match('false|no|remove'))
   tags:
     - files
@@ -45,8 +45,8 @@
     path: "{{file_path_vhosts_d_name}}/{{(item.name|e)}}-{{(item.port|int(80))}}.conf"
   with_items: "{{nginx_vhost}}"
   notify:
-    - command check nginx
-    - service reload nginx
+    - 'command check nginx'
+    - 'service reload nginx'
   when: (item.state|match('false|no|remove'))
   tags:
     - files

@@ -29,8 +29,8 @@
     owner: "{{file_owner_nginx_conf}}"
     group: "{{file_group_nginx_conf}}"
   notify:
-    - command check nginx
-    - service reload nginx
+    - 'command check nginx'
+    - 'service reload nginx'
   tags:
     - files
     - enable

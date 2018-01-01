@@ -81,8 +81,8 @@
   check_mode: 'no'
   when: (register_dhparam_pem.stat.exists == False)
   notify:
-    - command check nginx
-    - service reload nginx
+    - 'command check nginx'
+    - 'service reload nginx'
   tags:
     - commands
     - install
