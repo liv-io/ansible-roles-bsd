@@ -24,7 +24,7 @@
 - name: 'template create sudo-config'
   template:
     src: "{{file_src_sudo_config}}"
-    dest: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) else ''}}{{'_' if (item.order is defined) else ''}}{{(item.name|e) if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
+    dest: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) else ''}}{{'-' if (item.order is defined) else ''}}{{(item.name|e) if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
     mode: "{{file_mode_sudo_config}}"
     owner: "{{file_owner_sudo_config}}"
     group: "{{file_group_sudo_config}}"
@@ -40,7 +40,7 @@
 - name: 'file remove sudo-config'
   file:
     state: 'absent'
-    path: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) else ''}}{{'_' if (item.order is defined) else ''}}{{(item.name|e) if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
+    path: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) else ''}}{{'-' if (item.order is defined) else ''}}{{(item.name|e) if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
   with_items: "{{sudo_all + sudo_group + sudo_host}}"
   when: (item.state|match('false|no|remove'))
   tags:
