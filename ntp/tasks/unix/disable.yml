@@ -34,7 +34,7 @@
     - unix
     - ntp
 
-- name: 'template create ntp_update-time.sh'
+- name: 'file remove ntp_update-time.sh'
   file:
     state: 'absent'
     path: "{{file_path_ntp_update_time_sh}}"
