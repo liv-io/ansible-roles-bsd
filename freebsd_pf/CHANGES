@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.0.1 (2018-01-19)
+I: Remove 'dependencies' parameter until correctly implemented
+B: Add missing 'freebsd_pf_tables_group', 'freebsd_pf_tables_host' configuration
+
 * Version 2.0.0 (2017-11-22)
 I: Redesign, improve and cleanup Ansible role
 

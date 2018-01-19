@@ -5,7 +5,7 @@ freebsd_pf_state: 'enable'
 freebsd_pf_anchors_conf_template: 'default'
 
 freebsd_pf_filters_all:
-  - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Reply: From any'}
+  - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
   - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
   - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
   - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'}
@@ -18,8 +18,6 @@ freebsd_pf_filters_all:
   - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}
 
 freebsd_pf_filters_conf_template: 'default'
-
-freebsd_pf_filters_dependencies: []
 
 freebsd_pf_filters_group: []
 
@@ -37,8 +35,6 @@ freebsd_pf_macros_all: []
 
 freebsd_pf_macros_conf_template: 'default'
 
-freebsd_pf_macros_dependencies: []
-
 freebsd_pf_macros_group: []
 
 freebsd_pf_macros_host: []
@@ -46,8 +42,6 @@ freebsd_pf_macros_host: []
 freebsd_pf_macros_state_all:
   - {name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'}
   - {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}
-
-freebsd_pf_macros_state_dependencies: []
 
 freebsd_pf_macros_state_group: []
 
@@ -98,8 +92,6 @@ freebsd_pf_tables_all:
 
 freebsd_pf_tables_conf_template: 'default'
 
-freebsd_pf_tables_dependencies: []
-
 freebsd_pf_tables_group: []
 
 freebsd_pf_tables_host: []
@@ -107,8 +99,6 @@ freebsd_pf_tables_host: []
 freebsd_pf_translations_all: []
 
 freebsd_pf_translations_conf_template: 'default'
-
-freebsd_pf_translations_dependencies: []
 
 freebsd_pf_translations_group: []
 

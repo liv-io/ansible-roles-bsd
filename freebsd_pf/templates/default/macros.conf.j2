@@ -69,23 +69,6 @@
 {% endfor %}
 
 #-------------------------------------------------------------------------------
-
-# DEPENDENCIES
-
-{% for dependencies in freebsd_pf_macros_state_dependencies|default([]) %}
-{% if (dependencies.comment is defined) and not (dependencies.comment == '') %}
-# {{dependencies.comment}}
-{% endif %}
-{%- if (dependencies.name is defined) and not (dependencies.name == '') %}{{dependencies.name}}{% endif %}
-='{% for option in dependencies.options|default([]) %}
-{{option}}{% if not loop.last %} {% endif %}
-{%- endfor %}'
-{% if not loop.last %}
-
-{% endif %}
-{% endfor %}
-
-#-------------------------------------------------------------------------------
 # MACROS
 #-------------------------------------------------------------------------------
 
@@ -127,21 +110,6 @@
 {% endif %}
 {%- if (host.name is defined) and not (host.name == '') %}{{host.name}}{% endif %}
 ='{{host.value}}'
-{% if not loop.last %}
-
-{% endif %}
-{% endfor %}
-
-#-------------------------------------------------------------------------------
-
-# DEPENDENCIES 
-
-{% for dependencies in freebsd_pf_macros_dependencies|default([]) %}
-{% if (dependencies.comment is defined) and not (dependencies.comment == '') %}
-# {{dependencies.comment}}
-{% endif %}
-{%- if (dependencies.name is defined) and not (dependencies.name == '') %}{{dependencies.name}}{% endif %}
-='{{dependencies.value}}'
 {% if not loop.last %}
 
 {% endif %}

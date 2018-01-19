@@ -62,7 +62,7 @@ INACTIVE
 CONFIG
   vars:
     freebsd_pf_filters_all:
-      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Reply: From any'}
+      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
       - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
       - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
       - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'}
@@ -73,7 +73,12 @@ CONFIG
       - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'10.11.1.11', '10.21.1.11'}, ports: {'domain'}, state: '$default_udp', comment: 'DNS: To dns servers'}
       - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'10.2.1.11', '10.2.1.12', '10.2.1.13', '10.2.1.14'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To ntp servers'}
       - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'10.2.1.15'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To package repository'}
+
     freebsd_pf_filters_group:
+      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'}
+      - {action: 'pass', direction: 'in', version: 'inet6', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'}
+
+    freebsd_pf_filters_host:
       - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'}
       - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'}
       - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}
@@ -117,7 +122,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Reply: From any'},
+    Default    : [{action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'},
                   {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'},
                   {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'},
                   {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'},
@@ -129,7 +134,7 @@ ROLE
                   {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To any'},
                   {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}]
     Options    :
-      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Reply: From any'},
+      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'},
                   {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'},
                   {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'},
                   {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'},
@@ -156,19 +161,6 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  freebsd_pf_filters_dependencies
-    Description: Define the 'freebsd_pf_filters_dependencies' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'},
-                 {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'},
-                 {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}]
-      None    : []
-
   freebsd_pf_filters_group
     Description: Define the 'freebsd_pf_filters_group' option.
     Implemented: 0.1
@@ -177,9 +169,8 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'},
-                 {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'},
-                 {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}]
+      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'},
+                 {action: 'pass', direction: 'in', version: 'inet6', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'}]
       None    : []
 
   freebsd_pf_filters_host
@@ -262,19 +253,6 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  freebsd_pf_macros_dependencies
-    Description: Define the 'freebsd_pf_macros_dependencies' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{name: 'h_mirror', value: '10.2.1.15', comment: 'package repository'},
-                 {name: 'h_fproxy', value: '10.2.1.16', comment: 'forward proxy'},
-                 {name: 'h_rproxy', value: '10.2.1.17', comment: 'reverse proxy'}]
-      None    : []
-
   freebsd_pf_macros_group
     Description: Define the 'freebsd_pf_macros_group' option.
     Implemented: 0.1
@@ -311,20 +289,6 @@ ROLE
     Type       : Array/Hash
     Default    : [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
                   {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
-    Options    :
-      Examples: [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
-                 {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
-      None    : []
-
-  freebsd_pf_macros_state_dependencies
-    Description: Define the 'freebsd_pf_macros_state_dependencies' option.
-                 The flags 'S/SA' are safe when using scrubbing. Use the flags
-                 'S/SFRA' when scrubbing is disabled.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
     Options    :
       Examples: [{name: 'default_tcp', options: {'flags S/SA', 'modulate state'}, comment: 'Default TCP state'},
                  {name: 'default_udp', options: {'keep state'}, comment: 'Default UDP state'}]
@@ -619,17 +583,6 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  freebsd_pf_tables_dependencies
-    Description: Define the 'freebsd_pf_tables_dependencies' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}]
-      None    : []
-
   freebsd_pf_tables_group
     Description: Define the 'freebsd_pf_tables_group' option.
     Implemented: 0.1
@@ -682,23 +635,6 @@ ROLE
     Default    : 'default'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
-
-  freebsd_pf_translations_dependencies
-    Description: Define the 'freebsd_pf_translations_dependencies' option.
-    Implemented: 0.2
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-      Examples: [{action: 'nonat', interfaces: {'$i_int'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$i_int'}, destinations: {'$n_dmz', '$n_int'}, comment: 'NONAT: For i_int'},
-                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$h_ns01'}, destinations: {'any'}, map: '$a_12', comment: 'SNAT: From h_ns01 to 1.1.1.12'},
-                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$h_ns02'}, destinations: {'any'}, map: '$a_13', comment: 'SNAT: From h_ns02 to 1.1.1.13'},
-                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$n_dmz'}, destinations: {'any'}, map: '$a_11', comment: 'SNAT: From n_dmz to 1.1.1.11'},
-                 {action: 'nat', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'$n_int'}, destinations: {'any'}, map: '$a_10', comment: 'SNAT: From n_int to 10.1.1.10'},
-                 {action: 'rdr', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'any'}, destinations: {'$a_12'}, ports: {'53'}, rdr: '$h_ns01', comment: 'DNAT/DNS: From any to name server'},
-                 {action: 'rdr', interfaces: {'$i_wan'}, version: 'inet', protocols: {'tcp', 'udp'}, sources: {'any'}, destinations: {'$a_13'}, ports: {'53'}, rdr: '$h_ns02', comment: 'DNAT/DNS: From any to name server'}]
-    Options    :
-      Examples: []
-      None    : []
 
   freebsd_pf_translations_group
    Description: Define the 'freebsd_pf_translations_group' option.
