@@ -40,12 +40,37 @@ table {% if (all.name is defined) and not (all.name == '') %}<{{all.name}}> {% e
 
 # GROUP
 
+{% for group in openbsd_pf_tables_group|default([]) %}
+{% if (group.comment is defined) and not (group.comment == '') %}
+# {{group.comment}}
+{% endif %}
+table {% if (group.name is defined) and not (group.name == '') %}<{{group.name}}> {% endif %}
+{%- if (group.attribute is defined) and (group.attribute|match('counters')) %}counters{% elif (group.attribute is defined) and (group.attribute|match('counters')) %}persistq {% else %}const {% endif %}
+{ {% for value in group.value|default([]) %}
+{{value}}{% if not loop.last %}, {% endif %}
+{%- endfor %} }
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+
+
 #-------------------------------------------------------------------------------
 
 # HOST
 
-#-------------------------------------------------------------------------------
+{% for host in openbsd_pf_tables_host|default([]) %}
+{% if (host.comment is defined) and not (host.comment == '') %}
+# {{host.comment}}
+{% endif %}
+table {% if (host.name is defined) and not (host.name == '') %}<{{host.name}}> {% endif %}
+{%- if (host.attribute is defined) and (host.attribute|match('counters')) %}counters{% elif (host.attribute is defined) and (host.attribute|match('counters')) %}persistq {% else %}const {% endif %}
+{ {% for value in host.value|default([]) %}
+{{value}}{% if not loop.last %}, {% endif %}
+{%- endfor %} }
+{% if not loop.last %}
 
-# DEPENDENCIES
+{% endif %}
+{% endfor %}
 
 #-------------------------------------------------------------------------------

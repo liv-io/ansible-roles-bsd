@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.6.6 (2018-01-19)
+I: Remove 'dependencies' parameter until correctly implemented
+B: Add missing 'openbsd_pf_tables_group', 'openbsd_pf_tables_host' configuration
+
 * Version 0.6.4 (2017-12-08)
 I: Ensure role works in check mode
 I: Avoid usage of raw module
