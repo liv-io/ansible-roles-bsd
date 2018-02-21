@@ -1,4 +1,0 @@
----
-
-dependencies:
-  - {role: 'common', when: not (systeminfo_state|match('false|no|remove|quiesce|inactive'))}
