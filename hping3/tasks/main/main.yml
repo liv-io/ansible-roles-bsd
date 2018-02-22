@@ -4,12 +4,12 @@
   include: install.yml
   when: not (hping3_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - hping3
 
 - name: 'task include remove'
   include: remove.yml
   when: (hping3_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - hping3
