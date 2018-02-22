@@ -4,12 +4,12 @@
   include: install.yml
   when: not (scrub_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - scrub
 
 - name: 'task include remove'
   include: remove.yml
   when: (scrub_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - scrub

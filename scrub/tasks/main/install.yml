@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - scrub
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove scrub'
+- name: 'package install scrub'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_scrub}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - scrub
