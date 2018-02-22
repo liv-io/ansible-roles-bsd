@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - wget
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install wget'
+- name: 'package remove wget'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_wget}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - wget
