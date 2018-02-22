@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - hping2
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install hping2'
+- name: 'package remove hping2'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_hping2}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - hping2
