@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - trafshow
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove trafshow'
+- name: 'package install trafshow'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_trafshow}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - trafshow
