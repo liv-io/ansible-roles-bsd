@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - http_ping
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove http_ping'
+- name: 'package install http_ping'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_http_ping}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - http_ping
