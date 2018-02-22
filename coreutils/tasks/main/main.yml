@@ -4,12 +4,12 @@
   include: install.yml
   when: not (coreutils_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - coreutils
 
 - name: 'task include remove'
   include: remove.yml
   when: (coreutils_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - coreutils
