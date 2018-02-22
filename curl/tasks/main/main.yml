@@ -4,12 +4,12 @@
   include: install.yml
   when: not (curl_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - curl
 
 - name: 'task include remove'
   include: remove.yml
   when: (curl_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - curl

@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - curl
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove curl'
+- name: 'package install curl'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_curl}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - curl
