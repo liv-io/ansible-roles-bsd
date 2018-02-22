@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - zsh
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install zsh'
+- name: 'package remove zsh'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_zsh}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - zsh
