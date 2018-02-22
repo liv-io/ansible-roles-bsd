@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - usbutils
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install usbutils'
+- name: 'package remove usbutils'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_usbutils}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - usbutils

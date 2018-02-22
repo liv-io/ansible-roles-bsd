@@ -4,12 +4,12 @@
   include: install.yml
   when: not (usbutils_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - usbutils
 
 - name: 'task include remove'
   include: remove.yml
   when: (usbutils_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - usbutils
