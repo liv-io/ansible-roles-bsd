@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - drill
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove drill'
+- name: 'package install drill'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_drill}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - drill
