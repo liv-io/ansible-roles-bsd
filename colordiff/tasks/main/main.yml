@@ -4,12 +4,12 @@
   include: install.yml
   when: not (colordiff_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - colordiff
 
 - name: 'task include remove'
   include: remove.yml
   when: (colordiff_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - colordiff
