@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - diffstat
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove diffstat'
+- name: 'package install diffstat'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_diffstat}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - diffstat

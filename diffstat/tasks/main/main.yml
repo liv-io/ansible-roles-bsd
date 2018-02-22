@@ -4,12 +4,12 @@
   include: install.yml
   when: not (diffstat_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - diffstat
 
 - name: 'task include remove'
   include: remove.yml
   when: (diffstat_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - diffstat
