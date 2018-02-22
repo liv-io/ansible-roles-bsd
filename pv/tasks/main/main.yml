@@ -4,12 +4,12 @@
   include: install.yml
   when: not (pv_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - pv
 
 - name: 'task include remove'
   include: remove.yml
   when: (pv_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - pv
