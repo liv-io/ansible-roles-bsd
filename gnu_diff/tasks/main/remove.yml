@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - remove
-    - unix
+    - main
     - gnu_diff
 
 #-------------------------------------------------------------------------------
@@ -28,5 +28,5 @@
   tags:
     - packaging
     - remove
-    - unix
+    - main
     - gnu_diff
