@@ -2,7 +2,7 @@
 INFORMATION
 --------------------------------------------------------------------------------
 
-Name   : ntp
+Name   : ntpd
 Type   : Ansible role
 
 Authors: liv community
@@ -27,58 +27,58 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-      - role: ntp
+      - role: ntpd
     vars:
-      ntp_state: 'install'
+      ntpd_state: 'install'
 
 ENABLE
   - hosts: all
     roles:
-      - role: ntp
+      - role: ntpd
     vars:
-      ntp_state: 'enable'
-      ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                    comment: 'Server: domain.tld'}]
+      ntpd_state: 'enable'
+      ntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                     comment: 'Server: domain.tld'}]
 
 DISABLE
   - hosts: all
     roles:
-      - role: ntp
+      - role: ntpd
     vars:
-      ntp_state: 'disable'
-      ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                    comment: 'Server: domain.tld'}]
+      ntpd_state: 'disable'
+      ntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                     comment: 'Server: domain.tld'}]
 
 CRONJOB
   - hosts: all
     roles:
-      - role: ntp
+      - role: ntpd
     vars:
-      ntp_state: 'cronjob'
-      ntp_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                    comment: 'Server: domain.tld'}]
-      ntp_ntp_update_time_interval: 15
+      ntpd_state: 'cronjob'
+      ntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
+                     comment: 'Server: domain.tld'}]
+      ntpd_ntpd_update_time_interval: 15
 
 REMOVE
   - hosts: all
     roles:
-      - role: ntp
+      - role: ntpd
     vars:
-      ntp_state: 'remove'
+      ntpd_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-      - role: ntp
+      - role: ntpd
     vars:
-      ntp_state: 'inactive'
+      ntpd_state: 'inactive'
 
 --------------------------------------------------------------------------------
 VARIABLES
 --------------------------------------------------------------------------------
 
 ROLE
-  ntp_state
+  ntpd_state
     Description: Control the state of the role.
     Implemented: 0.1
     Required   : False
@@ -93,8 +93,8 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  ntp_monitor
-    Description: Control the 'ntp_monitor' option.
+  ntpd_monitor
+    Description: Control the 'ntpd_monitor' option.
     Implemented: 0.6
     Required   : False
     Value      : Predetermined
@@ -104,8 +104,8 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  ntp_monitor_mail_recipient
-    Description: Define the 'ntp_monitor_mail_recipient' option.
+  ntpd_monitor_mail_recipient
+    Description: Define the 'ntpd_monitor_mail_recipient' option.
     Implemented: 0.4
     Required   : False
     Value      : Arbitrary
@@ -115,8 +115,8 @@ ROLE
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
 
-  ntp_monitor_mail_sender
-    Description: Define the 'ntp_monitor_mail_sender' option.
+  ntpd_monitor_mail_sender
+    Description: Define the 'ntpd_monitor_mail_sender' option.
     Implemented: 0.4
     Required   : False
     Value      : Arbitrary
@@ -125,8 +125,8 @@ ROLE
     Options    :
       Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
-  ntp_monitor_mail_state
-    Description: Control the 'ntp_monitor_mail_state' option.
+  ntpd_monitor_mail_state
+    Description: Control the 'ntpd_monitor_mail_state' option.
     Implemented: 0.4
     Required   : False
     Value      : Predetermined
@@ -136,22 +136,22 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  ntp_monitor_mail_subject
-    Description: Define the 'ntp_monitor_mail_subject' option.
+  ntpd_monitor_mail_subject
+    Description: Define the 'ntpd_monitor_mail_subject' option.
     Implemented: 0.4
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : "NTP: Update Time - Error ({{ansible_hostname}})"
+    Default    : "NTPD: Update Time - Error ({{ansible_hostname}})"
     Options    :
-      Examples: 'NTP: Update Time Error'
+      Examples: 'NTPD: Update Time Error'
 
-  ntp_ntp_conf_template
+  ntpd_ntp_conf_template
     Description: Define the template source for 'ntp.conf.j2'.
                  Any value other than "{{ansible_os_family}}" requires a Jinja2
                  file to be created. The custom Jinja2 file for an example
                  configuration called 'example' needs to be placed as follows:
-                 'ntp/templates/example/ntp.conf.j2'
+                 'ntpd/templates/example/ntp.conf.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -160,22 +160,22 @@ ROLE
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  ntp_ntp_update_time_sh_template
-    Description: Define the template source for 'ntp_update-time.sh.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
+  ntpd_ntpd_update_time_sh_template
+    Description: Define the template source for 'ntpd_update-time.sh.j2'.
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
-                 'ntp/templates/example/ntp_update-time.sh.j2'
+                 'ntpd/templates/example/ntpd_update-time.sh.j2'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
-  ntp_ntp_update_time_interval
-    Description: Set the 'ntp_ntp_update_time_interval' option.
+  ntpd_ntpd_update_time_interval
+    Description: Set the 'ntpd_ntpd_update_time_interval' option.
                  Specify a value between 1-59.
     Implemented: 0.5
     Required   : False
@@ -185,8 +185,8 @@ ROLE
     Options    :
       Examples: 5 | 11 | 15 | 20 | 23
 
-  ntp_restrict
-    Description: Define the 'ntp_restrict' option.
+  ntpd_restrict
+    Description: Define the 'ntpd_restrict' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -194,29 +194,25 @@ ROLE
     Default    : [{config: {'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv4'},
                   {config: {'-6', 'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv6'},
                   {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'},
-                  {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'},
-                  {config: {'127.127.1.0'}, comment: 'Restrict: Pseudo IP address'}]
+                  {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'}]
     Options    :
       Examples: [{config: {'192.168.1.0 mask 255.255.255.0', 'nomodify', 'notrap'}, comment: 'Network: Allow from 192.168.1.0/24'},
                  {config: {'192.168.2.0 mask 255.255.255.0', 'nomodify', 'notrap'}, comment: 'Network: Allow from 192.168.2.0/24'},
                  {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'},
-                 {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'},
-                 {config: {'127.127.1.0'}, comment: 'Restrict: Pseudo IP address'}] |
+                 {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'}] |
                 [{config: {'2001:0db8:85a3:08d3:1319:8a2e:0370:7347', 'nomodify', 'notrap'}, comment: 'Network: Allow from host'},
                  {config: {'2001:0ec9:96b4:19e4:2421:9b3f:1480:8458', 'nomodify', 'notrap'}, comment: 'Network: Allow from host'},
                  {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'},
-                 {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'},
-                 {config: {'127.127.1.0'}, comment: 'Restrict: Pseudo IP address'}]
+                 {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'}]
       None    : []
 
-  ntp_server
-    Description: Define the 'ntp_server' option.
+  ntpd_server
+    Description: Define the 'ntpd_server' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{server: {'ntp'},
-                   comment: 'Server: ntp'}]
+    Default    : [{server: {'ntp'}, comment: 'Server: ntp'}]
     Options    :
       Examples: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
                   comment: 'Server: domain.tld'}]

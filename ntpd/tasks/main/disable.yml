@@ -13,9 +13,9 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - enable
-    - unix
-    - ntp
+    - disable
+    - main
+    - ntpd
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -28,110 +28,108 @@
     mode: "{{file_mode_ntp_conf}}"
     owner: "{{file_owner_ntp_conf}}"
     group: "{{file_group_ntp_conf}}"
-  notify: 'service restart ntp'
   tags:
     - files
-    - enable
-    - unix
-    - ntp
+    - disable
+    - main
+    - ntpd
 
-- name: 'file remove ntp_update-time.sh'
+- name: 'file remove ntpd_update-time.sh'
   file:
     state: 'absent'
-    path: "{{file_path_ntp_update_time_sh}}"
+    path: "{{file_path_ntpd_update_time_sh}}"
   tags:
     - files
-    - enable
-    - unix
-    - ntp
+    - disable
+    - main
+    - ntpd
 
-- name: 'line config ntp_update-time'
+- name: 'line config ntpd_update-time'
   lineinfile:
     state: 'absent'
-    line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
-    regexp: "# Ansible: ntp_update-time$"
-    dest: "{{file_path_ntp_update_time}}"
+    line: "{{file_line_ntpd_update_time}} # Ansible: ntpd_update-time"
+    regexp: "# Ansible: ntpd_update-time$"
+    dest: "{{file_path_ntpd_update_time}}"
   tags:
     - files
-    - enable
-    - unix
-    - ntp
+    - disable
+    - main
+    - ntpd
 
-- name: 'line enable ntpd_enable'
+- name: 'line disable ntpd_enable'
   lineinfile:
     state: 'present'
-    line: "{{file_path_ntpd_enable}}=\"YES\" # Ansible: Enable ntp"
+    line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Disable ntp"
     regexp: "^{{file_line_ntpd_enable}}="
     dest: "{{file_path_ntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
-    - enable
-    - unix
-    - ntp
+    - disable
+    - main
+    - ntpd
 
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: 'command status ntp'
-  command: "{{command_cmd_status_ntp}}"
-  register: register_status_ntp
-  changed_when: (register_status_ntp.rc > 1)
-  failed_when: (register_status_ntp.rc > 1)
+- name: 'command status ntpd'
+  command: "{{command_cmd_status_ntpd}}"
+  register: register_status_ntpd
+  changed_when: (register_status_ntpd.rc > 1)
+  failed_when: (register_status_ntpd.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - commands
+    - disable
+    - main
+    - ntpd
+
+- name: 'command disable ntpd'
+  command: "{{command_cmd_disable_ntpd}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_ntpd.rc == 0)
+  tags:
+    - commands
+    - disable
+    - main
+    - ntpd
+
+- name: 'command check ntpd'
+  command: "{{command_cmd_check_ntpd}}"
+  register: register_check_ntpd
+  changed_when: (register_check_ntpd.rc > 1)
+  failed_when: (register_check_ntpd.rc > 1)
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
-    - enable
-    - unix
-    - ntp
+    - disable
+    - main
+    - ntpd
 
-- name: 'command enable ntp'
-  command: "{{command_cmd_enable_ntp}}"
+- name: 'command stop ntpd'
+  command: "{{command_cmd_stop_ntpd}}"
   check_mode: 'no'
-  when: (ansible_os_family == 'OpenBSD') and (register_status_ntp.rc == 1)
+  when: (ansible_os_family == 'OpenBSD') and (register_check_ntpd.rc == 0)
   tags:
     - commands
-    - enable
-    - unix
-    - ntp
-
-- name: 'command check ntp'
-  command: "{{command_cmd_check_ntp}}"
-  register: register_check_ntp
-  changed_when: (register_check_ntp.rc > 1)
-  failed_when: (register_check_ntp.rc > 1)
-  check_mode: 'no'
-  when: (ansible_os_family == 'OpenBSD')
-  tags:
-    - commands
-    - enable
-    - unix
-    - ntp
-
-- name: 'command start ntp'
-  command: "{{command_cmd_start_ntp}}"
-  check_mode: 'no'
-  when: (ansible_os_family == 'OpenBSD') and (register_check_ntp.rc == 1)
-  tags:
-    - commands
-    - enable
-    - unix
-    - ntp
+    - disable
+    - main
+    - ntpd
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: 'service start ntp'
+- name: 'service stop ntpd'
   service:
-    state: 'started'
-    enabled: 'yes'
-    name: "{{service_name_ntp}}"
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_ntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - system
-    - enable
-    - unix
-    - ntp
+    - disable
+    - main
+    - ntpd

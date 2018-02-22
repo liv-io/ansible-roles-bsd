@@ -8,9 +8,9 @@
 # INFORMATION
 #-------------------------------------------------------------------------------
 #
-# Name   : ntp_update-time.sh
+# Name   : ntpd_update-time.sh
 # Type   : Shell script
-# Role   : ntp
+# Role   : ntpd
 #
 # Authors: liv community
 # License: Simplified BSD License
@@ -35,72 +35,46 @@ echo=$($which echo) || { echo "Error: Command 'echo' not found."; exit 127; }
 expr=$($which expr) || { echo "Error: Command 'expr' not found."; exit 127; }
 hostname=$($which hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
 logger=$($which logger) || { echo "Error: Command 'logger' not found."; exit 127; }
-{% if (ntp_monitor_mail_state|match('true|yes|enable')) %}
+{% if (ntpd_monitor_mail_state|match('true|yes|enable')) %}
 mailx=$($which mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 rm=$($which rm) || { echo "Error: Command 'rm' not found."; exit 127; }
 touch=$($which touch) || { echo "Error: Command 'touch' not found."; exit 127; }
 whoami=$($which whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
 
-# NTP command
-ntp_command='{{ntp_command}}'
+ntpd='{{ntpd}}'
 
 #-------------------------------------------------------------------------------
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-# Get the short host name
 host=$($hostname -s) || { echo "Error: Host name unknown."; exit 68; }
-
-# Get the script name and PID
 script="$($basename $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
-
-# Get the start date and time
 date_start=$($date '+%Y-%m-%dT%H:%M:%S%z')
-
-# Get the start time (seconds since 1970-01-01T00:00:00+00:00)
 time_start=$($date '+%s')
-
-# Define the script user
-user='{{file_owner_ntp_update_time_sh}}'
-
-# Define the lockfile location
-lockfile='{{file_path_ntp_script_dir}}/ntp_update-time.lock'
-
-# Set the initial return value
+user='{{file_owner_ntpd_update_time_sh}}'
+lockfile='{{file_path_ntpd_script_dir}}/ntpd_update-time.lock'
 retval=0
-
-# Define the initial log severity
 severity='Debug'
-
-# Define the initial log message
 message='Please check log files for more information.'
 
-# List of NTP servers
-ntp_servers='{% for item in (ntp_server|sort) %}{% if not ((item.server == '') or (item.server == [])) %}{% for server in (item.server|sort) %}{{(server|e)}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %}{% endfor %}'
+ntpd_servers='{% for item in ntpd_server %}{% if not ((item.server == '') or (item.server == [])) %}{% for server in item.server %}{{server}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %}{% endfor %}'
 
-{% if (ntp_monitor_mail_state|match('true|yes|enable')) %}
-# Define the mail sender
-mail_sender='{{(ntp_monitor_mail_sender|e)}}'
-
-# Define the mail recipient
-mail_recipient='{% for mail_recipient in ntp_monitor_mail_recipient %}{{(mail_recipient|e)}}{% if not loop.last %},{% endif %}{% endfor %}'
-
-# Define the mail subject
-mail_subject='{{(ntp_monitor_mail_subject|e)}}'
+{% if (ntpd_monitor_mail_state|match('true|yes|enable')) %}
+mail_sender='{{ntpd_monitor_mail_sender}}'
+mail_recipient='{% for mail_recipient in ntpd_monitor_mail_recipient %}{{mail_recipient}}{% if not loop.last %},{% endif %}{% endfor %}'
+mail_subject='{{ntpd_monitor_mail_subject}}'
 {% endif %}
 
 #-------------------------------------------------------------------------------
 # FUNCTIONS
 #-------------------------------------------------------------------------------
 
-{% if (ntp_monitor_mail_state|match('true|yes|enable')) %}
-# Mail monitoring
+{% if (ntpd_monitor_mail_state|match('true|yes|enable')) %}
 mail_error() {
   retval=$1
   severity=$2
   message=$3
-  # Define the mail body
   mail_body="--------------------------------------------------------------------------------
 ERROR
 --------------------------------------------------------------------------------
@@ -113,7 +87,7 @@ Date & Time : $($date '+%Y-%m-%dT%H:%M:%S%z')
 SCRIPT
 --------------------------------------------------------------------------------
 
-Name        : ntp_update-time.sh
+Name        : ntpd_update-time.sh
 Type        : Shell script
 PID         : $$
 
@@ -123,23 +97,6 @@ SYSTEM
 
 Hostname    : {{ansible_hostname}}
 FQDN        : {{ansible_fqdn}}
-
---------------------------------------------------------------------------------
-OPERATING SYSTEM
---------------------------------------------------------------------------------
-
-Type        : {{ansible_system}}
-Family      : {{ansible_os_family}}
-Distribution: {{ansible_distribution}}
-Version     : {{ansible_distribution_version}}
-Architecture: {{ansible_architecture}}
-
---------------------------------------------------------------------------------
-KERNEL
---------------------------------------------------------------------------------
-
-Type        : {{ansible_system}}
-Version     : {{ansible_kernel}}
 
 --------------------------------------------------------------------------------
 MAIL
@@ -157,7 +114,6 @@ Subject     : $mail_subject"
 }
 {% endif %}
 
-# Check if script is running as correct user
 check_script_user() {
   if [ "$($whoami)" != "$user" ]; then
     retval=77
@@ -168,7 +124,6 @@ check_script_user() {
   fi
 }
 
-# Create lockfile
 create_lockfile() {
   if [ ! -e $lockfile ]; then
     $touch $lockfile || log_and_exit_on_error "$?" 'Warning' 'Could not create lockfile. Please investigate.'
@@ -177,7 +132,6 @@ create_lockfile() {
   fi
 }
 
-# Remove lockfile
 remove_lockfile() {
   if [ -e $lockfile ]; then
     $rm -f $lockfile || log_and_exit_on_error "$?" 'Warning' 'Could not remove lockfile. Please investigate.'
@@ -186,7 +140,6 @@ remove_lockfile() {
   fi
 }
 
-# Log and exit if return value is not equal zero
 log_and_exit_on_error() {
   retval=$1
   severity=$2
@@ -195,28 +148,19 @@ log_and_exit_on_error() {
     $rm -f $lockfile
     $echo "$($date '+%Y-%m-%dT%H:%M:%S%z') - $host - $script: "$severity: $message""
     $logger -t $script "$severity: $message"
-{% if (ntp_monitor_mail_state|match('true|yes|enable')) %}
+{% if (ntpd_monitor_mail_state|match('true|yes|enable')) %}
     mail_error $retval "$severity" "$message"
 {% endif %}
     exit $retval
   fi
 }
 
-# Log and exit
 log_and_exit() {
-  # Get the end date and time
   date_end=$($date '+%Y-%m-%dT%H:%M:%S%z')
-
-  # Get the end time (seconds since 1970-01-01T00:00:00+00:00)
   time_end=$($date '+%s')
-
-  # Calculate execution time
   time_exec=$($expr $time_end - $time_start)
-
-  # Convert execution time into human readable format
   time_hr=$($date -u -r "$time_exec" '+%H:%M:%S')
 
-  # Logging and alerting
   retval=0
   severity='Info'
   message='System time and hardware clock updated.'
@@ -229,26 +173,22 @@ log_and_exit() {
 # SCRIPT
 #-------------------------------------------------------------------------------
 
-# Check if script is running as correct user
 check_script_user
 
-# Create lockfile
 create_lockfile
 
 # Update the system time by polling NTP servers to determine the correct time
-for ntp_server in $ntp_servers ; do
-  $ntp_command $ntp_server > /dev/null 2>&1
+for ntpd_server in $ntpd_servers ; do
+  $ntpd $ntpd_server > /dev/null 2>&1
   if [ $? -eq 0 ]; then
-    ntp_status=0
+    ntpd_status=0
     break;
   else
-    ntp_status=1
+    ntpd_status=1
   fi
 done
-log_and_exit_on_error "$ntp_status" 'Error' 'Unable to update the system time.'
+log_and_exit_on_error "$ntpd_status" 'Error' 'Unable to update the system time.'
 
-# Remove lockfile
 remove_lockfile
 
-# Log and exit
 log_and_exit

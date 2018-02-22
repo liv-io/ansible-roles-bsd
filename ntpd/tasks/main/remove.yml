@@ -14,59 +14,59 @@
       skip: 'true'
   tags:
     - remove
-    - unix
-    - ntp
+    - main
+    - ntpd
 
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: 'command info ntp'
-  shell: "{{shell_cmd_info_ntp}}"
-  register: register_info_ntp
-  failed_when: (register_info_ntp.rc > 1)
+- name: 'command info ntpd'
+  shell: "{{shell_cmd_info_ntpd}}"
+  register: register_info_ntpd
+  failed_when: (register_info_ntpd.rc > 1)
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
     - remove
-    - unix
-    - ntp
+    - main
+    - ntpd
 
-- name: 'command disable ntp'
-  command: "{{command_cmd_disable_ntp}}"
+- name: 'command disable ntpd'
+  command: "{{command_cmd_disable_ntpd}}"
   check_mode: 'no'
-  when: (ansible_os_family == 'OpenBSD') and (register_info_ntp.rc == 0)
+  when: (ansible_os_family == 'OpenBSD') and (register_info_ntpd.rc == 0)
   tags:
     - commands
     - remove
-    - unix
-    - ntp
+    - main
+    - ntpd
 
-- name: 'command stop ntp'
-  command: "{{command_cmd_stop_ntp}}"
+- name: 'command stop ntpd'
+  command: "{{command_cmd_stop_ntpd}}"
   check_mode: 'no'
-  when: (ansible_os_family == 'OpenBSD') and (register_info_ntp.rc == 0)
+  when: (ansible_os_family == 'OpenBSD') and (register_info_ntpd.rc == 0)
   tags:
     - commands
     - remove
-    - unix
-    - ntp
+    - main
+    - ntpd
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove ntp'
+- name: 'package remove ntpd'
   package:
     state: 'absent'
-    name: "{{package_name_ntp}}"
-  register: register_freebsd_ntp
+    name: "{{package_name_ntpd}}"
+  register: register_freebsd_ntpd
   tags:
     - packaging
     - remove
-    - unix
-    - ntp
+    - main
+    - ntpd
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -75,47 +75,47 @@
 - name: 'line remove ntpd_enable'
   lineinfile:
     state: 'absent'
-    line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Remove ntp"
+    line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Remove ntpd"
     regexp: "^{{file_line_ntpd_enable}}="
     dest: "{{file_path_ntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
     - remove
-    - unix
-    - ntp
+    - main
+    - ntpd
 
-- name: 'line config ntp_update-time'
+- name: 'line config ntpd_update-time'
   lineinfile:
     state: 'absent'
-    line: "{{file_line_ntp_update_time}} # Ansible: ntp_update-time"
-    regexp: "# Ansible: ntp_update-time$"
-    dest: "{{file_path_ntp_update_time}}"
+    line: "{{file_line_ntpd_update_time}} # Ansible: ntpd_update-time"
+    regexp: "# Ansible: ntpd_update-time$"
+    dest: "{{file_path_ntpd_update_time}}"
   tags:
     - files
     - remove
-    - unix
-    - ntp
+    - main
+    - ntpd
 
-- name: 'file remove ntp_update-time.sh'
+- name: 'file remove ntpd_update-time.sh'
   file:
     state: 'absent'
-    path: "{{file_path_ntp_update_time_sh}}"
+    path: "{{file_path_ntpd_update_time_sh}}"
   tags:
     - files
     - remove
-    - unix
-    - ntp
+    - main
+    - ntpd
 
-- name: 'file remove ntp-script.dir'
+- name: 'file remove ntpd_script.dir'
   file:
     state: 'absent'
-    path: "{{file_path_ntp_script_dir}}"
+    path: "{{file_path_ntpd_script_dir}}"
   tags:
     - files
     - remove
-    - unix
-    - ntp
+    - main
+    - ntpd
 
 - name: 'file remove ntp.conf'
   file:
@@ -124,5 +124,5 @@
   tags:
     - files
     - remove
-    - unix
-    - ntp
+    - main
+    - ntpd

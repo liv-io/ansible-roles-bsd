@@ -1,0 +1,42 @@
+---
+
+# ntpd
+ntpd: 'ntpdate -s -b'
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# ntp
+package_name_ntpd: 'ntp'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# ntp.conf
+file_src_ntp_conf: "templates/{{ntpd_ntp_conf_template}}/ntp.conf.j2"
+file_path_ntp_conf: '/etc/ntp.conf'
+file_mode_ntp_conf: '0644'
+file_owner_ntp_conf: 'root'
+file_group_ntp_conf: 'wheel'
+
+# ntpd_script.dir
+file_path_ntpd_script_dir: "/{{common_script_dir}}/ntpd"
+file_mode_ntpd_script_dir: '0755'
+file_owner_ntpd_script_dir: 'root'
+file_group_ntpd_script_dir: 'wheel'
+
+# ntpd_update-time.sh
+file_src_ntpd_update_time_sh: "templates/{{ntpd_ntpd_update_time_sh_template}}/ntpd_update-time.sh.j2"
+file_path_ntpd_update_time_sh: "{{file_path_ntpd_script_dir}}/ntpd_update-time.sh"
+file_mode_ntpd_update_time_sh: '0754'
+file_owner_ntpd_update_time_sh: 'root'
+file_group_ntpd_update_time_sh: 'wheel'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# ntpd
+service_name_ntpd: 'ntpd'

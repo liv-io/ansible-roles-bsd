@@ -1,29 +1,28 @@
 ---
 
-ntp_state: 'enable'
+ntpd_state: 'enable'
 
-ntp_monitor: 'false'
+ntpd_monitor: 'false'
 
-ntp_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
+ntpd_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
 
-ntp_monitor_mail_sender: "root@{{ansible_domain}}"
+ntpd_monitor_mail_sender: "root@{{ansible_domain}}"
 
-ntp_monitor_mail_state: 'false'
+ntpd_monitor_mail_state: 'false'
 
-ntp_monitor_mail_subject: "NTP: Update Time - Error ({{ansible_hostname}})"
+ntpd_monitor_mail_subject: "NTPD: Update Time - Error ({{ansible_hostname}})"
 
-ntp_ntp_conf_template: "{{ansible_os_family}}"
+ntpd_ntp_conf_template: "{{ansible_os_family}}"
 
-ntp_ntp_update_time_sh_template: 'default'
+ntpd_ntpd_update_time_sh_template: 'main'
 
-ntp_ntp_update_time_interval: 10
+ntpd_ntpd_update_time_interval: 10
 
-ntp_restrict:
+ntpd_restrict:
   - {config: {'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv4 restrictions'}
   - {config: {'-6', 'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv6 restrictions'}
   - {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'}
   - {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'}
-  - {config: {'127.127.1.0'}, comment: 'Restrict: Pseudo IP address'}
 
-ntp_server:
+ntpd_server:
   - {server: {'ntp'}, option: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Server: ntp'}

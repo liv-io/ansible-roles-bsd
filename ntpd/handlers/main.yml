@@ -17,7 +17,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: 'service restart ntp'
+- name: 'service restart ntpd'
   service:
     state: 'restarted'
-    name: "{{service_name_ntp}}"
+    name: "{{service_name_ntpd}}"

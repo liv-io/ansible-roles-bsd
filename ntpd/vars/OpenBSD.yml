@@ -4,34 +4,34 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-# ntp_update-time
-file_line_ntp_update_time: "*/{% if ((ntp_ntp_update_time_interval|int(10)) > 59) %}59{% elif ((ntp_ntp_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntp_ntp_update_time_interval|int(10))}}{% endif %}    *       *       *       *       {{(file_path_ntp_update_time_sh|e)}}"
-file_path_ntp_update_time: '/var/cron/tabs/root'
+# ntpd_update-time
+file_line_ntpd_update_time: "*/{% if ((ntpd_ntpd_update_time_interval|int(10)) > 59) %}59{% elif ((ntpd_ntpd_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntpd_ntpd_update_time_interval|int(10))}}{% endif %}    *       *       *       *       {{file_path_ntpd_update_time_sh}}"
+file_path_ntpd_update_time: '/var/cron/tabs/root'
 
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-# check ntp
-command_cmd_check_ntp: 'rcctl check xntpd'
+# check ntpd
+command_cmd_check_ntpd: 'rcctl check xntpd'
 
-# disable ntp
-command_cmd_disable_ntp: 'rcctl disable xntpd'
+# disable ntpd
+command_cmd_disable_ntpd: 'rcctl disable xntpd'
 
-# enable ntp
-command_cmd_enable_ntp: 'rcctl enable xntpd'
+# enable ntpd
+command_cmd_enable_ntpd: 'rcctl enable xntpd'
 
-# info ntp
-shell_cmd_info_ntp: 'pkg_info | grep -q "^ntp-[0-9]\..*"'
+# info ntpd
+shell_cmd_info_ntpd: 'pkg_info | grep -q "^ntp-[0-9]\..*"'
 
-# start ntp
-command_cmd_start_ntp: 'rcctl start xntpd'
+# start ntpd
+command_cmd_start_ntpd: 'rcctl start xntpd'
 
-# status ntp
-command_cmd_status_ntp: 'rcctl get xntpd status'
+# status ntpd
+command_cmd_status_ntpd: 'rcctl get xntpd status'
 
-# stop ntp
-command_cmd_stop_ntp: 'rcctl stop xntpd'
+# stop ntpd
+command_cmd_stop_ntpd: 'rcctl stop xntpd'
 
 # check openntpd
 command_cmd_check_openntpd: 'rcctl check ntpd'
@@ -50,4 +50,4 @@ command_cmd_stop_openntpd: 'rcctl stop ntpd'
 #-------------------------------------------------------------------------------
 
 # xntpd
-service_name_ntp: 'xntpd'
+service_name_ntpd: 'xntpd'

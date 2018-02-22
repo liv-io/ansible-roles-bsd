@@ -14,8 +14,8 @@
       skip: 'true'
   tags:
     - install
-    - unix
-    - ntp
+    - main
+    - ntpd
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -31,8 +31,8 @@
   tags:
     - commands
     - install
-    - unix
-    - ntp
+    - main
+    - ntpd
 
 - name: 'command disable openntpd'
   command: "{{command_cmd_disable_openntpd}}"
@@ -41,8 +41,8 @@
   tags:
     - commands
     - install
-    - unix
-    - ntp
+    - main
+    - ntpd
 
 - name: 'command check openntpd'
   command: "{{command_cmd_check_openntpd}}"
@@ -54,8 +54,8 @@
   tags:
     - commands
     - install
-    - unix
-    - ntp
+    - main
+    - ntpd
 
 - name: 'command stop openntpd'
   command: "{{command_cmd_stop_openntpd}}"
@@ -64,36 +64,36 @@
   tags:
     - commands
     - install
-    - unix
-    - ntp
+    - main
+    - ntpd
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install ntp'
+- name: 'package install ntpd'
   package:
     state: 'present'
-    name: "{{package_name_ntp}}"
+    name: "{{package_name_ntpd}}"
   tags:
     - packaging
     - install
-    - unix
-    - ntp
+    - main
+    - ntpd
 
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'file create ntp-script.dir'
+- name: 'file create ntpd_script.dir'
   file:
     state: 'directory'
-    path: "{{file_path_ntp_script_dir}}"
-    mode: "{{file_mode_ntp_script_dir}}"
-    owner: "{{file_owner_ntp_script_dir}}"
-    group: "{{file_group_ntp_script_dir}}"
+    path: "{{file_path_ntpd_script_dir}}"
+    mode: "{{file_mode_ntpd_script_dir}}"
+    owner: "{{file_owner_ntpd_script_dir}}"
+    group: "{{file_group_ntpd_script_dir}}"
   tags:
     - files
     - install
-    - unix
-    - ntp
+    - main
+    - ntpd

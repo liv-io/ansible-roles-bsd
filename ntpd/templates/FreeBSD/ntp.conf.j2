@@ -7,8 +7,8 @@
 #-------------------------------------------------------------------------------
 #
 # Name   : ntp.conf
-# Type   : ntp configuration file
-# Role   : ntp
+# Type   : ntpd configuration file
+# Role   : ntpd
 #
 # Authors: liv community
 # License: Simplified BSD License
@@ -29,7 +29,7 @@
 
 # Monitoring facility.
 # See the ntpdc(8) program and the monlist command or further information.
-{% if (ntp_monitor|match('true|yesenable')) %}
+{% if (ntpd_monitor|match('true|yes|enable')) %}
 enable monitor
 {% else %}
 disable monitor
@@ -73,11 +73,11 @@ tos minclock 3 maxclock 6
 # minclock/maxclock targets are met.
 #
 #server time.my-internal.org iburst
-{% if not ((ntp_server == '') or (ntp_server == [])) %}
-{% for item in (ntp_server|sort) %}
-# {{(item.comment|e)}}
-{% for server in (item.server|sort) %}
-server {{(server|e)}} {% for option in (item.option|sort) %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
+{% if not ((ntpd_server == '') or (ntpd_server == [])) %}
+{% for item in ntpd_server %}
+# {{item.comment}}
+{% for server in item.server %}
+server {{server}} {% for option in option %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
 {% endfor %}
@@ -122,10 +122,10 @@ server {{(server|e)}} {% for option in (item.option|sort) %}{{option}}{% if not 
 #restrict 127.0.0.1
 #restrict -6 ::1
 
-{% if not ((ntp_restrict == '') or (ntp_restrict == [])) %}
-{% for item in (ntp_restrict|sort) %}
-# {{(item.comment|e)}}
-restrict {% for config in (item.config|sort) %}{{config}}{% if not loop.last %} {% endif %}{% endfor %}
+{% if not ((ntpd_restrict == '') or (ntpd_restrict == [])) %}
+{% for item in ntpd_restrict %}
+# {{item.comment}}
+restrict {% for config in item.config %}{{config}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
 {% else %}
