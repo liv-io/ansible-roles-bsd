@@ -4,12 +4,12 @@
   include: install.yml
   when: not (picocom_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - picocom
 
 - name: 'task include remove'
   include: remove.yml
   when: (picocom_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - picocom
