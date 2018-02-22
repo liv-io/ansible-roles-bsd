@@ -4,12 +4,12 @@
   include: install.yml
   when: not (ldns_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - ldns
 
 - name: 'task include remove'
   include: remove.yml
   when: (ldns_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - ldns

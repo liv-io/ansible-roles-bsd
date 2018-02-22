@@ -13,5 +13,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.0.0 (2018-02-20)
+I: Simplify and improve Ansible role
+
 * Version 1.0.0 (2017-12-28)
 F: Initial release
