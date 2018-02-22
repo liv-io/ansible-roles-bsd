@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - fping
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove fping'
+- name: 'package install fping'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_fping}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - fping

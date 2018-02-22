@@ -4,12 +4,12 @@
   include: install.yml
   when: not (fping_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - fping
 
 - name: 'task include remove'
   include: remove.yml
   when: (fping_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - fping
