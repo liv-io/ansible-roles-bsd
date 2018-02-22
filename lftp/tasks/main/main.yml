@@ -4,12 +4,12 @@
   include: install.yml
   when: not (lftp_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - lftp
 
 - name: 'task include remove'
   include: remove.yml
   when: (lftp_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - lftp
