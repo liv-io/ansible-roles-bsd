@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - python_paramiko
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install python-paramiko'
+- name: 'package remove python-paramiko'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_python_paramiko}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - python_paramiko
