@@ -4,12 +4,12 @@
   include: install.yml
   when: not (netcat_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - netcat
 
 - name: 'task include remove'
   include: remove.yml
   when: (netcat_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - netcat
