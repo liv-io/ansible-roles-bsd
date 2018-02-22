@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - freecolor
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install freecolor'
+- name: 'package remove freecolor'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_freecolor}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - freecolor
