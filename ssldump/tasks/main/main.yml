@@ -4,12 +4,12 @@
   include: install.yml
   when: not (ssldump_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - ssldump
 
 - name: 'task include remove'
   include: remove.yml
   when: (ssldump_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - ssldump
