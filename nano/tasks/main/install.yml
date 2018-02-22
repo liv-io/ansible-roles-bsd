@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - nano
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove nano'
+- name: 'package install nano'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_nano}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - nano
