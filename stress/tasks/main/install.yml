@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - stress
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove stress'
+- name: 'package install stress'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_stress}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - stress
