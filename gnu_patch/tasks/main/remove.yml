@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - gnu_patch
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install gnu-patch'
+- name: 'package remove gnu-patch'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_gnu_patch}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - gnu_patch
