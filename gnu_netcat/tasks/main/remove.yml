@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - gnu_netcat
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install gnu-netcat'
+- name: 'package remove gnu-netcat'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_gnu_netcat}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - gnu_netcat
