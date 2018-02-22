@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - pwgen
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove pwgen'
+- name: 'package install pwgen'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_pwgen}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - pwgen
