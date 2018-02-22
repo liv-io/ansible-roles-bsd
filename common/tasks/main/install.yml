@@ -14,51 +14,24 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - common
 
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'file create opt.dir'
+- name: 'file create common-app.dir'
   file:
     state: 'directory'
-    path: "{{file_path_opt_dir}}"
-    mode: "{{file_mode_opt_dir}}"
-    owner: "{{file_owner_opt_dir}}"
-    group: "{{file_group_opt_dir}}"
+    path: "{{file_path_common_app_dir}}"
+    mode: "{{file_mode_common_app_dir}}"
+    owner: "{{file_owner_common_app_dir}}"
+    group: "{{file_group_common_app_dir}}"
   tags:
     - files
     - install
-    - unix
-    - common
-
-- name: 'file create opt.link'
-  file:
-    state: 'link'
-    src: "{{file_src_opt_link}}"
-    path: "{{file_path_opt_link}}"
-    owner: "{{file_owner_opt_link}}"
-    group: "{{file_group_opt_link}}"
-  when: (ansible_os_family == 'FreeBSD') or (ansible_os_family == 'OpenBSD')
-  tags:
-    - files
-    - install
-    - unix
-    - common
-
-- name: 'file create common-root.dir'
-  file:
-    state: 'directory'
-    path: "{{file_path_common_root_dir}}"
-    mode: "{{file_mode_common_root_dir}}"
-    owner: "{{file_owner_common_root_dir}}"
-    group: "{{file_group_common_root_dir}}"
-  tags:
-    - files
-    - install
-    - unix
+    - main
     - common
 
 - name: 'file create common-backup.dir'
@@ -71,20 +44,20 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - common
 
-- name: 'file create common-info.dir'
+- name: 'file create common-data.dir'
   file:
     state: 'directory'
-    path: "{{file_path_common_info_dir}}"
-    mode: "{{file_mode_common_info_dir}}"
-    owner: "{{file_owner_common_info_dir}}"
-    group: "{{file_group_common_info_dir}}"
+    path: "{{file_path_common_data_dir}}"
+    mode: "{{file_mode_common_data_dir}}"
+    owner: "{{file_owner_common_data_dir}}"
+    group: "{{file_group_common_data_dir}}"
   tags:
     - files
     - install
-    - unix
+    - main
     - common
 
 - name: 'file create common-script.dir'
@@ -97,20 +70,7 @@
   tags:
     - files
     - install
-    - unix
-    - common
-
-- name: 'file create common-system.dir'
-  file:
-    state: 'directory'
-    path: "{{file_path_common_system_dir}}"
-    mode: "{{file_mode_common_system_dir}}"
-    owner: "{{file_owner_common_system_dir}}"
-    group: "{{file_group_common_system_dir}}"
-  tags:
-    - files
-    - install
-    - unix
+    - main
     - common
 
 - name: 'template create README'
@@ -123,5 +83,5 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - common

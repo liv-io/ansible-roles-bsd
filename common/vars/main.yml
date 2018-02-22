@@ -4,51 +4,33 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-# opt.dir
-file_path_opt_dir: '/opt'
-file_mode_opt_dir: '0755'
-file_owner_opt_dir: 'root'
-file_group_opt_dir: 'wheel'
-
-# opt.link
-file_src_opt_link: '/usr/local/opt'
-file_path_opt_link: '/opt'
-file_owner_opt_link: 'root'
-file_group_opt_link: 'wheel'
+# common-app.dir
+file_path_common_app_dir: "/{{common_app_dir}}"
+file_mode_common_app_dir: '0755'
+file_owner_common_app_dir: 'root'
+file_group_common_app_dir: 'wheel'
 
 # common-backup.dir
-file_path_common_backup_dir: "/{{(common_backup_dir_partition|e)}}/{{(common_root_dir_name|e)}}/{{(common_backup_dir_name|e)}}"
+file_path_common_backup_dir: "/{{common_backup_dir}}"
 file_mode_common_backup_dir: '0755'
 file_owner_common_backup_dir: 'root'
 file_group_common_backup_dir: 'wheel'
 
-# common-info.dir
-file_path_common_info_dir: "/{{(common_info_dir_partition|e)}}/{{(common_root_dir_name|e)}}/{{(common_info_dir_name|e)}}"
-file_mode_common_info_dir: '0755'
-file_owner_common_info_dir: 'root'
-file_group_common_info_dir: 'wheel'
-
-# common-root.dir
-file_path_common_root_dir: "/opt/{{(common_root_dir_name|e)}}"
-file_mode_common_root_dir: '0755'
-file_owner_common_root_dir: 'root'
-file_group_common_root_dir: 'wheel'
+# common-data.dir
+file_path_common_data_dir: "/{{common_data_dir}}"
+file_mode_common_data_dir: '0755'
+file_owner_common_data_dir: 'root'
+file_group_common_data_dir: 'wheel'
 
 # common-script.dir
-file_path_common_script_dir: "/{{(common_script_dir_partition|e)}}/{{(common_root_dir_name|e)}}/{{(common_script_dir_name|e)}}"
+file_path_common_script_dir: "/{{common_script_dir}}"
 file_mode_common_script_dir: '0755'
 file_owner_common_script_dir: 'root'
 file_group_common_script_dir: 'wheel'
 
-# common-system.dir
-file_path_common_system_dir: "/{{(common_system_dir_partition|e)}}/{{(common_root_dir_name|e)}}/{{(common_system_dir_name|e)}}"
-file_mode_common_system_dir: '0755'
-file_owner_common_system_dir: 'root'
-file_group_common_system_dir: 'wheel'
-
 # README
-file_src_readme: "templates/default/README.j2"
-file_path_readme: "{{file_path_common_root_dir}}/README"
+file_src_readme: "templates/main/README.j2"
+file_path_readme: "/README"
 file_mode_readme: '0644'
 file_owner_readme: 'root'
 file_group_readme: 'wheel'

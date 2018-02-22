@@ -4,12 +4,12 @@
   include: install.yml
   when: not (common_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - common
 
 - name: 'task include remove'
   include: remove.yml
   when: (common_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - common

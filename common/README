@@ -12,7 +12,11 @@ License: Simplified BSD License
 DESCRIPTION
 --------------------------------------------------------------------------------
 
-Use this role to create environment specific directories.
+This role creates the following common system directories:
+ - /app/
+ - /backup/
+ - /data/
+ - /script/
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.
@@ -27,8 +31,6 @@ INSTALL
       - role: common
     vars:
       common_state: 'install'
-      common_info_dir_name: 'information'
-      common_root_dir_name: 'liv'
 
 REMOVE
   - hosts: all
@@ -36,8 +38,6 @@ REMOVE
       - role: common
     vars:
       common_state: 'remove'
-      common_info_dir_name: 'information'
-      common_root_dir_name: 'liv'
 
 INACTIVE
   - hosts: all
@@ -63,10 +63,18 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  common_backup_dir_name
-    Description: Define the 'common_backup_dir_name' option.
-                 This directory holds any backup files such as database dumps,
-                 archives and any other type of backups.
+  common_app_dir
+    Description: Define the 'common_app_dir' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'app'
+    Options    :
+      Examples: 'application' | 'applications'
+
+  common_backup_dir
+    Description: Define the 'common_backup_dir' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -75,60 +83,18 @@ ROLE
     Options    :
       Examples: 'backup' | 'backups'
 
-  common_backup_dir_partition
-    Description: Define the 'common_backup_dir_partition' option.
-                 This directory holds any backup files such as database dumps,
-                 archives and any other type of backups.
+  common_data_dir
+    Description: Define the 'common_data_dir' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'opt'
+    Default    : 'data'
     Options    :
-      Examples: 'opt' | 'var' | 'data'
+      Examples: 'data'
 
-  common_info_dir_name
-    Description: Define the 'common_info_dir_name' option.
-                 This directory holds any information about this system such as
-                 manuals, documentations, user guides and any other type of
-                 information.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'backup'
-    Options    :
-      Examples: 'info' | 'information'
-
-  common_info_dir_partition
-    Description: Define the 'common_info_dir_partition' option.
-                 This directory holds any backup files such as database dumps,
-                 archives and any other type of backups.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'opt'
-    Options    :
-      Examples: 'opt' | 'var' | 'data'
-
-  common_root_dir_name
-    Description: Define the 'common_root_dir_name' option.
-                 This directory holds any scripts such as maintenance tasks,
-                 cleanup jobs, database tools and any other type of scripts.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'common'
-    Options    :
-      Examples: 'domain-label' | 'company-name' | 'example'
-
-  common_script_dir_name
-    Description: Define the 'common_script_dir_name' option.
-                 This directory holds any system related data such as ISO
-                 images, setup files, installation logs and any other type of
-                 system files.
+  common_script_dir
+    Description: Define the 'common_script_dir' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -136,42 +102,6 @@ ROLE
     Default    : 'script'
     Options    :
       Examples: 'script' | 'scripts'
-
-  common_script_dir_partition
-    Description: Define the 'common_script_dir_partition' option.
-                 This directory holds any backup files such as database dumps,
-                 archives and any other type of backups.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'opt'
-    Options    :
-      Examples: 'opt' | 'var' | 'data'
-
-  common_system_dir_name
-    Description: Define the 'common_system_dir_name' option.
-                 This variable controls the name of the following directory:
-                 '/opt/<common_root_dir_name>/<common_system_dir_name>/'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'system'
-    Options    :
-      Examples: 'system' | 'sys'
-
-  common_system_dir_partition
-    Description: Define the 'common_system_dir_partition' option.
-                 This directory holds any backup files such as database dumps,
-                 archives and any other type of backups.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'opt'
-    Options    :
-      Examples: 'opt' | 'var' | 'data'
 
 --------------------------------------------------------------------------------
 CONFLICTS
