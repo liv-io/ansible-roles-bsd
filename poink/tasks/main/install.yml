@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - openbsd
+    - install
+    - main
     - poink
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove poink'
+- name: 'package install poink'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_poink}}"
   tags:
     - packaging
-    - remove
-    - openbsd
+    - install
+    - main
     - poink
