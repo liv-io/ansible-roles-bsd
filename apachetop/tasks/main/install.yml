@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - apachetop
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove apachetop'
+- name: 'package install apachetop'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_apachetop}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - apachetop
