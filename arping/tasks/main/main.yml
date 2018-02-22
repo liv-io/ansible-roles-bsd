@@ -4,12 +4,12 @@
   include: install.yml
   when: not (arping_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - arping
 
 - name: 'task include remove'
   include: remove.yml
   when: (arping_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - arping
