@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - mailx
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove mailx'
+- name: 'package install mailx'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_mailx}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - mailx
