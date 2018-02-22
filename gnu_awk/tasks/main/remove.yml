@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - gnu_awk
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install gnu-awk'
+- name: 'package remove gnu-awk'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_gnu_awk}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - gnu_awk
