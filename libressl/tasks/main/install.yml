@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - libressl
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove libressl'
+- name: 'package install libressl'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_libressl}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - libressl
