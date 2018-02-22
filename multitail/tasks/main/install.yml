@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - multitail
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove multitail'
+- name: 'package install multitail'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_multitail}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - multitail
