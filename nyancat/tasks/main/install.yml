@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - nyancat
 
 #-------------------------------------------------------------------------------
@@ -28,5 +28,5 @@
   tags:
     - packaging
     - install
-    - unix
+    - main
     - nyancat
