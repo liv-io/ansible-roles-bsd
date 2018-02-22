@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - traceroute
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove traceroute'
+- name: 'package install traceroute'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_traceroute}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - traceroute
