@@ -4,12 +4,12 @@
   include: install.yml
   when: not (ncdu_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - ncdu
 
 - name: 'task include remove'
   include: remove.yml
   when: (ncdu_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - ncdu

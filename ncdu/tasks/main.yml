@@ -1,7 +1,7 @@
 ---
 
-- name: 'task include unix'
-  include: unix/main.yml
+- name: 'task include main'
+  include: main/main.yml
   when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("11\.1-*"))) or ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version == '6.2'))
   tags:
     - ncdu

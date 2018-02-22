@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - ncdu
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove ncdu'
+- name: 'package install ncdu'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_ncdu}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - ncdu
