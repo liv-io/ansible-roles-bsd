@@ -4,12 +4,12 @@
   include: install.yml
   when: not (siege_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - siege
 
 - name: 'task include remove'
   include: remove.yml
   when: (siege_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - siege
