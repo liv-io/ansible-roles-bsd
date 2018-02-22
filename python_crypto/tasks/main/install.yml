@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - python_crypto
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove python-crypto'
+- name: 'package install python-crypto'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_python_crypto}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - python_crypto
