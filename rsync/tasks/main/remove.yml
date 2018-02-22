@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - rsync
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install rsync'
+- name: 'package remove rsync'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_rsync}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - rsync
