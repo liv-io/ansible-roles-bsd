@@ -4,12 +4,12 @@
   include: install.yml
   when: not (vlock_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - vlock
 
 - name: 'task include remove'
   include: remove.yml
   when: (vlock_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - vlock
