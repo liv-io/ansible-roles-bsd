@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - socat
 
 #-------------------------------------------------------------------------------
@@ -28,5 +28,5 @@
   tags:
     - packaging
     - install
-    - unix
+    - main
     - socat
