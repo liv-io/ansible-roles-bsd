@@ -4,12 +4,12 @@
   include: install.yml
   when: not (sysbench_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - sysbench
 
 - name: 'task include remove'
   include: remove.yml
   when: (sysbench_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - sysbench
