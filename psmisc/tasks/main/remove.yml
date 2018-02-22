@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - psmisc
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install psmisc'
+- name: 'package remove psmisc'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_psmisc}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - psmisc
