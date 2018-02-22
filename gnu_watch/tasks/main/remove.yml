@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - gnu_watch
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install gnu-watch'
+- name: 'package remove gnu-watch'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_gnu_watch}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - gnu_watch
