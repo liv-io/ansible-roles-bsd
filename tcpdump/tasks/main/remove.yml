@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - tcpdump
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install tcpdump'
+- name: 'package remove tcpdump'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_tcpdump}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - tcpdump
