@@ -4,12 +4,12 @@
   include: install.yml
   when: not (less_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - less
 
 - name: 'task include remove'
   include: remove.yml
   when: (less_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - less

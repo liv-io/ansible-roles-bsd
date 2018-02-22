@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - less
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install less'
+- name: 'package remove less'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_less}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - less
