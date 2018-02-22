@@ -4,12 +4,12 @@
   include: install.yml
   when: not (splint_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - splint
 
 - name: 'task include remove'
   include: remove.yml
   when: (splint_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - splint
