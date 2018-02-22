@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - zfs_stats
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install zfs_stats'
+- name: 'package remove zfs_stats'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_zfs_stats}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - zfs_stats
