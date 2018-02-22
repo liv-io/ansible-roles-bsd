@@ -4,12 +4,12 @@
   include: install.yml
   when: not (patchutils_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - patchutils
 
 - name: 'task include remove'
   include: remove.yml
   when: (patchutils_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - patchutils
