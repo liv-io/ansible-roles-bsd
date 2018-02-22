@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - bash
 
 #-------------------------------------------------------------------------------
@@ -28,7 +28,7 @@
   tags:
     - packaging
     - install
-    - unix
+    - main
     - bash
 
 #-------------------------------------------------------------------------------
@@ -45,7 +45,7 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - bash
 
 - name: 'template create zz_bash.bash'
@@ -58,5 +58,5 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - bash

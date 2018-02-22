@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - remove
-    - unix
+    - main
     - bash
 
 #-------------------------------------------------------------------------------
@@ -28,7 +28,7 @@
   tags:
     - packaging
     - remove
-    - unix
+    - main
     - bash
 
 #-------------------------------------------------------------------------------
@@ -42,7 +42,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - bash
 
 - name: 'file remove zz_bash.bash'
@@ -52,5 +52,5 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - bash

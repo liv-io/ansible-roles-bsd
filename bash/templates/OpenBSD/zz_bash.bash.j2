@@ -39,7 +39,7 @@ shopt -s histappend
 
 {% if not (bash_histcontrol|match('false|no|disable')) %}
 # HISTCONTROL
-HISTCONTROL='{{(bash_histcontrol|e)}}'
+HISTCONTROL='{{bash_histcontrol}}'
 {% if not (bash_history_readonly|match('false|no|disable')) %}
 readonly HISTCONTROL
 {% endif %}
@@ -57,7 +57,7 @@ export HISTFILESIZE
 
 {% if not (bash_histignore|match('false|no|disable')) %}
 # HISTIGNORE
-HISTIGNORE='{{(bash_histignore|e)}}'
+HISTIGNORE='{{bash_histignore}}'
 {% if not (bash_history_readonly|match('false|no|disable')) %}
 readonly HISTIGNORE
 {% endif %}
@@ -75,12 +75,12 @@ export HISTSIZE
 
 {% if not (bash_histtimeformat|match('false|no|disable')) %}
 # HISTTIMEFORMAT
-HISTTIMEFORMAT='{{(bash_histtimeformat|e)}}'
+HISTTIMEFORMAT='{{bash_histtimeformat}}'
 {% endif %}
 
 {% if not (bash_prompt_command|match('false|no|disable')) %}
 # PROMPT_COMMAND
-PROMPT_COMMAND='{{(bash_prompt_command|e)}}'
+PROMPT_COMMAND='{{bash_prompt_command}}'
 {% if not (bash_history_readonly|match('false|no|disable')) %}
 readonly PROMPT_COMMAND
 {% endif %}
