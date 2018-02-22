@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - gnu_sed
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove gnu-sed'
+- name: 'package install gnu-sed'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_gnu_sed}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - gnu_sed
