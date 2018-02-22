@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - pciutils
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove pciutils'
+- name: 'package install pciutils'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_pciutils}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - pciutils
