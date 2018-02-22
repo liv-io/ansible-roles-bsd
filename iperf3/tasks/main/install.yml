@@ -13,20 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - iperf3
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove iperf3'
+- name: 'package install iperf3'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_iperf3}}"
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - iperf3
