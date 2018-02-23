@@ -13,39 +13,39 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - disable
-    - unix
+    - enable
+    - main
     - cron
 
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'line disable cron_enable'
+- name: 'line enable cron_enable'
   lineinfile:
     state: 'present'
-    line: "{{file_line_cron_enable}}=\"NO\" # Ansible: Disable cron"
+    line: "{{file_line_cron_enable}}=\"YES\" # Ansible: Enable cron"
     regexp: "^{{file_line_cron_enable}}="
     dest: "{{file_path_cron_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
-    - disable
-    - unix
+    - enable
+    - main
     - cron
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: 'service stop cron'
+- name: 'service start cron'
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: 'started'
+    enabled: 'yes'
     name: "{{service_name_cron}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - system
-    - disable
-    - unix
+    - enable
+    - main
     - cron
