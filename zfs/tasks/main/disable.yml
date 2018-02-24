@@ -13,8 +13,8 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - disable
+    - main
     - zfs
 
 #-------------------------------------------------------------------------------
@@ -30,26 +30,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
-    - remove
-    - unix
-    - zfs
-
-- name: 'file remove zfs_scrub-pools.sh'
-  file:
-    state: 'absent'
-    path: "{{file_path_zfs_scrub_pools_sh}}"
-  tags:
-    - files
-    - remove
-    - unix
-    - zfs
-
-- name: 'file remove zfs-script.dir'
-  file:
-    state: 'absent'
-    path: "{{file_path_zfs_script_dir}}"
-  tags:
-    - files
-    - remove
-    - unix
+    - disable
+    - main
     - zfs

@@ -13,13 +13,26 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - disable
-    - unix
+    - enable
+    - main
     - zfs
 
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
+
+- name: 'line add zfs_scrub-pools'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
+    regexp: "# Ansible: zfs_scrub-pools$"
+    dest: "{{file_path_zfs_scrub_pools}}"
+  when: (ansible_os_family == 'FreeBSD') and not (zfs_scrub_pools_state|match('false|no|disable'))
+  tags:
+    - files
+    - enable
+    - main
+    - zfs
 
 - name: 'line remove zfs_scrub-pools'
   lineinfile:
@@ -27,9 +40,9 @@
     line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
     regexp: "# Ansible: zfs_scrub-pools$"
     dest: "{{file_path_zfs_scrub_pools}}"
-  when: (ansible_os_family == 'FreeBSD')
+  when: (ansible_os_family == 'FreeBSD') and (zfs_scrub_pools_state|match('false|no|disable'))
   tags:
     - files
-    - disable
-    - unix
+    - enable
+    - main
     - zfs

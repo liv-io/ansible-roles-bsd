@@ -14,14 +14,14 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - zfs
 
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'file create zfs-script.dir'
+- name: 'file create zfs_script.dir'
   file:
     state: 'directory'
     path: "{{file_path_zfs_script_dir}}"
@@ -31,7 +31,7 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - zfs
 
 - name: 'template create zfs_scrub-pools.sh'
@@ -44,5 +44,5 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - zfs

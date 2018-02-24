@@ -20,4 +20,4 @@ zfs_scrub_pools_cron_weekday: 6
 
 zfs_scrub_pools_state: 'enable'
 
-zfs_zfs_scrub_pools_sh_template: 'default'
+zfs_zfs_scrub_pools_sh_template: 'main'

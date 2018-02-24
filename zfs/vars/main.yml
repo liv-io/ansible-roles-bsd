@@ -4,15 +4,15 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-# zfs-script.dir
-file_path_zfs_script_dir: "/{{(common_script_dir_partition|e)}}/{{(common_root_dir_name|e)}}/{{(common_script_dir_name|e)}}/zfs"
-file_mode_zfs_script_dir: '0750'
+# zfs_script.dir
+file_path_zfs_script_dir: "/{{common_script_dir}}/zfs"
+file_mode_zfs_script_dir: '0755'
 file_owner_zfs_script_dir: 'root'
 file_group_zfs_script_dir: 'wheel'
 
 # zfs_scrub-pools.sh
-file_src_zfs_scrub_pools_sh: "templates/{{(zfs_zfs_scrub_pools_sh_template|e)}}/zfs_scrub-pools.sh.j2"
+file_src_zfs_scrub_pools_sh: "templates/{{zfs_zfs_scrub_pools_sh_template}}/zfs_scrub-pools.sh.j2"
 file_path_zfs_scrub_pools_sh: "{{file_path_zfs_script_dir}}/zfs_scrub-pools.sh"
-file_mode_zfs_scrub_pools_sh: '0750'
+file_mode_zfs_scrub_pools_sh: '0754'
 file_owner_zfs_scrub_pools_sh: 'root'
 file_group_zfs_scrub_pools_sh: 'wheel'
