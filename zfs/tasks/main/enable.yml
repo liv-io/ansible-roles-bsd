@@ -27,7 +27,7 @@
     line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
     regexp: "# Ansible: zfs_scrub-pools$"
     dest: "{{file_path_zfs_scrub_pools}}"
-  when: (ansible_os_family == 'FreeBSD') and not (zfs_scrub_pools_state|match('false|no|disable'))
+  when: (ansible_os_family == 'FreeBSD') and not (zfs_scrub_pools_state|match('false|no|remove'))
   tags:
     - files
     - enable
@@ -40,7 +40,7 @@
     line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
     regexp: "# Ansible: zfs_scrub-pools$"
     dest: "{{file_path_zfs_scrub_pools}}"
-  when: (ansible_os_family == 'FreeBSD') and (zfs_scrub_pools_state|match('false|no|disable'))
+  when: (ansible_os_family == 'FreeBSD') and (zfs_scrub_pools_state|match('false|no|remove'))
   tags:
     - files
     - enable
