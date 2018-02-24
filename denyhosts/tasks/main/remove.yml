@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - remove
-    - unix
+    - main
     - denyhosts
 
 #-------------------------------------------------------------------------------
@@ -28,7 +28,7 @@
   tags:
     - packaging
     - remove
-    - unix
+    - main
     - denyhosts
 
 #-------------------------------------------------------------------------------
@@ -45,7 +45,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - denyhosts
 
 - name: 'line remove syslogd_flags'
@@ -59,7 +59,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - denyhosts
 
 - name: 'file remove allowed-hosts'
@@ -69,7 +69,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - denyhosts
 
 - name: 'file remove denyhosts.conf'
@@ -79,7 +79,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - denyhosts
 
 - name: 'file remove hosts.allow'
@@ -90,7 +90,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - denyhosts
 
 - name: 'file remove hosts.block'
@@ -101,7 +101,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - denyhosts
 
 - name: 'file remove data.dir'
@@ -112,5 +112,5 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - denyhosts

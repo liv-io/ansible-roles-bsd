@@ -17,7 +17,7 @@ denyhosts_allowed_hosts:
 
 denyhosts_allowed_hosts_hostname_lookup: 'false'
 
-denyhosts_allowed_hosts_template: 'default'
+denyhosts_allowed_hosts_template: 'main'
 
 denyhosts_block_service: 'sshd'
 

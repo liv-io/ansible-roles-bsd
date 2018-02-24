@@ -4,26 +4,26 @@
   include: install.yml
   when: not (denyhosts_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - denyhosts
 
 - name: 'task include enable'
   include: enable.yml
   when: (denyhosts_state|match('start|on|enable'))
   tags:
-    - unix
+    - main
     - denyhosts
 
 - name: 'task include disable'
   include: disable.yml
   when: (denyhosts_state|match('stop|off|disable'))
   tags:
-    - unix
+    - main
     - denyhosts
 
 - name: 'task include remove'
   include: remove.yml
   when: (denyhosts_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - denyhosts

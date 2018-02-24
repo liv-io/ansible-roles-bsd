@@ -41,7 +41,7 @@
 # Mac OS X (v10.3 or earlier):
 #SECURE_LOG=/private/var/log/system.log
 #
-SECURE_LOG = {{(denyhosts_secure_log|e)}}
+SECURE_LOG = {{denyhosts_secure_log}}
 #
 ########################################################################
 
@@ -86,7 +86,7 @@ HOSTS_DENY = /etc/hosts.block
 #PURGE_DENY = 5d
 #
 {% if not (denyhosts_purge_deny|match('false|no|disable')) %}
-PURGE_DENY = {{(denyhosts_purge_deny|e)}}
+PURGE_DENY = {{denyhosts_purge_deny}}
 {% else %}
 PURGE_DENY =
 {% endif %}
@@ -239,7 +239,7 @@ HOSTNAME_LOOKUP=NO
 # Misc
 #LOCK_FILE = /tmp/denyhosts.lock
 #
-LOCK_FILE = {{(denyhosts_lock_file|e)}}
+LOCK_FILE = {{denyhosts_lock_file}}
 #
 ######################################################################
 
@@ -258,7 +258,7 @@ LOCK_FILE = {{(denyhosts_lock_file|e)}}
 # ADMIN_EMAIL = foo@bar.com, bar@foo.com, etc@foobar.com
 #
 {% if not (denyhosts_admin_email|match('false|no|disable')) %}
-ADMIN_EMAIL = {{(denyhosts_admin_email|e)}}
+ADMIN_EMAIL = {{denyhosts_admin_email}}
 {% else %}
 #ADMIN_EMAIL =
 {% endif %}
@@ -272,7 +272,7 @@ ADMIN_EMAIL = {{(denyhosts_admin_email|e)}}
 # email server address (SMTP_HOST) and the server port (SMTP_PORT)
 # 
 {% if not (denyhosts_smtp_host|match('false|no|disable')) %}
-SMTP_HOST = {{(denyhosts_smtp_host|e)}}
+SMTP_HOST = {{denyhosts_smtp_host}}
 {% else %}
 #SMTP_HOST = localhost
 {% endif %}
@@ -310,7 +310,7 @@ SMTP_PASSWORD={{denyhosts_smtp_password}}
 # from DenyHosts when it reports thwarted abuse attempts
 #
 {% if not (denyhosts_smtp_from|match('false|no|disable')) %}
-SMTP_FROM = {{(denyhosts_smtp_from|e)}}
+SMTP_FROM = {{denyhosts_smtp_from}}
 {% else %}
 #SMTP_FROM = DenyHosts <nobody@localhost>
 {% endif %}
@@ -322,7 +322,7 @@ SMTP_FROM = {{(denyhosts_smtp_from|e)}}
 # SMTP_SUBJECT: you can specify the "Subject:" of messages sent
 # by DenyHosts when it reports thwarted abuse attempts
 {% if not (denyhosts_smtp_subject|match('false|no|disable')) %}
-SMTP_SUBJECT = {{(denyhosts_smtp_subject|e)}}
+SMTP_SUBJECT = {{denyhosts_smtp_subject}}
 {% else %}
 #SMTP_SUBJECT = DenyHosts Report
 {% endif %}
@@ -397,7 +397,7 @@ ALLOWED_HOSTS_HOSTNAME_LOOKUP=NO
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if not (denyhosts_age_reset_valid|match('false|no|disable')) %}
-AGE_RESET_VALID={{(denyhosts_age_reset_valid|e)}}
+AGE_RESET_VALID={{denyhosts_age_reset_valid}}
 {% else %}
 #AGE_RESET_VALID=5d
 {% endif %}
@@ -417,7 +417,7 @@ AGE_RESET_VALID={{(denyhosts_age_reset_valid|e)}}
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if not (denyhosts_age_reset_root|match('false|no|disable')) %}
-AGE_RESET_ROOT={{(denyhosts_age_reset_root|e)}}
+AGE_RESET_ROOT={{denyhosts_age_reset_root}}
 {% else %}
 #AGE_RESET_ROOT=25d
 {% endif %}
@@ -437,7 +437,7 @@ AGE_RESET_ROOT={{(denyhosts_age_reset_root|e)}}
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if not (denyhosts_age_reset_restricted|match('false|no|disable')) %}
-AGE_RESET_RESTRICTED={{(denyhosts_age_reset_restricted|e)}}
+AGE_RESET_RESTRICTED={{denyhosts_age_reset_restricted}}
 {% else %}
 #AGE_RESET_RESTRICTED=25d
 {% endif %}
@@ -458,7 +458,7 @@ AGE_RESET_RESTRICTED={{(denyhosts_age_reset_restricted|e)}}
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
 {% if not (denyhosts_age_reset_invalid|match('false|no|disable')) %}
-AGE_RESET_INVALID={{(denyhosts_age_reset_invalid|e)}}
+AGE_RESET_INVALID={{denyhosts_age_reset_invalid}}
 {% else %}
 #AGE_RESET_INVALID=10d
 {% endif %}
@@ -541,7 +541,7 @@ USERDEF_FAILED_ENTRY_REGEX=[a|A]uthentication error for (?P<invalid>invalid user
 # disable logging:
 #DAEMON_LOG = 
 #
-DAEMON_LOG = {{(denyhosts_daemon_log|e)}}
+DAEMON_LOG = {{denyhosts_daemon_log}}
 #
 ######################################################################
 
@@ -593,7 +593,7 @@ DAEMON_LOG = {{(denyhosts_daemon_log|e)}}
 # refer to:    http://denyhosts.sourceforge.net/faq.html#timespec
 # 
 #
-DAEMON_SLEEP = {{(denyhosts_daemon_sleep|e)}}
+DAEMON_SLEEP = {{denyhosts_daemon_sleep}}
 #
 #######################################################################
 
@@ -603,7 +603,7 @@ DAEMON_SLEEP = {{(denyhosts_daemon_sleep|e)}}
 # run the purge mechanism to expire old entries in HOSTS_DENY
 # This has no effect if PURGE_DENY is blank.
 #
-DAEMON_PURGE = {{(denyhosts_daemon_purge|e)}}
+DAEMON_PURGE = {{denyhosts_daemon_purge}}
 #
 #######################################################################
 
