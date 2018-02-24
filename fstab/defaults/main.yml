@@ -4,8 +4,8 @@ fstab_state: 'install'
 
 fstab_all: []
 
+fstab_dependencies: []
+
 fstab_group: []
 
 fstab_host: []
-
-fstab_path_default: '/etc/fstab'

@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.0.0 (2018-02-20)
+I: Simplify and improve Ansible role
+
 * Version 1.2.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
 F: Drop support for OpenBSD 6.1

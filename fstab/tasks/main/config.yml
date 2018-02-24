@@ -1,0 +1,35 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - config
+    - main
+    - fstab
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line config fstab'
+  lineinfile:
+    state: "{{'absent' if (item.state is defined) and (item.state|match('false|no|remove')) else 'present'}}"
+    line: "{{item.filesystem}}  {{item.mountpoint}}  {{item.type}}  {{(item.options|join(',')) if (item.options is defined) and not (item.options == '') else 'defaults'}}  {{(item.dump|int(0)) if (item.dump is defined) and not (item.dump == '') else 0}} {{(item.pass|int(0)) if (item.pass is defined) and not (item.pass == '') else 0}} # {{item.comment if (item.comment is defined) else ''}} | Ansible: {{item.mountpoint|md5}}"
+    regexp: '{{item.mountpoint|md5}}$'
+    dest: "{{item.path if (item.path is defined) and not (item.path == '') else file_path_fstab}}"
+  with_items: "{{fstab_all + fstab_dependencies + fstab_group + fstab_host}}"
+  tags:
+    - files
+    - config
+    - main
+    - fstab

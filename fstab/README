@@ -33,7 +33,6 @@ INSTALL
       - role: fstab
     vars:
       fstab_state: 'install'
-      fstab_path_default: '/etc/fstab'
 
 INACTIVE
   - fstabs: all
@@ -45,6 +44,15 @@ INACTIVE
 CONFIG
   vars:
     fstab_all:
+      - filesystem: '/dev/mapper/system-root'
+        state: 'true'
+        mountpoint: '/'
+        type: 'xfs'
+        dump: 1
+        pass: 0
+        comment: 'Root File System'
+
+    fstab_dependencies:
       - filesystem: '192.168.1.10:/nfs'
         state: 'true'
         mountpoint: '/nfs'
@@ -182,8 +190,20 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs',
-                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs',
+      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs'},
+                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs'}]
+      None    : []
+
+  fstab_dependencies
+    Description: Define the 'fstab_dependencies' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs'},
+                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs'}]
       None    : []
 
   fstab_group
@@ -194,8 +214,8 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs',
-                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs',
+      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs'},
+                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs'}]
       None    : []
 
   fstab_host
@@ -206,19 +226,9 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs',
-                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs',
+      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs'},
+                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs'}]
       None    : []
-
-  fstab_path_default
-    Description: Define the default path of the fstab file.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '/etc/fstab'
-    Options    :
-      Examples: '/etc/fstab'
 
 --------------------------------------------------------------------------------
 CONFLICTS
