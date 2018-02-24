@@ -14,8 +14,8 @@
       skip: 'true'
   tags:
     - install
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -31,5 +31,5 @@
   tags:
     - files
     - install
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf

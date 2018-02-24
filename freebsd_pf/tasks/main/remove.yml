@@ -14,8 +14,8 @@
       skip: 'true'
   tags:
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -28,8 +28,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove filters.conf'
   file:
@@ -38,8 +38,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove macros.conf'
   file:
@@ -48,8 +48,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove normalization.conf'
   file:
@@ -58,8 +58,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove options.conf'
   file:
@@ -68,8 +68,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove queues.conf'
   file:
@@ -78,8 +78,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove tables.conf'
   file:
@@ -88,8 +88,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove translations.conf'
   file:
@@ -98,8 +98,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove pf.conf'
   file:
@@ -108,8 +108,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove pf.dir'
   file:
@@ -118,8 +118,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'line remove pf_enable'
   lineinfile:
@@ -131,8 +131,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'line remove gateway-ipv4'
   lineinfile:
@@ -144,8 +144,8 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf
 
 - name: 'line remove gateway-ipv6'
   lineinfile:
@@ -157,5 +157,5 @@
   tags:
     - files
     - remove
-    - freebsd
-    - freebsd_pf
+    - main
+    - main_pf

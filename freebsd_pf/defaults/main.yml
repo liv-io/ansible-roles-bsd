@@ -2,7 +2,7 @@
 
 freebsd_pf_state: 'enable'
 
-freebsd_pf_anchors_conf_template: 'default'
+freebsd_pf_anchors_conf_template: 'main'
 
 freebsd_pf_filters_all:
   - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
@@ -17,7 +17,7 @@ freebsd_pf_filters_all:
   - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To any'}
   - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}
 
-freebsd_pf_filters_conf_template: 'default'
+freebsd_pf_filters_conf_template: 'main'
 
 freebsd_pf_filters_group: []
 
@@ -33,7 +33,7 @@ freebsd_pf_gateway_ipv6_state: 'false'
 
 freebsd_pf_macros_all: []
 
-freebsd_pf_macros_conf_template: 'default'
+freebsd_pf_macros_conf_template: 'main'
 
 freebsd_pf_macros_group: []
 
@@ -47,7 +47,7 @@ freebsd_pf_macros_state_group: []
 
 freebsd_pf_macros_state_host: []
 
-freebsd_pf_normalization_conf_template: 'default'
+freebsd_pf_normalization_conf_template: 'main'
 
 freebsd_pf_normalization_scrub:
   - {action: 'scrub', direction: 'in', sources: {'any'}, destinations: {'any'}, options: {'fragment reassemble'}, comment: 'Scrub: Incoming traffic normalization'}
@@ -55,7 +55,7 @@ freebsd_pf_normalization_scrub:
 
 freebsd_pf_options_block_policy: 'drop'
 
-freebsd_pf_options_conf_template: 'default'
+freebsd_pf_options_conf_template: 'main'
 
 freebsd_pf_options_debug: 'urgent'
 
@@ -81,16 +81,16 @@ freebsd_pf_options_state_policy: 'floating'
 
 freebsd_pf_options_timeouts: []
 
-freebsd_pf_pf_conf_template: 'default'
+freebsd_pf_pf_conf_template: 'main'
 
 freebsd_pf_pf_dir_name: 'pf'
 
-freebsd_pf_queues_conf_template: 'default'
+freebsd_pf_queues_conf_template: 'main'
 
 freebsd_pf_tables_all:
   - {name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}
 
-freebsd_pf_tables_conf_template: 'default'
+freebsd_pf_tables_conf_template: 'main'
 
 freebsd_pf_tables_group: []
 
@@ -98,7 +98,7 @@ freebsd_pf_tables_host: []
 
 freebsd_pf_translations_all: []
 
-freebsd_pf_translations_conf_template: 'default'
+freebsd_pf_translations_conf_template: 'main'
 
 freebsd_pf_translations_group: []
 

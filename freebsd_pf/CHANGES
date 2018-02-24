@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.0.0 (2018-02-20)
+I: Simplify and improve Ansible role
+
 * Version 2.0.1 (2018-01-19)
 I: Remove 'dependencies' parameter until correctly implemented
 B: Add missing 'freebsd_pf_tables_group', 'freebsd_pf_tables_host' configuration
