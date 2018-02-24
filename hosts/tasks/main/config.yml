@@ -1,0 +1,35 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - config
+    - main
+    - hosts
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line config hosts'
+  lineinfile:
+    state: "{{'absent' if (item.state is defined) and (item.state|match('false|no|remove')) else 'present'}}"
+    line: "{{item.ip}} {{item.name}} {{item.aliases|join(' ') if (item.aliases is defined) and not ((item.aliases == '') or (item.aliases == [])) else ''}} # {{item.comment|default('')}}"
+    regexp: '^{{item.ip}}\s'
+    dest: "{{item.path if (item.path is defined) and not (item.path == '') else file_path_hosts}}"
+  with_items: "{{hosts_all + hosts_dependencies + hosts_group + hosts_host}}"
+  tags:
+    - files
+    - config
+    - main
+    - hosts

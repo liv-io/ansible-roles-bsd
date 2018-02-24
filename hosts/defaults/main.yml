@@ -1,0 +1,11 @@
+---
+
+hosts_state: 'install'
+
+hosts_all: []
+
+hosts_dependencies: []
+
+hosts_group: []
+
+hosts_host: []

@@ -2,7 +2,7 @@
 INFORMATION
 --------------------------------------------------------------------------------
 
-Name   : host
+Name   : hosts
 Type   : Ansible role
 
 Authors: liv community
@@ -23,42 +23,48 @@ USAGE
 --------------------------------------------------------------------------------
 
 INSTALL
-  - host: all
+  - hosts: all
     roles:
-      - role: host
+      - role: hosts
     vars:
-      host_state: 'install'
-      host_path_default: '/etc/hosts'
+      hosts_state: 'install'
 
 INACTIVE
   - hosts: all
     roles:
-      - role: host
+      - role: hosts
     vars:
-      host_state: 'inactive'
+      hosts_state: 'inactive'
 
 CONFIG
   vars:
-    host_all:
+    hosts_all:
       - name: 'host01.domain.tld'
         state: 'true'
         ip: '192.168.1.1'
         aliases: ['host01', 'hostname01.domain.tld', 'hostname01']
         comment: 'host01'
 
-    host_group:
+    hosts_dependencies:
       - name: 'host02.domain.tld'
         state: 'true'
         ip: '192.168.1.2'
         aliases: ['host02', 'hostname02.domain.tld', 'hostname02']
         comment: 'host02'
 
-    host_host:
+    hosts_group:
       - name: 'host03.domain.tld'
-        state: 'false'
+        state: 'true'
         ip: '192.168.1.3'
         aliases: ['host03', 'hostname03.domain.tld', 'hostname03']
         comment: 'host03'
+
+    hosts_host:
+      - name: 'host04.domain.tld'
+        state: 'false'
+        ip: '192.168.1.4'
+        aliases: ['host04', 'hostname04.domain.tld', 'hostname04']
+        comment: 'host04'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -84,7 +90,7 @@ CONFIG
     Type       : String
     Default    : ''
     Options    :
-      Examples: 'host01' | 'host02' | 'host03'
+      Examples: 'host01' | 'host02' | 'host03' | 'host04'
 
   aliases
     Description: Define the aliases for the hosts entry.
@@ -96,7 +102,8 @@ CONFIG
     Options    :
       Examples: ['alias01'] |
                 ['alias01', 'alias02'] |
-                ['alias01', 'alias02', 'alias03']
+                ['alias01', 'alias02', 'alias03'] |
+                ['alias01', 'alias02', 'alias03', 'alias04']
       None    : []
 
   comment
@@ -118,7 +125,7 @@ CONFIG
     Type       : String
     Default    : ''
     Options    :
-      Examples: '192.168.1.1' | '192.168.1.2' | '192.168.1.3'
+      Examples: '192.168.1.1' | '192.168.1.2' | '192.168.1.3' | '192.168.1.4'
 
   path
     Description: Define the path of the hosts file.
@@ -126,12 +133,12 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : "{{host_path_default}}"
+    Default    : '/etc/hosts'
     Options    :
       Examples: '/etc/hosts'
 
 ROLE
-  host_state
+  hosts_state
     Description: Control the state of the role.
     Implemented: 0.1
     Required   : False
@@ -140,11 +147,10 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
-      Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
-  host_all
-    Description: Define the 'host_all' option.
+  hosts_all
+    Description: Define the 'hosts_all' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -157,8 +163,8 @@ ROLE
                   aliases: ['host02', 'hostname02.domain.tld', 'hostname02'], comment: 'host02'}]
       None    : []
 
-  host_group
-    Description: Define the 'host_group' option.
+  hosts_dependencies
+    Description: Define the 'hosts_dependencies' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -171,8 +177,8 @@ ROLE
                   aliases: ['host02', 'hostname02.domain.tld', 'hostname02'], comment: 'host02'}]
       None    : []
 
-  host_host
-    Description: Define the 'host_host' option.
+  hosts_group
+    Description: Define the 'hosts_group' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -185,15 +191,19 @@ ROLE
                   aliases: ['host02', 'hostname02.domain.tld', 'hostname02'], comment: 'host02'}]
       None    : []
 
-  host_path_default
-    Description: Define the default path of the hosts file.
+  hosts_host
+    Description: Define the 'hosts_host' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : String
-    Default    : '/etc/hosts'
+    Type       : Array/Hash
+    Default    : []
     Options    :
-      Examples: '/etc/hosts'
+      Examples: [{name: 'host01.domain.tld', state: 'true', ip: '192.168.1.1',
+                  aliases: {'host01', 'hostname01.domain.tld', 'hostname01'}, comment: 'host01'},
+                 {name: 'host02.domain.tld', state: 'true', ip: '192.168.1.2',
+                  aliases: ['host02', 'hostname02.domain.tld', 'hostname02'], comment: 'host02'}]
+      None    : []
 
 --------------------------------------------------------------------------------
 CONFLICTS
