@@ -4,14 +4,8 @@ user_state: 'install'
 
 user_all: []
 
+user_dependencies: []
+
 user_group: []
 
-user_group_default: 'nobody'
-
-user_groups_default: 'nobody'
-
 user_host: []
-
-user_password_default: '!'
-
-user_shell_default: '/bin/bash'

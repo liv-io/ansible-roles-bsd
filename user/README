@@ -12,8 +12,7 @@ License: Simplified BSD License
 DESCRIPTION
 --------------------------------------------------------------------------------
 
-Create, update and delete user accounts with this role. In addition it helps to
-manage the user's 'authorized keys'.
+Create, update and delete user accounts and manage the user's 'authorized keys'.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.
@@ -28,16 +27,6 @@ INSTALL
       - role: user
     vars:
       user_state: 'install'
-      user_groups_default: 'nobody'
-      user_password_default: '!'
-      user_shell_default: '/bin/bash'
-
-DISABLE
-  - hosts: all
-    roles:
-      - role: user
-    vars:
-      user_state: 'disable'
 
 INACTIVE
   - hosts: all
@@ -64,7 +53,7 @@ CONFIG
           - state: 'true'
             key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAylF0+CUcLIiVcZNG3psSLzu5f4qS1yjMEPJhCiI9TCD7Vc3j+Z+o5J5SO7jt5FKzhx7vVndVMtASmTQppZ5L7d+qCNDO3rFwcM/VKKO7I8gU24tO4WKGK/3f8ACIxrfNHRslNJLjt6TFYc20ZU+60JF7objO/uN7Dh3BOhUKO8ZK8M9Tk5EnYQqm1jicfix/kozcHqzIKEM7+m3Uxq3t1sA6yRo3/R6RzTydWmvzX85852i0MBNTYM6SCy727aEJNZDPr3/rFCVd5Ai2j+z3vMjbkczNyNeifd8kCojdeDjkYEv4VQ3fG/0EsBXsXyVdzRHCAt31Yh77OlPWIR/2MQ== user01'
 
-    user_group:
+    user_dependencies:
       - name: 'user02'
         state: 'true'
         comment: 'Example User 02'
@@ -76,7 +65,7 @@ CONFIG
         shell: '/bin/bash'
         authorized_key: []
 
-    user_host:
+    user_group:
       - name: 'user03'
         state: 'true'
         comment: 'Example User 03'
@@ -88,6 +77,7 @@ CONFIG
         shell: '/bin/bash'
         authorized_key: []
 
+    user_host:
       - name: 'user04'
         state: 'false'
         uid: '1004'
@@ -320,11 +310,23 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
-      Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
   user_all
     Description: Define the 'user_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'user01', state: 'true', comment: 'Example User 01', uid: '1001', groups: {'group01'},
+                 groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
+                 password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
+      None    : []
+
+  user_dependencies
+    Description: Define the 'user_dependencies' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -349,18 +351,6 @@ ROLE
                  password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
       None    : []
 
-  user_groups_default
-    Description: Define the default groups for the user.
-    Implemented: 0.2
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array
-    Default    : ['nobody']
-    Options    :
-      Examples: ['group01'] |
-                ['group01', 'group02'] |
-                ['group01', 'group02', 'group03']
-
   user_host
     Description: Define the 'user_host' option.
     Implemented: 0.1
@@ -373,28 +363,6 @@ ROLE
                  groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
                  password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
       None    : []
-
-  user_password_default
-    Description: Define the default password for the user.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary cryptographic hash
-    Type       : String
-    Default    : '!'
-    Options    :
-      Examples: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1' |
-                '$6$Dgjf366H$mpoaFpK8rIaGSpaxhpJIu5AvinfCOLK2WQhnfm3UTwLNBfyCU494fXEYPsrUobsQ7hCcbv8GqwiJjmuhoGqL00' |
-                '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
-
-  user_shell_default
-    Description: Define the default shell for the user.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '/bin/bash'
-    Options    :
-      Examples: '/bin/bash' | '/bin/sh' | '/bin/false' | '/sbin/nologin'
 
 --------------------------------------------------------------------------------
 CONFLICTS

@@ -1,0 +1,64 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - config
+    - main
+    - user
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'user config user'
+  user:
+    state: "{{'absent' if (item.state|default('true')|match('false|no|disable')) else 'present'}}"
+    name: "{{item.name}}"
+    comment: "{{item.comment|default(item.name)}}"
+    uid: "{{item.uid|default(omit)}}"
+    group: "{{item.group|default('nobody')}}"
+    groups: "{{item.groups|default([])|join(',')}}"
+    append: "{{'no' if (item.groups_append|default('true')|match('false|no|disable')) else 'yes'}}"
+    home: "{{item.home|default('/home/'+item.name)}}"
+    createhome: "{{'no' if (item.home_create|default('true')|match('false|no|disable')) else 'yes'}}"
+    move_home: "{{'yes' if (item.home_move|default('false')|match('true|yes|enable')) else 'no'}}"
+    remove: "{{'yes' if (item.home_remove|default('false')|match('true|yes|enable')) else 'no'}}"
+    force: "{{'yes' if (item.home_force|default('false')|match('true|yes|enable')) else 'no'}}"
+    password: "{{item.password|default('!')}}"
+    update_password: "{{'on_create' if (item.password_update|default('true')|match('false|no|disable')) else 'always'}}"
+    shell: "{{item.shell|default('/bin/bash')}}"
+    system: "{{'yes' if (item.system|default('false')|match('true|yes|enable')) else 'no'}}"
+  with_items: "{{user_all + user_dependencies + user_group + user_host}}"
+  tags:
+    - system
+    - config
+    - main
+    - user
+
+- name: 'user config authorized_key'
+  authorized_key:
+    state: "{{'absent' if (item.1.state|default('true')|match('false|no|disable')) else 'present'}}"
+    user: "{{item.0.name}}"
+    key: "{{item.1.key}}"
+    key_options: "{{item.1.options|default('')}}"
+  with_subelements:
+    - "{{user_all + user_dependencies + user_group + user_host}}"
+    - authorized_key
+    - flags:
+      skip_missing: true
+  tags:
+    - system
+    - config
+    - main
+    - user

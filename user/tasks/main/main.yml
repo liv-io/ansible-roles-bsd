@@ -1,0 +1,8 @@
+---
+
+- name: 'task include config'
+  include: config.yml
+  when: not (user_state|match('false|no|remove|quiesce|inactive'))
+  tags:
+    - main
+    - user
