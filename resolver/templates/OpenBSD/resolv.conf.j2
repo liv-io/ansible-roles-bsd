@@ -17,12 +17,12 @@
 
 # Local domain name
 {% if not (resolver_domain == '') %}
-domain {{(resolver_domain|e)}}
+domain {{resolver_domain}}
 {% endif %}
 
 # Search list for host-name lookup
 {% if not ((resolver_search == '') or (resolver_search == [])) %}
-search {% for search in resolver_search %}{{(search|e)}}{% if not loop.last %} {% endif %}{% endfor %}
+search {% for search in resolver_search %}{{search}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endif %}
 

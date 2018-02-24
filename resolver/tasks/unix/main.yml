@@ -1,8 +1,0 @@
----
-
-- name: 'task include install'
-  include: install.yml
-  when: not (resolver_state|match('false|no|disable|quiesce|inactive'))
-  tags:
-    - unix
-    - resolver

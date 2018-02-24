@@ -37,13 +37,6 @@ INSTALL
                             {server: '192.168.1.12', comment: 'ns02.domain.tld'}]
       resolver_search: ['domain01.tld', 'domain02.tld']
 
-DISABLE
-  - hosts: all
-    roles:
-      - role: resolver
-    vars:
-      resolver_state: 'disable'
-
 INACTIVE
   - hosts: all
     roles:
@@ -66,7 +59,6 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
-      Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
   resolver_domain
