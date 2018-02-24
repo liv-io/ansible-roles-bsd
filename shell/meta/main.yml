@@ -1,4 +1,4 @@
 ---
 
 dependencies:
-  - {role: colorls, when: not (shell_state|match('false|no|disable|quiesce|inactive'))}
+  - {role: colorls, when: not (shell_state|match('false|no|remove|quiesce|inactive'))}
