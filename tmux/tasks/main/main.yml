@@ -4,12 +4,12 @@
   include: install.yml
   when: not (tmux_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - tmux
 
 - name: 'task include remove'
   include: remove.yml
   when: (tmux_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - tmux

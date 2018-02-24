@@ -63,7 +63,7 @@ ROLE
 
   tmux_tmux_conf_template
     Description: Define the template source for 'tmux.conf.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'tmux/templates/example/tmux.conf.j2'
@@ -71,7 +71,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
