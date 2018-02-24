@@ -13,67 +13,43 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - remove
-    - unix
+    - install
+    - main
     - postfix
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package remove postfix'
+- name: 'package install postfix'
   package:
-    state: 'absent'
+    state: 'present'
     name: "{{package_name_postfix}}"
+  register: register_freebsd_postfix
   tags:
     - packaging
-    - remove
-    - unix
+    - install
+    - main
     - postfix
 
 #-------------------------------------------------------------------------------
-# FILES
+# COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: 'line remove postfix_enable'
-  lineinfile:
-    state: 'absent'
-    line: "{{file_line_postfix_enable}}=\"NO\" # Ansible: Remove postfix"
-    regexp: "^{{file_line_postfix_enable}}="
-    dest: "{{file_path_postfix_enable}}"
-  when: (ansible_os_family == 'FreeBSD')
+- name: 'command pkill opensmtpd'
+  shell: "{{command_shell_pkill_opensmtpd}}"
+  when: (register_freebsd_postfix|changed)
   tags:
-    - files
-    - remove
-    - unix
+    - commands
+    - install
+    - main
     - postfix
 
-- name: 'file remove aliases'
-  file:
-    state: 'absent'
-    path: "{{file_path_aliases}}"
+- name: 'command pkill sendmail'
+  shell: "{{command_shell_pkill_sendmail}}"
+  when: (register_freebsd_postfix|changed)
   tags:
-    - files
-    - remove
-    - unix
-    - postfix
-
-- name: 'file remove main.cf'
-  file:
-    state: 'absent'
-    path: "{{file_path_main_cf}}"
-  tags:
-    - files
-    - remove
-    - unix
-    - postfix
-
-- name: 'file remove master.cf'
-  file:
-    state: 'absent'
-    path: "{{file_path_master_cf}}"
-  tags:
-    - files
-    - remove
-    - unix
+    - commands
+    - install
+    - main
     - postfix

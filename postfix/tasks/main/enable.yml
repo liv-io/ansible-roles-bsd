@@ -13,8 +13,8 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - disable
-    - unix
+    - enable
+    - main
     - postfix
 
 #-------------------------------------------------------------------------------
@@ -28,10 +28,13 @@
     mode: "{{file_mode_aliases}}"
     owner: "{{file_owner_aliases}}"
     group: "{{file_group_aliases}}"
+  notify:
+    - 'command newaliases'
+    - 'service restart postfix'
   tags:
     - files
-    - disable
-    - unix
+    - enable
+    - main
     - postfix
 
 - name: 'template create main.cf'
@@ -41,10 +44,11 @@
     mode: "{{file_mode_main_cf}}"
     owner: "{{file_owner_main_cf}}"
     group: "{{file_group_main_cf}}"
+  notify: 'service restart postfix'
   tags:
     - files
-    - disable
-    - unix
+    - enable
+    - main
     - postfix
 
 - name: 'template create master.cf'
@@ -54,37 +58,38 @@
     mode: "{{file_mode_master_cf}}"
     owner: "{{file_owner_master_cf}}"
     group: "{{file_group_master_cf}}"
+  notify: 'service restart postfix'
   tags:
     - files
-    - disable
-    - unix
+    - enable
+    - main
     - postfix
 
-- name: 'line disable postfix_enable'
+- name: 'line enable postfix_enable'
   lineinfile:
     state: 'present'
-    line: "{{file_line_postfix_enable}}=\"NO\" # Ansible: Disable postfix"
+    line: "{{file_line_postfix_enable}}=\"YES\" # Ansible: Enable postfix"
     regexp: "^{{file_line_postfix_enable}}="
     dest: "{{file_path_postfix_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
-    - disable
-    - unix
+    - enable
+    - main
     - postfix
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: 'service stop postfix'
+- name: 'service start postfix'
   service:
-    state: 'stopped'
-    enabled: 'no'
+    state: 'started'
+    enabled: 'yes'
     name: "{{service_name_postfix}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - system
-    - disable
-    - unix
+    - enable
+    - main
     - postfix

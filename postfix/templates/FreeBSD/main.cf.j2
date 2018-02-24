@@ -110,7 +110,7 @@ mail_owner = postfix
 #
 #myhostname = host.domain.tld
 #myhostname = virtual.domain.tld
-myhostname = {{(postfix_myhostname|e)}}
+myhostname = {{postfix_myhostname}}
 
 # The mydomain parameter specifies the local internet domain name.
 # The default is to use $myhostname minus the first component.
@@ -354,9 +354,9 @@ mynetworks_style = host
 #relayhost = uucphost
 #relayhost = [an.ip.add.ress]
 
-relayhost = {{(postfix_relayhost|e)}}
+relayhost = {{postfix_relayhost}}
 
-fallback_relay = {{(postfix_fallback_relay|e)}}
+fallback_relay = {{postfix_fallback_relay}}
 
 # REJECTING UNKNOWN RELAY USERS
 #
@@ -714,9 +714,9 @@ shlib_directory = /usr/local/lib/postfix
 #-------------------------------------------------------------------------------
 
 {% if not ((postfix_all == '') or (postfix_all == [])) %}
-{% for item in (postfix_all|sort) %}
-# {{(item.comment|e)}}
-{% for config in (item.config|sort) %}
+{% for item in postfix_all %}
+# {{item.comment}}
+{% for config in item.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -728,9 +728,9 @@ shlib_directory = /usr/local/lib/postfix
 #-------------------------------------------------------------------------------
 
 {% if not ((postfix_group == '') or (postfix_group == [])) %}
-{% for item in (postfix_group|sort) %}
-# {{(item.comment|e)}}
-{% for config in (item.config|sort) %}
+{% for item in postfix_group %}
+# {{item.comment}}
+{% for config in item.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
@@ -742,9 +742,9 @@ shlib_directory = /usr/local/lib/postfix
 #-------------------------------------------------------------------------------
 
 {% if not ((postfix_host == '') or (postfix_host == [])) %}
-{% for item in (postfix_host|sort) %}
-# {{(item.comment|e)}}
-{% for config in (item.config|sort) %}
+{% for item in postfix_host %}
+# {{item.comment}}
+{% for config in item.config %}
 {{config}}
 {% endfor %}
 {% endfor %}

@@ -16,5 +16,5 @@ file_path_master_cf: '/usr/local/etc/postfix/master.cf'
 file_group_master_cf: 'wheel'
 
 # postfix_enable
-file_path_postfix_enable: '/etc/rc.conf'
 file_line_postfix_enable: 'postfix_enable'
+file_path_postfix_enable: '/etc/rc.conf'
