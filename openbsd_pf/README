@@ -104,7 +104,7 @@ ROLE
 
   openbsd_pf_anchors_conf_template
     Description: Define the template source for 'anchors.conf.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openbsd_pf/templates/example/anchors.conf.j2'
@@ -112,7 +112,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
@@ -149,7 +149,7 @@ ROLE
 
   openbsd_pf_filters_conf_template
     Description: Define the template source for 'filters.conf.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openbsd_pf/templates/example/filters.conf.j2'
@@ -157,7 +157,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
@@ -219,7 +219,7 @@ ROLE
 
   openbsd_pf_macros_conf_template
     Description: Define the template source for 'macros.conf.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openbsd_pf/templates/example/macros.conf.j2'
@@ -227,7 +227,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
@@ -302,7 +302,7 @@ ROLE
 
   openbsd_pf_normalization_conf_template
     Description: Define the template source for 'normalization.conf.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openbsd_pf/templates/example/normalization.conf.j2'
@@ -310,7 +310,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
@@ -341,7 +341,7 @@ ROLE
 
   openbsd_pf_options_conf_template
     Description: Define the template source for 'options.conf.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openbsd_pf/templates/example/options.conf.j2'
@@ -349,7 +349,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
@@ -503,7 +503,7 @@ ROLE
 
   openbsd_pf_pf_conf_template
     Description: Define the template source for 'pf.conf.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openbsd_pf/templates/example/pf.conf.j2'
@@ -511,7 +511,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
@@ -527,7 +527,7 @@ ROLE
 
   openbsd_pf_queues_conf_template
     Description: Define the template source for 'queues.conf.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openbsd_pf/templates/example/queues.conf.j2'
@@ -535,7 +535,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 
@@ -552,7 +552,7 @@ ROLE
 
   openbsd_pf_tables_conf_template
     Description: Define the template source for 'tables.conf.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openbsd_pf/templates/example/tables.conf.j2'
@@ -560,7 +560,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 

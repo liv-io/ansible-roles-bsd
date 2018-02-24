@@ -2,7 +2,7 @@
 
 openbsd_pf_state: 'enable'
 
-openbsd_pf_anchors_conf_template: 'default'
+openbsd_pf_anchors_conf_template: 'main'
 
 openbsd_pf_filters_all:
   - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
@@ -17,7 +17,7 @@ openbsd_pf_filters_all:
   - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'any'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To any'}
   - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To any'}
 
-openbsd_pf_filters_conf_template: 'default'
+openbsd_pf_filters_conf_template: 'main'
 
 openbsd_pf_filters_group: []
 
@@ -29,7 +29,7 @@ openbsd_pf_filters_policies:
 
 openbsd_pf_macros_all: []
 
-openbsd_pf_macros_conf_template: 'default'
+openbsd_pf_macros_conf_template: 'main'
 
 openbsd_pf_macros_group: []
 
@@ -43,7 +43,7 @@ openbsd_pf_macros_state_group: []
 
 openbsd_pf_macros_state_host: []
 
-openbsd_pf_normalization_conf_template: 'default'
+openbsd_pf_normalization_conf_template: 'main'
 
 openbsd_pf_normalization_scrub:
   - {action: 'match', direction: 'in', sources: {'any'}, destinations: {'any'}, options: {'reassemble tcp'}, comment: 'Scrub: Incoming traffic normalization'}
@@ -51,7 +51,7 @@ openbsd_pf_normalization_scrub:
 
 openbsd_pf_options_block_policy: 'drop'
 
-openbsd_pf_options_conf_template: 'default'
+openbsd_pf_options_conf_template: 'main'
 
 openbsd_pf_options_debug: 'crit'
 
@@ -77,16 +77,16 @@ openbsd_pf_options_state_policy: 'floating'
 
 openbsd_pf_options_timeouts: []
 
-openbsd_pf_pf_conf_template: 'default'
+openbsd_pf_pf_conf_template: 'main'
 
 openbsd_pf_pf_dir_name: 'pf'
 
-openbsd_pf_queues_conf_template: 'default'
+openbsd_pf_queues_conf_template: 'main'
 
 openbsd_pf_tables_all:
   - {name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}
 
-openbsd_pf_tables_conf_template: 'default'
+openbsd_pf_tables_conf_template: 'main'
 
 openbsd_pf_tables_group: []
 

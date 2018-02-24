@@ -14,8 +14,8 @@
       skip: 'true'
   tags:
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -30,8 +30,8 @@
   tags:
     - commands
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'command disable openbsd_pf'
   command: "{{command_cmd_disable_openbsd_pf}}"
@@ -40,8 +40,8 @@
   tags:
     - commands
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'command check openbsd_pf'
   shell: "{{shell_cmd_check_openbsd_pf}}"
@@ -52,8 +52,8 @@
   tags:
     - commands
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'command stop openbsd_pf'
   command: "{{command_cmd_stop_openbsd_pf}}"
@@ -62,8 +62,8 @@
   tags:
     - commands
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -76,8 +76,8 @@
   tags:
     - files
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove filters.conf'
   file:
@@ -86,8 +86,8 @@
   tags:
     - files
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove macros.conf'
   file:
@@ -96,8 +96,8 @@
   tags:
     - files
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove normalization.conf'
   file:
@@ -106,8 +106,8 @@
   tags:
     - files
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove options.conf'
   file:
@@ -116,8 +116,8 @@
   tags:
     - files
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove queues.conf'
   file:
@@ -126,8 +126,8 @@
   tags:
     - files
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove tables.conf'
   file:
@@ -136,8 +136,8 @@
   tags:
     - files
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove pf.conf'
   file:
@@ -146,8 +146,8 @@
   tags:
     - files
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'file remove pf.dir'
   file:
@@ -156,5 +156,5 @@
   tags:
     - files
     - remove
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf

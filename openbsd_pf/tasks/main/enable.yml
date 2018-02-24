@@ -14,8 +14,8 @@
       skip: 'true'
   tags:
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -34,8 +34,8 @@
   tags:
     - files
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'template create filters.conf'
   template:
@@ -50,8 +50,8 @@
   tags:
     - files
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'template create macros.conf'
   template:
@@ -66,8 +66,8 @@
   tags:
     - files
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'template create normalization.conf'
   template:
@@ -82,8 +82,8 @@
   tags:
     - files
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'template create options.conf'
   template:
@@ -98,8 +98,8 @@
   tags:
     - files
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'template create queues.conf'
   template:
@@ -114,8 +114,8 @@
   tags:
     - files
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'template create tables.conf'
   template:
@@ -130,8 +130,8 @@
   tags:
     - files
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'template create pf.conf'
   template:
@@ -146,8 +146,8 @@
   tags:
     - files
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -162,8 +162,8 @@
   tags:
     - commands
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'command enable openbsd_pf'
   command: "{{command_cmd_enable_openbsd_pf}}"
@@ -172,8 +172,8 @@
   tags:
     - commands
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'command check openbsd_pf'
   shell: "{{shell_cmd_check_openbsd_pf}}"
@@ -184,8 +184,8 @@
   tags:
     - commands
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
 
 - name: 'command start openbsd_pf'
   command: "{{command_cmd_start_openbsd_pf}}"
@@ -194,5 +194,5 @@
   tags:
     - commands
     - enable
-    - openbsd
-    - openbsd_pf
+    - main
+    - main_pf
