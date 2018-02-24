@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - bsd
+    - main
     - passwd
 
 #-------------------------------------------------------------------------------
@@ -31,7 +31,20 @@
   tags:
     - files
     - install
-    - bsd
+    - main
+    - passwd
+
+- name: 'file ensure passwd'
+  file:
+    state: 'file'
+    dest: "{{file_path_passwd}}"
+    mode: "{{file_mode_passwd}}"
+    owner: "{{file_owner_passwd}}"
+    group: "{{file_group_passwd}}"
+  tags:
+    - files
+    - install
+    - main
     - passwd
 
 - name: 'file ensure pwd.db'
@@ -44,7 +57,7 @@
   tags:
     - files
     - install
-    - bsd
+    - main
     - passwd
 
 - name: 'file ensure spwd.db'
@@ -57,5 +70,5 @@
   tags:
     - files
     - install
-    - bsd
+    - main
     - passwd
