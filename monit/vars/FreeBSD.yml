@@ -11,5 +11,5 @@ file_path_monitrc: '/usr/local/etc/monitrc'
 file_path_monit_d: '/usr/local/etc/monit.d'
 
 # monit_enable
-file_path_monit_enable: '/etc/rc.conf'
 file_line_monit_enable: 'monit_enable'
+file_path_monit_enable: '/etc/rc.conf'

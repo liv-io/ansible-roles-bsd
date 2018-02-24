@@ -12,14 +12,14 @@ package_name_monit: 'monit'
 #-------------------------------------------------------------------------------
 
 # monitrc
-file_src_monitrc: "templates/{{(monit_monitrc_template|e)}}/monitrc.j2"
+file_src_monitrc: "templates/{{monit_monitrc_template}}/monitrc.j2"
 file_path_monitrc: '/etc/monitrc'
 file_mode_monitrc: '0600'
 file_owner_monitrc: 'root'
 file_group_monitrc: 'wheel'
 
 # monit-config
-file_src_monit_config: "templates/{{(monit_monit_config_template|e)}}/monit-config.j2"
+file_src_monit_config: "templates/{{monit_monit_config_template}}/monit-config.j2"
 file_mode_monit_config: '0640'
 file_owner_monit_config: 'root'
 file_group_monit_config: 'wheel'

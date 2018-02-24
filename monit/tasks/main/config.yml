@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - config
-    - unix
+    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -24,7 +24,7 @@
 - name: 'template create monit-config'
   template:
     src: "{{file_src_monit_config}}"
-    dest: "{{file_path_monit_d}}/{{(item.name|e)}}.cfg"
+    dest: "{{file_path_monit_d}}/{{item.name}}.cfg"
     mode: "{{file_mode_monit_config}}"
     owner: "{{file_owner_monit_config}}"
     group: "{{file_group_monit_config}}"
@@ -36,13 +36,13 @@
   tags:
     - files
     - config
-    - unix
+    - main
     - monit
 
 - name: 'file remove monit-config'
   file:
     state: 'absent'
-    path: "{{file_path_monit_d}}/{{(item.name|e)}}.cfg"
+    path: "{{file_path_monit_d}}/{{item.name}}.cfg"
   notify:
     - 'command validate monit'
     - 'service restart monit'
@@ -51,5 +51,5 @@
   tags:
     - files
     - config
-    - unix
+    - main
     - monit

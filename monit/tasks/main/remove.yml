@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - remove
-    - unix
+    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -30,7 +30,7 @@
   tags:
     - commands
     - remove
-    - unix
+    - main
     - monit
 
 - name: 'command disable monit'
@@ -40,7 +40,7 @@
   tags:
     - commands
     - remove
-    - unix
+    - main
     - monit
 
 - name: 'command stop monit'
@@ -50,7 +50,7 @@
   tags:
     - commands
     - remove
-    - unix
+    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -64,7 +64,7 @@
   tags:
     - packaging
     - remove
-    - unix
+    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -81,7 +81,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - monit
 
 - name: 'file remove monit.d'
@@ -91,7 +91,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - monit
 
 - name: 'file remove monitrc'
@@ -101,5 +101,5 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - monit

@@ -36,7 +36,7 @@ monit_mail_subject: "Monit: $EVENT '$SERVICE' ({{ansible_hostname}})"
 
 monit_mail_to: "admin@{{ansible_domain}}"
 
-monit_monit_config_template: 'default'
+monit_monit_config_template: 'main'
 
 monit_monitrc_template: "{{ansible_os_family}}"
 

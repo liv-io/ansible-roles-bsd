@@ -96,7 +96,7 @@ set statefile /var/monit/state
 {% if not ((monit_mail_server == '') or (monit_mail_server == [])) %}
 {% for item in monit_mail_server %}
 {% for name in item.name %}
-set mailserver {{(name|e)}} {% if (item.port is defined) and not (item.port == '') %}port {{(item.port|int(25))}}{% else %}{% endif %}{% if not loop.last %},{% endif %} {% if (item.comment is defined) %}# {{(item.comment|e)}}{% endif %}
+set mailserver {{name}} {% if (item.port is defined) and not (item.port == '') %}port {{(item.port|int(25))}}{% else %}{% endif %}{% if not loop.last %},{% endif %} {% if (item.comment is defined) %}# {{item.comment}}{% endif %}
 
 {% endfor %}
 {% endfor %}
@@ -154,18 +154,18 @@ set mailserver {{(name|e)}} {% if (item.port is defined) and not (item.port == '
 ## are expanded at runtime. For example, to override the sender, use:
 #
 set mail-format {
-     from: {{(monit_mail_from|e)}}
+     from: {{monit_mail_from}}
   subject: {{monit_mail_subject}}
   message: --------------------------------------------------------------------------------
 MONIT
 --------------------------------------------------------------------------------
 
-Host        : {{(monit_mail_message_host|e)}}
-Service     : {{(monit_mail_message_service|e)}}
-Event       : {{(monit_mail_message_event|e)}}
-Action      : {{(monit_mail_message_action|e)}}
-Description : {{(monit_mail_message_description|e)}}
-Date        : {{(monit_mail_message_date|e)}}
+Host        : {{monit_mail_message_host}}
+Service     : {{monit_mail_message_service}}
+Event       : {{monit_mail_message_event}}
+Action      : {{monit_mail_message_action}}
+Description : {{monit_mail_message_description}}
+Date        : {{monit_mail_message_date}}
 
 --------------------------------------------------------------------------------
 SYSTEM
@@ -195,8 +195,8 @@ Version     : {{ansible_kernel}}
 MAIL
 --------------------------------------------------------------------------------
 
-Sender      : {{(monit_mail_from|e)}}
-Recipient   : {{(monit_mail_to|e)}}
+Sender      : {{monit_mail_from}}
+Recipient   : {{monit_mail_to}}
 Subject     : {{monit_mail_subject}}
 }
 #
@@ -213,7 +213,7 @@ Subject     : {{monit_mail_subject}}
 # set alert your-name@your.domain not on { instance, action }
 #
 {% if not (monit_mail_to|match('false|no|disable')) %}
-set alert {{(monit_mail_to|e)}} {% if (monit_mail_exclusions is defined) and not ((monit_mail_exclusions == '') or (monit_mail_exclusions == [])) %}{ {% for mail_exclusion in (monit_mail_exclusions|sort) %}{{(mail_exclusion|e)}}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
+set alert {{monit_mail_to}} {% if (monit_mail_exclusions is defined) and not ((monit_mail_exclusions == '') or (monit_mail_exclusions == [])) %}{ {% for mail_exclusion in monit_mail_exclusions %}{{mail_exclusion}}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
 
 {% endif %}
 #
@@ -227,9 +227,9 @@ set alert {{(monit_mail_to|e)}} {% if (monit_mail_exclusions is defined) and not
 ## enable SSL for the HTTP interface.
 #
 set httpd port {{(monit_web_server_port|int(2812))}} and
-  use address {{(monit_web_server_address|e)}}
+  use address {{monit_web_server_address}}
 {% for item in monit_web_server_allow %}
-  {% if (item.user is defined) and not (item.user == '') %}allow {{(item.user|e)}} {% if (item.password is defined) and not (item.password == '') %}:{{(item.password|e)}}{% else %}{% endif %} {% if (item.comment is defined) and not (item.comment == '') %}# {{(item.comment|e)}}{% else %}{% endif %}{% else %}{% endif %}
+  {% if (item.user is defined) and not (item.user == '') %}allow {{item.user}} {% if (item.password is defined) and not (item.password == '') %}:{{item.password}}{% else %}{% endif %} {% if (item.comment is defined) and not (item.comment == '') %}# {{item.comment}}{% else %}{% endif %}{% else %}{% endif %}
 
 {% endfor %}
 #
@@ -374,6 +374,6 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 ## It is possible to include additional configuration parts from other files or
 ## directories.
 #
-include {{(monit_include|e)}}
+include {{monit_include}}
 #
 #

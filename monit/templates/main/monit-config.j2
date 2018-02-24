@@ -15,7 +15,7 @@
 #
 #-------------------------------------------------------------------------------
 
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% if (item.config is defined) and not ((item.config == '') or (item.config == [])) %}
 {% for config in item.config %}
 {{config}}

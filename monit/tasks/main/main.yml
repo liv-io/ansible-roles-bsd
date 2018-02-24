@@ -4,33 +4,33 @@
   include: install.yml
   when: not (monit_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - monit
 
 - name: 'task include config'
   include: config.yml
   when: not (monit_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - monit
 
 - name: 'task include enable'
   include: enable.yml
   when: (monit_state|match('start|on|enable'))
   tags:
-    - unix
+    - main
     - monit
 
 - name: 'task include disable'
   include: disable.yml
   when: (monit_state|match('stop|off|disable'))
   tags:
-    - unix
+    - main
     - monit
 
 - name: 'task include remove'
   include: remove.yml
   when: (monit_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - monit
