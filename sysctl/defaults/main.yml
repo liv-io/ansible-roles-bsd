@@ -10,4 +10,4 @@ sysctl_group: []
 
 sysctl_host: []
 
-sysctl_sysctl_conf_template: 'default'
+sysctl_sysctl_conf_template: 'main'

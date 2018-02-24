@@ -13,34 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - sysctl
 
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'stat file sysctl.conf'
-  stat:
+- name: 'file remove sysctl.conf'
+  file:
+    state: 'absent'
     path: "{{file_path_sysctl_conf}}"
-  register: register_sysctl_conf
   tags:
     - files
-    - install
-    - unix
-    - sysctl
-
-- name: 'template create sysctl.conf'
-  template:
-    src: "{{file_src_sysctl_conf}}"
-    dest: "{{file_path_sysctl_conf}}"
-    mode: "{{file_mode_sysctl_conf}}"
-    owner: "{{file_owner_sysctl_conf}}"
-    group: "{{file_group_sysctl_conf}}"
-  when: not (register_sysctl_conf.stat.exists)
-  tags:
-    - files
-    - install
-    - unix
+    - remove
+    - main
     - sysctl

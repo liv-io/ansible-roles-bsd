@@ -1,4 +1,20 @@
 ---
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - config
+    - main
+    - sysctl
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -10,14 +26,14 @@
     mode: "{{file_mode_sysctl_conf}}"
     owner: "{{file_owner_sysctl_conf}}"
     group: "{{file_group_sysctl_conf}}"
-    line: "{{item.key}}={{item.value}} # {{(item.comment|e) if (item.comment is defined) else ''}}"
+    line: "{{item.key}}={{item.value}} # {{item.comment if (item.comment is defined) else ''}}"
     regexp: '^{{item.key}}='
     dest: "{{file_path_sysctl_conf}}"
-  with_items: "{{sysctl_all + sysctl_group + sysctl_host + sysctl_dependencies}}"
+  with_items: "{{sysctl_all + sysctl_dependencies + sysctl_group + sysctl_host}}"
   tags:
     - files
     - config
-    - unix
+    - main
     - sysctl
 
 #-------------------------------------------------------------------------------
@@ -29,9 +45,9 @@
   register: "register_config_sysctl"
   changed_when: (register_config_sysctl.rc > 1)
   failed_when: (register_config_sysctl.rc > 1)
-  with_items: "{{sysctl_all + sysctl_group + sysctl_host + sysctl_dependencies}}"
+  with_items: "{{sysctl_all + sysctl_dependencies + sysctl_group + sysctl_host}}"
   tags:
     - commands
     - config
-    - unix
+    - main
     - sysctl
