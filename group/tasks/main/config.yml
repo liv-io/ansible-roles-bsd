@@ -23,7 +23,7 @@
 
 - name: 'group config group'
   group:
-    state: "{{'absent' if (item.state|default('true')|match('false|no|disable')) else 'present'}}"
+    state: "{{'absent' if (item.state|default('true')|match('false|no|remove')) else 'present'}}"
     name: "{{item.name}}"
     gid: "{{item.gid|default(omit)}}"
     system: "{{'yes' if (item.system|default('false')|match('true|yes|enable')) else 'no'}}"
