@@ -1,0 +1,35 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - config
+    - main
+    - main_rc
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line config rc'
+  lineinfile:
+    state: "{{'absent' if (item.state is defined) and (item.state|match('false|no|remove')) else 'present'}}"
+    line: "{{item.name}}=\"{{item.value}}\" # Ansible: {{item.comment if (item.comment is defined) else ''}}"
+    regexp: "^{{item.name}}="
+    dest: "{{item.path if (item.path is defined) and not (item.path == '') else file_path_rc_conf}}"
+  with_items: "{{openbsd_rc_all + openbsd_rc_group + openbsd_rc_host}}"
+  tags:
+    - files
+    - config
+    - main
+    - main_rc

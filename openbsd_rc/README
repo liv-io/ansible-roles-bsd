@@ -28,7 +28,6 @@ INSTALL
       - role: openbsd_rc
     vars:
       openbsd_rc_state: 'install'
-      openbsd_rc_path_default: '/etc/rc.conf.local'
 
 INACTIVE
   - hosts: all
@@ -100,7 +99,7 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : "{{openbsd_rc_path_default}}"
+    Default    : '/etc/rc.conf.local'
     Options    :
       Examples: '/etc/rc.conf.local'
 
@@ -161,16 +160,6 @@ ROLE
       Examples: [{name: 'nfs_server', value: 'YES', state: 'true', comment: 'Enable the NFS server'},
                  {name: 'nfsd_flags', value: '-tun 8', state: 'true', comment: 'Start 4 copies of the NFS server'}]
       None    : []
-
-  openbsd_rc_path_default
-    Description: Define the default path of the 'rc' file.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '/etc/rc.conf.local'
-    Options    :
-      Examples: '/etc/rc.conf.local'
 
 --------------------------------------------------------------------------------
 CONFLICTS

@@ -7,5 +7,3 @@ openbsd_rc_all: []
 openbsd_rc_group: []
 
 openbsd_rc_host: []
-
-openbsd_rc_path_default: '/etc/rc.conf.local'
