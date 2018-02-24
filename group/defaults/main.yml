@@ -4,6 +4,8 @@ group_state: 'install'
 
 group_all: []
 
+group_dependencies: []
+
 group_group: []
 
 group_host: []

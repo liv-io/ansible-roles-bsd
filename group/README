@@ -12,8 +12,7 @@ License: Simplified BSD License
 DESCRIPTION
 --------------------------------------------------------------------------------
 
-Create, update and delete group accounts with this role. In addition it helps to
-manage the group's 'authorized keys'.
+Create, update and delete groups with this role.
 
 For more detailed information on the usage and available configuration options
 please consult the following sections.
@@ -29,13 +28,6 @@ INSTALL
     vars:
       group_state: 'install'
 
-DISABLE
-  - hosts: all
-    roles:
-      - role: group
-    vars:
-      group_state: 'disable'
-
 INACTIVE
   - hosts: all
     roles:
@@ -50,15 +42,19 @@ CONFIG
         state: 'true'
         gid: '2001'
 
-    group_group:
+    group_dependencies:
       - name: 'group02'
         state: 'true'
-        gid: '2002'
+        system: 'true'
+
+    group_group:
+      - name: 'group03'
+        state: 'false'
+        gid: '2003'
 
     group_host:
-      - state: 'false'
-        name: 'group03'
-        gid: '2003'
+      - name: 'group04'
+        state: 'false'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -84,17 +80,17 @@ CONFIG
     Type       : String
     Default    : ''
     Options    :
-      Examples: 'group01' | 'group02' | 'group03'
+      Examples: 'group01' | 'group02' | 'group03' | 'group04'
 
   gid
     Description: Set the GID of the group.
     Implemented: 0.1
-    Required   : True
+    Required   : False
     Value      : Arbitrary
     Type       : String
     Default    : ''
     Options    :
-      Examples: '2001' | '2002' | '2003'
+      Examples: '2001' | '2002' | '2003' | '2004'
 
   system
     Description: Control whether to create a system group.
@@ -117,11 +113,22 @@ ROLE
     Default    : 'install'
     Options    :
       Install : 'true' | 'yes' | 'install'
-      Disable : 'false' | 'no' | 'disable'
       Inactive: 'quiesce' | 'inactive'
 
   group_all
     Description: Define the 'group_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'group01', state: 'true', gid: '2001'},
+                 {name: 'group02', state: 'true', gid: '2002'}]
+      None    : []
+
+  group_dependencies
+    Description: Define the 'group_dependencies' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary

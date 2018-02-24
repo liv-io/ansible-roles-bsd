@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - group
 
 #-------------------------------------------------------------------------------
@@ -31,5 +31,5 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - group
