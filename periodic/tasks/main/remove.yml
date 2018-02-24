@@ -13,23 +13,20 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - freebsd
+    - remove
+    - main
     - periodic
 
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create periodic.conf'
-  template:
-    src: "{{file_src_periodic_conf}}"
-    dest: "{{file_path_periodic_conf}}"
-    mode: "{{file_mode_periodic_conf}}"
-    owner: "{{file_owner_periodic_conf}}"
-    group: "{{file_group_periodic_conf}}"
+- name: 'file remove periodic.conf'
+  file:
+    state: 'absent'
+    path: "{{file_path_periodic_conf}}"
   tags:
     - files
-    - install
-    - freebsd
+    - remove
+    - main
     - periodic

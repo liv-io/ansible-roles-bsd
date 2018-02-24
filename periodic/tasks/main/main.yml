@@ -4,12 +4,12 @@
   include: install.yml
   when: not (periodic_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - freebsd
+    - main
     - periodic
 
 - name: 'task include remove'
   include: remove.yml
   when: (periodic_state|match('false|no|remove'))
   tags:
-    - freebsd
+    - main
     - periodic
