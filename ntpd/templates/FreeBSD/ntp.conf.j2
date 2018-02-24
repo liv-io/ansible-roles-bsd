@@ -77,7 +77,7 @@ tos minclock 3 maxclock 6
 {% for item in ntpd_server %}
 # {{item.comment}}
 {% for server in item.server %}
-server {{server}} {% for option in option %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
+server {{server}} {% for option in item.option %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
 {% endfor %}
