@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - remove
-    - unix
+    - main
     - motd
 
 #-------------------------------------------------------------------------------
@@ -31,5 +31,5 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - motd

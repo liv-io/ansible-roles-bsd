@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - motd
 
 #-------------------------------------------------------------------------------
@@ -31,7 +31,7 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - motd
 
 - name: 'line disable motd-patch'
@@ -44,5 +44,5 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - motd

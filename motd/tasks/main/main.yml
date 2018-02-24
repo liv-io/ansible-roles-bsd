@@ -2,14 +2,14 @@
 
 - name: 'task include install'
   include: install.yml
-  when: not (motd_state|match('false|no|disable|quiesce|inactive'))
+  when: not (motd_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - motd
 
 - name: 'task include remove'
   include: remove.yml
-  when: (motd_state|match('false|no|disable'))
+  when: (motd_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - motd
