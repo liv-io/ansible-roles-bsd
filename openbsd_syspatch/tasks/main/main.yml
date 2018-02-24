@@ -4,5 +4,5 @@
   include: install.yml
   when: not (openbsd_syspatch_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - openbsd
-    - openbsd_syspatch
+    - main
+    - main_syspatch

@@ -14,8 +14,8 @@
       skip: 'true'
   tags:
     - install
-    - openbsd
-    - openbsd_syspatch
+    - main
+    - main_syspatch
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -31,5 +31,5 @@
   tags:
     - files
     - install
-    - openbsd
-    - openbsd_syspatch
+    - main
+    - main_syspatch
