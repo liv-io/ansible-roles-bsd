@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - remove
-    - unix
+    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -30,7 +30,7 @@
   tags:
     - commands
     - remove
-    - unix
+    - main
     - nginx
 
 - name: 'command disable nginx'
@@ -40,7 +40,7 @@
   tags:
     - commands
     - remove
-    - unix
+    - main
     - nginx
 
 - name: 'command stop nginx'
@@ -50,7 +50,7 @@
   tags:
     - commands
     - remove
-    - unix
+    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -64,7 +64,7 @@
   tags:
     - packaging
     - remove
-    - unix
+    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -81,7 +81,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - nginx
 
 - name: 'file remove nginx.conf'
@@ -91,7 +91,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - nginx
 
 - name: 'file remove log.dir'
@@ -102,7 +102,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - nginx
 
 - name: 'file remove vhosts.d'
@@ -112,5 +112,5 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - nginx

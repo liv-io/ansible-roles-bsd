@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - config
-    - unix
+    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -23,8 +23,8 @@
 
 - name: 'template create vhost'
   template:
-    src: "templates/{{(item.template|e) if (item.template is defined) and not (item.template == '') else nginx_vhost_template}}/vhost.conf.j2"
-    dest: "{{file_path_vhosts_d_name}}/{{(item.name|e)}}-{{(item.port|int(80))}}.conf"
+    src: "templates/{{item.template if (item.template is defined) and not (item.template == '') else nginx_vhost_template}}/vhost.conf.j2"
+    dest: "{{file_path_vhosts_d_name}}/{{item.name}}-{{(item.port|int(80))}}.conf"
     mode: "{{file_mode_vhost}}"
     owner: "{{file_owner_vhost}}"
     group: "{{file_group_vhost}}"
@@ -36,13 +36,13 @@
   tags:
     - files
     - config
-    - unix
+    - main
     - nginx
 
 - name: 'file remove vhost'
   file:
     state: 'absent'
-    path: "{{file_path_vhosts_d_name}}/{{(item.name|e)}}-{{(item.port|int(80))}}.conf"
+    path: "{{file_path_vhosts_d_name}}/{{item.name}}-{{(item.port|int(80))}}.conf"
   with_items: "{{nginx_vhost}}"
   notify:
     - 'command check nginx'
@@ -51,5 +51,5 @@
   tags:
     - files
     - config
-    - unix
+    - main
     - nginx

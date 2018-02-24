@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -28,7 +28,7 @@
   tags:
     - packaging
     - install
-    - unix
+    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -46,7 +46,7 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - nginx
 
 - name: 'file create vhosts.d'
@@ -59,7 +59,7 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - nginx
 
 - name: 'stat file dhparam.pem'
@@ -69,7 +69,7 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -86,5 +86,5 @@
   tags:
     - commands
     - install
-    - unix
+    - main
     - nginx

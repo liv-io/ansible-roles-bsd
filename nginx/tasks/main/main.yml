@@ -4,33 +4,33 @@
   include: install.yml
   when: not (nginx_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - nginx
 
 - name: 'task include config'
   include: config.yml
   when: not (nginx_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - nginx
 
 - name: 'task include enable'
   include: enable.yml
   when: (nginx_state|match('start|on|enable'))
   tags:
-    - unix
+    - main
     - nginx
 
 - name: 'task include disable'
   include: disable.yml
   when: (nginx_state|match('stop|off|disable'))
   tags:
-    - unix
+    - main
     - nginx
 
 - name: 'task include remove'
   include: remove.yml
   when: (nginx_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - nginx

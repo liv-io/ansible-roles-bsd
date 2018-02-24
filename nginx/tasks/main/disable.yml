@@ -13,8 +13,8 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - enable
-    - unix
+    - disable
+    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -28,26 +28,24 @@
     mode: "{{file_mode_nginx_conf}}"
     owner: "{{file_owner_nginx_conf}}"
     group: "{{file_group_nginx_conf}}"
-  notify:
-    - 'command check nginx'
-    - 'service reload nginx'
+  notify: 'command check nginx'
   tags:
     - files
-    - enable
-    - unix
+    - disable
+    - main
     - nginx
 
-- name: 'line enable nginx_enable'
+- name: 'line disable nginx_enable'
   lineinfile:
     state: 'present'
-    line: "{{file_line_nginx_enable}}=\"YES\" # Ansible: Enable nginx"
+    line: "{{file_line_nginx_enable}}=\"NO\" # Ansible: Disable nginx"
     regexp: "^{{file_line_nginx_enable}}="
     dest: "{{file_path_nginx_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
-    - enable
-    - unix
+    - disable
+    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -63,18 +61,18 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
-    - enable
-    - unix
+    - disable
+    - main
     - nginx
 
-- name: 'command enable nginx'
-  command: "{{command_cmd_enable_nginx}}"
+- name: 'command disable nginx'
+  command: "{{command_cmd_disable_nginx}}"
   check_mode: 'no'
-  when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 1)
+  when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 0)
   tags:
     - commands
-    - enable
-    - unix
+    - disable
+    - main
     - nginx
 
 - name: 'command check nginx'
@@ -86,32 +84,32 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - commands
-    - enable
-    - unix
+    - disable
+    - main
     - nginx
 
-- name: 'command start nginx'
-  command: "{{command_cmd_start_nginx}}"
+- name: 'command stop nginx'
+  command: "{{command_cmd_stop_nginx}}"
   check_mode: 'no'
-  when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 1)
+  when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 0)
   tags:
     - commands
-    - enable
-    - unix
+    - disable
+    - main
     - nginx
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: 'service start nginx'
+- name: 'service stop nginx'
   service:
-    state: 'started'
-    enabled: 'yes'
+    state: 'stopped'
+    enabled: 'no'
     name: "{{service_name_nginx}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - system
-    - enable
-    - unix
+    - disable
+    - main
     - nginx

@@ -338,7 +338,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 

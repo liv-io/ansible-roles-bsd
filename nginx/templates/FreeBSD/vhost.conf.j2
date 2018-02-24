@@ -23,15 +23,15 @@ server {
 
   # Listen
 {% if (item.listen is defined) and not (item.listen == '') %}
-  listen {{(item.listen|e)}}{% if (item.port is defined) and not (item.port == '') %}:{{(item.port|int(80))}}{% endif %}{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %} ssl{% endif %};
+  listen {{item.listen}}{% if (item.port is defined) and not (item.port == '') %}:{{(item.port|int(80))}}{% endif %}{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %} ssl{% endif %};
 {% else %}
   listen *:{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(80))}}{% endif %}{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %} ssl{% endif %};
 {% endif %}
   # Server name
 {% if (item.name is defined) and not (item.name == '') %}
-  server_name {{(item.name|e)}}{% if (item.alias is defined) and not ((item.alias == '') or (item.alias == [])) %} {% for alias in item.alias %}{{(alias|e)}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
+  server_name {{item.name}}{% if (item.alias is defined) and not ((item.alias == '') or (item.alias == [])) %} {% for alias in item.alias %}{{alias}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
 {% else %}
-  server_name {{ansible_fqdn}} {% if (item.alias is defined) and not ((item.alias == '') or (item.alias == [])) %} {% for alias in item.alias %}{{(alias|e)}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
+  server_name {{ansible_fqdn}} {% if (item.alias is defined) and not ((item.alias == '') or (item.alias == [])) %} {% for alias in item.alias %}{{alias}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
 {% endif %}
 
   #-----------------------------------------------------------------------------
@@ -40,12 +40,12 @@ server {
 
 {% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %}
   # Logging options
-  error_log /var/log/nginx/{% if (item.name is defined) and not (item.name == '') %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(443))}}{% else %}{{(nginx_port|e)}}{% endif %}_error.log;
-  access_log /var/log/nginx/{% if (item.name is defined) and not (item.name == '') %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(443))}}{% else %}{{(nginx_port|e)}}{% endif %}_access.log main_ssl;
+  error_log /var/log/nginx/{% if (item.name is defined) and not (item.name == '') %}{{item.name}}{% else %}{{nginx_name}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(443))}}{% else %}{{nginx_port}}{% endif %}_error.log;
+  access_log /var/log/nginx/{% if (item.name is defined) and not (item.name == '') %}{{item.name}}{% else %}{{nginx_name}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(443))}}{% else %}{{nginx_port}}{% endif %}_access.log main_ssl;
 {% else %}
   # Logging options
-  error_log /var/log/nginx/{% if (item.name is defined) and not (item.name == '') %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(80))}}{% else %}{{(nginx_port|e)}}{% endif %}_error.log;
-  access_log /var/log/nginx/{% if (item.name is defined) and not (item.name == '') %}{{(item.name|e)}}{% else %}{{(nginx_name|e)}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(80))}}{% else %}{{(nginx_port|e)}}{% endif %}_access.log main;
+  error_log /var/log/nginx/{% if (item.name is defined) and not (item.name == '') %}{{item.name}}{% else %}{{nginx_name}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(80))}}{% else %}{{nginx_port}}{% endif %}_error.log;
+  access_log /var/log/nginx/{% if (item.name is defined) and not (item.name == '') %}{{item.name}}{% else %}{{nginx_name}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(80))}}{% else %}{{nginx_port}}{% endif %}_access.log main;
 {% endif %}
 
   #-----------------------------------------------------------------------------
@@ -54,7 +54,7 @@ server {
 
 {% if (item.hsts_state is defined) and (item.hsts_state|match('true|yes|enable')) %}
   # HTTP Strict Transport Security (HSTS)
-  add_header Strict-Transport-Security 'max-age={% if (item.hsts_max_age is defined) and (item.hsts_max_age|match('true|yes|enable')) %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{(nginx_hsts_max_age|e)}}{% endif %}' always;
+  add_header Strict-Transport-Security 'max-age={% if (item.hsts_max_age is defined) and (item.hsts_max_age|match('true|yes|enable')) %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{nginx_hsts_max_age}}{% endif %}' always;
 {% endif %}
 {% if (item.xss_protection_state is defined) and (item.xss_protection_state|match('true|yes|enable')) %}
   # X-Frame-Options: Disable frame embedding (phishing, clickjacking prevention)
@@ -72,7 +72,7 @@ server {
 
   # SSL/TLS protocol versions
 {% if (item.ssl_protocol is defined) and not ((item.ssl_protocol == '') or (item.ssl_protocol == [])) %}
-  ssl_protocols {% for ssl_protocol in item.ssl_protocol %}{{(ssl_protocol|e)}}{% if not loop.last %} {% endif %}{% endfor %};
+  ssl_protocols {% for ssl_protocol in item.ssl_protocol %}{{ssl_protocol}}{% if not loop.last %} {% endif %}{% endfor %};
 {% else %}
   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 {% endif %}
@@ -84,13 +84,13 @@ server {
 {% endif %}
   # Cipher Suite available for negotiation in SSL handshake
 {% if (item.ssl_cipher_suite is defined) and not ((item.ssl_cipher_suite == '') or (item.ssl_cipher_suite == [])) %}
-  ssl_ciphers '{{(item.ssl_cipher_suite|e)}}';
+  ssl_ciphers '{{item.ssl_cipher_suite}}';
 {% else %}
   ssl_ciphers 'AES256+EECDH:AES256+EDH';
 {% endif %}
   # ECDHE ciphers curve
 {% if (item.ssl_ecdh_curve is defined) and not ((item.ssl_ecdh_curve == '') or (item.ssl_ecdh_curve == [])) %}
-  ssl_ecdh_curve '{{(item.ssl_ecdh_curve|e)}}';
+  ssl_ecdh_curve '{{item.ssl_ecdh_curve}}';
 {% else %}
   ssl_ecdh_curve 'secp384r1';
 {% endif %}
@@ -98,13 +98,13 @@ server {
   ssl_dhparam '{{file_path_dhparam_pem}}';
   # Server PEM-encoded X.509 certificate file
 {% if (item.ssl_certificate is defined) and not (item.ssl_certificate == '') %}
-  ssl_certificate '{{(item.ssl_certificate|e)}}';
+  ssl_certificate '{{item.ssl_certificate}}';
 {% else %}
   #ssl_certificate '';
 {% endif %}
   # Server PEM-encoded private key file
 {% if (item.ssl_certificate_key is defined) and not (item.ssl_certificate_key == '') %}
-  ssl_certificate_key '{{(item.ssl_certificate_key|e)}}';
+  ssl_certificate_key '{{item.ssl_certificate_key}}';
 {% else %}
   #ssl_certificate_key '';
 {% endif %}
