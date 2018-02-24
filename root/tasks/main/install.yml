@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - root
 
 #-------------------------------------------------------------------------------
@@ -30,7 +30,7 @@
   tags:
     - system
     - install
-    - unix
+    - main
     - root
 
 - name: 'user create root'
@@ -53,7 +53,7 @@
   tags:
     - system
     - install
-    - unix
+    - main
     - root
 
 - name: 'authorized_key create root'
@@ -65,7 +65,7 @@
   tags:
     - system
     - install
-    - unix
+    - main
     - root
 
 #-------------------------------------------------------------------------------
@@ -82,5 +82,5 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - root

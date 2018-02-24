@@ -21,7 +21,7 @@ group_system_root: 'yes'
 
 # root
 user_name_root: 'root'
-user_comment_root: "{{(root_comment|e) if not (root_comment == '') else 'root'}}"
+user_comment_root: "{{root_comment if not (root_comment == '') else 'root'}}"
 user_uid_root: '0'
 user_group_root: '0'
 user_groups_root: "{{root_groups if not ((root_groups == '') or (root_groups == [])) else ['wheel']}}"

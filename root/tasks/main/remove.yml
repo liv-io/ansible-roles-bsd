@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - remove
-    - unix
+    - main
     - root
 
 #-------------------------------------------------------------------------------
@@ -30,5 +30,5 @@
   tags:
     - system
     - remove
-    - unix
+    - main
     - root
