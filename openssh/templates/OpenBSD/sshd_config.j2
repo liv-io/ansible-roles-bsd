@@ -70,7 +70,7 @@ ListenAddress {{listen_address}}
 
 {% if not ((openssh_host_key == '') or (openssh_host_key == [])) %}
 {% for host_key in openssh_host_key %}
-HostKey {{(host_key|e)}}
+HostKey {{host_key}}
 {% endfor %}
 {% else %}
 HostKey /etc/ssh/ssh_host_rsa_key
@@ -259,7 +259,7 @@ Subsystem	sftp	/usr/libexec/sftp-server
 {% if not ((openssh_match == '') or (openssh_match == [])) %}
 {% for match in openssh_match %}
 Match {{match.type}} {{match.name}}
-{% for key, value in (match.config.items()|sort) %}
+{% for key, value in match.config.items() %}
   {{key}} {{value}}
 {% endfor %}
 

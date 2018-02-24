@@ -40,13 +40,9 @@ ENABLE
       - role: openssh
     vars:
       openssh_state: 'enable'
-      openssh_allow_users:
-        - 'user01'
-        - 'user02'
-        - 'user03'
+      openssh_allow_users: ['user01', 'user02', 'user03']
       openssh_password_authentication: 'no'
-      openssh_listen_address:
-        - '0.0.0.0'
+      openssh_listen_address: ['0.0.0.0']
 
 DISABLE
   - hosts: all
@@ -54,13 +50,9 @@ DISABLE
       - role: openssh
     vars:
       openssh_state: 'disable'
-      openssh_allow_users:
-        - 'user01'
-        - 'user02'
-        - 'user03'
+      openssh_allow_users: ['user01', 'user02', 'user03']
       openssh_password_authentication: 'no'
-      openssh_listen_address:
-        - '0.0.0.0'
+      openssh_listen_address: ['0.0.0.0']
 
 REMOVE
   - hosts: all
@@ -83,7 +75,6 @@ VARIABLES
 ROLE
   openssh_state
     Description: Control the state of the role.
-                 'openssh' is a core package and can therefore not be removed.
                  'openssh' is a core service and should therefore not be
                  disabled.
     Implemented: 0.1
@@ -145,7 +136,7 @@ ROLE
 
   openssh_banner_template
     Description: Define the template source for 'banner.j2'.
-                 Any value other than 'default' requires a Jinja2 file to be
+                 Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'openssh/templates/example/banner.j2'
@@ -153,7 +144,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'example' | 'environment' | 'hostname'
 

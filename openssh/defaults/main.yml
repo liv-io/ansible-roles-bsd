@@ -10,7 +10,7 @@ openssh_allow_users: []
 
 openssh_banner: 'enable'
 
-openssh_banner_template: 'default'
+openssh_banner_template: 'main'
 
 openssh_ciphers: ['chacha20-poly1305@openssh.com', 'aes256-ctr', 'aes192-ctr']
 

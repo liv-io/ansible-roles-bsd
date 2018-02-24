@@ -8,5 +8,5 @@
 file_mode_sshd_config: '0640'
 
 # sshd_enable
-file_path_sshd_enable: '/etc/rc.conf'
 file_line_sshd_enable: 'sshd_enable'
+file_path_sshd_enable: '/etc/rc.conf'

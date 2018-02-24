@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - disable
-    - unix
+    - main
     - openssh
 
 #-------------------------------------------------------------------------------
@@ -31,7 +31,7 @@
   tags:
     - files
     - disable
-    - unix
+    - main
     - openssh
 
 - name: 'template create moduli'
@@ -45,7 +45,7 @@
   tags:
     - files
     - disable
-    - unix
+    - main
     - openssh
 
 - name: 'template create ssh_config'
@@ -58,7 +58,7 @@
   tags:
     - files
     - disable
-    - unix
+    - main
     - openssh
 
 - name: 'template create sshd_config'
@@ -71,7 +71,7 @@
   tags:
     - files
     - disable
-    - unix
+    - main
     - openssh
 
 - name: 'line disable sshd_enable'
@@ -84,7 +84,7 @@
   tags:
     - files
     - disable
-    - unix
+    - main
     - openssh
 
 #-------------------------------------------------------------------------------
@@ -101,7 +101,7 @@
   tags:
     - commands
     - disable
-    - unix
+    - main
     - openssh
 
 - name: 'command disable openssh'
@@ -111,7 +111,7 @@
   tags:
     - commands
     - disable
-    - unix
+    - main
     - openssh
 
 - name: 'command check openssh'
@@ -124,7 +124,7 @@
   tags:
     - commands
     - disable
-    - unix
+    - main
     - openssh
 
 - name: 'command stop openssh'
@@ -134,7 +134,7 @@
   tags:
     - commands
     - disable
-    - unix
+    - main
     - openssh
 
 #-------------------------------------------------------------------------------
@@ -150,5 +150,5 @@
   tags:
     - system
     - disable
-    - unix
+    - main
     - openssh

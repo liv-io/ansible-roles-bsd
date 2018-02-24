@@ -14,5 +14,5 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - openssh
