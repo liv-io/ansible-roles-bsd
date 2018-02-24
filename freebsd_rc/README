@@ -28,7 +28,6 @@ INSTALL
       - role: freebsd_rc
     vars:
       freebsd_rc_state: 'install'
-      freebsd_rc_path_default: '/etc/rc.conf'
 
 INACTIVE
   - hosts: all
@@ -122,7 +121,7 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : "{{freebsd_rc_path_default}}"
+    Default    : '/etc/rc.conf'
     Options    :
       Examples: '/etc/rc.conf'
 
@@ -185,16 +184,6 @@ ROLE
       Examples: [{name: 'sshd_enable', value: 'YES', state: 'true', comment: 'Enable service OpenSSH'},
                  {name: 'hostname', value: 'example01', state: 'true', comment: 'Define short hostname'}]
       None    : []
-
-  freebsd_rc_path_default
-    Description: Define the default path of the 'rc' file.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '/etc/rc.conf'
-    Options    :
-      Examples: '/etc/rc.conf'
 
 --------------------------------------------------------------------------------
 CONFLICTS

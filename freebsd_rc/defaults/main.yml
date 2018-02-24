@@ -7,5 +7,3 @@ freebsd_rc_all: []
 freebsd_rc_group: []
 
 freebsd_rc_host: []
-
-freebsd_rc_path_default: '/etc/rc.conf'

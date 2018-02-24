@@ -4,5 +4,5 @@
   include: config.yml
   when: not (freebsd_rc_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - freebsd
-    - freebsd_rc
+    - main
+    - main_rc
