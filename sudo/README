@@ -52,11 +52,12 @@ INACTIVE
 CONFIG
   vars:
     sudo_all:
-      - name: 'core'
+      - name: 'root'
         state: 'true'
-        comment: 'Core Sudoers'
+        comment: 'root'
         config: ['root ALL=(ALL) ALL']
 
+    sudo_dependencies:
       - name: 'ansible'
         state: 'true'
         comment: 'Ansible Configuration Management'
@@ -167,7 +168,19 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'core', state: 'true', order: '10', comment: 'Core Sudoers', config: {'root ALL=(ALL) ALL'}},
+      Examples: [{name: 'root', state: 'true', order: '10', comment: 'root', config: {'root ALL=(ALL) ALL'}},
+                 {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
+      None    : []
+
+  sudo_dependencies
+    Description: Define the 'sudo_dependencies' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'root', state: 'true', order: '10', comment: 'root', config: {'root ALL=(ALL) ALL'}},
                  {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
       None    : []
 
@@ -179,7 +192,7 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'core', state: 'true', order: '10', comment: 'Core Sudoers', config: {'root ALL=(ALL) ALL'}},
+      Examples: [{name: 'root', state: 'true', order: '10', comment: 'root', config: {'root ALL=(ALL) ALL'}},
                  {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
       None    : []
 
@@ -191,7 +204,7 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'core', state: 'true', order: '10', comment: 'Core Sudoers', config: {'root ALL=(ALL) ALL'}},
+      Examples: [{name: 'root', state: 'true', order: '10', comment: 'root', config: {'root ALL=(ALL) ALL'}},
                  {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
       None    : []
 
@@ -223,7 +236,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'default'
+    Default    : 'main'
     Options    :
       Examples: 'dummy' | 'example'
 

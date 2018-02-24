@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - config
-    - unix
+    - main
     - sudo
 
 #-------------------------------------------------------------------------------
@@ -24,27 +24,27 @@
 - name: 'template create sudo-config'
   template:
     src: "{{file_src_sudo_config}}"
-    dest: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) else ''}}{{'-' if (item.order is defined) else ''}}{{(item.name|e) if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
+    dest: "{{file_path_sudoers_d}}/{{item.order if (item.order is defined) else ''}}{{'-' if (item.order is defined) else ''}}{{item.name if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
     mode: "{{file_mode_sudo_config}}"
     owner: "{{file_owner_sudo_config}}"
     group: "{{file_group_sudo_config}}"
     validate: "{{file_validate_sudo_config}}"
-  with_items: "{{sudo_all + sudo_group + sudo_host}}"
+  with_items: "{{sudo_all + sudo_dependencies + sudo_group + sudo_host}}"
   when: not (item.state|match('false|no|remove'))
   tags:
     - files
     - config
-    - unix
+    - main
     - sudo
 
 - name: 'file remove sudo-config'
   file:
     state: 'absent'
-    path: "{{file_path_sudoers_d}}/{{(item.order|e) if (item.order is defined) else ''}}{{'-' if (item.order is defined) else ''}}{{(item.name|e) if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
-  with_items: "{{sudo_all + sudo_group + sudo_host}}"
+    path: "{{file_path_sudoers_d}}/{{item.order if (item.order is defined) else ''}}{{'-' if (item.order is defined) else ''}}{{item.name if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
+  with_items: "{{sudo_all + sudo_dependencies + sudo_group + sudo_host}}"
   when: (item.state|match('false|no|remove'))
   tags:
     - files
     - config
-    - unix
+    - main
     - sudo

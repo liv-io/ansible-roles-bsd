@@ -4,19 +4,19 @@
   include: install.yml
   when: not (sudo_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - sudo
 
 - name: 'task include config'
   include: config.yml
   when: not (sudo_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - unix
+    - main
     - sudo
 
 - name: 'task include remove'
   include: remove.yml
   when: (sudo_state|match('false|no|remove'))
   tags:
-    - unix
+    - main
     - sudo

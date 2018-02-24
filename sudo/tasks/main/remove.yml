@@ -13,51 +13,44 @@
       - 'vars/main.yml'
       skip: 'true'
   tags:
-    - install
-    - unix
+    - remove
+    - main
     - sudo
 
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
 
-- name: 'package install sudo'
+- name: 'package remove sudo'
   package:
-    state: 'present'
+    state: 'absent'
     name: "{{package_name_sudo}}"
   tags:
     - packaging
-    - install
-    - unix
+    - remove
+    - main
     - sudo
 
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create sudoers'
-  template:
-    src: "{{file_src_sudoers}}"
-    dest: "{{file_path_sudoers}}"
-    mode: "{{file_mode_sudoers}}"
-    owner: "{{file_owner_sudoers}}"
-    group: "{{file_group_sudoers}}"
-    validate: "{{file_validate_sudoers}}"
+- name: 'file remove sudoers'
+  file:
+    state: 'absent'
+    path: "{{file_path_sudoers}}"
   tags:
     - files
-    - install
-    - unix
+    - remove
+    - main
     - sudo
 
-- name: 'file create sudoers.d'
+- name: 'file remove sudoers.d'
   file:
-    state: 'directory'
+    state: 'absent'
     path: "{{file_path_sudoers_d}}"
-    mode: "{{file_mode_sudoers_d}}"
-    owner: "{{file_owner_sudoers_d}}"
-    group: "{{file_group_sudoers_d}}"
   tags:
     - files
-    - install
-    - unix
+    - remove
+    - main
     - sudo
