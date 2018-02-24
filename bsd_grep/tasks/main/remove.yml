@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - remove
-    - bsd
+    - main
     - bsd_grep
 
 #-------------------------------------------------------------------------------
@@ -28,5 +28,5 @@
   tags:
     - packaging
     - remove
-    - bsd
+    - main
     - bsd_grep

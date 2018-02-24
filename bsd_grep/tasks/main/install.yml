@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - bsd
+    - main
     - bsd_grep
 
 #-------------------------------------------------------------------------------
@@ -28,5 +28,5 @@
   tags:
     - packaging
     - install
-    - bsd
+    - main
     - bsd_grep
