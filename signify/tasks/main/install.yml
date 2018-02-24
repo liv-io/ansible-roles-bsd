@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - openbsd
+    - main
     - signify
 
 #-------------------------------------------------------------------------------
@@ -31,5 +31,5 @@
   tags:
     - files
     - install
-    - openbsd
+    - main
     - signify

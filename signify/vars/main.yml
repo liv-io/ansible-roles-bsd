@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # signify.dir
-file_src_signify_dir: 'files/default/'
+file_src_signify_dir: 'files/main/'
 file_path_signify_dir: '/etc/signify'
 file_mode_signify_dir: '0755'
 file_owner_signify_dir: 'root'
