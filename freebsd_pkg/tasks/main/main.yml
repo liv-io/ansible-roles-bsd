@@ -4,5 +4,5 @@
   include: install.yml
   when: not (freebsd_pkg_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - freebsd
-    - freebsd_pkg
+    - main
+    - main_pkg

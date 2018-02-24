@@ -14,8 +14,8 @@
       skip: 'true'
   tags:
     - install
-    - freebsd
-    - freebsd_pkg
+    - main
+    - main_pkg
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -31,8 +31,8 @@
   tags:
     - files
     - install
-    - freebsd
-    - freebsd_pkg
+    - main
+    - main_pkg
 
 - name: 'template create pkg.conf'
   template:
@@ -44,5 +44,5 @@
   tags:
     - files
     - install
-    - freebsd
-    - freebsd_pkg
+    - main
+    - main_pkg

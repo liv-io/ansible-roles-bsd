@@ -2,8 +2,8 @@
 
 freebsd_pkg_state: 'install'
 
-freebsd_pkg_freebsd_conf_template: 'default'
+freebsd_pkg_freebsd_conf_template: 'main'
 
-freebsd_pkg_pkg_conf_template: 'default'
+freebsd_pkg_pkg_conf_template: 'main'
 
 freebsd_pkg_release: 'latest'

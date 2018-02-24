@@ -1,7 +1,7 @@
 ---
 
-- name: 'task include freebsd'
-  include: freebsd/main.yml
+- name: 'task include main'
+  include: main/main.yml
   when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("11\.1-*")))
   tags:
-    - freebsd_pkg
+    - main_pkg
