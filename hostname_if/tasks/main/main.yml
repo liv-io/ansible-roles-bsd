@@ -4,5 +4,5 @@
   include: config.yml
   when: not (hostname_if_state|match('false|no|remove|quiesce|inactive'))
   tags:
-    - openbsd
+    - main
     - hostname_if

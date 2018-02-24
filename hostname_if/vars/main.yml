@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # hostname.if
-file_src_hostname_if: "templates/{{(hostname_if_hostname_if_template|e)}}/hostname.if.j2"
+file_src_hostname_if: "templates/{{hostname_if_hostname_if_template}}/hostname.if.j2"
 file_mode_hostname_if: '0640'
 file_owner_hostname_if: 'root'
 file_group_hostname_if: 'wheel'

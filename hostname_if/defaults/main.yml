@@ -14,4 +14,4 @@ hostname_if_group: []
 
 hostname_if_host: []
 
-hostname_if_hostname_if_template: 'default'
+hostname_if_hostname_if_template: 'main'

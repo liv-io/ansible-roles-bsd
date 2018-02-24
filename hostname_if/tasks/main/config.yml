@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - config
-    - openbsd
+    - main
     - hostname_if
 
 #-------------------------------------------------------------------------------
@@ -23,7 +23,7 @@
 
 - name: 'template create hostname.if'
   template:
-    src: "templates/{{(item.template|e) if (item.template is defined) and not (item.template == '') else hostname_if_hostname_if_template}}/hostname.if.j2"
+    src: "templates/{{item.template if (item.template is defined) and not (item.template == '') else hostname_if_hostname_if_template}}/hostname.if.j2"
     dest: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
     mode: "{{file_mode_hostname_if}}"
     owner: "{{file_owner_hostname_if}}"
@@ -35,7 +35,7 @@
   tags:
     - files
     - config
-    - openbsd
+    - main
     - hostname_if
 
 - name: 'file remove hostname.if'
@@ -49,7 +49,7 @@
   tags:
     - files
     - config
-    - openbsd
+    - main
     - hostname_if
 
 #-------------------------------------------------------------------------------
@@ -66,5 +66,5 @@
   tags:
     - commands
     - config
-    - openbsd
+    - main
     - hostname_if
