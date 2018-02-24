@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -30,7 +30,7 @@
   tags:
     - packaging
     - install
-    - unix
+    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -47,7 +47,7 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -60,7 +60,7 @@
   tags:
     - commands
     - install
-    - unix
+    - main
     - opensmtpd
 
 - name: 'command pkill sendmail'
@@ -69,5 +69,5 @@
   tags:
     - commands
     - install
-    - unix
+    - main
     - opensmtpd

@@ -25,7 +25,7 @@
 # ALL
 {% if not ((opensmtpd_listen_all == '') or (opensmtpd_listen_all == [])) %}
 {% for item in opensmtpd_listen_all %}
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -36,7 +36,7 @@
 # GROUP
 {% if not ((opensmtpd_listen_group == '') or (opensmtpd_listen_group == [])) %}
 {% for item in opensmtpd_listen_group %}
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -47,7 +47,7 @@
 # HOST
 {% if not ((opensmtpd_listen_host == '') or (opensmtpd_listen_host == [])) %}
 {% for item in opensmtpd_listen_host %}
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -62,7 +62,7 @@
 # ALL
 {% if not ((opensmtpd_table_all == '') or (opensmtpd_table_all == [])) %}
 {% for item in opensmtpd_table_all %}
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -73,7 +73,7 @@
 # GROUP
 {% if not ((opensmtpd_table_group == '') or (opensmtpd_table_group == [])) %}
 {% for item in opensmtpd_table_group %}
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -84,7 +84,7 @@
 # HOST
 {% if not ((opensmtpd_table_host == '') or (opensmtpd_table_host == [])) %}
 {% for item in opensmtpd_table_host %}
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -99,7 +99,7 @@
 # ALL
 {% if not ((opensmtpd_accept_all == '') or (opensmtpd_accept_all == [])) %}
 {% for item in opensmtpd_accept_all %}
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -110,7 +110,7 @@
 # GROUP
 {% if not ((opensmtpd_accept_group == '') or (opensmtpd_accept_group == [])) %}
 {% for item in opensmtpd_accept_group %}
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
@@ -121,7 +121,7 @@
 # HOST
 {% if not ((opensmtpd_accept_host == '') or (opensmtpd_accept_host == [])) %}
 {% for item in opensmtpd_accept_host %}
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}

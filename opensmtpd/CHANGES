@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.0.0 (2018-02-20)
+I: Simplify and improve Ansible role
+
 * Version 1.2.1 (2017-12-08)
 I: Ensure role works in check mode
 

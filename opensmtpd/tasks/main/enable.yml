@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - enable
-    - unix
+    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -35,7 +35,7 @@
   tags:
     - files
     - enable
-    - unix
+    - main
     - opensmtpd
 
 - name: 'template create smtpd.conf'
@@ -49,7 +49,7 @@
   tags:
     - files
     - enable
-    - unix
+    - main
     - opensmtpd
 
 - name: 'line enable smtpd_enable'
@@ -62,7 +62,7 @@
   tags:
     - files
     - enable
-    - unix
+    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -79,7 +79,7 @@
   tags:
     - commands
     - enable
-    - unix
+    - main
     - opensmtpd
 
 - name: 'command enable opensmtpd'
@@ -89,7 +89,7 @@
   tags:
     - commands
     - enable
-    - unix
+    - main
     - opensmtpd
 
 - name: 'command check opensmtpd'
@@ -102,7 +102,7 @@
   tags:
     - commands
     - enable
-    - unix
+    - main
     - opensmtpd
 
 - name: 'command start opensmtpd'
@@ -112,7 +112,7 @@
   tags:
     - commands
     - enable
-    - unix
+    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -128,5 +128,5 @@
   tags:
     - system
     - enable
-    - unix
+    - main
     - opensmtpd

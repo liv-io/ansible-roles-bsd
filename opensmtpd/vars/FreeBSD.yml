@@ -5,12 +5,12 @@
 #-------------------------------------------------------------------------------
 
 # smtpd_enable
-file_path_smtpd_enable: '/etc/rc.conf'
 file_line_smtpd_enable: 'smtpd_enable'
+file_path_smtpd_enable: '/etc/rc.conf'
 
 # sendmail_enable
-file_path_sendmail_enable: '/etc/rc.conf'
 file_line_sendmail_enable: 'sendmail_enable'
+file_path_sendmail_enable: '/etc/rc.conf'
 
 # smtpd.conf
 file_path_smtpd_conf: '/usr/local/etc/mail/smtpd.conf'
