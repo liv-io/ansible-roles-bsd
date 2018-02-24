@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - remove
-    - unix
+    - main
     - shell
 
 #-------------------------------------------------------------------------------
@@ -28,7 +28,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - shell
 
 - name: 'file remove z_shell.sh'
@@ -38,5 +38,5 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - shell

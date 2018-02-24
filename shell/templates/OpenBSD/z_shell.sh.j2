@@ -60,6 +60,6 @@ export HISTSIZE
 
 {% if not (shell_pager|match('false|no|disable')) %}
 # PAGER
-PAGER='{{(shell_pager|e)}}'
+PAGER='{{shell_pager}}'
 export PAGER
 {% endif %}

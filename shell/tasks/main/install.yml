@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - install
-    - unix
+    - main
     - shell
 
 #-------------------------------------------------------------------------------
@@ -31,7 +31,7 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - shell
 
 - name: 'template create profile'
@@ -44,7 +44,7 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - shell
 
 - name: 'template create shell.sh'
@@ -57,7 +57,7 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - shell
 
 - name: 'template create z_shell.sh'
@@ -70,5 +70,5 @@
   tags:
     - files
     - install
-    - unix
+    - main
     - shell

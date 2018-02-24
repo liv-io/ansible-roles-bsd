@@ -21,12 +21,12 @@
 
 {% if not (shell_color_support|match('false|no|disable')) %}
 # ls
-alias ls='ls -FI -G -D "{{(shell_ls_time_style|e)}}"'
-alias la='ls -laF -G -D "{{(shell_ls_time_style|e)}}"' # long listing, list all files
-alias ll='ls -lFI -G -D "{{(shell_ls_time_style|e)}}"'  # long listing
-alias lr='ls -lRFI -G -D "{{(shell_ls_time_style|e)}}"' # long listing, list subdirectories recursively
-alias lt='ls -ltFI -G -D "{{(shell_ls_time_style|e)}}"' # long listing, sort by modification time
-alias lz='ls -lZFI -G -D "{{(shell_ls_time_style|e)}}"' # long listing, shellow MAC label
+alias ls='ls -FI -G -D "{{shell_ls_time_style}}"'
+alias la='ls -laF -G -D "{{shell_ls_time_style}}"' # long listing, list all files
+alias ll='ls -lFI -G -D "{{shell_ls_time_style}}"'  # long listing
+alias lr='ls -lRFI -G -D "{{shell_ls_time_style}}"' # long listing, list subdirectories recursively
+alias lt='ls -ltFI -G -D "{{shell_ls_time_style}}"' # long listing, sort by modification time
+alias lz='ls -lZFI -G -D "{{shell_ls_time_style}}"' # long listing, shellow MAC label
 
 # grep
 alias grep='grep --color=auto'
@@ -73,6 +73,6 @@ export HISTSIZE
 
 {% if not (shell_pager|match('false|no|disable')) %}
 # PAGER
-PAGER='{{(shell_pager|e)}}'
+PAGER='{{shell_pager}}'
 export PAGER
 {% endif %}
