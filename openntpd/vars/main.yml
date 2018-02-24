@@ -12,7 +12,7 @@ package_name_openntpd: 'openntpd'
 #-------------------------------------------------------------------------------
 
 # ntpd.conf
-file_src_ntpd_conf: "templates/{{(openntpd_ntpd_conf_template|e)}}/ntpd.conf.j2"
+file_src_ntpd_conf: "templates/{{openntpd_ntpd_conf_template}}/ntpd.conf.j2"
 file_path_ntpd_conf: '/etc/ntpd.conf'
 file_mode_ntpd_conf: '0644'
 file_owner_ntpd_conf: 'root'

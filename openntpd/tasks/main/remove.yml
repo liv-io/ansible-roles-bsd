@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - remove
-    - unix
+    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -31,7 +31,7 @@
   tags:
     - commands
     - remove
-    - unix
+    - main
     - openntpd
 
 - name: 'command disable openntpd'
@@ -41,7 +41,7 @@
   tags:
     - commands
     - remove
-    - unix
+    - main
     - openntpd
 
 - name: 'command check openntpd'
@@ -54,7 +54,7 @@
   tags:
     - commands
     - remove
-    - unix
+    - main
     - openntpd
 
 - name: 'command stop openntpd'
@@ -64,7 +64,7 @@
   tags:
     - commands
     - remove
-    - unix
+    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -79,7 +79,7 @@
   tags:
     - packaging
     - remove
-    - unix
+    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -96,7 +96,7 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - openntpd
 
 - name: 'file remove ntpd.conf'
@@ -107,5 +107,5 @@
   tags:
     - files
     - remove
-    - unix
+    - main
     - openntpd

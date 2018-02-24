@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - disable
-    - unix
+    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -31,7 +31,7 @@
   tags:
     - files
     - disable
-    - unix
+    - main
     - openntpd
 
 - name: 'line disable openntpd_enable'
@@ -44,7 +44,7 @@
   tags:
     - files
     - disable
-    - unix
+    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -61,7 +61,7 @@
   tags:
     - commands
     - disable
-    - unix
+    - main
     - openntpd
 
 - name: 'command disable openntpd'
@@ -71,7 +71,7 @@
   tags:
     - commands
     - disable
-    - unix
+    - main
     - openntpd
 
 - name: 'command check openntpd'
@@ -84,7 +84,7 @@
   tags:
     - commands
     - disable
-    - unix
+    - main
     - openntpd
 
 - name: 'command stop openntpd'
@@ -94,7 +94,7 @@
   tags:
     - commands
     - disable
-    - unix
+    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -110,5 +110,5 @@
   tags:
     - system
     - disable
-    - unix
+    - main
     - openntpd

@@ -27,11 +27,11 @@
 #listen on *
 
 {% if (openntpd_listen is defined) and not ((openntpd_listen == '') or (openntpd_listen == [])) %}
-{% for item in (openntpd_listen|sort) %}
+{% for item in openntpd_listen %}
 {% if (item.comment is defined) %}
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% endif %}
-{% for config in (item.config|sort) %}
+{% for config in item.config %}
 listen on {{config}}
 {% endfor %}
 {% endfor %}
@@ -50,16 +50,16 @@ listen on {{config}}
 #servers pool.ntp.org
 
 {% if (openntpd_server is defined) and not ((openntpd_server == '') or (openntpd_server == [])) %}
-{% for item in (openntpd_server|sort) %}
+{% for item in openntpd_server %}
 {% if (item.comment is defined) %}
-# {{(item.comment|e)}}
+# {{item.comment}}
 {% endif %}
-{% for server in (item.server|sort) %}
+{% for server in item.server %}
 {% if (item.type is defined) and ((item.type == 'single') or (item.type == 'server')) %}
-server {{(server|e)}} {% if (item.weight is defined) and not (item.weight == '') %}weight {{(item.weight|int(1))}}{% endif %}
+server {{server}} {% if (item.weight is defined) and not (item.weight == '') %}weight {{(item.weight|int(1))}}{% endif %}
 
 {% else %}
-servers {{(server|e)}} {% if (item.weight is defined) and not (item.weight == '') %}weight {{(item.weight|int(1))}}{% endif %}
+servers {{server}} {% if (item.weight is defined) and not (item.weight == '') %}weight {{(item.weight|int(1))}}{% endif %}
 
 {% endif %}
 {% endfor %}
