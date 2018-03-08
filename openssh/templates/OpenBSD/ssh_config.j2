@@ -66,6 +66,6 @@
 
 Host *
   Ciphers chacha20-poly1305@openssh.com,aes256-ctr,aes192-ctr
-  MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
-  KexAlgorithms curve25519-sha256@libssh.org
+  MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-sha1
+  KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha1
   Protocol 2
