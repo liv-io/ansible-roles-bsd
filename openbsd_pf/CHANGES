@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.6.8 (2018-03-09)
+B: Fix tags
+
 * Version 0.6.7 (2018-02-20)
 I: Simplify and improve Ansible role
 

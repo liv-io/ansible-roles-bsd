@@ -15,7 +15,7 @@
   tags:
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -31,7 +31,7 @@
     - commands
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'command disable openbsd_pf'
   command: "{{command_cmd_disable_openbsd_pf}}"
@@ -41,7 +41,7 @@
     - commands
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'command check openbsd_pf'
   shell: "{{shell_cmd_check_openbsd_pf}}"
@@ -53,7 +53,7 @@
     - commands
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'command stop openbsd_pf'
   command: "{{command_cmd_stop_openbsd_pf}}"
@@ -63,7 +63,7 @@
     - commands
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -77,7 +77,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'file remove filters.conf'
   file:
@@ -87,7 +87,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'file remove macros.conf'
   file:
@@ -97,7 +97,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'file remove normalization.conf'
   file:
@@ -107,7 +107,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'file remove options.conf'
   file:
@@ -117,7 +117,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'file remove queues.conf'
   file:
@@ -127,7 +127,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'file remove tables.conf'
   file:
@@ -137,7 +137,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'file remove pf.conf'
   file:
@@ -147,7 +147,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'file remove pf.dir'
   file:
@@ -157,4 +157,4 @@
     - files
     - remove
     - main
-    - main_pf
+    - openbsd_pf

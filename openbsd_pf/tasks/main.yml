@@ -4,4 +4,4 @@
   include: main/main.yml
   when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version == '6.2'))
   tags:
-    - main_pf
+    - openbsd_pf

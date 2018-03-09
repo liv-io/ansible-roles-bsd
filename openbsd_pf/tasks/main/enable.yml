@@ -15,7 +15,7 @@
   tags:
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -35,7 +35,7 @@
     - files
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'template create filters.conf'
   template:
@@ -51,7 +51,7 @@
     - files
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'template create macros.conf'
   template:
@@ -67,7 +67,7 @@
     - files
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'template create normalization.conf'
   template:
@@ -83,7 +83,7 @@
     - files
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'template create options.conf'
   template:
@@ -99,7 +99,7 @@
     - files
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'template create queues.conf'
   template:
@@ -115,7 +115,7 @@
     - files
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'template create tables.conf'
   template:
@@ -131,7 +131,7 @@
     - files
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'template create pf.conf'
   template:
@@ -147,7 +147,7 @@
     - files
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -163,7 +163,7 @@
     - commands
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'command enable openbsd_pf'
   command: "{{command_cmd_enable_openbsd_pf}}"
@@ -173,7 +173,7 @@
     - commands
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'command check openbsd_pf'
   shell: "{{shell_cmd_check_openbsd_pf}}"
@@ -185,7 +185,7 @@
     - commands
     - enable
     - main
-    - main_pf
+    - openbsd_pf
 
 - name: 'command start openbsd_pf'
   command: "{{command_cmd_start_openbsd_pf}}"
@@ -195,4 +195,4 @@
     - commands
     - enable
     - main
-    - main_pf
+    - openbsd_pf

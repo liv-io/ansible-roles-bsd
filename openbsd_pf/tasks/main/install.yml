@@ -15,7 +15,7 @@
   tags:
     - install
     - main
-    - main_pf
+    - openbsd_pf
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -32,4 +32,4 @@
     - files
     - install
     - main
-    - main_pf
+    - openbsd_pf
