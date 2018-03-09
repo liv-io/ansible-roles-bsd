@@ -4,4 +4,4 @@
   include: main/main.yml
   when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release|match("11\.1-*")))
   tags:
-    - main_pf
+    - freebsd_pf

@@ -15,7 +15,7 @@
   tags:
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -32,7 +32,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'template create filters.conf'
   template:
@@ -45,7 +45,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'template create macros.conf'
   template:
@@ -58,7 +58,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'template create normalization.conf'
   template:
@@ -71,7 +71,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'template create options.conf'
   template:
@@ -84,7 +84,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'template create queues.conf'
   template:
@@ -97,7 +97,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'template create tables.conf'
   template:
@@ -110,7 +110,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'template create translations.conf'
   template:
@@ -123,7 +123,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'template create pf.conf'
   template:
@@ -136,7 +136,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'line disable pf_enable'
   lineinfile:
@@ -149,7 +149,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'line enable gateway-ipv4'
   lineinfile:
@@ -162,7 +162,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'line disable gateway-ipv4'
   lineinfile:
@@ -175,7 +175,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'line enable gateway-ipv6'
   lineinfile:
@@ -188,7 +188,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'line disable gateway-ipv6'
   lineinfile:
@@ -201,7 +201,7 @@
     - files
     - disable
     - main
-    - main_pf
+    - freebsd_pf
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -216,4 +216,4 @@
     - system
     - disable
     - main
-    - main_pf
+    - freebsd_pf

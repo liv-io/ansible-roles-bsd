@@ -5,25 +5,25 @@
   when: not (freebsd_pf_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'task include enable'
   include: enable.yml
   when: (freebsd_pf_state|match('start|on|enable'))
   tags:
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'task include disable'
   include: disable.yml
   when: (freebsd_pf_state|match('stop|off|disable'))
   tags:
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'task include remove'
   include: remove.yml
   when: (freebsd_pf_state|match('false|no|remove'))
   tags:
     - main
-    - main_pf
+    - freebsd_pf

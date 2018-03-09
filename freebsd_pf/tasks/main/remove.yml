@@ -15,7 +15,7 @@
   tags:
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -29,7 +29,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'file remove filters.conf'
   file:
@@ -39,7 +39,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'file remove macros.conf'
   file:
@@ -49,7 +49,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'file remove normalization.conf'
   file:
@@ -59,7 +59,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'file remove options.conf'
   file:
@@ -69,7 +69,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'file remove queues.conf'
   file:
@@ -79,7 +79,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'file remove tables.conf'
   file:
@@ -89,7 +89,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'file remove translations.conf'
   file:
@@ -99,7 +99,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'file remove pf.conf'
   file:
@@ -109,7 +109,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'file remove pf.dir'
   file:
@@ -119,7 +119,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'line remove pf_enable'
   lineinfile:
@@ -132,7 +132,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'line remove gateway-ipv4'
   lineinfile:
@@ -145,7 +145,7 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
 
 - name: 'line remove gateway-ipv6'
   lineinfile:
@@ -158,4 +158,4 @@
     - files
     - remove
     - main
-    - main_pf
+    - freebsd_pf
