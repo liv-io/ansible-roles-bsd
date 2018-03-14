@@ -18,13 +18,6 @@
 scriptencoding utf-8
 " ^^ Please leave the above line at the start of the file.
 
-" Default configuration file for Vim
-" $Id$
-
-" You can override any of these settings on a global basis via the
-" "/etc/vim/vimrc.local" file, and on a per-user basis via "~/.vimrc". You may
-" need to create these.
-
 "-------------------------------------------------------------------------------
 " General settings
 "-------------------------------------------------------------------------------
@@ -38,10 +31,10 @@ set noautoindent        " Disable autoindent
 set nocindent           " Disable cindent
 set nosmartindent       " Disable smartindent
 set indentexpr=         " Override indentexpr
-set history=50          " keep 50 lines of command history
+set history=8192        " keep 50 lines of command history
 set ruler               " Show the cursor position all the time
 set mouse=              " Command-line mode
-set ttymouse=           " Command-line mode
+set ttymouse=xterm      " Command-line mode
 set viminfo='20,\"500   " Keep a .viminfo file.
 set paste               " Enable paste mode
 
@@ -129,14 +122,6 @@ if &term ==? "xterm"
   set t_Sf=^[3%dm
 endif
 
-if &term ==? "gnome" && has("eval")
-  " Set useful keys that vim doesn't discover via termcap but are in the
-  " builtin xterm termcap. See bug #122562. We use exec to avoid having to
-  " include raw escapes in the file.
-  exec "set <C-Left>=\eO5D"
-  exec "set <C-Right>=\eO5C"
-endif
-
 "-------------------------------------------------------------------------------
 " Filetype plugin settings
 "-------------------------------------------------------------------------------
@@ -179,13 +164,5 @@ if has("autocmd")
 
 endif " has("autocmd")
 
-"-------------------------------------------------------------------------------
-" vimrc.local
-"-------------------------------------------------------------------------------
-
-if filereadable("/etc/vim/vimrc.local")
-  source /etc/vim/vimrc.local
-endif
 
 " vim: set fenc=utf-8 tw=80 sw=2 sts=2 et foldmethod=marker :
-
