@@ -1,14 +1,14 @@
 ---
 
 - name: 'task include install'
-  include: install.yml
+  import_tasks: install.yml
   when: not (http_ping_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - http_ping
 
 - name: 'task include remove'
-  include: remove.yml
+  import_tasks: remove.yml
   when: (http_ping_state|match('false|no|remove'))
   tags:
     - main
