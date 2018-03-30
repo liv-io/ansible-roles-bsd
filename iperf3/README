@@ -73,7 +73,7 @@ DEPENDENCIES
 
 PACKAGES
   iperf3
-    Version: >= 2.0
+    Version: >= 3.0
     Name   :
       FreeBSD 11: 'iperf3'
       OpenBSD 6 : 'iperf3'
@@ -88,7 +88,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 2.0
+    Version: >= 2.4
 
   Python
     Version: >= 2.4
