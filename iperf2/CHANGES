@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.1.0 (2018-03-30)
+F: Port role to Ansible 2.4
+
 * Version 3.0.0 (2018-02-20)
 I: Simplify and improve Ansible role
 
