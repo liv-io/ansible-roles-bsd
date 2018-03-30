@@ -1,14 +1,14 @@
 ---
 
 - name: 'task include install'
-  include: install.yml
+  import_tasks: install.yml
   when: not (gnu_zip_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - gnu_zip
 
 - name: 'task include remove'
-  include: remove.yml
+  import_tasks: remove.yml
   when: (gnu_zip_state|match('false|no|remove'))
   tags:
     - main
