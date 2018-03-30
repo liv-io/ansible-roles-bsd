@@ -1,14 +1,14 @@
 ---
 
 - name: 'task include install'
-  include: install.yml
+  import_tasks: install.yml
   when: not (libressl_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - libressl
 
 - name: 'task include remove'
-  include: remove.yml
+  import_tasks: remove.yml
   when: (libressl_state|match('false|no|remove'))
   tags:
     - main
