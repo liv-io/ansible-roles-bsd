@@ -1,21 +1,21 @@
 ---
 
 - name: 'task include install'
-  include: install.yml
+  import_tasks: install.yml
   when: not (sudo_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - sudo
 
 - name: 'task include config'
-  include: config.yml
+  import_tasks: config.yml
   when: not (sudo_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - sudo
 
 - name: 'task include remove'
-  include: remove.yml
+  import_tasks: remove.yml
   when: (sudo_state|match('false|no|remove'))
   tags:
     - main
