@@ -87,7 +87,7 @@ REQUIREMENTS
 
 CONTROL MACHINE
   Ansible
-    Version: >= 2.0
+    Version: >= 2.4
 
   Python
     Version: >= 2.4
