@@ -1,14 +1,14 @@
 ---
 
 - name: 'task include install'
-  include: install.yml
+  import_tasks: install.yml
   when: not (group_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - group
 
 - name: 'task include config'
-  include: config.yml
+  import_tasks: config.yml
   when: not (group_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - main
