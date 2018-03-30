@@ -1,14 +1,14 @@
 ---
 
 - name: 'task include install'
-  include: install.yml
+  import_tasks: install.yml
   when: not (zip_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - zip
 
 - name: 'task include remove'
-  include: remove.yml
+  import_tasks: remove.yml
   when: (zip_state|match('false|no|remove'))
   tags:
     - main
