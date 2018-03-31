@@ -48,22 +48,22 @@ INACTIVE
 CONFIG
   vars:
     sysctl_all:
-      - name: 'net.inet.carp.preempt'
+      - key: 'net.inet.carp.preempt'
         state: 'true'
         value: '1'
 
     sysctl_dependencies:
-      - name: 'net.inet.carp.allow'
+      - key: 'net.inet.carp.allow'
         state: 'true'
         value: '1'
 
     sysctl_group:
-      - name: 'net.inet.ip.ttl'
+      - key: 'net.inet.ip.ttl'
         state: 'false'
         value: '64'
 
     sysctl_host:
-      - name: 'kern.hostname'
+      - key: 'kern.hostname'
         state: 'true'
         value: 'host.domain.tld'
 
@@ -92,8 +92,8 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'net.inet.carp.preempt', value: '1'},
-                 {name: 'net.inet.carp.allow', value: '1'}]
+      Examples: [{key: 'net.inet.carp.preempt', value: '1'},
+                 {key: 'net.inet.carp.allow', value: '1'}]
       None    : []
 
   sysctl_dependencies
@@ -104,8 +104,8 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'net.inet.carp.preempt', value: '1'},
-                 {name: 'net.inet.carp.allow', value: '1'}]
+      Examples: [{key: 'net.inet.carp.preempt', value: '1'},
+                 {key: 'net.inet.carp.allow', value: '1'}]
       None    : []
 
   sysctl_group
@@ -116,8 +116,8 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'net.inet.carp.preempt', value: '1'},
-                 {name: 'net.inet.carp.allow', value: '1'}]
+      Examples: [{key: 'net.inet.carp.preempt', value: '1'},
+                 {key: 'net.inet.carp.allow', value: '1'}]
       None    : []
 
   sysctl_host
@@ -128,8 +128,8 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'net.inet.carp.preempt', value: '1'},
-                 {name: 'net.inet.carp.allow', value: '1'}]
+      Examples: [{key: 'net.inet.carp.preempt', value: '1'},
+                 {key: 'net.inet.carp.allow', value: '1'}]
       None    : []
 
   sysctl_sysctl_conf_template
