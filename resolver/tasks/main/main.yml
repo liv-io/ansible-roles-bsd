@@ -1,7 +1,7 @@
 ---
 
 - name: 'task include install'
-  include: install.yml
+  import_tasks: install.yml
   when: not (resolver_state|match('false|no|remove|quiesce|inactive'))
   tags:
     - main
