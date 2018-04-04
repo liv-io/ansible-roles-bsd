@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.7.1 (2018-04-04)
+I: Update support information of OpenBSD
+
 * Version 0.7.0 (2018-03-30)
 F: Port role to Ansible 2.4
 
