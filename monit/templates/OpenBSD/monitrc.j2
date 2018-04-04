@@ -42,7 +42,7 @@ set daemon {{(monit_daemon_interval|int(60))}}
 ## Set syslog logging. If you want to log to a standalone log file instead,
 ## specify the full path to the log file
 #
-set logfile syslog
+set log syslog
 
 #
 #
@@ -260,8 +260,8 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 #    if failed checksum and
 #       expect the sum 8f7f419955cefa0b33a2ba316cba3659 then unmonitor
 #    if failed permission 755 then unmonitor
-#    if failed uid root then unmonitor
-#    if failed gid root then unmonitor
+#    if failed uid "root" then unmonitor
+#    if failed gid "root" then unmonitor
 #    alert security@foo.bar on {
 #           checksum, permission, uid, gid, unmonitor
 #        } with the mail-format { subject: Alarm! }
@@ -302,8 +302,8 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 #    start program  = "/bin/mount /data"
 #    stop program  = "/bin/umount /data"
 #    if failed permission 660 then unmonitor
-#    if failed uid root then unmonitor
-#    if failed gid disk then unmonitor
+#    if failed uid "root" then unmonitor
+#    if failed gid "disk" then unmonitor
 #    if space usage > 80% for 5 times within 15 cycles then alert
 #    if space usage > 99% then stop
 #    if inode usage > 30000 then alert
@@ -322,8 +322,8 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 #
 #  check file database with path /data/mydatabase.db
 #    if failed permission 700 then alert
-#    if failed uid data then alert
-#    if failed gid data then alert
+#    if failed uid "data" then alert
+#    if failed gid "data" then alert
 #    if timestamp > 15 minutes then alert
 #    if size > 100 MB then exec "/my/cleanup/script" as uid dba and gid dba
 #
