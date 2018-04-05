@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.11.1 (2018-04-05)
+I: Change curve for ECDHE ciphers from 'secp384r1' to 'secp521r1'
+
 * Version 0.11.0 (2018-04-04)
 F: Add support for OpenBSD 6.3
 F: Drop support for OpenBSD 6.2

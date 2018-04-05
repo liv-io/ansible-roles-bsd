@@ -92,7 +92,7 @@ server {
 {% if (item.ssl_ecdh_curve is defined) and not ((item.ssl_ecdh_curve == '') or (item.ssl_ecdh_curve == [])) %}
   ssl_ecdh_curve '{{item.ssl_ecdh_curve}}';
 {% else %}
-  ssl_ecdh_curve 'secp384r1';
+  ssl_ecdh_curve 'secp521r1';
 {% endif %}
   # DH parameters for DHE ciphers
   ssl_dhparam '{{file_path_dhparam_pem}}';
