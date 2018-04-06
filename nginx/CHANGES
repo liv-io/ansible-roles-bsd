@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.11.2 (2018-04-06)
+I: Change default 'ssl_protocols' value from 'TLSv1 TLSv1.1 TLSv1.2' to 'TLSv1.2'
+I: Change default 'ssl_ciphers' value from 'AES256+EECDH:AES256+EDH' to 'AES256+EECDH'
+
 * Version 0.11.1 (2018-04-05)
 I: Change curve for ECDHE ciphers from 'secp384r1' to 'secp521r1'
 
