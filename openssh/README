@@ -202,6 +202,16 @@ ROLE
     Options    :
       Examples: ['/etc/ssh/ssh_host_rsa_key']
 
+  openssh_host_key_algorithms
+    Description: Define the 'openssh_host_key_algorithms' option.
+    Implemented: 2.3
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['ssh-ed25519']
+    Options    :
+      Examples: ['ssh-ed25519', 'ssh-rsa']
+
   openssh_kex_algorithms
     Description: Define the 'openssh_kex_algorithms' option.
     Implemented: 0.8

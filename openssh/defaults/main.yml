@@ -22,6 +22,8 @@ openssh_deny_users: []
 
 openssh_host_key: ['/etc/ssh/ssh_host_rsa_key', '/etc/ssh/ssh_host_ed25519_key']
 
+openssh_host_key_algorithms: ['ssh-ed25519', 'ssh-rsa']
+
 openssh_kex_algorithms: ['curve25519-sha256@libssh.org']
 
 openssh_listen_address: ['0.0.0.0']

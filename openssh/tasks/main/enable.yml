@@ -47,7 +47,6 @@
   notify:
     - 'command validate openssh'
     - 'service reload openssh'
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
     - enable
