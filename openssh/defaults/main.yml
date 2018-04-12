@@ -12,7 +12,7 @@ openssh_banner: 'enable'
 
 openssh_banner_template: 'main'
 
-openssh_ciphers: ['chacha20-poly1305@openssh.com', 'aes256-ctr', 'aes192-ctr']
+openssh_ciphers: ['aes256-ctr', 'aes192-ctr']
 
 openssh_compression: 'delayed'
 
@@ -28,7 +28,7 @@ openssh_kex_algorithms: ['curve25519-sha256@libssh.org']
 
 openssh_listen_address: ['0.0.0.0']
 
-openssh_macs: ['hmac-sha2-512-etm@openssh.com', 'hmac-sha2-256-etm@openssh.com', 'hmac-sha2-512', 'hmac-sha2-256']
+openssh_macs: ['hmac-sha2-512', 'hmac-sha2-256']
 
 openssh_match: []
 

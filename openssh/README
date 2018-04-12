@@ -154,9 +154,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['chacha20-poly1305@openssh.com', 'aes256-ctr', 'aes192-ctr']
+    Default    : ['aes256-ctr', 'aes192-ctr']
     Options    :
-      Examples: ['chacha20-poly1305@openssh.com', 'aes256-ctr']
+      Examples: ['aes256-ctr']
 
   openssh_compression
     Description: Control the 'openssh_compression' option.
@@ -208,9 +208,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['ssh-ed25519']
+    Default    : ['ssh-ed25519', 'ssh-rsa']
     Options    :
-      Examples: ['ssh-ed25519', 'ssh-rsa']
+      Examples: ['ssh-ed25519']
 
   openssh_kex_algorithms
     Description: Define the 'openssh_kex_algorithms' option.
@@ -220,7 +220,7 @@ ROLE
     Type       : Array
     Default    : ['curve25519-sha256@libssh.org']
     Options    :
-      Examples: ['curve25519-sha256@libssh.org', 'diffie-hellman-group-exchange-sha256']
+      Examples: ['curve25519-sha256']
 
   openssh_listen_address
     Description: Define the 'openssh_listen_address' option.
@@ -239,9 +239,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['hmac-sha2-512-etm@openssh.com', 'hmac-sha2-256-etm@openssh.com', 'hmac-ripemd160-etm@openssh.com', 'hmac-sha2-512', 'hmac-sha2-256', 'hmac-ripemd160']
+    Default    : ['hmac-sha2-512', 'hmac-sha2-256']
     Options    :
-      Examples: ['hmac-sha2-512-etm@openssh.com', 'hmac-sha2-256-etm@openssh.com', 'hmac-sha2-512']
+      Examples: ['hmac-sha2-512']
 
   openssh_match
     Description: Define the 'openssh_match' option.

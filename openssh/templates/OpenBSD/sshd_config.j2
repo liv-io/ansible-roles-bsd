@@ -87,7 +87,7 @@ HostKey /etc/ssh/ssh_host_ed25519_key
 Ciphers {% for ciphers in openssh_ciphers %}{{ciphers}}{% if not loop.last %},{% endif %}{% endfor %}
 
 {% else %}
-Ciphers chacha20-poly1305@openssh.com,aes256-ctr,aes192-ctr
+Ciphers aes256-ctr,aes192-ctr
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -120,7 +120,7 @@ KexAlgorithms curve25519-sha256@libssh.org
 MACs {% for macs in openssh_macs %}{{macs}}{% if not loop.last %},{% endif %}{% endfor %}
 
 {% else %}
-MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160
+MACs hmac-sha2-512,hmac-sha2-256
 {% endif %}
 
 #-------------------------------------------------------------------------------
