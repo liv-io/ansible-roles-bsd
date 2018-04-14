@@ -60,7 +60,7 @@
 - name: 'package remove nginx'
   package:
     state: 'absent'
-    name: "{{package_nginx}}"
+    name: "{{package_name_nginx}}"
   tags:
     - packaging
     - remove

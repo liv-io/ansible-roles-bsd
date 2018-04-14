@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.2 (2018-04-15)
+B: Correct package and service variable names
+I: Improve Jinja2 templating
+
 * Version 1.0.1 (2018-04-14)
 I: Remove duplicate variables
 

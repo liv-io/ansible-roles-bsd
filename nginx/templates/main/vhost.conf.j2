@@ -22,26 +22,30 @@ server {
   #-----------------------------------------------------------------------------
 
   # Listen
-{% if (item.listen is defined) and not (item.listen == '') %}
-  listen {{item.listen}}:{{(item.port|int(80))}}{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %} ssl{% endif %};
-{% else %}
-  listen *:{{(item.port|int(80))}}{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %} ssl{% endif %};
-{% endif %}
+  listen
+{%- if (item.listen is defined) and not (item.listen == '') %}
+ {{item.listen}}:{{(item.port|int)}}
+{%- else %}
+ *:{{(item.port|int)}}
+{%- endif %}
+{%- if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %}
+ ssl
+{%- endif %};
   # Server name
-  server_name {{item.name}}{% if (item.alias is defined) and not (item.alias == []) %} {% for alias in item.alias %}{{alias}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
+  server_name {{item.name}}
+{%- if (item.alias is defined) and not (item.alias == []) %} {% for alias in item.alias %}{{alias}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
 
   #-----------------------------------------------------------------------------
   # LOG
   #-----------------------------------------------------------------------------
 
-{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %}
   # Logging options
-  error_log logs/{{item.name}}-{{(item.port|int(443))}}_error.log;
-  access_log logs/{{item.name}}-{{(item.port|int(443))}}_access.log main_ssl;
+  error_log logs/{{item.name}}-{{(item.port|int)}}_error.log;
+  access_log logs/{{item.name}}-{{(item.port|int)}}_access.log
+{%- if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %}
+ main_ssl;
 {% else %}
-  # Logging options
-  error_log logs/{{item.name}}-{{(item.port|int(80))}}_error.log;
-  access_log logs/{{item.name}}-{{(item.port|int(80))}}_access.log main;
+ main;
 {% endif %}
 
   #-----------------------------------------------------------------------------

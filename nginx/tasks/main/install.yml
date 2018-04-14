@@ -24,7 +24,7 @@
 - name: 'package install nginx'
   package:
     state: 'present'
-    name: "{{package_nginx}}"
+    name: "{{package_name_nginx}}"
   tags:
     - packaging
     - install

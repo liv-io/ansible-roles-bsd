@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # nginx
-package_nginx: 'nginx'
+package_name_nginx: 'nginx'
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -48,4 +48,4 @@ command_shell_generate_dhparam: "openssl dhparam -dsaparam 4096 -out {{file_path
 #-------------------------------------------------------------------------------
 
 # nginx
-service_nginx: 'nginx'
+service_name_nginx: 'nginx'
