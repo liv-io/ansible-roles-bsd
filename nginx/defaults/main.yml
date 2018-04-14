@@ -2,15 +2,15 @@
 
 nginx_state: 'enable'
 
-nginx_hsts_max_age: '31536000'
+nginx_hsts_max_age: 31536000
 
 nginx_nginx_conf_template: "{{ansible_os_family}}"
 
 nginx_vhost: []
 
-nginx_vhosts_d_name: 'vhosts.d'
+nginx_vhosts_d: 'vhosts.d'
 
-nginx_vhost_template: "{{ansible_os_family}}"
+nginx_vhost_template: 'main'
 
 nginx_worker_connections: 1024
 

@@ -108,7 +108,7 @@
   service:
     state: 'started'
     enabled: 'yes'
-    name: "{{service_name_nginx}}"
+    name: "{{service_nginx}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - system

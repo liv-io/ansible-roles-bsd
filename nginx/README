@@ -61,7 +61,7 @@ INACTIVE
 CONFIG
   vars:
     nginx_vhost:
-      - name: "{{ansible_fqdn}}"
+      - name: 'host.domain.tld'
         state: 'true'
         listen: '*'
         port: 80
@@ -76,14 +76,17 @@ CONFIG
               - '  proxy_set_header X-Forwarded-Proto $scheme;'
               - '}'
 
-     - name: "{{ansible_fqdn}}"
+     - name: 'host.domain.tld'
        state: 'true'
        listen: '*'
        port: 443
        hsts_state: 'true'
        ssl_state: 'true'
-       ssl_certificate: "/etc/ssl/example/{{ansible_fqdn}}.crt"
-       ssl_certificate_key: "/etc/ssl/example/{{ansible_fqdn}}.key"
+       ssl_certificate: '/etc/ssl/example/host.domain.tld.crt'
+       ssl_certificate_key: '/etc/ssl/example/host.domain.tld.key'
+       ssl_client_certificate: '/etc/ssl/example/ca.domain.tld.crt'
+       ssl_verify_client: 'true'
+       ssl_verify_depth: 1
        custom_config:
          - comment: 'Reverse Proxy'
            config:
@@ -137,7 +140,7 @@ CONFIG
     Type       : Integer, String
     Default    : "{{nginx_hsts_max_age}}"
     Options    :
-      Examples: '15768000' | '31536000' | '47304000'
+      Examples: 15768000 | 31536000 | 47304000
 
   hsts_state
     Description: Control the 'hsts_state' option.
@@ -163,20 +166,20 @@ CONFIG
   name
     Description: Define the 'name' option.
     Implemented: 0.1
-    Required   : False
+    Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : "{{ansible_fqdn}}"
+    Default    : ''
     Options    :
       Examples: 'host.domain.tld'
 
   port
     Description: Set the 'port' option.
     Implemented: 0.1
-    Required   : False
+    Required   : True
     Value      : Arbitrary
     Type       : Integer, String
-    Default    : 80
+    Default    : ''
     Options    :
       Examples: '80' | '8080' | '443' | 8443'
 
@@ -188,7 +191,7 @@ CONFIG
     Type       : String
     Default    : ''
     Options    :
-      Examples: "/etc/ssl/example/{{ansible_fqdn}}.crt"
+      Examples: '/etc/ssl/example/host.domain.tld.crt'
       None    : ''
 
   ssl_certificate_key
@@ -199,11 +202,11 @@ CONFIG
     Type       : String
     Default    : ''
     Options    :
-      Examples: "/etc/ssl/example/{{ansible_fqdn}}.key"
+      Examples: '/etc/ssl/example/host.domain.tld.key'
       None    : ''
 
-  ssl_cipher_suite
-    Description: Define the 'ssl_cipher_suite' option.
+  ssl_ciphers
+    Description: Define the 'ssl_ciphers' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -212,18 +215,29 @@ CONFIG
     Options    :
       Examples: 'AES256+EECDH:AES256+EDH'
 
+  ssl_client_certificate
+    Description: Define the 'ssl_client_certificate' option.
+    Implemented: 1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: '/etc/ssl/example/ca.domain.tld.crt'
+      None    : ''
+
   ssl_ecdh_curve
     Description: Define the 'ssl_ecdh_curve' option.
     Implemented: 0.7
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'secp384r1'
+    Default    : 'secp521r1'
     Options    :
       Examples: 'secp384r1' | 'auto' | 'prime256v1:secp384r1'
 
-  ssl_honor_cipher_order
-    Description: Control the 'ssl_honor_cipher_order' option.
+  ssl_prefer_server_ciphers
+    Description: Control the 'ssl_prefer_server_ciphers' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -233,13 +247,13 @@ CONFIG
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  ssl_protocol
-    Description: Define the 'ssl_protocol' option.
+  ssl_protocols
+    Description: Define the 'ssl_protocols' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['TLSv1', 'TLSv1.1', 'TLSv1.2']
+    Default    : ['TLSv1.2']
     Options    :
       Examples: ['TLSv1', 'TLSv1.1', 'TLSv1.2']
 
@@ -253,6 +267,27 @@ CONFIG
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
+
+  ssl_verify_client
+    Description: Control the 'ssl_verify_client' option.
+    Implemented: 1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  ssl_verify_depth
+    Description: Set the 'ssl_verify_depth' option.
+    Implemented: 1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : ''
+    Options    :
+      Examples: 1 | 2 | 3
 
   xss_protection_state
     Description: Control the 'xss_protection_state' option.
@@ -312,14 +347,17 @@ ROLE
     Type       : Array
     Default    : []
     Options    :
-      Examples: [{name: "{{ansible_fqdn}}", state: 'true', listen: '*', port: 80}] |
-                [{name: "{{ansible_fqdn}}", state: 'true', listen: '*', port: 443,
+      Examples: [{name: 'host.domain.tld', state: 'true', listen: '*', port: 80}] |
+                [{name: 'host.domain.tld', state: 'true', listen: '*', port: 443,
                  hsts_state: 'true', ssl_state: 'true',
-                 ssl_certificate: "/etc/ssl/example/{{ansible_fqdn}}.crt",
-                 ssl_certificate_key: "/etc/ssl/example/{{ansible_fqdn}}.key"}]
+                 ssl_certificate: '/etc/ssl/example/host.domain.tld.crt',
+                 ssl_certificate_key: '/etc/ssl/example/host.domain.tld.key',
+                 ssl_client_certificate: '/etc/ssl/example/ca.domain.tld.crt',
+                 ssl_verify_client: 'true',
+                 ssl_verify_depth: 1}]
 
-  nginx_vhosts_d_name
-    Description: Define the 'nginx_vhosts_d_name' option.
+  nginx_vhosts_d
+    Description: Define the 'nginx_vhosts_d' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -420,11 +458,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.1-*
-      Status: Development
+      Status: Stable
 
   OpenBSD
     Version: 6.3
-      Status: Development
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER

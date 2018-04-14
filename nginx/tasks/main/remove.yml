@@ -60,7 +60,7 @@
 - name: 'package remove nginx'
   package:
     state: 'absent'
-    name: "{{package_name_nginx}}"
+    name: "{{package_nginx}}"
   tags:
     - packaging
     - remove
@@ -94,10 +94,20 @@
     - main
     - nginx
 
+- name: 'file remove dhparam.pem'
+  file:
+    state: 'absent'
+    path: "{{file_path_dhparam_pem}}"
+  tags:
+    - files
+    - remove
+    - main
+    - nginx
+
 - name: 'file remove log.dir'
   file:
     state: 'absent'
-    path: "{{file_path_log_dir_name}}"
+    path: "{{file_path_log_dir}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
@@ -108,7 +118,7 @@
 - name: 'file remove vhosts.d'
   file:
     state: 'absent'
-    path: "{{file_path_vhosts_d_name}}"
+    path: "{{file_path_vhosts_d}}"
   tags:
     - files
     - remove

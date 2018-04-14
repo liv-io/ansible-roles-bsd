@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # nginx
-package_name_nginx: 'nginx'
+package_nginx: 'nginx'
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -22,15 +22,16 @@ file_group_nginx_conf: 'wheel'
 file_path_dhparam_pem: '/etc/nginx/dhparam.pem'
 
 # vhost
+file_src_vhost: "templates/{{nginx_vhost_template}}/vhost.conf.j2"
 file_mode_vhost: '0644'
 file_owner_vhost: 'root'
 file_group_vhost: 'wheel'
 
 # vhosts.d
-file_path_vhosts_d_name: "/etc/nginx/{{nginx_vhosts_d_name}}"
-file_mode_vhosts_d_name: '0755'
-file_owner_vhosts_d_name: 'root'
-file_group_vhosts_d_name: 'wheel'
+file_path_vhosts_d: "/etc/nginx/{{nginx_vhosts_d}}"
+file_mode_vhosts_d: '0755'
+file_owner_vhosts_d: 'root'
+file_group_vhosts_d: 'wheel'
 
 #-------------------------------------------------------------------------------
 # COMMANDS
@@ -47,4 +48,4 @@ command_shell_generate_dhparam: "openssl dhparam -dsaparam 4096 -out {{file_path
 #-------------------------------------------------------------------------------
 
 # nginx
-service_name_nginx: 'nginx'
+service_nginx: 'nginx'

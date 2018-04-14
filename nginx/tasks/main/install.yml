@@ -24,7 +24,7 @@
 - name: 'package install nginx'
   package:
     state: 'present'
-    name: "{{package_name_nginx}}"
+    name: "{{package_nginx}}"
   tags:
     - packaging
     - install
@@ -38,10 +38,10 @@
 - name: 'file create log.dir'
   file:
     state: 'directory'
-    path: "{{file_path_log_dir_name}}"
-    mode: "{{file_mode_log_dir_name}}"
-    owner: "{{file_owner_log_dir_name}}"
-    group: "{{file_group_log_dir_name}}"
+    path: "{{file_path_log_dir}}"
+    mode: "{{file_mode_log_dir}}"
+    owner: "{{file_owner_log_dir}}"
+    group: "{{file_group_log_dir}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - files
@@ -52,10 +52,10 @@
 - name: 'file create vhosts.d'
   file:
     state: 'directory'
-    path: "{{file_path_vhosts_d_name}}"
-    mode: "{{file_mode_vhosts_d_name}}"
-    owner: "{{file_owner_vhosts_d_name}}"
-    group: "{{file_group_vhosts_d_name}}"
+    path: "{{file_path_vhosts_d}}"
+    mode: "{{file_mode_vhosts_d}}"
+    owner: "{{file_owner_vhosts_d}}"
+    group: "{{file_group_vhosts_d}}"
   tags:
     - files
     - install

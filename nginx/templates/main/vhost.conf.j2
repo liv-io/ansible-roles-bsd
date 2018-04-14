@@ -23,16 +23,12 @@ server {
 
   # Listen
 {% if (item.listen is defined) and not (item.listen == '') %}
-  listen {{item.listen}}{% if (item.port is defined) and not (item.port == '') %}:{{(item.port|int(80))}}{% endif %}{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %} ssl{% endif %};
+  listen {{item.listen}}:{{(item.port|int(80))}}{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %} ssl{% endif %};
 {% else %}
-  listen *:{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(80))}}{% endif %}{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %} ssl{% endif %};
+  listen *:{{(item.port|int(80))}}{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %} ssl{% endif %};
 {% endif %}
   # Server name
-{% if (item.name is defined) and not (item.name == '') %}
-  server_name {{item.name}}{% if (item.alias is defined) and not ((item.alias == '') or (item.alias == [])) %} {% for alias in item.alias %}{{alias}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
-{% else %}
-  server_name {{ansible_fqdn}} {% if (item.alias is defined) and not ((item.alias == '') or (item.alias == [])) %} {% for alias in item.alias %}{{alias}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
-{% endif %}
+  server_name {{item.name}}{% if (item.alias is defined) and not (item.alias == []) %} {% for alias in item.alias %}{{alias}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
 
   #-----------------------------------------------------------------------------
   # LOG
@@ -40,12 +36,12 @@ server {
 
 {% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %}
   # Logging options
-  error_log logs/{% if (item.name is defined) and not (item.name == '') %}{{item.name}}{% else %}{{nginx_name}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(443))}}{% else %}{{nginx_port}}{% endif %}_error.log;
-  access_log logs/{% if (item.name is defined) and not (item.name == '') %}{{item.name}}{% else %}{{nginx_name}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(443))}}{% else %}{{nginx_port}}{% endif %}_access.log main_ssl;
+  error_log logs/{{item.name}}-{{(item.port|int(443))}}_error.log;
+  access_log logs/{{item.name}}-{{(item.port|int(443))}}_access.log main_ssl;
 {% else %}
   # Logging options
-  error_log logs/{% if (item.name is defined) and not (item.name == '') %}{{item.name}}{% else %}{{nginx_name}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(80))}}{% else %}{{nginx_port}}{% endif %}_error.log;
-  access_log logs/{% if (item.name is defined) and not (item.name == '') %}{{item.name}}{% else %}{{nginx_name}}{% endif %}-{% if (item.port is defined) and not (item.port == '') %}{{(item.port|int(80))}}{% else %}{{nginx_port}}{% endif %}_access.log main;
+  error_log logs/{{item.name}}-{{(item.port|int(80))}}_error.log;
+  access_log logs/{{item.name}}-{{(item.port|int(80))}}_access.log main;
 {% endif %}
 
   #-----------------------------------------------------------------------------
@@ -54,7 +50,7 @@ server {
 
 {% if (item.hsts_state is defined) and (item.hsts_state|match('true|yes|enable')) %}
   # HTTP Strict Transport Security (HSTS)
-  add_header Strict-Transport-Security 'max-age={% if (item.hsts_max_age is defined) and (item.hsts_max_age|match('true|yes|enable')) %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{nginx_hsts_max_age}}{% endif %}' always;
+  add_header Strict-Transport-Security 'max-age={% if (item.hsts_max_age is defined) and not (item.hsts_max_age == '') %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{nginx_hsts_max_age}}{% endif %}' always;
 {% endif %}
 {% if (item.xss_protection_state is defined) and (item.xss_protection_state|match('true|yes|enable')) %}
   # X-Frame-Options: Disable frame embedding (phishing, clickjacking prevention)
@@ -71,25 +67,25 @@ server {
   #-----------------------------------------------------------------------------
 
   # SSL/TLS protocol versions
-{% if (item.ssl_protocol is defined) and not ((item.ssl_protocol == '') or (item.ssl_protocol == [])) %}
-  ssl_protocols {% for ssl_protocol in item.ssl_protocol %}{{ssl_protocol}}{% if not loop.last %} {% endif %}{% endfor %};
+{% if (item.ssl_protocols is defined) and not (item.ssl_protocols == []) %}
+  ssl_protocols {% for ssl_protocols in item.ssl_protocols %}{{ssl_protocols}}{% if not loop.last %} {% endif %}{% endfor %};
 {% else %}
   ssl_protocols TLSv1.2;
 {% endif %}
-  # Option to prefer the server's cipher preference order
-{% if (item.ssl_honor_cipher_order is defined) and (item.ssl_honor_cipher_order|match('false|no|disable')) %}
+  # Prefer the server ciphers over client ciphers
+{% if (item.ssl_prefer_server_ciphers is defined) and (item.ssl_prefer_server_ciphers|match('false|no|disable')) %}
   ssl_prefer_server_ciphers off;
 {% else %}
   ssl_prefer_server_ciphers on;
 {% endif %}
-  # Cipher Suite available for negotiation in SSL handshake
-{% if (item.ssl_cipher_suite is defined) and not ((item.ssl_cipher_suite == '') or (item.ssl_cipher_suite == [])) %}
-  ssl_ciphers '{{item.ssl_cipher_suite}}';
+  # Cipher suite available for negotiation in SSL handshake
+{% if (item.ssl_ciphers is defined) and not (item.ssl_ciphers == []) %}
+  ssl_ciphers '{{item.ssl_ciphers}}';
 {% else %}
   ssl_ciphers 'AES256+EECDH';
 {% endif %}
   # ECDHE ciphers curve
-{% if (item.ssl_ecdh_curve is defined) and not ((item.ssl_ecdh_curve == '') or (item.ssl_ecdh_curve == [])) %}
+{% if (item.ssl_ecdh_curve is defined) and not (item.ssl_ecdh_curve == []) %}
   ssl_ecdh_curve '{{item.ssl_ecdh_curve}}';
 {% else %}
   ssl_ecdh_curve 'secp521r1';
@@ -108,22 +104,35 @@ server {
 {% else %}
   #ssl_certificate_key '';
 {% endif %}
+  # CA certificate to verify client certificates and OCSP responses
+{% if (item.ssl_client_certificate is defined) and not (item.ssl_client_certificate == '') %}
+  ssl_client_certificate '{{item.ssl_client_certificate}}';
+{% else %}
+  #ssl_client_certificate '';
+{% endif %}
+  # Verify client certificates
+{% if (item.ssl_verify_client is defined) and (item.ssl_verify_client|match('true|yes|enable')) %}
+  ssl_verify_client on;
+{% else %}
+  ssl_verify_client off;
+{% endif %}
+  # Verification depth in the client certificates chain
+{% if (item.ssl_verify_depth is defined) and not (item.ssl_verify_depth == '') %}
+  ssl_verify_depth {{item.ssl_verify_depth}};
+{% else %}
+  #ssl_verify_depth 1;
+{% endif %}
 {% endif %}
 
   #-----------------------------------------------------------------------------
   # CUSTOM CONFIGURATION
   #-----------------------------------------------------------------------------
 
-{% if (item.custom_config is defined) and not ((item.custom_config == '') or (item.custom_config == [])) %}
+{% if (item.custom_config is defined) and not (item.custom_config == []) %}
 {% for item in item.custom_config %}
 {% if (item.comment is defined) and not (item.comment == '') %}
   #-----------------------------------------------------------------------------
   # {{(item.comment|upper)}}
-  #-----------------------------------------------------------------------------
-
-{% else %}
-  #-----------------------------------------------------------------------------
-  #
   #-----------------------------------------------------------------------------
 
 {% endif %}

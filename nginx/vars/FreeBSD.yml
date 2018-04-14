@@ -1,26 +1,29 @@
 ---
 
+# log.dir
+log_dir: '/var/log/nginx/'
+
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
 # log.dir
-file_path_log_dir_name: '/var/log/nginx'
-file_mode_log_dir_name: '0755'
-file_owner_log_dir_name: 'root'
-file_group_log_dir_name: 'wheel'
+file_path_log_dir: '/var/log/nginx'
+file_mode_log_dir: '0755'
+file_owner_log_dir: 'root'
+file_group_log_dir: 'wheel'
 
 # vhosts.d
-file_path_vhosts_d_name: "/etc/nginx/{{nginx_vhosts_d_name}}"
-file_mode_vhosts_d_name: '0755'
-file_owner_vhosts_d_name: 'root'
-file_group_vhosts_d_name: 'wheel'
+file_path_vhosts_d: "/etc/nginx/{{nginx_vhosts_d}}"
+file_mode_vhosts_d: '0755'
+file_owner_vhosts_d: 'root'
+file_group_vhosts_d: 'wheel'
 
 # nginx.conf
 file_path_nginx_conf: '/usr/local/etc/nginx/nginx.conf'
 
 # vhosts.d
-file_path_vhosts_d_name: "/usr/local/etc/nginx/{{nginx_vhosts_d_name}}"
+file_path_vhosts_d: "/usr/local/etc/nginx/{{nginx_vhosts_d}}"
 
 # nginx_enable
 file_line_nginx_enable: 'nginx_enable'

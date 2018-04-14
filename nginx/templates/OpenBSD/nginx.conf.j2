@@ -90,7 +90,7 @@ http {
     #---------------------------------------------------------------------------
 
     # Load modular configuration files from the /etc/nginx/vhosts.d directory.
-    include /etc/nginx/vhosts.d/*.conf;
+    include {{file_path_vhosts_d}}/*.conf;
 
     #---------------------------------------------------------------------------
     # SECURITY
