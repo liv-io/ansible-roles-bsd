@@ -164,7 +164,11 @@ MACs hmac-sha2-512,hmac-sha2-256
 # Authentication:
 
 #LoginGraceTime 2m
-#PermitRootLogin no
+{% if (openssh_permit_root_login|match('true|yes|enable')) %}
+PermitRootLogin yes
+{% else %}
+PermitRootLogin no
+{% endif %}
 #StrictModes yes
 #MaxAuthTries 6
 #MaxSessions 10
@@ -332,13 +336,6 @@ Match {{match.type}} {{match.name}}
 #-------------------------------------------------------------------------------
 # ACCESS RESTRICTION
 #-------------------------------------------------------------------------------
-
-# Specifies whether root can log in using ssh.
-{% if (openssh_permit_root_login|match('true|yes|enable')) %}
-PermitRootLogin yes
-{% else %}
-PermitRootLogin no
-{% endif %}
 
 # Login is disallowed for user names that match one of the patterns.
 {% if not ((openssh_deny_users == '') or (openssh_deny_users == [])) %}
