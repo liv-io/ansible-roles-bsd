@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.1 (2018-04-14)
+I: Remove duplicate variables
+
 * Version 1.0.0 (2018-04-14)
 I: Simplify and improve Ansible role
 

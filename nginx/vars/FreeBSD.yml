@@ -13,12 +13,6 @@ file_mode_log_dir: '0755'
 file_owner_log_dir: 'root'
 file_group_log_dir: 'wheel'
 
-# vhosts.d
-file_path_vhosts_d: "/etc/nginx/{{nginx_vhosts_d}}"
-file_mode_vhosts_d: '0755'
-file_owner_vhosts_d: 'root'
-file_group_vhosts_d: 'wheel'
-
 # nginx.conf
 file_path_nginx_conf: '/usr/local/etc/nginx/nginx.conf'
 
