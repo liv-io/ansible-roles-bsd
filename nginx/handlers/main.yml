@@ -24,11 +24,6 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: 'service restart nginx'
-  service:
-    state: 'restarted'
-    name: "{{service_name_nginx}}"
-
 - name: 'service reload nginx'
   service:
     state: 'reloaded'
