@@ -76,27 +76,27 @@ CONFIG
               - '  proxy_set_header X-Forwarded-Proto $scheme;'
               - '}'
 
-     - name: 'host.domain.tld'
-       state: 'true'
-       listen: '*'
-       port: 443
-       hsts_state: 'true'
-       ssl_state: 'true'
-       ssl_certificate: '/etc/ssl/example/host.domain.tld.crt'
-       ssl_certificate_key: '/etc/ssl/example/host.domain.tld.key'
-       ssl_client_certificate: '/etc/ssl/example/ca.domain.tld.crt'
-       ssl_verify_client: 'true'
-       ssl_verify_depth: 1
-       custom_config:
-         - comment: 'Reverse Proxy'
-           config:
-             - 'location / {'
-             - '  proxy_pass https://localhost:8443;'
-             - '  proxy_set_header Host              $host;'
-             - '  proxy_set_header X-Real-IP         $remote_addr;'
-             - '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;'
-             - '  proxy_set_header X-Forwarded-Proto $scheme;'
-             - '}'
+      - name: 'host.domain.tld'
+        state: 'true'
+        listen: '*'
+        port: 443
+        hsts_state: 'true'
+        ssl_state: 'true'
+        ssl_certificate: '/etc/ssl/example/host.domain.tld.crt'
+        ssl_certificate_key: '/etc/ssl/example/host.domain.tld.key'
+        ssl_client_certificate: '/etc/ssl/example/ca.domain.tld.crt'
+        ssl_verify_client: 'true'
+        ssl_verify_depth: 1
+        custom_config:
+          - comment: 'Reverse Proxy'
+            config:
+              - 'location / {'
+              - '  proxy_pass https://localhost:8443;'
+              - '  proxy_set_header Host              $host;'
+              - '  proxy_set_header X-Real-IP         $remote_addr;'
+              - '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;'
+              - '  proxy_set_header X-Forwarded-Proto $scheme;'
+              - '}'
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -161,7 +161,7 @@ CONFIG
     Type       : String
     Default    : '*'
     Options    :
-      Examples: '*' | '[::]' | '127.0.0.10' | '[:1]' | 'localhost'
+      Examples: '*' | '[::]' | '127.0.0.1' | '[:1]' | 'localhost'
 
   name
     Description: Define the 'name' option.

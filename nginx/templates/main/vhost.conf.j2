@@ -86,7 +86,7 @@ server {
 {% if (item.ssl_ciphers is defined) and not (item.ssl_ciphers == []) %}
   ssl_ciphers '{{item.ssl_ciphers}}';
 {% else %}
-  ssl_ciphers 'AES256+EECDH';
+  ssl_ciphers 'AES256+EECDH:AES256+EDH';
 {% endif %}
   # ECDHE ciphers curve
 {% if (item.ssl_ecdh_curve is defined) and not (item.ssl_ecdh_curve == []) %}
