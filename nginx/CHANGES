@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.3 (2018-04-16)
+I: Remove needless else statement in Jinja2 template
+
 * Version 1.0.2 (2018-04-15)
 B: Correct package and service variable names
 I: Improve Jinja2 templating
