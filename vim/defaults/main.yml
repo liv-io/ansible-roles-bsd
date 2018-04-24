@@ -1,5 +1,3 @@
 ---
 
 vim_state: 'install'
-
-vim_vimrc_template: 'main'
