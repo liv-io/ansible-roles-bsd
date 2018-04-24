@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.1.2 (2018-04-24)
+I: Simplify role by removing 'template' option
+
 * Version 3.1.1 (2018-04-04)
 I: Update support information of OpenBSD
 
