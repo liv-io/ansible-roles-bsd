@@ -95,20 +95,6 @@ ROLE
                 [{config: {'192.168.1.10'}, comment: 'Listen: Specific interface'}]
       None    : []
 
-  openntpd_ntpd_conf_template
-    Description: Define the template source for 'ntpd.conf.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-                 file to be created. The custom Jinja2 file for an example
-                 configuration called 'example' needs to be placed as follows:
-                 'openntpd/templates/example/ntpd.conf.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
   openntpd_server
     Description: Define the 'openntpd_server' option.
     Implemented: 0.1
