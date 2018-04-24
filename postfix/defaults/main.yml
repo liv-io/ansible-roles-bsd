@@ -2,8 +2,6 @@
 
 postfix_state: 'enable'
 
-postfix_aliases_template: "{{ansible_os_family}}"
-
 postfix_all: []
 
 postfix_fallback_relay: "mx02.{{ansible_domain}}"
@@ -15,10 +13,6 @@ postfix_host: []
 postfix_inet_interfaces: []
 
 postfix_inet_protocols: 'ipv4'
-
-postfix_main_cf_template: "{{ansible_os_family}}"
-
-postfix_master_cf_template: "{{ansible_os_family}}"
 
 postfix_myhostname: "{{ansible_fqdn}}"
 
