@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.7.2 (2018-04-24)
+I: Simplify role by removing 'template' option
+
 * Version 0.7.1 (2018-04-04)
 I: Update support information of OpenBSD
 

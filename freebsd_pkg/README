@@ -60,20 +60,6 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  freebsd_pkg_freebsd_conf_template
-    Description: Define the template source for 'FreeBSD.conf.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
-                 'freebsd_pkg/templates/example/FreeBSD.conf.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'main'
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
   freebsd_pkg_release
     Description: Define the 'freebsd_pkg_release' option.
     Implemented: 0.6
@@ -83,20 +69,6 @@ ROLE
     Default    : 'latest'
     Options    :
       Examples: 'latest' | 'quarterly' | 'release_0' | 'release_1'
-
-  freebsd_pkg_pkg_conf_template
-    Description: Define the template source for 'pkg.conf.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
-                 'freebsd_pkg/templates/example/pkg.conf.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'main'
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
 
 --------------------------------------------------------------------------------
 CONFLICTS
