@@ -427,34 +427,6 @@ ROLE
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld'] |
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
 
-  monit_monit_config_template
-    Description: Define the template source for 'monit-config.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
-                 'monit/templates/example/monit-config.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'main'
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
-  monit_monitrc_template
-    Description: Define the template source for 'monitrc.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-                 file to be created. The custom Jinja2 file for an example
-                 configuration called 'example' needs to be placed as follows:
-                 'monit/templates/example/monitrc.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
   monit_web_server_address
     Description: Define the 'monit_web_server_address' option.
     Implemented: 0.1

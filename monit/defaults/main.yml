@@ -36,10 +36,6 @@ monit_mail_subject: "Monit: $EVENT '$SERVICE' ({{ansible_hostname}})"
 
 monit_mail_to: "admin@{{ansible_domain}}"
 
-monit_monit_config_template: 'main'
-
-monit_monitrc_template: "{{ansible_os_family}}"
-
 monit_web_server_address: 'localhost'
 
 monit_web_server_allow: [{user: 'localhost', comment: 'Allow localhost'}]
