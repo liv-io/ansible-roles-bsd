@@ -7,5 +7,3 @@ resolver_domain: "{{ansible_domain}}"
 resolver_nameserver: [{server: '127.0.0.1', comment: 'Localhost'}]
 
 resolver_search: ["{{ansible_domain}}"]
-
-resolver_resolv_conf_template: "{{ansible_os_family}}"
