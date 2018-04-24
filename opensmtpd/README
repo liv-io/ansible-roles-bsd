@@ -128,20 +128,6 @@ ROLE
                  {config: {'accept for any relay via smtp://mail'}, comment: 'Accept: Relay'}]
       None    : []
 
-  opensmtpd_aliases_template
-    Description: Define the template source for 'aliases.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-                 file to be created. The custom Jinja2 file for an example
-                 configuration called 'example' needs to be placed as follows:
-                 'opensmtpd/templates/example/aliases.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
   opensmtpd_listen_all
     Description: Define the 'opensmtpd_listen_all' option.
     Implemented: 0.1
@@ -184,20 +170,6 @@ ROLE
     Default    : "root@{{ansible_domain}}"
     Options    :
       Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
-
-  opensmtpd_smtpd_conf_template
-    Description: Define the template source for 'smtpd.conf.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-                 file to be created. The custom Jinja2 file for an example
-                 configuration called 'example' needs to be placed as follows:
-                 'opensmtpd/templates/example/smtpd.conf.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
 
   opensmtpd_table_all
     Description: Define the 'opensmtpd_table_all' option.

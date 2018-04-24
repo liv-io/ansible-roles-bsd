@@ -10,8 +10,6 @@ opensmtpd_accept_group: []
 
 opensmtpd_accept_host: []
 
-opensmtpd_aliases_template: "{{ansible_os_family}}"
-
 opensmtpd_listen_all:
   - {config: {'listen on localhost'}, comment: 'Listen: Localhost'}
 
@@ -20,8 +18,6 @@ opensmtpd_listen_group: []
 opensmtpd_listen_host: []
 
 opensmtpd_root_mail_address: "root@{{ansible_domain}}"
-
-opensmtpd_smtpd_conf_template: "{{ansible_os_family}}"
 
 opensmtpd_table_all:
   - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}
