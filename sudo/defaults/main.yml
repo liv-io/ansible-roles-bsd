@@ -15,7 +15,3 @@ sudo_insults: 'false'
 sudo_lecture: 'false'
 
 sudo_name_default: 'main'
-
-sudo_sudo_config_template: 'main'
-
-sudo_sudoers_template: "{{ansible_os_family}}"
