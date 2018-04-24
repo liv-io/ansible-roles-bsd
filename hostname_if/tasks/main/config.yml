@@ -23,7 +23,7 @@
 
 - name: 'template create hostname.if'
   template:
-    src: "templates/{{item.template if (item.template is defined) and not (item.template == '') else hostname_if_hostname_if_template}}/hostname.if.j2"
+    src: "templates/{{ansible_os_family}}/hostname.if.j2"
     dest: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
     mode: "{{file_mode_hostname_if}}"
     owner: "{{file_owner_hostname_if}}"
