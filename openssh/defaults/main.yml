@@ -10,8 +10,6 @@ openssh_allow_users: []
 
 openssh_banner: 'enable'
 
-openssh_banner_template: 'main'
-
 openssh_ciphers: ['aes256-ctr', 'aes192-ctr']
 
 openssh_compression: 'delayed'
@@ -32,8 +30,6 @@ openssh_macs: ['hmac-sha2-512', 'hmac-sha2-256']
 
 openssh_match: []
 
-openssh_moduli_template: "{{ansible_os_family}}"
-
 openssh_password_authentication: 'yes'
 
 openssh_permit_root_login: 'no'
@@ -47,10 +43,6 @@ openssh_print_last_log: 'yes'
 openssh_pubkey_authentication: 'yes'
 
 openssh_rsa_authentication: 'yes'
-
-openssh_ssh_config_template: "{{ansible_os_family}}"
-
-openssh_sshd_config_template: "{{ansible_os_family}}"
 
 openssh_tcp_keep_alive: 'yes'
 
