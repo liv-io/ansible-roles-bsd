@@ -12,7 +12,7 @@ package_name_tmux: 'tmux'
 #-------------------------------------------------------------------------------
 
 # tmux.conf
-file_src_tmux_conf: "templates/{{tmux_tmux_conf_template}}/tmux.conf.j2"
+file_src_tmux_conf: "templates/main/tmux.conf.j2"
 file_path_tmux_conf: '/etc/tmux.conf'
 file_mode_tmux_conf: '0644'
 file_owner_tmux_conf: 'root'

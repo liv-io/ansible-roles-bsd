@@ -1,5 +1,3 @@
 ---
 
 tmux_state: 'install'
-
-tmux_tmux_conf_template: 'main'

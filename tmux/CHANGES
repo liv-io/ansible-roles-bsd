@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.2.1 (2018-04-24)
+I: Simplify role by removing 'template' option
+
 * Version 2.2.0 (2018-04-04)
 F: Add support for OpenBSD 6.3
 F: Drop support for OpenBSD 6.2
