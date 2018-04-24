@@ -146,34 +146,6 @@ ROLE
     Options    :
       Examples: 'NTPD: Update Time Error'
 
-  ntpd_ntp_conf_template
-    Description: Define the template source for 'ntp.conf.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-                 file to be created. The custom Jinja2 file for an example
-                 configuration called 'example' needs to be placed as follows:
-                 'ntpd/templates/example/ntp.conf.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
-  ntpd_ntpd_update_time_sh_template
-    Description: Define the template source for 'ntpd_update-time.sh.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
-                 'ntpd/templates/example/ntpd_update-time.sh.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'main'
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
   ntpd_ntpd_update_time_interval
     Description: Set the 'ntpd_ntpd_update_time_interval' option.
                  Specify a value between 1-59.
