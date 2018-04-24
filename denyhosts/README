@@ -173,20 +173,6 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  denyhosts_allowed_hosts_template
-    Description: Define the template source for 'allowed-hosts.j2'.
-                 Any value other than 'main' requires a Jinja2 file to be
-                 created. The custom Jinja2 file for an example configuration
-                 called 'example' needs to be placed as follows:
-                 'denyhosts/templates/example/allowed-hosts.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'main'
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
   denyhosts_block_service
     Description: Control the 'denyhosts_block_service' option.
     Implemented: 0.1
@@ -217,20 +203,6 @@ ROLE
     Default    : '1h'
     Options    :
       Examples: '2h' | '3h'
-
-  denyhosts_denyhosts_conf_template
-    Description: Define the template source for 'denyhosts.conf.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-                 file to be created. The custom Jinja2 file for an example
-                 configuration called 'example' needs to be placed as follows:
-                 'denyhosts/templates/example/denyhosts.conf.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
 
   denyhosts_deny_threshold_invalid
     Description: Set the 'denyhosts_deny_threshold_invalid' option.
@@ -282,34 +254,6 @@ ROLE
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
-
-  denyhosts_hosts_allow_template
-    Description: Define the template source for 'hosts.allow.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-                 file to be created. The custom Jinja2 file for an example
-                 configuration called 'example' needs to be placed as follows:
-                 'denyhosts/templates/example/hosts.allow.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
-  denyhosts_hosts_block_template
-    Description: Define the template source for 'hosts.block.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-                 file to be created. The custom Jinja2 file for an example
-                 configuration called 'example' needs to be placed as follows:
-                 'denyhosts/templates/example/hosts.block.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
 
   denyhosts_purge_deny
     Description: Set the 'denyhosts_purge_deny' option.

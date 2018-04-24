@@ -17,15 +17,11 @@ denyhosts_allowed_hosts:
 
 denyhosts_allowed_hosts_hostname_lookup: 'false'
 
-denyhosts_allowed_hosts_template: 'main'
-
 denyhosts_block_service: 'sshd'
 
 denyhosts_daemon_sleep: '30s'
 
 denyhosts_daemon_purge: '1h'
-
-denyhosts_denyhosts_conf_template: "{{ansible_os_family}}"
 
 denyhosts_deny_threshold_invalid: 2
 
@@ -36,10 +32,6 @@ denyhosts_deny_threshold_root: 2
 denyhosts_deny_threshold_valid: 2
 
 denyhosts_hostname_lookup: 'false'
-
-denyhosts_hosts_allow_template: "{{ansible_os_family}}"
-
-denyhosts_hosts_block_template: "{{ansible_os_family}}"
 
 denyhosts_purge_deny: 'false'
 

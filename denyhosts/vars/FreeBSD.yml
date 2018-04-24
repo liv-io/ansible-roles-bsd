@@ -23,14 +23,14 @@ file_line_denyhosts_enable: 'denyhosts_enable'
 file_path_denyhosts_enable: '/etc/rc.conf'
 
 # hosts.allow
-file_src_hosts_allow: "templates/{{denyhosts_hosts_allow_template}}/hosts.allow.j2"
+file_src_hosts_allow: "templates/{{ansible_os_family}}/hosts.allow.j2"
 file_path_hosts_allow: '/etc/hosts.allow'
 file_mode_hosts_allow: '0644'
 file_owner_hosts_allow: 'root'
 file_group_hosts_allow: 'wheel'
 
 # hosts.block
-file_src_hosts_block: "templates/{{denyhosts_hosts_block_template}}/hosts.block.j2"
+file_src_hosts_block: "templates/{{ansible_os_family}}/hosts.block.j2"
 file_path_hosts_block: '/etc/hosts.block'
 file_mode_hosts_block: '0644'
 file_owner_hosts_block: 'root'
