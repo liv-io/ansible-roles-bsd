@@ -62,20 +62,6 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  bash_bash_bash_template
-    Description: Define the template source for 'bash.bash.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-                 file to be created. The custom Jinja2 file for an example
-                 configuration called 'example' needs to be placed as follows:
-                 'bash/templates/example/bash.bash.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
   bash_checkwinsize
     Description: Control the state of the 'checkwinsize' Bash option.
     Implemented: 0.5
@@ -209,20 +195,6 @@ ROLE
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
-
-  bash_zz_bash_bash_template
-    Description: Define the template source for 'zz_bash.bash.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-		 file to be created. The custom Jinja2 file for an example
-		 configuration called 'example' needs to be placed as follows:
-                 'bash/templates/example/zz_bash.bash.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
 
 --------------------------------------------------------------------------------
 CONFLICTS
