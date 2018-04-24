@@ -9,5 +9,3 @@ sysctl_dependencies: []
 sysctl_group: []
 
 sysctl_host: []
-
-sysctl_sysctl_conf_template: 'main'
