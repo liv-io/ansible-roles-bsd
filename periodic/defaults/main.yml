@@ -18,8 +18,6 @@ periodic_monthly_show_info: 'true'
 
 periodic_monthly_show_success: 'true'
 
-periodic_periodic_conf_template: "{{ansible_os_family}}"
-
 periodic_weekly_output: 'root'
 
 periodic_weekly_show_badconfig: 'false'
