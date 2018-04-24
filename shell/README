@@ -125,20 +125,6 @@ ROLE
       Examples: 'less' | 'more' | '/usr/bin/less' | '/usr/bin/more'
       Disable : 'false' | 'no' | 'disable'
 
-  shell_profile_template
-    Description: Define the template source for 'profile.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-                 file to be created. The custom Jinja2 file for an example
-                 configuration called 'example' needs to be placed as follows:
-                 'shell/templates/example/profile.j2'
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
   shell_safety
     Description: Control the safety of various shell commands
                  (chmod, chown, ln, mv, rm...).
@@ -150,34 +136,6 @@ ROLE
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
-
-  shell_shell_sh_template
-    Description: Define the template source for 'shell.sh.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-		 file to be created. The custom Jinja2 file for an example
-		 configuration called 'example' needs to be placed as follows:
-                 'shell/templates/example/shell.sh.j2'
-    Implemented: 0.2
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
-
-  shell_z_shell_sh_template
-    Description: Define the template source for 'z_shell.sh.j2'.
-                 Any value other than "{{ansible_os_family}}" requires a Jinja2
-		 file to be created. The custom Jinja2 file for an example
-		 configuration called 'example' needs to be placed as follows:
-                 'shell/templates/example/z_shell.sh.j2'
-    Implemented: 0.2
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "{{ansible_os_family}}"
-    Options    :
-      Examples: 'example' | 'environment' | 'hostname'
 
 --------------------------------------------------------------------------------
 CONFLICTS

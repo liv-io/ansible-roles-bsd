@@ -14,10 +14,4 @@ shell_ls_time_style: '%Y-%m-%d %H:%M:%S'
 
 shell_pager: 'less'
 
-shell_profile_template: "{{ansible_os_family}}"
-
 shell_safety: 'true'
-
-shell_shell_sh_template: "{{ansible_os_family}}"
-
-shell_z_shell_sh_template: "{{ansible_os_family}}"
