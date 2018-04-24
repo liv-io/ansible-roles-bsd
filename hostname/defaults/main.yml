@@ -3,5 +3,3 @@
 hostname_state: 'install'
 
 hostname_hostname: "{{inventory_hostname}}"
-
-hostname_myname_template: 'main'
