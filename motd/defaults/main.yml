@@ -4,6 +4,8 @@ motd_state: 'install'
 
 motd_env_name: 'Production'
 
-motd_host_description: ''
+motd_host_description: "{{group_names|last}}"
+
+motd_host_ip_address: "{{ansible_default_ipv4.address}}"
 
 motd_motd_template: "{{ansible_os_family}}"

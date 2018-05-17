@@ -2,7 +2,8 @@
 --------------------------------------------------------------------------------
 
 Hostname        : [0m[1;33m{{ansible_hostname}}[0m
-Description     : [0m[1;33m{{motd_host_description}}[0m
+IP Address      : [0m[0;33m{{motd_host_ip_address}}[0m
+Description     : [0m[0;33m{{motd_host_description}}[0m
 Environment     : [0m[{% if (motd_env_name|match('Production')) %}1;31m{% elif (motd_env_name|match('Testing')) %}1;32m{% else %}0;33m{% endif %}{{motd_env_name}}[0m
 Operating System: [0m[{{motd_os_color}}{{ansible_distribution}} {{ansible_distribution_version}} ({{ansible_machine}})[0m
 Processor Count : [0m[0;31m{{ansible_processor_count}}[0m

@@ -72,9 +72,20 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : ''
+    Default    : "{{group_names|last}}"
     Options    :
       Examples: 'Backup Server' | 'Database Server' | 'Mail Server' | 'Web Server'
+      None    : ''
+
+  motd_host_ip_address
+    Description: Define the 'motd_host_ip_address' option.
+    Implemented: 2.3
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_default_ipv4.address}}"
+    Options    :
+      Examples: '192.168.0.10' | '172.16.0.10' | '10.0.0.10'
       None    : ''
 
   motd_motd_template

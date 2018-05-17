@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.3.0 (2018-05-17)
+F: Add parameter 'motd_host_ip_address'
+I: Improve 'motd_host_description' parameter
+
 * Version 2.2.0 (2018-04-04)
 F: Add support for OpenBSD 6.3
 F: Drop support for OpenBSD 6.2
