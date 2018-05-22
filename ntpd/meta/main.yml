@@ -1,5 +1,5 @@
 ---
 
 dependencies:
-  - {role: common, when: (ntpd_state|match('cron|cronjob'))}
-  - {role: mailx, when: (ntpd_monitor_mail_state|match('true|yes|enable'))}
+  - {role: common, when: (ntpd_state is match('cron|cronjob'))}
+  - {role: mailx, when: (ntpd_monitor_mail_state is match('true|yes|enable'))}

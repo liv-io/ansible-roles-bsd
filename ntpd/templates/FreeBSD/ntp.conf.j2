@@ -29,7 +29,7 @@
 
 # Monitoring facility.
 # See the ntpdc(8) program and the monlist command or further information.
-{% if (ntpd_monitor|match('true|yes|enable')) %}
+{% if (ntpd_monitor is match('true|yes|enable')) %}
 enable monitor
 {% else %}
 disable monitor
