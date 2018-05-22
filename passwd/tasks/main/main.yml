@@ -2,7 +2,7 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (passwd_state|match('false|no|remove|quiesce|inactive'))
+  when: not (passwd_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - passwd
