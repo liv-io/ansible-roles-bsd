@@ -699,9 +699,9 @@ sample_directory = /usr/local/etc/postfix
 # readme_directory: The location of the Postfix README files.
 #
 readme_directory = /usr/local/share/doc/postfix
-{% if (postfix_inet_protocols|match('inet|ipv4')) %}
+{% if (postfix_inet_protocols is match('inet|ipv4')) %}
 inet_protocols = ipv4
-{% elif (postfix_inet_protocols|match('inet6|ipv6')) %}
+{% elif (postfix_inet_protocols is match('inet6|ipv6')) %}
 inet_protocols = ipv6
 {% else %}
 inet_protocols = all

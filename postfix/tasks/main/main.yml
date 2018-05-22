@@ -2,28 +2,28 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (postfix_state|match('false|no|remove|quiesce|inactive'))
+  when: not (postfix_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - postfix
 
 - name: 'task include enable'
   import_tasks: enable.yml
-  when: (postfix_state|match('start|on|enable'))
+  when: (postfix_state is match('start|on|enable'))
   tags:
     - main
     - postfix
 
 - name: 'task include disable'
   import_tasks: disable.yml
-  when: (postfix_state|match('stop|off|disable'))
+  when: (postfix_state is match('stop|off|disable'))
   tags:
     - main
     - postfix
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (postfix_state|match('false|no|remove'))
+  when: (postfix_state is match('false|no|remove'))
   tags:
     - main
     - postfix
