@@ -2,28 +2,28 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (opensmtpd_state|match('false|no|remove|quiesce|inactive'))
+  when: not (opensmtpd_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - opensmtpd
 
 - name: 'task include enable'
   import_tasks: enable.yml
-  when: (opensmtpd_state|match('start|on|enable'))
+  when: (opensmtpd_state is match('start|on|enable'))
   tags:
     - main
     - opensmtpd
 
 - name: 'task include disable'
   import_tasks: disable.yml
-  when: (opensmtpd_state|match('stop|off|disable'))
+  when: (opensmtpd_state is match('stop|off|disable'))
   tags:
     - main
     - opensmtpd
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (opensmtpd_state|match('false|no|remove'))
+  when: (opensmtpd_state is match('false|no|remove'))
   tags:
     - main
     - opensmtpd
