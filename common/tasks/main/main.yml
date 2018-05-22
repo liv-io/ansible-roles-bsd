@@ -2,14 +2,14 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (common_state|match('false|no|remove|quiesce|inactive'))
+  when: not (common_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - common
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (common_state|match('false|no|remove'))
+  when: (common_state is match('false|no|remove'))
   tags:
     - main
     - common
