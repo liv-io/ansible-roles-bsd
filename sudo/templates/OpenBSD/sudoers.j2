@@ -45,14 +45,14 @@ Defaults:%wsrc env_keep +="SUBPACKAGE WRKOBJDIR SUDO_PORT_V1"
 #Defaults env_keep +="ftp_proxy http_proxy"
 
 # Uncomment to disable the insults for incorrect passwords
-{% if (sudo_insults|match('true|yes|enable')) %}
+{% if (sudo_insults is match('true|yes|enable')) %}
 Defaults insults
 {% else %}
 Defaults !insults
 {% endif %}
 
 # Uncomment to disable the lecture the first time you run sudo
-{% if (sudo_lecture|match('true|yes|enable')) %}
+{% if (sudo_lecture is match('true|yes|enable')) %}
 Defaults lecture
 {% else %}
 Defaults !lecture

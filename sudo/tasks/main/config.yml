@@ -30,7 +30,7 @@
     group: "{{file_group_sudo_config}}"
     validate: "{{file_validate_sudo_config}}"
   with_items: "{{sudo_all + sudo_dependencies + sudo_group + sudo_host}}"
-  when: not (item.state|match('false|no|remove'))
+  when: not (item.state is match('false|no|remove'))
   tags:
     - files
     - config
@@ -42,7 +42,7 @@
     state: 'absent'
     path: "{{file_path_sudoers_d}}/{{item.order if (item.order is defined) else ''}}{{'-' if (item.order is defined) else ''}}{{item.name if (item.name is defined) and not (item.name == '') else sudo_name_default}}"
   with_items: "{{sudo_all + sudo_dependencies + sudo_group + sudo_host}}"
-  when: (item.state|match('false|no|remove'))
+  when: (item.state is match('false|no|remove'))
   tags:
     - files
     - config
