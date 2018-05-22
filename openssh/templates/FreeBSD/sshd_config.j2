@@ -47,11 +47,11 @@ Port 22
 # ADDRESS FAMILY
 #-------------------------------------------------------------------------------
 
-{% if (openssh_address_family|match('any|all')) %}
+{% if (openssh_address_family is match('any|all')) %}
 AddressFamily any
-{% elif (openssh_address_family|match('inet|ipv4')) %}
+{% elif (openssh_address_family is match('inet|ipv4')) %}
 AddressFamily inet
-{% elif (openssh_address_family|match('inet6|ipv6')) %}
+{% elif (openssh_address_family is match('inet6|ipv6')) %}
 AddressFamily inet6
 {% else %}
 #AddressFamily
@@ -164,7 +164,7 @@ MACs hmac-sha2-512,hmac-sha2-256
 # Authentication:
 
 #LoginGraceTime 2m
-{% if (openssh_permit_root_login|match('true|yes|enable')) %}
+{% if (openssh_permit_root_login is match('true|yes|enable')) %}
 PermitRootLogin yes
 {% else %}
 PermitRootLogin no
@@ -173,12 +173,12 @@ PermitRootLogin no
 #MaxAuthTries 6
 #MaxSessions 10
 
-{% if (openssh_rsa_authentication|match('false|no|disable')) %}
+{% if (openssh_rsa_authentication is match('false|no|disable')) %}
 RSAAuthentication no
 {% else %}
 RSAAuthentication yes
 {% endif %}
-{% if (openssh_pubkey_authentication|match('false|no|disable')) %}
+{% if (openssh_pubkey_authentication is match('false|no|disable')) %}
 PubkeyAuthentication no
 {% else %}
 PubkeyAuthentication yes
@@ -203,7 +203,7 @@ HostbasedAuthentication no
 IgnoreRhosts yes
 
 # Change to yes to enable built-in password authentication.
-{% if (openssh_password_authentication|match('false|no|disable')) %}
+{% if (openssh_password_authentication is match('false|no|disable')) %}
 PasswordAuthentication no
 {% else %}
 PasswordAuthentication yes
@@ -241,14 +241,14 @@ UsePAM yes
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
 #GatewayPorts no
-{% if (openssh_x11_forwarding|match('true|yes|enable')) %}
+{% if (openssh_x11_forwarding is match('true|yes|enable')) %}
 X11Forwarding yes
 {% else %}
 X11Forwarding no
 {% endif %}
-{% if (openssh_x11_forwarding|match('true|yes|enable')) %}
+{% if (openssh_x11_forwarding is match('true|yes|enable')) %}
 X11DisplayOffset {{(openssh_x11_display_offset|int(10))}}
-{% if (openssh_x11_use_localhost|match('true|yes|enable')) %}
+{% if (openssh_x11_use_localhost is match('true|yes|enable')) %}
 X11UseLocalhost yes
 {% else %}
 X11UseLocalhost no
@@ -260,12 +260,12 @@ X11UseLocalhost no
 #-------------------------------------------------------------------------------
 
 #PermitTTY yes
-{% if (openssh_print_motd|match('true|yes|enable')) %}
+{% if (openssh_print_motd is match('true|yes|enable')) %}
 PrintMotd yes
 {% else %}
 PrintMotd no
 {% endif %}
-{% if (openssh_tcp_keep_alive|match('false|no|disable')) %}
+{% if (openssh_tcp_keep_alive is match('false|no|disable')) %}
 TCPKeepAlive no
 {% else %}
 TCPKeepAlive yes
@@ -273,16 +273,16 @@ TCPKeepAlive yes
 #UseLogin no
 UsePrivilegeSeparation sandbox
 #PermitUserEnvironment no
-{% if (openssh_compression|match('true|yes|enable')) %}
+{% if (openssh_compression is match('true|yes|enable')) %}
 Compression yes
-{% elif (openssh_compression|match('false|no|disable')) %}
+{% elif (openssh_compression is match('false|no|disable')) %}
 Compression no
 {% else %}
 Compression delayed
 {% endif %}
 #ClientAliveInterval 0
 #ClientAliveCountMax 3
-{% if (openssh_use_dns|match('true|yes|enable')) %}
+{% if (openssh_use_dns is match('true|yes|enable')) %}
 UseDNS yes
 {% else %}
 UseDNS no
@@ -299,7 +299,7 @@ VersionAddendum {{openssh_version_addendum}}
 #-------------------------------------------------------------------------------
 
 # no default banner path
-{% if (openssh_banner|match('false|no|disable')) %}
+{% if (openssh_banner is match('false|no|disable')) %}
 Banner none
 {% else %}
 Banner {{file_path_banner}}
