@@ -1,5 +1,5 @@
 ---
 
 dependencies:
-  - {role: common, when: not (zfs_state|match('false|no|remove|quiesce|inactive'))}
-  - {role: mailx, when: (zfs_monitor_mail_state|match('true|yes|enable'))}
+  - {role: common, when: not (zfs_state is match('false|no|remove|quiesce|inactive'))}
+  - {role: mailx, when: (zfs_monitor_mail_state is match('true|yes|enable'))}

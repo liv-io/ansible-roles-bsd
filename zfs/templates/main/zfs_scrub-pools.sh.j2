@@ -36,7 +36,7 @@ expr=$($which expr) || { echo "Error: Command 'expr' not found."; exit 127; }
 grep=$($which grep) || { echo "Error: Command 'grep' not found."; exit 127; }
 hostname=$($which hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
 logger=$($which logger) || { echo "Error: Command 'logger' not found."; exit 127; }
-{% if (zfs_monitor_mail_state|match('true|yes|enable')) %}
+{% if (zfs_monitor_mail_state is match('true|yes|enable')) %}
 mailx=$($which mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 rm=$($which rm) || { echo "Error: Command 'rm' not found."; exit 127; }
@@ -64,7 +64,7 @@ zfs_pools='{% for pool in zfs_pools %}{{pool}}{% if not loop.last %} {% endif %}
 {% endfor %}
 {% endif %}
 
-{% if (zfs_monitor_mail_state|match('true|yes|enable')) %}
+{% if (zfs_monitor_mail_state is match('true|yes|enable')) %}
 mail_sender='{{zfs_monitor_mail_sender}}'
 mail_recipient='{% for mail_recipient in zfs_monitor_mail_recipient %}{{mail_recipient}}{% if not loop.last %},{% endif %}{% endfor %}'
 mail_subject='{{zfs_monitor_mail_subject}}'
@@ -74,7 +74,7 @@ mail_subject='{{zfs_monitor_mail_subject}}'
 # FUNCTIONS
 #-------------------------------------------------------------------------------
 
-{% if (zfs_monitor_mail_state|match('true|yes|enable')) %}
+{% if (zfs_monitor_mail_state is match('true|yes|enable')) %}
 mail_error() {
   retval=$1
   severity=$2
@@ -168,7 +168,7 @@ log_and_exit_on_error() {
     $rm -f $lockfile
     $echo "$($date '+%Y-%m-%dT%H:%M:%S%z') - $host - $script: "$severity: $message""
     $logger -t $script "$severity: $message"
-{% if (zfs_monitor_mail_state|match('true|yes|enable')) %}
+{% if (zfs_monitor_mail_state is match('true|yes|enable')) %}
     mail_error $retval "$severity" "$message"
 {% endif %}
     exit $retval
