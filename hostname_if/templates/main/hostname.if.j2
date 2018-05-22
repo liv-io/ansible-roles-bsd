@@ -23,13 +23,13 @@
 {%- if (item.comment is defined) and not (item.comment == '') %}# {{item.comment}}{% endif %}
 
 {% for interface in item.interfaces|default([]) %}
-{%- if (interface.type is defined) and (interface.type|match('pfsync')) %}
+{%- if (interface.type is defined) and (interface.type is match('pfsync')) %}
 {%- if (interface.syncdev is defined) and not (interface.syncdev == '') %}syncdev {{interface.syncdev}} {% endif %}
 {%- if (interface.description is defined) and not (interface.description == '') %}description "{{interface.description}}" {% endif %}
 {%- if (interface.comment is defined) and not (interface.comment == '') %}# {{interface.comment}}{% endif %}
 
-{% elif (interface.type is defined) and (interface.type|match('carp')) %}
-{%- if (interface.version is defined) and (interface.version|match('ipv6|inet6')) %}inet6 {% else %}inet {% endif %}
+{% elif (interface.type is defined) and (interface.type is match('carp')) %}
+{%- if (interface.version is defined) and (interface.version is match('ipv6|inet6')) %}inet6 {% else %}inet {% endif %}
 {%- if (interface.ip is defined) and not (interface.ip == '') %}{{interface.ip}} {% endif %}
 {%- if (interface.netmask is defined) and not (interface.netmask == '') %}{{interface.netmask}} {% endif %}
 {%- if (interface.broadcast is defined) and not (interface.broadcast == '') %}{{interface.broadcast}} {% else %}NONE {% endif %}
@@ -42,14 +42,14 @@
 {%- if (interface.comment is defined) and not (interface.comment == '') %}# {{interface.comment}}{% endif %}
 
 {% else %}
-{%- if (interface.version is defined) and (interface.version|match('ipv6|inet6')) %}inet6 {% else %}inet {% endif %}
-{%- if (interface.alias is defined) and (interface.alias|match('true|yes|enable')) %}alias {% endif %}
+{%- if (interface.version is defined) and (interface.version is match('ipv6|inet6')) %}inet6 {% else %}inet {% endif %}
+{%- if (interface.alias is defined) and (interface.alias is match('true|yes|enable')) %}alias {% endif %}
 {%- if (interface.ip is defined) and not (interface.ip == '') %}{{interface.ip}} {% endif %}
 {%- if (interface.netmask is defined) and not (interface.netmask == '') %}{{interface.netmask}} {% endif %}
 {%- if (interface.broadcast is defined) and not (interface.broadcast == '') %}{{interface.broadcast}} {% else %}NONE {% endif %}
 {%- if (interface.vnetid is defined) and not (interface.vnetid == '') %}vnetid {{interface.vnetid}} {% endif %}
 {%- if (interface.vlandev is defined) and not (interface.vlandev == '') %}vlandev {{(interface.vlandev|default(ansible_default_ipv4.device))}} {% endif %}
-{%- if ((interface.description is defined) and not (interface.description == '')) and not ((interface.alias is defined) and (interface.alias|match('true|yes|enable'))) %}description "{{interface.description}}" {% endif %}
+{%- if ((interface.description is defined) and not (interface.description == '')) and not ((interface.alias is defined) and (interface.alias is match('true|yes|enable'))) %}description "{{interface.description}}" {% endif %}
 {%- if (interface.comment is defined) and not (interface.comment == '') %}# {{interface.comment}}{% endif %}
 
 {% endif %}
@@ -73,7 +73,7 @@
 # STATE
 #-------------------------------------------------------------------------------
 
-{% if (item.status is defined) and (item.status|match('false|no|disable|down')) %}
+{% if (item.status is defined) and (item.status is match('false|no|disable|down')) %}
 down
 {% else %}
 up

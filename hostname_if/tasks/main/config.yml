@@ -31,7 +31,7 @@
   with_items: "{{hostname_if_all + hostname_if_dependencies + hostname_if_group + hostname_if_host}}"
   notify:
     - 'command run netstart'
-  when: not (item.state|default('')|match('false|no|remove'))
+  when: not (item.state|default('') is match('false|no|remove'))
   tags:
     - files
     - config
@@ -45,7 +45,7 @@
   with_items: "{{hostname_if_all + hostname_if_dependencies + hostname_if_group + hostname_if_host}}"
   notify:
     - 'command run netstart'
-  when: (item.state|default('')|match('false|no|remove'))
+  when: (item.state|default('') is match('false|no|remove'))
   tags:
     - files
     - config
@@ -62,7 +62,7 @@
   changed_when: (register_check_ifconfig.rc > 1)
   failed_when: (register_check_ifconfig.rc > 1)
   with_items: "{{hostname_if_all + hostname_if_dependencies + hostname_if_group + hostname_if_host}}"
-  when: (item.state|default('')|match('false|no|remove')) and (item.interface in ansible_interfaces)
+  when: (item.state|default('') is match('false|no|remove')) and (item.interface in ansible_interfaces)
   tags:
     - commands
     - config
