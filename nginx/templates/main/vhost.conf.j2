@@ -28,7 +28,7 @@ server {
 {%- else %}
  *:{{(item.port|int)}}
 {%- endif %}
-{%- if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %}
+{%- if (item.ssl_state is defined) and (item.ssl_state is match('true|yes|enable')) %}
  ssl
 {%- endif %};
   # Server name
@@ -42,7 +42,7 @@ server {
   # Logging options
   error_log logs/{{item.name}}-{{(item.port|int)}}_error.log;
   access_log logs/{{item.name}}-{{(item.port|int)}}_access.log
-{%- if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %}
+{%- if (item.ssl_state is defined) and (item.ssl_state is match('true|yes|enable')) %}
  main_ssl;
 {% else %}
  main;
@@ -52,11 +52,11 @@ server {
   # HEADER
   #-----------------------------------------------------------------------------
 
-{% if (item.hsts_state is defined) and (item.hsts_state|match('true|yes|enable')) %}
+{% if (item.hsts_state is defined) and (item.hsts_state is match('true|yes|enable')) %}
   # HTTP Strict Transport Security (HSTS)
   add_header Strict-Transport-Security 'max-age={% if (item.hsts_max_age is defined) and not (item.hsts_max_age == '') %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{nginx_hsts_max_age}}{% endif %}' always;
 {% endif %}
-{% if (item.xss_protection_state is defined) and (item.xss_protection_state|match('true|yes|enable')) %}
+{% if (item.xss_protection_state is defined) and (item.xss_protection_state is match('true|yes|enable')) %}
   # X-Frame-Options: Disable frame embedding (phishing, clickjacking prevention)
   add_header X-Frame-Options 'DENY' always;
   # X-Content-Type-Options: Disable MIME-sniffing (drive-by download attacks prevention)
@@ -65,7 +65,7 @@ server {
   add_header X-XSS-Protection '1; mode=block' always;
 {% endif %}
 
-{% if (item.ssl_state is defined) and (item.ssl_state|match('true|yes|enable')) %}
+{% if (item.ssl_state is defined) and (item.ssl_state is match('true|yes|enable')) %}
   #-----------------------------------------------------------------------------
   # SSL
   #-----------------------------------------------------------------------------
@@ -77,7 +77,7 @@ server {
   ssl_protocols TLSv1.2;
 {% endif %}
   # Prefer the server ciphers over client ciphers
-{% if (item.ssl_prefer_server_ciphers is defined) and (item.ssl_prefer_server_ciphers|match('false|no|disable')) %}
+{% if (item.ssl_prefer_server_ciphers is defined) and (item.ssl_prefer_server_ciphers is match('false|no|disable')) %}
   ssl_prefer_server_ciphers off;
 {% else %}
   ssl_prefer_server_ciphers on;
@@ -115,7 +115,7 @@ server {
   #ssl_client_certificate '';
 {% endif %}
   # Verify client certificates
-{% if (item.ssl_verify_client is defined) and (item.ssl_verify_client|match('true|yes|enable')) %}
+{% if (item.ssl_verify_client is defined) and (item.ssl_verify_client is match('true|yes|enable')) %}
   ssl_verify_client on;
 {% else %}
   ssl_verify_client off;

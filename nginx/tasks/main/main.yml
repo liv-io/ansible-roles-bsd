@@ -2,35 +2,35 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (nginx_state|match('false|no|remove|quiesce|inactive'))
+  when: not (nginx_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - nginx
 
 - name: 'task include config'
   import_tasks: config.yml
-  when: not (nginx_state|match('false|no|remove|quiesce|inactive'))
+  when: not (nginx_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - nginx
 
 - name: 'task include enable'
   import_tasks: enable.yml
-  when: (nginx_state|match('start|on|enable'))
+  when: (nginx_state is match('start|on|enable'))
   tags:
     - main
     - nginx
 
 - name: 'task include disable'
   import_tasks: disable.yml
-  when: (nginx_state|match('stop|off|disable'))
+  when: (nginx_state is match('stop|off|disable'))
   tags:
     - main
     - nginx
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (nginx_state|match('false|no|remove'))
+  when: (nginx_state is match('false|no|remove'))
   tags:
     - main
     - nginx
