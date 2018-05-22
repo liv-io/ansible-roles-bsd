@@ -26,7 +26,7 @@
 # {{all.comment}}
 {% endif %}
 table {% if (all.name is defined) and not (all.name == '') %}<{{all.name}}> {% endif %}
-{%- if (all.attribute is defined) and (all.attribute|match('counters')) %}counters{% elif (all.attribute is defined) and (all.attribute|match('counters')) %}persistq {% else %}const {% endif %}
+{%- if (all.attribute is defined) and (all.attribute is match('counters')) %}counters{% elif (all.attribute is defined) and (all.attribute is match('counters')) %}persistq {% else %}const {% endif %}
 { {% for value in all.value|default([]) %}
 {{value}}{% if not loop.last %}, {% endif %}
 {%- endfor %} }
@@ -44,7 +44,7 @@ table {% if (all.name is defined) and not (all.name == '') %}<{{all.name}}> {% e
 # {{group.comment}}
 {% endif %}
 table {% if (group.name is defined) and not (group.name == '') %}<{{group.name}}> {% endif %}
-{%- if (group.attribute is defined) and (group.attribute|match('counters')) %}counters{% elif (group.attribute is defined) and (group.attribute|match('counters')) %}persistq {% else %}const {% endif %}
+{%- if (group.attribute is defined) and (group.attribute is match('counters')) %}counters{% elif (group.attribute is defined) and (group.attribute is match('counters')) %}persistq {% else %}const {% endif %}
 { {% for value in group.value|default([]) %}
 {{value}}{% if not loop.last %}, {% endif %}
 {%- endfor %} }
@@ -63,7 +63,7 @@ table {% if (group.name is defined) and not (group.name == '') %}<{{group.name}}
 # {{host.comment}}
 {% endif %}
 table {% if (host.name is defined) and not (host.name == '') %}<{{host.name}}> {% endif %}
-{%- if (host.attribute is defined) and (host.attribute|match('counters')) %}counters{% elif (host.attribute is defined) and (host.attribute|match('counters')) %}persistq {% else %}const {% endif %}
+{%- if (host.attribute is defined) and (host.attribute is match('counters')) %}counters{% elif (host.attribute is defined) and (host.attribute is match('counters')) %}persistq {% else %}const {% endif %}
 { {% for value in host.value|default([]) %}
 {{value}}{% if not loop.last %}, {% endif %}
 {%- endfor %} }

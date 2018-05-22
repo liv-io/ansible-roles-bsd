@@ -20,27 +20,27 @@
 #-------------------------------------------------------------------------------
 
 # Block policy (block, drop, return)
-{% if (openbsd_pf_options_block_policy|match('return')) %}
+{% if (openbsd_pf_options_block_policy is match('return')) %}
 set block-policy return
-{% elif (openbsd_pf_options_block_policy|match('block')) %}
+{% elif (openbsd_pf_options_block_policy is match('block')) %}
 {% else %}
 set block-policy drop
 {% endif %}
 
 # Debugging level (emerg, alert, crit, err, warning, notice, info, debug)
-{% if (openbsd_pf_options_debug|match('emerg')) %}
+{% if (openbsd_pf_options_debug is match('emerg')) %}
 set debug emerg
-{% elif (openbsd_pf_options_debug|match('alert')) %}
+{% elif (openbsd_pf_options_debug is match('alert')) %}
 set debug alert
-{% elif (openbsd_pf_options_debug|match('crit')) %}
+{% elif (openbsd_pf_options_debug is match('crit')) %}
 set debug crit
-{% elif (openbsd_pf_options_debug|match('err')) %}
+{% elif (openbsd_pf_options_debug is match('err')) %}
 set debug err
-{% elif (openbsd_pf_options_debug|match('warning')) %}
+{% elif (openbsd_pf_options_debug is match('warning')) %}
 set debug warning
-{% elif (openbsd_pf_options_debug|match('notice')) %}
+{% elif (openbsd_pf_options_debug is match('notice')) %}
 set debug notice
-{% elif (openbsd_pf_options_debug|match('info')) %}
+{% elif (openbsd_pf_options_debug is match('info')) %}
 set debug info
 {% else %}
 set debug debug
@@ -50,7 +50,7 @@ set debug debug
 set fingerprints '{{openbsd_pf_options_fingerprints}}'
 
 # Host ID
-{% if not (openbsd_pf_options_hostid|match('false|no|disable|none')) %}
+{% if not (openbsd_pf_options_hostid is match('false|no|disable|none')) %}
 set hostid {{openbsd_pf_options_hostid}}
 {% endif %}
 
@@ -65,36 +65,36 @@ set limit {% if (limit.name is defined) and not (limit.name == '') %}{{limit.nam
 {% endfor %}
 
 # Log interface (none, <interface>)
-{% if not (openbsd_pf_options_loginterface|match('false|no|disable|none')) %}
+{% if not (openbsd_pf_options_loginterface is match('false|no|disable|none')) %}
 set loginterface {{openbsd_pf_options_loginterface}}
 {% else %}
 set loginterface none
 {% endif %}
 
 # Optimization (normal, high-latency, satellite, aggressive, conservative)
-{% if (openbsd_pf_options_optimization|match('high-latency')) %}
+{% if (openbsd_pf_options_optimization is match('high-latency')) %}
 set optimization high-latency
-{% elif (openbsd_pf_options_optimization|match('satellite')) %}
+{% elif (openbsd_pf_options_optimization is match('satellite')) %}
 set optimization satellite
-{% elif (openbsd_pf_options_optimization|match('aggressive')) %}
+{% elif (openbsd_pf_options_optimization is match('aggressive')) %}
 set optimization aggressive
-{% elif (openbsd_pf_options_optimization|match('conservative')) %}
+{% elif (openbsd_pf_options_optimization is match('conservative')) %}
 set optimization conservative
 {% else %}
 set optimization normal
 {% endif %}
 
 # Reassemble
-{% if (openbsd_pf_options_reassemble|match('false|no|disable')) %}
+{% if (openbsd_pf_options_reassemble is match('false|no|disable')) %}
 set loginterface no
 {% else %}
 set reassemble yes
 {% endif %}
 
 # Ruleset optimization (none, basic, profile)
-{% if (openbsd_pf_options_ruleset_optimization|match('basic')) %}
+{% if (openbsd_pf_options_ruleset_optimization is match('basic')) %}
 set ruleset-optimization basic
-{% elif (openbsd_pf_options_ruleset_optimization|match('profile')) %}
+{% elif (openbsd_pf_options_ruleset_optimization is match('profile')) %}
 set ruleset-optimization profile
 {% else %}
 set ruleset-optimization none
@@ -113,7 +113,7 @@ set state-defaults {% for state_groups in openbsd_pf_options_state_defaults %}{{
 {% endif %}
 
 # State policy (if-bound, floating)
-{% if (openbsd_pf_options_state_policy|match('floating')) %}
+{% if (openbsd_pf_options_state_policy is match('floating')) %}
 set state-policy floating
 {% else %}
 set state-policy if-bound
