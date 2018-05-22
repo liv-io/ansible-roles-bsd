@@ -2,14 +2,14 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (tcpreplay_state|match('false|no|remove|quiesce|inactive'))
+  when: not (tcpreplay_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - tcpreplay
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (tcpreplay_state|match('false|no|remove'))
+  when: (tcpreplay_state is match('false|no|remove'))
   tags:
     - main
     - tcpreplay
