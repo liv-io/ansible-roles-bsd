@@ -2,7 +2,7 @@
 
 - name: 'task include config'
   import_tasks: config.yml
-  when: not (hosts_state|match('false|no|remove|quiesce|inactive'))
+  when: not (hosts_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - hosts
