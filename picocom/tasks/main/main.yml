@@ -2,14 +2,14 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (picocom_state|match('false|no|remove|quiesce|inactive'))
+  when: not (picocom_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - picocom
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (picocom_state|match('false|no|remove'))
+  when: (picocom_state is match('false|no|remove'))
   tags:
     - main
     - picocom
