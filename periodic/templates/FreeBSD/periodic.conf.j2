@@ -20,17 +20,17 @@
 #-------------------------------------------------------------------------------
 
 daily_output="{{periodic_daily_output}}"
-{% if (periodic_daily_show_success|match('false|no|disable')) %}
+{% if (periodic_daily_show_success is match('false|no|disable')) %}
 daily_show_success="NO"
 {% else %}
 daily_show_success="YES"
 {% endif %}
-{% if (periodic_daily_show_info|match('false|no|disable')) %}
+{% if (periodic_daily_show_info is match('false|no|disable')) %}
 daily_show_info="NO"
 {% else %}
 daily_show_info="YES"
 {% endif %}
-{% if (periodic_daily_show_badconfig|match('true|yes|enable')) %}
+{% if (periodic_daily_show_badconfig is match('true|yes|enable')) %}
 daily_show_badconfig="YES"
 {% else %}
 daily_show_badconfig="NO"
@@ -41,17 +41,17 @@ daily_show_badconfig="NO"
 #-------------------------------------------------------------------------------
 
 weekly_output="{{periodic_weekly_output}}"
-{% if (periodic_weekly_show_success|match('false|no|disable')) %}
+{% if (periodic_weekly_show_success is match('false|no|disable')) %}
 weekly_show_success="NO"
 {% else %}
 weekly_show_success="YES"
 {% endif %}
-{% if (periodic_weekly_show_info|match('false|no|disable')) %}
+{% if (periodic_weekly_show_info is match('false|no|disable')) %}
 weekly_show_info="NO"
 {% else %}
 weekly_show_info="YES"
 {% endif %}
-{% if (periodic_weekly_show_badconfig|match('true|yes|enable')) %}
+{% if (periodic_weekly_show_badconfig is match('true|yes|enable')) %}
 weekly_show_badconfig="YES"
 {% else %}
 weekly_show_badconfig="NO"
@@ -62,17 +62,17 @@ weekly_show_badconfig="NO"
 #-------------------------------------------------------------------------------
 
 monthly_output="{{periodic_monthly_output}}"
-{% if (periodic_monthly_show_success|match('false|no|disable')) %}
+{% if (periodic_monthly_show_success is match('false|no|disable')) %}
 monthly_show_success="NO"
 {% else %}
 monthly_show_success="YES"
 {% endif %}
-{% if (periodic_monthly_show_info|match('false|no|disable')) %}
+{% if (periodic_monthly_show_info is match('false|no|disable')) %}
 monthly_show_info="NO"
 {% else %}
 monthly_show_info="YES"
 {% endif %}
-{% if (periodic_monthly_show_badconfig|match('true|yes|enable')) %}
+{% if (periodic_monthly_show_badconfig is match('true|yes|enable')) %}
 monthly_show_badconfig="YES"
 {% else %}
 monthly_show_badconfig="NO"

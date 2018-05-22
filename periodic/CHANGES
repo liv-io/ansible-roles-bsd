@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.2.0 (2018-05-22)
+F: Port role to Ansible 2.5
+
 * Version 2.1.2 (2018-04-24)
 I: Simplify role by removing 'template' option
 
