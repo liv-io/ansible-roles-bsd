@@ -2,14 +2,14 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (nyancat_state|match('false|no|remove|quiesce|inactive'))
+  when: not (nyancat_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - nyancat
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (nyancat_state|match('false|no|remove'))
+  when: (nyancat_state is match('false|no|remove'))
   tags:
     - main
     - nyancat
