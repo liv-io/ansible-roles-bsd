@@ -2,14 +2,14 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (nsping_state|match('false|no|remove|quiesce|inactive'))
+  when: not (nsping_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - nsping
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (nsping_state|match('false|no|remove'))
+  when: (nsping_state is match('false|no|remove'))
   tags:
     - main
     - nsping
