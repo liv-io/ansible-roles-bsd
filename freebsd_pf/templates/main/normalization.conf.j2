@@ -33,8 +33,8 @@ include '/etc/pf/tables.conf'
 {% if (scrub.comment is defined) and not (scrub.comment == '') %}
 # {{scrub.comment}}
 {% endif %}
-{%- if (scrub.action is defined) and (scrub.action|match('scrub')) %}scrub {% endif %}
-{%- if (scrub.direction is defined) and (scrub.direction|match('in')) %}in {% else %}out {% endif %}
+{%- if (scrub.action is defined) and (scrub.action is match('scrub')) %}scrub {% endif %}
+{%- if (scrub.direction is defined) and (scrub.direction is match('in')) %}in {% else %}out {% endif %}
 {%- if (scrub.sources is defined) and not (scrub.sources == []) %}from { {% endif %}
 {% for source in scrub.sources|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}

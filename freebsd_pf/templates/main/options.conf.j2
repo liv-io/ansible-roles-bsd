@@ -20,19 +20,19 @@
 #-------------------------------------------------------------------------------
 
 # Block policy (block, drop, return)
-{% if (freebsd_pf_options_block_policy|match('return')) %}
+{% if (freebsd_pf_options_block_policy is match('return')) %}
 set block-policy return
-{% elif (freebsd_pf_options_block_policy|match('block')) %}
+{% elif (freebsd_pf_options_block_policy is match('block')) %}
 {% else %}
 set block-policy drop
 {% endif %}
 
 # Debugging level (none, urgent, misc, loud)
-{% if (freebsd_pf_options_debug|match('none')) %}
+{% if (freebsd_pf_options_debug is match('none')) %}
 set debug none
-{% elif (freebsd_pf_options_debug|match('misc')) %}
+{% elif (freebsd_pf_options_debug is match('misc')) %}
 set debug misc
-{% elif (freebsd_pf_options_debug|match('loud')) %}
+{% elif (freebsd_pf_options_debug is match('loud')) %}
 set debug loud
 {% else %}
 set debug urgent
@@ -42,7 +42,7 @@ set debug urgent
 set fingerprints '{{freebsd_pf_options_fingerprints}}'
 
 # Host ID
-{% if not (freebsd_pf_options_hostid|match('false|no|disable|none')) %}
+{% if not (freebsd_pf_options_hostid is match('false|no|disable|none')) %}
 set hostid {{freebsd_pf_options_hostid}}
 {% endif %}
 
@@ -57,36 +57,36 @@ set limit {% if (limit.name is defined) and not (limit.name == '') %}{{limit.nam
 {% endfor %}
 
 # Log interface (none, <interface>)
-{% if not (freebsd_pf_options_loginterface|match('false|no|disable|none')) %}
+{% if not (freebsd_pf_options_loginterface is match('false|no|disable|none')) %}
 set loginterface {{freebsd_pf_options_loginterface}}
 {% else %}
 set loginterface none
 {% endif %}
 
 # Optimization (normal, high-latency, satellite, aggressive, conservative)
-{% if (freebsd_pf_options_optimization|match('high-latency')) %}
+{% if (freebsd_pf_options_optimization is match('high-latency')) %}
 set optimization high-latency
-{% elif (freebsd_pf_options_optimization|match('satellite')) %}
+{% elif (freebsd_pf_options_optimization is match('satellite')) %}
 set optimization satellite
-{% elif (freebsd_pf_options_optimization|match('aggressive')) %}
+{% elif (freebsd_pf_options_optimization is match('aggressive')) %}
 set optimization aggressive
-{% elif (freebsd_pf_options_optimization|match('conservative')) %}
+{% elif (freebsd_pf_options_optimization is match('conservative')) %}
 set optimization conservative
 {% else %}
 set optimization normal
 {% endif %}
 
 # Require order
-{% if not (freebsd_pf_options_require_order|match('false|no|disable')) %}
+{% if not (freebsd_pf_options_require_order is match('false|no|disable')) %}
 set require-order yes
 {% else %}
 set require-order no
 {% endif %}
 
 # Ruleset optimization (none, basic, profile)
-{% if (freebsd_pf_options_ruleset_optimization|match('basic')) %}
+{% if (freebsd_pf_options_ruleset_optimization is match('basic')) %}
 set ruleset-optimization basic
-{% elif (freebsd_pf_options_ruleset_optimization|match('profile')) %}
+{% elif (freebsd_pf_options_ruleset_optimization is match('profile')) %}
 set ruleset-optimization profile
 {% else %}
 set ruleset-optimization none
@@ -105,7 +105,7 @@ set state-defaults {% for state_groups in freebsd_pf_options_state_defaults %}{{
 {% endif %}
 
 # State policy (if-bound, floating)
-{% if (freebsd_pf_options_state_policy|match('floating')) %}
+{% if (freebsd_pf_options_state_policy is match('floating')) %}
 set state-policy floating
 {% else %}
 set state-policy if-bound

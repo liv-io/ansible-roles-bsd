@@ -36,9 +36,9 @@ include '/etc/pf/queues.conf'
 {% if (policy.comment is defined) and not (policy.comment == '') %}
 # {{policy.comment}}
 {% endif %}
-{%- if (policy.action is defined) and (policy.action|match('pass')) %}pass {% else %}block {% endif %}
-{%- if (policy.direction is defined) and (policy.direction|match('in')) %}in {% else %}out {% endif %}
-{%- if (policy.log is defined) and (policy.log|match('true|yes|enable')) %}log {% else %}{% endif %}all
+{%- if (policy.action is defined) and (policy.action is match('pass')) %}pass {% else %}block {% endif %}
+{%- if (policy.direction is defined) and (policy.direction is match('in')) %}in {% else %}out {% endif %}
+{%- if (policy.log is defined) and (policy.log is match('true|yes|enable')) %}log {% else %}{% endif %}all
 {% if not loop.last %}
 
 {% endif %}
@@ -54,14 +54,14 @@ include '/etc/pf/queues.conf'
 {% if (all.comment is defined) and not (all.comment == '') %}
 # {{all.comment}}
 {% endif %}
-{%- if (all.action is defined) and (all.action|match('block')) %}block {% else %}pass {% endif %}
-{%- if (all.direction is defined) and (all.direction|match('in')) %}in {% else %}out {% endif %}
+{%- if (all.action is defined) and (all.action is match('block')) %}block {% else %}pass {% endif %}
+{%- if (all.direction is defined) and (all.direction is match('in')) %}in {% else %}out {% endif %}
 {%- if (all.interfaces is defined) and not (all.interfaces == []) %}on { {% endif %}
 {% for source in all.interfaces|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (all.interfaces is defined) and not (all.interfaces == []) %}} {% endif %}
-{%- if (all.version is defined) and (all.version|match('inet6|ipv6')) %}inet6 {% elif (all.version is defined) and (all.version|match('inet|ipv4')) %}inet {% endif %}
+{%- if (all.version is defined) and (all.version is match('inet6|ipv6')) %}inet6 {% elif (all.version is defined) and (all.version is match('inet|ipv4')) %}inet {% endif %}
 {%- if (all.protocols is defined) and not (all.protocols == []) %}proto { {% endif %}
 {% for protocol in all.protocols|default([]) %}
 {{protocol}}{% if not loop.last %}, {% else %} {% endif %}
@@ -82,7 +82,7 @@ include '/etc/pf/queues.conf'
 {{port}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (all.ports is defined) and not (all.ports == []) %}} {% endif %}
-{%- if (all.type is defined) and (all.type|match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (all.type is defined) and (all.type|match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
+{%- if (all.type is defined) and (all.type is match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (all.type is defined) and (all.type is match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
 {%- if (all.code is defined) and not (all.code == '') %}{{all.code}} {% endif %}
 {% if (all.state is defined) and not (all.state == '') %}{{all.state}}{% endif %}
 {% if not loop.last %}
@@ -99,14 +99,14 @@ include '/etc/pf/queues.conf'
 {% if (group.comment is defined) and not (group.comment == '') %}
 # {{group.comment}}
 {% endif %}
-{%- if (group.action is defined) and (group.action|match('block')) %}block {% else %}pass {% endif %}
-{%- if (group.direction is defined) and (group.direction|match('in')) %}in {% else %}out {% endif %}
+{%- if (group.action is defined) and (group.action is match('block')) %}block {% else %}pass {% endif %}
+{%- if (group.direction is defined) and (group.direction is match('in')) %}in {% else %}out {% endif %}
 {%- if (group.interfaces is defined) and not (group.interfaces == []) %}on { {% endif %}
 {% for source in group.interfaces|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (group.interfaces is defined) and not (group.interfaces == []) %}} {% endif %}
-{%- if (group.version is defined) and (group.version|match('inet6|ipv6')) %}inet6 {% elif (group.version is defined) and (group.version|match('inet|ipv4')) %}inet {% endif %}
+{%- if (group.version is defined) and (group.version is match('inet6|ipv6')) %}inet6 {% elif (group.version is defined) and (group.version is match('inet|ipv4')) %}inet {% endif %}
 {%- if (group.protocols is defined) and not (group.protocols == []) %}proto { {% endif %}
 {% for protocol in group.protocols|default([]) %}
 {{protocol}}{% if not loop.last %}, {% else %} {% endif %}
@@ -127,7 +127,7 @@ include '/etc/pf/queues.conf'
 {{port}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (group.ports is defined) and not (group.ports == []) %}} {% endif %}
-{%- if (group.type is defined) and (group.type|match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (group.type is defined) and (group.type|match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
+{%- if (group.type is defined) and (group.type is match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (group.type is defined) and (group.type is match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
 {%- if (group.code is defined) and not (group.code == '') %}{{group.code}} {% endif %}
 {% if (group.state is defined) and not (group.state == '') %}{{group.state}}{% endif %}
 {% if not loop.last %}
@@ -144,14 +144,14 @@ include '/etc/pf/queues.conf'
 {% if (host.comment is defined) and not (host.comment == '') %}
 # {{host.comment}}
 {% endif %}
-{%- if (host.action is defined) and (host.action|match('block')) %}block {% else %}pass {% endif %}
-{%- if (host.direction is defined) and (host.direction|match('in')) %}in {% else %}out {% endif %}
+{%- if (host.action is defined) and (host.action is match('block')) %}block {% else %}pass {% endif %}
+{%- if (host.direction is defined) and (host.direction is match('in')) %}in {% else %}out {% endif %}
 {%- if (host.interfaces is defined) and not (host.interfaces == []) %}on { {% endif %}
 {% for source in host.interfaces|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (host.interfaces is defined) and not (host.interfaces == []) %}} {% endif %}
-{%- if (host.version is defined) and (host.version|match('inet6|ipv6')) %}inet6 {% elif (host.version is defined) and (host.version|match('inet|ipv4')) %}inet {% endif %}
+{%- if (host.version is defined) and (host.version is match('inet6|ipv6')) %}inet6 {% elif (host.version is defined) and (host.version is match('inet|ipv4')) %}inet {% endif %}
 {%- if (host.protocols is defined) and not (host.protocols == []) %}proto { {% endif %}
 {% for protocol in host.protocols|default([]) %}
 {{protocol}}{% if not loop.last %}, {% else %} {% endif %}
@@ -172,7 +172,7 @@ include '/etc/pf/queues.conf'
 {{port}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (host.ports is defined) and not (host.ports == []) %}} {% endif %}
-{%- if (host.type is defined) and (host.type|match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (host.type is defined) and (host.type|match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
+{%- if (host.type is defined) and (host.type is match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (host.type is defined) and (host.type is match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
 {%- if (host.code is defined) and not (host.code == '') %}{{host.code}} {% endif %}
 {% if (host.state is defined) and not (host.state == '') %}{{host.state}}{% endif %}
 {% if not loop.last %}

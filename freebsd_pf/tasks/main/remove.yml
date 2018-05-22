@@ -140,7 +140,7 @@
     line: "{{file_line_gateway_ipv4}}=\"NO\" # Ansible: Remove gateway-ipv4"
     regexp: "^{{file_line_gateway_ipv4}}="
     dest: "{{file_path_gateway_ipv4}}"
-  when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv4_state|match('true|yes|enable'))
+  when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
     - files
     - remove
@@ -153,7 +153,7 @@
     line: "{{file_line_gateway_ipv6}}=\"NO\" # Ansible: Remove gateway-ipv6"
     regexp: "^{{file_line_gateway_ipv6}}="
     dest: "{{file_path_gateway_ipv6}}"
-  when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv6_state|match('true|yes|enable'))
+  when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
     - files
     - remove

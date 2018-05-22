@@ -38,13 +38,13 @@ include '/etc/pf/queues.conf'
 {% if (all.comment is defined) and not (all.comment == '') %}
 # {{all.comment}}
 {% endif %}
-{%- if (all.action is defined) and (all.action|match('nat')) %}nat {% elif (all.action is defined) and (all.action|match('nonat|no-nat')) %}no nat {% elif (all.action is defined) and (all.action|match('rdr')) %}rdr {% elif (all.action is defined) and (all.action|match('nordr|no-rdr')) %}no rdr {% endif %}
+{%- if (all.action is defined) and (all.action is match('nat')) %}nat {% elif (all.action is defined) and (all.action is match('nonat|no-nat')) %}no nat {% elif (all.action is defined) and (all.action is match('rdr')) %}rdr {% elif (all.action is defined) and (all.action is match('nordr|no-rdr')) %}no rdr {% endif %}
 {%- if (all.interfaces is defined) and not (all.interfaces == []) %}on { {% endif %}
 {% for source in all.interfaces|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (all.interfaces is defined) and not (all.interfaces == []) %}} {% endif %}
-{%- if (all.version is defined) and (all.version|match('inet6|ipv6')) %}inet6 {% elif (all.version is defined) and (all.version|match('inet|ipv4')) %}inet {% endif %}
+{%- if (all.version is defined) and (all.version is match('inet6|ipv6')) %}inet6 {% elif (all.version is defined) and (all.version is match('inet|ipv4')) %}inet {% endif %}
 {%- if (all.protocols is defined) and not (all.protocols == []) %}proto { {% endif %}
 {% for protocol in all.protocols|default([]) %}
 {{protocol}}{% if not loop.last %}, {% else %} {% endif %}
@@ -81,13 +81,13 @@ include '/etc/pf/queues.conf'
 {% if (group.comment is defined) and not (group.comment == '') %}
 # {{group.comment}}
 {% endif %}
-{%- if (group.action is defined) and (group.action|match('nat')) %}nat {% elif (group.action is defined) and (group.action|match('nonat|no-nat')) %}no nat {% elif (group.action is defined) and (group.action|match('rdr')) %}rdr {% elif (group.action is defined) and (group.action|match('nordr|no-rdr')) %}no rdr {% endif %}
+{%- if (group.action is defined) and (group.action is match('nat')) %}nat {% elif (group.action is defined) and (group.action is match('nonat|no-nat')) %}no nat {% elif (group.action is defined) and (group.action is match('rdr')) %}rdr {% elif (group.action is defined) and (group.action is match('nordr|no-rdr')) %}no rdr {% endif %}
 {%- if (group.interfaces is defined) and not (group.interfaces == []) %}on { {% endif %}
 {% for source in group.interfaces|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (group.interfaces is defined) and not (group.interfaces == []) %}} {% endif %}
-{%- if (group.version is defined) and (group.version|match('inet6|ipv6')) %}inet6 {% elif (group.version is defined) and (group.version|match('inet|ipv4')) %}inet {% endif %}
+{%- if (group.version is defined) and (group.version is match('inet6|ipv6')) %}inet6 {% elif (group.version is defined) and (group.version is match('inet|ipv4')) %}inet {% endif %}
 {%- if (group.protocols is defined) and not (group.protocols == []) %}proto { {% endif %}
 {% for protocol in group.protocols|default([]) %}
 {{protocol}}{% if not loop.last %}, {% else %} {% endif %}
@@ -124,13 +124,13 @@ include '/etc/pf/queues.conf'
 {% if (host.comment is defined) and not (host.comment == '') %}
 # {{host.comment}}
 {% endif %}
-{%- if (host.action is defined) and (host.action|match('nat')) %}nat {% elif (host.action is defined) and (host.action|match('nonat|no-nat')) %}no nat {% elif (host.action is defined) and (host.action|match('rdr')) %}rdr {% elif (host.action is defined) and (host.action|match('nordr|no-rdr')) %}no rdr {% endif %}
+{%- if (host.action is defined) and (host.action is match('nat')) %}nat {% elif (host.action is defined) and (host.action is match('nonat|no-nat')) %}no nat {% elif (host.action is defined) and (host.action is match('rdr')) %}rdr {% elif (host.action is defined) and (host.action is match('nordr|no-rdr')) %}no rdr {% endif %}
 {%- if (host.interfaces is defined) and not (host.interfaces == []) %}on { {% endif %}
 {% for source in host.interfaces|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (host.interfaces is defined) and not (host.interfaces == []) %}} {% endif %}
-{%- if (host.version is defined) and (host.version|match('inet6|ipv6')) %}inet6 {% elif (host.version is defined) and (host.version|match('inet|ipv4')) %}inet {% endif %}
+{%- if (host.version is defined) and (host.version is match('inet6|ipv6')) %}inet6 {% elif (host.version is defined) and (host.version is match('inet|ipv4')) %}inet {% endif %}
 {%- if (host.protocols is defined) and not (host.protocols == []) %}proto { {% endif %}
 {% for protocol in host.protocols|default([]) %}
 {{protocol}}{% if not loop.last %}, {% else %} {% endif %}
