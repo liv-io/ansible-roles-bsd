@@ -23,22 +23,22 @@
 
 - name: 'user config user'
   user:
-    state: "{{'absent' if (item.state|default('true')|match('false|no|remove')) else 'present'}}"
+    state: "{{'absent' if (item.state|default('true') is match('false|no|remove')) else 'present'}}"
     name: "{{item.name}}"
     comment: "{{item.comment|default(item.name)}}"
     uid: "{{item.uid|default(omit)}}"
     group: "{{item.group|default('nobody')}}"
     groups: "{{item.groups|default([])|join(',')}}"
-    append: "{{'no' if (item.groups_append|default('true')|match('false|no|disable')) else 'yes'}}"
+    append: "{{'no' if (item.groups_append|default('true') is match('false|no|disable')) else 'yes'}}"
     home: "{{item.home|default('/home/'+item.name)}}"
-    createhome: "{{'no' if (item.home_create|default('true')|match('false|no|disable')) else 'yes'}}"
-    move_home: "{{'yes' if (item.home_move|default('false')|match('true|yes|enable')) else 'no'}}"
-    remove: "{{'yes' if (item.home_remove|default('false')|match('true|yes|enable')) else 'no'}}"
-    force: "{{'yes' if (item.home_force|default('false')|match('true|yes|enable')) else 'no'}}"
+    createhome: "{{'no' if (item.home_create|default('true') is match('false|no|disable')) else 'yes'}}"
+    move_home: "{{'yes' if (item.home_move|default('false') is match('true|yes|enable')) else 'no'}}"
+    remove: "{{'yes' if (item.home_remove|default('false') is match('true|yes|enable')) else 'no'}}"
+    force: "{{'yes' if (item.home_force|default('false') is match('true|yes|enable')) else 'no'}}"
     password: "{{item.password|default('!')}}"
-    update_password: "{{'on_create' if (item.password_update|default('true')|match('false|no|disable')) else 'always'}}"
+    update_password: "{{'on_create' if (item.password_update|default('true') is match('false|no|disable')) else 'always'}}"
     shell: "{{item.shell|default('/bin/bash')}}"
-    system: "{{'yes' if (item.system|default('false')|match('true|yes|enable')) else 'no'}}"
+    system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
   with_items: "{{user_all + user_dependencies + user_group + user_host}}"
   tags:
     - system
@@ -48,7 +48,7 @@
 
 - name: 'user config authorized_key'
   authorized_key:
-    state: "{{'absent' if (item.1.state|default('true')|match('false|no|remove')) else 'present'}}"
+    state: "{{'absent' if (item.1.state|default('true') is match('false|no|remove')) else 'present'}}"
     user: "{{item.0.name}}"
     key: "{{item.1.key}}"
     key_options: "{{item.1.options|default('')}}"
