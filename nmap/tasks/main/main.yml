@@ -2,14 +2,14 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (nmap_state|match('false|no|remove|quiesce|inactive'))
+  when: not (nmap_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - nmap
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (nmap_state|match('false|no|remove'))
+  when: (nmap_state is match('false|no|remove'))
   tags:
     - main
     - nmap
