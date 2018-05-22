@@ -2,14 +2,14 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (htop_state|match('false|no|remove|quiesce|inactive'))
+  when: not (htop_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - htop
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (htop_state|match('false|no|remove'))
+  when: (htop_state is match('false|no|remove'))
   tags:
     - main
     - htop
