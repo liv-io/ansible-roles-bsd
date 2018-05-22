@@ -1,4 +1,4 @@
 ---
 
 dependencies:
-  - {role: shell, when: not (bash_state|match('false|no|remove|quiesce|inactive'))}
+  - {role: shell, when: not (bash_state is match('false|no|remove|quiesce|inactive'))}
