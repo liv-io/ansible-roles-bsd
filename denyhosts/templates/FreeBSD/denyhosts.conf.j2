@@ -85,7 +85,7 @@ HOSTS_DENY = /etc/hosts.block
 # purge entries older than 5 days
 #PURGE_DENY = 5d
 #
-{% if not (denyhosts_purge_deny|match('false|no|disable')) %}
+{% if not (denyhosts_purge_deny is match('false|no|disable')) %}
 PURGE_DENY = {{denyhosts_purge_deny}}
 {% else %}
 PURGE_DENY =
@@ -125,7 +125,7 @@ PURGE_DENY =
 # http://denyhosts.sourceforge.net/faq.html#aux
 #BLOCK_SERVICE =    
 #
-{% if (denyhosts_block_service|match('all|any')) %}
+{% if (denyhosts_block_service is match('all|any')) %}
 BLOCK_SERVICE = ALL
 {% else %}
 BLOCK_SERVICE = sshd
@@ -211,7 +211,7 @@ SUSPICIOUS_LOGIN_REPORT_ALLOWED_HOSTS=YES
 # the corresponding hostname will be looked up and reported as well
 # (if available).
 #
-{% if (denyhosts_hostname_lookup|match('true|yes|enable')) %}
+{% if (denyhosts_hostname_lookup is match('true|yes|enable')) %}
 HOSTNAME_LOOKUP=YES
 {% else %}
 HOSTNAME_LOOKUP=NO
@@ -257,7 +257,7 @@ LOCK_FILE = {{denyhosts_lock_file}}
 # Multiple email addresses can be delimited by a comma, eg:
 # ADMIN_EMAIL = foo@bar.com, bar@foo.com, etc@foobar.com
 #
-{% if not (denyhosts_admin_email|match('false|no|disable')) %}
+{% if not (denyhosts_admin_email is match('false|no|disable')) %}
 ADMIN_EMAIL = {{denyhosts_admin_email}}
 {% else %}
 #ADMIN_EMAIL =
@@ -271,13 +271,13 @@ ADMIN_EMAIL = {{denyhosts_admin_email}}
 # reports (see ADMIN_EMAIL) then these settings specify the 
 # email server address (SMTP_HOST) and the server port (SMTP_PORT)
 # 
-{% if not (denyhosts_smtp_host|match('false|no|disable')) %}
+{% if not (denyhosts_smtp_host is match('false|no|disable')) %}
 SMTP_HOST = {{denyhosts_smtp_host}}
 {% else %}
 #SMTP_HOST = localhost
 {% endif %}
 #
-{% if not (denyhosts_smtp_port|match('false|no|disable')) %}
+{% if not (denyhosts_smtp_port is match('false|no|disable')) %}
 SMTP_PORT = {{(denyhosts_smtp_port|int(25))}}
 {% else %}
 #SMTP_PORT = 25
@@ -290,13 +290,13 @@ SMTP_PORT = {{(denyhosts_smtp_port|int(25))}}
 # SMTP_USERNAME and SMTP_PASSWORD: set these parameters if your 
 # smtp email server requires authentication
 #
-{% if not (denyhosts_smtp_username|match('false|no|disable')) %}
+{% if not (denyhosts_smtp_username is match('false|no|disable')) %}
 SMTP_USERNAME={{denyhosts_smtp_username}}
 {% else %}
 #SMTP_USERNAME=foo
 {% endif %}
 #
-{% if not (denyhosts_smtp_password|match('false|no|disable')) %}
+{% if not (denyhosts_smtp_password is match('false|no|disable')) %}
 SMTP_PASSWORD={{denyhosts_smtp_password}}
 {% else %}
 #SMTP_PASSWORD=bar
@@ -309,7 +309,7 @@ SMTP_PASSWORD={{denyhosts_smtp_password}}
 # SMTP_FROM: you can specify the "From:" address in messages sent
 # from DenyHosts when it reports thwarted abuse attempts
 #
-{% if not (denyhosts_smtp_from|match('false|no|disable')) %}
+{% if not (denyhosts_smtp_from is match('false|no|disable')) %}
 SMTP_FROM = {{denyhosts_smtp_from}}
 {% else %}
 #SMTP_FROM = DenyHosts <nobody@localhost>
@@ -321,7 +321,7 @@ SMTP_FROM = {{denyhosts_smtp_from}}
 #
 # SMTP_SUBJECT: you can specify the "Subject:" of messages sent
 # by DenyHosts when it reports thwarted abuse attempts
-{% if not (denyhosts_smtp_subject|match('false|no|disable')) %}
+{% if not (denyhosts_smtp_subject is match('false|no|disable')) %}
 SMTP_SUBJECT = {{denyhosts_smtp_subject}}
 {% else %}
 #SMTP_SUBJECT = DenyHosts Report
@@ -355,7 +355,7 @@ SMTP_SUBJECT = {{denyhosts_smtp_subject}}
 #
 #SYSLOG_REPORT=YES
 #
-{% if (denyhosts_syslog_report|match('true|yes|enable')) %}
+{% if (denyhosts_syslog_report is match('true|yes|enable')) %}
 SYSLOG_REPORT=YES
 {% else %}
 SYSLOG_REPORT=NO
@@ -375,7 +375,7 @@ SYSLOG_REPORT=NO
 # 
 #ALLOWED_HOSTS_HOSTNAME_LOOKUP=NO
 #
-{% if (denyhosts_allowed_hosts_hostname_lookup|match('true|yes|enable')) %}
+{% if (denyhosts_allowed_hosts_hostname_lookup is match('true|yes|enable')) %}
 ALLOWED_HOSTS_HOSTNAME_LOOKUP=YES
 {% else %}
 ALLOWED_HOSTS_HOSTNAME_LOOKUP=NO
@@ -396,7 +396,7 @@ ALLOWED_HOSTS_HOSTNAME_LOOKUP=NO
 # for details on specifying this value or for complete details 
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
-{% if not (denyhosts_age_reset_valid|match('false|no|disable')) %}
+{% if not (denyhosts_age_reset_valid is match('false|no|disable')) %}
 AGE_RESET_VALID={{denyhosts_age_reset_valid}}
 {% else %}
 #AGE_RESET_VALID=5d
@@ -416,7 +416,7 @@ AGE_RESET_VALID={{denyhosts_age_reset_valid}}
 # for details on specifying this value or for complete details 
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
-{% if not (denyhosts_age_reset_root|match('false|no|disable')) %}
+{% if not (denyhosts_age_reset_root is match('false|no|disable')) %}
 AGE_RESET_ROOT={{denyhosts_age_reset_root}}
 {% else %}
 #AGE_RESET_ROOT=25d
@@ -436,7 +436,7 @@ AGE_RESET_ROOT={{denyhosts_age_reset_root}}
 # for details on specifying this value or for complete details 
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
-{% if not (denyhosts_age_reset_restricted|match('false|no|disable')) %}
+{% if not (denyhosts_age_reset_restricted is match('false|no|disable')) %}
 AGE_RESET_RESTRICTED={{denyhosts_age_reset_restricted}}
 {% else %}
 #AGE_RESET_RESTRICTED=25d
@@ -457,7 +457,7 @@ AGE_RESET_RESTRICTED={{denyhosts_age_reset_restricted}}
 # for details on specifying this value or for complete details 
 # refer to:  http://denyhosts.sourceforge.net/faq.html#timespec
 #
-{% if not (denyhosts_age_reset_invalid|match('false|no|disable')) %}
+{% if not (denyhosts_age_reset_invalid is match('false|no|disable')) %}
 AGE_RESET_INVALID={{denyhosts_age_reset_invalid}}
 {% else %}
 #AGE_RESET_INVALID=10d
@@ -474,7 +474,7 @@ AGE_RESET_INVALID={{denyhosts_age_reset_invalid}}
 #
 # The default is RESET_ON_SUCCESS = no
 #
-{% if (denyhosts_reset_on_success|match('true|yes|enable')) %}
+{% if (denyhosts_reset_on_success is match('true|yes|enable')) %}
 RESET_ON_SUCCESS = yes
 {% else %}
 RESET_ON_SUCCESS = no

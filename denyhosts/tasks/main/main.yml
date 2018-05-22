@@ -2,28 +2,28 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (denyhosts_state|match('false|no|remove|quiesce|inactive'))
+  when: not (denyhosts_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - denyhosts
 
 - name: 'task include enable'
   import_tasks: enable.yml
-  when: (denyhosts_state|match('start|on|enable'))
+  when: (denyhosts_state is match('start|on|enable'))
   tags:
     - main
     - denyhosts
 
 - name: 'task include disable'
   import_tasks: disable.yml
-  when: (denyhosts_state|match('stop|off|disable'))
+  when: (denyhosts_state is match('stop|off|disable'))
   tags:
     - main
     - denyhosts
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (denyhosts_state|match('false|no|remove'))
+  when: (denyhosts_state is match('false|no|remove'))
   tags:
     - main
     - denyhosts

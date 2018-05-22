@@ -25,7 +25,7 @@
 #       hosts_access(5) no longer fully applies.
 #
 
-{% if (denyhosts_block_service|match('all|any')) %}
+{% if (denyhosts_block_service is match('all|any')) %}
 ALL : /etc/hosts.block : deny
 ALL : ALL : allow
 {% else %}
