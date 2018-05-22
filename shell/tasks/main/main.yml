@@ -2,14 +2,14 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (shell_state|match('false|no|remove|quiesce|inactive'))
+  when: not (shell_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - shell
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (shell_state|match('false|no|remove'))
+  when: (shell_state is match('false|no|remove'))
   tags:
     - main
     - shell

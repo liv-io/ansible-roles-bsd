@@ -19,7 +19,7 @@
 # COLOR SUPPORT
 #-------------------------------------------------------------------------------
 
-{% if not (shell_color_support|match('false|no|disable')) %}
+{% if not (shell_color_support is match('false|no|disable')) %}
 # ls
 alias ls='ls -FI -G -D "{{shell_ls_time_style}}"'
 alias la='ls -laF -G -D "{{shell_ls_time_style}}"' # long listing, list all files
@@ -41,7 +41,7 @@ alias egrep='egrep --color=auto'
 # cls
 alias cls='printf "\033c"'
 
-{% if not (shell_safety|match('false|no|disable')) %}
+{% if not (shell_safety is match('false|no|disable')) %}
 # Shell safety
 alias cp='cp -i'
 alias mv='mv -i'
@@ -53,25 +53,25 @@ alias ln='ln -i'
 # SHELL VARIABLES
 #-------------------------------------------------------------------------------
 
-{% if not (shell_ftp_proxy|match('false|no|disable')) %}
+{% if not (shell_ftp_proxy is match('false|no|disable')) %}
 # ftp_proxy
 ftp_proxy='{{shell_ftp_proxy}}'
 export ftp_proxy
 {% endif %}
 
-{% if not (shell_http_proxy|match('false|no|disable')) %}
+{% if not (shell_http_proxy is match('false|no|disable')) %}
 # http_proxy
 http_proxy='{{shell_http_proxy}}'
 export http_proxy
 {% endif %}
 
-{% if not (shell_histsize|match('false|no|disable')) %}
+{% if not (shell_histsize is match('false|no|disable')) %}
 # HISTSIZE
 HISTSIZE={{(shell_histsize|int)}}
 export HISTSIZE
 {% endif %}
 
-{% if not (shell_pager|match('false|no|disable')) %}
+{% if not (shell_pager is match('false|no|disable')) %}
 # PAGER
 PAGER='{{shell_pager}}'
 export PAGER
