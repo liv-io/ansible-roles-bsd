@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.4.0 (2018-05-22)
+F: Port role to Ansible 2.5
+
 * Version 2.3.0 (2018-05-17)
 F: Add parameter 'motd_host_ip_address'
 I: Improve 'motd_host_description' parameter
