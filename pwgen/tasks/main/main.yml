@@ -2,14 +2,14 @@
 
 - name: 'task include install'
   import_tasks: install.yml
-  when: not (pwgen_state|match('false|no|remove|quiesce|inactive'))
+  when: not (pwgen_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - main
     - pwgen
 
 - name: 'task include remove'
   import_tasks: remove.yml
-  when: (pwgen_state|match('false|no|remove'))
+  when: (pwgen_state is match('false|no|remove'))
   tags:
     - main
     - pwgen
