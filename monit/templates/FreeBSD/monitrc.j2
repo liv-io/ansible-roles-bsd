@@ -213,7 +213,7 @@ Subject     : {{monit_mail_subject}}
 ## This filter is recommended to avoid getting alerts for trivial cases.
 #
 # set alert your-name@your.domain not on { instance, action }
-{% if not (monit_mail_to|match('false|no|disable')) %}
+{% if not (monit_mail_to is match('false|no|disable')) %}
 set alert {{monit_mail_to}} {% if (monit_mail_exclusions is defined) and not ((monit_mail_exclusions == '') or (monit_mail_exclusions == [])) %}{ {% for mail_exclusion in monit_mail_exclusions %}{{mail_exclusion}}{% if not loop.last %}, {% endif %}{% endfor %} }{% endif %}
 {% endif %}
 #
