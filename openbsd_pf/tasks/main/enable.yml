@@ -154,7 +154,7 @@
 #-------------------------------------------------------------------------------
 
 - name: 'command status openbsd_pf'
-  command: "{{command_cmd_status_openbsd_pf}}"
+  command: "{{command_shell_status_openbsd_pf}}"
   register: register_status_openbsd_pf
   changed_when: (register_status_openbsd_pf.rc > 1)
   failed_when: (register_status_openbsd_pf.rc > 1)
@@ -166,7 +166,7 @@
     - openbsd_pf
 
 - name: 'command enable openbsd_pf'
-  command: "{{command_cmd_enable_openbsd_pf}}"
+  command: "{{command_shell_enable_openbsd_pf}}"
   when: (register_status_openbsd_pf.rc == 1)
   check_mode: 'no'
   tags:
@@ -176,7 +176,7 @@
     - openbsd_pf
 
 - name: 'command check openbsd_pf'
-  shell: "{{shell_cmd_check_openbsd_pf}}"
+  shell: "{{shell_shell_check_openbsd_pf}}"
   register: register_check_openbsd_pf
   changed_when: (register_check_openbsd_pf.rc > 1)
   failed_when: (register_check_openbsd_pf.rc > 1)
@@ -188,7 +188,7 @@
     - openbsd_pf
 
 - name: 'command start openbsd_pf'
-  command: "{{command_cmd_start_openbsd_pf}}"
+  command: "{{command_shell_start_openbsd_pf}}"
   when: (register_check_openbsd_pf.rc == 1)
   check_mode: 'no'
   tags:
