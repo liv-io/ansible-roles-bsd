@@ -22,7 +22,7 @@
 #-------------------------------------------------------------------------------
 
 - name: 'command info ntpd'
-  shell: "{{shell_cmd_info_ntpd}}"
+  shell: "{{shell_shell_info_ntpd}}"
   register: register_info_ntpd
   failed_when: (register_info_ntpd.rc > 1)
   check_mode: 'no'
@@ -34,7 +34,7 @@
     - ntpd
 
 - name: 'command disable ntpd'
-  command: "{{command_cmd_disable_ntpd}}"
+  command: "{{command_shell_disable_ntpd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_ntpd.rc == 0)
   tags:
@@ -44,7 +44,7 @@
     - ntpd
 
 - name: 'command stop ntpd'
-  command: "{{command_cmd_stop_ntpd}}"
+  command: "{{command_shell_stop_ntpd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_ntpd.rc == 0)
   tags:
