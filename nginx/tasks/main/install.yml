@@ -80,9 +80,6 @@
   shell: "{{command_shell_generate_dhparam}}"
   check_mode: 'no'
   when: (register_dhparam_pem.stat.exists == False)
-  notify:
-    - 'command check nginx'
-    - 'service reload nginx'
   tags:
     - commands
     - install
