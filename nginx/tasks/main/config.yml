@@ -34,7 +34,6 @@
     - 'service reload nginx'
   when: not (item.state is match('false|no|remove'))
   tags:
-    - files
     - config
     - main
     - nginx
@@ -49,7 +48,6 @@
     - 'service reload nginx'
   when: (item.state is match('false|no|remove'))
   tags:
-    - files
     - config
     - main
     - nginx

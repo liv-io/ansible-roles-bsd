@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_pv}}"
   tags:
-    - packaging
     - remove
     - main
     - pv

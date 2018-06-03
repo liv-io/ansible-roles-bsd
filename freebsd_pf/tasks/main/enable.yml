@@ -32,7 +32,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -48,7 +47,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -64,7 +62,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -80,7 +77,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -96,7 +92,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -112,7 +107,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -128,7 +122,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -144,7 +137,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -160,7 +152,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -173,7 +164,6 @@
     dest: "{{file_path_pf_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -186,7 +176,6 @@
     dest: "{{file_path_gateway_ipv4}}"
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -199,7 +188,6 @@
     dest: "{{file_path_gateway_ipv4}}"
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -212,7 +200,6 @@
     dest: "{{file_path_gateway_ipv6}}"
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -225,7 +212,6 @@
     dest: "{{file_path_gateway_ipv6}}"
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
-    - files
     - enable
     - main
     - freebsd_pf
@@ -241,7 +227,6 @@
     name: "{{service_name_freebsd_pf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - enable
     - main
     - freebsd_pf

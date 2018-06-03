@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_lftp}}"
   tags:
-    - packaging
     - install
     - main
     - lftp

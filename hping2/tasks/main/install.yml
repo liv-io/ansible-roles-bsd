@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_hping2}}"
   tags:
-    - packaging
     - install
     - main
     - hping2

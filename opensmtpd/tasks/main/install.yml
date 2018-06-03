@@ -28,7 +28,6 @@
   register: register_freebsd_opensmtpd
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - packaging
     - install
     - main
     - opensmtpd
@@ -45,7 +44,6 @@
     dest: "{{file_path_sendmail_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - install
     - main
     - opensmtpd
@@ -58,7 +56,6 @@
   shell: "{{command_shell_pkill_postfix}}"
   when: (register_freebsd_opensmtpd|changed)
   tags:
-    - commands
     - install
     - main
     - opensmtpd
@@ -67,7 +64,6 @@
   shell: "{{command_shell_pkill_sendmail}}"
   when: (register_freebsd_opensmtpd|changed)
   tags:
-    - commands
     - install
     - main
     - opensmtpd

@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_ldns}}"
   tags:
-    - packaging
     - remove
     - main
     - ldns

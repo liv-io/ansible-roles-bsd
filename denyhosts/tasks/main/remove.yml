@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_denyhosts}}"
   tags:
-    - packaging
     - remove
     - main
     - denyhosts
@@ -43,7 +42,6 @@
     dest: "{{file_path_denyhosts_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - denyhosts
@@ -57,7 +55,6 @@
   notify: 'service restart syslog'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - denyhosts
@@ -67,7 +64,6 @@
     state: 'absent'
     path: "{{file_path_allowed_hosts}}"
   tags:
-    - files
     - remove
     - main
     - denyhosts
@@ -77,7 +73,6 @@
     state: 'absent'
     path: "{{file_path_denyhosts_conf}}"
   tags:
-    - files
     - remove
     - main
     - denyhosts
@@ -88,7 +83,6 @@
     path: "{{file_path_hosts_allow}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - denyhosts
@@ -99,7 +93,6 @@
     path: "{{file_path_hosts.block}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - denyhosts
@@ -110,7 +103,6 @@
     path: "{{file_path_data_dir}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - denyhosts

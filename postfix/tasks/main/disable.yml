@@ -29,7 +29,6 @@
     owner: "{{file_owner_aliases}}"
     group: "{{file_group_aliases}}"
   tags:
-    - files
     - disable
     - main
     - postfix
@@ -42,7 +41,6 @@
     owner: "{{file_owner_main_cf}}"
     group: "{{file_group_main_cf}}"
   tags:
-    - files
     - disable
     - main
     - postfix
@@ -55,7 +53,6 @@
     owner: "{{file_owner_master_cf}}"
     group: "{{file_group_master_cf}}"
   tags:
-    - files
     - disable
     - main
     - postfix
@@ -68,7 +65,6 @@
     dest: "{{file_path_postfix_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - disable
     - main
     - postfix
@@ -84,7 +80,6 @@
     name: "{{service_name_postfix}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - disable
     - main
     - postfix

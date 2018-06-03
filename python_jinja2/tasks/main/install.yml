@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_python_jinja2}}"
   tags:
-    - packaging
     - install
     - main
     - python_jinja2

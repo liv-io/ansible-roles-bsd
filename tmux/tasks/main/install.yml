@@ -27,7 +27,6 @@
     name: "{{package_name_tmux}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - packaging
     - install
     - main
     - tmux
@@ -44,7 +43,6 @@
     owner: "{{file_owner_tmux_conf}}"
     group: "{{file_group_tmux_conf}}"
   tags:
-    - files
     - install
     - main
     - tmux

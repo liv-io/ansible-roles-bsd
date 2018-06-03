@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_stress}}"
   tags:
-    - packaging
     - install
     - main
     - stress

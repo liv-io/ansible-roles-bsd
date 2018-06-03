@@ -29,7 +29,6 @@
     owner: "{{file_owner_ntp_conf}}"
     group: "{{file_group_ntp_conf}}"
   tags:
-    - files
     - disable
     - main
     - ntpd
@@ -39,7 +38,6 @@
     state: 'absent'
     path: "{{file_path_ntpd_update_time_sh}}"
   tags:
-    - files
     - disable
     - main
     - ntpd
@@ -51,7 +49,6 @@
     regexp: "# Ansible: ntpd_update-time$"
     dest: "{{file_path_ntpd_update_time}}"
   tags:
-    - files
     - disable
     - main
     - ntpd
@@ -64,7 +61,6 @@
     dest: "{{file_path_ntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - disable
     - main
     - ntpd
@@ -80,7 +76,6 @@
   failed_when: (register_status_ntpd.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - disable
     - main
     - ntpd
@@ -90,7 +85,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_ntpd.rc == 0)
   tags:
-    - commands
     - disable
     - main
     - ntpd
@@ -103,7 +97,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - disable
     - main
     - ntpd
@@ -113,7 +106,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_ntpd.rc == 0)
   tags:
-    - commands
     - disable
     - main
     - ntpd
@@ -129,7 +121,6 @@
     name: "{{service_name_ntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - disable
     - main
     - ntpd

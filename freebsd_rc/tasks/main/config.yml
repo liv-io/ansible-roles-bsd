@@ -29,7 +29,6 @@
     dest: "{{item.path if (item.path is defined) and not (item.path == '') else file_path_rc_conf}}"
   with_items: "{{freebsd_rc_all + freebsd_rc_group + freebsd_rc_host}}"
   tags:
-    - files
     - config
     - main
     - main_rc

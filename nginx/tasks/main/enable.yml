@@ -32,7 +32,6 @@
     - 'command check nginx'
     - 'service reload nginx'
   tags:
-    - files
     - enable
     - main
     - nginx
@@ -45,7 +44,6 @@
     dest: "{{file_path_nginx_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - nginx
@@ -62,7 +60,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - enable
     - main
     - nginx
@@ -72,7 +69,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 1)
   tags:
-    - commands
     - enable
     - main
     - nginx
@@ -85,7 +81,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - enable
     - main
     - nginx
@@ -95,7 +90,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 1)
   tags:
-    - commands
     - enable
     - main
     - nginx
@@ -111,7 +105,6 @@
     name: "{{service_name_nginx}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - enable
     - main
     - nginx

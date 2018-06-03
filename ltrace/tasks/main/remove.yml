@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_ltrace}}"
   tags:
-    - packaging
     - remove
     - main
     - ltrace

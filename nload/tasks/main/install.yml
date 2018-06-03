@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_nload}}"
   tags:
-    - packaging
     - install
     - main
     - nload

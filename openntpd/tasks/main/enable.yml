@@ -30,7 +30,6 @@
     group: "{{file_group_ntpd_conf}}"
   notify: 'service restart openntpd'
   tags:
-    - files
     - enable
     - main
     - openntpd
@@ -43,7 +42,6 @@
     dest: "{{file_path_openntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - openntpd
@@ -60,7 +58,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - enable
     - main
     - openntpd
@@ -70,7 +67,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 1)
   tags:
-    - commands
     - enable
     - main
     - openntpd
@@ -83,7 +79,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - enable
     - main
     - openntpd
@@ -93,7 +88,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 1)
   tags:
-    - commands
     - enable
     - main
     - openntpd
@@ -109,7 +103,6 @@
     name: "{{service_name_openntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - enable
     - main
     - openntpd

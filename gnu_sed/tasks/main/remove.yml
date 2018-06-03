@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_gnu_sed}}"
   tags:
-    - packaging
     - remove
     - main
     - gnu_sed

@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_bash}}"
   tags:
-    - packaging
     - install
     - main
     - bash
@@ -43,7 +42,6 @@
     owner: "{{file_owner_bash_bash}}"
     group: "{{file_group_bash_bash}}"
   tags:
-    - files
     - install
     - main
     - bash
@@ -56,7 +54,6 @@
     owner: "{{file_owner_zz_bash_bash}}"
     group: "{{file_group_zz_bash_bash}}"
   tags:
-    - files
     - install
     - main
     - bash

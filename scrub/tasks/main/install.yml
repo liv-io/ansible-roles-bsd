@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_scrub}}"
   tags:
-    - packaging
     - install
     - main
     - scrub

@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_python_yaml}}"
   tags:
-    - packaging
     - install
     - main
     - python_yaml

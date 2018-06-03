@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_pwgen}}"
   tags:
-    - packaging
     - remove
     - main
     - pwgen

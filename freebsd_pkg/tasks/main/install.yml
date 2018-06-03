@@ -29,7 +29,6 @@
     owner: "{{file_owner_freebsd_conf}}"
     group: "{{file_group_freebsd_conf}}"
   tags:
-    - files
     - install
     - main
     - main_pkg
@@ -42,7 +41,6 @@
     owner: "{{file_owner_pkg_conf}}"
     group: "{{file_group_pkg_conf}}"
   tags:
-    - files
     - install
     - main
     - main_pkg

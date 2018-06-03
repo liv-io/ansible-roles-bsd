@@ -28,7 +28,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - remove
     - main
     - monit
@@ -38,7 +37,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
   tags:
-    - commands
     - remove
     - main
     - monit
@@ -48,7 +46,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
   tags:
-    - commands
     - remove
     - main
     - monit
@@ -62,7 +59,6 @@
     state: 'absent'
     name: "{{package_name_monit}}"
   tags:
-    - packaging
     - remove
     - main
     - monit
@@ -79,7 +75,6 @@
     dest: "{{file_path_monit_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - monit
@@ -89,7 +84,6 @@
     state: 'absent'
     path: "{{file_path_monit_d}}"
   tags:
-    - files
     - remove
     - main
     - monit
@@ -99,7 +93,6 @@
     state: 'absent'
     path: "{{file_path_monitrc}}"
   tags:
-    - files
     - remove
     - main
     - monit

@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_bsd_grep}}"
   tags:
-    - packaging
     - install
     - main
     - bsd_grep

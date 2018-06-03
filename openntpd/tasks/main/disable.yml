@@ -29,7 +29,6 @@
     owner: "{{file_owner_ntpd_conf}}"
     group: "{{file_group_ntpd_conf}}"
   tags:
-    - files
     - disable
     - main
     - openntpd
@@ -42,7 +41,6 @@
     dest: "{{file_path_openntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - disable
     - main
     - openntpd
@@ -59,7 +57,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - disable
     - main
     - openntpd
@@ -69,7 +66,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
   tags:
-    - commands
     - disable
     - main
     - openntpd
@@ -82,7 +78,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - disable
     - main
     - openntpd
@@ -92,7 +87,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
   tags:
-    - commands
     - disable
     - main
     - openntpd
@@ -108,7 +102,6 @@
     name: "{{service_name_openntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - disable
     - main
     - openntpd

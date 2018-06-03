@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_postfix}}"
   tags:
-    - packaging
     - remove
     - main
     - postfix
@@ -43,7 +42,6 @@
     dest: "{{file_path_postfix_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - postfix
@@ -53,7 +51,6 @@
     state: 'absent'
     path: "{{file_path_aliases}}"
   tags:
-    - files
     - remove
     - main
     - postfix
@@ -63,7 +60,6 @@
     state: 'absent'
     path: "{{file_path_main_cf}}"
   tags:
-    - files
     - remove
     - main
     - postfix
@@ -73,7 +69,6 @@
     state: 'absent'
     path: "{{file_path_master_cf}}"
   tags:
-    - files
     - remove
     - main
     - postfix

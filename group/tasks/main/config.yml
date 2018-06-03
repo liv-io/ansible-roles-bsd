@@ -29,7 +29,6 @@
     system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
   with_items: "{{group_all + group_dependencies + group_group + group_host}}"
   tags:
-    - system
     - config
     - main
     - group

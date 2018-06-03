@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_siege}}"
   tags:
-    - packaging
     - install
     - main
     - siege

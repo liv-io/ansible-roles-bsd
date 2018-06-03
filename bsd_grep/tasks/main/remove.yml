@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_bsd_grep}}"
   tags:
-    - packaging
     - remove
     - main
     - bsd_grep

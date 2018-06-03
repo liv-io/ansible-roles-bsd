@@ -32,7 +32,6 @@
     - 'command newaliases'
     - 'service restart postfix'
   tags:
-    - files
     - enable
     - main
     - postfix
@@ -46,7 +45,6 @@
     group: "{{file_group_main_cf}}"
   notify: 'service restart postfix'
   tags:
-    - files
     - enable
     - main
     - postfix
@@ -60,7 +58,6 @@
     group: "{{file_group_master_cf}}"
   notify: 'service restart postfix'
   tags:
-    - files
     - enable
     - main
     - postfix
@@ -73,7 +70,6 @@
     dest: "{{file_path_postfix_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - postfix
@@ -89,7 +85,6 @@
     name: "{{service_name_postfix}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - enable
     - main
     - postfix

@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_ssldump}}"
   tags:
-    - packaging
     - install
     - main
     - ssldump

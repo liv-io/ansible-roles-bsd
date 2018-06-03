@@ -29,7 +29,6 @@
     owner: "{{file_owner_periodic_conf}}"
     group: "{{file_group_periodic_conf}}"
   tags:
-    - files
     - install
     - main
     - periodic

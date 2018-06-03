@@ -28,7 +28,6 @@
     key: "{{'' if (root_authorized_key is match('false|no|remove')) else root_authorized_key}}"
     key_options: "{{'' if (root_authorized_key_options is match('false|no|remove')) else root_authorized_key_options}}"
   tags:
-    - system
     - remove
     - main
     - root

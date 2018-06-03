@@ -31,7 +31,6 @@
     dest: "{{file_path_sysctl_conf}}"
   with_items: "{{sysctl_all + sysctl_dependencies + sysctl_group + sysctl_host}}"
   tags:
-    - files
     - config
     - main
     - sysctl
@@ -47,7 +46,6 @@
   failed_when: (register_config_sysctl.rc > 1)
   with_items: "{{sysctl_all + sysctl_dependencies + sysctl_group + sysctl_host}}"
   tags:
-    - commands
     - config
     - main
     - sysctl

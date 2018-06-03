@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_vim}}"
   tags:
-    - packaging
     - remove
     - main
     - vim
@@ -40,7 +39,6 @@
     state: 'absent'
     path: "{{file_path_vimrc}}"
   tags:
-    - files
     - remove
     - main
     - vim

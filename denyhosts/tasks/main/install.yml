@@ -27,7 +27,6 @@
   register: register_hosts_block
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - install
     - main
     - denyhosts
@@ -41,7 +40,6 @@
     group: "{{file_group_hosts_block}}"
   when: (ansible_os_family == 'FreeBSD') and not (register_hosts_block.stat.exists)
   tags:
-    - files
     - install
     - main
     - denyhosts
@@ -55,7 +53,6 @@
     state: 'present'
     name: "{{package_name_denyhosts}}"
   tags:
-    - packaging
     - install
     - main
     - denyhosts

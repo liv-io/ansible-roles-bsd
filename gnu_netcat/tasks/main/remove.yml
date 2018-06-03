@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_gnu_netcat}}"
   tags:
-    - packaging
     - remove
     - main
     - gnu_netcat

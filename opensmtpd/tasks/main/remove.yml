@@ -29,7 +29,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - remove
     - main
     - opensmtpd
@@ -39,7 +38,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 0)
   tags:
-    - commands
     - remove
     - main
     - opensmtpd
@@ -52,7 +50,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - remove
     - main
     - opensmtpd
@@ -62,7 +59,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 0)
   tags:
-    - commands
     - remove
     - main
     - opensmtpd
@@ -78,7 +74,6 @@
   register: register_freebsd_opensmtpd
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - packaging
     - remove
     - main
     - opensmtpd
@@ -95,7 +90,6 @@
     dest: "{{file_path_smtpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - opensmtpd
@@ -108,7 +102,6 @@
     dest: "{{file_path_sendmail_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - opensmtpd
@@ -119,7 +112,6 @@
     path: "{{file_path_aliases}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - opensmtpd
@@ -130,7 +122,6 @@
     path: "{{file_path_smtpd_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - opensmtpd

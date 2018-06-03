@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_gnu_diff}}"
   tags:
-    - packaging
     - install
     - main
     - gnu_diff

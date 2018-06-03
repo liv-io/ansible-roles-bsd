@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_dsniff}}"
   tags:
-    - packaging
     - install
     - main
     - dsniff

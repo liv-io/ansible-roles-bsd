@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_python_jinja2}}"
   tags:
-    - packaging
     - remove
     - main
     - python_jinja2

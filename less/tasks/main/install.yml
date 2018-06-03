@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_less}}"
   tags:
-    - packaging
     - install
     - main
     - less

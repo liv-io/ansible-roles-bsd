@@ -29,7 +29,6 @@
     owner: "{{file_owner_pf_dir}}"
     group: "{{file_group_pf_dir}}"
   tags:
-    - files
     - install
     - main
     - openbsd_pf

@@ -31,7 +31,6 @@
   notify:
     - 'command run netstart'
   tags:
-    - files
     - install
     - main
     - hostname

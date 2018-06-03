@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_screen}}"
   tags:
-    - packaging
     - remove
     - main
     - screen

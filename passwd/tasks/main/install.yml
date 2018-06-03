@@ -29,7 +29,6 @@
     owner: "{{file_owner_master_passwd}}"
     group: "{{file_group_master_passwd}}"
   tags:
-    - files
     - install
     - main
     - passwd
@@ -42,7 +41,6 @@
     owner: "{{file_owner_passwd}}"
     group: "{{file_group_passwd}}"
   tags:
-    - files
     - install
     - main
     - passwd
@@ -55,7 +53,6 @@
     owner: "{{file_owner_pwd_db}}"
     group: "{{file_group_pwd_db}}"
   tags:
-    - files
     - install
     - main
     - passwd
@@ -68,7 +65,6 @@
     owner: "{{file_owner_spwd_db}}"
     group: "{{file_group_spwd_db}}"
   tags:
-    - files
     - install
     - main
     - passwd

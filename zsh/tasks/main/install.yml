@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_zsh}}"
   tags:
-    - packaging
     - install
     - main
     - zsh

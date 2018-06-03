@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_zip}}"
   tags:
-    - packaging
     - install
     - main
     - zip

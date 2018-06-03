@@ -26,7 +26,6 @@
     path: "{{file_path_sysctl_conf}}"
   register: register_sysctl_conf
   tags:
-    - files
     - install
     - main
     - sysctl
@@ -40,7 +39,6 @@
     group: "{{file_group_sysctl_conf}}"
   when: not (register_sysctl_conf.stat.exists)
   tags:
-    - files
     - install
     - main
     - sysctl

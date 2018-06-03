@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_zsh}}"
   tags:
-    - packaging
     - remove
     - main
     - zsh

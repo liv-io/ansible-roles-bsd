@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_colordiff}}"
   tags:
-    - packaging
     - remove
     - main
     - colordiff

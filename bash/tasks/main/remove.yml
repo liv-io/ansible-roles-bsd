@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_bash}}"
   tags:
-    - packaging
     - remove
     - main
     - bash
@@ -40,7 +39,6 @@
     state: 'absent'
     path: "{{file_path_bash_bash}}"
   tags:
-    - files
     - remove
     - main
     - bash
@@ -50,7 +48,6 @@
     state: 'absent'
     path: "{{file_path_zz_bash_bash}}"
   tags:
-    - files
     - remove
     - main
     - bash

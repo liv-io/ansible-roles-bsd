@@ -26,7 +26,6 @@
     state: 'absent'
     path: "{{file_path_shell_shell}}"
   tags:
-    - files
     - remove
     - main
     - shell
@@ -36,7 +35,6 @@
     state: 'absent'
     path: "{{file_path_z_shell_shell}}"
   tags:
-    - files
     - remove
     - main
     - shell

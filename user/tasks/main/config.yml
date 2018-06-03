@@ -41,7 +41,6 @@
     system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
   with_items: "{{user_all + user_dependencies + user_group + user_host}}"
   tags:
-    - system
     - config
     - main
     - user
@@ -58,7 +57,6 @@
     - flags:
       skip_missing: true
   tags:
-    - system
     - config
     - main
     - user

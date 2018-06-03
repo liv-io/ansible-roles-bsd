@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_echoping}}"
   tags:
-    - packaging
     - install
     - main
     - echoping

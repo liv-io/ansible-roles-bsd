@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_picocom}}"
   tags:
-    - packaging
     - install
     - main
     - picocom

@@ -29,7 +29,6 @@
     dest: "{{file_path_zfs_scrub_pools}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - disable
     - main
     - zfs

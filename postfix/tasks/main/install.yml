@@ -27,7 +27,6 @@
     name: "{{package_name_postfix}}"
   register: register_freebsd_postfix
   tags:
-    - packaging
     - install
     - main
     - postfix
@@ -40,7 +39,6 @@
   shell: "{{command_shell_pkill_opensmtpd}}"
   when: (register_freebsd_postfix|changed)
   tags:
-    - commands
     - install
     - main
     - postfix
@@ -49,7 +47,6 @@
   shell: "{{command_shell_pkill_sendmail}}"
   when: (register_freebsd_postfix|changed)
   tags:
-    - commands
     - install
     - main
     - postfix

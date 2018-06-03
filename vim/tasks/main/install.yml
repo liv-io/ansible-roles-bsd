@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_vim}}"
   tags:
-    - packaging
     - install
     - main
     - vim
@@ -43,7 +42,6 @@
     owner: "{{file_owner_vimrc}}"
     group: "{{file_group_vimrc}}"
   tags:
-    - files
     - install
     - main
     - vim

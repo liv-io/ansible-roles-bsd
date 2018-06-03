@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_nano}}"
   tags:
-    - packaging
     - remove
     - main
     - nano

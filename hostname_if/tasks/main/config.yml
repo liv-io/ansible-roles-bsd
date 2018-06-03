@@ -33,7 +33,6 @@
     - 'command run netstart'
   when: not (item.state|default('') is match('false|no|remove'))
   tags:
-    - files
     - config
     - main
     - hostname_if
@@ -47,7 +46,6 @@
     - 'command run netstart'
   when: (item.state|default('') is match('false|no|remove'))
   tags:
-    - files
     - config
     - main
     - hostname_if
@@ -64,7 +62,6 @@
   with_items: "{{hostname_if_all + hostname_if_dependencies + hostname_if_group + hostname_if_host}}"
   when: (item.state|default('') is match('false|no|remove')) and (item.interface in ansible_interfaces)
   tags:
-    - commands
     - config
     - main
     - hostname_if

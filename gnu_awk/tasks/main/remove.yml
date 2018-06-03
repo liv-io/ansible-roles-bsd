@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_gnu_awk}}"
   tags:
-    - packaging
     - remove
     - main
     - gnu_awk

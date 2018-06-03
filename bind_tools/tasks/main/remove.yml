@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_bind_tools}}"
   tags:
-    - packaging
     - remove
     - main
     - bind_tools

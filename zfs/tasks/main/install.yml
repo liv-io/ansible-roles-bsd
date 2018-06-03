@@ -29,7 +29,6 @@
     owner: "{{file_owner_zfs_script_dir}}"
     group: "{{file_group_zfs_script_dir}}"
   tags:
-    - files
     - install
     - main
     - zfs
@@ -42,7 +41,6 @@
     owner: "{{file_owner_zfs_scrub_pools_sh}}"
     group: "{{file_group_zfs_scrub_pools_sh}}"
   tags:
-    - files
     - install
     - main
     - zfs

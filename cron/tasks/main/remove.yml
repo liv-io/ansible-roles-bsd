@@ -29,7 +29,6 @@
     dest: "{{file_path_cron_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - cron

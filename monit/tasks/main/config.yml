@@ -34,7 +34,6 @@
   with_items: "{{monit_all + monit_group + monit_host}}"
   when: not (item.state is match('false|no|remove'))
   tags:
-    - files
     - config
     - main
     - monit
@@ -49,7 +48,6 @@
   with_items: "{{monit_all + monit_group + monit_host}}"
   when: (item.state is match('false|no|remove'))
   tags:
-    - files
     - config
     - main
     - monit

@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_bind_tools}}"
   tags:
-    - packaging
     - install
     - main
     - bind_tools

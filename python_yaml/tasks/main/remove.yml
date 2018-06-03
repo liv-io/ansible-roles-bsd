@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_python_yaml}}"
   tags:
-    - packaging
     - remove
     - main
     - python_yaml

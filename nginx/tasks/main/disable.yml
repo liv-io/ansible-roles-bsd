@@ -30,7 +30,6 @@
     group: "{{file_group_nginx_conf}}"
   notify: 'command check nginx'
   tags:
-    - files
     - disable
     - main
     - nginx
@@ -43,7 +42,6 @@
     dest: "{{file_path_nginx_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - disable
     - main
     - nginx
@@ -60,7 +58,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - disable
     - main
     - nginx
@@ -70,7 +67,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 0)
   tags:
-    - commands
     - disable
     - main
     - nginx
@@ -83,7 +79,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - disable
     - main
     - nginx
@@ -93,7 +88,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 0)
   tags:
-    - commands
     - disable
     - main
     - nginx
@@ -109,7 +103,6 @@
     name: "{{service_name_nginx}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - disable
     - main
     - nginx

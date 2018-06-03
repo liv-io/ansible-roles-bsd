@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_iperf3}}"
   tags:
-    - packaging
     - remove
     - main
     - iperf3

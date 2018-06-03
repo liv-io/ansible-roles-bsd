@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_coreutils}}"
   tags:
-    - packaging
     - remove
     - main
     - coreutils

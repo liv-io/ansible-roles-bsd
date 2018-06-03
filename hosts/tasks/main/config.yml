@@ -29,7 +29,6 @@
     dest: "{{item.path if (item.path is defined) and not (item.path == '') else file_path_hosts}}"
   with_items: "{{hosts_all + hosts_dependencies + hosts_group + hosts_host}}"
   tags:
-    - files
     - config
     - main
     - hosts

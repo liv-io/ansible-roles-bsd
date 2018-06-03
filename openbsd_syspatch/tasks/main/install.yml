@@ -29,7 +29,6 @@
     owner: "{{file_owner_installurl}}"
     group: "{{file_group_installurl}}"
   tags:
-    - files
     - install
     - main
     - main_syspatch

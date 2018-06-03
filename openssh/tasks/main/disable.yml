@@ -29,7 +29,6 @@
     owner: "{{file_owner_banner}}"
     group: "{{file_group_banner}}"
   tags:
-    - files
     - disable
     - main
     - openssh
@@ -43,7 +42,6 @@
     group: "{{file_group_moduli}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - disable
     - main
     - openssh
@@ -56,7 +54,6 @@
     owner: "{{file_owner_ssh_config}}"
     group: "{{file_group_ssh_config}}"
   tags:
-    - files
     - disable
     - main
     - openssh
@@ -69,7 +66,6 @@
     owner: "{{file_owner_sshd_config}}"
     group: "{{file_group_sshd_config}}"
   tags:
-    - files
     - disable
     - main
     - openssh
@@ -82,7 +78,6 @@
     dest: "{{file_path_sshd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - disable
     - main
     - openssh
@@ -99,7 +94,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - disable
     - main
     - openssh
@@ -109,7 +103,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openssh.rc == 0)
   tags:
-    - commands
     - disable
     - main
     - openssh
@@ -122,7 +115,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - disable
     - main
     - openssh
@@ -132,7 +124,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openssh.rc == 0)
   tags:
-    - commands
     - disable
     - main
     - openssh
@@ -148,7 +139,6 @@
     name: "{{service_name_openssh}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - disable
     - main
     - openssh

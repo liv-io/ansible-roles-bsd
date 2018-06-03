@@ -28,7 +28,6 @@
   failed_when: (register_status_openbsd_pf.rc > 1)
   check_mode: 'no'
   tags:
-    - commands
     - remove
     - main
     - openbsd_pf
@@ -38,7 +37,6 @@
   when: (register_status_openbsd_pf.rc == 0)
   check_mode: 'no'
   tags:
-    - commands
     - remove
     - main
     - openbsd_pf
@@ -50,7 +48,6 @@
   failed_when: (register_check_openbsd_pf.rc > 1)
   check_mode: 'no'
   tags:
-    - commands
     - remove
     - main
     - openbsd_pf
@@ -60,7 +57,6 @@
   when: (register_check_openbsd_pf.rc == 0)
   check_mode: 'no'
   tags:
-    - commands
     - remove
     - main
     - openbsd_pf
@@ -74,7 +70,6 @@
     state: 'absent'
     path: "{{file_path_anchors_conf}}"
   tags:
-    - files
     - remove
     - main
     - openbsd_pf
@@ -84,7 +79,6 @@
     state: 'absent'
     path: "{{file_path_filters_conf}}"
   tags:
-    - files
     - remove
     - main
     - openbsd_pf
@@ -94,7 +88,6 @@
     state: 'absent'
     path: "{{file_path_macros_conf}}"
   tags:
-    - files
     - remove
     - main
     - openbsd_pf
@@ -104,7 +97,6 @@
     state: 'absent'
     path: "{{file_path_normalization_conf}}"
   tags:
-    - files
     - remove
     - main
     - openbsd_pf
@@ -114,7 +106,6 @@
     state: 'absent'
     path: "{{file_path_options_conf}}"
   tags:
-    - files
     - remove
     - main
     - openbsd_pf
@@ -124,7 +115,6 @@
     state: 'absent'
     path: "{{file_path_queues_conf}}"
   tags:
-    - files
     - remove
     - main
     - openbsd_pf
@@ -134,7 +124,6 @@
     state: 'absent'
     path: "{{file_path_tables_conf}}"
   tags:
-    - files
     - remove
     - main
     - openbsd_pf
@@ -144,7 +133,6 @@
     state: 'absent'
     path: "{{file_path_pf_conf}}"
   tags:
-    - files
     - remove
     - main
     - openbsd_pf
@@ -154,7 +142,6 @@
     state: 'absent'
     path: "{{file_path_ntp_script_dir}}"
   tags:
-    - files
     - remove
     - main
     - openbsd_pf

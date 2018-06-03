@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_nyancat}}"
   tags:
-    - packaging
     - remove
     - main
     - nyancat

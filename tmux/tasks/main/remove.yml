@@ -27,7 +27,6 @@
     name: "{{package_name_tmux}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - packaging
     - remove
     - main
     - tmux
@@ -41,7 +40,6 @@
     state: 'absent'
     path: "{{file_path_tmux_conf}}"
   tags:
-    - files
     - remove
     - main
     - tmux

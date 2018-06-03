@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_freecolor}}"
   tags:
-    - packaging
     - install
     - main
     - freecolor

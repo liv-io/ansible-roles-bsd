@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_socat}}"
   tags:
-    - packaging
     - remove
     - main
     - socat

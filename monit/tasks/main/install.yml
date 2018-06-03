@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_monit}}"
   tags:
-    - packaging
     - install
     - main
     - monit
@@ -43,7 +42,6 @@
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"
   tags:
-    - files
     - install
     - main
     - monit

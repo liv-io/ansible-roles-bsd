@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_gnu_grep}}"
   tags:
-    - packaging
     - install
     - main
     - gnu_grep

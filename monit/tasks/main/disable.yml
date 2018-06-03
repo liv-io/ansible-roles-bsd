@@ -29,7 +29,6 @@
     owner: "{{file_owner_monitrc}}"
     group: "{{file_group_monitrc}}"
   tags:
-    - files
     - disable
     - main
     - monit
@@ -42,7 +41,6 @@
     dest: "{{file_path_monit_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - disable
     - main
     - monit
@@ -59,7 +57,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - disable
     - main
     - monit
@@ -69,7 +66,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_monit.rc == 0)
   tags:
-    - commands
     - disable
     - main
     - monit
@@ -82,7 +78,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - disable
     - main
     - monit
@@ -92,7 +87,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_monit.rc == 0)
   tags:
-    - commands
     - disable
     - main
     - monit
@@ -108,7 +102,6 @@
     name: "{{service_name_monit}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - disable
     - main
     - monit

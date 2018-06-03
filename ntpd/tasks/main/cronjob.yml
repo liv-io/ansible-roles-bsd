@@ -29,7 +29,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - cronjob
     - main
     - ntpd
@@ -39,7 +38,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_ntpd.rc == 0)
   tags:
-    - commands
     - cronjob
     - main
     - ntpd
@@ -52,7 +50,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - cronjob
     - main
     - ntpd
@@ -62,7 +59,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_ntpd.rc == 0)
   tags:
-    - commands
     - cronjob
     - main
     - ntpd
@@ -78,7 +74,6 @@
     name: "{{service_name_ntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - cronjob
     - main
     - ntpd
@@ -95,7 +90,6 @@
     dest: "{{file_path_ntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - cronjob
     - main
     - ntpd
@@ -108,7 +102,6 @@
     owner: "{{file_owner_ntp_conf}}"
     group: "{{file_group_ntp_conf}}"
   tags:
-    - files
     - cronjob
     - main
     - ntpd
@@ -121,7 +114,6 @@
     owner: "{{file_owner_ntpd_update_time_sh}}"
     group: "{{file_group_ntpd_update_time_sh}}"
   tags:
-    - files
     - cronjob
     - main
     - ntpd
@@ -133,7 +125,6 @@
     regexp: "# Ansible: ntpd_update-time$"
     dest: "{{file_path_ntpd_update_time}}"
   tags:
-    - files
     - cronjob
     - main
     - ntpd

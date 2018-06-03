@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_usbutils}}"
   tags:
-    - packaging
     - install
     - main
     - usbutils

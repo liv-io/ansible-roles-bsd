@@ -32,7 +32,6 @@
     - 'command validate monit'
     - 'service restart monit'
   tags:
-    - files
     - enable
     - main
     - monit
@@ -45,7 +44,6 @@
     dest: "{{file_path_monit_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - monit
@@ -62,7 +60,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - enable
     - main
     - monit
@@ -72,7 +69,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_monit.rc == 1)
   tags:
-    - commands
     - enable
     - main
     - monit
@@ -85,7 +81,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - enable
     - main
     - monit
@@ -95,7 +90,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_monit.rc == 1)
   tags:
-    - commands
     - enable
     - main
     - monit
@@ -111,7 +105,6 @@
     name: "{{service_name_monit}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - enable
     - main
     - monit

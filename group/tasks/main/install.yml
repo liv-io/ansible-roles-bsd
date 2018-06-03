@@ -29,7 +29,6 @@
     owner: "{{file_owner_group}}"
     group: "{{file_group_group}}"
   tags:
-    - files
     - install
     - main
     - group

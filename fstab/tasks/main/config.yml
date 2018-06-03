@@ -29,7 +29,6 @@
     dest: "{{item.path if (item.path is defined) and not (item.path == '') else file_path_fstab}}"
   with_items: "{{fstab_all + fstab_dependencies + fstab_group + fstab_host}}"
   tags:
-    - files
     - config
     - main
     - fstab

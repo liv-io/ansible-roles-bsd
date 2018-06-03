@@ -28,7 +28,6 @@
     gid: "{{group_gid_root}}"
     system: "{{group_system_root}}"
   tags:
-    - system
     - install
     - main
     - root
@@ -51,7 +50,6 @@
     shell: "{{user_shell_root}}"
     system: "{{user_system_root}}"
   tags:
-    - system
     - install
     - main
     - root
@@ -63,7 +61,6 @@
     key: "{{'' if (root_authorized_key is match('false|no|remove')) else root_authorized_key}}"
     key_options: "{{'' if (root_authorized_key_options is match('false|no|remove')) else root_authorized_key_options}}"
   tags:
-    - system
     - install
     - main
     - root
@@ -80,7 +77,6 @@
     owner: "{{file_owner_root_dir}}"
     group: "{{file_group_root_dir}}"
   tags:
-    - files
     - install
     - main
     - root

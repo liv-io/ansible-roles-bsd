@@ -30,7 +30,6 @@
     group: "{{file_group_ntp_conf}}"
   notify: 'service restart ntpd'
   tags:
-    - files
     - enable
     - main
     - ntpd
@@ -40,7 +39,6 @@
     state: 'absent'
     path: "{{file_path_ntpd_update_time_sh}}"
   tags:
-    - files
     - enable
     - main
     - ntpd
@@ -52,7 +50,6 @@
     regexp: "# Ansible: ntpd_update-time$"
     dest: "{{file_path_ntpd_update_time}}"
   tags:
-    - files
     - enable
     - main
     - ntpd
@@ -65,7 +62,6 @@
     dest: "{{file_path_ntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - ntpd
@@ -82,7 +78,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - enable
     - main
     - ntpd
@@ -92,7 +87,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_ntpd.rc == 1)
   tags:
-    - commands
     - enable
     - main
     - ntpd
@@ -105,7 +99,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - enable
     - main
     - ntpd
@@ -115,7 +108,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_ntpd.rc == 1)
   tags:
-    - commands
     - enable
     - main
     - ntpd
@@ -131,7 +123,6 @@
     name: "{{service_name_ntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - enable
     - main
     - ntpd

@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_sudo}}"
   tags:
-    - packaging
     - remove
     - main
     - sudo
@@ -40,7 +39,6 @@
     state: 'absent'
     path: "{{file_path_sudoers}}"
   tags:
-    - files
     - remove
     - main
     - sudo
@@ -50,7 +48,6 @@
     state: 'absent'
     path: "{{file_path_sudoers_d}}"
   tags:
-    - files
     - remove
     - main
     - sudo

@@ -29,7 +29,6 @@
     owner: "{{file_owner_resolv_conf}}"
     group: "{{file_group_resolv_conf}}"
   tags:
-    - files
     - install
     - main
     - resolver

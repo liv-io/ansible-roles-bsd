@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_tcpreplay}}"
   tags:
-    - packaging
     - install
     - main
     - tcpreplay

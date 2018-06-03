@@ -29,7 +29,6 @@
     dest: "{{file_path_cron_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - cron
@@ -45,7 +44,6 @@
     name: "{{service_name_cron}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - enable
     - main
     - cron

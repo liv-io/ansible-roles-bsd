@@ -26,7 +26,6 @@
     state: 'absent'
     path: "{{file_path_sysctl_conf}}"
   tags:
-    - files
     - remove
     - main
     - sysctl

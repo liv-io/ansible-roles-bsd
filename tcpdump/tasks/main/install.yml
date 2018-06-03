@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_tcpdump}}"
   tags:
-    - packaging
     - install
     - main
     - tcpdump

@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_ncdu}}"
   tags:
-    - packaging
     - install
     - main
     - ncdu

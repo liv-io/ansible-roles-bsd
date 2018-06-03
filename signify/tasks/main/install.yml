@@ -29,7 +29,6 @@
     owner: "{{file_owner_signify_dir}}"
     group: "{{file_group_signify_dir}}"
   tags:
-    - files
     - install
     - main
     - signify

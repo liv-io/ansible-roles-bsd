@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_moreutils}}"
   tags:
-    - packaging
     - install
     - main
     - moreutils

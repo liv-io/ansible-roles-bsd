@@ -30,7 +30,6 @@
     group: "{{file_group_data_dir}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - denyhosts
@@ -44,7 +43,6 @@
     group: "{{file_group_allowed_hosts}}"
   notify: 'service restart denyhosts'
   tags:
-    - files
     - enable
     - main
     - denyhosts
@@ -58,7 +56,6 @@
     group: "{{file_group_denyhosts_conf}}"
   notify: 'service restart denyhosts'
   tags:
-    - files
     - enable
     - main
     - denyhosts
@@ -72,7 +69,6 @@
     group: "{{file_group_hosts_allow}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - denyhosts
@@ -85,7 +81,6 @@
     dest: "{{file_path_denyhosts_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - denyhosts
@@ -99,7 +94,6 @@
   notify: 'service restart syslog'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - denyhosts
@@ -115,7 +109,6 @@
     name: "{{service_name_denyhosts}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - enable
     - main
     - denyhosts

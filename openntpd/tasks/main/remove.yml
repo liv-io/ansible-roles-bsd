@@ -29,7 +29,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - remove
     - main
     - openntpd
@@ -39,7 +38,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
   tags:
-    - commands
     - remove
     - main
     - openntpd
@@ -52,7 +50,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - remove
     - main
     - openntpd
@@ -62,7 +59,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
   tags:
-    - commands
     - remove
     - main
     - openntpd
@@ -77,7 +73,6 @@
     name: "{{package_name_openntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - packaging
     - remove
     - main
     - openntpd
@@ -94,7 +89,6 @@
     dest: "{{file_path_openntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - openntpd
@@ -105,7 +99,6 @@
     path: "{{file_path_ntpd_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - remove
     - main
     - openntpd

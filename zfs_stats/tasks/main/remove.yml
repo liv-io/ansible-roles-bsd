@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_zfs_stats}}"
   tags:
-    - packaging
     - remove
     - main
     - zfs_stats

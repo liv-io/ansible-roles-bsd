@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_openssl}}"
   tags:
-    - packaging
     - install
     - main
     - openssl

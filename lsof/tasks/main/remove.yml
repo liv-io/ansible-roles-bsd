@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_lsof}}"
   tags:
-    - packaging
     - remove
     - main
     - lsof

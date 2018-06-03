@@ -32,7 +32,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - files
     - enable
     - main
     - openbsd_pf
@@ -48,7 +47,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - files
     - enable
     - main
     - openbsd_pf
@@ -64,7 +62,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - files
     - enable
     - main
     - openbsd_pf
@@ -80,7 +77,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - files
     - enable
     - main
     - openbsd_pf
@@ -96,7 +92,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - files
     - enable
     - main
     - openbsd_pf
@@ -112,7 +107,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - files
     - enable
     - main
     - openbsd_pf
@@ -128,7 +122,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - files
     - enable
     - main
     - openbsd_pf
@@ -144,7 +137,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - files
     - enable
     - main
     - openbsd_pf
@@ -160,7 +152,6 @@
   failed_when: (register_status_openbsd_pf.rc > 1)
   check_mode: 'no'
   tags:
-    - commands
     - enable
     - main
     - openbsd_pf
@@ -170,7 +161,6 @@
   when: (register_status_openbsd_pf.rc == 1)
   check_mode: 'no'
   tags:
-    - commands
     - enable
     - main
     - openbsd_pf
@@ -182,7 +172,6 @@
   failed_when: (register_check_openbsd_pf.rc > 1)
   check_mode: 'no'
   tags:
-    - commands
     - enable
     - main
     - openbsd_pf
@@ -192,7 +181,6 @@
   when: (register_check_openbsd_pf.rc == 1)
   check_mode: 'no'
   tags:
-    - commands
     - enable
     - main
     - openbsd_pf

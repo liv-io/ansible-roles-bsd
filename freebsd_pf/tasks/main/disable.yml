@@ -29,7 +29,6 @@
     owner: "{{file_owner_anchors_conf}}"
     group: "{{file_group_anchors_conf}}"
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -42,7 +41,6 @@
     owner: "{{file_owner_filters_conf}}"
     group: "{{file_group_filters_conf}}"
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -55,7 +53,6 @@
     owner: "{{file_owner_macros_conf}}"
     group: "{{file_group_macros_conf}}"
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -68,7 +65,6 @@
     owner: "{{file_owner_normalization_conf}}"
     group: "{{file_group_normalization_conf}}"
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -81,7 +77,6 @@
     owner: "{{file_owner_options_conf}}"
     group: "{{file_group_options_conf}}"
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -94,7 +89,6 @@
     owner: "{{file_owner_queues_conf}}"
     group: "{{file_group_queues_conf}}"
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -107,7 +101,6 @@
     owner: "{{file_owner_tables_conf}}"
     group: "{{file_group_tables_conf}}"
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -120,7 +113,6 @@
     owner: "{{file_owner_translations_conf}}"
     group: "{{file_group_translations_conf}}"
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -133,7 +125,6 @@
     owner: "{{file_owner_pf_conf}}"
     group: "{{file_group_pf_conf}}"
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -146,7 +137,6 @@
     dest: "{{file_path_pf_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -159,7 +149,6 @@
     dest: "{{file_path_gateway_ipv4}}"
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -172,7 +161,6 @@
     dest: "{{file_path_gateway_ipv4}}"
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -185,7 +173,6 @@
     dest: "{{file_path_gateway_ipv6}}"
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -198,7 +185,6 @@
     dest: "{{file_path_gateway_ipv6}}"
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
-    - files
     - disable
     - main
     - freebsd_pf
@@ -213,7 +199,6 @@
     enabled: 'no'
     name: "{{service_name_freebsd_pf}}"
   tags:
-    - system
     - disable
     - main
     - freebsd_pf

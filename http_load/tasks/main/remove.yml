@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_http_load}}"
   tags:
-    - packaging
     - remove
     - main
     - http_load

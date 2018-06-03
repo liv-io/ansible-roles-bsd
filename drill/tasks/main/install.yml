@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_drill}}"
   tags:
-    - packaging
     - install
     - main
     - drill

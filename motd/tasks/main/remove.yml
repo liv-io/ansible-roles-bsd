@@ -29,7 +29,6 @@
     dest: "{{file_path_motd_patch}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - files
     - remove
     - main
     - motd

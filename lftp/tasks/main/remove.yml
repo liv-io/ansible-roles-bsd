@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_lftp}}"
   tags:
-    - packaging
     - remove
     - main
     - lftp

@@ -26,7 +26,6 @@
     state: 'absent'
     name: "{{package_name_http_ping}}"
   tags:
-    - packaging
     - remove
     - main
     - http_ping

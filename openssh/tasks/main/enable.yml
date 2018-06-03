@@ -32,7 +32,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - files
     - enable
     - main
     - openssh
@@ -48,7 +47,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - files
     - enable
     - main
     - openssh
@@ -64,7 +62,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - files
     - enable
     - main
     - openssh
@@ -80,7 +77,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - files
     - enable
     - main
     - openssh
@@ -93,7 +89,6 @@
     dest: "{{file_path_sshd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - enable
     - main
     - openssh
@@ -110,7 +105,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - enable
     - main
     - openssh
@@ -120,7 +114,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openssh.rc == 1)
   tags:
-    - commands
     - enable
     - main
     - openssh
@@ -133,7 +126,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - commands
     - enable
     - main
     - openssh
@@ -143,7 +135,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openssh.rc == 1)
   tags:
-    - commands
     - enable
     - main
     - openssh
@@ -159,7 +150,6 @@
     name: "{{service_name_openssh}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - system
     - enable
     - main
     - openssh

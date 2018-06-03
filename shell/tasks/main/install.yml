@@ -29,7 +29,6 @@
     owner: "{{file_owner_profile_d}}"
     group: "{{file_group_profile_d}}"
   tags:
-    - files
     - install
     - main
     - shell
@@ -42,7 +41,6 @@
     owner: "{{file_owner_profile}}"
     group: "{{file_group_profile}}"
   tags:
-    - files
     - install
     - main
     - shell
@@ -55,7 +53,6 @@
     owner: "{{file_owner_shell_shell}}"
     group: "{{file_group_shell_shell}}"
   tags:
-    - files
     - install
     - main
     - shell
@@ -68,7 +65,6 @@
     owner: "{{file_owner_z_shell_shell}}"
     group: "{{file_group_z_shell_shell}}"
   tags:
-    - files
     - install
     - main
     - shell

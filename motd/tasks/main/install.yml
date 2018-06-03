@@ -29,7 +29,6 @@
     owner: "{{file_owner_motd}}"
     group: "{{file_group_motd}}"
   tags:
-    - files
     - install
     - main
     - motd
@@ -42,7 +41,6 @@
     dest: "{{file_path_motd_patch}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - files
     - install
     - main
     - motd

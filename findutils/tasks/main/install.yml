@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_findutils}}"
   tags:
-    - packaging
     - install
     - main
     - findutils

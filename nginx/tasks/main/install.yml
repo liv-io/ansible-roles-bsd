@@ -26,7 +26,6 @@
     state: 'present'
     name: "{{package_name_nginx}}"
   tags:
-    - packaging
     - install
     - main
     - nginx
@@ -44,7 +43,6 @@
     group: "{{file_group_log_dir}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - files
     - install
     - main
     - nginx
@@ -57,7 +55,6 @@
     owner: "{{file_owner_vhosts_d}}"
     group: "{{file_group_vhosts_d}}"
   tags:
-    - files
     - install
     - main
     - nginx
@@ -67,7 +64,6 @@
     path: "{{file_path_dhparam_pem}}"
   register: register_dhparam_pem
   tags:
-    - files
     - install
     - main
     - nginx
@@ -81,7 +77,6 @@
   check_mode: 'no'
   when: (register_dhparam_pem.stat.exists == False)
   tags:
-    - commands
     - install
     - main
     - nginx
