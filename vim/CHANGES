@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.3.2 (2018-06-04)
+I: Package has been renamed in FreeBSD Ports from 'vim-lite' to 'vim-console'
+
 * Version 2.3.1 (2018-06-04)
 B: Fix package name on FreeBSD
 
