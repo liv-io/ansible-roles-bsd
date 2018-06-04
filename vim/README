@@ -78,7 +78,7 @@ PACKAGES
   vim
     Version: >= 7.2
     Name   :
-      FreeBSD 11: 'vim-lite'
+      FreeBSD 11: 'vim-tiny'
       OpenBSD 6 : 'vim--no_x11'
 
 ROLES
