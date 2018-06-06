@@ -1,0 +1,13 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (jq_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - jq
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (jq_state is match('false|no|remove'))
+  tags:
+    - jq
