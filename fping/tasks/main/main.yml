@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (fping_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - fping
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (fping_state is match('false|no|remove'))
   tags:
-    - main
     - fping

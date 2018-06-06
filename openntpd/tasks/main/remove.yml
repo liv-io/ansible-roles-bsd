@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - remove
-    - main
     - openntpd
 
 - name: 'command disable openntpd'
@@ -39,7 +37,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
   tags:
     - remove
-    - main
     - openntpd
 
 - name: 'command check openntpd'
@@ -51,7 +48,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - remove
-    - main
     - openntpd
 
 - name: 'command stop openntpd'
@@ -60,7 +56,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
   tags:
     - remove
-    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -74,7 +69,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -90,7 +84,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - openntpd
 
 - name: 'file remove ntpd.conf'
@@ -100,5 +93,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - openntpd

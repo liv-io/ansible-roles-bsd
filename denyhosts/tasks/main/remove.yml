@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - denyhosts
 
 #-------------------------------------------------------------------------------
@@ -27,7 +26,6 @@
     name: "{{package_name_denyhosts}}"
   tags:
     - remove
-    - main
     - denyhosts
 
 #-------------------------------------------------------------------------------
@@ -43,7 +41,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - denyhosts
 
 - name: 'line remove syslogd_flags'
@@ -56,7 +53,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - denyhosts
 
 - name: 'file remove allowed-hosts'
@@ -65,7 +61,6 @@
     path: "{{file_path_allowed_hosts}}"
   tags:
     - remove
-    - main
     - denyhosts
 
 - name: 'file remove denyhosts.conf'
@@ -74,7 +69,6 @@
     path: "{{file_path_denyhosts_conf}}"
   tags:
     - remove
-    - main
     - denyhosts
 
 - name: 'file remove hosts.allow'
@@ -84,7 +78,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - denyhosts
 
 - name: 'file remove hosts.block'
@@ -94,7 +87,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - denyhosts
 
 - name: 'file remove data.dir'
@@ -104,5 +96,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - denyhosts

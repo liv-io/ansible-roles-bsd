@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - disable
-    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
     group: "{{file_group_monitrc}}"
   tags:
     - disable
-    - main
     - monit
 
 - name: 'line disable monit_enable'
@@ -42,7 +40,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -58,7 +55,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - disable
-    - main
     - monit
 
 - name: 'command disable monit'
@@ -67,7 +63,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_monit.rc == 0)
   tags:
     - disable
-    - main
     - monit
 
 - name: 'command check monit'
@@ -79,7 +74,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - disable
-    - main
     - monit
 
 - name: 'command stop monit'
@@ -88,7 +82,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_monit.rc == 0)
   tags:
     - disable
-    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -103,5 +96,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - monit

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - disable
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -31,7 +30,6 @@
   notify: 'command check nginx'
   tags:
     - disable
-    - main
     - nginx
 
 - name: 'line disable nginx_enable'
@@ -43,7 +41,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -59,7 +56,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - disable
-    - main
     - nginx
 
 - name: 'command disable nginx'
@@ -68,7 +64,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 0)
   tags:
     - disable
-    - main
     - nginx
 
 - name: 'command check nginx'
@@ -80,7 +75,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - disable
-    - main
     - nginx
 
 - name: 'command stop nginx'
@@ -89,7 +83,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 0)
   tags:
     - disable
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -104,5 +97,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - nginx

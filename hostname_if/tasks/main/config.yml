@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - config
-    - main
     - hostname_if
 
 #-------------------------------------------------------------------------------
@@ -34,7 +33,6 @@
   when: not (item.state|default('') is match('false|no|remove'))
   tags:
     - config
-    - main
     - hostname_if
 
 - name: 'file remove hostname.if'
@@ -47,7 +45,6 @@
   when: (item.state|default('') is match('false|no|remove'))
   tags:
     - config
-    - main
     - hostname_if
 
 #-------------------------------------------------------------------------------
@@ -63,5 +60,4 @@
   when: (item.state|default('') is match('false|no|remove')) and (item.interface in ansible_interfaces)
   tags:
     - config
-    - main
     - hostname_if

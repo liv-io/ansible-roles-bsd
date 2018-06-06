@@ -4,5 +4,4 @@
   import_tasks: install.yml
   when: not (signify_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - signify

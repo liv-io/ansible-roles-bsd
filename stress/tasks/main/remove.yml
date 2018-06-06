@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - stress
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_stress}}"
   tags:
     - remove
-    - main
     - stress

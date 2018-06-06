@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -29,7 +28,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - remove
-    - main
     - nginx
 
 - name: 'command disable nginx'
@@ -38,7 +36,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
     - remove
-    - main
     - nginx
 
 - name: 'command stop nginx'
@@ -47,7 +44,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
     - remove
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -60,7 +56,6 @@
     name: "{{package_name_nginx}}"
   tags:
     - remove
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -76,7 +71,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - nginx
 
 - name: 'file remove nginx.conf'
@@ -85,7 +79,6 @@
     path: "{{file_path_nginx_conf}}"
   tags:
     - remove
-    - main
     - nginx
 
 - name: 'file remove dhparam.pem'
@@ -94,7 +87,6 @@
     path: "{{file_path_dhparam_pem}}"
   tags:
     - remove
-    - main
     - nginx
 
 - name: 'file remove log.dir'
@@ -104,7 +96,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - nginx
 
 - name: 'file remove vhosts.d'
@@ -113,5 +104,4 @@
     path: "{{file_path_vhosts_d}}"
   tags:
     - remove
-    - main
     - nginx

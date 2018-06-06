@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - enable
-    - main
     - postfix
 
 #-------------------------------------------------------------------------------
@@ -33,7 +32,6 @@
     - 'service restart postfix'
   tags:
     - enable
-    - main
     - postfix
 
 - name: 'template create main.cf'
@@ -46,7 +44,6 @@
   notify: 'service restart postfix'
   tags:
     - enable
-    - main
     - postfix
 
 - name: 'template create master.cf'
@@ -59,7 +56,6 @@
   notify: 'service restart postfix'
   tags:
     - enable
-    - main
     - postfix
 
 - name: 'line enable postfix_enable'
@@ -71,7 +67,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - postfix
 
 #-------------------------------------------------------------------------------
@@ -86,5 +81,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - postfix

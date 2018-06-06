@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - passwd
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
     group: "{{file_group_master_passwd}}"
   tags:
     - install
-    - main
     - passwd
 
 - name: 'file ensure passwd'
@@ -42,7 +40,6 @@
     group: "{{file_group_passwd}}"
   tags:
     - install
-    - main
     - passwd
 
 - name: 'file ensure pwd.db'
@@ -54,7 +51,6 @@
     group: "{{file_group_pwd_db}}"
   tags:
     - install
-    - main
     - passwd
 
 - name: 'file ensure spwd.db'
@@ -66,5 +62,4 @@
     group: "{{file_group_spwd_db}}"
   tags:
     - install
-    - main
     - passwd

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - disable
-    - main
     - openbsd_pf
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
     group: "{{file_group_anchors_conf}}"
   tags:
     - disable
-    - main
     - openbsd_pf
 
 - name: 'template create filters.conf'
@@ -42,7 +40,6 @@
     group: "{{file_group_filters_conf}}"
   tags:
     - disable
-    - main
     - openbsd_pf
 
 - name: 'template create macros.conf'
@@ -54,7 +51,6 @@
     group: "{{file_group_macros_conf}}"
   tags:
     - disable
-    - main
     - openbsd_pf
 
 - name: 'template create normalization.conf'
@@ -66,7 +62,6 @@
     group: "{{file_group_normalization_conf}}"
   tags:
     - disable
-    - main
     - openbsd_pf
 
 - name: 'template create options.conf'
@@ -78,7 +73,6 @@
     group: "{{file_group_options_conf}}"
   tags:
     - disable
-    - main
     - openbsd_pf
 
 - name: 'template create queues.conf'
@@ -90,7 +84,6 @@
     group: "{{file_group_queues_conf}}"
   tags:
     - disable
-    - main
     - openbsd_pf
 
 - name: 'template create tables.conf'
@@ -102,7 +95,6 @@
     group: "{{file_group_tables_conf}}"
   tags:
     - disable
-    - main
     - openbsd_pf
 
 - name: 'template create pf.conf'
@@ -114,7 +106,6 @@
     group: "{{file_group_pf_conf}}"
   tags:
     - disable
-    - main
     - openbsd_pf
 
 #-------------------------------------------------------------------------------
@@ -129,7 +120,6 @@
   check_mode: 'no'
   tags:
     - disable
-    - main
     - openbsd_pf
 
 - name: 'command disable openbsd_pf'
@@ -138,7 +128,6 @@
   check_mode: 'no'
   tags:
     - disable
-    - main
     - openbsd_pf
 
 - name: 'command check openbsd_pf'
@@ -149,7 +138,6 @@
   check_mode: 'no'
   tags:
     - disable
-    - main
     - openbsd_pf
 
 - name: 'command stop openbsd_pf'
@@ -158,5 +146,4 @@
   check_mode: 'no'
   tags:
     - disable
-    - main
     - openbsd_pf

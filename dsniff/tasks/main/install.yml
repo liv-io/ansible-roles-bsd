@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - dsniff
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_dsniff}}"
   tags:
     - install
-    - main
     - dsniff

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - colorls
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_colorls}}"
   tags:
     - remove
-    - main
     - colorls

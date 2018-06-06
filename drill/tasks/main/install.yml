@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - drill
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_drill}}"
   tags:
     - install
-    - main
     - drill

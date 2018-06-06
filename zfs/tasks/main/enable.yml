@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - enable
-    - main
     - zfs
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
   when: (ansible_os_family == 'FreeBSD') and not (zfs_scrub_pools_state is match('false|no|remove'))
   tags:
     - enable
-    - main
     - zfs
 
 - name: 'line remove zfs_scrub-pools'
@@ -42,5 +40,4 @@
   when: (ansible_os_family == 'FreeBSD') and (zfs_scrub_pools_state is match('false|no|remove'))
   tags:
     - enable
-    - main
     - zfs

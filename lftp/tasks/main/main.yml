@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (lftp_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - lftp
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (lftp_state is match('false|no|remove'))
   tags:
-    - main
     - lftp

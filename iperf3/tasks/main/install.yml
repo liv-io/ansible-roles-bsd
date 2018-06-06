@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - iperf3
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_iperf3}}"
   tags:
     - install
-    - main
     - iperf3

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 #-------------------------------------------------------------------------------
@@ -33,7 +32,6 @@
     - 'command reload openbsd_pf'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 - name: 'template create filters.conf'
@@ -48,7 +46,6 @@
     - 'command reload openbsd_pf'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 - name: 'template create macros.conf'
@@ -63,7 +60,6 @@
     - 'command reload openbsd_pf'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 - name: 'template create normalization.conf'
@@ -78,7 +74,6 @@
     - 'command reload openbsd_pf'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 - name: 'template create options.conf'
@@ -93,7 +88,6 @@
     - 'command reload openbsd_pf'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 - name: 'template create queues.conf'
@@ -108,7 +102,6 @@
     - 'command reload openbsd_pf'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 - name: 'template create tables.conf'
@@ -123,7 +116,6 @@
     - 'command reload openbsd_pf'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 - name: 'template create pf.conf'
@@ -138,7 +130,6 @@
     - 'command reload openbsd_pf'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 #-------------------------------------------------------------------------------
@@ -153,7 +144,6 @@
   check_mode: 'no'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 - name: 'command enable openbsd_pf'
@@ -162,7 +152,6 @@
   check_mode: 'no'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 - name: 'command check openbsd_pf'
@@ -173,7 +162,6 @@
   check_mode: 'no'
   tags:
     - enable
-    - main
     - openbsd_pf
 
 - name: 'command start openbsd_pf'
@@ -182,5 +170,4 @@
   check_mode: 'no'
   tags:
     - enable
-    - main
     - openbsd_pf

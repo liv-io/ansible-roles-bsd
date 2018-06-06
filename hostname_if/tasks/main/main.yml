@@ -4,5 +4,4 @@
   import_tasks: config.yml
   when: not (hostname_if_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - hostname_if

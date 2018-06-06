@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (poink_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - poink
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (poink_state is match('false|no|remove'))
   tags:
-    - main
     - poink

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - disable
-    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
     group: "{{file_group_ntpd_conf}}"
   tags:
     - disable
-    - main
     - openntpd
 
 - name: 'line disable openntpd_enable'
@@ -42,7 +40,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -58,7 +55,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - disable
-    - main
     - openntpd
 
 - name: 'command disable openntpd'
@@ -67,7 +63,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
   tags:
     - disable
-    - main
     - openntpd
 
 - name: 'command check openntpd'
@@ -79,7 +74,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - disable
-    - main
     - openntpd
 
 - name: 'command stop openntpd'
@@ -88,7 +82,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
   tags:
     - disable
-    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -103,5 +96,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - openntpd

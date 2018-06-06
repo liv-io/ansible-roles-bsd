@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - hostname
 
 #-------------------------------------------------------------------------------
@@ -32,5 +31,4 @@
     - 'command run netstart'
   tags:
     - install
-    - main
     - hostname

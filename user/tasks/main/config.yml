@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - config
-    - main
     - user
 
 #-------------------------------------------------------------------------------
@@ -42,7 +41,6 @@
   with_items: "{{user_all + user_dependencies + user_group + user_host}}"
   tags:
     - config
-    - main
     - user
 
 - name: 'user config authorized_key'
@@ -58,5 +56,4 @@
       skip_missing: true
   tags:
     - config
-    - main
     - user

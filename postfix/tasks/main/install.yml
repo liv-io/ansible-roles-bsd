@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - postfix
 
 #-------------------------------------------------------------------------------
@@ -28,7 +27,6 @@
   register: register_freebsd_postfix
   tags:
     - install
-    - main
     - postfix
 
 #-------------------------------------------------------------------------------
@@ -40,7 +38,6 @@
   when: (register_freebsd_postfix|changed)
   tags:
     - install
-    - main
     - postfix
 
 - name: 'command pkill sendmail'
@@ -48,5 +45,4 @@
   when: (register_freebsd_postfix|changed)
   tags:
     - install
-    - main
     - postfix

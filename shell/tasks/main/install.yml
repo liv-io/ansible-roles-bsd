@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - shell
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
     group: "{{file_group_profile_d}}"
   tags:
     - install
-    - main
     - shell
 
 - name: 'template create profile'
@@ -42,7 +40,6 @@
     group: "{{file_group_profile}}"
   tags:
     - install
-    - main
     - shell
 
 - name: 'template create shell.sh'
@@ -54,7 +51,6 @@
     group: "{{file_group_shell_shell}}"
   tags:
     - install
-    - main
     - shell
 
 - name: 'template create z_shell.sh'
@@ -66,5 +62,4 @@
     group: "{{file_group_z_shell_shell}}"
   tags:
     - install
-    - main
     - shell

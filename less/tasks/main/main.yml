@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (less_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - less
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (less_state is match('false|no|remove'))
   tags:
-    - main
     - less

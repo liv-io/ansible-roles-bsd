@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - cronjob
-    - main
     - ntpd
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - cronjob
-    - main
     - ntpd
 
 - name: 'command disable ntpd'
@@ -39,7 +37,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_ntpd.rc == 0)
   tags:
     - cronjob
-    - main
     - ntpd
 
 - name: 'command check ntpd'
@@ -51,7 +48,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - cronjob
-    - main
     - ntpd
 
 - name: 'command stop ntpd'
@@ -60,7 +56,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_ntpd.rc == 0)
   tags:
     - cronjob
-    - main
     - ntpd
 
 #-------------------------------------------------------------------------------
@@ -75,7 +70,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - cronjob
-    - main
     - ntpd
 
 #-------------------------------------------------------------------------------
@@ -91,7 +85,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - cronjob
-    - main
     - ntpd
 
 - name: 'template create ntp.conf'
@@ -103,7 +96,6 @@
     group: "{{file_group_ntp_conf}}"
   tags:
     - cronjob
-    - main
     - ntpd
 
 - name: 'template create ntpd_update-time.sh'
@@ -115,7 +107,6 @@
     group: "{{file_group_ntpd_update_time_sh}}"
   tags:
     - cronjob
-    - main
     - ntpd
 
 - name: 'line config ntpd_update-time'
@@ -126,5 +117,4 @@
     dest: "{{file_path_ntpd_update_time}}"
   tags:
     - cronjob
-    - main
     - ntpd

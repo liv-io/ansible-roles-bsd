@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -29,7 +28,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - install
-    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -45,7 +43,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - install
-    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -57,7 +54,6 @@
   when: (register_freebsd_opensmtpd|changed)
   tags:
     - install
-    - main
     - opensmtpd
 
 - name: 'command pkill sendmail'
@@ -65,5 +61,4 @@
   when: (register_freebsd_opensmtpd|changed)
   tags:
     - install
-    - main
     - opensmtpd

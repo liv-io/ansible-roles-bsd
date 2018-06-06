@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - tmux
 
 #-------------------------------------------------------------------------------
@@ -28,7 +27,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - install
-    - main
     - tmux
 
 #-------------------------------------------------------------------------------
@@ -44,5 +42,4 @@
     group: "{{file_group_tmux_conf}}"
   tags:
     - install
-    - main
     - tmux

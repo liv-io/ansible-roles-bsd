@@ -4,5 +4,4 @@
   import_tasks: config.yml
   when: not (hosts_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - hosts

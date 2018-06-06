@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - git
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_git}}"
   tags:
     - install
-    - main
     - git

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - ngrep
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_ngrep}}"
   tags:
     - remove
-    - main
     - ngrep

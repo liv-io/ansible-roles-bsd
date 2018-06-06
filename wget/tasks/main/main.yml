@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (wget_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - wget
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (wget_state is match('false|no|remove'))
   tags:
-    - main
     - wget

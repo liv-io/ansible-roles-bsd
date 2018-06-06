@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - group
 
 #-------------------------------------------------------------------------------
@@ -30,5 +29,4 @@
     group: "{{file_group_group}}"
   tags:
     - install
-    - main
     - group

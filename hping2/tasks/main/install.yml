@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - hping2
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_hping2}}"
   tags:
     - install
-    - main
     - hping2

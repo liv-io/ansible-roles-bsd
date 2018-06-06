@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - ncdu
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_ncdu}}"
   tags:
     - install
-    - main
     - ncdu

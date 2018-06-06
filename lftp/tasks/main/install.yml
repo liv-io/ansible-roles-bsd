@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - lftp
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_lftp}}"
   tags:
     - install
-    - main
     - lftp

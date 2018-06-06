@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (iperf2_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - iperf2
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (iperf2_state is match('false|no|remove'))
   tags:
-    - main
     - iperf2

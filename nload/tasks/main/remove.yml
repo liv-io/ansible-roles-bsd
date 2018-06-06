@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - nload
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_nload}}"
   tags:
     - remove
-    - main
     - nload

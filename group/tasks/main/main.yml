@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (group_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - group
 
 - name: 'task include config'
   import_tasks: config.yml
   when: not (group_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - group

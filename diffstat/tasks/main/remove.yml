@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - diffstat
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_diffstat}}"
   tags:
     - remove
-    - main
     - diffstat

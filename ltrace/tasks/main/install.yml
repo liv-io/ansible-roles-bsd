@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - ltrace
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_ltrace}}"
   tags:
     - install
-    - main
     - ltrace

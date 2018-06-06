@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (git_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - git
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (git_state is match('false|no|remove'))
   tags:
-    - main
     - git

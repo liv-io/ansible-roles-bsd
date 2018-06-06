@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - main_syspatch
 
 #-------------------------------------------------------------------------------
@@ -30,5 +29,4 @@
     group: "{{file_group_installurl}}"
   tags:
     - install
-    - main
     - main_syspatch

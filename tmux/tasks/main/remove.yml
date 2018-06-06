@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - tmux
 
 #-------------------------------------------------------------------------------
@@ -28,7 +27,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - tmux
 
 #-------------------------------------------------------------------------------
@@ -41,5 +39,4 @@
     path: "{{file_path_tmux_conf}}"
   tags:
     - remove
-    - main
     - tmux

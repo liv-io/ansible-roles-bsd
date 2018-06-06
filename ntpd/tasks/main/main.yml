@@ -4,33 +4,28 @@
   import_tasks: install.yml
   when: not (ntpd_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - ntpd
 
 - name: 'task include enable'
   import_tasks: enable.yml
   when: (ntpd_state is match('start|on|enable'))
   tags:
-    - main
     - ntpd
 
 - name: 'task include disable'
   import_tasks: disable.yml
   when: (ntpd_state is match('stop|off|disable'))
   tags:
-    - main
     - ntpd
 
 - name: 'task include cronjob'
   import_tasks: cronjob.yml
   when: (ntpd_state is match('cron|cronjob'))
   tags:
-    - main
     - ntpd
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (ntpd_state is match('false|no|remove'))
   tags:
-    - main
     - ntpd

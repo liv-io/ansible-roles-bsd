@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - poink
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_poink}}"
   tags:
     - remove
-    - main
     - poink

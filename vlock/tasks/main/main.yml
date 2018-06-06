@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (vlock_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - vlock
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (vlock_state is match('false|no|remove'))
   tags:
-    - main
     - vlock

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - mailx
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_mailx}}"
   tags:
     - remove
-    - main
     - mailx

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - denyhosts
 
 #-------------------------------------------------------------------------------
@@ -28,7 +27,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - install
-    - main
     - denyhosts
 
 - name: 'template create hosts.block'
@@ -41,7 +39,6 @@
   when: (ansible_os_family == 'FreeBSD') and not (register_hosts_block.stat.exists)
   tags:
     - install
-    - main
     - denyhosts
 
 #-------------------------------------------------------------------------------
@@ -54,5 +51,4 @@
     name: "{{package_name_denyhosts}}"
   tags:
     - install
-    - main
     - denyhosts

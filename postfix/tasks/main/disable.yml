@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - disable
-    - main
     - postfix
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
     group: "{{file_group_aliases}}"
   tags:
     - disable
-    - main
     - postfix
 
 - name: 'template create main.cf'
@@ -42,7 +40,6 @@
     group: "{{file_group_main_cf}}"
   tags:
     - disable
-    - main
     - postfix
 
 - name: 'template create master.cf'
@@ -54,7 +51,6 @@
     group: "{{file_group_master_cf}}"
   tags:
     - disable
-    - main
     - postfix
 
 - name: 'line disable postfix_enable'
@@ -66,7 +62,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - postfix
 
 #-------------------------------------------------------------------------------
@@ -81,5 +76,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - postfix

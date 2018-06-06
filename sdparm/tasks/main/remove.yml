@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - sdparm
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_sdparm}}"
   tags:
     - remove
-    - main
     - sdparm

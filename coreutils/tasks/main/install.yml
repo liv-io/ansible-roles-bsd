@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - coreutils
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_coreutils}}"
   tags:
     - install
-    - main
     - coreutils

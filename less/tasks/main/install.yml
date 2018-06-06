@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - less
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_less}}"
   tags:
     - install
-    - main
     - less

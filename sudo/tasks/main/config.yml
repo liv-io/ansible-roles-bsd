@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - config
-    - main
     - sudo
 
 #-------------------------------------------------------------------------------
@@ -33,7 +32,6 @@
   when: not (item.state is match('false|no|remove'))
   tags:
     - config
-    - main
     - sudo
 
 - name: 'file remove sudo-config'
@@ -44,5 +42,4 @@
   when: (item.state is match('false|no|remove'))
   tags:
     - config
-    - main
     - sudo

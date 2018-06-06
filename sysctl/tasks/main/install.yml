@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - sysctl
 
 #-------------------------------------------------------------------------------
@@ -27,7 +26,6 @@
   register: register_sysctl_conf
   tags:
     - install
-    - main
     - sysctl
 
 - name: 'template create sysctl.conf'
@@ -40,5 +38,4 @@
   when: not (register_sysctl_conf.stat.exists)
   tags:
     - install
-    - main
     - sysctl

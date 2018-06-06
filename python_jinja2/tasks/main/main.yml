@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (python_jinja2_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - python_jinja2
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (python_jinja2_state is match('false|no|remove'))
   tags:
-    - main
     - python_jinja2

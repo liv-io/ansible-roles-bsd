@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -27,7 +26,6 @@
     name: "{{package_name_nginx}}"
   tags:
     - install
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -44,7 +42,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - install
-    - main
     - nginx
 
 - name: 'file create vhosts.d'
@@ -56,7 +53,6 @@
     group: "{{file_group_vhosts_d}}"
   tags:
     - install
-    - main
     - nginx
 
 - name: 'stat file dhparam.pem'
@@ -65,7 +61,6 @@
   register: register_dhparam_pem
   tags:
     - install
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -78,5 +73,4 @@
   when: (register_dhparam_pem.stat.exists == False)
   tags:
     - install
-    - main
     - nginx

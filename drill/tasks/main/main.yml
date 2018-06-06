@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (drill_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - drill
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (drill_state is match('false|no|remove'))
   tags:
-    - main
     - drill

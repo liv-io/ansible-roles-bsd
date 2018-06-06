@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - enable
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -33,7 +32,6 @@
     - 'service reload nginx'
   tags:
     - enable
-    - main
     - nginx
 
 - name: 'line enable nginx_enable'
@@ -45,7 +43,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -61,7 +58,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - main
     - nginx
 
 - name: 'command enable nginx'
@@ -70,7 +66,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 1)
   tags:
     - enable
-    - main
     - nginx
 
 - name: 'command check nginx'
@@ -82,7 +77,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - main
     - nginx
 
 - name: 'command start nginx'
@@ -91,7 +85,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 1)
   tags:
     - enable
-    - main
     - nginx
 
 #-------------------------------------------------------------------------------
@@ -106,5 +99,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - nginx

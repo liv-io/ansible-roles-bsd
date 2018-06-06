@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (freecolor_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - freecolor
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (freecolor_state is match('false|no|remove'))
   tags:
-    - main
     - freecolor

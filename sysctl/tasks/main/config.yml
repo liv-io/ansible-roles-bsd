@@ -13,7 +13,6 @@
       skip: 'true'
   tags:
     - config
-    - main
     - sysctl
 
 #-------------------------------------------------------------------------------
@@ -32,7 +31,6 @@
   with_items: "{{sysctl_all + sysctl_dependencies + sysctl_group + sysctl_host}}"
   tags:
     - config
-    - main
     - sysctl
 
 #-------------------------------------------------------------------------------
@@ -47,5 +45,4 @@
   with_items: "{{sysctl_all + sysctl_dependencies + sysctl_group + sysctl_host}}"
   tags:
     - config
-    - main
     - sysctl

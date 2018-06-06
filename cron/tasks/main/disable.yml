@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - disable
-    - main
     - cron
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - cron
 
 #-------------------------------------------------------------------------------
@@ -45,5 +43,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - cron

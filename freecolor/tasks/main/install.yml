@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - freecolor
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_freecolor}}"
   tags:
     - install
-    - main
     - freecolor

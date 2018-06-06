@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - http_ping
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_http_ping}}"
   tags:
     - install
-    - main
     - http_ping

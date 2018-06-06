@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (trafshow_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - trafshow
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (trafshow_state is match('false|no|remove'))
   tags:
-    - main
     - trafshow

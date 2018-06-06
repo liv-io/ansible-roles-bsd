@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - zfs
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
     group: "{{file_group_zfs_script_dir}}"
   tags:
     - install
-    - main
     - zfs
 
 - name: 'template create zfs_scrub-pools.sh'
@@ -42,5 +40,4 @@
     group: "{{file_group_zfs_scrub_pools_sh}}"
   tags:
     - install
-    - main
     - zfs

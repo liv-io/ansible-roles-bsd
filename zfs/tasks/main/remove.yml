@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - zfs
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - zfs
 
 - name: 'file remove zfs_scrub-pools.sh'
@@ -39,7 +37,6 @@
     path: "{{file_path_zfs_scrub_pools_sh}}"
   tags:
     - remove
-    - main
     - zfs
 
 - name: 'file remove zfs_script.dir'
@@ -48,5 +45,4 @@
     path: "{{file_path_zfs_script_dir}}"
   tags:
     - remove
-    - main
     - zfs

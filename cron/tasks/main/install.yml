@@ -14,5 +14,4 @@
       skip: 'true'
   tags:
     - install
-    - main
     - cron

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - file
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_file}}"
   tags:
     - remove
-    - main
     - file

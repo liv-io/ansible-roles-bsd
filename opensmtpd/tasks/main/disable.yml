@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - disable
-    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
     group: "{{file_group_aliases}}"
   tags:
     - disable
-    - main
     - opensmtpd
 
 - name: 'template create smtpd.conf'
@@ -42,7 +40,6 @@
     group: "{{file_group_smtpd_conf}}"
   tags:
     - disable
-    - main
     - opensmtpd
 
 - name: 'line disable smtpd_enable'
@@ -54,7 +51,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -70,7 +66,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - disable
-    - main
     - opensmtpd
 
 - name: 'command disable opensmtpd'
@@ -79,7 +74,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 0)
   tags:
     - disable
-    - main
     - opensmtpd
 
 - name: 'command check opensmtpd'
@@ -91,7 +85,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - disable
-    - main
     - opensmtpd
 
 - name: 'command stop opensmtpd'
@@ -100,7 +93,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 0)
   tags:
     - disable
-    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -115,5 +107,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - opensmtpd

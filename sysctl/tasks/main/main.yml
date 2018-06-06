@@ -4,19 +4,16 @@
   import_tasks: install.yml
   when: not (sysctl_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - sysctl
 
 - name: 'task include config'
   import_tasks: config.yml
   when: not (sysctl_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - sysctl
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (sysctl_state is match('false|no|remove'))
   tags:
-    - main
     - sysctl

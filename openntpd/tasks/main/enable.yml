@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - enable
-    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -31,7 +30,6 @@
   notify: 'service restart openntpd'
   tags:
     - enable
-    - main
     - openntpd
 
 - name: 'line enable openntpd_enable'
@@ -43,7 +41,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -59,7 +56,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - main
     - openntpd
 
 - name: 'command enable openntpd'
@@ -68,7 +64,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 1)
   tags:
     - enable
-    - main
     - openntpd
 
 - name: 'command check openntpd'
@@ -80,7 +75,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - main
     - openntpd
 
 - name: 'command start openntpd'
@@ -89,7 +83,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 1)
   tags:
     - enable
-    - main
     - openntpd
 
 #-------------------------------------------------------------------------------
@@ -104,5 +97,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - openntpd

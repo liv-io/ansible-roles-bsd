@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (zip_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - zip
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (zip_state is match('false|no|remove'))
   tags:
-    - main
     - zip

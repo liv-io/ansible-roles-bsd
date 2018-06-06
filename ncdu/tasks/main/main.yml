@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (ncdu_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - ncdu
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (ncdu_state is match('false|no|remove'))
   tags:
-    - main
     - ncdu

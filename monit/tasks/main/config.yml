@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - config
-    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -35,7 +34,6 @@
   when: not (item.state is match('false|no|remove'))
   tags:
     - config
-    - main
     - monit
 
 - name: 'file remove monit-config'
@@ -49,5 +47,4 @@
   when: (item.state is match('false|no|remove'))
   tags:
     - config
-    - main
     - monit

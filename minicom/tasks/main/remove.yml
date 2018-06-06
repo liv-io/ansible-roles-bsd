@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - minicom
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_minicom}}"
   tags:
     - remove
-    - main
     - minicom

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - freebsd_pf
 
 #-------------------------------------------------------------------------------
@@ -27,7 +26,6 @@
     path: "{{file_path_anchors_conf}}"
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'file remove filters.conf'
@@ -36,7 +34,6 @@
     path: "{{file_path_filters_conf}}"
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'file remove macros.conf'
@@ -45,7 +42,6 @@
     path: "{{file_path_macros_conf}}"
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'file remove normalization.conf'
@@ -54,7 +50,6 @@
     path: "{{file_path_normalization_conf}}"
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'file remove options.conf'
@@ -63,7 +58,6 @@
     path: "{{file_path_options_conf}}"
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'file remove queues.conf'
@@ -72,7 +66,6 @@
     path: "{{file_path_queues_conf}}"
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'file remove tables.conf'
@@ -81,7 +74,6 @@
     path: "{{file_path_tables_conf}}"
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'file remove translations.conf'
@@ -90,7 +82,6 @@
     path: "{{file_path_translations_conf}}"
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'file remove pf.conf'
@@ -99,7 +90,6 @@
     path: "{{file_path_pf_conf}}"
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'file remove pf.dir'
@@ -108,7 +98,6 @@
     path: "{{file_path_ntp_script_dir}}"
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'line remove pf_enable'
@@ -120,7 +109,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'line remove gateway-ipv4'
@@ -132,7 +120,6 @@
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
     - remove
-    - main
     - freebsd_pf
 
 - name: 'line remove gateway-ipv6'
@@ -144,5 +131,4 @@
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
     - remove
-    - main
     - freebsd_pf

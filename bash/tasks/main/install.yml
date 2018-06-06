@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - bash
 
 #-------------------------------------------------------------------------------
@@ -27,7 +26,6 @@
     name: "{{package_name_bash}}"
   tags:
     - install
-    - main
     - bash
 
 #-------------------------------------------------------------------------------
@@ -43,7 +41,6 @@
     group: "{{file_group_bash_bash}}"
   tags:
     - install
-    - main
     - bash
 
 - name: 'template create zz_bash.bash'
@@ -55,5 +52,4 @@
     group: "{{file_group_zz_bash_bash}}"
   tags:
     - install
-    - main
     - bash

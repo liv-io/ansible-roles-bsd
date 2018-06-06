@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - http_load
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_http_load}}"
   tags:
     - remove
-    - main
     - http_load

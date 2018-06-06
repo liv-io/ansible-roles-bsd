@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - enable
-    - main
     - freebsd_pf
 
 #-------------------------------------------------------------------------------
@@ -33,7 +32,6 @@
     - 'command reload freebsd_pf'
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'template create filters.conf'
@@ -48,7 +46,6 @@
     - 'command reload freebsd_pf'
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'template create macros.conf'
@@ -63,7 +60,6 @@
     - 'command reload freebsd_pf'
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'template create normalization.conf'
@@ -78,7 +74,6 @@
     - 'command reload freebsd_pf'
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'template create options.conf'
@@ -93,7 +88,6 @@
     - 'command reload freebsd_pf'
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'template create queues.conf'
@@ -108,7 +102,6 @@
     - 'command reload freebsd_pf'
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'template create tables.conf'
@@ -123,7 +116,6 @@
     - 'command reload freebsd_pf'
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'template create translations.conf'
@@ -138,7 +130,6 @@
     - 'command reload freebsd_pf'
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'template create pf.conf'
@@ -153,7 +144,6 @@
     - 'command reload freebsd_pf'
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'line enable pf_enable'
@@ -165,7 +155,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'line enable gateway-ipv4'
@@ -177,7 +166,6 @@
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'line disable gateway-ipv4'
@@ -189,7 +177,6 @@
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'line enable gateway-ipv6'
@@ -201,7 +188,6 @@
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
     - enable
-    - main
     - freebsd_pf
 
 - name: 'line disable gateway-ipv6'
@@ -213,7 +199,6 @@
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
     - enable
-    - main
     - freebsd_pf
 
 #-------------------------------------------------------------------------------
@@ -228,5 +213,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - freebsd_pf

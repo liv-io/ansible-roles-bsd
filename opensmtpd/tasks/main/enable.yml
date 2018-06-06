@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - enable
-    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -34,7 +33,6 @@
     - 'service restart opensmtpd'
   tags:
     - enable
-    - main
     - opensmtpd
 
 - name: 'template create smtpd.conf'
@@ -47,7 +45,6 @@
   notify: 'service restart opensmtpd'
   tags:
     - enable
-    - main
     - opensmtpd
 
 - name: 'line enable smtpd_enable'
@@ -59,7 +56,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -75,7 +71,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - main
     - opensmtpd
 
 - name: 'command enable opensmtpd'
@@ -84,7 +79,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 1)
   tags:
     - enable
-    - main
     - opensmtpd
 
 - name: 'command check opensmtpd'
@@ -96,7 +90,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - main
     - opensmtpd
 
 - name: 'command start opensmtpd'
@@ -105,7 +98,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 1)
   tags:
     - enable
-    - main
     - opensmtpd
 
 #-------------------------------------------------------------------------------
@@ -120,5 +112,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - opensmtpd

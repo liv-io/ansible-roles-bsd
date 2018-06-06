@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - python_crypto
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_python_crypto}}"
   tags:
     - remove
-    - main
     - python_crypto

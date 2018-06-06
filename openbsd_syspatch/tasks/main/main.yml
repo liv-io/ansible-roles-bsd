@@ -4,5 +4,4 @@
   import_tasks: install.yml
   when: not (openbsd_syspatch_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - main_syspatch

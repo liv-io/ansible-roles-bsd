@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - sysctl
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     path: "{{file_path_sysctl_conf}}"
   tags:
     - remove
-    - main
     - sysctl

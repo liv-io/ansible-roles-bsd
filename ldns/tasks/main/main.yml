@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (ldns_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - ldns
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (ldns_state is match('false|no|remove'))
   tags:
-    - main
     - ldns

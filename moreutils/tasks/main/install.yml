@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - moreutils
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_moreutils}}"
   tags:
     - install
-    - main
     - moreutils

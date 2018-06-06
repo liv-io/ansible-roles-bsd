@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (gnu_sed_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - gnu_sed
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (gnu_sed_state is match('false|no|remove'))
   tags:
-    - main
     - gnu_sed

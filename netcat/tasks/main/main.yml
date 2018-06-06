@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (netcat_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - netcat
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (netcat_state is match('false|no|remove'))
   tags:
-    - main
     - netcat

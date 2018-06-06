@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - unzip
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_unzip}}"
   tags:
     - install
-    - main
     - unzip

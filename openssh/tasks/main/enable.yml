@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - enable
-    - main
     - openssh
 
 #-------------------------------------------------------------------------------
@@ -33,7 +32,6 @@
     - 'service reload openssh'
   tags:
     - enable
-    - main
     - openssh
 
 - name: 'template create moduli'
@@ -48,7 +46,6 @@
     - 'service reload openssh'
   tags:
     - enable
-    - main
     - openssh
 
 - name: 'template create ssh_config'
@@ -63,7 +60,6 @@
     - 'service reload openssh'
   tags:
     - enable
-    - main
     - openssh
 
 - name: 'template create sshd_config'
@@ -78,7 +74,6 @@
     - 'service reload openssh'
   tags:
     - enable
-    - main
     - openssh
 
 - name: 'line enable sshd_enable'
@@ -90,7 +85,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - openssh
 
 #-------------------------------------------------------------------------------
@@ -106,7 +100,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - main
     - openssh
 
 - name: 'command enable openssh'
@@ -115,7 +108,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_openssh.rc == 1)
   tags:
     - enable
-    - main
     - openssh
 
 - name: 'command check openssh'
@@ -127,7 +119,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - main
     - openssh
 
 - name: 'command start openssh'
@@ -136,7 +127,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_openssh.rc == 1)
   tags:
     - enable
-    - main
     - openssh
 
 #-------------------------------------------------------------------------------
@@ -151,5 +141,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - openssh

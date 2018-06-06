@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - enable
-    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -33,7 +32,6 @@
     - 'service restart monit'
   tags:
     - enable
-    - main
     - monit
 
 - name: 'line enable monit_enable'
@@ -45,7 +43,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -61,7 +58,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - main
     - monit
 
 - name: 'command enable monit'
@@ -70,7 +66,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_monit.rc == 1)
   tags:
     - enable
-    - main
     - monit
 
 - name: 'command check monit'
@@ -82,7 +77,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - main
     - monit
 
 - name: 'command start monit'
@@ -91,7 +85,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_monit.rc == 1)
   tags:
     - enable
-    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -106,5 +99,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - monit

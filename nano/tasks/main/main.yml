@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (nano_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - nano
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (nano_state is match('false|no|remove'))
   tags:
-    - main
     - nano

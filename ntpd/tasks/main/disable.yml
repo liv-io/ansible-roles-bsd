@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - disable
-    - main
     - ntpd
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
     group: "{{file_group_ntp_conf}}"
   tags:
     - disable
-    - main
     - ntpd
 
 - name: 'file remove ntpd_update-time.sh'
@@ -39,7 +37,6 @@
     path: "{{file_path_ntpd_update_time_sh}}"
   tags:
     - disable
-    - main
     - ntpd
 
 - name: 'line config ntpd_update-time'
@@ -50,7 +47,6 @@
     dest: "{{file_path_ntpd_update_time}}"
   tags:
     - disable
-    - main
     - ntpd
 
 - name: 'line disable ntpd_enable'
@@ -62,7 +58,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - ntpd
 
 #-------------------------------------------------------------------------------
@@ -77,7 +72,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - disable
-    - main
     - ntpd
 
 - name: 'command disable ntpd'
@@ -86,7 +80,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_ntpd.rc == 0)
   tags:
     - disable
-    - main
     - ntpd
 
 - name: 'command check ntpd'
@@ -98,7 +91,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - disable
-    - main
     - ntpd
 
 - name: 'command stop ntpd'
@@ -107,7 +99,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_ntpd.rc == 0)
   tags:
     - disable
-    - main
     - ntpd
 
 #-------------------------------------------------------------------------------
@@ -122,5 +113,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
-    - main
     - ntpd

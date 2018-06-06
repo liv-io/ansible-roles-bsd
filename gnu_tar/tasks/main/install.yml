@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - gnu_tar
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_gnu_tar}}"
   tags:
     - install
-    - main
     - gnu_tar

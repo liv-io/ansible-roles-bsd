@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - root
 
 #-------------------------------------------------------------------------------
@@ -29,5 +28,4 @@
     key_options: "{{'' if (root_authorized_key_options is match('false|no|remove')) else root_authorized_key_options}}"
   tags:
     - remove
-    - main
     - root

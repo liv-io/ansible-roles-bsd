@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (vim_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - vim
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (vim_state is match('false|no|remove'))
   tags:
-    - main
     - vim

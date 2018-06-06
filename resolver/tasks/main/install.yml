@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - resolver
 
 #-------------------------------------------------------------------------------
@@ -30,5 +29,4 @@
     group: "{{file_group_resolv_conf}}"
   tags:
     - install
-    - main
     - resolver

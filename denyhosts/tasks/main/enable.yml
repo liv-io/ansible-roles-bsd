@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - enable
-    - main
     - denyhosts
 
 #-------------------------------------------------------------------------------
@@ -31,7 +30,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - denyhosts
 
 - name: 'template create allowed-hosts'
@@ -44,7 +42,6 @@
   notify: 'service restart denyhosts'
   tags:
     - enable
-    - main
     - denyhosts
 
 - name: 'template create denyhosts.conf'
@@ -57,7 +54,6 @@
   notify: 'service restart denyhosts'
   tags:
     - enable
-    - main
     - denyhosts
 
 - name: 'template create hosts.allow'
@@ -70,7 +66,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - denyhosts
 
 - name: 'line enable denyhosts_enable'
@@ -82,7 +77,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - denyhosts
 
 - name: 'line create syslogd_flags'
@@ -95,7 +89,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - denyhosts
 
 #-------------------------------------------------------------------------------
@@ -110,5 +103,4 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
-    - main
     - denyhosts

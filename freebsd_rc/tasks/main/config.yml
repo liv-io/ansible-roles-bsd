@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - config
-    - main
     - main_rc
 
 #-------------------------------------------------------------------------------
@@ -30,5 +29,4 @@
   with_items: "{{freebsd_rc_all + freebsd_rc_group + freebsd_rc_host}}"
   tags:
     - config
-    - main
     - main_rc

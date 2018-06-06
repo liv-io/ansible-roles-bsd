@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (stress_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - stress
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (stress_state is match('false|no|remove'))
   tags:
-    - main
     - stress

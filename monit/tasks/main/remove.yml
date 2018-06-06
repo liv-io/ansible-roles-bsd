@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -29,7 +28,6 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - remove
-    - main
     - monit
 
 - name: 'command disable monit'
@@ -38,7 +36,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
   tags:
     - remove
-    - main
     - monit
 
 - name: 'command stop monit'
@@ -47,7 +44,6 @@
   when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
   tags:
     - remove
-    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -60,7 +56,6 @@
     name: "{{package_name_monit}}"
   tags:
     - remove
-    - main
     - monit
 
 #-------------------------------------------------------------------------------
@@ -76,7 +71,6 @@
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
-    - main
     - monit
 
 - name: 'file remove monit.d'
@@ -85,7 +79,6 @@
     path: "{{file_path_monit_d}}"
   tags:
     - remove
-    - main
     - monit
 
 - name: 'file remove monitrc'
@@ -94,5 +87,4 @@
     path: "{{file_path_monitrc}}"
   tags:
     - remove
-    - main
     - monit

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - traceroute
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_traceroute}}"
   tags:
     - install
-    - main
     - traceroute

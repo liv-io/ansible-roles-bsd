@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (zfs_stats_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - zfs_stats
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (zfs_stats_state is match('false|no|remove'))
   tags:
-    - main
     - zfs_stats

@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (hping3_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - hping3
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (hping3_state is match('false|no|remove'))
   tags:
-    - main
     - hping3

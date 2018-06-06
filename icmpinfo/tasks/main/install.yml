@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - icmpinfo
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_icmpinfo}}"
   tags:
     - install
-    - main
     - icmpinfo

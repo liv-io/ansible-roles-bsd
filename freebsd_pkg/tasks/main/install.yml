@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - main_pkg
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
     group: "{{file_group_freebsd_conf}}"
   tags:
     - install
-    - main
     - main_pkg
 
 - name: 'template create pkg.conf'
@@ -42,5 +40,4 @@
     group: "{{file_group_pkg_conf}}"
   tags:
     - install
-    - main
     - main_pkg

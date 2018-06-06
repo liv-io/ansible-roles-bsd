@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (motd_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - motd
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (motd_state is match('false|no|remove'))
   tags:
-    - main
     - motd

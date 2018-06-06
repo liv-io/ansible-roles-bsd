@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - bash
 
 #-------------------------------------------------------------------------------
@@ -27,7 +26,6 @@
     name: "{{package_name_bash}}"
   tags:
     - remove
-    - main
     - bash
 
 #-------------------------------------------------------------------------------
@@ -40,7 +38,6 @@
     path: "{{file_path_bash_bash}}"
   tags:
     - remove
-    - main
     - bash
 
 - name: 'file remove zz_bash.bash'
@@ -49,5 +46,4 @@
     path: "{{file_path_zz_bash_bash}}"
   tags:
     - remove
-    - main
     - bash

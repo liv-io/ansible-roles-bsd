@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - zip
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_zip}}"
   tags:
     - install
-    - main
     - zip

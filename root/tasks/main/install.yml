@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - root
 
 #-------------------------------------------------------------------------------
@@ -29,7 +28,6 @@
     system: "{{group_system_root}}"
   tags:
     - install
-    - main
     - root
 
 - name: 'user create root'
@@ -51,7 +49,6 @@
     system: "{{user_system_root}}"
   tags:
     - install
-    - main
     - root
 
 - name: 'authorized_key create root'
@@ -62,7 +59,6 @@
     key_options: "{{'' if (root_authorized_key_options is match('false|no|remove')) else root_authorized_key_options}}"
   tags:
     - install
-    - main
     - root
 
 #-------------------------------------------------------------------------------
@@ -78,5 +74,4 @@
     group: "{{file_group_root_dir}}"
   tags:
     - install
-    - main
     - root

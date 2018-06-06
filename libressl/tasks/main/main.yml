@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (libressl_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - libressl
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (libressl_state is match('false|no|remove'))
   tags:
-    - main
     - libressl

@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - socat
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_socat}}"
   tags:
     - install
-    - main
     - socat

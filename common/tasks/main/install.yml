@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - install
-    - main
     - common
 
 #-------------------------------------------------------------------------------
@@ -30,7 +29,6 @@
     group: "{{file_group_common_app_dir}}"
   tags:
     - install
-    - main
     - common
 
 - name: 'file create common-backup.dir'
@@ -42,7 +40,6 @@
     group: "{{file_group_common_backup_dir}}"
   tags:
     - install
-    - main
     - common
 
 - name: 'file create common-data.dir'
@@ -54,7 +51,6 @@
     group: "{{file_group_common_data_dir}}"
   tags:
     - install
-    - main
     - common
 
 - name: 'file create common-script.dir'
@@ -66,7 +62,6 @@
     group: "{{file_group_common_script_dir}}"
   tags:
     - install
-    - main
     - common
 
 - name: 'template create README'
@@ -78,5 +73,4 @@
     group: "{{file_group_readme}}"
   tags:
     - install
-    - main
     - common

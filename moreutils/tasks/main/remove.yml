@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - moreutils
 
 #-------------------------------------------------------------------------------
@@ -27,5 +26,4 @@
     name: "{{package_name_moreutils}}"
   tags:
     - remove
-    - main
     - moreutils

@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (ssldump_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - ssldump
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (ssldump_state is match('false|no|remove'))
   tags:
-    - main
     - ssldump

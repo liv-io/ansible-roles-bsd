@@ -4,12 +4,10 @@
   import_tasks: install.yml
   when: not (python_yaml_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main
     - python_yaml
 
 - name: 'task include remove'
   import_tasks: remove.yml
   when: (python_yaml_state is match('false|no|remove'))
   tags:
-    - main
     - python_yaml

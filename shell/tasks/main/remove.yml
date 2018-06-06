@@ -14,7 +14,6 @@
       skip: 'true'
   tags:
     - remove
-    - main
     - shell
 
 #-------------------------------------------------------------------------------
@@ -27,7 +26,6 @@
     path: "{{file_path_shell_shell}}"
   tags:
     - remove
-    - main
     - shell
 
 - name: 'file remove z_shell.sh'
@@ -36,5 +34,4 @@
     path: "{{file_path_z_shell_shell}}"
   tags:
     - remove
-    - main
     - shell
