@@ -82,6 +82,8 @@ include '/etc/pf/queues.conf'
 {{port}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (all.ports is defined) and not (all.ports == []) %}} {% endif %}
+{%- if (all.dnat is defined) and not (all.dnat == '') %}rdr-to {{all.dnat}} {% endif %}
+{%- if (all.snat is defined) and not (all.snat == '') %}nat-to {{all.snat}} {% endif %}
 {%- if (all.type is defined) and (all.type is match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (all.type is defined) and (all.type is match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
 {%- if (all.code is defined) and not (all.code == '') %}{{all.code}} {% endif %}
 {% if (all.state is defined) and not (all.state == '') %}{{all.state}}{% endif %}
@@ -127,6 +129,8 @@ include '/etc/pf/queues.conf'
 {{port}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (group.ports is defined) and not (group.ports == []) %}} {% endif %}
+{%- if (group.dnat is defined) and not (group.dnat == '') %}rdr-to {{group.dnat}} {% endif %}
+{%- if (group.snat is defined) and not (group.snat == '') %}nat-to {{group.snat}} {% endif %}
 {%- if (group.type is defined) and (group.type is match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (group.type is defined) and (group.type is match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
 {%- if (group.code is defined) and not (group.code == '') %}{{group.code}} {% endif %}
 {% if (group.state is defined) and not (group.state == '') %}{{group.state}}{% endif %}
@@ -172,6 +176,8 @@ include '/etc/pf/queues.conf'
 {{port}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if (host.ports is defined) and not (host.ports == []) %}} {% endif %}
+{%- if (host.dnat is defined) and not (host.dnat == '') %}rdr-to {{host.dnat}} {% endif %}
+{%- if (host.snat is defined) and not (host.snat == '') %}nat-to {{host.snat}} {% endif %}
 {%- if (host.type is defined) and (host.type is match('icmp6-type|icmp6|ipv6')) %}icmp6-type {% elif (host.type is defined) and (host.type is match('icmp-type|icmp|ipv4')) %}icmp-type {% endif %}
 {%- if (host.code is defined) and not (host.code == '') %}{{host.code}} {% endif %}
 {% if (host.state is defined) and not (host.state == '') %}{{host.state}}{% endif %}
