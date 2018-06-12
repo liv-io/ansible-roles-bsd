@@ -21,7 +21,7 @@
 #-------------------------------------------------------------------------------
 
 - name: 'command info ntpd'
-  shell: "{{shell_shell_info_ntpd}}"
+  shell: "{{command_shell_info_ntpd}}"
   register: register_info_ntpd
   failed_when: (register_info_ntpd.rc > 1)
   check_mode: 'no'
