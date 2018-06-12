@@ -21,7 +21,7 @@
 #-------------------------------------------------------------------------------
 
 - name: 'command info nginx'
-  shell: "{{shell_shell_info_nginx}}"
+  shell: "{{command_shell_info_nginx}}"
   register: register_info_nginx
   failed_when: (register_info_nginx.rc > 1)
   check_mode: 'no'
