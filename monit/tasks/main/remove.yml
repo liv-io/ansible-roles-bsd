@@ -21,7 +21,7 @@
 #-------------------------------------------------------------------------------
 
 - name: 'command info monit'
-  shell: "{{shell_shell_info_monit}}"
+  shell: "{{command_shell_info_monit}}"
   register: register_info_monit
   failed_when: (register_info_monit.rc > 1)
   check_mode: 'no'

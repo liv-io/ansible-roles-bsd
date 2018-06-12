@@ -14,7 +14,7 @@ command_shell_disable_monit: 'rcctl disable monit'
 command_shell_enable_monit: 'rcctl enable monit'
 
 # info monit
-shell_shell_info_monit: 'pkg_info | grep -q "^monit-[0-9]\..*"'
+command_shell_info_monit: 'pkg_info | grep -q "^monit-[0-9]\..*"'
 
 # start monit
 command_shell_start_monit: 'rcctl start monit'
