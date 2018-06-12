@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.1 (2018-06-12)
+I: Correct 'command' variable names
+
 * Version 1.0.0 (2018-06-11)
 F: Add support for 'rdr-to' (DNAT) and 'nat-to' (SNAT)
 

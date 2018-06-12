@@ -71,7 +71,7 @@ file_group_tables_conf: 'wheel'
 #-------------------------------------------------------------------------------
 
 # check openbsd_pf
-shell_shell_check_openbsd_pf: 'pfctl -s info | grep -iq "^status: enabled.*"'
+command_cmd_check_openbsd_pf: 'pfctl -s info | grep -iq "^status: enabled.*"'
 
 # disable openbsd_pf
 command_shell_disable_openbsd_pf: 'rcctl disable pf'
@@ -80,16 +80,16 @@ command_shell_disable_openbsd_pf: 'rcctl disable pf'
 command_shell_enable_openbsd_pf: 'rcctl enable pf'
 
 # reload openbsd_pf
-command_shell_reload_openbsd_pf: "pfctl -f {{file_path_pf_conf}}"
+command_cmd_reload_openbsd_pf: "pfctl -f {{file_path_pf_conf}}"
 
 # start openbsd_pf
-command_shell_start_openbsd_pf: 'pfctl -e'
+command_cmd_start_openbsd_pf: 'pfctl -e'
 
 # status openbsd_pf
 command_shell_status_openbsd_pf: 'rcctl get pf status'
 
 # stop openbsd_pf
-command_shell_stop_openbsd_pf: 'pfctl -d'
+command_cmd_stop_openbsd_pf: 'pfctl -d'
 
 # validate openbsd_pf
-command_shell_validate_openbsd_pf: "pfctl -nf {{file_path_pf_conf}}"
+command_cmd_validate_openbsd_pf: "pfctl -nf {{file_path_pf_conf}}"

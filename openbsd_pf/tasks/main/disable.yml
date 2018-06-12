@@ -131,7 +131,7 @@
     - openbsd_pf
 
 - name: 'command check openbsd_pf'
-  shell: "{{shell_shell_check_openbsd_pf}}"
+  shell: "{{command_shell_check_openbsd_pf}}"
   register: register_check_openbsd_pf
   changed_when: (register_check_openbsd_pf.rc > 1)
   failed_when: (register_check_openbsd_pf.rc > 1)
