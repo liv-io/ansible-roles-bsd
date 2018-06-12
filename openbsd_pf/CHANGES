@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.2 (2018-06-12)
+B: Fix 'command_shell_check_openbsd_pf' variable
+
 * Version 1.0.1 (2018-06-12)
 I: Correct 'command' variable names
 
