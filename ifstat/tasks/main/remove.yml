@@ -1,0 +1,29 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - remove
+    - ifstat
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove ifstat'
+  package:
+    state: 'absent'
+    name: "{{package_name_ifstat}}"
+  tags:
+    - remove
+    - ifstat
