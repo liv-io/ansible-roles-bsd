@@ -276,7 +276,7 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{record: '1.2.3.4 example.com', comment: 'example'}]
+      Examples: [{record: '1.2.3.4 domain.tld', comment: 'domain.tld'}]
       None    : []
 
   unbound_local_data_ptr
@@ -287,7 +287,7 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{record: '1.2.3.4 example.com', comment: 'example'}]
+      Examples: [{record: '1.2.3.4 domain.tld', comment: 'domain.tld'}]
       None    : []
 
   unbound_local_zone
@@ -298,7 +298,7 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{zone: 'example.com', type: 'static', comment: 'example'}]
+      Examples: [{zone: 'domain.tld', type: 'static', comment: 'domain.tld'}]
       None    : []
 
   unbound_prefer_ip6
@@ -311,6 +311,17 @@ ROLE
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
+
+ unbound_stub_zone
+    Description: Define the 'unbound_stub_zone' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'domain.tld', address: '127.0.0.1', port: '5300', comment: 'domain.tld'}]
+      None    : []
 
   unbound_tcp_state
     Description: Control the 'unbound_tcp_state' option.

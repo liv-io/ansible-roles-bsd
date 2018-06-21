@@ -31,7 +31,7 @@ server:
 {% if (interface.comment is defined) %}
 	# {{interface.comment}}
 {% endif %}
-	interface: {{interface.address}}@{% if (interface.port is defined) %}{{interface.port}}{% endif %}
+	interface: {{interface.address}}{% if (interface.port is defined) %}@{{interface.port|int(53)}}{% endif %}
 
 {% endfor %}
 {% else %}
@@ -271,6 +271,22 @@ remote-control:
 {% endif %}
 	control-use-cert: no
 	control-interface: /var/run/unbound.sock
+
+#-------------------------------------------------------------------------------
+# STUB-ZONE
+#-------------------------------------------------------------------------------
+
+{% if (unbound_stub_zone is defined) and not (unbound_stub_zone == []) %}
+{% for stub_zone in unbound_stub_zone %}
+{% if (stub_zone.comment is defined) %}
+        # {{stub_zone.comment}}
+{% endif %}
+stub-zone:
+	name: "{{stub_zone.name}}"
+	stub-addr: {{stub_zone.address}}{% if (stub_zone.port is defined) %}@{{stub_zone.port|int(53)}}{% endif %}
+
+{% endfor %}
+{% endif %}
 
 #-------------------------------------------------------------------------------
 # FORWARD-ZONE

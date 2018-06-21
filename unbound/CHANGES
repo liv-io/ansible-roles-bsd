@@ -13,5 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2018-06-21)
+F: Add option 'unbound_stub_zone'
+B: Fix position of '@' symbol in 'unbound_interface' parameter
+I: Update documentation
+
 * Version 0.1.0 (2018-06-18)
 F: Initial release

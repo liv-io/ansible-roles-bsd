@@ -46,6 +46,9 @@ unbound_local_zone: []
 
 unbound_prefer_ip6: 'false'
 
+unbound_stub_zone:
+  - {name: 'liv.io', address: '127.0.0.1', port: '5300', comment: 'liv.io'}
+
 unbound_tcp_state: 'true'
 
 unbound_udp_state: 'true'
