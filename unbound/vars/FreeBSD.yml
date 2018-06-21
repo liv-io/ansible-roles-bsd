@@ -1,0 +1,15 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# root.hints
+file_path_root_hints: '/usr/local/etc/unbound/root.hints'
+
+# unbound.conf
+file_path_unbound_conf: '/usr/local/etc/unbound/unbound.conf'
+
+# unbound_enable
+file_line_unbound_enable: 'unbound_enable'
+file_path_unbound_enable: '/etc/rc.conf'

@@ -1,0 +1,53 @@
+---
+
+unbound_state: 'enable'
+
+unbound_access_control:
+  - {address: '127.0.0.1', action: 'allow', comment: 'IP4 localhost'}
+  - {address: '0.0.0.0/0', action: 'refuse', comment: 'IP4 any'}
+
+unbound_control_enable: 'false'
+
+unbound_default_port: 53
+
+unbound_harden_algo_downgrade: 'false'
+
+unbound_harden_below_nxdomain: 'false'
+
+unbound_harden_dnssec_stripped: 'true'
+
+unbound_harden_glue: 'true'
+
+unbound_harden_large_queries: 'false'
+
+unbound_harden_referral_path: 'false'
+
+unbound_harden_short_bufsize: 'false'
+
+unbound_hide_identity: 'true'
+
+unbound_hide_trustanchor: 'true'
+
+unbound_hide_version: 'true'
+
+unbound_identity: ''
+
+unbound_interface: []
+
+unbound_ip4_state: 'true'
+
+unbound_ip6_state: 'false'
+
+unbound_local_data: []
+
+unbound_local_data_ptr: []
+
+unbound_local_zone: []
+
+unbound_prefer_ip6: 'false'
+
+unbound_tcp_state: 'true'
+
+unbound_udp_state: 'true'
+
+unbound_version: ''

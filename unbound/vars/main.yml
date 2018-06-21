@@ -1,0 +1,40 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# unbound
+package_name_unbound: 'unbound'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# root.hints
+file_src_root_hints: "templates/main/root.hints.j2"
+file_path_root_hints: '/etc/unbound/root.hints'
+file_mode_root_hints: '0644'
+file_owner_root_hints: 'root'
+file_group_root_hints: 'wheel'
+
+# unbound.conf
+file_src_unbound_conf: "templates/{{ansible_os_family}}/unbound.conf.j2"
+file_path_unbound_conf: '/etc/unbound/unbound.conf'
+file_mode_unbound_conf: '0644'
+file_owner_unbound_conf: 'root'
+file_group_unbound_conf: 'wheel'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# unbound-checkconf
+command_cmd_unbound_checkconf: 'unbound-checkconf'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# unbound
+service_name_unbound: 'unbound'

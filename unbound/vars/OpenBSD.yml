@@ -1,0 +1,33 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# root.hints
+file_path_root_hints: '/var/unbound/etc/root.hints'
+
+# unbound.conf
+file_path_unbound_conf: '/var/unbound/etc/unbound.conf'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check unbound
+command_cmd_check_unbound: 'rcctl check unbound'
+
+# disable unbound
+command_cmd_disable_unbound: 'rcctl disable unbound'
+
+# enable unbound
+command_cmd_enable_unbound: 'rcctl enable unbound'
+
+# start unbound
+command_cmd_start_unbound: 'rcctl start unbound'
+
+# status unbound
+command_cmd_status_unbound: 'rcctl get unbound status'
+
+# stop unbound
+command_cmd_stop_unbound: 'rcctl stop unbound'

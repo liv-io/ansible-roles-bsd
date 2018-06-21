@@ -1,0 +1,412 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : unbound
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+Unbound is designed as a set of modular components, so that also DNSSEC (secure
+DNS) validation and stub-resolvers (that do not run as a server, but are linked
+into an application) are easily possible.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: unbound
+    vars:
+      unbound_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+      - role: unbound
+    vars:
+      unbound_state: 'enable'
+
+DISABLE
+  - hosts: all
+    roles:
+      - role: unbound
+    vars:
+      unbound_state: 'disable'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: unbound
+    vars:
+      unbound_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: unbound
+    vars:
+      unbound_state: 'inactive'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  unbound_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+  unbound_access_control
+    Description: Define the 'unbound_access_control' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{address: '127.0.0.1', action: 'allow', comment: 'IP4 localhost'},
+                  {address: '0.0.0.0/0', action: 'refuse', comment: 'IP4 any'}]
+    Options    :
+      Examples: [{address: '127.0.0.1', action: 'allow', comment: 'IP4 localhost'},
+                 {address: '0.0.0.0/0', action: 'refuse', comment: 'IP4 any'},
+                 {address: '192.168.0.0/16', action: 'allow', comment: 'Private address space (RFC1918)'},
+                 {address: '172.16.0.0/12', action: 'allow', comment: 'Private address space (RFC1918)'},
+                 {address: '10.0.0.0/8', action: 'allow', comment: 'Private address space (RFC1918)'}]
+      None    : []
+
+  unbound_control_enable
+    Description: Control the 'unbound_control_enable' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_default_port
+    Description: Set the 'unbound_default_port' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 53
+    Options    :
+      Examples: 53 | 5300
+
+  unbound_harden_algo_downgrade
+    Description: Control the 'unbound_harden_algo_downgrade' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_harden_below_nxdomain
+    Description: Control the 'unbound_harden_below_nxdomain' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_harden_dnssec_stripped
+    Description: Control the 'unbound_harden_dnssec_stripped' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_harden_glue
+    Description: Control the 'unbound_harden_glue' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_harden_large_queries
+    Description: Control the 'unbound_harden_large_queries' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_harden_referral_path
+    Description: Control the 'unbound_harden_referral_path' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_harden_short_bufsize
+    Description: Control the 'unbound_harden_short_bufsize' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_hide_identity
+    Description: Control the 'unbound_hide_identity' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_hide_trustanchor
+    Description: Control the 'unbound_hide_trustanchor' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_hide_version
+    Description: Control the 'unbound_hide_version' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_identity
+    Description: Define the 'unbound_identity' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'ns' | 'dns'
+
+  unbound_interface
+    Description: Define the 'unbound_interface' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{address: '127.0.0.1', port: '53', comment: 'Localhost'}]
+    Options    :
+      Examples: [{address: '10.1.1.10', port: '53', comment: 'Network'}] |
+                [{address: '0.0.0.0', port: '53', comment: 'Any'}] |
+      None    : []
+
+  unbound_ip4_state
+    Description: Control the 'unbound_ip4_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_ip6_state
+    Description: Control the 'unbound_ip6_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_local_data
+    Description: Define the 'unbound_local_data' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{record: '1.2.3.4 example.com', comment: 'example'}]
+      None    : []
+
+  unbound_local_data_ptr
+    Description: Define the 'unbound_local_data_ptr' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{record: '1.2.3.4 example.com', comment: 'example'}]
+      None    : []
+
+  unbound_local_zone
+    Description: Define the 'unbound_local_zone' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{zone: 'example.com', type: 'static', comment: 'example'}]
+      None    : []
+
+  unbound_prefer_ip6
+    Description: Control the 'unbound_prefer_ip6' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_tcp_state
+    Description: Control the 'unbound_tcp_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_udp_state
+    Description: Control the 'unbound_udp_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  unbound_version
+    Description: Define the 'unbound_version' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: '1.6.8' | '1.7.0'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  unbound
+    Version: >= 1.5
+    Name   :
+      FreeBSD 11: 'unbound'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 2.5
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 11.1-*
+      Status: Planned
+
+  OpenBSD
+    Version: 6.3
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

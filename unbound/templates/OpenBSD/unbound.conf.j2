@@ -1,0 +1,286 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : unbound.conf
+# Type   : unbound configuration file
+# Role   : unbound
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+# $OpenBSD: unbound.conf,v 1.7 2016/03/30 01:41:25 sthen Exp $
+
+#-------------------------------------------------------------------------------
+# SERVER
+#-------------------------------------------------------------------------------
+
+server:
+	#-----------------------------------------------------------------------
+	# INTERFACE
+	#-----------------------------------------------------------------------
+
+{% if (unbound_interface is defined) and not (unbound_interface == []) %}
+{% for interface in unbound_interface %}
+{% if (interface.comment is defined) %}
+	# {{interface.comment}}
+{% endif %}
+	interface: {{interface.address}}@{% if (interface.port is defined) %}{{interface.port}}{% endif %}
+
+{% endfor %}
+{% else %}
+	interface: 127.0.0.1
+	interface: ::1
+{% endif %}
+
+	# override the default "any" address to send queries; if multiple
+	# addresses are available, they are used randomly to counter spoofing
+	#outgoing-interface: 192.0.2.1
+	#outgoing-interface: 2001:db8::53
+
+	#-----------------------------------------------------------------------
+	# PORT
+	#-----------------------------------------------------------------------
+
+{% if not (unbound_default_port == '') %}
+	port: {{(unbound_default_port|int(53))}}
+{% endif %}
+
+	#-----------------------------------------------------------------------
+	# INTERNET-PROTOCOL
+	#-----------------------------------------------------------------------
+
+{% if (unbound_ip4_state is match('false|no|disable')) %}
+	do-ip4: no
+{% else %}
+	do-ip4: yes
+{% endif %}
+{% if (unbound_ip6_state is match('true|yes|enable')) %}
+	do-ip6: yes
+{% else %}
+	do-ip6: no
+{% endif %}
+
+{% if (unbound_prefer_ip6 is match('true|yes|enable')) %}
+	prefer-ip6: yes
+{% else %}
+	prefer-ip6: no
+{% endif %}
+
+	#-----------------------------------------------------------------------
+	# TCP / UDP
+	#-----------------------------------------------------------------------
+
+{% if (unbound_tcp_state is match('false|no|disable')) %}
+	do-tcp: no
+{% else %}
+	do-tcp: yes
+{% endif %}
+{% if (unbound_udp_state is match('false|no|disable')) %}
+	do-udp: no
+{% else %}
+	do-udp: yes
+{% endif %}
+
+	#-----------------------------------------------------------------------
+	# IDENTITY
+	#-----------------------------------------------------------------------
+
+{% if (unbound_hide_identity is match('false|no|disable')) %}
+	hide-identity: no
+{% else %}
+	hide-identity: yes
+{% endif %}
+
+{% if not (unbound_identity == '') %}
+	identity: "{{unbound_identity}}"
+{% endif %}
+
+	#-----------------------------------------------------------------------
+	# VERSION
+	#-----------------------------------------------------------------------
+
+{% if (unbound_hide_version is match('false|no|disable')) %}
+	hide-version: no
+{% else %}
+	hide-version: yes
+{% endif %}
+
+{% if not (unbound_version == '') %}
+	version: "{{unbound_version}}"
+{% endif %}
+
+	#-----------------------------------------------------------------------
+	# TRUSTANCHOR
+	#-----------------------------------------------------------------------
+
+{% if (unbound_hide_trustanchor is match('false|no|disable')) %}
+	hide-trustanchor: no
+{% else %}
+	hide-trustanchor: yes
+{% endif %}
+
+	#-----------------------------------------------------------------------
+	# HARDENING
+	#-----------------------------------------------------------------------
+
+{% if (unbound_harden_algo_downgrade is match('true|yes|enable')) %}
+	harden-algo-downgrade: yes
+{% else %}
+	harden-algo-downgrade: no
+{% endif %}
+
+{% if (unbound_harden_below_nxdomain is match('true|yes|enable')) %}
+	harden-below-nxdomain: yes
+{% else %}
+	harden-below-nxdomain: no
+{% endif %}
+
+{% if (unbound_harden_dnssec_stripped is match('false|no|disable')) %}
+	harden-dnssec-stripped: no
+{% else %}
+	harden-dnssec-stripped: yes
+{% endif %}
+
+{% if (unbound_harden_glue is match('false|no|disable')) %}
+	harden-glue: no
+{% else %}
+	harden-glue: yes
+{% endif %}
+
+{% if (unbound_harden_large_queries is match('true|yes|enable')) %}
+	harden-large-queries: yes
+{% else %}
+	harden-large-queries: no
+{% endif %}
+
+{% if (unbound_harden_referral_path is match('true|yes|enable')) %}
+	harden-referral-path: yes
+{% else %}
+	harden-referral-path: no
+{% endif %}
+
+{% if (unbound_harden_short_bufsize is match('true|yes|enable')) %}
+	harden-short-bufsize: yes
+{% else %}
+	harden-short-bufsize: no
+{% endif %}
+
+	#-----------------------------------------------------------------------
+	# ACCESS-CONTROL
+	#-----------------------------------------------------------------------
+
+{% for access_control in unbound_access_control %}
+{% if (access_control.comment is defined) and not (access_control.comment == '') %}
+	# {{access_control.comment}}
+{% endif %}
+	access-control:
+{%- if (access_control.address is defined) and not (access_control.address == '') %} {{access_control.address}} {% endif %}
+{%- if (access_control.action is defined) and (access_control.action is match('allow|accept')) %}allow{% else %}refuse{% endif %}
+
+
+{% endfor %}
+
+	# https://tools.ietf.org/html/draft-ietf-dnsop-qname-minimisation-08
+	#
+	# qname-minimisation: yes
+
+	# Uncomment to enable DNSSEC validation.
+	#
+	#auto-trust-anchor-file: "/var/unbound/db/root.key"
+
+	#-----------------------------------------------------------------------
+	# LOCAL-ZONE
+	#-----------------------------------------------------------------------
+
+{% for local_zone in unbound_local_zone %}
+{% if (local_zone.comment is defined) and not (local_zone.comment == '') %}
+	# {{local_zone.comment}}
+{% endif %}
+	local-zone:
+{%- if (local_zone.zone is defined) and not (local_zone.zone == '') %} "{{local_zone.zone}}" {% endif %}
+{%- if (local_zone.type is defined) and not (local_zone.type == '') %}"{{local_zone.type}}"{% endif %}
+
+{% endfor %}
+
+	#-----------------------------------------------------------------------
+	# LOCAL-DATA
+	#-----------------------------------------------------------------------
+
+{% for local_data in unbound_local_data %}
+{% if (local_data.comment is defined) and not (local_data.comment == '') %}
+	# {{local_data.comment}}
+{% endif %}
+        local-data: {% if (local_data.record is defined) and not (local_data.record == '') %}"{{local_data.record}}"{% endif %}
+
+{% endfor %}
+
+        #-----------------------------------------------------------------------
+        # LOCAL-DATA-PTR
+        #-----------------------------------------------------------------------
+
+{% for local_data_ptr in unbound_local_data_ptr %}
+{% if (local_data_ptr.comment is defined) and not (local_data_ptr.comment == '') %}
+	# {{local_data_ptr.comment}}
+{% endif %}
+	local-data-ptr: {% if (local_data_ptr.record is defined) and not (local_data_ptr.record == '') %}"{{local_data_ptr.record}}"{% endif %}
+
+{% endfor %}
+
+	#-----------------------------------------------------------------------
+	# PRIVATE-ADDRESS
+	#-----------------------------------------------------------------------
+
+	# UDP EDNS reassembly buffer advertised to peers. Default 4096.
+	# May need lowering on broken networks with fragmentation/MTU issues,
+	# particularly if validating DNSSEC.
+	#
+	#edns-buffer-size: 1480
+
+	# Use TCP for "forward-zone" requests. Useful if you are making
+	# DNS requests over an SSH port forwarding.
+	#
+	#tcp-upstream: yes
+
+	# DNS64 options, synthesizes AAAA records for hosts that don't have
+	# them. For use with NAT64 (PF "af-to").
+	#
+	#module-config: "dns64 validator iterator"
+	#dns64-prefix: 64:ff9b::/96	# well-known prefix (default)
+	#dns64-synthall: no
+
+	# file to read root hints from.
+	# get one from https://www.internic.net/domain/named.cache
+	root-hints: "{{file_path_root_hints}}"
+
+#-------------------------------------------------------------------------------
+# REMOTE CONTROL
+#-------------------------------------------------------------------------------
+
+remote-control:
+{% if (unbound_control_enable is match('true|yes|enable')) %}
+	control-enable: yes
+{% else %}
+	control-enable: no
+{% endif %}
+	control-use-cert: no
+	control-interface: /var/run/unbound.sock
+
+#-------------------------------------------------------------------------------
+# FORWARD-ZONE
+#-------------------------------------------------------------------------------
+
+#forward-zone:
+#	name: "."				# use for ALL queries
+#	forward-addr: 74.82.42.42		# he.net
+#	forward-addr: 2001:470:20::2		# he.net v6
+#	forward-addr: 8.8.8.8			# google.com
+#	forward-addr: 2001:4860:4860::8888	# google.com v6
+#	forward-addr: 208.67.222.222		# opendns.com
+#	forward-first: yes			# try direct if forwarder fails
