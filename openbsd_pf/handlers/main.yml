@@ -18,7 +18,7 @@
 #-------------------------------------------------------------------------------
 
 - name: 'command validate openbsd_pf'
-  command: "{{command_cmd_validate_openbsd_pf}}"
+  command: "{{command_shell_validate_openbsd_pf}}"
 
 - name: 'command reload openbsd_pf'
-  command: "{{command_cmd_reload_openbsd_pf}}"
+  command: "{{command_shell_reload_openbsd_pf}}"
