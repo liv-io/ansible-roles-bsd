@@ -13,5 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2018-07-01)
+F: Add support for FreeBSD 11.2-RELEASE
+F: Drop support for FreeBSD 11.1-RELEASE
+
 * Version 0.1.0 (2018-06-06)
 F: Initial release
