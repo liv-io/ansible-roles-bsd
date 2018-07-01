@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.3.0 (2018-07-01)
+F: Add support for FreeBSD 11.2-RELEASE
+F: Drop support for FreeBSD 11.1-RELEASE
+
 * Version 0.2.1 (2018-06-22)
 B: Remove 'unbound_stub_zone' testing value
 
