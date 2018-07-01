@@ -184,8 +184,8 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.1-*
-      Status: Unsupported
+    Version: 11.2-*
+      Status: Testing
 
   OpenBSD
     Version: 6.3
