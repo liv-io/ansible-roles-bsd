@@ -119,7 +119,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.1-*
+    Version: 11.2-*
       Status: Stable
 
   OpenBSD
