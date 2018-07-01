@@ -29,13 +29,9 @@ F: Port role to Ansible 2.4
 * Version 2.0.0 (2018-02-20)
 I: Simplify and improve Ansible role
 
-* Version 1.2.0 (2017-10-18)
+* Version 1.1.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
 F: Drop support for OpenBSD 6.1
-
-* Version 1.1.0 (2017-08-26)
-F: Add support for FreeBSD 11.1-RELEASE
-F: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.0 (2017-08-01)
 I: Stabilize, improve and cleanup Ansible role
