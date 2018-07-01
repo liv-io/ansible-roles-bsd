@@ -15,8 +15,8 @@
 #
 #-------------------------------------------------------------------------------
 
-#	$OpenBSD: sshd_config,v 1.98 2016/02/17 05:29:04 djm Exp $
-#	$FreeBSD: releng/10.3/crypto/openssh/sshd_config 296853 2016-03-14 13:05:13Z des $
+#	$OpenBSD: sshd_config,v 1.101 2017/03/14 07:19:07 djm Exp $
+#	$FreeBSD: releng/11.2/crypto/openssh/sshd_config 323136 2017-09-02 23:39:51Z des $
 
 # This is the sshd server system-wide configuration file.  See
 # sshd_config(5) for more information.
@@ -141,10 +141,6 @@ MACs hmac-sha2-512,hmac-sha2-256
 
 #-------------------------------------------------------------------------------
 
-# Lifetime and size of ephemeral version 1 server key
-#KeyRegenerationInterval 1h
-#ServerKeyBits 1024
-
 # Ciphers and keying
 #RekeyLimit default none
 
@@ -153,7 +149,6 @@ MACs hmac-sha2-512,hmac-sha2-256
 #-------------------------------------------------------------------------------
 
 # Logging
-# obsoletes QuietMode and FascistLogging
 #SyslogFacility AUTH
 #LogLevel INFO
 
@@ -173,11 +168,6 @@ PermitRootLogin no
 #MaxAuthTries 6
 #MaxSessions 10
 
-{% if (openssh_rsa_authentication is match('false|no|disable')) %}
-RSAAuthentication no
-{% else %}
-RSAAuthentication yes
-{% endif %}
 {% if (openssh_pubkey_authentication is match('false|no|disable')) %}
 PubkeyAuthentication no
 {% else %}
@@ -185,7 +175,8 @@ PubkeyAuthentication yes
 {% endif %}
 
 # The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
-#AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2
+# but this is overridden so installations will only check .ssh/authorized_keys
+AuthorizedKeysFile	.ssh/authorized_keys
 
 #AuthorizedPrincipalsFile none
 
@@ -193,14 +184,12 @@ PubkeyAuthentication yes
 #AuthorizedKeysCommandUser nobody
 
 # For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
-RhostsRSAAuthentication no
-# similar for protocol version 2
-HostbasedAuthentication no
+#HostbasedAuthentication no
 # Change to yes if you don't trust ~/.ssh/known_hosts for
-# RhostsRSAAuthentication and HostbasedAuthentication
+# HostbasedAuthentication
 #IgnoreUserKnownHosts no
 # Don't read the user's ~/.rhosts and ~/.shosts files
-IgnoreRhosts yes
+#IgnoreRhosts yes
 
 # Change to yes to enable built-in password authentication.
 {% if (openssh_password_authentication is match('false|no|disable')) %}
@@ -208,10 +197,10 @@ PasswordAuthentication no
 {% else %}
 PasswordAuthentication yes
 {% endif %}
-PermitEmptyPasswords no
+#PermitEmptyPasswords no
 
 # Change to no to disable PAM authentication
-ChallengeResponseAuthentication no
+#ChallengeResponseAuthentication yes
 
 # Kerberos options
 #KerberosAuthentication no
@@ -232,7 +221,7 @@ ChallengeResponseAuthentication no
 # If you just want the PAM account and session checks to run without
 # PAM authentication, then enable this but set PasswordAuthentication
 # and ChallengeResponseAuthentication to 'no'.
-UsePAM yes
+#UsePAM yes
 
 #-------------------------------------------------------------------------------
 # FORWARDING
@@ -265,13 +254,12 @@ PrintMotd yes
 {% else %}
 PrintMotd no
 {% endif %}
+#PrintLastLog yes
 {% if (openssh_tcp_keep_alive is match('false|no|disable')) %}
 TCPKeepAlive no
 {% else %}
 TCPKeepAlive yes
 {% endif %}
-#UseLogin no
-UsePrivilegeSeparation sandbox
 #PermitUserEnvironment no
 {% if (openssh_compression is match('true|yes|enable')) %}
 Compression yes
