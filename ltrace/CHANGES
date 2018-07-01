@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.3.0 (2018-07-01)
+F: Add support for FreeBSD 11.2-RELEASE
+F: Drop support for FreeBSD 11.1-RELEASE
+
 * Version 2.2.0 (2018-05-22)
 F: Port role to Ansible 2.5
 
