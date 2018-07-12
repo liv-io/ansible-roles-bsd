@@ -12,8 +12,6 @@ ntpd_monitor_mail_state: 'false'
 
 ntpd_monitor_mail_subject: "NTPD: Update Time - Error ({{ansible_hostname}})"
 
-ntpd_ntpd_update_time_interval: 10
-
 ntpd_restrict:
   - {config: {'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv4 restrictions'}
   - {config: {'-6', 'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv6 restrictions'}
@@ -22,3 +20,5 @@ ntpd_restrict:
 
 ntpd_server:
   - {server: {'ntp'}, option: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Server: ntp'}
+
+ntpd_update_time_interval: 10

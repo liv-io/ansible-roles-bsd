@@ -57,7 +57,7 @@ CRONJOB
       ntpd_state: 'cronjob'
       ntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
                      comment: 'Server: domain.tld'}]
-      ntpd_ntpd_update_time_interval: 15
+      ntpd_update_time_interval: 15
 
 REMOVE
   - hosts: all
@@ -146,17 +146,6 @@ ROLE
     Options    :
       Examples: 'NTPD: Update Time Error'
 
-  ntpd_ntpd_update_time_interval
-    Description: Set the 'ntpd_ntpd_update_time_interval' option.
-                 Specify a value between 1-59.
-    Implemented: 0.5
-    Required   : False
-    Value      : Arbitrary (1-59)
-    Type       : Integer
-    Default    : 10
-    Options    :
-      Examples: 5 | 11 | 15 | 20 | 23
-
   ntpd_restrict
     Description: Define the 'ntpd_restrict' option.
     Implemented: 0.1
@@ -189,6 +178,17 @@ ROLE
       Examples: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
                   comment: 'Server: domain.tld'}]
       None    : []
+
+  ntpd_update_time_interval
+    Description: Set the 'ntpd_update_time_interval' option.
+                 Specify a value between 1-59.
+    Implemented: 0.5
+    Required   : False
+    Value      : Arbitrary (1-59)
+    Type       : Integer
+    Default    : 10
+    Options    :
+      Examples: 5 | 11 | 15 | 20 | 23
 
 --------------------------------------------------------------------------------
 CONFLICTS
