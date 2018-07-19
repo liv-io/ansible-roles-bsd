@@ -34,14 +34,14 @@
 #-------------------------------------------------------------------------------
 
 - name: 'command pkill opensmtpd'
-  shell: "{{command_shell_pkill_opensmtpd}}"
+  shell: "{{command_cmd_pkill_opensmtpd}}"
   when: (register_freebsd_postfix|changed)
   tags:
     - install
     - postfix
 
 - name: 'command pkill sendmail'
-  shell: "{{command_shell_pkill_sendmail}}"
+  shell: "{{command_cmd_pkill_sendmail}}"
   when: (register_freebsd_postfix|changed)
   tags:
     - install

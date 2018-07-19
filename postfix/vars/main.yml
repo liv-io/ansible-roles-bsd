@@ -40,10 +40,10 @@ file_group_master_cf: 'root'
 command_cmd_newaliases: 'newaliases'
 
 # pkill opensmtpd
-command_shell_pkill_opensmtpd: 'pkill smtpd; true'
+command_cmd_pkill_opensmtpd: 'pkill smtpd; true'
 
 # pkill sendmail
-command_shell_pkill_sendmail: 'pkill sendmail ; true'
+command_cmd_pkill_sendmail: 'pkill sendmail ; true'
 
 #-------------------------------------------------------------------------------
 # SYSTEM
