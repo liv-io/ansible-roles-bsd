@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.3.2 (2018-07-19)
+I: Shell script improvements
+
 * Version 2.3.1 (2018-07-12)
 I: Generate a random minute for the cronjob
 

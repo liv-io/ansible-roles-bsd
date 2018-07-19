@@ -28,31 +28,31 @@ PATH='/sbin:/bin:/usr/sbin:/usr/bin'
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-which='/usr/bin/which' && [ -x $which ] || { echo "Error: Command 'which' not found."; exit 127; }
-basename=$($which basename) || { echo "Error: Command 'basename' not found."; exit 127; }
-date=$($which date) || { echo "Error: Command 'date' not found."; exit 127; }
-echo=$($which echo) || { echo "Error: Command 'echo' not found."; exit 127; }
-expr=$($which expr) || { echo "Error: Command 'expr' not found."; exit 127; }
-grep=$($which grep) || { echo "Error: Command 'grep' not found."; exit 127; }
-hostname=$($which hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
-logger=$($which logger) || { echo "Error: Command 'logger' not found."; exit 127; }
+which='/usr/bin/which' && [ -x ${which} ] || { echo "Error: Command 'which' not found."; exit 127; }
+basename=$(${which} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
+date=$(${which} date) || { echo "Error: Command 'date' not found."; exit 127; }
+echo=$(${which} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
+expr=$(${which} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
+grep=$(${which} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
+hostname=$(${which} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
+logger=$(${which} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
 {% if (zfs_monitor_mail_state is match('true|yes|enable')) %}
-mailx=$($which mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
+mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
-rm=$($which rm) || { echo "Error: Command 'rm' not found."; exit 127; }
-sleep=$($which sleep) || { echo "Error: Command 'sleep' not found."; exit 127; }
-touch=$($which touch) || { echo "Error: Command 'touch' not found."; exit 127; }
-whoami=$($which whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
-zpool=$($which zpool) || { echo "Error: Command 'zpool' not found."; exit 127; }
+rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
+sleep=$(${which} sleep) || { echo "Error: Command 'sleep' not found."; exit 127; }
+touch=$(${which} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
+whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
+zpool=$(${which} zpool) || { echo "Error: Command 'zpool' not found."; exit 127; }
 
 #-------------------------------------------------------------------------------
 # VARIABLES
 #-------------------------------------------------------------------------------
 
-host=$($hostname -s) || { echo "Error: Host name unknown."; exit 68; }
-script="$($basename $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
-date_start=$($date '+%Y-%m-%dT%H:%M:%S%z')
-time_start=$($date '+%s')
+host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
+script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
+date_start=$(${date} '+%Y-%m-%dT%H:%M:%S%z')
+time_start=$(${date} '+%s')
 user='{{file_owner_zfs_scrub_pools_sh}}'
 lockfile='{{file_path_zfs_script_dir}}/zfs_scrub-pools.lock'
 retval=0
@@ -83,9 +83,9 @@ mail_error() {
 ERROR
 --------------------------------------------------------------------------------
 
-Message     : $message
-Severity    : $severity
-Date & Time : $($date '+%Y-%m-%dT%H:%M:%S%z')
+Message     : ${message}
+Severity    : ${severity}
+Date & Time : $(${date} '+%Y-%m-%dT%H:%M:%S%z')
 
 --------------------------------------------------------------------------------
 SCRIPT
@@ -106,14 +106,14 @@ FQDN        : {{ansible_fqdn}}
 MAIL
 --------------------------------------------------------------------------------
 
-Sender      : $mail_sender
-Recipient   : $mail_recipient
-Subject     : $mail_subject"
+Sender      : ${mail_sender}
+Recipient   : ${mail_recipient}
+Subject     : ${mail_subject}"
 
 {% if (ansible_os_family == 'FreeBSD') %}
-  $echo "$mail_body" | $mailx -s "$mail_subject" -F "$mail_recipient" > /dev/null 2>&1
+  ${echo} "${mail_body}" | ${mailx} -s "${mail_subject}" -F "${mail_recipient}" > /dev/null 2>&1
 {% else %}
-  $echo "$mail_body" | $mailx -a "From: "$mail_sender"" -s "$mail_subject" "$mail_recipient" > /dev/null 2>&1
+  ${echo} "${mail_body}" | ${mailx} -a "From: "${mail_sender}"" -s "${mail_subject}" "${mail_recipient}" > /dev/null 2>&1
 {% endif %}
 }
 {% endif %}
@@ -124,37 +124,37 @@ watch_and_wait_for_change() {
   watch_option=$3
   time_step=$4
   time_maximum=$5
-  while ${watch_key} | $grep ${watch_option} "${watch_value}" > /dev/null 2>&1 ; do
-    if [ $time_initial -lt $time_maximum ]; then
-      time_initial=$($expr $time_initial + $time_step)
-      $sleep $time_initial
+  while ${watch_key} | ${grep} ${watch_option} "${watch_value}" > /dev/null 2>&1 ; do
+    if [ ${time_initial} -lt ${time_maximum} ]; then
+      time_initial=$(${expr} ${time_initial} + ${time_step})
+      ${sleep} ${time_initial}
     else
-      $sleep $time_initial
+      ${sleep} ${time_initial}
     fi
   done
 }
 
 check_script_user() {
-  if [ "$($whoami)" != "$user" ]; then
+  if [ "$(${whoami})" != "${user}" ]; then
     retval=77
     severity='Error'
-    message="Please run script as user '$user'"
-    $echo "$($date '+%Y-%m-%dT%H:%M:%S%z') - $host - $script: "$severity: $message""
-    exit $retval
+    message="Please run script as user '${user}'"
+    ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: "${severity}: ${message}""
+    exit ${retval}
   fi
 }
 
 create_lockfile() {
-  if [ ! -e $lockfile ]; then
-    $touch $lockfile || log_and_exit_on_error "$?" 'Warning' 'Could not create lockfile. Please investigate.'
+  if [ ! -e ${lockfile} ]; then
+    ${touch} ${lockfile} || log_and_exit_on_error "$?" 'Warning' 'Could not create lockfile. Please investigate.'
   else
     log_and_exit_on_error "$?" 'Warning' 'Lockfile does already exist. Please investigate.'
   fi
 }
 
 remove_lockfile() {
-  if [ -e $lockfile ]; then
-    $rm -f $lockfile || log_and_exit_on_error "$?" 'Warning' 'Could not remove lockfile. Please investigate.'
+  if [ -e ${lockfile} ]; then
+    ${rm} -f ${lockfile} || log_and_exit_on_error "$?" 'Warning' 'Could not remove lockfile. Please investigate.'
   else
     log_and_exit_on_error "$?" 'Warning' 'Lockfile did not exist. Please investigate.'
   fi
@@ -164,29 +164,29 @@ log_and_exit_on_error() {
   retval=$1
   severity=$2
   message=$3
-  if [ $retval -ne 0 ]; then
-    $rm -f $lockfile
-    $echo "$($date '+%Y-%m-%dT%H:%M:%S%z') - $host - $script: "$severity: $message""
-    $logger -t $script "$severity: $message"
+  if [ ${retval} -ne 0 ]; then
+    ${rm} -f ${lockfile}
+    ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: "${severity}: ${message}""
+    ${logger} -t ${script} "${severity}: ${message}"
 {% if (zfs_monitor_mail_state is match('true|yes|enable')) %}
-    mail_error $retval "$severity" "$message"
+    mail_error ${retval} "${severity}" "${message}"
 {% endif %}
-    exit $retval
+    exit ${retval}
   fi
 }
 
 log_and_exit() {
-  date_end=$($date '+%Y-%m-%dT%H:%M:%S%z')
-  time_end=$($date '+%s')
-  time_exec=$($expr $time_end - $time_start)
-  time_hr=$($date -u -r "$time_exec" '+%H:%M:%S')
+  date_end=$(${date} '+%Y-%m-%dT%H:%M:%S%z')
+  time_end=$(${date} '+%s')
+  time_exec=$(${expr} ${time_end} - ${time_start})
+  time_hr=$(${date} -u -r "${time_exec}" '+%H:%M:%S')
 
   retval=0
   severity='Info'
   message='All ZFS pools are healthy.'
-  $logger -t $script "$severity: $message Duration: $time_hr"
+  ${logger} -t ${script} "${severity}: ${message} Duration: ${time_hr}"
 
-  exit $retval
+  exit ${retval}
 }
 
 #-------------------------------------------------------------------------------
@@ -198,29 +198,29 @@ check_script_user
 create_lockfile
 
 # Scrub ZFS pools
-for pool in $zfs_pools ; do
+for pool in ${zfs_pools} ; do
   # Wait until previous scrub has finished
   time_initial=0
-  watch_and_wait_for_change "$zpool status" 'scrub in progress' '' '5' '300'
+  watch_and_wait_for_change "${zpool} status" 'scrub in progress' '' '5' '300'
 
   # Scrub next ZFS pool
-  $zpool scrub $pool
-  log_and_exit_on_error "$?" 'Error' "Unable to scrub ZFS pool: '$pool'"
+  ${zpool} scrub ${pool}
+  log_and_exit_on_error "$?" 'Error' "Unable to scrub ZFS pool: '${pool}'"
 done
 
 # Check ZFS pools
-for pool in $zfs_pools ; do
+for pool in ${zfs_pools} ; do
   # Wait until previous scrub has finished
   time_initial=0
-  watch_and_wait_for_change "$zpool status" 'scrub in progress' '' '5' '300'
+  watch_and_wait_for_change "${zpool} status" 'scrub in progress' '' '5' '300'
 
   # Get next ZFS pool status
-  zfs_pool_status="$($zpool status -xv $pool)"
-  log_and_exit_on_error "$?" 'Error' "Unable to get ZFS pool status: '$pool'"
+  zfs_pool_status="$(${zpool} status -xv ${pool})"
+  log_and_exit_on_error "$?" 'Error' "Unable to get ZFS pool status: '${pool}'"
 
   # Check next ZFS pool status
-  echo "$zfs_pool_status" | $grep 'healthy' > /dev/null 2>&1
-  log_and_exit_on_error "$?" 'Critical' "ZFS pool is unhealthy: '$pool'"
+  echo "${zfs_pool_status}" | ${grep} 'healthy' > /dev/null 2>&1
+  log_and_exit_on_error "$?" 'Critical' "ZFS pool is unhealthy: '${pool}'"
 done
 
 remove_lockfile
