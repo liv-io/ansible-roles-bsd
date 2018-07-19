@@ -68,7 +68,7 @@
 #-------------------------------------------------------------------------------
 
 - name: 'command generate dhparam'
-  shell: "{{command_shell_generate_dhparam}}"
+  shell: "{{command_cmd_generate_dhparam}}"
   check_mode: 'no'
   when: (register_dhparam_pem.stat.exists == False)
   tags:

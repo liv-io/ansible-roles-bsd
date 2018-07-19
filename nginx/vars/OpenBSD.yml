@@ -8,22 +8,22 @@ log_dir: 'logs/'
 #-------------------------------------------------------------------------------
 
 # check nginx
-command_shell_check_nginx: 'rcctl check nginx'
+command_cmd_check_nginx: 'rcctl check nginx'
 
 # disable nginx
-command_shell_disable_nginx: 'rcctl disable nginx'
+command_cmd_disable_nginx: 'rcctl disable nginx'
 
 # enable nginx
-command_shell_enable_nginx: 'rcctl enable nginx'
+command_cmd_enable_nginx: 'rcctl enable nginx'
 
 # info nginx
-command_shell_info_nginx: 'pkg_info | grep -q "^nginx-[0-9]\..*"'
+command_cmd_info_nginx: 'pkg_info | grep -q "^nginx-[0-9]\..*"'
 
 # start nginx
-command_shell_start_nginx: 'rcctl start nginx'
+command_cmd_start_nginx: 'rcctl start nginx'
 
 # status nginx
-command_shell_status_nginx: 'rcctl get nginx status'
+command_cmd_status_nginx: 'rcctl get nginx status'
 
 # stop nginx
-command_shell_stop_nginx: 'rcctl stop nginx'
+command_cmd_stop_nginx: 'rcctl stop nginx'

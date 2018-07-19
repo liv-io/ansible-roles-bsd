@@ -21,7 +21,7 @@
 #-------------------------------------------------------------------------------
 
 - name: 'command info nginx'
-  shell: "{{command_shell_info_nginx}}"
+  shell: "{{command_cmd_info_nginx}}"
   register: register_info_nginx
   failed_when: (register_info_nginx.rc > 1)
   check_mode: 'no'
@@ -31,7 +31,7 @@
     - nginx
 
 - name: 'command disable nginx'
-  command: "{{command_shell_disable_nginx}}"
+  command: "{{command_cmd_disable_nginx}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
@@ -39,7 +39,7 @@
     - nginx
 
 - name: 'command stop nginx'
-  command: "{{command_shell_stop_nginx}}"
+  command: "{{command_cmd_stop_nginx}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
