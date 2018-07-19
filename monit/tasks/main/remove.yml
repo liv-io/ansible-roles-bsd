@@ -21,7 +21,7 @@
 #-------------------------------------------------------------------------------
 
 - name: 'command info monit'
-  shell: "{{command_shell_info_monit}}"
+  shell: "{{command_cmd_info_monit}}"
   register: register_info_monit
   failed_when: (register_info_monit.rc > 1)
   check_mode: 'no'
@@ -31,7 +31,7 @@
     - monit
 
 - name: 'command disable monit'
-  command: "{{command_shell_disable_monit}}"
+  command: "{{command_cmd_disable_monit}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
   tags:
@@ -39,7 +39,7 @@
     - monit
 
 - name: 'command stop monit'
-  command: "{{command_shell_stop_monit}}"
+  command: "{{command_cmd_stop_monit}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_monit.rc == 0)
   tags:

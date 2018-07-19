@@ -5,22 +5,22 @@
 #-------------------------------------------------------------------------------
 
 # check monit
-command_shell_check_monit: 'rcctl check monit'
+command_cmd_check_monit: 'rcctl check monit'
 
 # disable monit
-command_shell_disable_monit: 'rcctl disable monit'
+command_cmd_disable_monit: 'rcctl disable monit'
 
 # enable monit
-command_shell_enable_monit: 'rcctl enable monit'
+command_cmd_enable_monit: 'rcctl enable monit'
 
 # info monit
-command_shell_info_monit: 'pkg_info | grep -q "^monit-[0-9]\..*"'
+command_cmd_info_monit: 'pkg_info | grep -q "^monit-[0-9]\..*"'
 
 # start monit
-command_shell_start_monit: 'rcctl start monit'
+command_cmd_start_monit: 'rcctl start monit'
 
 # status monit
-command_shell_status_monit: 'rcctl get monit status'
+command_cmd_status_monit: 'rcctl get monit status'
 
 # stop monit
-command_shell_stop_monit: 'rcctl stop monit'
+command_cmd_stop_monit: 'rcctl stop monit'
