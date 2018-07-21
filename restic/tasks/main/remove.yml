@@ -47,7 +47,7 @@
     remove: "{{user_home_remove_restic}}"
     force: "{{user_home_force_restic}}"
   tags:
-    - install
+    - remove
     - restic
 
 #-------------------------------------------------------------------------------
