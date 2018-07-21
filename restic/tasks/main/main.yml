@@ -1,0 +1,25 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (restic_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - restic
+
+- name: 'task include enable'
+  import_tasks: enable.yml
+  when: (restic_state is match('start|on|enable'))
+  tags:
+    - restic
+
+- name: 'task include disable'
+  import_tasks: disable.yml
+  when: (restic_state is match('stop|off|disable'))
+  tags:
+    - restic
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (restic_state is match('false|no|remove'))
+  tags:
+    - restic

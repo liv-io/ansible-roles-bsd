@@ -1,0 +1,55 @@
+---
+
+restic_state: 'enable'
+
+restic_backup_server: "backup.{{ansible_domain}}"
+
+restic_backup_user: 'restic'
+
+restic_exclude:
+  - '/backup/restic'
+  - '/tmp'
+  - '/usr/tmp'
+
+restic_include:
+  - '/app'
+  - '/backup'
+  - '/data'
+  - '/etc'
+  - '/home'
+  - '/opt'
+  - '/root'
+  - '/script'
+  - '/usr/local'
+  - '/var/log'
+  - '/var/www'
+
+restic_keep_daily: 7
+
+restic_keep_hourly: 12
+
+restic_keep_monthly: 3
+
+restic_keep_weekly: 4
+
+restic_monitor: 'false'
+
+restic_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
+
+restic_monitor_mail_sender: "root@{{ansible_domain}}"
+
+restic_monitor_mail_state: 'false'
+
+restic_monitor_mail_subject: "restic: Run Backup - Error ({{ansible_hostname}})"
+
+restic_password: '2t-C7s9fC_VR4jtm-Nv5,Uj7UdM3kv.8'
+
+restic_run_backup_day: '*'
+
+restic_run_backup_hour: 2
+
+restic_run_backup_minute: "{{10|random(seed=inventory_hostname)}}"
+
+restic_run_backup_month: '*'
+
+restic_run_backup_weekday: '*'

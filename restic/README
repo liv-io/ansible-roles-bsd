@@ -1,0 +1,343 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : restic
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+Restic is a program that does backups right and was designed to be easy, fast
+verifiable, secure and efficient.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: restic
+    vars:
+      restic_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+      - role: restic
+    vars:
+      restic_state: 'enable'
+
+DISABLE
+  - hosts: all
+    roles:
+      - role: restic
+    vars:
+      restic_state: 'disable'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: restic
+    vars:
+      restic_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: restic
+    vars:
+      restic_state: 'inactive'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  restic_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+  restic_backup_server
+    Description: Define the 'restic_backup_server' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "backup.{{ansible_domain}}"
+    Options    :
+      Examples: 'backup.domain.tld' | 'restic.domain.tld'
+
+  restic_backup_user
+    Description: Define the 'restic_backup_user' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'restic'
+    Options    :
+      Examples: 'restic' | 'backup'
+
+  restic_exclude
+    Description: Define the 'restic_exclude' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['/backup/restic', '/tmp', '/usr/tmp']
+    Options    :
+      Examples: ['/tmp', '/data/example/*.tmp']
+      None    : []
+
+  restic_include
+    Description: Define the 'restic_include' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['/app', '/backup', '/data', '/etc', '/home', '/opt', '/root', '/script', '/usr/local', '/var/log', '/var/www']
+    Options    :
+      Examples: ['/backup', '/data/example/*.data']
+      None    : []
+
+  restic_keep_daily
+    Description: Set the 'restic_keep_daily' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 7
+    Options    :
+      Examples: 1 | 2 | 3
+
+  restic_keep_hourly
+    Description: Set the 'restic_keep_hourly' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 12
+    Options    :
+      Examples: 3 | 12 | 24
+
+  restic_keep_monthly
+    Description: Set the 'restic_keep_monthly' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 3
+    Options    :
+      Examples: 1 | 2 | 3
+
+  restic_keep_weekly
+    Description: Set the 'restic_keep_weekly' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 4
+    Options    :
+      Examples: 1 | 2 | 3
+
+  restic_monitor
+    Description: Control the 'restic_monitor' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  restic_monitor_mail_recipient
+    Description: Define the 'restic_monitor_mail_recipient' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ["admin@{{ansible_domain}}"]
+    Options    :
+      Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
+                ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
+
+  restic_monitor_mail_sender
+    Description: Define the 'restic_monitor_mail_sender' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "root@{{ansible_domain}}"
+    Options    :
+      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
+
+  restic_monitor_mail_state
+    Description: Control the 'restic_monitor_mail_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  restic_monitor_mail_subject
+    Description: Define the 'restic_monitor_mail_subject' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "restic: Run Backup - Error ({{ansible_hostname}})"
+    Options    :
+      Examples: '"restic: Run Backup - Error'
+
+  restic_password
+    Description: Define the 'restic_password' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '2t-C7s9fC_VR4jtm-Nv5,Uj7UdM3kv.8'
+    Options    :
+      Examples: 'qW.t_hvfFp9BHtFt-xsFqCq_42jwNDgs' | 'pLj6.us3u-CHMSd5FHV8oq28q3NKfn_i'
+
+  restic_run_backup_day
+    Description: Define the 'restic_run_backup_day' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '1' | '*/2'
+
+  restic_run_backup_hour
+    Description: Define the 'restic_run_backup_hour' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 2
+    Options    :
+      Examples: '5' | '*/6'
+
+  restic_run_backup_minute
+    Description: Define the 'restic_run_backup_minute' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : "{{10|random(seed=inventory_hostname)}}"
+    Options    :
+      Examples: '42' | '*/30'
+
+  restic_run_backup_month
+    Description: Define the 'restic_run_backup_month' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '10' | '*/1'
+
+  restic_run_backup_weekday
+    Description: Define the 'restic_run_backup_weekday' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '6' | 'Saturday'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  restic
+    Version: >= 0.8.3
+    Name   :
+      FreeBSD 11: 'restic'
+      OpenBSD 6 : 'restic'
+
+ROLES
+  common
+
+  mailx
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 2.5
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 11.2-*
+      Status: Testing
+
+  OpenBSD
+    Version: 6.3
+      Status: Testing
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

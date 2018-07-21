@@ -1,0 +1,35 @@
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - disable
+    - restic
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'cron create restic_run-backup'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_restic_run_backup}}"
+    day: "{{cron_day_restic_run_backup}}"
+    hour: "{{cron_hour_restic_run_backup}}"
+    minute: "{{cron_minute_restic_run_backup}}"
+    month: "{{cron_month_restic_run_backup}}"
+    weekday: "{{cron_weekday_restic_run_backup}}"
+    user: "{{cron_user_restic_run_backup}}"
+    job: "{{cron_job_restic_run_backup}}"
+  tags:
+    - disable
+    - restic
