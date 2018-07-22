@@ -10,6 +10,18 @@ file_path_root_hints: '/usr/local/etc/unbound/root.hints'
 # unbound.conf
 file_path_unbound_conf: '/usr/local/etc/unbound/unbound.conf'
 
+# unbound.conf.link
+file_src_unbound_conf_link: '/usr/local/etc/unbound/unbound.conf'
+file_path_unbound_conf_link: '/var/unbound/unbound.conf'
+file_owner_unbound_conf_link: 'root'
+file_group_unbound_conf_link: 'wheel'
+
 # unbound_enable
 file_line_unbound_enable: 'unbound_enable'
 file_path_unbound_enable: '/etc/rc.conf'
+
+# root.hints.link
+file_src_root_hints_link: '/usr/local/etc/unbound/root.hints'
+file_path_root_hints_link: '/var/unbound/root.hints'
+file_owner_root_hints_link: 'root'
+file_group_root_hints_link: 'wheel'

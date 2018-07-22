@@ -25,6 +25,10 @@
 #Use this to include other text into the file.
 #include: "otherfile.conf"
 
+#-------------------------------------------------------------------------------
+# SERVER
+#-------------------------------------------------------------------------------
+
 # The server clause sets the main parameters.
 server:
 	# whitespace is not necessary, but looks cleaner.
@@ -54,22 +58,40 @@ server:
 	# number of threads to create. 1 disables threading.
 	# num-threads: 1
 
+        #-----------------------------------------------------------------------
+        # INTERFACE
+        #-----------------------------------------------------------------------
+
 	# specify the interfaces to answer queries from by ip-address.
 	# The default is to listen to localhost (127.0.0.1 and ::1).
 	# specify 0.0.0.0 and ::0 to bind to all available interfaces.
 	# specify every interface[@port] on a new 'interface:' labelled line.
 	# The listen interfaces are not changed on reload, only on restart.
-	# interface: 192.0.2.153
-	# interface: 192.0.2.154
-	# interface: 192.0.2.154@5003
-	# interface: 2001:DB8::5
+{% if (unbound_interface is defined) and not (unbound_interface == []) %}
+{% for interface in unbound_interface %}
+{% if (interface.comment is defined) %}
+        # {{interface.comment}}
+{% endif %}
+        interface: {{interface.address}}{% if (interface.port is defined) %}@{{interface.port|int(53)}}{% endif %}
+
+{% endfor %}
+{% else %}
+        interface: 127.0.0.1
+        interface: ::1
+{% endif %}
 
 	# enable this feature to copy the source address of queries to reply.
 	# Socket options are not supported on all platforms. experimental.
 	# interface-automatic: no
 
+        #-----------------------------------------------------------------------
+        # PORT
+        #-----------------------------------------------------------------------
+
 	# port to answer queries from
-	# port: 53
+{% if not (unbound_default_port == '') %}
+        port: {{(unbound_default_port|int(53))}}
+{% endif %}
 
 	# specify the interfaces to send outgoing queries to authoritative
 	# server from by ip-address. If none, the default (all) interface
@@ -78,6 +100,10 @@ server:
 	# outgoing-interface: 2001:DB8::5
 	# outgoing-interface: 2001:DB8::6
 
+        #-----------------------------------------------------------------------
+        # INTERNET-PROTOCOL
+        #-----------------------------------------------------------------------
+
 	# Specify a netblock to use remainder 64 bits as random bits for
 	# upstream queries.  Uses freebind option (Linux).
 	# outgoing-interface: 2001:DB8::/64
@@ -85,7 +111,11 @@ server:
 	# And: ip -6 route add local 2001:db8::/64 dev lo
 	# And set prefer-ip6: yes to use the ip6 randomness from a netblock.
 	# Set this to yes to prefer ipv6 upstream servers over ipv4.
-	# prefer-ip6: no
+{% if (unbound_prefer_ip6 is match('true|yes|enable')) %}
+        prefer-ip6: yes
+{% else %}
+        prefer-ip6: no
+{% endif %}
 
 	# number of ports to allocate per thread, determines the size of the
 	# port range that can be open simultaneously.  About double the
@@ -201,17 +231,47 @@ server:
 	# repeat the define-tag statement to add additional tags.
 	# define-tag: "tag1 tag2 tag3"
 
+        #-----------------------------------------------------------------------
+        # INTERNET-PROTOCOL
+        #-----------------------------------------------------------------------
+
 	# Enable IPv4, "yes" or "no".
-	# do-ip4: yes
+{% if (unbound_ip4_state is match('false|no|disable')) %}
+        do-ip4: no
+{% else %}
+        do-ip4: yes
+{% endif %}
 
 	# Enable IPv6, "yes" or "no".
-	# do-ip6: yes
+{% if (unbound_ip6_state is match('true|yes|enable')) %}
+        do-ip6: yes
+{% else %}
+        do-ip6: no
+{% endif %}
+
+{% if (unbound_prefer_ip6 is match('true|yes|enable')) %}
+        prefer-ip6: yes
+{% else %}
+        prefer-ip6: no
+{% endif %}
+
+        #-----------------------------------------------------------------------
+        # TCP / UDP
+        #-----------------------------------------------------------------------
 
 	# Enable UDP, "yes" or "no".
-	# do-udp: yes
+{% if (unbound_tcp_state is match('false|no|disable')) %}
+        do-tcp: no
+{% else %}
+        do-tcp: yes
+{% endif %}
 
 	# Enable TCP, "yes" or "no".
-	# do-tcp: yes
+{% if (unbound_udp_state is match('false|no|disable')) %}
+        do-udp: no
+{% else %}
+        do-udp: yes
+{% endif %}
 
 	# upstream connections use TCP only (and no UDP), "yes" or "no"
 	# useful for tunneling scenarios, default no.
@@ -236,6 +296,10 @@ server:
 	# Set the value to "no" when unbound runs as systemd service.
 	# do-daemonize: yes
 
+        #-----------------------------------------------------------------------
+        # ACCESS-CONTROL
+        #-----------------------------------------------------------------------
+
 	# control which clients are allowed to make (recursive) queries
 	# to this server. Specify classless netblocks with /size and action.
 	# By default everything is refused, except for localhost.
@@ -244,11 +308,17 @@ server:
 	# allow_snoop (recursive and nonrecursive ok)
 	# deny_non_local (drop queries unless can be answered from local-data)
 	# refuse_non_local (like deny_non_local but polite error reply).
-	# access-control: 0.0.0.0/0 refuse
-	# access-control: 127.0.0.0/8 allow
-	# access-control: ::0/0 refuse
-	# access-control: ::1 allow
-	# access-control: ::ffff:127.0.0.1 allow
+
+{% for access_control in unbound_access_control %}
+{% if (access_control.comment is defined) and not (access_control.comment == '') %}
+        # {{access_control.comment}}
+{% endif %}
+        access-control:
+{%- if (access_control.address is defined) and not (access_control.address == '') %} {{access_control.address}} {% endif %}
+{%- if (access_control.action is defined) and (access_control.action is match('allow|accept')) %}allow{% else %}refuse{% endif %}
+
+
+{% endfor %}
 
 	# tag access-control with list of tags (in "" with spaces between)
 	# Clients using this access control element use localzones that
@@ -331,22 +401,35 @@ server:
 
 	# file to read root hints from.
 	# get one from https://www.internic.net/domain/named.cache
-	# root-hints: ""
+        root-hints: 'root.hints'
+
+        #-----------------------------------------------------------------------
+        # IDENTITY
+        #-----------------------------------------------------------------------
 
 	# enable to not answer id.server and hostname.bind queries.
-	# hide-identity: no
+{% if (unbound_hide_identity is match('false|no|disable')) %}
+        hide-identity: no
+{% else %}
+        hide-identity: yes
+{% endif %}
 
 	# enable to not answer version.server and version.bind queries.
-	# hide-version: no
-
-	# enable to not answer trustanchor.unbound queries.
-	# hide-trustanchor: no
+{% if (unbound_hide_version is match('false|no|disable')) %}
+        hide-version: no
+{% else %}
+        hide-version: yes
+{% endif %}
 
 	# the identity to report. Leave "" or default to return hostname.
-	# identity: ""
+{% if not (unbound_identity == '') %}
+        identity: "{{unbound_identity}}"
+{% endif %}
 
 	# the version to report. Leave "" or default to return package version.
-	# version: ""
+{% if not (unbound_version == '') %}
+        version: "{{unbound_version}}"
+{% endif %}
 
 	# the target fetch policy.
 	# series of integers describing the policy per dependency depth.
@@ -358,34 +441,66 @@ server:
 	# Enclose the list of numbers between quotes ("").
 	# target-fetch-policy: "3 2 1 0 0"
 
+        #-----------------------------------------------------------------------
+        # HARDENING
+        #-----------------------------------------------------------------------
+
 	# Harden against very small EDNS buffer sizes.
-	# harden-short-bufsize: no
+{% if (unbound_harden_short_bufsize is match('true|yes|enable')) %}
+        harden-short-bufsize: yes
+{% else %}
+        harden-short-bufsize: no
+{% endif %}
 
 	# Harden against unseemly large queries.
-	# harden-large-queries: no
+{% if (unbound_harden_large_queries is match('true|yes|enable')) %}
+        harden-large-queries: yes
+{% else %}
+        harden-large-queries: no
+{% endif %}
 
 	# Harden against out of zone rrsets, to avoid spoofing attempts.
-	# harden-glue: yes
+{% if (unbound_harden_glue is match('false|no|disable')) %}
+        harden-glue: no
+{% else %}
+        harden-glue: yes
+{% endif %}
 
 	# Harden against receiving dnssec-stripped data. If you turn it
 	# off, failing to validate dnskey data for a trustanchor will
 	# trigger insecure mode for that zone (like without a trustanchor).
 	# Default on, which insists on dnssec data for trust-anchored zones.
-	# harden-dnssec-stripped: yes
+{% if (unbound_harden_dnssec_stripped is match('false|no|disable')) %}
+        harden-dnssec-stripped: no
+{% else %}
+        harden-dnssec-stripped: yes
+{% endif %}
 
 	# Harden against queries that fall under dnssec-signed nxdomain names.
-	# harden-below-nxdomain: no
+{% if (unbound_harden_below_nxdomain is match('true|yes|enable')) %}
+        harden-below-nxdomain: yes
+{% else %}
+        harden-below-nxdomain: no
+{% endif %}
 
 	# Harden the referral path by performing additional queries for
 	# infrastructure data.  Validates the replies (if possible).
 	# Default off, because the lookups burden the server.  Experimental
 	# implementation of draft-wijngaards-dnsext-resolver-side-mitigation.
-	# harden-referral-path: no
+{% if (unbound_harden_referral_path is match('true|yes|enable')) %}
+        harden-referral-path: yes
+{% else %}
+        harden-referral-path: no
+{% endif %}
 
 	# Harden against algorithm downgrade when multiple algorithms are
 	# advertised in the DS record.  If no, allows the weakest algorithm
 	# to validate the zone.
-	# harden-algo-downgrade: no
+{% if (unbound_harden_algo_downgrade is match('true|yes|enable')) %}
+        harden-algo-downgrade: yes
+{% else %}
+        harden-algo-downgrade: no
+{% endif %}
 
 	# Sent minimum amount of information to upstream servers to enhance
 	# privacy. Only sent minimum required labels of the QNAME and set QTYPE
@@ -582,50 +697,25 @@ server:
 	# plain value in bytes or you can append k, m or G. default is "1Mb".
 	# neg-cache-size: 1m
 
+        #-----------------------------------------------------------------------
+        # LOCAL-ZONE
+        #-----------------------------------------------------------------------
+
 	# By default, for a number of zones a small default 'nothing here'
 	# reply is built-in.  Query traffic is thus blocked.  If you
 	# wish to serve such zone you can unblock them by uncommenting one
 	# of the nodefault statements below.
 	# You may also have to use domain-insecure: zone to make DNSSEC work,
 	# unless you have your own trust anchors for this zone.
-	# local-zone: "localhost." nodefault
-	# local-zone: "127.in-addr.arpa." nodefault
-	# local-zone: "1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa." nodefault
-	# local-zone: "onion." nodefault
-	# local-zone: "test." nodefault
-	# local-zone: "invalid." nodefault
-	# local-zone: "10.in-addr.arpa." nodefault
-	# local-zone: "16.172.in-addr.arpa." nodefault
-	# local-zone: "17.172.in-addr.arpa." nodefault
-	# local-zone: "18.172.in-addr.arpa." nodefault
-	# local-zone: "19.172.in-addr.arpa." nodefault
-	# local-zone: "20.172.in-addr.arpa." nodefault
-	# local-zone: "21.172.in-addr.arpa." nodefault
-	# local-zone: "22.172.in-addr.arpa." nodefault
-	# local-zone: "23.172.in-addr.arpa." nodefault
-	# local-zone: "24.172.in-addr.arpa." nodefault
-	# local-zone: "25.172.in-addr.arpa." nodefault
-	# local-zone: "26.172.in-addr.arpa." nodefault
-	# local-zone: "27.172.in-addr.arpa." nodefault
-	# local-zone: "28.172.in-addr.arpa." nodefault
-	# local-zone: "29.172.in-addr.arpa." nodefault
-	# local-zone: "30.172.in-addr.arpa." nodefault
-	# local-zone: "31.172.in-addr.arpa." nodefault
-	# local-zone: "168.192.in-addr.arpa." nodefault
-	# local-zone: "0.in-addr.arpa." nodefault
-	# local-zone: "254.169.in-addr.arpa." nodefault
-	# local-zone: "2.0.192.in-addr.arpa." nodefault
-	# local-zone: "100.51.198.in-addr.arpa." nodefault
-	# local-zone: "113.0.203.in-addr.arpa." nodefault
-	# local-zone: "255.255.255.255.in-addr.arpa." nodefault
-	# local-zone: "0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.ip6.arpa." nodefault
-	# local-zone: "d.f.ip6.arpa." nodefault
-	# local-zone: "8.e.f.ip6.arpa." nodefault
-	# local-zone: "9.e.f.ip6.arpa." nodefault
-	# local-zone: "a.e.f.ip6.arpa." nodefault
-	# local-zone: "b.e.f.ip6.arpa." nodefault
-	# local-zone: "8.b.d.0.1.0.0.2.ip6.arpa." nodefault
-	# And for 64.100.in-addr.arpa. to 127.100.in-addr.arpa.
+{% for local_zone in unbound_local_zone %}
+{% if (local_zone.comment is defined) and not (local_zone.comment == '') %}
+        # {{local_zone.comment}}
+{% endif %}
+        local-zone:
+{%- if (local_zone.zone is defined) and not (local_zone.zone == '') %} "{{local_zone.zone}}" {% endif %}
+{%- if (local_zone.type is defined) and not (local_zone.type == '') %}"{{local_zone.type}}"{% endif %}
+
+{% endfor %}
 
 	# If unbound is running service for the local host then it is useful
 	# to perform lan-wide lookups to the upstream, and unblock the
@@ -637,6 +727,18 @@ server:
 	# The insecure-lan-zones option disables validation for
 	# these zones, as if they were all listed as domain-insecure.
 	# insecure-lan-zones: no
+
+        #-----------------------------------------------------------------------
+        # LOCAL-DATA
+        #-----------------------------------------------------------------------
+
+{% for local_data in unbound_local_data %}
+{% if (local_data.comment is defined) and not (local_data.comment == '') %}
+        # {{local_data.comment}}
+{% endif %}
+        local-data: {% if (local_data.record is defined) and not (local_data.record == '') %}"{{local_data.record}}"{% endif %}
+
+{% endfor %}
 
 	# a number of locally served zones can be configured.
 	# 	local-zone: <zone> <type>
@@ -660,24 +762,21 @@ server:
 	#
 	# If you configure local-data without specifying local-zone, by
 	# default a transparent local-zone is created for the data.
-	#
-	# You can add locally served data with
-	# local-zone: "local." static
-	# local-data: "mycomputer.local. IN A 192.0.2.51"
-	# local-data: 'mytext.local TXT "content of text record"'
-	#
-	# You can override certain queries with
-	# local-data: "adserver.example.com A 127.0.0.1"
-	#
-	# You can redirect a domain to a fixed address with
-	# (this makes example.com, www.example.com, etc, all go to 192.0.2.3)
-	# local-zone: "example.com" redirect
-	# local-data: "example.com A 192.0.2.3"
-	#
+
+        #-----------------------------------------------------------------------
+        # LOCAL-DATA-PTR
+        #-----------------------------------------------------------------------
+
 	# Shorthand to make PTR records, "IPv4 name" or "IPv6 name".
 	# You can also add PTR records using local-data directly, but then
 	# you need to do the reverse notation yourself.
-	# local-data-ptr: "192.0.2.3 www.example.com"
+{% for local_data_ptr in unbound_local_data_ptr %}
+{% if (local_data_ptr.comment is defined) and not (local_data_ptr.comment == '') %}
+        # {{local_data_ptr.comment}}
+{% endif %}
+        local-data-ptr: {% if (local_data_ptr.record is defined) and not (local_data_ptr.record == '') %}"{{local_data_ptr.record}}"{% endif %}
+
+{% endfor %}
 
 	# tag a localzone with a list of tag names (in "" with spaces between)
 	# local-zone-tag: "example.com" "tag2 tag3"
@@ -785,11 +884,20 @@ python:
 	# Script file to load
 	# python-script: "/usr/local/etc/unbound/ubmodule-tst.py"
 
+#-------------------------------------------------------------------------------
+# REMOTE CONTROL
+#-------------------------------------------------------------------------------
+
 # Remote control config section.
 remote-control:
 	# Enable remote control with unbound-control(8) here.
 	# set up the keys and certificates with unbound-control-setup.
-	# control-enable: no
+remote-control:
+{% if (unbound_control_enable is match('true|yes|enable')) %}
+        control-enable: yes
+{% else %}
+        control-enable: no
+{% endif %}
 
 	# what interfaces are listened to for remote control.
 	# give 0.0.0.0 and ::0 to listen to all interfaces.
@@ -817,7 +925,10 @@ remote-control:
 	# unbound-control certificate file.
 	# control-cert-file: "/usr/local/etc/unbound/unbound_control.pem"
 
-# Stub zones.
+#-------------------------------------------------------------------------------
+# STUB-ZONE
+#-------------------------------------------------------------------------------
+
 # Create entries like below, to make all queries for 'example.com' and
 # 'example.org' go to the given list of nameservers. list zero or more
 # nameservers by hostname or by ipaddress. If you set stub-prime to yes,
@@ -825,17 +936,22 @@ remote-control:
 # With stub-first yes, it attempts without the stub if it fails.
 # Consider adding domain-insecure: name and local-zone: name nodefault
 # to the server: section if the stub is a locally served zone.
-# stub-zone:
-#	name: "example.com"
-#	stub-addr: 192.0.2.68
-#	stub-prime: no
-#	stub-first: no
-#	stub-tls-upstream: no
-# stub-zone:
-#	name: "example.org"
-#	stub-host: ns.example.com.
+{% if (unbound_stub_zone is defined) and not (unbound_stub_zone == []) %}
+{% for stub_zone in unbound_stub_zone %}
+{% if (stub_zone.comment is defined) %}
+        # {{stub_zone.comment}}
+{% endif %}
+stub-zone:
+        name: "{{stub_zone.name}}"
+        stub-addr: {{stub_zone.address}}{% if (stub_zone.port is defined) %}@{{stub_zone.port|int(53)}}{% endif %}
 
-# Forward zones
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# FORWARD-ZONE
+#-------------------------------------------------------------------------------
+
 # Create entries like below, to make all queries for 'example.com' and
 # 'example.org' go to the given list of servers. These servers have to handle
 # recursion to other nameservers. List zero or more nameservers by hostname
@@ -851,7 +967,10 @@ remote-control:
 # 	name: "example.org"
 # 	forward-host: fwd.example.com
 
-# Authority zones
+#-------------------------------------------------------------------------------
+# AUTH-ZONE
+#-------------------------------------------------------------------------------
+
 # The data for these zones is kept locally, from a file or downloaded.
 # The data can be served to downstream clients, or used instead of the
 # upstream (which saves a lookup to the upstream).  The first example
@@ -877,7 +996,10 @@ remote-control:
 #	for-upstream: yes
 #	zonefile: "example.org.zone"
 
-# Views
+#-------------------------------------------------------------------------------
+# VIEWS
+#-------------------------------------------------------------------------------
+
 # Create named views. Name must be unique. Map views to requests using
 # the access-control-view option. Views can contain zero or more local-zone
 # and local-data options. Options from matching views will override global
@@ -894,7 +1016,10 @@ remote-control:
 #	name: "anotherview"
 #	local-zone: "example.com" refuse
 
-# DNSCrypt
+#-------------------------------------------------------------------------------
+# DNSCRYPT
+#-------------------------------------------------------------------------------
+
 # Caveats:
 # 1. the keys/certs cannot be produced by unbound. You can use dnscrypt-wrapper
 #   for this: https://github.com/cofyc/dnscrypt-wrapper/blob/master/README.md#usage
@@ -914,7 +1039,10 @@ remote-control:
 #     dnscrypt-provider-cert: /path/unbound-conf/keys1/1.cert
 #     dnscrypt-provider-cert: /path/unbound-conf/keys2/1.cert
 
-# CacheDB
+#-------------------------------------------------------------------------------
+# DBCACHE
+#-------------------------------------------------------------------------------
+
 # Enable external backend DB as auxiliary cache.  Specify the backend name
 # (default is "testframe", which has no use other than for debugging and
 # testing) and backend-specific options.  The 'cachedb' module must be

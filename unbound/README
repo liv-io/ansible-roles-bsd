@@ -412,7 +412,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.2-*
-      Status: Planned
+      Status: Testing
 
   OpenBSD
     Version: 6.3

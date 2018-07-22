@@ -87,6 +87,15 @@
     - remove
     - unbound
 
+- name: 'file remove unbound.conf.link'
+  file:
+    state: 'absent'
+    path: "{{file_path_unbound_conf_link}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - remove
+    - unbound
+
 - name: 'file remove unbound.conf'
   file:
     state: 'absent'

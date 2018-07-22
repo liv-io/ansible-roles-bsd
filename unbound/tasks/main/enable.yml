@@ -34,6 +34,21 @@
     - enable
     - unbound
 
+- name: 'file create root.hints.link'
+  file:
+    state: 'link'
+    src: "{{file_src_root_hints_link}}"
+    path: "{{file_path_root_hints_link}}"
+    owner: "{{file_owner_root_hints_link}}"
+    group: "{{file_group_root_hints_link}}"
+  notify:
+    - 'command unbound-checkconf'
+    - 'service restart unbound'
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - install
+    - unbound
+
 - name: 'template create unbound.conf'
   template:
     src: "{{file_src_unbound_conf}}"
@@ -46,6 +61,21 @@
     - 'service restart unbound'
   tags:
     - enable
+    - unbound
+
+- name: 'file create unbound.conf.link'
+  file:
+    state: 'link'
+    src: "{{file_src_unbound_conf_link}}"
+    path: "{{file_path_unbound_conf_link}}"
+    owner: "{{file_owner_unbound_conf_link}}"
+    group: "{{file_group_unbound_conf_link}}"
+  notify:
+    - 'command unbound-checkconf'
+    - 'service restart unbound'
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - install
     - unbound
 
 - name: 'line enable unbound_enable'
