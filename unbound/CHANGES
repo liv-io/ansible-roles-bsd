@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.4.2 (2018-07-24)
+I: Consolidate default path
+
 * Version 0.4.1 (2018-07-24)
 I: Ensure 'root.hints.link' is being removed
 
