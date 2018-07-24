@@ -105,6 +105,15 @@
     - remove
     - unbound
 
+- name: 'file remove root.hints.link'
+  file:
+    state: 'absent'
+    path: "{{file_path_root_hints_link}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - remove
+    - root
+
 - name: 'file remove root.hints'
   file:
     state: 'absent'
