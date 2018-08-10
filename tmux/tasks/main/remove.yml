@@ -36,7 +36,7 @@
 - name: 'file remove tmux.conf'
   file:
     state: 'absent'
-    path: "{{file_path_tmux_conf}}"
+    path: "{{file_dst_tmux_conf}}"
   tags:
     - remove
     - tmux

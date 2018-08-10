@@ -23,7 +23,7 @@
 - name: 'template create aliases'
   template:
     src: "{{file_src_aliases}}"
-    dest: "{{file_path_aliases}}"
+    dest: "{{file_dst_aliases}}"
     mode: "{{file_mode_aliases}}"
     owner: "{{file_owner_aliases}}"
     group: "{{file_group_aliases}}"
@@ -37,7 +37,7 @@
 - name: 'template create main.cf'
   template:
     src: "{{file_src_main_cf}}"
-    dest: "{{file_path_main_cf}}"
+    dest: "{{file_dst_main_cf}}"
     mode: "{{file_mode_main_cf}}"
     owner: "{{file_owner_main_cf}}"
     group: "{{file_group_main_cf}}"
@@ -49,7 +49,7 @@
 - name: 'template create master.cf'
   template:
     src: "{{file_src_master_cf}}"
-    dest: "{{file_path_master_cf}}"
+    dest: "{{file_dst_master_cf}}"
     mode: "{{file_mode_master_cf}}"
     owner: "{{file_owner_master_cf}}"
     group: "{{file_group_master_cf}}"
@@ -63,7 +63,7 @@
     state: 'present'
     line: "{{file_line_postfix_enable}}=\"YES\" # Ansible: Enable postfix"
     regexp: "^{{file_line_postfix_enable}}="
-    dest: "{{file_path_postfix_enable}}"
+    dest: "{{file_dst_postfix_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable

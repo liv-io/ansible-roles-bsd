@@ -13,7 +13,7 @@ package_name_monit: 'monit'
 
 # monitrc
 file_src_monitrc: "templates/{{ansible_os_family}}/monitrc.j2"
-file_path_monitrc: '/etc/monitrc'
+file_dst_monitrc: '/etc/monitrc'
 file_mode_monitrc: '0600'
 file_owner_monitrc: 'root'
 file_group_monitrc: 'wheel'
@@ -25,7 +25,7 @@ file_owner_monit_config: 'root'
 file_group_monit_config: 'wheel'
 
 # monit.d
-file_path_monit_d: '/etc/monit.d'
+file_dst_monit_d: '/etc/monit.d'
 file_mode_monit_d: '0750'
 file_owner_monit_d: 'root'
 file_group_monit_d: 'wheel'

@@ -22,7 +22,7 @@
 
 - name: 'stat file hosts.block'
   stat:
-    path: "{{file_path_hosts_block}}"
+    path: "{{file_dst_hosts_block}}"
   register: register_hosts_block
   when: (ansible_os_family == 'FreeBSD')
   tags:
@@ -32,7 +32,7 @@
 - name: 'template create hosts.block'
   template:
     src: "{{file_src_hosts_block}}"
-    dest: "{{file_path_hosts_block}}"
+    dest: "{{file_dst_hosts_block}}"
     mode: "{{file_mode_hosts_block}}"
     owner: "{{file_owner_hosts_block}}"
     group: "{{file_group_hosts_block}}"

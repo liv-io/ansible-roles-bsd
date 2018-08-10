@@ -5,12 +5,12 @@
 #-------------------------------------------------------------------------------
 
 # ntpd_update-time
-file_line_ntpd_update_time: "*/{% if ((ntpd_update_time_interval|int(10)) > 59) %}59{% elif ((ntpd_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntpd_update_time_interval|int(10))}}{% endif %} * * * * {{file_owner_ntpd_update_time_sh}} {{file_path_ntpd_update_time_sh}}"
-file_path_ntpd_update_time: '/etc/crontab'
+file_line_ntpd_update_time: "*/{% if ((ntpd_update_time_interval|int(10)) > 59) %}59{% elif ((ntpd_update_time_interval|int(10)) < 1) %}1{% else %}{{(ntpd_update_time_interval|int(10))}}{% endif %} * * * * {{file_owner_ntpd_update_time_sh}} {{file_dst_ntpd_update_time_sh}}"
+file_dst_ntpd_update_time: '/etc/crontab'
 
 # ntpd_enable
 file_line_ntpd_enable: 'ntpd_enable'
-file_path_ntpd_enable: '/etc/rc.conf'
+file_dst_ntpd_enable: '/etc/rc.conf'
 
 #-------------------------------------------------------------------------------
 # SYSTEM

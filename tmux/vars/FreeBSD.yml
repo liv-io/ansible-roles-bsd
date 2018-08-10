@@ -5,4 +5,4 @@
 #-------------------------------------------------------------------------------
 
 # tmux.conf
-file_path_tmux_conf: '/usr/local/etc/tmux.conf'
+file_dst_tmux_conf: '/usr/local/etc/tmux.conf'

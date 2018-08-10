@@ -23,7 +23,7 @@
 - name: 'template create monitrc'
   template:
     src: "{{file_src_monitrc}}"
-    dest: "{{file_path_monitrc}}"
+    dest: "{{file_dst_monitrc}}"
     mode: "{{file_mode_monitrc}}"
     owner: "{{file_owner_monitrc}}"
     group: "{{file_group_monitrc}}"
@@ -36,7 +36,7 @@
     state: 'present'
     line: "{{file_line_monit_enable}}=\"NO\" # Ansible: Disable monit"
     regexp: "^{{file_line_monit_enable}}="
-    dest: "{{file_path_monit_enable}}"
+    dest: "{{file_dst_monit_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable

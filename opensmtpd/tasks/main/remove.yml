@@ -81,7 +81,7 @@
     state: 'absent'
     line: "{{file_line_smtpd_enable}}=\"NO\" # Ansible: Remove opensmtpd"
     regexp: "^{{file_line_smtpd_enable}}="
-    dest: "{{file_path_smtpd_enable}}"
+    dest: "{{file_dst_smtpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
@@ -92,7 +92,7 @@
     state: 'absent'
     line: "{{file_line_sendmail_enable}}=\"NONE\" # Ansible: Remove sendmail"
     regexp: "^{{file_line_sendmail_enable}}="
-    dest: "{{file_path_sendmail_enable}}"
+    dest: "{{file_dst_sendmail_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
@@ -101,7 +101,7 @@
 - name: 'file remove aliases'
   file:
     state: 'absent'
-    path: "{{file_path_aliases}}"
+    path: "{{file_dst_aliases}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
@@ -110,7 +110,7 @@
 - name: 'file remove smtpd.conf'
   file:
     state: 'absent'
-    path: "{{file_path_smtpd_conf}}"
+    path: "{{file_dst_smtpd_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove

@@ -23,7 +23,7 @@
 - name: 'template create banner'
   template:
     src: "{{file_src_banner}}"
-    dest: "{{file_path_banner}}"
+    dest: "{{file_dst_banner}}"
     mode: "{{file_mode_banner}}"
     owner: "{{file_owner_banner}}"
     group: "{{file_group_banner}}"
@@ -34,7 +34,7 @@
 - name: 'template create moduli'
   template:
     src: "{{file_src_moduli}}"
-    dest: "{{file_path_moduli}}"
+    dest: "{{file_dst_moduli}}"
     mode: "{{file_mode_moduli}}"
     owner: "{{file_owner_moduli}}"
     group: "{{file_group_moduli}}"
@@ -46,7 +46,7 @@
 - name: 'template create ssh_config'
   template:
     src: "{{file_src_ssh_config}}"
-    dest: "{{file_path_ssh_config}}"
+    dest: "{{file_dst_ssh_config}}"
     mode: "{{file_mode_ssh_config}}"
     owner: "{{file_owner_ssh_config}}"
     group: "{{file_group_ssh_config}}"
@@ -57,7 +57,7 @@
 - name: 'template create sshd_config'
   template:
     src: "{{file_src_sshd_config}}"
-    dest: "{{file_path_sshd_config}}"
+    dest: "{{file_dst_sshd_config}}"
     mode: "{{file_mode_sshd_config}}"
     owner: "{{file_owner_sshd_config}}"
     group: "{{file_group_sshd_config}}"
@@ -70,7 +70,7 @@
     state: 'present'
     line: "{{file_line_sshd_enable}}=\"NO\" # Ansible: Disable openssh"
     regexp: "^{{file_line_sshd_enable}}="
-    dest: "{{file_path_sshd_enable}}"
+    dest: "{{file_dst_sshd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable

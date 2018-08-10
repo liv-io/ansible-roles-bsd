@@ -23,7 +23,7 @@
 - name: 'template create monit-config'
   template:
     src: "{{file_src_monit_config}}"
-    dest: "{{file_path_monit_d}}/{{item.name}}.cfg"
+    dest: "{{file_dst_monit_d}}/{{item.name}}.cfg"
     mode: "{{file_mode_monit_config}}"
     owner: "{{file_owner_monit_config}}"
     group: "{{file_group_monit_config}}"
@@ -39,7 +39,7 @@
 - name: 'file remove monit-config'
   file:
     state: 'absent'
-    path: "{{file_path_monit_d}}/{{item.name}}.cfg"
+    path: "{{file_dst_monit_d}}/{{item.name}}.cfg"
   notify:
     - 'command validate monit'
     - 'service restart monit'

@@ -12,53 +12,53 @@ package_name_restic: 'restic'
 #-------------------------------------------------------------------------------
 
 # restic_backup.dir
-file_path_restic_backup_dir: "/{{common_backup_dir}}/restic"
+file_dst_restic_backup_dir: "/{{common_backup_dir}}/restic"
 file_mode_restic_backup_dir: '0700'
 file_owner_restic_backup_dir: 'restic'
 file_group_restic_backup_dir: 'restic'
 
 # restic_log.dir
-file_path_restic_log_dir: "/var/log/restic/log"
+file_dst_restic_log_dir: "/var/log/restic/log"
 file_mode_restic_log_dir: '0700'
 file_owner_restic_log_dir: 'root'
 file_group_restic_log_dir: 'wheel'
 
 # restic_script.dir
-file_path_restic_script_dir: "/{{common_script_dir}}/restic"
+file_dst_restic_script_dir: "/{{common_script_dir}}/restic"
 file_mode_restic_script_dir: '0755'
 file_owner_restic_script_dir: 'root'
 file_group_restic_script_dir: 'wheel'
 
 # include.conf
 file_src_include_conf: "templates/main/include.conf.j2"
-file_path_include_conf: '/{{common_script_dir}}/restic/include.conf'
+file_dst_include_conf: '/{{common_script_dir}}/restic/include.conf'
 file_mode_include_conf: '0600'
 file_owner_include_conf: 'root'
 file_group_include_conf: 'wheel'
 
 # exclude.conf
 file_src_exclude_conf: "templates/main/exclude.conf.j2"
-file_path_exclude_conf: '/{{common_script_dir}}/restic/exclude.conf'
+file_dst_exclude_conf: '/{{common_script_dir}}/restic/exclude.conf'
 file_mode_exclude_conf: '0600'
 file_owner_exclude_conf: 'root'
 file_group_exclude_conf: 'wheel'
 
 # password.conf
 file_src_password_conf: "templates/main/password.conf.j2"
-file_path_password_conf: '/{{common_script_dir}}/restic/password.conf'
+file_dst_password_conf: '/{{common_script_dir}}/restic/password.conf'
 file_mode_password_conf: '0600'
 file_owner_password_conf: 'root'
 file_group_password_conf: 'wheel'
 
 # restic.log
-file_path_restic_log: '/var/log/restic/log/restic.log'
+file_dst_restic_log: '/var/log/restic/log/restic.log'
 file_mode_restic_log: '0600'
 file_owner_restic_log: 'root'
 file_group_restic_log: 'wheel'
 
 # restic_run-backup.sh
 file_src_restic_run_backup_sh: "templates/main/restic_run-backup.sh.j2"
-file_path_restic_run_backup_sh: "/{{common_script_dir}}/restic/restic_run-backup.sh"
+file_dst_restic_run_backup_sh: "/{{common_script_dir}}/restic/restic_run-backup.sh"
 file_mode_restic_run_backup_sh: '0754'
 file_owner_restic_run_backup_sh: 'root'
 file_group_restic_run_backup_sh: 'wheel'
@@ -71,7 +71,7 @@ cron_minute_restic_run_backup: "{{restic_run_backup_minute}}"
 cron_month_restic_run_backup: "{{restic_run_backup_month}}"
 cron_weekday_restic_run_backup: "{{restic_run_backup_weekday}}"
 cron_user_restic_run_backup: "{{file_owner_restic_run_backup_sh}}"
-cron_job_restic_run_backup: "{{file_path_restic_run_backup_sh}}"
+cron_job_restic_run_backup: "{{file_dst_restic_run_backup_sh}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM

@@ -23,7 +23,7 @@
 - name: 'file remove shell.sh'
   file:
     state: 'absent'
-    path: "{{file_path_shell_shell}}"
+    path: "{{file_dst_shell_shell}}"
   tags:
     - remove
     - shell
@@ -31,7 +31,7 @@
 - name: 'file remove z_shell.sh'
   file:
     state: 'absent'
-    path: "{{file_path_z_shell_shell}}"
+    path: "{{file_dst_z_shell_shell}}"
   tags:
     - remove
     - shell

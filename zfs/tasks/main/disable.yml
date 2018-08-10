@@ -25,7 +25,7 @@
     state: 'absent'
     line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
     regexp: "# Ansible: zfs_scrub-pools$"
-    dest: "{{file_path_zfs_scrub_pools}}"
+    dest: "{{file_dst_zfs_scrub_pools}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable

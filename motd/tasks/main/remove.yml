@@ -25,7 +25,7 @@
     state: 'present'
     line: "\t{{file_line_motd_patch}} # Ansible: Enable motd-patch"
     regexp: "{{file_regexp_motd_patch}}"
-    dest: "{{file_path_motd_patch}}"
+    dest: "{{file_dst_motd_patch}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - remove

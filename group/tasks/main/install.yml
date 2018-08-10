@@ -23,7 +23,7 @@
 - name: 'file ensure group'
   file:
     state: 'file'
-    dest: "{{file_path_group}}"
+    dest: "{{file_dst_group}}"
     mode: "{{file_mode_group}}"
     owner: "{{file_owner_group}}"
     group: "{{file_group_group}}"

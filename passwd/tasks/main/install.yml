@@ -23,7 +23,7 @@
 - name: 'file ensure master.passwd'
   file:
     state: 'file'
-    dest: "{{file_path_master_passwd}}"
+    dest: "{{file_dst_master_passwd}}"
     mode: "{{file_mode_master_passwd}}"
     owner: "{{file_owner_master_passwd}}"
     group: "{{file_group_master_passwd}}"
@@ -34,7 +34,7 @@
 - name: 'file ensure passwd'
   file:
     state: 'file'
-    dest: "{{file_path_passwd}}"
+    dest: "{{file_dst_passwd}}"
     mode: "{{file_mode_passwd}}"
     owner: "{{file_owner_passwd}}"
     group: "{{file_group_passwd}}"
@@ -45,7 +45,7 @@
 - name: 'file ensure pwd.db'
   file:
     state: 'file'
-    dest: "{{file_path_pwd_db}}"
+    dest: "{{file_dst_pwd_db}}"
     mode: "{{file_mode_pwd_db}}"
     owner: "{{file_owner_pwd_db}}"
     group: "{{file_group_pwd_db}}"
@@ -56,7 +56,7 @@
 - name: 'file ensure spwd.db'
   file:
     state: 'file'
-    dest: "{{file_path_spwd_db}}"
+    dest: "{{file_dst_spwd_db}}"
     mode: "{{file_mode_spwd_db}}"
     owner: "{{file_owner_spwd_db}}"
     group: "{{file_group_spwd_db}}"

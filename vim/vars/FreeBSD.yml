@@ -12,4 +12,4 @@ package_name_vim: 'vim-console'
 #-------------------------------------------------------------------------------
 
 # vimrc
-file_path_vimrc: '/usr/local/etc/vim/vimrc'
+file_dst_vimrc: '/usr/local/etc/vim/vimrc'

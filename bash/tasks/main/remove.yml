@@ -35,7 +35,7 @@
 - name: 'file remove bash.bash'
   file:
     state: 'absent'
-    path: "{{file_path_bash_bash}}"
+    path: "{{file_dst_bash_bash}}"
   tags:
     - remove
     - bash
@@ -43,7 +43,7 @@
 - name: 'file remove zz_bash.bash'
   file:
     state: 'absent'
-    path: "{{file_path_zz_bash_bash}}"
+    path: "{{file_dst_zz_bash_bash}}"
   tags:
     - remove
     - bash

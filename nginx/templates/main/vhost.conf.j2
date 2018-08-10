@@ -95,7 +95,7 @@ server {
   ssl_ecdh_curve 'secp521r1';
 {% endif %}
   # DH parameters for DHE ciphers
-  ssl_dhparam '{{file_path_dhparam_pem}}';
+  ssl_dhparam '{{file_dst_dhparam_pem}}';
   # Server PEM-encoded X.509 certificate file
 {% if (item.ssl_certificate is defined) and not (item.ssl_certificate == '') %}
   ssl_certificate '{{item.ssl_certificate}}';

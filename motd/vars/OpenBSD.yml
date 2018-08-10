@@ -10,4 +10,4 @@ motd_os_color: '0;33m'
 # motd-patch
 file_line_motd_patch: 'cmp -s $T /etc/motd || cp $T /etc/motd'
 file_regexp_motd_patch: '.*cmp.*/etc/motd.*cp.*/etc/motd'
-file_path_motd_patch: '/etc/rc'
+file_dst_motd_patch: '/etc/rc'

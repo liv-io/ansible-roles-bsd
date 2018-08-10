@@ -23,7 +23,7 @@
 - name: 'template create myname'
   template:
     src: "{{file_src_myname}}"
-    dest: "{{file_path_myname}}"
+    dest: "{{file_dst_myname}}"
     mode: "{{file_mode_myname}}"
     owner: "{{file_owner_myname}}"
     group: "{{file_group_myname}}"

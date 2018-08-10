@@ -68,7 +68,7 @@
 - name: 'file create root.dir'
   file:
     state: 'directory'
-    path: "{{file_path_root_dir}}"
+    path: "{{file_dst_root_dir}}"
     mode: "{{file_mode_root_dir}}"
     owner: "{{file_owner_root_dir}}"
     group: "{{file_group_root_dir}}"

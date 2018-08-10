@@ -23,7 +23,7 @@
 - name: 'template create periodic.conf'
   template:
     src: "{{file_src_periodic_conf}}"
-    dest: "{{file_path_periodic_conf}}"
+    dest: "{{file_dst_periodic_conf}}"
     mode: "{{file_mode_periodic_conf}}"
     owner: "{{file_owner_periodic_conf}}"
     group: "{{file_group_periodic_conf}}"

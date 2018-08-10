@@ -77,7 +77,7 @@
 - name: 'file create ntpd_script.dir'
   file:
     state: 'directory'
-    path: "{{file_path_ntpd_script_dir}}"
+    path: "{{file_dst_ntpd_script_dir}}"
     mode: "{{file_mode_ntpd_script_dir}}"
     owner: "{{file_owner_ntpd_script_dir}}"
     group: "{{file_group_ntpd_script_dir}}"

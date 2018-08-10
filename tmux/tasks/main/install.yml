@@ -36,7 +36,7 @@
 - name: 'template create tmux.conf'
   template:
     src: "{{file_src_tmux_conf}}"
-    dest: "{{file_path_tmux_conf}}"
+    dest: "{{file_dst_tmux_conf}}"
     mode: "{{file_mode_tmux_conf}}"
     owner: "{{file_owner_tmux_conf}}"
     group: "{{file_group_tmux_conf}}"

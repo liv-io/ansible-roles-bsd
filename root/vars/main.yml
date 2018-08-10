@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # root.dir
-file_path_root_dir: '/root'
+file_dst_root_dir: '/root'
 file_mode_root_dir: "{{root_root_dir_mode if not (root_root_dir_mode == '') else '0700'}}"
 file_owner_root_dir: "{{root_root_dir_owner if not (root_root_dir_owner == '') else 'root'}}"
 file_group_root_dir: "{{root_root_dir_group if not (root_root_dir_group == '') else 'wheel'}}"

@@ -23,7 +23,7 @@
 - name: 'template create motd'
   template:
     src: "{{file_src_motd}}"
-    dest: "{{file_path_motd}}"
+    dest: "{{file_dst_motd}}"
     mode: "{{file_mode_motd}}"
     owner: "{{file_owner_motd}}"
     group: "{{file_group_motd}}"
@@ -36,7 +36,7 @@
     state: 'present'
     line: "#\t{{file_line_motd_patch}} # Ansible: Disable motd-patch"
     regexp: "{{file_regexp_motd_patch}}"
-    dest: "{{file_path_motd_patch}}"
+    dest: "{{file_dst_motd_patch}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - install

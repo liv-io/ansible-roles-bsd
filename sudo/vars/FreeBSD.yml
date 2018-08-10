@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # sudoers
-file_path_sudoers: '/usr/local/etc/sudoers'
+file_dst_sudoers: '/usr/local/etc/sudoers'
 
 # sudoers.d
-file_path_sudoers_d: '/usr/local/etc/sudoers.d'
+file_dst_sudoers_d: '/usr/local/etc/sudoers.d'

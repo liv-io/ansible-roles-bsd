@@ -23,7 +23,7 @@
 - name: 'file remove periodic.conf'
   file:
     state: 'absent'
-    path: "{{file_path_periodic_conf}}"
+    path: "{{file_dst_periodic_conf}}"
   tags:
     - remove
     - periodic

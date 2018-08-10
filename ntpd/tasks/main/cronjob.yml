@@ -81,7 +81,7 @@
     state: 'present'
     line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Disable ntpd"
     regexp: "^{{file_line_ntpd_enable}}="
-    dest: "{{file_path_ntpd_enable}}"
+    dest: "{{file_dst_ntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - cronjob
@@ -90,7 +90,7 @@
 - name: 'template create ntp.conf'
   template:
     src: "{{file_src_ntp_conf}}"
-    dest: "{{file_path_ntp_conf}}"
+    dest: "{{file_dst_ntp_conf}}"
     mode: "{{file_mode_ntp_conf}}"
     owner: "{{file_owner_ntp_conf}}"
     group: "{{file_group_ntp_conf}}"
@@ -101,7 +101,7 @@
 - name: 'template create ntpd_update-time.sh'
   template:
     src: "{{file_src_ntpd_update_time_sh}}"
-    dest: "{{file_path_ntpd_update_time_sh}}"
+    dest: "{{file_dst_ntpd_update_time_sh}}"
     mode: "{{file_mode_ntpd_update_time_sh}}"
     owner: "{{file_owner_ntpd_update_time_sh}}"
     group: "{{file_group_ntpd_update_time_sh}}"
@@ -114,7 +114,7 @@
     state: 'present'
     line: "{{file_line_ntpd_update_time}} # Ansible: ntpd_update-time"
     regexp: "# Ansible: ntpd_update-time$"
-    dest: "{{file_path_ntpd_update_time}}"
+    dest: "{{file_dst_ntpd_update_time}}"
   tags:
     - cronjob
     - ntpd

@@ -25,7 +25,7 @@
     state: "{{'absent' if (item.state is defined) and (item.state is match('false|no|remove')) else 'present'}}"
     line: "{{item.name}}=\"{{item.value}}\" # Ansible: {{item.comment if (item.comment is defined) else ''}}"
     regexp: "^{{item.name}}="
-    dest: "{{item.path if (item.path is defined) and not (item.path == '') else file_path_rc_conf}}"
+    dest: "{{item.path if (item.path is defined) and not (item.path == '') else file_dst_rc_conf}}"
   with_items: "{{openbsd_rc_all + openbsd_rc_group + openbsd_rc_host}}"
   tags:
     - config

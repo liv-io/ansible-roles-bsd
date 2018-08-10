@@ -63,7 +63,7 @@
 - name: 'file remove anchors.conf'
   file:
     state: 'absent'
-    path: "{{file_path_anchors_conf}}"
+    path: "{{file_dst_anchors_conf}}"
   tags:
     - remove
     - openbsd_pf
@@ -71,7 +71,7 @@
 - name: 'file remove filters.conf'
   file:
     state: 'absent'
-    path: "{{file_path_filters_conf}}"
+    path: "{{file_dst_filters_conf}}"
   tags:
     - remove
     - openbsd_pf
@@ -79,7 +79,7 @@
 - name: 'file remove macros.conf'
   file:
     state: 'absent'
-    path: "{{file_path_macros_conf}}"
+    path: "{{file_dst_macros_conf}}"
   tags:
     - remove
     - openbsd_pf
@@ -87,7 +87,7 @@
 - name: 'file remove normalization.conf'
   file:
     state: 'absent'
-    path: "{{file_path_normalization_conf}}"
+    path: "{{file_dst_normalization_conf}}"
   tags:
     - remove
     - openbsd_pf
@@ -95,7 +95,7 @@
 - name: 'file remove options.conf'
   file:
     state: 'absent'
-    path: "{{file_path_options_conf}}"
+    path: "{{file_dst_options_conf}}"
   tags:
     - remove
     - openbsd_pf
@@ -103,7 +103,7 @@
 - name: 'file remove queues.conf'
   file:
     state: 'absent'
-    path: "{{file_path_queues_conf}}"
+    path: "{{file_dst_queues_conf}}"
   tags:
     - remove
     - openbsd_pf
@@ -111,7 +111,7 @@
 - name: 'file remove tables.conf'
   file:
     state: 'absent'
-    path: "{{file_path_tables_conf}}"
+    path: "{{file_dst_tables_conf}}"
   tags:
     - remove
     - openbsd_pf
@@ -119,7 +119,7 @@
 - name: 'file remove pf.conf'
   file:
     state: 'absent'
-    path: "{{file_path_pf_conf}}"
+    path: "{{file_dst_pf_conf}}"
   tags:
     - remove
     - openbsd_pf
@@ -127,7 +127,7 @@
 - name: 'file remove pf.dir'
   file:
     state: 'absent'
-    path: "{{file_path_ntp_script_dir}}"
+    path: "{{file_dst_ntp_script_dir}}"
   tags:
     - remove
     - openbsd_pf

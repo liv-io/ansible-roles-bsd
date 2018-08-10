@@ -5,32 +5,32 @@
 #-------------------------------------------------------------------------------
 
 # common-app.dir
-file_path_common_app_dir: "/{{common_app_dir}}"
+file_dst_common_app_dir: "/{{common_app_dir}}"
 file_mode_common_app_dir: '0755'
 file_owner_common_app_dir: 'root'
 file_group_common_app_dir: 'wheel'
 
 # common-backup.dir
-file_path_common_backup_dir: "/{{common_backup_dir}}"
+file_dst_common_backup_dir: "/{{common_backup_dir}}"
 file_mode_common_backup_dir: '0755'
 file_owner_common_backup_dir: 'root'
 file_group_common_backup_dir: 'wheel'
 
 # common-data.dir
-file_path_common_data_dir: "/{{common_data_dir}}"
+file_dst_common_data_dir: "/{{common_data_dir}}"
 file_mode_common_data_dir: '0755'
 file_owner_common_data_dir: 'root'
 file_group_common_data_dir: 'wheel'
 
 # common-script.dir
-file_path_common_script_dir: "/{{common_script_dir}}"
+file_dst_common_script_dir: "/{{common_script_dir}}"
 file_mode_common_script_dir: '0755'
 file_owner_common_script_dir: 'root'
 file_group_common_script_dir: 'wheel'
 
 # README
 file_src_readme: "templates/main/README.j2"
-file_path_readme: "/README"
+file_dst_readme: "/README"
 file_mode_readme: '0644'
 file_owner_readme: 'root'
 file_group_readme: 'wheel'

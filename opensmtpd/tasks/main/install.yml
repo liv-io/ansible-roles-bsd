@@ -39,7 +39,7 @@
     state: 'present'
     line: "{{file_line_sendmail_enable}}=\"NONE\" # Ansible: Disable sendmail"
     regexp: "^{{file_line_sendmail_enable}}="
-    dest: "{{file_path_sendmail_enable}}"
+    dest: "{{file_dst_sendmail_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - install

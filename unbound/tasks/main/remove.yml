@@ -81,7 +81,7 @@
     state: 'absent'
     line: "{{file_line_unbound_enable}}=\"NO\" # Ansible: Remove unbound"
     regexp: "^{{file_line_unbound_enable}}="
-    dest: "{{file_path_unbound_enable}}"
+    dest: "{{file_dst_unbound_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
@@ -90,7 +90,7 @@
 - name: 'file remove unbound.conf.link'
   file:
     state: 'absent'
-    path: "{{file_path_unbound_conf_link}}"
+    path: "{{file_dst_unbound_conf_link}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
@@ -99,7 +99,7 @@
 - name: 'file remove unbound.conf'
   file:
     state: 'absent'
-    path: "{{file_path_unbound_conf}}"
+    path: "{{file_dst_unbound_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
@@ -108,7 +108,7 @@
 - name: 'file remove root.hints.link'
   file:
     state: 'absent'
-    path: "{{file_path_root_hints_link}}"
+    path: "{{file_dst_root_hints_link}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
@@ -117,7 +117,7 @@
 - name: 'file remove root.hints'
   file:
     state: 'absent'
-    path: "{{file_path_root_hints}}"
+    path: "{{file_dst_root_hints}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove

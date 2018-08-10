@@ -80,7 +80,7 @@
     state: 'absent'
     line: "{{file_line_openntpd_enable}}=\"NO\" # Ansible: Remove openntpd"
     regexp: "^{{file_line_openntpd_enable}}="
-    dest: "{{file_path_openntpd_enable}}"
+    dest: "{{file_dst_openntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
@@ -89,7 +89,7 @@
 - name: 'file remove ntpd.conf'
   file:
     state: 'absent'
-    path: "{{file_path_ntpd_conf}}"
+    path: "{{file_dst_ntpd_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove

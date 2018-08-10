@@ -35,7 +35,7 @@
 - name: 'file create log.dir'
   file:
     state: 'directory'
-    path: "{{file_path_log_dir}}"
+    path: "{{file_dst_log_dir}}"
     mode: "{{file_mode_log_dir}}"
     owner: "{{file_owner_log_dir}}"
     group: "{{file_group_log_dir}}"
@@ -47,7 +47,7 @@
 - name: 'file create vhosts.d'
   file:
     state: 'directory'
-    path: "{{file_path_vhosts_d}}"
+    path: "{{file_dst_vhosts_d}}"
     mode: "{{file_mode_vhosts_d}}"
     owner: "{{file_owner_vhosts_d}}"
     group: "{{file_group_vhosts_d}}"
@@ -57,7 +57,7 @@
 
 - name: 'stat file dhparam.pem'
   stat:
-    path: "{{file_path_dhparam_pem}}"
+    path: "{{file_dst_dhparam_pem}}"
   register: register_dhparam_pem
   tags:
     - install

@@ -35,7 +35,7 @@
 - name: 'file create monit.d'
   file:
     state: 'directory'
-    path: "{{file_path_monit_d}}"
+    path: "{{file_dst_monit_d}}"
     mode: "{{file_mode_monit_d}}"
     owner: "{{file_owner_monit_d}}"
     group: "{{file_group_monit_d}}"

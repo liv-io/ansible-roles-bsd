@@ -5,4 +5,4 @@
 #-------------------------------------------------------------------------------
 
 # rc.conf
-file_path_rc_conf: '/etc/rc.conf.local'
+file_dst_rc_conf: '/etc/rc.conf.local'

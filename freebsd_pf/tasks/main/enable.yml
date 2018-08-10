@@ -23,7 +23,7 @@
 - name: 'template create anchors.conf'
   template:
     src: "{{file_src_anchors_conf}}"
-    dest: "{{file_path_anchors_conf}}"
+    dest: "{{file_dst_anchors_conf}}"
     mode: "{{file_mode_anchors_conf}}"
     owner: "{{file_owner_anchors_conf}}"
     group: "{{file_group_anchors_conf}}"
@@ -37,7 +37,7 @@
 - name: 'template create filters.conf'
   template:
     src: "{{file_src_filters_conf}}"
-    dest: "{{file_path_filters_conf}}"
+    dest: "{{file_dst_filters_conf}}"
     mode: "{{file_mode_filters_conf}}"
     owner: "{{file_owner_filters_conf}}"
     group: "{{file_group_filters_conf}}"
@@ -51,7 +51,7 @@
 - name: 'template create macros.conf'
   template:
     src: "{{file_src_macros_conf}}"
-    dest: "{{file_path_macros_conf}}"
+    dest: "{{file_dst_macros_conf}}"
     mode: "{{file_mode_macros_conf}}"
     owner: "{{file_owner_macros_conf}}"
     group: "{{file_group_macros_conf}}"
@@ -65,7 +65,7 @@
 - name: 'template create normalization.conf'
   template:
     src: "{{file_src_normalization_conf}}"
-    dest: "{{file_path_normalization_conf}}"
+    dest: "{{file_dst_normalization_conf}}"
     mode: "{{file_mode_normalization_conf}}"
     owner: "{{file_owner_normalization_conf}}"
     group: "{{file_group_normalization_conf}}"
@@ -79,7 +79,7 @@
 - name: 'template create options.conf'
   template:
     src: "{{file_src_options_conf}}"
-    dest: "{{file_path_options_conf}}"
+    dest: "{{file_dst_options_conf}}"
     mode: "{{file_mode_options_conf}}"
     owner: "{{file_owner_options_conf}}"
     group: "{{file_group_options_conf}}"
@@ -93,7 +93,7 @@
 - name: 'template create queues.conf'
   template:
     src: "{{file_src_queues_conf}}"
-    dest: "{{file_path_queues_conf}}"
+    dest: "{{file_dst_queues_conf}}"
     mode: "{{file_mode_queues_conf}}"
     owner: "{{file_owner_queues_conf}}"
     group: "{{file_group_queues_conf}}"
@@ -107,7 +107,7 @@
 - name: 'template create tables.conf'
   template:
     src: "{{file_src_tables_conf}}"
-    dest: "{{file_path_tables_conf}}"
+    dest: "{{file_dst_tables_conf}}"
     mode: "{{file_mode_tables_conf}}"
     owner: "{{file_owner_tables_conf}}"
     group: "{{file_group_tables_conf}}"
@@ -121,7 +121,7 @@
 - name: 'template create translations.conf'
   template:
     src: "{{file_src_translations_conf}}"
-    dest: "{{file_path_translations_conf}}"
+    dest: "{{file_dst_translations_conf}}"
     mode: "{{file_mode_translations_conf}}"
     owner: "{{file_owner_translations_conf}}"
     group: "{{file_group_translations_conf}}"
@@ -135,7 +135,7 @@
 - name: 'template create pf.conf'
   template:
     src: "{{file_src_pf_conf}}"
-    dest: "{{file_path_pf_conf}}"
+    dest: "{{file_dst_pf_conf}}"
     mode: "{{file_mode_pf_conf}}"
     owner: "{{file_owner_pf_conf}}"
     group: "{{file_group_pf_conf}}"
@@ -151,7 +151,7 @@
     state: 'present'
     line: "{{file_line_pf_enable}}=\"YES\" # Ansible: Enable pf"
     regexp: "^{{file_line_pf_enable}}="
-    dest: "{{file_path_pf_enable}}"
+    dest: "{{file_dst_pf_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
@@ -162,7 +162,7 @@
     state: 'present'
     line: "{{file_line_gateway_ipv4}}=\"YES\" # Ansible: Enable gateway-ipv4"
     regexp: "^{{file_line_gateway_ipv4}}="
-    dest: "{{file_path_gateway_ipv4}}"
+    dest: "{{file_dst_gateway_ipv4}}"
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
     - enable
@@ -173,7 +173,7 @@
     state: 'present'
     line: "{{file_line_gateway_ipv4}}=\"NO\" # Ansible: Disable gateway-ipv4"
     regexp: "^{{file_line_gateway_ipv4}}="
-    dest: "{{file_path_gateway_ipv4}}"
+    dest: "{{file_dst_gateway_ipv4}}"
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
     - enable
@@ -184,7 +184,7 @@
     state: 'present'
     line: "{{file_line_gateway_ipv6}}=\"YES\" # Ansible: Enable gateway-ipv6"
     regexp: "^{{file_line_gateway_ipv6}}="
-    dest: "{{file_path_gateway_ipv6}}"
+    dest: "{{file_dst_gateway_ipv6}}"
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
     - enable
@@ -195,7 +195,7 @@
     state: 'present'
     line: "{{file_line_gateway_ipv6}}=\"NO\" # Ansible: Disable gateway-ipv6"
     regexp: "^{{file_line_gateway_ipv6}}="
-    dest: "{{file_path_gateway_ipv6}}"
+    dest: "{{file_dst_gateway_ipv6}}"
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
     - enable

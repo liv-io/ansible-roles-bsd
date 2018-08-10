@@ -23,7 +23,7 @@
 - name: 'file create pf.dir'
   file:
     state: 'directory'
-    path: "{{file_path_pf_dir}}"
+    path: "{{file_dst_pf_dir}}"
     mode: "{{file_mode_pf_dir}}"
     owner: "{{file_owner_pf_dir}}"
     group: "{{file_group_pf_dir}}"

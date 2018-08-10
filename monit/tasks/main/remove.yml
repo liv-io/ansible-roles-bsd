@@ -67,7 +67,7 @@
     state: 'absent'
     line: "{{file_line_monit_enable}}=\"NO\" # Ansible: Remove monit"
     regexp: "^{{file_line_monit_enable}}="
-    dest: "{{file_path_monit_enable}}"
+    dest: "{{file_dst_monit_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
@@ -76,7 +76,7 @@
 - name: 'file remove monit.d'
   file:
     state: 'absent'
-    path: "{{file_path_monit_d}}"
+    path: "{{file_dst_monit_d}}"
   tags:
     - remove
     - monit
@@ -84,7 +84,7 @@
 - name: 'file remove monitrc'
   file:
     state: 'absent'
-    path: "{{file_path_monitrc}}"
+    path: "{{file_dst_monitrc}}"
   tags:
     - remove
     - monit

@@ -257,7 +257,7 @@ VersionAddendum {{openssh_version_addendum}}
 {% if (openssh_banner is match('false|no|disable')) %}
 Banner none
 {% else %}
-Banner {{file_path_banner}}
+Banner {{file_dst_banner}}
 {% endif %}
 
 #-------------------------------------------------------------------------------

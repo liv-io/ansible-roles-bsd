@@ -23,7 +23,7 @@
 - name: 'template create aliases'
   template:
     src: "{{file_src_aliases}}"
-    dest: "{{file_path_aliases}}"
+    dest: "{{file_dst_aliases}}"
     mode: "{{file_mode_aliases}}"
     owner: "{{file_owner_aliases}}"
     group: "{{file_group_aliases}}"
@@ -38,7 +38,7 @@
 - name: 'template create smtpd.conf'
   template:
     src: "{{file_src_smtpd_conf}}"
-    dest: "{{file_path_smtpd_conf}}"
+    dest: "{{file_dst_smtpd_conf}}"
     mode: "{{file_mode_smtpd_conf}}"
     owner: "{{file_owner_smtpd_conf}}"
     group: "{{file_group_smtpd_conf}}"
@@ -52,7 +52,7 @@
     state: 'present'
     line: "{{file_line_smtpd_enable}}=\"YES\" # Ansible: Enable opensmtpd"
     regexp: "^{{file_line_smtpd_enable}}="
-    dest: "{{file_path_smtpd_enable}}"
+    dest: "{{file_dst_smtpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable

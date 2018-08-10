@@ -23,7 +23,7 @@
 - name: 'template create root.hints'
   template:
     src: "{{file_src_root_hints}}"
-    dest: "{{file_path_root_hints}}"
+    dest: "{{file_dst_root_hints}}"
     mode: "{{file_mode_root_hints}}"
     owner: "{{file_owner_root_hints}}"
     group: "{{file_group_root_hints}}"
@@ -38,7 +38,7 @@
   file:
     state: 'link'
     src: "{{file_src_root_hints_link}}"
-    path: "{{file_path_root_hints_link}}"
+    path: "{{file_dst_root_hints_link}}"
     owner: "{{file_owner_root_hints_link}}"
     group: "{{file_group_root_hints_link}}"
   notify:
@@ -52,7 +52,7 @@
 - name: 'template create unbound.conf'
   template:
     src: "{{file_src_unbound_conf}}"
-    dest: "{{file_path_unbound_conf}}"
+    dest: "{{file_dst_unbound_conf}}"
     mode: "{{file_mode_unbound_conf}}"
     owner: "{{file_owner_unbound_conf}}"
     group: "{{file_group_unbound_conf}}"
@@ -67,7 +67,7 @@
   file:
     state: 'link'
     src: "{{file_src_unbound_conf_link}}"
-    path: "{{file_path_unbound_conf_link}}"
+    path: "{{file_dst_unbound_conf_link}}"
     owner: "{{file_owner_unbound_conf_link}}"
     group: "{{file_group_unbound_conf_link}}"
   notify:
@@ -83,7 +83,7 @@
     state: 'present'
     line: "{{file_line_unbound_enable}}=\"YES\" # Ansible: Enable unbound"
     regexp: "^{{file_line_unbound_enable}}="
-    dest: "{{file_path_unbound_enable}}"
+    dest: "{{file_dst_unbound_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable

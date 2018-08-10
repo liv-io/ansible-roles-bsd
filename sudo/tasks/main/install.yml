@@ -35,7 +35,7 @@
 - name: 'file create sudoers.d'
   file:
     state: 'directory'
-    path: "{{file_path_sudoers_d}}"
+    path: "{{file_dst_sudoers_d}}"
     mode: "{{file_mode_sudoers_d}}"
     owner: "{{file_owner_sudoers_d}}"
     group: "{{file_group_sudoers_d}}"
@@ -46,7 +46,7 @@
 - name: 'template create sudoers'
   template:
     src: "{{file_src_sudoers}}"
-    dest: "{{file_path_sudoers}}"
+    dest: "{{file_dst_sudoers}}"
     mode: "{{file_mode_sudoers}}"
     owner: "{{file_owner_sudoers}}"
     group: "{{file_group_sudoers}}"

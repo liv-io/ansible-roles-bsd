@@ -27,7 +27,7 @@
     group: "{{file_group_sysctl_conf}}"
     line: "{{item.key}}={{item.value}} # {{item.comment if (item.comment is defined) else ''}}"
     regexp: '^{{item.key}}='
-    dest: "{{file_path_sysctl_conf}}"
+    dest: "{{file_dst_sysctl_conf}}"
   with_items: "{{sysctl_all + sysctl_dependencies + sysctl_group + sysctl_host}}"
   tags:
     - config

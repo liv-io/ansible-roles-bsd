@@ -12,11 +12,11 @@ package_name_nginx: 'nginx'
 #-------------------------------------------------------------------------------
 
 # dhparam.pem
-file_path_dhparam_pem: '/etc/nginx/dhparam.pem'
+file_dst_dhparam_pem: '/etc/nginx/dhparam.pem'
 
 # nginx.conf
 file_src_nginx_conf: "templates/{{ansible_os_family}}/nginx.conf.j2"
-file_path_nginx_conf: '/etc/nginx/nginx.conf'
+file_dst_nginx_conf: '/etc/nginx/nginx.conf'
 file_mode_nginx_conf: '0644'
 file_owner_nginx_conf: 'root'
 file_group_nginx_conf: 'wheel'
@@ -28,7 +28,7 @@ file_owner_vhost: 'root'
 file_group_vhost: 'wheel'
 
 # vhosts.d
-file_path_vhosts_d: "/etc/nginx/{{nginx_vhosts_d}}"
+file_dst_vhosts_d: "/etc/nginx/{{nginx_vhosts_d}}"
 file_mode_vhosts_d: '0755'
 file_owner_vhosts_d: 'root'
 file_group_vhosts_d: 'wheel'
@@ -41,7 +41,7 @@ file_group_vhosts_d: 'wheel'
 command_cmd_check_nginx: 'nginx -t'
 
 # generate dhparam
-command_cmd_generate_dhparam: "openssl dhparam -dsaparam 4096 -out {{file_path_dhparam_pem}}"
+command_cmd_generate_dhparam: "openssl dhparam -dsaparam 4096 -out {{file_dst_dhparam_pem}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM

@@ -23,7 +23,7 @@
 - name: 'template create ntp.conf'
   template:
     src: "{{file_src_ntp_conf}}"
-    dest: "{{file_path_ntp_conf}}"
+    dest: "{{file_dst_ntp_conf}}"
     mode: "{{file_mode_ntp_conf}}"
     owner: "{{file_owner_ntp_conf}}"
     group: "{{file_group_ntp_conf}}"
@@ -34,7 +34,7 @@
 - name: 'file remove ntpd_update-time.sh'
   file:
     state: 'absent'
-    path: "{{file_path_ntpd_update_time_sh}}"
+    path: "{{file_dst_ntpd_update_time_sh}}"
   tags:
     - disable
     - ntpd
@@ -44,7 +44,7 @@
     state: 'absent'
     line: "{{file_line_ntpd_update_time}} # Ansible: ntpd_update-time"
     regexp: "# Ansible: ntpd_update-time$"
-    dest: "{{file_path_ntpd_update_time}}"
+    dest: "{{file_dst_ntpd_update_time}}"
   tags:
     - disable
     - ntpd
@@ -54,7 +54,7 @@
     state: 'present'
     line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Disable ntp"
     regexp: "^{{file_line_ntpd_enable}}="
-    dest: "{{file_path_ntpd_enable}}"
+    dest: "{{file_dst_ntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable

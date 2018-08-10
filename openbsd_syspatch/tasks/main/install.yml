@@ -23,7 +23,7 @@
 - name: 'template create installurl'
   template:
     src: "{{file_src_installurl}}"
-    dest: "{{file_path_installurl}}"
+    dest: "{{file_dst_installurl}}"
     mode: "{{file_mode_installurl}}"
     owner: "{{file_owner_installurl}}"
     group: "{{file_group_installurl}}"

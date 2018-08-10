@@ -23,7 +23,7 @@
 - name: 'file create signify.dir'
   copy:
     src: "{{file_src_signify_dir}}"
-    dest: "{{file_path_signify_dir}}"
+    dest: "{{file_dst_signify_dir}}"
     mode: "{{file_mode_signify_dir}}"
     owner: "{{file_owner_signify_dir}}"
     group: "{{file_group_signify_dir}}"

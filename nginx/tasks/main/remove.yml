@@ -67,7 +67,7 @@
     state: 'absent'
     line: "{{file_line_nginx_enable}}=\"NO\" # Ansible: Remove nginx"
     regexp: "^{{file_line_nginx_enable}}="
-    dest: "{{file_path_nginx_enable}}"
+    dest: "{{file_dst_nginx_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
@@ -76,7 +76,7 @@
 - name: 'file remove nginx.conf'
   file:
     state: 'absent'
-    path: "{{file_path_nginx_conf}}"
+    path: "{{file_dst_nginx_conf}}"
   tags:
     - remove
     - nginx
@@ -84,7 +84,7 @@
 - name: 'file remove dhparam.pem'
   file:
     state: 'absent'
-    path: "{{file_path_dhparam_pem}}"
+    path: "{{file_dst_dhparam_pem}}"
   tags:
     - remove
     - nginx
@@ -92,7 +92,7 @@
 - name: 'file remove log.dir'
   file:
     state: 'absent'
-    path: "{{file_path_log_dir}}"
+    path: "{{file_dst_log_dir}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove
@@ -101,7 +101,7 @@
 - name: 'file remove vhosts.d'
   file:
     state: 'absent'
-    path: "{{file_path_vhosts_d}}"
+    path: "{{file_dst_vhosts_d}}"
   tags:
     - remove
     - nginx

@@ -35,7 +35,7 @@
 - name: 'file remove vimrc'
   file:
     state: 'absent'
-    path: "{{file_path_vimrc}}"
+    path: "{{file_dst_vimrc}}"
   tags:
     - remove
     - vim

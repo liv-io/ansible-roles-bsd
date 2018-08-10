@@ -23,7 +23,7 @@
 - name: 'file create common-app.dir'
   file:
     state: 'directory'
-    path: "{{file_path_common_app_dir}}"
+    path: "{{file_dst_common_app_dir}}"
     mode: "{{file_mode_common_app_dir}}"
     owner: "{{file_owner_common_app_dir}}"
     group: "{{file_group_common_app_dir}}"
@@ -34,7 +34,7 @@
 - name: 'file create common-backup.dir'
   file:
     state: 'directory'
-    path: "{{file_path_common_backup_dir}}"
+    path: "{{file_dst_common_backup_dir}}"
     mode: "{{file_mode_common_backup_dir}}"
     owner: "{{file_owner_common_backup_dir}}"
     group: "{{file_group_common_backup_dir}}"
@@ -45,7 +45,7 @@
 - name: 'file create common-data.dir'
   file:
     state: 'directory'
-    path: "{{file_path_common_data_dir}}"
+    path: "{{file_dst_common_data_dir}}"
     mode: "{{file_mode_common_data_dir}}"
     owner: "{{file_owner_common_data_dir}}"
     group: "{{file_group_common_data_dir}}"
@@ -56,7 +56,7 @@
 - name: 'file create common-script.dir'
   file:
     state: 'directory'
-    path: "{{file_path_common_script_dir}}"
+    path: "{{file_dst_common_script_dir}}"
     mode: "{{file_mode_common_script_dir}}"
     owner: "{{file_owner_common_script_dir}}"
     group: "{{file_group_common_script_dir}}"
@@ -67,7 +67,7 @@
 - name: 'template create README'
   template:
     src: "{{file_src_readme}}"
-    dest: "{{file_path_readme}}"
+    dest: "{{file_dst_readme}}"
     mode: "{{file_mode_readme}}"
     owner: "{{file_owner_readme}}"
     group: "{{file_group_readme}}"

@@ -35,7 +35,7 @@
 - name: 'template create vimrc'
   template:
     src: "{{file_src_vimrc}}"
-    dest: "{{file_path_vimrc}}"
+    dest: "{{file_dst_vimrc}}"
     mode: "{{file_mode_vimrc}}"
     owner: "{{file_owner_vimrc}}"
     group: "{{file_group_vimrc}}"

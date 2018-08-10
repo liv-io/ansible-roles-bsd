@@ -23,7 +23,7 @@
 - name: 'template create ntpd.conf'
   template:
     src: "{{file_src_ntpd_conf}}"
-    dest: "{{file_path_ntpd_conf}}"
+    dest: "{{file_dst_ntpd_conf}}"
     mode: "{{file_mode_ntpd_conf}}"
     owner: "{{file_owner_ntpd_conf}}"
     group: "{{file_group_ntpd_conf}}"
@@ -37,7 +37,7 @@
     state: 'present'
     line: "{{file_line_openntpd_enable}}=\"YES\" # Ansible: Enable openntpd"
     regexp: "^{{file_line_openntpd_enable}}="
-    dest: "{{file_path_openntpd_enable}}"
+    dest: "{{file_dst_openntpd_enable}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable

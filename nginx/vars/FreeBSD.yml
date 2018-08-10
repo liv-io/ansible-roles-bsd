@@ -8,17 +8,17 @@ log_dir: '/var/log/nginx/'
 #-------------------------------------------------------------------------------
 
 # log.dir
-file_path_log_dir: '/var/log/nginx'
+file_dst_log_dir: '/var/log/nginx'
 file_mode_log_dir: '0755'
 file_owner_log_dir: 'root'
 file_group_log_dir: 'wheel'
 
 # nginx.conf
-file_path_nginx_conf: '/usr/local/etc/nginx/nginx.conf'
+file_dst_nginx_conf: '/usr/local/etc/nginx/nginx.conf'
 
 # vhosts.d
-file_path_vhosts_d: "/usr/local/etc/nginx/{{nginx_vhosts_d}}"
+file_dst_vhosts_d: "/usr/local/etc/nginx/{{nginx_vhosts_d}}"
 
 # nginx_enable
 file_line_nginx_enable: 'nginx_enable'
-file_path_nginx_enable: '/etc/rc.conf'
+file_dst_nginx_enable: '/etc/rc.conf'

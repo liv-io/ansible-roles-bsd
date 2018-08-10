@@ -6,7 +6,7 @@
 
 # cron_enable
 file_line_cron_enable: 'cron_enable'
-file_path_cron_enable: '/etc/rc.conf'
+file_dst_cron_enable: '/etc/rc.conf'
 
 #-------------------------------------------------------------------------------
 # SYSTEM

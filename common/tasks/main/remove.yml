@@ -23,7 +23,7 @@
 - name: 'file remove README'
   file:
     state: 'absent'
-    path: "{{file_path_readme}}"
+    path: "{{file_dst_readme}}"
   tags:
     - remove
     - common

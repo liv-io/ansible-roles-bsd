@@ -23,7 +23,7 @@
 - name: 'file create zfs_script.dir'
   file:
     state: 'directory'
-    path: "{{file_path_zfs_script_dir}}"
+    path: "{{file_dst_zfs_script_dir}}"
     mode: "{{file_mode_zfs_script_dir}}"
     owner: "{{file_owner_zfs_script_dir}}"
     group: "{{file_group_zfs_script_dir}}"
@@ -34,7 +34,7 @@
 - name: 'template create zfs_scrub-pools.sh'
   template:
     src: "{{file_src_zfs_scrub_pools_sh}}"
-    dest: "{{file_path_zfs_scrub_pools_sh}}"
+    dest: "{{file_dst_zfs_scrub_pools_sh}}"
     mode: "{{file_mode_zfs_scrub_pools_sh}}"
     owner: "{{file_owner_zfs_scrub_pools_sh}}"
     group: "{{file_group_zfs_scrub_pools_sh}}"
