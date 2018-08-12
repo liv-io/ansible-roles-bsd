@@ -177,7 +177,7 @@ check_script_user
 
 create_lockfile
 
-# Update the system time by polling NTP servers to determine the correct time
+# Update the system time by polling NTP servers
 for ntpd_server in ${ntpd_servers} ; do
   ${ntpd} ${ntpd_server} > /dev/null 2>&1
   if [ $? -eq 0 ]; then
