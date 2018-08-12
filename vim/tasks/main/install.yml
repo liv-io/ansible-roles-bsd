@@ -32,7 +32,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create vimrc'
+- name: 'file create vimrc'
   template:
     src: "{{file_src_vimrc}}"
     dest: "{{file_dst_vimrc}}"

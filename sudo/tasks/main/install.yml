@@ -43,7 +43,7 @@
     - install
     - sudo
 
-- name: 'template create sudoers'
+- name: 'file create sudoers'
   template:
     src: "{{file_src_sudoers}}"
     dest: "{{file_dst_sudoers}}"

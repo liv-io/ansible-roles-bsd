@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create monit-config'
+- name: 'file create monit-config'
   template:
     src: "{{file_src_monit_config}}"
     dest: "{{file_dst_monit_d}}/{{item.name}}.cfg"

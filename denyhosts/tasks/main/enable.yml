@@ -32,7 +32,7 @@
     - enable
     - denyhosts
 
-- name: 'template create allowed-hosts'
+- name: 'file create allowed-hosts'
   template:
     src: "{{file_src_allowed_hosts}}"
     dest: "{{file_dst_allowed_hosts}}"
@@ -44,7 +44,7 @@
     - enable
     - denyhosts
 
-- name: 'template create denyhosts.conf'
+- name: 'file create denyhosts.conf'
   template:
     src: "{{file_src_denyhosts_conf}}"
     dest: "{{file_dst_denyhosts_conf}}"
@@ -56,7 +56,7 @@
     - enable
     - denyhosts
 
-- name: 'template create hosts.allow'
+- name: 'file create hosts.allow'
   template:
     src: "{{file_src_hosts_allow}}"
     dest: "{{file_dst_hosts_allow}}"

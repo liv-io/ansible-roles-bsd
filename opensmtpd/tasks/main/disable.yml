@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create aliases'
+- name: 'file create aliases'
   template:
     src: "{{file_src_aliases}}"
     dest: "{{file_dst_aliases}}"
@@ -31,7 +31,7 @@
     - disable
     - opensmtpd
 
-- name: 'template create smtpd.conf'
+- name: 'file create smtpd.conf'
   template:
     src: "{{file_src_smtpd_conf}}"
     dest: "{{file_dst_smtpd_conf}}"

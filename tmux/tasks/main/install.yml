@@ -33,7 +33,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create tmux.conf'
+- name: 'file create tmux.conf'
   template:
     src: "{{file_src_tmux_conf}}"
     dest: "{{file_dst_tmux_conf}}"

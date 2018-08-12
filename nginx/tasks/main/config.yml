@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create vhost'
+- name: 'file create vhost'
   template:
     src: "{{file_src_vhost}}"
     dest: "{{file_dst_vhosts_d}}/{{item.name}}-{{(item.port|int)}}.conf"

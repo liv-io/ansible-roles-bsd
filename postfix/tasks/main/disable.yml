@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create aliases'
+- name: 'file create aliases'
   template:
     src: "{{file_src_aliases}}"
     dest: "{{file_dst_aliases}}"
@@ -31,7 +31,7 @@
     - disable
     - postfix
 
-- name: 'template create main.cf'
+- name: 'file create main.cf'
   template:
     src: "{{file_src_main_cf}}"
     dest: "{{file_dst_main_cf}}"
@@ -42,7 +42,7 @@
     - disable
     - postfix
 
-- name: 'template create master.cf'
+- name: 'file create master.cf'
   template:
     src: "{{file_src_master_cf}}"
     dest: "{{file_dst_master_cf}}"

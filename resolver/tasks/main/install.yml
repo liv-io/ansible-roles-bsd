@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create resolv.conf'
+- name: 'file create resolv.conf'
   template:
     src: "{{file_src_resolv_conf}}"
     dest: "{{file_dst_resolv_conf}}"

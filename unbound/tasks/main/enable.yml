@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create root.hints'
+- name: 'file create root.hints'
   template:
     src: "{{file_src_root_hints}}"
     dest: "{{file_dst_root_hints}}"
@@ -49,7 +49,7 @@
     - install
     - unbound
 
-- name: 'template create unbound.conf'
+- name: 'file create unbound.conf'
   template:
     src: "{{file_src_unbound_conf}}"
     dest: "{{file_dst_unbound_conf}}"

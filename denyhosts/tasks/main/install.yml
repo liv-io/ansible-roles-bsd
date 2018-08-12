@@ -29,7 +29,7 @@
     - install
     - denyhosts
 
-- name: 'template create hosts.block'
+- name: 'file create hosts.block'
   template:
     src: "{{file_src_hosts_block}}"
     dest: "{{file_dst_hosts_block}}"

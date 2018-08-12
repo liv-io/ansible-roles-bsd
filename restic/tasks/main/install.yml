@@ -97,7 +97,7 @@
     - install
     - restic
 
-- name: 'template create exclude.conf'
+- name: 'file create exclude.conf'
   template:
     src: "{{file_src_exclude_conf}}"
     dest: "{{file_dst_exclude_conf}}"
@@ -108,7 +108,7 @@
     - install
     - restic
 
-- name: 'template create include.conf'
+- name: 'file create include.conf'
   template:
     src: "{{file_src_include_conf}}"
     dest: "{{file_dst_include_conf}}"
@@ -119,7 +119,7 @@
     - install
     - restic
 
-- name: 'template create password.conf'
+- name: 'file create password.conf'
   template:
     src: "{{file_src_password_conf}}"
     dest: "{{file_dst_password_conf}}"
@@ -142,7 +142,7 @@
     - install
     - restic
 
-- name: 'template create restic_run-backup.sh'
+- name: 'file create restic_run-backup.sh'
   template:
     src: "{{file_src_restic_run_backup_sh}}"
     dest: "{{file_dst_restic_run_backup_sh}}"

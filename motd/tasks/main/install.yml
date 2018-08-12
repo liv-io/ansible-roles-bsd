@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create motd'
+- name: 'file create motd'
   template:
     src: "{{file_src_motd}}"
     dest: "{{file_dst_motd}}"

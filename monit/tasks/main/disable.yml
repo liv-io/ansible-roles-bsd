@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create monitrc'
+- name: 'file create monitrc'
   template:
     src: "{{file_src_monitrc}}"
     dest: "{{file_dst_monitrc}}"

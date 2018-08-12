@@ -87,7 +87,7 @@
     - cronjob
     - ntpd
 
-- name: 'template create ntp.conf'
+- name: 'file create ntp.conf'
   template:
     src: "{{file_src_ntp_conf}}"
     dest: "{{file_dst_ntp_conf}}"
@@ -98,7 +98,7 @@
     - cronjob
     - ntpd
 
-- name: 'template create ntpd_update-time.sh'
+- name: 'file create ntpd_update-time.sh'
   template:
     src: "{{file_src_ntpd_update_time_sh}}"
     dest: "{{file_dst_ntpd_update_time_sh}}"

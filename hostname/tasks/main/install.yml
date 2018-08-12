@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create myname'
+- name: 'file create myname'
   template:
     src: "{{file_src_myname}}"
     dest: "{{file_dst_myname}}"

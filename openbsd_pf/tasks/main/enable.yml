@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create anchors.conf'
+- name: 'file create anchors.conf'
   template:
     src: "{{file_src_anchors_conf}}"
     dest: "{{file_dst_anchors_conf}}"
@@ -34,7 +34,7 @@
     - enable
     - openbsd_pf
 
-- name: 'template create filters.conf'
+- name: 'file create filters.conf'
   template:
     src: "{{file_src_filters_conf}}"
     dest: "{{file_dst_filters_conf}}"
@@ -48,7 +48,7 @@
     - enable
     - openbsd_pf
 
-- name: 'template create macros.conf'
+- name: 'file create macros.conf'
   template:
     src: "{{file_src_macros_conf}}"
     dest: "{{file_dst_macros_conf}}"
@@ -62,7 +62,7 @@
     - enable
     - openbsd_pf
 
-- name: 'template create normalization.conf'
+- name: 'file create normalization.conf'
   template:
     src: "{{file_src_normalization_conf}}"
     dest: "{{file_dst_normalization_conf}}"
@@ -76,7 +76,7 @@
     - enable
     - openbsd_pf
 
-- name: 'template create options.conf'
+- name: 'file create options.conf'
   template:
     src: "{{file_src_options_conf}}"
     dest: "{{file_dst_options_conf}}"
@@ -90,7 +90,7 @@
     - enable
     - openbsd_pf
 
-- name: 'template create queues.conf'
+- name: 'file create queues.conf'
   template:
     src: "{{file_src_queues_conf}}"
     dest: "{{file_dst_queues_conf}}"
@@ -104,7 +104,7 @@
     - enable
     - openbsd_pf
 
-- name: 'template create tables.conf'
+- name: 'file create tables.conf'
   template:
     src: "{{file_src_tables_conf}}"
     dest: "{{file_dst_tables_conf}}"
@@ -118,7 +118,7 @@
     - enable
     - openbsd_pf
 
-- name: 'template create pf.conf'
+- name: 'file create pf.conf'
   template:
     src: "{{file_src_pf_conf}}"
     dest: "{{file_dst_pf_conf}}"

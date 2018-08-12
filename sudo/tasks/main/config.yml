@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create sudo-config'
+- name: 'file create sudo-config'
   template:
     src: "{{file_src_sudo_config}}"
     dest: "{{file_dst_sudoers_d}}/{{item.order if (item.order is defined) else ''}}{{'-' if (item.order is defined) else ''}}{{item.name if (item.name is defined) and not (item.name == '') else sudo_name_default}}"

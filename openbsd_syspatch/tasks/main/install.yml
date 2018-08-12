@@ -20,7 +20,7 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'template create installurl'
+- name: 'file create installurl'
   template:
     src: "{{file_src_installurl}}"
     dest: "{{file_dst_installurl}}"

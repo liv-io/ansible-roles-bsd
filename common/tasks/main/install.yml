@@ -64,7 +64,7 @@
     - install
     - common
 
-- name: 'template create README'
+- name: 'file create README'
   template:
     src: "{{file_src_readme}}"
     dest: "{{file_dst_readme}}"

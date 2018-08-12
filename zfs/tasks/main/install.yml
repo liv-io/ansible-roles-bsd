@@ -31,7 +31,7 @@
     - install
     - zfs
 
-- name: 'template create zfs_scrub-pools.sh'
+- name: 'file create zfs_scrub-pools.sh'
   template:
     src: "{{file_src_zfs_scrub_pools_sh}}"
     dest: "{{file_dst_zfs_scrub_pools_sh}}"
