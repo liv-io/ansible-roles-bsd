@@ -27,8 +27,7 @@
     mode: "{{file_mode_myname}}"
     owner: "{{file_owner_myname}}"
     group: "{{file_group_myname}}"
-  notify:
-    - 'command run netstart'
+  notify: 'command run netstart'
   tags:
     - install
     - hostname
