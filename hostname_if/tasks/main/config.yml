@@ -28,8 +28,7 @@
     owner: "{{file_owner_hostname_if}}"
     group: "{{file_group_hostname_if}}"
   with_items: "{{hostname_if_all + hostname_if_dependencies + hostname_if_group + hostname_if_host}}"
-  notify:
-    - 'command run netstart'
+  notify: 'command run netstart'
   when: not (item.state|default('') is match('false|no|remove'))
   tags:
     - config
@@ -40,8 +39,7 @@
     state: 'absent'
     path: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
   with_items: "{{hostname_if_all + hostname_if_dependencies + hostname_if_group + hostname_if_host}}"
-  notify:
-    - 'command run netstart'
+  notify: 'command run netstart'
   when: (item.state|default('') is match('false|no|remove'))
   tags:
     - config
