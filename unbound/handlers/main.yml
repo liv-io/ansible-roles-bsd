@@ -24,11 +24,6 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: 'service start unbound'
-  service:
-    state: 'started'
-    name: "{{service_name_unbound}}"
-
 - name: 'service restart unbound'
   service:
     state: 'restarted'
