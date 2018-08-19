@@ -1,0 +1,97 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - remove
+    - nsd
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status nsd'
+  command: "{{command_cmd_status_nsd}}"
+  register: register_status_nsd
+  changed_when: (register_status_nsd.rc > 1)
+  failed_when: (register_status_nsd.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - nsd
+
+- name: 'command disable nsd'
+  command: "{{command_cmd_disable_nsd}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_nsd.rc == 0)
+  tags:
+    - remove
+    - nsd
+
+- name: 'command check nsd'
+  command: "{{command_cmd_check_nsd}}"
+  register: register_check_nsd
+  changed_when: (register_check_nsd.rc > 1)
+  failed_when: (register_check_nsd.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - nsd
+
+- name: 'command stop nsd'
+  command: "{{command_cmd_stop_nsd}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_nsd.rc == 0)
+  tags:
+    - remove
+    - nsd
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove nsd'
+  package:
+    state: 'absent'
+    name: "{{package_name_nsd}}"
+  register: register_freebsd_nsd
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - remove
+    - nsd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line remove nsd_enable'
+  lineinfile:
+    state: 'absent'
+    line: "{{file_line_nsd_enable}}=\"NO\" # Ansible: Remove nsd"
+    regexp: "^{{file_line_nsd_enable}}="
+    dest: "{{file_dst_nsd_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - remove
+    - nsd
+
+- name: 'file remove nsd.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_nsd_conf}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - remove
+    - nsd

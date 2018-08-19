@@ -1,0 +1,25 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (nsd_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - nsd
+
+- name: 'task include enable'
+  import_tasks: enable.yml
+  when: (nsd_state is match('start|on|enable'))
+  tags:
+    - nsd
+
+- name: 'task include disable'
+  import_tasks: disable.yml
+  when: (nsd_state is match('stop|off|disable'))
+  tags:
+    - nsd
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (nsd_state is match('false|no|remove'))
+  tags:
+    - nsd

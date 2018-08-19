@@ -1,0 +1,31 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - install
+    - nsd
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package install nsd'
+  package:
+    state: 'present'
+    name: "{{package_name_nsd}}"
+  register: register_freebsd_nsd
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - install
+    - nsd

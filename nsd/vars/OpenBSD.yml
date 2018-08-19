@@ -1,0 +1,31 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# nsd.conf
+file_mode_nsd_conf: '0640'
+file_group_nsd_conf: '_nsd'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check nsd
+command_cmd_check_nsd: 'rcctl check nsd'
+
+# disable nsd
+command_cmd_disable_nsd: 'rcctl disable nsd'
+
+# enable nsd
+command_cmd_enable_nsd: 'rcctl enable nsd'
+
+# start nsd
+command_cmd_start_nsd: 'rcctl start nsd'
+
+# status nsd
+command_cmd_status_nsd: 'rcctl get nsd status'
+
+# stop nsd
+command_cmd_stop_nsd: 'rcctl stop nsd'

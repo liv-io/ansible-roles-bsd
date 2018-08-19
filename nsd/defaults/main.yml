@@ -1,0 +1,19 @@
+---
+
+nsd_state: 'enable'
+
+nsd_control_enable: 'false'
+
+nsd_default_port: 53
+
+nsd_hide_version: 'true'
+
+nsd_identity: ''
+
+nsd_interface: []
+
+nsd_ip4_state: 'true'
+
+nsd_ip6_state: 'false'
+
+nsd_version: ''

@@ -1,0 +1,230 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : nsd
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+NSD (Name Server Daemon) is a complete implementation of an authoritative DNS
+nameserver.
+
+For more detailed information on the usage and available configuration options
+please consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: nsd
+    vars:
+      nsd_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+      - role: nsd
+    vars:
+      nsd_state: 'enable'
+
+DISABLE
+  - hosts: all
+    roles:
+      - role: nsd
+    vars:
+      nsd_state: 'disable'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: nsd
+    vars:
+      nsd_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: nsd
+    vars:
+      nsd_state: 'inactive'
+
+--------------------------------------------------------------------------------
+VARIABLES
+--------------------------------------------------------------------------------
+
+ROLE
+  nsd_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+  nsd_control_enable
+    Description: Control the 'nsd_control_enable' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  nsd_default_port
+    Description: Set the 'nsd_default_port' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 53
+    Options    :
+      Examples: 53 | 5300
+
+  nsd_hide_version
+    Description: Control the 'nsd_hide_version' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  nsd_identity
+    Description: Define the 'nsd_identity' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: 'ns' | 'dns'
+
+  nsd_interface
+    Description: Define the 'nsd_interface' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{address: '127.0.0.1', port: '53', comment: 'Localhost'}]
+    Options    :
+      Examples: [{address: '10.1.1.10', port: '53', comment: 'Network'}] |
+                [{address: '0.0.0.0', port: '53', comment: 'Any'}] |
+      None    : []
+
+  nsd_ip4_state
+    Description: Control the 'nsd_ip4_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  nsd_ip6_state
+    Description: Control the 'nsd_ip6_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  nsd_version
+    Description: Define the 'nsd_version' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: '4.0.0' | '4.1.0'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  nsd
+    Version: >= 4.0
+    Name   :
+      FreeBSD 11: 'nsd'
+
+ROLES
+
+VARIABLES
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 2.5
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 11.2-*
+      Status: Development
+
+  OpenBSD
+    Version: 6.3
+      Status: Development
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

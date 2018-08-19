@@ -1,0 +1,132 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : nsd.conf
+# Type   : nsd configuration file
+# Role   : nsd
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+# $OpenBSD: nsd.conf,v 1.11 2015/04/12 11:49:39 sthen Exp $
+
+#-------------------------------------------------------------------------------
+# SERVER
+#-------------------------------------------------------------------------------
+
+server:
+	verbosity: 1
+	database: "" # disable database
+
+        #-----------------------------------------------------------------------
+        # INTERFACE
+        #-----------------------------------------------------------------------
+
+{% if (nsd_interface is defined) and not (nsd_interface == []) %}
+{% for interface in nsd_interface %}
+{% if (interface.comment is defined) %}
+        # {{interface.comment}}
+{% endif %}
+        interface: {{interface.address}}{% if (interface.port is defined) %}@{{interface.port|int(53)}}{% endif %}
+
+{% endfor %}
+{% else %}
+        interface: 127.0.0.1
+{% endif %}
+
+        #-----------------------------------------------------------------------
+        # PORT
+        #-----------------------------------------------------------------------
+
+{% if not (nsd_default_port == '') %}
+        port: {{(nsd_default_port|int(53))}}
+{% endif %}
+
+        #-----------------------------------------------------------------------
+        # INTERNET-PROTOCOL
+        #-----------------------------------------------------------------------
+
+{% if (nsd_ip4_state is match('false|no|disable')) %}
+        do-ip4: no
+{% else %}
+        do-ip4: yes
+{% endif %}
+{% if (nsd_ip6_state is match('true|yes|enable')) %}
+        do-ip6: yes
+{% else %}
+        do-ip6: no
+{% endif %}
+
+        #-----------------------------------------------------------------------
+        # IDENTITY
+        #-----------------------------------------------------------------------
+
+{% if (nsd_hide_version is match('false|no|disable')) %}
+        hide-version: no
+{% else %}
+        hide-version: yes
+{% endif %}
+
+{% if not (nsd_version == '') %}
+        version: "{{nsd_version}}"
+{% endif %}
+
+{% if not (nsd_identity == '') %}
+        identity: "{{nsd_identity}}"
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# REMOTE CONTROL
+#-------------------------------------------------------------------------------
+
+remote-control:
+{% if (nsd_control_enable is match('true|yes|enable')) %}
+        control-enable: yes
+{% else %}
+        control-enable: no
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# KEY
+#-------------------------------------------------------------------------------
+
+## tsig key example
+#key:
+#	name: "tsig1.example.com."
+#	algorithm: hmac-sha256
+#	secret: "bWVrbWl0YXNkaWdvYXQ="
+
+#-------------------------------------------------------------------------------
+# ZONE
+#-------------------------------------------------------------------------------
+
+## master zone example
+#zone:
+#	name: "example.com"
+#	zonefile: "master/example.com"
+#	notify: 192.0.2.1 NOKEY
+#	provide-xfr: 192.0.2.1 NOKEY
+
+## slave zone example
+#zone:
+#	name: "example.net"
+#	zonefile: "slave/example.net"
+#	allow-notify: 192.0.2.2 tsig1.example.com.
+#	request-xfr: 192.0.2.2 tsig1.example.com.
+
+## dynamically configured zones, used with "nsd-control addzone/delzone".
+## filenames are constructed using the pattern: %s - zone name.
+## %1 - first character of zone name, %2 second, ## %3 third.
+## %z - topleveldomain label of zone, %y, %x next labels in name.
+#pattern:
+#	name: "master"
+#	zonefile: "master/%s.zone"
+#	notify: 192.0.2.1 NOKEY
+#	provide-xfr: 192.0.2.1 NOKEY
