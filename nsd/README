@@ -63,6 +63,7 @@ CONFIG
   vars:
     nsd_zone:
       - name: 'example.com'
+        state: 'true'
         comment: 'example.com zone'
         ttl: 86400
         origin: 'example.com'
@@ -93,22 +94,23 @@ CONFIG
           - {name: 'review', type: 'CNAME', value: 'app02'}
           - {name: 'ticket', type: 'CNAME', value: 'app03'}
 
-      - name: 'example.internal'
-        comment: 'example.internal zone'
+      - name: 'example.org'
+        state: 'true'
+        comment: 'example.org zone'
         ttl: '1d'
-        origin: 'example.internal'
-        soa_mname: 'ns01.example.internal'
-        soa_rname: 'admin.example.internal'
+        origin: 'example.org'
+        soa_mname: 'ns01.example.org'
+        soa_rname: 'admin.example.org'
         soa_serial: '2018080801'
         soa_refresh: '4h'
         soa_retry: '30m'
         soa_expire: '2w'
         soa_ttl: '1h'
         records:
-          - {name: '@', type: 'NS', value: 'ns01.example.internal.'}
-          - {name: '@', type: 'NS', value: 'ns02.example.internal.'}
-          - {name: '@', type: 'MX', value: 'mail01.example.internal.', priority: '10'}
-          - {name: '@', type: 'MX', value: 'mail02.example.internal.', priority: '20'}
+          - {name: '@', type: 'NS', value: 'ns01.example.org.'}
+          - {name: '@', type: 'NS', value: 'ns02.example.org.'}
+          - {name: '@', type: 'MX', value: 'mail01.example.org.', priority: '10'}
+          - {name: '@', type: 'MX', value: 'mail02.example.org.', priority: '20'}
           - {name: '@', type: 'A', value: '192.168.1.15'}
           - {name: '@', type: 'A', value: '192.168.1.16'}
           - {name: 'ns01', type: 'A', value: '192.168.1.11'}
