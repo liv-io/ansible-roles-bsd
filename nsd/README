@@ -35,6 +35,7 @@ ENABLE
       - role: nsd
     vars:
       nsd_state: 'enable'
+      nsd_default_port: 5300
 
 DISABLE
   - hosts: all
@@ -42,6 +43,7 @@ DISABLE
       - role: nsd
     vars:
       nsd_state: 'disable'
+      nsd_default_port: 5300
 
 REMOVE
   - hosts: all
@@ -56,6 +58,71 @@ INACTIVE
       - role: nsd
     vars:
       nsd_state: 'inactive'
+
+CONFIG
+  vars:
+    nsd_zone:
+      - name: 'example.com'
+        comment: 'example.com zone'
+        ttl: 86400
+        origin: 'example.com'
+        soa_mname: 'ns01.example.com'
+        soa_rname: 'admin.example.com'
+        soa_serial: '2018080801'
+        soa_refresh: '14400'
+        soa_retry: '1800'
+        soa_expire: '1209600'
+        soa_ttl: '3600'
+        records:
+          - {name: '@', type: 'NS', value: 'ns01.example.com.'}
+          - {name: '@', type: 'NS', value: 'ns02.example.com.'}
+          - {name: '@', type: 'MX', value: 'mail01.example.com.', priority: '10'}
+          - {name: '@', type: 'MX', value: 'mail02.example.com.', priority: '20'}
+          - {name: '@', type: 'A', value: '10.1.1.15'}
+          - {name: '@', type: 'A', value: '10.1.1.16'}
+          - {name: 'ns01', type: 'A', value: '10.1.1.11'}
+          - {name: 'ns02', type: 'A', value: '10.1.1.12'}
+          - {name: 'mail01', type: 'A', value: '10.1.1.13'}
+          - {name: 'mail02', type: 'A', value: '10.1.1.14'}
+          - {name: 'web01', type: 'A', value: '10.1.1.15'}
+          - {name: 'web02', type: 'A', value: '10.1.1.16'}
+          - {name: 'app01', type: 'A', value: '10.1.1.17'}
+          - {name: 'app02', type: 'A', value: '10.1.1.18'}
+          - {name: 'app03', type: 'A', value: '10.1.1.19'}
+          - {name: 'code', type: 'CNAME', value: 'app01'}
+          - {name: 'review', type: 'CNAME', value: 'app02'}
+          - {name: 'ticket', type: 'CNAME', value: 'app03'}
+
+      - name: 'example.internal'
+        comment: 'example.internal zone'
+        ttl: '1d'
+        origin: 'example.internal'
+        soa_mname: 'ns01.example.internal'
+        soa_rname: 'admin.example.internal'
+        soa_serial: '2018080801'
+        soa_refresh: '4h'
+        soa_retry: '30m'
+        soa_expire: '2w'
+        soa_ttl: '1h'
+        records:
+          - {name: '@', type: 'NS', value: 'ns01.example.internal.'}
+          - {name: '@', type: 'NS', value: 'ns02.example.internal.'}
+          - {name: '@', type: 'MX', value: 'mail01.example.internal.', priority: '10'}
+          - {name: '@', type: 'MX', value: 'mail02.example.internal.', priority: '20'}
+          - {name: '@', type: 'A', value: '192.168.1.15'}
+          - {name: '@', type: 'A', value: '192.168.1.16'}
+          - {name: 'ns01', type: 'A', value: '192.168.1.11'}
+          - {name: 'ns02', type: 'A', value: '192.168.1.12'}
+          - {name: 'mail01', type: 'A', value: '192.168.1.13'}
+          - {name: 'mail02', type: 'A', value: '192.168.1.14'}
+          - {name: 'web01', type: 'A', value: '192.168.1.15'}
+          - {name: 'web02', type: 'A', value: '192.168.1.16'}
+          - {name: 'app01', type: 'A', value: '192.168.1.17'}
+          - {name: 'app02', type: 'A', value: '192.168.1.18'}
+          - {name: 'app03', type: 'A', value: '192.168.1.19'}
+          - {name: 'code', type: 'CNAME', value: 'app01'}
+          - {name: 'review', type: 'CNAME', value: 'app02'}
+          - {name: 'ticket', type: 'CNAME', value: 'app03'}
 
 --------------------------------------------------------------------------------
 VARIABLES
@@ -162,6 +229,39 @@ ROLE
     Options    :
       Examples: '4.0.0' | '4.1.0'
 
+  nsd_zone
+    Description: Define the 'nsd_zone' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: [{name: 'example.com', comment: 'example.com zone',
+                  ttl: 86400, origin: 'example.com',
+                  soa_mname: 'ns01.example.com', soa_rname: 'admin.example.com',
+                  soa_serial: '2018080801', soa_refresh: '14400',
+                  soa_retry: '1800', soa_expire: '1209600', soa_ttl: '3600',
+                  records: [{name: '@', type: 'NS', value: 'ns01.example.com.'},
+                            {name: '@', type: 'NS', value: 'ns02.example.com.'},
+                            {name: '@', type: 'MX', value: 'mail01.example.com.', priority: '10'},
+                            {name: '@', type: 'MX', value: 'mail02.example.com.', priority: '20'},
+                            {name: '@', type: 'A', value: '10.1.1.15'},
+                            {name: '@', type: 'A', value: '10.1.1.16'},
+                            {name: 'ns01', type: 'A', value: '10.1.1.11'},
+                            {name: 'ns02', type: 'A', value: '10.1.1.12'},
+                            {name: 'mail01', type: 'A', value: '10.1.1.13'},
+                            {name: 'mail02', type: 'A', value: '10.1.1.14'},
+                            {name: 'web01', type: 'A', value: '10.1.1.15'},
+                            {name: 'web02', type: 'A', value: '10.1.1.16'},
+                            {name: 'app01', type: 'A', value: '10.1.1.17'},
+                            {name: 'app02', type: 'A', value: '10.1.1.18'},
+                            {name: 'app03', type: 'A', value: '10.1.1.19'},
+                            {name: 'code', type: 'CNAME', value: 'app01'},
+                            {name: 'review', type: 'CNAME', value: 'app02'},
+                            {name: 'ticket', type: 'CNAME', value: 'app03'}]}]
+      None    : []
+
 --------------------------------------------------------------------------------
 CONFLICTS
 --------------------------------------------------------------------------------
@@ -219,11 +319,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.2-*
-      Status: Development
+      Status: Testing
 
   OpenBSD
     Version: 6.3
-      Status: Development
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER

@@ -107,26 +107,16 @@ remote-control:
 # ZONE
 #-------------------------------------------------------------------------------
 
-## master zone example
-#zone:
-#	name: "example.com"
-#	zonefile: "master/example.com"
-#	notify: 192.0.2.1 NOKEY
-#	provide-xfr: 192.0.2.1 NOKEY
+{% if (nsd_zone is defined) and not (nsd_zone == []) %}
+{% for zone in nsd_zone %}
+{% if not (zone.state|default('') is match('false|no|disable')) %}
+zone:
+{% if (zone.comment is defined) %}
+        # {{zone.comment}}
+{% endif %}
+        name: "{{zone.name}}"
+        zonefile: "{{file_dst_zone_config_zone}}/{{zone.name}}.zone"
+{% endif %}
+{% endfor %}
 
-## slave zone example
-#zone:
-#	name: "example.net"
-#	zonefile: "slave/example.net"
-#	allow-notify: 192.0.2.2 tsig1.example.com.
-#	request-xfr: 192.0.2.2 tsig1.example.com.
-
-## dynamically configured zones, used with "nsd-control addzone/delzone".
-## filenames are constructed using the pattern: %s - zone name.
-## %1 - first character of zone name, %2 second, ## %3 third.
-## %z - topleveldomain label of zone, %y, %x next labels in name.
-#pattern:
-#	name: "master"
-#	zonefile: "master/%s.zone"
-#	notify: 192.0.2.1 NOKEY
-#	provide-xfr: 192.0.2.1 NOKEY
+{% endif %}

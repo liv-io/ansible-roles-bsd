@@ -365,29 +365,16 @@ remote-control:
 # ZONE
 #-------------------------------------------------------------------------------
 
-# Fixed zone entries.  Here you can config zones that cannot be deleted.
-# Zones that are dynamically added and deleted are put in the zonelist file.
-#
-# zone:
- 	# name: "example.com"
- 	# you can give a pattern here, all the settings from that pattern
- 	# are then inserted at this point
- 	# include-pattern: "master"
- 	# You can also specify (additional) options directly for this zone.
- 	# zonefile: "example.com.zone"
- 	# request-xfr: 192.0.2.1 example.com.key
+{% if (nsd_zone is defined) and not (nsd_zone == []) %}
+{% for zone in nsd_zone %}
+{% if not (zone.state|default('') is match('false|no|disable')) %}
+zone:
+{% if (zone.comment is defined) %}
+        # {{zone.comment}}
+{% endif %}
+        name: "{{zone.name}}"
+        zonefile: "{{file_dst_zone_config_zone}}/{{zone.name}}.zone"
+{% endif %}
+{% endfor %}
 
-	# RRLconfig
-	# Response Rate Limiting, whitelist types
-	# rrl-whitelist: nxdomain
-	# rrl-whitelist: error
-	# rrl-whitelist: referral
-	# rrl-whitelist: any
-	# rrl-whitelist: rrsig
-	# rrl-whitelist: wildcard
-	# rrl-whitelist: nodata
-	# rrl-whitelist: dnskey
-	# rrl-whitelist: positive
-	# rrl-whitelist: all
-	# RRLend
-
+{% endif %}

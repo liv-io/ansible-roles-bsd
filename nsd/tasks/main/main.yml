@@ -6,6 +6,12 @@
   tags:
     - nsd
 
+- name: 'task include config'
+  import_tasks: config.yml
+  when: not (nsd_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - nsd
+
 - name: 'task include enable'
   import_tasks: enable.yml
   when: (nsd_state is match('start|on|enable'))

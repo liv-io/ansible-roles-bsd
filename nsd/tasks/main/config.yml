@@ -1,0 +1,50 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - config
+    - nsd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create zone-config.zone'
+  template:
+    src: "{{file_src_zone_config_zone}}"
+    dest: "{{file_dst_zone_config_zone}}/{{item.name}}.zone"
+    mode: "{{file_mode_zone_config_zone}}"
+    owner: "{{file_owner_zone_config_zone}}"
+    group: "{{file_group_zone_config_zone}}"
+  with_items: "{{nsd_zone}}"
+  notify:
+    - 'command nsd-checkconf'
+    - 'service restart nsd'
+  when: not (item.state|default('') is match('false|no|remove'))
+  tags:
+    - config
+    - nsd
+
+- name: 'file remove zone-config.zone'
+  file:
+    state: 'absent'
+    path: "{{file_dst_zone_config_zone}}/{{item.name}}.zone"
+  with_items: "{{nsd_zone}}"
+  notify:
+    - 'command nsd-checkconf'
+    - 'service restart nsd'
+  when: (item.state|default('') is match('false|no|remove'))
+  tags:
+    - config
+    - nsd
