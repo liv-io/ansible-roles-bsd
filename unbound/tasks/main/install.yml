@@ -24,7 +24,6 @@
   package:
     state: 'present'
     name: "{{package_name_unbound}}"
-  register: register_freebsd_unbound
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - install

@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.5.1 (2018-08-20)
+B: Remove needless 'register' parameter
+
 * Version 0.5.0 (2018-08-20)
 F: Add support for 'do-not-query-localhost' option (unbound_do_not_query_localhost)
 I: Improve documentation
