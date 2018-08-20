@@ -87,11 +87,7 @@ server:
 #-------------------------------------------------------------------------------
 
 remote-control:
-{% if (nsd_control_enable is match('true|yes|enable')) %}
         control-enable: yes
-{% else %}
-        control-enable: no
-{% endif %}
 
 #-------------------------------------------------------------------------------
 # KEY
@@ -117,6 +113,7 @@ zone:
         name: "{{zone.name}}"
         zonefile: "{{file_dst_zone_config_zone}}/{{zone.name}}.zone"
 {% endif %}
+
 {% endfor %}
 
 {% endif %}

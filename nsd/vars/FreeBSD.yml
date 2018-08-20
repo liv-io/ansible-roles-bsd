@@ -11,6 +11,9 @@ file_dst_nsd_conf: '/usr/local/etc/nsd/nsd.conf'
 file_line_nsd_enable: 'nsd_enable'
 file_dst_nsd_enable: '/etc/rc.conf'
 
+# zone-config.zone
+file_dst_zone_config_zone: '/usr/local/etc/nsd'
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------

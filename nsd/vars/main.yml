@@ -20,7 +20,7 @@ file_group_nsd_conf: 'wheel'
 
 # zone-config.zone
 file_src_zone_config_zone: "templates/main/zone-config.zone.j2"
-file_dst_zone_config_zone: '/usr/local/etc/nsd'
+file_dst_zone_config_zone: '/var/nsd/zones/master'
 file_mode_zone_config_zone: '0644'
 file_owner_zone_config_zone: 'root'
 file_group_zone_config_zone: 'wheel'

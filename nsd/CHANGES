@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.1 (2018-08-20)
+B: Correct 'zone-config.zone' destination path on OpenBSD
+B: Remove 'nsd_control_enable' option on OpenBSD (rcctl requires 'control-enable: yes')
+
 * Version 0.2.0 (2018-08-20)
 F: Add support for 'zone' option (nsd_zone)
 
