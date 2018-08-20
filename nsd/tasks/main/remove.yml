@@ -66,7 +66,6 @@
   package:
     state: 'absent'
     name: "{{package_name_nsd}}"
-  register: register_freebsd_nsd
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove

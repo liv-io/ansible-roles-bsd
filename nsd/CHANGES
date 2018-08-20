@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.2 (2018-08-20)
+B: Remove needless 'register' parameter
+
 * Version 0.2.1 (2018-08-20)
 B: Correct 'zone-config.zone' destination path on OpenBSD
 B: Remove 'nsd_control_enable' option on OpenBSD (rcctl requires 'control-enable: yes')
