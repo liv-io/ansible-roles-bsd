@@ -557,7 +557,11 @@ server:
 
 	# if yes, the above default do-not-query-address entries are present.
 	# if no, localhost can be queried (for testing and debugging).
-	# do-not-query-localhost: yes
+{% if (unbound_do_not_query_localhost is match('false|no|disable')) %}
+        do-not-query-localhost: no
+{% else %}
+        do-not-query-localhost: yes
+{% endif %}
 
 	# if yes, perform prefetching of almost expired message cache entries.
 	# prefetch: no

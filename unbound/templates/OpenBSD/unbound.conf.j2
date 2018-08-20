@@ -172,6 +172,14 @@ server:
 	harden-short-bufsize: no
 {% endif %}
 
+        #-----------------------------------------------------------------------
+
+{% if (unbound_do_not_query_localhost is match('false|no|disable')) %}
+        do-not-query-localhost: no
+{% else %}
+        do-not-query-localhost: yes
+{% endif %}
+
 	#-----------------------------------------------------------------------
 	# ACCESS-CONTROL
 	#-----------------------------------------------------------------------

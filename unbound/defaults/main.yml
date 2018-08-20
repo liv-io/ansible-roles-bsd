@@ -10,6 +10,8 @@ unbound_control_enable: 'false'
 
 unbound_default_port: 53
 
+unbound_do_not_query_localhost: 'true'
+
 unbound_harden_algo_downgrade: 'false'
 
 unbound_harden_below_nxdomain: 'false'

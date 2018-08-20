@@ -36,6 +36,10 @@ ENABLE
       - role: unbound
     vars:
       unbound_state: 'enable'
+      unbound_do_not_query_localhost: 'no'
+      unbound_stub_zone:
+       - {name: 'example.com', address: '127.0.0.1', port: '5300', comment: 'example.com'}
+       - {name: 'example.org', address: '127.0.0.1', port: '5300', comment: 'example.org'}
 
 DISABLE
   - hosts: all
@@ -43,6 +47,10 @@ DISABLE
       - role: unbound
     vars:
       unbound_state: 'disable'
+      unbound_do_not_query_localhost: 'no'
+      unbound_stub_zone:
+       - {name: 'example.com', address: '127.0.0.1', port: '5300', comment: 'example.com'}
+       - {name: 'example.org', address: '127.0.0.1', port: '5300', comment: 'example.org'}
 
 REMOVE
   - hosts: all
@@ -113,6 +121,17 @@ ROLE
     Default    : 53
     Options    :
       Examples: 53 | 5300
+
+  unbound_do_not_query_localhost
+    Description: Control the 'unbound_do_not_query_localhost' option.
+    Implemented: 0.5
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   unbound_harden_algo_downgrade
     Description: Control the 'unbound_harden_algo_downgrade' option.
