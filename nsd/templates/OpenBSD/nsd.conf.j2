@@ -74,12 +74,16 @@ server:
         hide-version: yes
 {% endif %}
 
-{% if not (nsd_version == '') %}
-        version: "{{nsd_version}}"
-{% endif %}
-
 {% if not (nsd_identity == '') %}
         identity: "{{nsd_identity}}"
+{% endif %}
+
+        #-----------------------------------------------------------------------
+        # VERSION
+        #-----------------------------------------------------------------------
+
+{% if not (nsd_version == '') %}
+        version: "{{nsd_version}}"
 {% endif %}
 
 #-------------------------------------------------------------------------------

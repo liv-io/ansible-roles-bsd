@@ -130,7 +130,7 @@ server:
 	# xfrdir: "/tmp"
 
         #-----------------------------------------------------------------------
-        # IDENTITY
+        # VERSION
         #-----------------------------------------------------------------------
 
 	# don't answer VERSION.BIND and VERSION.SERVER CHAOS class queries
@@ -145,6 +145,10 @@ server:
 {% if not (nsd_version == '') %}
         version: "{{nsd_version}}"
 {% endif %}
+
+        #-----------------------------------------------------------------------
+        # IDENTITY
+        #-----------------------------------------------------------------------
 
 	# identify the server (CH TXT ID.SERVER entry).
 {% if not (nsd_identity == '') %}
