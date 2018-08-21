@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.3 (2018-08-21)
+B: Correct comment symbol in zone file
+I: Improve spacing in zone file (replace white spaces with tabs)
+
 * Version 0.2.2 (2018-08-20)
 B: Remove needless 'register' parameter
 
