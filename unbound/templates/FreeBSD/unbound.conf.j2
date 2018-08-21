@@ -414,16 +414,20 @@ server:
         hide-identity: yes
 {% endif %}
 
-	# enable to not answer version.server and version.bind queries.
+	# the identity to report. Leave "" or default to return hostname.
+{% if not (unbound_identity == '') %}
+        identity: "{{unbound_identity}}"
+{% endif %}
+
+        #-----------------------------------------------------------------------
+        # VERSION
+        #-----------------------------------------------------------------------
+
+        # enable to not answer version.server and version.bind queries.
 {% if (unbound_hide_version is match('false|no|disable')) %}
         hide-version: no
 {% else %}
         hide-version: yes
-{% endif %}
-
-	# the identity to report. Leave "" or default to return hostname.
-{% if not (unbound_identity == '') %}
-        identity: "{{unbound_identity}}"
 {% endif %}
 
 	# the version to report. Leave "" or default to return package version.
