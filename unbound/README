@@ -16,6 +16,9 @@ Unbound is designed as a set of modular components, so that also DNSSEC (secure
 DNS) validation and stub-resolvers (that do not run as a server, but are linked
 into an application) are easily possible.
 
+The root name server information is updated on a regular basis. Source:
+https://www.internic.net/domain/named.root
+
 For more detailed information on the usage and available configuration options
 please consult the following sections.
 
