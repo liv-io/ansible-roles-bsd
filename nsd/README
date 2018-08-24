@@ -184,6 +184,7 @@ ROLE
     Default    : ''
     Options    :
       Examples: 'ns' | 'dns'
+      None    : ''
 
   nsd_interface
     Description: Define the 'nsd_interface' option.
@@ -228,6 +229,7 @@ ROLE
     Default    : ''
     Options    :
       Examples: '4.0.0' | '4.1.0'
+      None    : ''
 
   nsd_zone
     Description: Define the 'nsd_zone' option.
