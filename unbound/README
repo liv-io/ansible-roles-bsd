@@ -255,6 +255,7 @@ ROLE
     Default    : ''
     Options    :
       Examples: 'ns' | 'dns'
+      None    : ''
 
   unbound_interface
     Description: Define the 'unbound_interface' option.
@@ -376,6 +377,7 @@ ROLE
     Default    : ''
     Options    :
       Examples: '1.6.8' | '1.7.0'
+      None    : ''
 
 --------------------------------------------------------------------------------
 CONFLICTS
