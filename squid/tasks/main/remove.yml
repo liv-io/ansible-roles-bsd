@@ -1,0 +1,94 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - remove
+    - squid
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status squid'
+  command: "{{command_cmd_status_squid}}"
+  register: register_status_squid
+  changed_when: (register_status_squid.rc > 1)
+  failed_when: (register_status_squid.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - squid
+
+- name: 'command disable squid'
+  command: "{{command_cmd_disable_squid}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_squid.rc == 0)
+  tags:
+    - remove
+    - squid
+
+- name: 'command check squid'
+  command: "{{command_cmd_check_squid}}"
+  register: register_check_squid
+  changed_when: (register_check_squid.rc > 1)
+  failed_when: (register_check_squid.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - squid
+
+- name: 'command stop squid'
+  command: "{{command_cmd_stop_squid}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_squid.rc == 0)
+  tags:
+    - remove
+    - squid
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove squid'
+  package:
+    state: 'absent'
+    name: "{{package_name_squid}}"
+  tags:
+    - remove
+    - squid
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line remove squid_enable'
+  lineinfile:
+    state: 'absent'
+    line: "{{file_line_squid_enable}}=\"NO\" # Ansible: Remove squid"
+    regexp: "^{{file_line_squid_enable}}="
+    dest: "{{file_dst_squid_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - remove
+    - squid
+
+- name: 'file remove squid.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_squid_conf}}"
+  tags:
+    - remove
+    - squid

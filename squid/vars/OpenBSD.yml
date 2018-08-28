@@ -1,0 +1,23 @@
+---
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check squid
+command_cmd_check_squid: 'rcctl check squid'
+
+# disable squid
+command_cmd_disable_squid: 'rcctl disable squid'
+
+# enable squid
+command_cmd_enable_squid: 'rcctl enable squid'
+
+# start squid
+command_cmd_start_squid: 'rcctl start squid'
+
+# status squid
+command_cmd_status_squid: 'rcctl get squid status'
+
+# stop squid
+command_cmd_stop_squid: 'rcctl stop squid'

@@ -1,0 +1,101 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - enable
+    - squid
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create squid.conf'
+  template:
+    src: "{{file_src_squid_conf}}"
+    dest: "{{file_dst_squid_conf}}"
+    mode: "{{file_mode_squid_conf}}"
+    owner: "{{file_owner_squid_conf}}"
+    group: "{{file_group_squid_conf}}"
+  notify:
+    - 'command squid-parse'
+    - 'service restart squid'
+  tags:
+    - enable
+    - squid
+
+- name: 'line enable squid_enable'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_squid_enable}}=\"YES\" # Ansible: Enable squid"
+    regexp: "^{{file_line_squid_enable}}="
+    dest: "{{file_dst_squid_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - enable
+    - squid
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status squid'
+  command: "{{command_cmd_status_squid}}"
+  register: register_status_squid
+  changed_when: (register_status_squid.rc > 1)
+  failed_when: (register_status_squid.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - enable
+    - squid
+
+- name: 'command enable squid'
+  command: "{{command_cmd_enable_squid}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_squid.rc == 1)
+  tags:
+    - enable
+    - squid
+
+- name: 'command check squid'
+  command: "{{command_cmd_check_squid}}"
+  register: register_check_squid
+  changed_when: (register_check_squid.rc > 1)
+  failed_when: (register_check_squid.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - enable
+    - squid
+
+- name: 'command start squid'
+  command: "{{command_cmd_start_squid}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_squid.rc == 1)
+  tags:
+    - enable
+    - squid
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start squid'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_squid}}"
+  tags:
+    - enable
+    - squid

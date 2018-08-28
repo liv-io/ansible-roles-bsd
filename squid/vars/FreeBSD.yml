@@ -1,0 +1,12 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# squid.conf
+file_dst_squid_conf: '/usr/local/etc/squid/squid.conf'
+
+# squid_enable
+file_line_squid_enable: 'squid_enable'
+file_dst_squid_enable: '/etc/rc.conf'

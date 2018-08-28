@@ -1,0 +1,25 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (squid_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - squid
+
+- name: 'task include enable'
+  import_tasks: enable.yml
+  when: (squid_state is match('start|on|enable'))
+  tags:
+    - squid
+
+- name: 'task include disable'
+  import_tasks: disable.yml
+  when: (squid_state is match('stop|off|disable'))
+  tags:
+    - squid
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (squid_state is match('false|no|remove'))
+  tags:
+    - squid
