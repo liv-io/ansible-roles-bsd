@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.2 (2018-08-28)
+I: Ensure user's home directory is being removed during remove sequence
+
 * Version 0.1.1 (2018-07-21)
 B: Fix remove tags
 
