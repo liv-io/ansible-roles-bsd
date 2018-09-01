@@ -1,0 +1,24 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : src_network_unrestricted.acl
+# Type   : Squid access control list
+# Role   : squid
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+{% for network_unrestricted in squid_network_unrestricted|default([]) %}
+{% if (network_unrestricted.comment is defined) and not (network_unrestricted.comment == '') %}
+# {{network_unrestricted.comment}}
+{% endif %}
+{{network_unrestricted.name}}
+
+{% endfor %}

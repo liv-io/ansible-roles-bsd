@@ -20,6 +20,76 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: 'file create dst_domain_allowed.acl'
+  template:
+    src: "{{file_src_dst_domain_allowed_acl}}"
+    dest: "{{file_dst_dst_domain_allowed_acl}}"
+    mode: "{{file_mode_dst_domain_allowed_acl}}"
+    owner: "{{file_owner_dst_domain_allowed_acl}}"
+    group: "{{file_group_dst_domain_allowed_acl}}"
+  notify:
+    - 'command parse config'
+    - 'service restart squid'
+  tags:
+    - enable
+    - squid
+
+- name: 'file create dst_domain_blocked.acl'
+  template:
+    src: "{{file_src_dst_domain_blocked_acl}}"
+    dest: "{{file_dst_dst_domain_blocked_acl}}"
+    mode: "{{file_mode_dst_domain_blocked_acl}}"
+    owner: "{{file_owner_dst_domain_blocked_acl}}"
+    group: "{{file_group_dst_domain_blocked_acl}}"
+  notify:
+    - 'command parse config'
+    - 'service restart squid'
+  tags:
+    - enable
+    - squid
+
+- name: 'file create dst_network_allowed.acl'
+  template:
+    src: "{{file_src_dst_network_allowed_acl}}"
+    dest: "{{file_dst_dst_network_allowed_acl}}"
+    mode: "{{file_mode_dst_network_allowed_acl}}"
+    owner: "{{file_owner_dst_network_allowed_acl}}"
+    group: "{{file_group_dst_network_allowed_acl}}"
+  notify:
+    - 'command parse config'
+    - 'service restart squid'
+  tags:
+    - enable
+    - squid
+
+- name: 'file create dst_network_blocked.acl'
+  template:
+    src: "{{file_src_dst_network_blocked_acl}}"
+    dest: "{{file_dst_dst_network_blocked_acl}}"
+    mode: "{{file_mode_dst_network_blocked_acl}}"
+    owner: "{{file_owner_dst_network_blocked_acl}}"
+    group: "{{file_group_dst_network_blocked_acl}}"
+  notify:
+    - 'command parse config'
+    - 'service restart squid'
+  tags:
+    - enable
+    - squid
+
+- name: 'file create src_network_unrestricted.acl'
+  template:
+    src: "{{file_src_src_network_unrestricted_acl}}"
+    dest: "{{file_dst_src_network_unrestricted_acl}}"
+    mode: "{{file_mode_src_network_unrestricted_acl}}"
+    owner: "{{file_owner_src_network_unrestricted_acl}}"
+    group: "{{file_group_src_network_unrestricted_acl}}"
+  notify:
+    - 'command parse config'
+    - 'service restart squid'
+  tags:
+    - enable
+    - squid
+
 - name: 'file create squid.conf'
   template:
     src: "{{file_src_squid_conf}}"
@@ -28,8 +98,16 @@
     owner: "{{file_owner_squid_conf}}"
     group: "{{file_group_squid_conf}}"
   notify:
-    - 'command squid-parse'
+    - 'command parse config'
     - 'service restart squid'
+  tags:
+    - enable
+    - squid
+
+- name: 'stat file cache.dir'
+  stat:
+    path: "{{file_dst_cache_dir}}"
+  register: register_cache_dir
   tags:
     - enable
     - squid
@@ -48,6 +126,14 @@
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
+
+- name: 'command create cache.dir'
+  shell: "{{command_cmd_create_cache_dir}}"
+  check_mode: 'no'
+  when: (register_cache_dir.stat.exists == False)
+  tags:
+    - enable
+    - squid
 
 - name: 'command status squid'
   command: "{{command_cmd_status_squid}}"

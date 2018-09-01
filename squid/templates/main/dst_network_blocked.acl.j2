@@ -1,0 +1,24 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : dst_network_blocked.acl
+# Type   : Squid access control list
+# Role   : squid
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+{% for network_blocked in squid_network_blocked|default([]) %}
+{% if (network_blocked.comment is defined) and not (network_blocked.comment == '') %}
+# {{network_blocked.comment}}
+{% endif %}
+{{network_blocked.name}}
+
+{% endfor %}

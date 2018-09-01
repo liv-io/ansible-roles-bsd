@@ -17,8 +17,11 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-- name: 'command squid-parse'
-  command: "{{command_cmd_squid_parse}}"
+- name: 'command create cache_dir'
+  command: "{{command_cmd_create_cache_dir}}"
+
+- name: 'command parse config'
+  command: "{{command_cmd_parse_config}}"
 
 #-------------------------------------------------------------------------------
 # SYSTEM

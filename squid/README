@@ -38,6 +38,39 @@ ENABLE
       - role: squid
     vars:
       squid_state: 'enable'
+      squid_acl:
+        - {name: 'src_network_base', type: 'src', value: '10.1.1.0/24', comment: 'n_base'}
+      squid_http_access:
+        - {action: 'allow', source: 'src_network_base', protocol: 'http', destination: 'dst_domain_allowed', comment: 'Allow 'n_base' to access allowed domains via http'}
+        - {action: 'allow', source: 'src_network_base', protocol: 'https SSL_ports', destination: 'dst_domain_allowed', comment: 'Allow 'n_base' to access allowed domains via https'}
+        - {action: 'allow', source: 'src_network_base', protocol: 'http', destination: 'dst_network_allowed', comment: 'Allow 'n_base' to access allowed networks via http'}
+        - {action: 'allow', source: 'src_network_base', protocol: 'https SSL_ports', destination: 'dst_network_allowed', comment: 'Allow 'n_base' to access allowed networks via https'}
+      squid_domain_allowed:
+        - {name: 'pkg.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'pkgmir.pkg.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'pkg0.bme.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'pkg0.nyi.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'pkg0.isc.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update1.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update2.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update3.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update4.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update5.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update6.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ftp.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ec2-eu-west-1.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'sourcefire.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'your-org.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ec2-ap-southeast-2.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ec2-ap-northeast-1.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ec2-sa-east-1.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'distcache.FreeBSD.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ftp.openbsd.org', comment: 'OpenBSD: Updates'}
+        - {name: 'ftp.eu.openbsd.org', comment: 'OpenBSD: Updates'}
+        - {name: 'ftp2.eu.openbsd.org', comment: 'OpenBSD: Updates'}
+        - {name: 'mirror.switch.ch', comment: 'OpenBSD: Updates'}
+        - {name: 'cdn.openbsd.org', comment: 'OpenBSD: Updates'}
+        - {name: 'stable.mtier.org', comment: 'OpenBSD: mtier Packages'}
 
 DISABLE
   - hosts: all
@@ -45,6 +78,39 @@ DISABLE
       - role: squid
     vars:
       squid_state: 'disable'
+      squid_acl:
+        - {name: 'src_network_base', type: 'src', value: '10.1.1.0/24', comment: 'n_base'}
+      squid_http_access:
+        - {action: 'allow', source: 'src_network_base', protocol: 'http', destination: 'dst_domain_allowed', comment: 'Allow 'n_base' to access allowed domains via http'}
+        - {action: 'allow', source: 'src_network_base', protocol: 'https SSL_ports', destination: 'dst_domain_allowed', comment: 'Allow 'n_base' to access allowed domains via https'}
+        - {action: 'allow', source: 'src_network_base', protocol: 'http', destination: 'dst_network_allowed', comment: 'Allow 'n_base' to access allowed networks via http'}
+        - {action: 'allow', source: 'src_network_base', protocol: 'https SSL_ports', destination: 'dst_network_allowed', comment: 'Allow 'n_base' to access allowed networks via https'}
+      squid_domain_allowed:
+        - {name: 'pkg.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'pkgmir.pkg.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'pkg0.bme.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'pkg0.nyi.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'pkg0.isc.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update1.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update2.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update3.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update4.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update5.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'update6.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ftp.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ec2-eu-west-1.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'sourcefire.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'your-org.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ec2-ap-southeast-2.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ec2-ap-northeast-1.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ec2-sa-east-1.portsnap.freebsd.org', comment: 'FreeBSD: Updates'}
+        - {name: 'distcache.FreeBSD.org', comment: 'FreeBSD: Updates'}
+        - {name: 'ftp.openbsd.org', comment: 'OpenBSD: Updates'}
+        - {name: 'ftp.eu.openbsd.org', comment: 'OpenBSD: Updates'}
+        - {name: 'ftp2.eu.openbsd.org', comment: 'OpenBSD: Updates'}
+        - {name: 'mirror.switch.ch', comment: 'OpenBSD: Updates'}
+        - {name: 'cdn.openbsd.org', comment: 'OpenBSD: Updates'}
+        - {name: 'stable.mtier.org', comment: 'OpenBSD: mtier Packages'}
 
 REMOVE
   - hosts: all
@@ -79,6 +145,301 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+  squid_acl
+    Description: Define the 'squid_acl' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'src_network_base', type: 'src', value: '10.1.1.0/24', comment: 'n_base'},
+                 {name: 'src_network_mgmt', type: 'src', value: '10.1.2.0/24', comment: 'n_mgmt'}]
+      None    : []
+
+  squid_cache_dir
+    Description: Define the 'squid_cache_dir' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{type: 'ufs', path: '/var/squid/cache', size: '8192', first_level: '16', second_level: '256'}]
+    Options    :
+      Examples: [{type: 'ufs', path: '/var/squid/cache', size: '2048', first_level: '16', second_level: '256'}]
+
+  squid_cache_mem
+    Description: Define the 'squid_cache_mem' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '256 MB'
+    Options    :
+      Examples: '128 MB' | '256 MB' | '512 MB'
+
+  squid_cache_mgr
+    Description: Define the 'squid_cache_mgr' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "admin@{{ansible_domain}}"
+    Options    :
+      Examples: 'admin@domain.tld' | 'root@domain.tld'
+
+  squid_cache_replacement_policy
+    Description: Define the 'squid_cache_replacement_policy' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'lru'
+    Options    :
+      Examples: 'lru' | 'heap GDSF' | 'heap LFUDA' | 'heap LRU'
+
+  squid_cachemgr_passwd
+    Description: Define the 'squid_cachemgr_passwd' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{password: 'disable', action: 'all', comment: 'disable all actions'}]
+    Options    :
+      Examples: [{password: '75PdwS-urHrm4pV,Xc67hDr.4NwgWmv6', action: 'shutdown', comment: 'execute shutdown'},
+                 {password: 'v6xQ,g5cL-mm.r4cb3,W', action: 'info stats/objects', comment: 'get info'}]
+      None    : []
+
+  squid_domain_allowed
+    Description: Define the 'squid_domain_allowed' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'pkg.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'pkgmir.pkg.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'pkg0.bme.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'pkg0.nyi.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'pkg0.isc.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'update1.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'update2.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'update3.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'update4.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'update5.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'update6.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'ftp.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'ec2-eu-west-1.portsnap.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'sourcefire.portsnap.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'your-org.portsnap.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'ec2-ap-southeast-2.portsnap.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'ec2-ap-northeast-1.portsnap.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'ec2-sa-east-1.portsnap.freebsd.org', comment: 'FreeBSD: Updates'},
+                 {name: 'distcache.FreeBSD.org', comment: 'FreeBSD: Updates'},
+                 {name: 'ftp.openbsd.org', comment: 'OpenBSD: Updates'},
+                 {name: 'ftp.eu.openbsd.org', comment: 'OpenBSD: Updates'},
+                 {name: 'ftp2.eu.openbsd.org', comment: 'OpenBSD: Updates'},
+                 {name: 'mirror.switch.ch', comment: 'OpenBSD: Updates'},
+                 {name: 'cdn.openbsd.org', comment: 'OpenBSD: Updates'},
+                 {name: 'stable.mtier.org', comment: 'OpenBSD: mtier Packages'}]
+      None    : []
+
+  squid_domain_blocked
+    Description: Define the 'squid_domain_blocked' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'example.com', comment: 'example.com'},
+                 {name: 'example.org', comment: 'example.org'}]
+      None    : []
+
+  squid_http_port
+    Description: Set the 'squid_http_port' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 3128
+    Options    :
+      Examples: 8080
+
+  squid_http_access
+    Description: Define the 'squid_http_access' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{action: 'allow', source: 'src_network_rfc1918', protocol: 'http', destination: 'dst_domain_allowed', comment: 'Allow RFC 1918 networks to access allowed domains via http'},
+                  {action: 'allow', source: 'src_network_rfc1918', protocol: 'https SSL_ports', destination: 'dst_domain_allowed', comment: 'Allow RFC 1918 networks to access allowed domains via https'},
+                  {action: 'allow', source: 'src_network_rfc1918', protocol: 'http', destination: 'dst_network_allowed', comment: 'Allow RFC 1918 networks to access allowed networks via http'},
+                  {action: 'allow', source: 'src_network_rfc1918', protocol: 'https SSL_ports', destination: 'dst_network_allowed', comment: 'Allow RFC 1918 networks to access allowed networks via https'},
+                  {action: 'allow', source: 'src_network_unrestricted', protocol: 'http', destination: 'all', comment: 'Allow unrestricted hosts to access any resource via http'},
+                  {action: 'allow', source: 'src_network_unrestricted', protocol: 'https SSL_ports', destination: 'all', comment: 'Allow unrestricted hosts to access any resource via https'}]
+    Options    :
+      Examples: [{action: 'allow', source: 'src_network_base', protocol: 'http', destination: 'dst_domain_allowed', comment: 'Allow 'n_base' to access allowed domains via http'},
+                 {action: 'allow', source: 'src_network_base', protocol: 'https SSL_ports', destination: 'dst_domain_allowed', comment: 'Allow 'n_base' to access allowed domains via https'},
+                 {action: 'allow', source: 'src_network_base', protocol: 'http', destination: 'dst_network_allowed', comment: 'Allow 'n_base' to access allowed networks via http'},
+                 {action: 'allow', source: 'src_network_base', protocol: 'https SSL_ports', destination: 'dst_network_allowed', comment: 'Allow 'n_base' to access allowed networks via https'},
+                 {action: 'allow', source: 'src_network_mgmt', protocol: 'http', destination: 'dst_domain_allowed', comment: 'Allow 'n_mgmt' to access allowed domains via http'},
+                 {action: 'allow', source: 'src_network_mgmt', protocol: 'https SSL_ports', destination: 'dst_domain_allowed', comment: 'Allow 'n_mgmt' to access allowed domains via https'},
+                 {action: 'allow', source: 'src_network_mgmt', protocol: 'http', destination: 'dst_network_allowed', comment: 'Allow 'n_mgmt' to access allowed networks via http'},
+                 {action: 'allow', source: 'src_network_mgmt', protocol: 'https SSL_ports', destination: 'dst_network_allowed', comment: 'Allow 'n_mgmt' to access allowed networks via https'}]
+      None    : []
+
+  squid_httpd_suppress_version_string
+    Description: Control the 'squid_httpd_suppress_version_string' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'true'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  squid_mail_from
+    Description: Define the 'squid_mail_from' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "admin@{{ansible_domain}}"
+    Options    :
+      Examples: 'admin@domain.tld' | 'squid@domain.tld'
+      None    : ''
+
+  squid_max_filedescriptors
+    Description: Set the 'squid_max_filedescriptors' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 4096
+    Options    :
+      Examples: 2048 | 4096 | 8192
+
+  squid_maximum_object_size
+    Description: Define the 'squid_maximum_object_size' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '262144 KB'
+    Options    :
+      Examples: '4096 KB' | '65536 KB' | '131072 KB'
+
+  squid_maximum_object_size_in_memory
+    Description: Define the 'squid_maximum_object_size_in_memory' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '2048 KB'
+    Options    :
+      Examples: '512 KB' | '1024 KB' | '4096 KB'
+
+  squid_memory_replacement_policy
+    Description: Define the 'squid_memory_replacement_policy' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'lru'
+    Options    :
+      Examples: 'lru' | 'heap GDSF' | 'heap LFUDA' | 'heap LRU'
+
+  squid_minimum_object_size
+    Description: Define the 'squid_minimum_object_size' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '0 KB'
+    Options    :
+      Examples: '128 KB' | '256 KB' | '512 KB'
+
+  squid_network_allowed
+    Description: Define the 'squid_network_allowed' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: '10.1.3.0/24', comment: 'n_web'},
+                 {name: '10.1.4.0/24', comment: 'n_dmz'}]
+      None    : []
+
+  squid_network_blocked
+    Description: Define the 'squid_network_blocked' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{name: '10.0.0.0/8', comment: 'Deny proxy access to RFC 1918 networks'},
+                  {name: '172.16.0.0/12', comment: 'Deny proxy access to RFC 1918 networks'},
+                  {name: '192.168.0.0/16', comment: 'Deny proxy access to RFC 1918 networks'}]
+    Options    :
+      Examples: [{name: '10.1.1.0/24', comment: 'n_base'},
+                 {name: '10.1.2.0/24', comment: 'n_mgmt'}]
+      None    : []
+
+  squid_network_unrestricted
+    Description: Define the 'squid_network_unrestricted' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: '10.1.1.11', comment: 'mirror'},
+                 {name: '10.1.1.12', comment: 'registry'}]
+      None    : []
+
+  squid_quick_abort_max
+    Description: Define the 'squid_quick_abort_max' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '0 KB'
+    Options    :
+      Examples: '-1 KB' | '0 KB' | '128 KB'
+
+  squid_quick_abort_min
+    Description: Define the 'squid_quick_abort_min' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '0 KB'
+    Options    :
+      Examples: '-1 KB' | '0 KB' | '128 KB'
+
+  squid_shutdown_lifetime
+    Description: Set the 'squid_shutdown_lifetime' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 1
+    Options    :
+      Examples: 10 | 20 | 30
+
+  squid_visible_hostname
+    Description: Define the 'squid_visible_hostname' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "{{ansible_hostname}}"
+    Options    :
+      Examples: 'squid' | 'forward-proxy'
+      None    : ''
+
 --------------------------------------------------------------------------------
 CONFLICTS
 --------------------------------------------------------------------------------
@@ -91,7 +452,7 @@ DEPENDENCIES
 
 PACKAGES
   squid
-    Version: >= 3.0
+    Version: >= 3.5
     Name   :
       FreeBSD 11: 'squid'
       OpenBSD 6 : 'squid'
@@ -137,11 +498,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.2-*
-      Status: Development
+      Status: Testing
 
   OpenBSD
     Version: 6.3
-      Status: Development
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER

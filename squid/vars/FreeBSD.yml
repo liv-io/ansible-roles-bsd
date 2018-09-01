@@ -1,11 +1,35 @@
 ---
 
+# cache_effective_user
+cache_effective_user: 'squid'
+
+# cache_effective_group
+cache_effective_group: 'squid'
+
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
+# acl.dir
+file_dst_acl_dir: '/usr/local/etc/squid/acl'
+
+# dst_domain_allowed.acl
+file_dst_dst_domain_allowed_acl: '/usr/local/etc/squid/acl/dst_domain_allowed.acl'
+
+# dst_domain_blocked.acl
+file_dst_dst_domain_blocked_acl: '/usr/local/etc/squid/acl/dst_domain_blocked.acl'
+
+# dst_network_allowed.acl
+file_dst_dst_network_allowed_acl: '/usr/local/etc/squid/acl/dst_network_allowed.acl'
+
+# dst_network_blocked.acl
+file_dst_dst_network_blocked_acl: '/usr/local/etc/squid/acl/dst_network_blocked.acl'
+
 # squid.conf
 file_dst_squid_conf: '/usr/local/etc/squid/squid.conf'
+
+# src_network_unrestricted.acl
+file_dst_src_network_unrestricted_acl: '/usr/local/etc/squid/acl/src_network_unrestricted.acl'
 
 # squid_enable
 file_line_squid_enable: 'squid_enable'

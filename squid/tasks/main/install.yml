@@ -27,3 +27,18 @@
   tags:
     - install
     - squid
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create acl.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_acl_dir}}"
+    mode: "{{file_mode_acl_dir}}"
+    owner: "{{file_owner_acl_dir}}"
+    group: "{{file_group_acl_dir}}"
+  tags:
+    - install
+    - squid

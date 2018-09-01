@@ -1,3 +1,62 @@
 ---
 
 squid_state: 'enable'
+
+squid_acl: []
+
+squid_cache_dir:
+  - {type: 'ufs', path: '/var/squid/cache', size: '8192', first_level: '16', second_level: '256'}
+
+squid_cache_mem: '256 MB'
+
+squid_cache_mgr: "admin@{{ansible_domain}}"
+
+squid_cache_replacement_policy: 'lru'
+
+squid_cachemgr_passwd:
+  - {password: 'disable', action: 'all', comment: 'disable all actions'}
+
+squid_domain_allowed: []
+
+squid_domain_blocked: []
+
+squid_http_port: 3128
+
+squid_http_access:
+  - {action: 'allow', source: 'src_network_rfc1918', protocol: 'http', destination: 'dst_domain_allowed', comment: 'Allow RFC 1918 networks to access allowed domains via http'}
+  - {action: 'allow', source: 'src_network_rfc1918', protocol: 'https SSL_ports', destination: 'dst_domain_allowed', comment: 'Allow RFC 1918 networks to access allowed domains via https'}
+  - {action: 'allow', source: 'src_network_rfc1918', protocol: 'http', destination: 'dst_network_allowed', comment: 'Allow RFC 1918 networks to access allowed networks via http'}
+  - {action: 'allow', source: 'src_network_rfc1918', protocol: 'https SSL_ports', destination: 'dst_network_allowed', comment: 'Allow RFC 1918 networks to access allowed networks via https'}
+  - {action: 'allow', source: 'src_network_unrestricted', protocol: 'http', destination: 'all', comment: 'Allow unrestricted hosts to access any resource via http'}
+  - {action: 'allow', source: 'src_network_unrestricted', protocol: 'https SSL_ports', destination: 'all', comment: 'Allow unrestricted hosts to access any resource via https'}
+
+squid_httpd_suppress_version_string: 'true'
+
+squid_mail_from: "admin@{{ansible_domain}}"
+
+squid_max_filedescriptors: 4096
+
+squid_maximum_object_size: '262144 KB'
+
+squid_maximum_object_size_in_memory: '2048 KB'
+
+squid_memory_replacement_policy: 'lru'
+
+squid_minimum_object_size: '0 KB'
+
+squid_network_allowed: []
+
+squid_network_blocked:
+  - {name: '10.0.0.0/8', comment: 'Deny proxy access to RFC 1918 networks'}
+  - {name: '172.16.0.0/12', comment: 'Deny proxy access to RFC 1918 networks'}
+  - {name: '192.168.0.0/16', comment: 'Deny proxy access to RFC 1918 networks'}
+
+squid_network_unrestricted: []
+
+squid_quick_abort_max: '0 KB'
+
+squid_quick_abort_min: '0 KB'
+
+squid_shutdown_lifetime: 1
+
+squid_visible_hostname: "{{ansible_hostname}}"

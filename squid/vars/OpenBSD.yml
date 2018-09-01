@@ -1,5 +1,11 @@
 ---
 
+# cache_effective_user
+cache_effective_user: '_squid'
+
+# cache_effective_group
+cache_effective_group: '_squid'
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------

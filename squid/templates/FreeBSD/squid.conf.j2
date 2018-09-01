@@ -1,0 +1,241 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : squid.conf
+# Type   : Squid configuration file
+# Role   : squid
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# ACCESS CONTROLS
+#-------------------------------------------------------------------------------
+
+# Ports
+acl SSL_ports port 443
+acl http proto http
+acl ftp proto ftp
+acl https method CONNECT
+acl methods_allowed method CONNECT GET POST HEAD
+
+# Network and host
+acl src_network_rfc1918 src 172.16.0.0/12 10.0.0.0/8 192.168.0.0/16
+acl dst_network_rfc1918 dst 172.16.0.0/12 10.0.0.0/8 192.168.0.0/16
+acl src_host_localhost src 127.0.0.1/32
+
+# ACL files
+acl dst_domain_allowed dstdom_regex -i '{{file_dst_dst_domain_allowed_acl}}'
+acl dst_domain_blocked dstdom_regex -i '{{file_dst_dst_domain_blocked_acl}}'
+acl dst_network_allowed dst '{{file_dst_dst_network_allowed_acl}}'
+acl dst_network_blocked dst '{{file_dst_dst_network_blocked_acl}}'
+acl src_network_unrestricted src '{{file_dst_src_network_unrestricted_acl}}'
+
+#-------------------------------------------------------------------------------
+# CUSTOM ACCESS CONTROLS
+#-------------------------------------------------------------------------------
+
+{% for acl in squid_acl|default([]) %}
+{% if (acl.comment is defined) and not (acl.comment == '') %}
+# {{acl.comment}}
+{% endif %}
+acl {{acl.name}} {{acl.type}} {{acl.value}}
+
+{% endfor %}
+
+{% for http_access in squid_http_access|default([]) %}
+{% if (http_access.comment is defined) and not (http_access.comment == '') %}
+# {{http_access.comment}}
+{% endif %}
+http_access {{http_access.action|default('deny')}} {{http_access.source}} {{http_access.protocol}} {{http_access.destination}}
+
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# Deny access to blocked domains
+http_access deny dst_domain_blocked
+
+# Deny access to blocked networks
+http_access deny dst_network_blocked
+
+# Allow localhost to access cachemanager
+http_access allow manager src_host_localhost
+
+# Deny access to cachemanager
+http_access deny manager
+
+# Deny any other access
+http_access deny all
+
+#-------------------------------------------------------------------------------
+# NETWORK OPTIONS
+#-------------------------------------------------------------------------------
+
+# Squid normally listens to port 3128
+{% if not (squid_http_port == '') %}
+http_port {{squid_http_port|int(3128)}}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# MEMORY CACHE OPTIONS
+#-------------------------------------------------------------------------------
+
+# Specifies the ideal amount of memory to be used
+{% if not (squid_cache_mem == '') %}
+cache_mem {{squid_cache_mem}}
+{% endif %}
+
+# Objects greater than this size will not be attempted to kept in the memory cache
+{% if not (squid_maximum_object_size_in_memory == '') %}
+maximum_object_size_in_memory {{squid_maximum_object_size_in_memory}}
+{% endif %}
+
+# Determines which objects are purged from memory when memory space is needed
+{% if not (squid_memory_replacement_policy == '') %}
+memory_replacement_policy {{squid_memory_replacement_policy}}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# DISK CACHE OPTIONS
+#-------------------------------------------------------------------------------
+
+# Determines which objects are evicted (replaced) when disk space is needed
+{% if not (squid_cache_replacement_policy == '') %}
+cache_replacement_policy {{squid_cache_replacement_policy}}
+{% endif %}
+
+# Uncomment and adjust the following to add a disk cache directory.
+{% for item in squid_cache_dir %}
+cache_dir {{item.type|default('ufs')}} {{item.action|default('/var/squid/cache')}} {{item.size|default('8192')}} {{item.first_level|default('16')}} {{item.second_level|default('256')}} 
+{% endfor %}
+
+# Objects smaller than this size will NOT be saved on disk
+{% if not (squid_minimum_object_size == '') %}
+minimum_object_size {{squid_minimum_object_size}}
+{% endif %}
+
+# Objects larger than this size will NOT be saved on disk
+{% if not (squid_maximum_object_size == '') %}
+maximum_object_size {{squid_maximum_object_size}}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# CACHE TUNING OPTIONS
+#-------------------------------------------------------------------------------
+
+#
+# Add any of your own refresh_pattern entries above these.
+#
+refresh_pattern ^ftp:		1440	20%	10080
+refresh_pattern ^gopher:	1440	0%	1440
+refresh_pattern -i (/cgi-bin/|\?) 0	0%	0
+refresh_pattern .		0	20%	4320
+
+# Continues downloading aborted requests which are almost completed (less than 16 KB remaining)
+{% if not (squid_quick_abort_min == '') %}
+quick_abort_min {{squid_quick_abort_min}}
+{% endif %}
+
+# Continues downloading aborted requests which are almost completed (less than 16 KB remaining)
+{% if not (squid_quick_abort_max == '') %}
+quick_abort_max {{squid_quick_abort_max}}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# TIMEOUTS
+#-------------------------------------------------------------------------------
+
+# When SIGTERM or SIGHUP is received, the cache waits until all active sockets are closed
+{% if not (squid_shutdown_lifetime == '') %}
+shutdown_lifetime {{squid_shutdown_lifetime}} seconds
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# LOGFILE OPTIONS
+#-------------------------------------------------------------------------------
+
+# Reduce the maximum number of filedescriptors supported below the usual operating system defaults
+{% if not (squid_max_filedescriptors == '') %}
+max_filedescriptors {{squid_max_filedescriptors}}
+{% endif %}
+
+# Specifies the number of logfile rotations to make when you type 'squid -k rotate'
+logfile_rotate 0
+
+# Logs the activities of the storage manager
+cache_store_log none
+
+#-------------------------------------------------------------------------------
+# ADMINISTRATIVE PARAMETERS
+#-------------------------------------------------------------------------------
+
+# Email address of local cache manager who will receive mail if the cache dies
+{% if not (squid_cache_mgr == '') %}
+cache_mgr {{squid_cache_mgr}}
+{% endif %}
+
+# Specify passwords for cachemgr operations.
+{% for cachemgr_passwd in squid_cachemgr_passwd %}
+{% if (cachemgr_passwd.comment is defined) and not (cachemgr_passwd.comment == '') %}
+# {{cachemgr_passwd.comment}}
+{% endif %}
+cachemgr_passwd
+{%- if (cachemgr_passwd.password is defined) and not (cachemgr_passwd.password == '') %} {{cachemgr_passwd.password}}{% endif %}
+{%- if (cachemgr_passwd.action is defined) and not (cachemgr_passwd.action == '') %} {{cachemgr_passwd.action}}{% endif %}
+
+{% endfor %}
+
+# Define hostname visible in log messages
+{% if not (squid_visible_hostname == '') %}
+visible_hostname {{squid_visible_hostname}}
+{% endif %}
+
+# Email address for mail sent when the cache dies
+{% if not (squid_mail_from == '') %}
+mail_from {{squid_mail_from}}
+{% endif %}
+
+# It will change effective/real UID/GID to the user specified below
+cache_effective_user {{cache_effective_user}}
+cache_effective_group {{cache_effective_group}}
+
+# Suppress Squid version string info in HTTP headers and HTML error pages
+{% if (squid_httpd_suppress_version_string is match('false|no|disable')) %}
+httpd_suppress_version_string off
+{% else %}
+httpd_suppress_version_string on
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# TROUBLESHOOTING OPTIONS
+#-------------------------------------------------------------------------------
+
+# Leave coredumps in the first cache dir
+coredump_dir /var/squid/cache
+
+#-------------------------------------------------------------------------------
+# SNMP OPTIONS
+#-------------------------------------------------------------------------------
+
+#snmp_port 3401
+#snmp_access allow snmppublic localhost
+#snmp_access deny all
+#snmp_incoming_address 0.0.0.0
+
+#-------------------------------------------------------------------------------
+# FTP GATEWAYING OPTIONS
+#-------------------------------------------------------------------------------
+
+# If your firewall does not allow Squid to use passive connections, turn off this option.
+#ftp_passive on
+
+# FTP Protocol extensions permit the use of a special "EPSV" command.
+#ftp_epsv off

@@ -92,3 +92,11 @@
   tags:
     - remove
     - squid
+
+- name: 'file remove acl.dir'
+  file:
+    state: 'absent'
+    path: "{{file_dst_acl_dir}}"
+  tags:
+    - remove
+    - squid

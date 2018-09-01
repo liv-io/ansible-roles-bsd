@@ -1,0 +1,24 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : dst_domain_allowed.acl
+# Type   : Squid access control list
+# Role   : squid
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+{% for domain_allowed in squid_domain_allowed|default([]) %}
+{% if (domain_allowed.comment is defined) and not (domain_allowed.comment == '') %}
+# {{domain_allowed.comment}}
+{% endif %}
+{{domain_allowed.name}}
+
+{% endfor %}
