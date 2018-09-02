@@ -30,13 +30,8 @@ APPLICATIONS
 
  - ajaxterm: web-based SSH client
  - apache httpd
- - apache mesos
- - apache mina
- - attic-backup
- - borg-backup
  - bro
  - clamav
- - consul
  - corosync
  - crmsh
  - dhcpd
@@ -45,7 +40,6 @@ APPLICATIONS
  - ffproxy: filtering HTTP proxy server
  - freeipa
  - gdnsd: geographically-aware, authoritative-only DNS server
- - gitweb
  - gitolite
  - gnu gatekeeper
  - go
@@ -53,39 +47,34 @@ APPLICATIONS
  - greensql
  - honeyd
  - incron
+ - keepalived
  - loganalyzer
  - logrotate
- - logstash
- - mariadb
  - modsecurity
  - mumble
- - mysql
  - observium
  - pacemaker
  - pallet
+ - phpipam
  - postfixadmin
  - postgresql
  - postgrey
- - powerdns
  - prelude
+ - prometheus
  - pulp
  - python
  - relayd
- - request tracker
  - roundcube
  - rsyslog
  - rundeck
  - samhain: Samhain Intrusion Detection System - client
  - samhain-docs: Samhain Intrusion Detection System - documentation
  - samhain-server: Samhain Intrusion Detection System - server
- - serf
  - snort
  - sqlite
- - squid
  - suricata
- - syslog-ng
+ - tinc
  - tinyproxy
- - trac
  - umurmur: minimalistic Mumble server
  - varnish
  - virtalbox
