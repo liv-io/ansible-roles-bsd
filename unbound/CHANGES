@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.6.0 (2018-09-03)
+F: Add support for 'include' option (unbound_include)
+
 * Version 0.5.1 (2018-08-20)
 B: Remove needless 'register' parameter
 

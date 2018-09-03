@@ -883,6 +883,17 @@ server:
 	# ipsecmod-whitelist: "example.com"
 	# ipsecmod-whitelist: "nlnetlabs.nl"
 
+#-------------------------------------------------------------------------------
+# INCLUDE
+#-------------------------------------------------------------------------------
+
+{% for include in unbound_include %}
+{% if (include.comment is defined) and not (include.comment == '') %}
+# {{include.comment}}
+{% endif %}
+include: {{include.file}}
+
+{% endfor %}
 
 # Python config section. To enable:
 # o use --with-pythonmodule to configure before compiling.

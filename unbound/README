@@ -257,6 +257,17 @@ ROLE
       Examples: 'ns' | 'dns'
       None    : ''
 
+  unbound_include
+    Description: Define the 'unbound_include' option.
+    Implemented: 0.6
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{file: '/script/adblock/adblock.conf', comment: 'Adblock'}]
+      None    : []
+
   unbound_interface
     Description: Define the 'unbound_interface' option.
     Implemented: 0.1

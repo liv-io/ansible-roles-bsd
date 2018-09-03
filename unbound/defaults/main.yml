@@ -34,6 +34,8 @@ unbound_hide_version: 'true'
 
 unbound_identity: ''
 
+unbound_include: []
+
 unbound_interface: []
 
 unbound_ip4_state: 'true'
