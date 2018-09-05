@@ -103,6 +103,17 @@ ROLE
       Examples: 'http://proxy.domain.tld:3128'
       Disable : 'false' | 'no' | 'disable'
 
+  shell_https_proxy
+    Description: Define the 'shell_https_proxy' option.
+    Implemented: 2.5
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Examples: 'http://proxy.domain.tld:3128'
+      Disable : 'false' | 'no' | 'disable'
+
   shell_ls_time_style
     Description: Define the time format of the 'ls' command.
     Implemented: 0.2

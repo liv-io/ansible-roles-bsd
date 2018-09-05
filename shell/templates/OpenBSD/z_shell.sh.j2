@@ -52,6 +52,12 @@ http_proxy='{{shell_http_proxy}}'
 export http_proxy
 {% endif %}
 
+{% if not (shell_https_proxy is match('false|no|disable')) %}
+# https_proxy
+https_proxy='{{shell_https_proxy}}'
+export https_proxy
+{% endif %}
+
 {% if not (shell_histsize is match('false|no|disable')) %}
 # HISTSIZE
 HISTSIZE={{(shell_histsize|int)}}

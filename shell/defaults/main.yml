@@ -10,6 +10,8 @@ shell_histsize: '262144'
 
 shell_http_proxy: 'false'
 
+shell_https_proxy: 'false'
+
 shell_ls_time_style: '%Y-%m-%d %H:%M:%S'
 
 shell_pager: 'less'
