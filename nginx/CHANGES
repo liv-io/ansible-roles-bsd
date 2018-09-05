@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.3.0 (2018-09-05)
+F: Add options to disable 'ssl_dhparam' and 'ssl_ecdh_curve'
+
 * Version 1.2.0 (2018-07-01)
 F: Add support for FreeBSD 11.2-RELEASE
 F: Drop support for FreeBSD 11.1-RELEASE
