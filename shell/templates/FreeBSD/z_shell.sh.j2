@@ -53,31 +53,37 @@ alias ln='ln -i'
 # SHELL VARIABLES
 #-------------------------------------------------------------------------------
 
-{% if not (shell_ftp_proxy is match('false|no|disable')) %}
+{% if not (shell_ftp_proxy == '') %}
 # ftp_proxy
 ftp_proxy='{{shell_ftp_proxy}}'
 export ftp_proxy
 {% endif %}
 
-{% if not (shell_http_proxy is match('false|no|disable')) %}
+{% if not (shell_http_proxy == '') %}
 # http_proxy
 http_proxy='{{shell_http_proxy}}'
 export http_proxy
 {% endif %}
 
-{% if not (shell_https_proxy is match('false|no|disable')) %}
+{% if not (shell_https_proxy == '') %}
 # https_proxy
 https_proxy='{{shell_https_proxy}}'
 export https_proxy
 {% endif %}
 
-{% if not (shell_histsize is match('false|no|disable')) %}
+{% if not (shell_no_proxy == []) %}
+# no_proxy
+no_proxy='{% for no_proxy in shell_no_proxy %}{{no_proxy}}{% if not loop.last %},{% endif %}{% endfor %}'
+export no_proxy
+{% endif %}
+
+{% if not (shell_histsize == '') %}
 # HISTSIZE
 HISTSIZE={{(shell_histsize|int)}}
 export HISTSIZE
 {% endif %}
 
-{% if not (shell_pager is match('false|no|disable')) %}
+{% if not (shell_pager == '') %}
 # PAGER
 PAGER='{{shell_pager}}'
 export PAGER

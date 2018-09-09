@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.0.0 (2018-09-09)
+F: Add support for 'no_proxy' option (shell_no_proxy)
+I: Improve options to define no value (e.g. disable)
+
 * Version 2.5.0 (2018-09-05)
 F: Add support for 'https_proxy' option (shell_https_proxy)
 

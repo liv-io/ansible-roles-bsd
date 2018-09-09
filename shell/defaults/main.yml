@@ -4,15 +4,17 @@ shell_state: 'install'
 
 shell_color_support: 'true'
 
-shell_ftp_proxy: 'false'
+shell_ftp_proxy: ''
 
 shell_histsize: '262144'
 
-shell_http_proxy: 'false'
+shell_http_proxy: ''
 
-shell_https_proxy: 'false'
+shell_https_proxy: ''
 
 shell_ls_time_style: '%Y-%m-%d %H:%M:%S'
+
+shell_no_proxy: []
 
 shell_pager: 'less'
 
