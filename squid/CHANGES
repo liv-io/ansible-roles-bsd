@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.1 (2018-09-14)
+I: Add 'no_log' parameter to sensitive tasks
+
 * Version 0.2.0 (2018-09-01)
 F: Add configuration options
 

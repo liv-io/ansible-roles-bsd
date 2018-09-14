@@ -97,6 +97,7 @@
     mode: "{{file_mode_squid_conf}}"
     owner: "{{file_owner_squid_conf}}"
     group: "{{file_group_squid_conf}}"
+  no_log: 'true'
   notify:
     - 'command parse config'
     - 'service restart squid'
