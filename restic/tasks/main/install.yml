@@ -126,6 +126,7 @@
     mode: "{{file_mode_password_conf}}"
     owner: "{{file_owner_password_conf}}"
     group: "{{file_group_password_conf}}"
+  no_log: 'true'
   tags:
     - install
     - restic
