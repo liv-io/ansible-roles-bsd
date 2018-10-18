@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.3.0 (2018-10-18)
+F: Add support for 'SSL_ports' option (squid_acl_ssl_ports)
+
 * Version 0.2.1 (2018-09-14)
 I: Add 'no_log' parameter to sensitive tasks
 

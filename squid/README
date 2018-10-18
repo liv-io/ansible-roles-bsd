@@ -157,6 +157,16 @@ ROLE
                  {name: 'src_network_mgmt', type: 'src', value: '10.1.2.0/24', comment: 'n_mgmt'}]
       None    : []
 
+  squid_acl_ssl_ports
+    Description: Define the 'squid_acl_ssl_ports' option.
+    Implemented: 0.3
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['443']
+    Options    :
+      Examples: ['443', '8443']
+
   squid_cache_dir
     Description: Define the 'squid_cache_dir' option.
     Implemented: 0.2

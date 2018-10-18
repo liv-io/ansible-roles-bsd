@@ -20,7 +20,8 @@
 #-------------------------------------------------------------------------------
 
 # Ports
-acl SSL_ports port 443
+acl SSL_ports port {% for ssl_ports in squid_acl_ssl_ports %}{{ssl_ports}}{% if not loop.last %} {% endif %}{% endfor %}
+
 acl http proto http
 acl ftp proto ftp
 acl https method CONNECT
