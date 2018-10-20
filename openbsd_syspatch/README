@@ -67,7 +67,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{url: {'http://ftp.OpenBSD.org/pub/OpenBSD'}, comment: 'OpenBSD Packages'}]
+    Default    : [{url: {'https://ftp.OpenBSD.org/pub/OpenBSD'}, comment: 'OpenBSD Packages'}]
     Options    :
       Examples: [{url: {'https://ftp.eu.openbsd.org/pub/OpenBSD',
                         'https://ftp2.eu.openbsd.org/pub/OpenBSD'}, comment: 'OpenBSD Packages'}]
@@ -130,7 +130,7 @@ OPERATING SYSTEMS
       Status: Unsupported
 
   OpenBSD
-    Version: 6.3
+    Version: 6.4
       Status: Stable
 
 --------------------------------------------------------------------------------
