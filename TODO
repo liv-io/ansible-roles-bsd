@@ -24,6 +24,8 @@ FEATURES
 SUPPORT
 --------------------------------------------------------------------------------
 
+ - opensmtpd: Add support for OpenBSD 6.4
+
 --------------------------------------------------------------------------------
 APPLICATIONS
 --------------------------------------------------------------------------------
@@ -43,6 +45,7 @@ APPLICATIONS
  - gitolite
  - gnu gatekeeper
  - go
+ - grafana
  - graylog2
  - greensql
  - honeyd
@@ -52,7 +55,6 @@ APPLICATIONS
  - logrotate
  - modsecurity
  - mumble
- - observium
  - pacemaker
  - pallet
  - phpipam
@@ -62,11 +64,8 @@ APPLICATIONS
  - prelude
  - prometheus
  - pulp
- - python
  - relayd
- - roundcube
  - rsyslog
- - rundeck
  - samhain: Samhain Intrusion Detection System - client
  - samhain-docs: Samhain Intrusion Detection System - documentation
  - samhain-server: Samhain Intrusion Detection System - server
