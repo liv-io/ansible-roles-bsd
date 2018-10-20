@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.3.3 (2018-10-20)
+I: Update support information of OpenBSD
+
 * Version 2.3.2 (2018-07-19)
 I: Shell script improvements
 
