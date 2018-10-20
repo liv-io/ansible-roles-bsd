@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.4.0 (2018-10-20)
+F: Add support for OpenBSD 6.4
+F: Drop support for OpenBSD 6.3
+
 * Version 0.3.0 (2018-10-18)
 F: Add support for 'SSL_ports' option (squid_acl_ssl_ports)
 
