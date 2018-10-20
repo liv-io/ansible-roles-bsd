@@ -76,6 +76,7 @@ PACKAGES
     Version: >= 20051105
     Name   :
       FreeBSD 11: 'hping-devel'
+      OpenBSD 6 : 'hping'
 
 ROLES
 
@@ -121,8 +122,8 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.3
-      Status: Unsupported
+    Version: 6.4
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER
