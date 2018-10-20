@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.3.0 (2018-10-20)
+F: Add support for OpenBSD 6.4
+F: Drop support for OpenBSD 6.3
+
 * Version 0.2.3 (2018-08-21)
 B: Correct comment symbol in zone file
 I: Improve spacing in zone file (replace white spaces with tabs)
