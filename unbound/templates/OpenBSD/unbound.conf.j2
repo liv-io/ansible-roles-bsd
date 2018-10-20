@@ -15,7 +15,7 @@
 #
 #-------------------------------------------------------------------------------
 
-# $OpenBSD: unbound.conf,v 1.7 2016/03/30 01:41:25 sthen Exp $
+# $OpenBSD: unbound.conf,v 1.8 2018/03/29 20:40:22 florian Exp $
 
 #-------------------------------------------------------------------------------
 # SERVER
@@ -195,13 +195,19 @@ server:
 
 {% endfor %}
 
-	# https://tools.ietf.org/html/draft-ietf-dnsop-qname-minimisation-08
+	# Uncomment to enable qname minimisation.
+	# https://tools.ietf.org/html/rfc7816
 	#
-	# qname-minimisation: yes
+	#qname-minimisation: yes
 
 	# Uncomment to enable DNSSEC validation.
 	#
 	#auto-trust-anchor-file: "/var/unbound/db/root.key"
+	
+	# Uncomment to synthesize NXDOMAINs from DNSSEC NSEC chains
+	# https://tools.ietf.org/html/rfc8198
+	#
+	#aggressive-nsec: yes
 
 	#-----------------------------------------------------------------------
 	# LOCAL-ZONE
@@ -256,7 +262,7 @@ server:
 	# them. For use with NAT64 (PF "af-to").
 	#
 	#module-config: "dns64 validator iterator"
-	#dns64-prefix: 64:ff9b::/96	# well-known prefix (default)
+	#dns64-prefix: 64:ff9b::/96     # well-known prefix (default)
 	#dns64-synthall: no
 
 	# file to read root hints from.
