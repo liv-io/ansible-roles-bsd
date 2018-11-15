@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.4.0 (2018-11-15)
+F: Add support for 'quick' option
+I: Minor Jinja2 templating improvement
+
 * Version 3.3.1 (2018-10-20)
 I: Update support information of OpenBSD
 

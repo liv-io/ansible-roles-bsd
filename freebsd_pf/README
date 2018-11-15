@@ -62,13 +62,13 @@ INACTIVE
 CONFIG
   vars:
     freebsd_pf_filters_all:
-      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
-      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
-      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
+      - {action: 'pass', direction: 'in', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
+      - {action: 'pass', direction: 'in', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
+      - {action: 'pass', direction: 'in', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
       - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'}
-      - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'}
-      - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'}
-      - {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'}
+      - {action: 'pass', direction: 'out', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'}
+      - {action: 'pass', direction: 'out', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'}
+      - {action: 'pass', direction: 'out', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'}
       - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'10.11.1.11', '10.21.1.11'}, ports: {'domain'}, state: '$default_tcp', comment: 'DNS: To dns servers'}
       - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'10.11.1.11', '10.21.1.11'}, ports: {'domain'}, state: '$default_udp', comment: 'DNS: To dns servers'}
       - {action: 'pass', direction: 'out', version: 'inet', protocols: {'udp'}, sources: {'any'}, destinations: {'10.2.1.11', '10.2.1.12', '10.2.1.13', '10.2.1.14'}, ports: {'ntp'}, state: '$default_udp', comment: 'NTP: To ntp servers'}
