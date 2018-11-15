@@ -38,7 +38,7 @@ include '/etc/pf/queues.conf'
 {% endif %}
 {%- if (policy.action is defined) and (policy.action is match('pass')) %}pass {% else %}block {% endif %}
 {%- if (policy.direction is defined) and (policy.direction is match('in')) %}in {% else %}out {% endif %}
-{%- if (policy.log is defined) and (policy.log is match('true|yes|enable')) %}log {% else %}{% endif %}all
+{%- if (policy.log is defined) and (policy.log is match('true|yes|enable')) %}log {% endif %}all
 {% if not loop.last %}
 
 {% endif %}
@@ -56,6 +56,7 @@ include '/etc/pf/queues.conf'
 {% endif %}
 {%- if (all.action is defined) and (all.action is match('block')) %}block {% else %}pass {% endif %}
 {%- if (all.direction is defined) and (all.direction is match('in')) %}in {% else %}out {% endif %}
+{%- if (all.quick is defined) and (all.quick is match('true|yes|enable')) %}quick {% endif %}
 {%- if (all.interfaces is defined) and not (all.interfaces == []) %}on { {% endif %}
 {% for source in all.interfaces|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
@@ -103,6 +104,7 @@ include '/etc/pf/queues.conf'
 {% endif %}
 {%- if (group.action is defined) and (group.action is match('block')) %}block {% else %}pass {% endif %}
 {%- if (group.direction is defined) and (group.direction is match('in')) %}in {% else %}out {% endif %}
+{%- if (group.quick is defined) and (group.quick is match('true|yes|enable')) %}quick {% endif %}
 {%- if (group.interfaces is defined) and not (group.interfaces == []) %}on { {% endif %}
 {% for source in group.interfaces|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
@@ -150,6 +152,7 @@ include '/etc/pf/queues.conf'
 {% endif %}
 {%- if (host.action is defined) and (host.action is match('block')) %}block {% else %}pass {% endif %}
 {%- if (host.direction is defined) and (host.direction is match('in')) %}in {% else %}out {% endif %}
+{%- if (host.quick is defined) and (host.quick is match('true|yes|enable')) %}quick {% endif %}
 {%- if (host.interfaces is defined) and not (host.interfaces == []) %}on { {% endif %}
 {% for source in host.interfaces|default([]) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
