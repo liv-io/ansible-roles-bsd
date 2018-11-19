@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.3.0 (2018-11-19)
+F: Add support for 'limit-download' option (restic_limit_download)
+F: Add support for 'limit-upload option (restic_limit_upload)
+
 * Version 0.2.0 (2018-10-20)
 F: Add support for OpenBSD 6.4
 F: Drop support for OpenBSD 6.3

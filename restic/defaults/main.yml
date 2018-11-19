@@ -32,6 +32,10 @@ restic_keep_monthly: 3
 
 restic_keep_weekly: 4
 
+restic_limit_download: 0
+
+restic_limit_upload: 0
+
 restic_monitor: 'false'
 
 restic_monitor_mail_recipient: ["admin@{{ansible_domain}}"]

@@ -158,6 +158,26 @@ ROLE
     Options    :
       Examples: 1 | 2 | 3
 
+  restic_limit_download
+    Description: Set the 'restic_limit_download' option.
+    Implemented: 0.3
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 0
+    Options    :
+      Examples: 0 | 1024 | 4096 | 8192
+
+  restic_limit_upload
+    Description: Set the 'restic_limit_upload' option.
+    Implemented: 0.3
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 0
+    Options    :
+      Examples: 0 | 1024 | 4096 | 8192
+
   restic_monitor
     Description: Control the 'restic_monitor' option.
     Implemented: 0.1

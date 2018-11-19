@@ -73,6 +73,8 @@ keep_hourly='{{restic_keep_hourly}}'
 keep_daily='{{restic_keep_daily}}'
 keep_weekly='{{restic_keep_weekly}}'
 keep_monthly='{{restic_keep_monthly}}'
+limit_download='{{restic_limit_download}}'
+limit_upload='{{restic_limit_upload}}'
 
 {% if (restic_monitor_mail_state is match('true|yes|enable')) %}
 mail_sender='{{restic_monitor_mail_sender}}'
@@ -220,15 +222,15 @@ if [ $? -ne 0 ]; then
 fi
 
 # Create new backup
-${restic} backup -r ${repo} -p ${password} --files-from ${include} --exclude-caches --exclude-file ${exclude} >> ${log_file} 2>&1
+${restic} backup -r ${repo} -p ${password} --limit-download ${restic_limit_download} --limit-upload ${restic_limit_upload} --files-from ${include} --exclude-caches --exclude-file ${exclude} >> ${log_file} 2>&1
 log_and_exit_on_error "$?" 'Error' "Unable to create new backup"
 
 # Remove old backups
-${restic} forget -r ${repo} -p ${password} --keep-hourly ${keep_hourly} --keep-daily ${keep_daily} --keep-weekly ${keep_weekly} --keep-monthly ${keep_monthly} --prune >> ${log_file} 2>&1
+${restic} forget -r ${repo} -p ${password} --limit-download ${restic_limit_download} --limit-upload ${restic_limit_upload} --keep-hourly ${keep_hourly} --keep-daily ${keep_daily} --keep-weekly ${keep_weekly} --keep-monthly ${keep_monthly} --prune >> ${log_file} 2>&1
 log_and_exit_on_error "$?" 'Error' "Unable to remove old backups"
 
 # Check backup repository
-${restic} check -r ${repo} -p ${password} --with-cache >> ${log_file} 2>&1
+${restic} check -r ${repo} -p ${password} --limit-download ${restic_limit_download} --limit-upload ${restic_limit_upload} --with-cache >> ${log_file} 2>&1
 log_and_exit_on_error "$?" 'Error' "Unable to check backup repository"
 
 add_log_header 'backup successful'
