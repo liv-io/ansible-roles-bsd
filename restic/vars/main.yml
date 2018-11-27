@@ -64,7 +64,7 @@ file_owner_restic_run_backup_sh: 'root'
 file_group_restic_run_backup_sh: 'wheel'
 
 # restic_run-backup
-cron_name_restic_run_backup: "restic: Run Backup"
+cron_name_restic_run_backup: 'restic: Run Backup'
 cron_day_restic_run_backup: "{{restic_run_backup_day}}"
 cron_hour_restic_run_backup: "{{restic_run_backup_hour}}"
 cron_minute_restic_run_backup: "{{restic_run_backup_minute}}"

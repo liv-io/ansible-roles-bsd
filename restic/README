@@ -229,7 +229,7 @@ ROLE
     Type       : String
     Default    : "restic: Run Backup - Error ({{ansible_hostname}})"
     Options    :
-      Examples: '"restic: Run Backup - Error'
+      Examples: 'restic: Run Backup - Error'
 
   restic_password
     Description: Define the 'restic_password' option.
