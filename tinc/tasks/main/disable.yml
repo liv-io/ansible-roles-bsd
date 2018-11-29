@@ -1,0 +1,59 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - disable
+    - tinc
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status tinc'
+  command: "{{command_cmd_status_tinc}}"
+  register: register_status_tinc
+  changed_when: (register_status_tinc.rc > 1)
+  failed_when: (register_status_tinc.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - disable
+    - tinc
+
+- name: 'command disable tinc'
+  command: "{{command_cmd_disable_tinc}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_tinc.rc == 0)
+  tags:
+    - disable
+    - tinc
+
+- name: 'command check tinc'
+  command: "{{command_cmd_check_tinc}}"
+  register: register_check_tinc
+  changed_when: (register_check_tinc.rc > 1)
+  failed_when: (register_check_tinc.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - disable
+    - tinc
+
+- name: 'command stop tinc'
+  command: "{{command_cmd_stop_tinc}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_tinc.rc == 0)
+  tags:
+    - disable
+    - tinc

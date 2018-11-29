@@ -1,0 +1,39 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : tinc.conf
+# Type   : tinc configuration file
+# Role   : tinc
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+# This is a comment.
+# Spaces and tabs are eliminated.
+# The = sign isn't strictly necessary any longer, though you may want
+# to leave it in as it improves readability :)
+# Variable names are treated case insensitive.
+
+# The name of this tinc host. Required.
+Name = {{item.host}}
+
+# The internet host to connect with.
+# Comment these out to make yourself a listen-only connection
+# You must use the name of another tinc host.
+# May be used multiple times for redundance.
+{% for connect_to in (item.connect_to|default([])) %}
+ConnectTo = {{connect_to}}
+{% endfor %}
+
+# The tap device tinc will use.
+# /dev/tap0 for ethertap, FreeBSD or OpenBSD
+# /dev/tun0 for Solaris
+# /dev/net/tun for Linux tun/tap
+Device = {{(item.device|default('/dev/tap0'))}}

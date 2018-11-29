@@ -1,0 +1,23 @@
+---
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check tincd
+command_cmd_check_tinc: 'rcctl check tincd'
+
+# disable tincd
+command_cmd_disable_tinc: 'rcctl disable tincd'
+
+# enable tincd
+command_cmd_enable_tinc: 'rcctl enable tincd'
+
+# start tincd
+command_cmd_start_tinc: 'rcctl start tincd'
+
+# status tincd
+command_cmd_status_tinc: 'rcctl get tincd status'
+
+# stop tincd
+command_cmd_stop_tinc: 'rcctl stop tincd'

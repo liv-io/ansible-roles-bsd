@@ -1,0 +1,160 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      skip: 'true'
+  tags:
+    - config
+    - tinc
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create config.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_tinc_dir}}/{{item.name}}"
+    mode: "{{file_mode_config_dir}}"
+    owner: "{{file_owner_config_dir}}"
+    group: "{{file_group_config_dir}}"
+  with_items: "{{tinc_config}}"
+  notify: 'service restart tinc'
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - tinc
+
+- name: 'file create hosts.dir'
+  file:
+    state: 'directory'
+    path: "{{file_dst_tinc_dir}}/{{item.name}}/hosts"
+    mode: "{{file_mode_hosts_dir}}"
+    owner: "{{file_owner_hosts_dir}}"
+    group: "{{file_group_hosts_dir}}"
+  with_items: "{{tinc_config}}"
+  notify: 'service restart tinc'
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - tinc
+
+- name: 'file create host'
+  template:
+    src: "{{file_src_host}}"
+    dest: "{{file_dst_tinc_dir}}/{{item.0.name}}/hosts/{{item.1.name}}"
+    mode: "{{file_mode_host}}"
+    owner: "{{file_owner_host}}"
+    group: "{{file_group_host}}"
+  with_subelements:
+    - "{{tinc_config}}"
+    - hosts
+    - flags:
+      skip_missing: true
+  notify: 'service restart tinc'
+  when: not (item.0.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - tinc
+
+- name: 'file copy rsa_key.priv'
+  copy:
+    content: "{{item.private_key}}"
+    dest: "{{file_dst_tinc_dir}}/{{item.name}}/rsa_key.priv"
+    mode: "{{file_mode_rsa_key_priv}}"
+    owner: "{{file_owner_rsa_key_priv}}"
+    group: "{{file_group_rsa_key_priv}}"
+  no_log: 'true'
+  with_items: "{{tinc_config}}"
+  notify: 'service restart tinc'
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - tinc
+
+- name: 'file create tinc.conf'
+  template:
+    src: "{{file_src_tinc_conf}}"
+    dest: "{{file_dst_tinc_dir}}/{{item.name}}/tinc.conf"
+    mode: "{{file_mode_tinc_conf}}"
+    owner: "{{file_owner_tinc_conf}}"
+    group: "{{file_group_tinc_conf}}"
+  with_items: "{{tinc_config}}"
+  notify: 'service restart tinc'
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - tinc
+
+- name: 'file create tinc-down'
+  template:
+    src: "{{file_src_tinc_down}}"
+    dest: "{{file_dst_tinc_dir}}/{{item.name}}/tinc-down"
+    mode: "{{file_mode_tinc_down}}"
+    owner: "{{file_owner_tinc_down}}"
+    group: "{{file_group_tinc_down}}"
+  with_items: "{{tinc_config}}"
+  notify: 'service restart tinc'
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - tinc
+
+- name: 'file create tinc-up'
+  template:
+    src: "{{file_src_tinc_up}}"
+    dest: "{{file_dst_tinc_dir}}/{{item.name}}/tinc-up"
+    mode: "{{file_mode_tinc_up}}"
+    owner: "{{file_owner_tinc_up}}"
+    group: "{{file_group_tinc_up}}"
+  with_items: "{{tinc_config}}"
+  notify: 'service restart tinc'
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - tinc
+
+- name: 'line config tincd_flags'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_tincd_flags}} --net={{item.name}} # Ansible: Configure tinc"
+    regexp: "^{{file_line_tincd_flags}}"
+    dest: "{{file_dst_tincd_flags}}"
+  with_items: "{{tinc_config}}"
+  notify: 'service restart tinc'
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - tinc
+
+- name: 'file remove config.dir'
+  file:
+    state: 'absent'
+    path: "{{file_dst_tinc_dir}}/{{item.name}}"
+  with_items: "{{tinc_config}}"
+  notify: 'service restart tinc'
+  when: (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - tinc
+
+- name: 'line disable tincd_flags'
+  lineinfile:
+    state: 'absent'
+    regexp: "^{{file_line_tincd_flags}}.*"
+    dest: "{{file_dst_tincd_flags}}"
+  with_items: "{{tinc_config}}"
+  notify: 'service restart tinc'
+  when: (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - tinc
