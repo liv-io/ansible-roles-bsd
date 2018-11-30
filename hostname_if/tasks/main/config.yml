@@ -29,7 +29,7 @@
     group: "{{file_group_hostname_if}}"
   with_items: "{{hostname_if_all + hostname_if_dependencies + hostname_if_group + hostname_if_host}}"
   notify: 'command run netstart'
-  when: not (item.state|default('') is match('false|no|remove'))
+  when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - config
     - hostname_if
@@ -40,7 +40,7 @@
     path: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
   with_items: "{{hostname_if_all + hostname_if_dependencies + hostname_if_group + hostname_if_host}}"
   notify: 'command run netstart'
-  when: (item.state|default('') is match('false|no|remove'))
+  when: (item.state|default('true') is match('false|no|remove'))
   tags:
     - config
     - hostname_if
@@ -55,7 +55,7 @@
   changed_when: (register_check_ifconfig.rc > 1)
   failed_when: (register_check_ifconfig.rc > 1)
   with_items: "{{hostname_if_all + hostname_if_dependencies + hostname_if_group + hostname_if_host}}"
-  when: (item.state|default('') is match('false|no|remove')) and (item.interface in ansible_interfaces)
+  when: (item.state|default('true') is match('false|no|remove')) and (item.interface in ansible_interfaces)
   tags:
     - config
     - hostname_if
