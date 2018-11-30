@@ -31,7 +31,7 @@
   notify:
     - 'command nsd-checkconf'
     - 'service restart nsd'
-  when: not (item.state|default('') is match('false|no|remove'))
+  when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - config
     - nsd
@@ -44,7 +44,7 @@
   notify:
     - 'command nsd-checkconf'
     - 'service restart nsd'
-  when: (item.state|default('') is match('false|no|remove'))
+  when: (item.state|default('true') is match('false|no|remove'))
   tags:
     - config
     - nsd

@@ -371,7 +371,7 @@ remote-control:
 
 {% if (nsd_zone is defined) and not (nsd_zone == []) %}
 {% for zone in nsd_zone %}
-{% if not (zone.state|default('') is match('false|no|disable')) %}
+{% if not (zone.state|default('true') is match('false|no|disable')) %}
 zone:
 {% if (zone.comment is defined) %}
         # {{zone.comment}}
