@@ -22,7 +22,7 @@ file_owner_nginx_conf: 'root'
 file_group_nginx_conf: 'wheel'
 
 # vhost
-file_src_vhost: "templates/main/vhost.conf.j2"
+file_src_vhost: 'templates/main/vhost.conf.j2'
 file_mode_vhost: '0644'
 file_owner_vhost: 'root'
 file_group_vhost: 'wheel'
