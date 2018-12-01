@@ -30,21 +30,21 @@ file_owner_restic_script_dir: 'root'
 file_group_restic_script_dir: 'wheel'
 
 # include.conf
-file_src_include_conf: "templates/main/include.conf.j2"
+file_src_include_conf: 'templates/main/include.conf.j2'
 file_dst_include_conf: '/{{common_script_dir}}/restic/include.conf'
 file_mode_include_conf: '0600'
 file_owner_include_conf: 'root'
 file_group_include_conf: 'wheel'
 
 # exclude.conf
-file_src_exclude_conf: "templates/main/exclude.conf.j2"
+file_src_exclude_conf: 'templates/main/exclude.conf.j2'
 file_dst_exclude_conf: '/{{common_script_dir}}/restic/exclude.conf'
 file_mode_exclude_conf: '0600'
 file_owner_exclude_conf: 'root'
 file_group_exclude_conf: 'wheel'
 
 # password.conf
-file_src_password_conf: "templates/main/password.conf.j2"
+file_src_password_conf: 'templates/main/password.conf.j2'
 file_dst_password_conf: '/{{common_script_dir}}/restic/password.conf'
 file_mode_password_conf: '0600'
 file_owner_password_conf: 'root'
@@ -57,7 +57,7 @@ file_owner_restic_log: 'root'
 file_group_restic_log: 'wheel'
 
 # restic_run-backup.sh
-file_src_restic_run_backup_sh: "templates/main/restic_run-backup.sh.j2"
+file_src_restic_run_backup_sh: 'templates/main/restic_run-backup.sh.j2'
 file_dst_restic_run_backup_sh: "/{{common_script_dir}}/restic/restic_run-backup.sh"
 file_mode_restic_run_backup_sh: '0754'
 file_owner_restic_run_backup_sh: 'root'
