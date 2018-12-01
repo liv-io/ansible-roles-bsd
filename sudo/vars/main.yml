@@ -20,7 +20,7 @@ file_group_sudoers: 'wheel'
 file_validate_sudoers: 'visudo -cf %s'
 
 # sudo-config
-file_src_sudo_config: "templates/main/sudo-config.j2"
+file_src_sudo_config: 'templates/main/sudo-config.j2'
 file_mode_sudo_config: '0440'
 file_owner_sudo_config: 'root'
 file_group_sudo_config: 'wheel'
