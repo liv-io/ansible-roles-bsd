@@ -29,7 +29,7 @@ file_owner_common_script_dir: 'root'
 file_group_common_script_dir: 'wheel'
 
 # README
-file_src_readme: "templates/main/README.j2"
+file_src_readme: 'templates/main/README.j2'
 file_dst_readme: "/README"
 file_mode_readme: '0644'
 file_owner_readme: 'root'
