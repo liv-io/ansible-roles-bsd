@@ -22,7 +22,7 @@
 
 - name: 'file create hostname.if'
   template:
-    src: "templates/main/hostname.if.j2"
+    src: "{{file_src_hostname_if}}"
     dest: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
     mode: "{{file_mode_hostname_if}}"
     owner: "{{file_owner_hostname_if}}"
