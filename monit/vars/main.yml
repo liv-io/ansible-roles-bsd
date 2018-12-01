@@ -19,7 +19,7 @@ file_owner_monitrc: 'root'
 file_group_monitrc: 'wheel'
 
 # monit-config
-file_src_monit_config: "templates/main/monit-config.j2"
+file_src_monit_config: 'templates/main/monit-config.j2'
 file_mode_monit_config: '0640'
 file_owner_monit_config: 'root'
 file_group_monit_config: 'wheel'
