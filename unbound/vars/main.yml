@@ -12,7 +12,7 @@ package_name_unbound: 'unbound'
 #-------------------------------------------------------------------------------
 
 # root.hints
-file_src_root_hints: "templates/main/root.hints.j2"
+file_src_root_hints: 'templates/main/root.hints.j2'
 file_dst_root_hints: '/var/unbound/etc/root.hints'
 file_mode_root_hints: '0644'
 file_owner_root_hints: 'root'
