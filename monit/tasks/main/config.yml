@@ -20,30 +20,30 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'file create monit-config'
+- name: 'file create config'
   template:
-    src: "{{file_src_monit_config}}"
+    src: "{{file_src_config}}"
     dest: "{{file_dst_monit_d}}/{{item.name}}.cfg"
-    mode: "{{file_mode_monit_config}}"
-    owner: "{{file_owner_monit_config}}"
-    group: "{{file_group_monit_config}}"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
   notify:
     - 'command validate monit'
     - 'service restart monit'
-  with_items: "{{monit_all + monit_group + monit_host}}"
+  with_items: "{{monit_config_all + monit_config_group + monit_config_host}}"
   when: not (item.state is match('false|no|remove'))
   tags:
     - config
     - monit
 
-- name: 'file remove monit-config'
+- name: 'file remove config'
   file:
     state: 'absent'
     path: "{{file_dst_monit_d}}/{{item.name}}.cfg"
   notify:
     - 'command validate monit'
     - 'service restart monit'
-  with_items: "{{monit_all + monit_group + monit_host}}"
+  with_items: "{{monit_config_all + monit_config_group + monit_config_host}}"
   when: (item.state is match('false|no|remove'))
   tags:
     - config

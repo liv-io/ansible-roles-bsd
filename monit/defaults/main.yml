@@ -2,15 +2,15 @@
 
 monit_state: 'enable'
 
-monit_all: []
+monit_config_all: []
+
+monit_config_group: []
+
+monit_config_host: []
 
 monit_daemon_delay: 3
 
 monit_daemon_interval: 60
-
-monit_group: []
-
-monit_host: []
 
 monit_include: "{{'/usr/local/etc/monit.d/*.cfg' if (ansible_os_family == 'FreeBSD') else '/etc/monit.d/*.cfg'}}"
 
