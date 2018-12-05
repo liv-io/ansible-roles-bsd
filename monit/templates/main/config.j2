@@ -15,8 +15,13 @@
 #
 #-------------------------------------------------------------------------------
 
-# {{item.comment}}
-{% if (item.config is defined) and not ((item.config == '') or (item.config == [])) %}
+{% if (item.comment is defined) and not (item.comment == '') %}
+#-------------------------------------------------------------------------------
+# {{(item.comment|upper)}}
+#-------------------------------------------------------------------------------
+
+{% endif %}
+{% if (item.config is defined) and not (item.config == []) %}
 {% for config in item.config %}
 {{config}}
 {% endfor %}

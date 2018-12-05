@@ -83,53 +83,68 @@ INACTIVE
 CONFIG
   vars:
     monit_config_all:
+      - name: 'system'
+        state: 'true'
+        comment: 'system'
+        config:
+          - "check system {{ansible_hostname}}"
+          - '  if cpu usage (user) > 80% for 5 cycles then alert'
+          - '  if cpu usage (system) > 20% for 5 cycles then alert'
+          - '  if cpu usage (wait) > 20% for 5 cycles then alert'
+          - '  if loadavg (1min) > 6 for 5 cycles then alert'
+          - '  if loadavg (5min) > 3 for 5 cycles then alert'
+          - '  if loadavg (15min) > 2 for 5 cycles then alert'
+          - '  if memory usage > 90% for 5 cycles then alert'
+          - '  if swap usage > 30% for 5 cycles then alert'
+          - '  if swap usage > 30% for 5 cycles then alert'
+
+      - name: 'storage'
+        state: 'true'
+        comment: 'boot'
+        config:
+          - 'check filesystem "boot" with path /boot'
+          - '  if space usage > 80% for 5 cycles then alert'
+
+          - 'check filesystem "root" with path /'
+          - '  if space usage > 80% for 5 cycles then alert'
+
+          - 'check filesystem "data" with path /data'
+          - '  if space usage > 80% for 5 cycles then alert'
+          - '  if does not exist then unmonitor'
+
+          - 'check filesystem "backup" with path /backup'
+          - '  if space usage > 80% for 5 cycles then alert'
+          - '  if does not exist then unmonitor'
+
+      - name: 'ntpd'
+        state: 'true'
+        comment: 'ntpd'
+        config:
+          - 'check process ntpd matching "/usr/sbin/ntpd.*"'
+          - '  start program = "/usr/sbin/service ntpd start"'
+          - '  stop program  = "/usr/sbin/service ntpd stop"'
+          - '  if failed host 127.0.0.1 port 123 type udp then alert'
+
       - name: 'openssh'
         state: 'true'
-        comment: 'OpenSSH'
+        comment: 'openssh'
         config:
-          - 'check process openssh with pidfile /run/sshd.pid'
-          - '  group system'
-          - '  start program = "/sbin/service sshd start"'
-          - '  stop program  = "/sbin/service sshd stop"'
-          - '  if cpu > 60% for 2 cycles then alert'
-          - '  if cpu > 80% for 5 cycles then restart'
-          - '  if totalmem > 256.0 MB for 2 cycles then alert'
-          - '  if totalmem > 256.0 MB for 5 cycles then restart'
+          - 'check process openssh with pidfile "/run/sshd.pid"'
+          - '  start program = "/usr/sbin/service sshd start"'
+          - '  stop program = "/usr/sbin/service sshd stop"'
           - '  if failed host 127.0.0.1 port 22 type tcp protocol ssh with timeout 10 seconds then restart'
           - '  if 5 restarts within 5 cycles then timeout'
 
     monit_config_group:
-      - name: 'pdns-server'
+      - name: 'nsd'
         state: 'true'
-        comment: 'PowerDNS Server'
+        comment: 'nsd'
         config:
-          - 'check process pdns-server with pidfile /run/pdns.pid'
-          - '  group dns'
-          - '  start program = "/sbin/service pdns start"'
-          - '  stop program  = "/sbin/service pdns stop"'
-          - '  if cpu > 60% for 2 cycles then alert'
-          - '  if cpu > 80% for 5 cycles then restart'
-          - '  if totalmem > 32.0 MB for 2 cycles then alert'
-          - '  if totalmem > 32.0 MB for 5 cycles then restart'
-          - '  if failed host 127.0.0.1 port 53 type tcp protocol dns then alert'
-          - '  if failed host 127.0.0.1 port 53 type udp protocol dns then alert'
-          - '  if 5 restarts within 5 cycles then timeout'
-
-    monit_config_host:
-      - name: 'pdns-recursor'
-        state: 'true'
-        comment: 'PowerDNS Recursor'
-        config:
-          - 'check process pdns-recursor with pidfile /var/lib/powerdns/pdns_recursor.pid'
-          - '  group dns'
-          - '  start program = "/sbin/service precursor start"'
-          - '  stop program  = "/sbin/service precursor stop"'
-          - '  if cpu > 60% for 2 cycles then alert'
-          - '  if cpu > 80% for 5 cycles then restart'
-          - '  if totalmem > 32.0 MB for 2 cycles then alert'
-          - '  if totalmem > 32.0 MB for 5 cycles then restart'
-          - '  if failed host 127.0.0.1 port 5300 type tcp protocol dns then alert'
-          - '  if failed host 127.0.0.1 port 5300 type udp protocol dns then alert'
+          - 'check process nsd with pidfile "/run/nsd/nsd.pid"'
+          - '  start program = "/usr/sbin/service nsd start"'
+          - '  stop program = "/usr/sbin/service nsd stop"'
+          - '  if failed host 127.0.0.1 port 53 type tcp protocol dns with timeout 10 seconds then restart'
+          - '  if failed host 127.0.0.1 port 53 type udp protocol dns with timeout 10 seconds then restart'
           - '  if 5 restarts within 5 cycles then timeout'
 
 --------------------------------------------------------------------------------
