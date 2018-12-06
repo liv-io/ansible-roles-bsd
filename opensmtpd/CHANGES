@@ -13,6 +13,11 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.0.0 (2018-12-06)
+F: Add support for managing 'secrets'
+F: Add support for OpenBSD 6.4
+F: Drop support for FreeBSD 11.2-RELEASE
+
 * Version 2.4.1 (2018-10-29)
 I: Update filters to new Ansible grammar
 

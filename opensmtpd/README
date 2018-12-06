@@ -36,13 +36,15 @@ ENABLE
       - role: opensmtpd
     vars:
       opensmtpd_state: 'enable'
-      opensmtpd_accept_all:
-        - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
-        - {config: {'accept for any relay via tls+auth://mail.domain.tld auth <secrets>'}, comment: 'Accept: Relay'}
-      opensmtpd_table_all:
-        - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}
-        - {config: {'table secrets file:/usr/local/etc/mail/secrets'}, comment: 'Table: Secrets'}
+      opensmtpd_action_all:
+        - {config: {'action "local" mbox alias <aliases>'}, comment: 'Action: local'}
+        - {config: {'action "relay" relay host smtp+tls://user01_auth@mail.domain.tld auth <secrets>'}, comment: 'Action: relay'}
       opensmtpd_root_mail_address: 'root@domain.tld'
+      opensmtpd_secrets_all:
+        - {label: 'user01_auth', username: 'user01', password: 'S6_SD6B,Ybwt+Np-GuGEh+.p-xUeLbH3', comment: 'user01 credentials'}
+      opensmtpd_table_all:
+        - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: aliases'}
+        - {config: {'table secrets file:/etc/mail/secrets'}, comment: 'Table: secrets'}
 
 DISABLE
   - hosts: all
@@ -50,13 +52,15 @@ DISABLE
       - role: opensmtpd
     vars:
       opensmtpd_state: 'disable'
-      opensmtpd_accept_all:
-        - {config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'}
-        - {config: {'accept for any relay via tls+auth://mail.domain.tld auth <secrets>'}, comment: 'Accept: Relay'}
-      opensmtpd_table_all:
-        - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}
-        - {config: {'table secrets file:/usr/local/etc/mail/secrets'}, comment: 'Table: Secrets'}
+      opensmtpd_action_all:
+        - {config: {'action "local" mbox alias <aliases>'}, comment: 'Action: local'}
+        - {config: {'action "relay" relay host smtp+tls://user01_auth@mail.domain.tld auth <secrets>'}, comment: 'Action: relay'}
       opensmtpd_root_mail_address: 'root@domain.tld'
+      opensmtpd_secrets_all:
+        - {label: 'user01_auth', username: 'user01', password: 'S6_SD6B,Ybwt+Np-GuGEh+.p-xUeLbH3', comment: 'user01 credentials'}
+      opensmtpd_table_all:
+        - {config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: aliases'}
+        - {config: {'table secrets file:/etc/mail/secrets'}, comment: 'Table: secrets'}
 
 REMOVE
   - hosts: all
@@ -91,41 +95,41 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  opensmtpd_accept_all
-    Description: Define the 'opensmtpd_accept_all' option.
-    Implemented: 0.1
+  opensmtpd_action_all
+    Description: Define the 'opensmtpd_action_all' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'},
-                  {config: {'accept for any relay via smtp://mail'}, comment: 'Accept: Relay'}]
+    Default    : [{config: {'action "local" mbox alias <aliases>'}, comment: 'Action: local'},
+                  {config: {'action "relay" relay host smtp://mail'}, comment: 'Action: relay'}]
     Options    :
-      Examples: [{config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'},
-                 {config: {'accept for any relay via smtp://mail'}, comment: 'Accept: Relay'}]
+      Examples: [{config: {'action "local" mbox alias <aliases>'}, comment: 'Action: local'},
+                 {config: {'action "relay" relay host smtp://mail'}, comment: 'Action: relay'}]
       None    : []
 
-  opensmtpd_accept_group
-    Description: Define the 'opensmtpd_accept_group' option.
-    Implemented: 0.1
+  opensmtpd_action_group
+    Description: Define the 'opensmtpd_action_group' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'},
-                 {config: {'accept for any relay via smtp://mail'}, comment: 'Accept: Relay'}]
+      Examples: [{config: {'action "local" mbox alias <aliases>'}, comment: 'Action: local'},
+                 {config: {'action "relay" relay host smtp://mail'}, comment: 'Action: relay'}]
       None    : []
 
-  opensmtpd_accept_host
-    Description: Define the 'opensmtpd_accept_host' option.
-    Implemented: 0.1
+  opensmtpd_action_host
+    Description: Define the 'opensmtpd_action_host' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {'accept for local alias <aliases> deliver to mbox'}, comment: 'Accept: Aliases'},
-                 {config: {'accept for any relay via smtp://mail'}, comment: 'Accept: Relay'}]
+      Examples: [{config: {'action "local" mbox alias <aliases>'}, comment: 'Action: local'},
+                 {config: {'action "relay" relay host smtp://mail'}, comment: 'Action: relay'}]
       None    : []
 
   opensmtpd_listen_all
@@ -134,9 +138,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{config: {'listen on localhost'}, comment: 'Listen: Localhost'}]
+    Default    : [{config: {'listen on lo0'}, comment: 'Listen: lo0'}]
     Options    :
-      Examples: [{config: {'listen on localhost'}, comment: 'Listen: Localhost'}]
+      Examples: [{config: {'listen on lo0'}, comment: 'Listen: lo0'}]
       None    : []
 
   opensmtpd_listen_group
@@ -147,7 +151,7 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {'listen on localhost'}, comment: 'Listen: Localhost'}]
+      Examples: [{config: {'listen on lo0'}, comment: 'Listen: lo0'}]
       None    : []
 
   opensmtpd_listen_host
@@ -158,7 +162,44 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {'listen on localhost'}, comment: 'Listen: Localhost'}]
+      Examples: [{config: {'listen on lo0'}, comment: 'Listen: lo0'}]
+      None    : []
+
+  opensmtpd_match_all
+    Description: Define the 'opensmtpd_match_all' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : [{config: {'match for local action "local"'}, comment: 'Match: local'}
+                  {config: {'match for any action "relay"'}, comment: 'Match: relay'}]
+    Options    :
+      Examples: [{config: {'match for local action "local"'}, comment: 'Match: local'}
+                 {config: {'match for any action "relay"'}, comment: 'Match: relay'}]
+      None    : []
+
+  opensmtpd_match_group
+    Description: Define the 'opensmtpd_match_group' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'match for local action "local"'}, comment: 'Match: local'}
+                 {config: {'match for any action "relay"'}, comment: 'Match: relay'}]
+      None    : []
+
+  opensmtpd_match_host
+    Description: Define the 'opensmtpd_match_host' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'match for local action "local"'}, comment: 'Match: local'}
+                 {config: {'match for any action "relay"'}, comment: 'Match: relay'}]
       None    : []
 
   opensmtpd_root_mail_address
@@ -171,15 +212,52 @@ ROLE
     Options    :
       Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
+  opensmtpd_secrets_all
+    Description: Define the 'opensmtpd_secrets_all' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{label: 'user01_auth', username: 'user01', password: 'S6_SD6B,Ybwt+Np-GuGEh+.p-xUeLbH3', comment: 'user01 credentials'},
+                 {label: 'user02_auth', username: 'user02', password: 'bvU8tP6!MF9t+hudKa,nkjP,r-oKUfip', comment: 'user02 credentials'}]
+      None    : []
+
+  opensmtpd_secrets_group
+    Description: Define the 'opensmtpd_secrets_group' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{label: 'user01_auth', username: 'user01', password: 'S6_SD6B,Ybwt+Np-GuGEh+.p-xUeLbH3', comment: 'user01 credentials'},
+                 {label: 'user02_auth', username: 'user02', password: 'bvU8tP6!MF9t+hudKa,nkjP,r-oKUfip', comment: 'user02 credentials'}]
+      None    : []
+
+  opensmtpd_secrets_host
+    Description: Define the 'opensmtpd_secrets_host' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{label: 'user01_auth', username: 'user01', password: 'S6_SD6B,Ybwt+Np-GuGEh+.p-xUeLbH3', comment: 'user01 credentials'},
+                 {label: 'user02_auth', username: 'user02', password: 'bvU8tP6!MF9t+hudKa,nkjP,r-oKUfip', comment: 'user02 credentials'}]
+      None    : []
+
   opensmtpd_table_all
     Description: Define the 'opensmtpd_table_all' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}]
+    Default    : []
     Options    :
-      Examples: [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}]
+      Examples: [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: aliases'},
+                 {config: {'table secrets file:/etc/mail/secrets'}, comment: 'Table: secrets'}]
       None    : []
 
   opensmtpd_table_group
@@ -190,7 +268,8 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}]
+      Examples: [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: aliases'},
+                 {config: {'table secrets file:/etc/mail/secrets'}, comment: 'Table: secrets'}]
       None    : []
 
   opensmtpd_table_host
@@ -201,7 +280,8 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: Aliases'}]
+      Examples: [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: aliases'},
+                 {config: {'table secrets file:/etc/mail/secrets'}, comment: 'Table: secrets'}]
       None    : []
 
 --------------------------------------------------------------------------------
@@ -216,10 +296,6 @@ DEPENDENCIES
 --------------------------------------------------------------------------------
 
 PACKAGES
-  opensmtpd
-    Version: >= 5.4
-    Name   :
-      FreeBSD 11: 'opensmtpd'
 
 ROLES
 
@@ -261,11 +337,11 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
-      Status: Stable
+    Version: 12.0-*
+      Status: Planned
 
   OpenBSD
-    Version: 6.3
+    Version: 6.4
       Status: Stable
 
 --------------------------------------------------------------------------------

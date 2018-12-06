@@ -15,118 +15,181 @@
 #
 #-------------------------------------------------------------------------------
 
-#	$OpenBSD: smtpd.conf,v 1.9 2016/05/03 18:43:45 jung Exp $
-
 # This is the smtpd server system-wide configuration file.
 # See smtpd.conf(5) for more information.
-
-#-------------------------------------------------------------------------------
-# LISTEN
-#-------------------------------------------------------------------------------
-
-# ALL
-{% if not ((opensmtpd_listen_all == '') or (opensmtpd_listen_all == [])) %}
-{% for item in opensmtpd_listen_all %}
-# {{item.comment}}
-{% for config in item.config %}
-{{config}}
-{% endfor %}
-{% endfor %}
-{% else %}
-{% endif %}
-
-# GROUP
-{% if not ((opensmtpd_listen_group == '') or (opensmtpd_listen_group == [])) %}
-{% for item in opensmtpd_listen_group %}
-# {{item.comment}}
-{% for config in item.config %}
-{{config}}
-{% endfor %}
-{% endfor %}
-{% else %}
-{% endif %}
-
-# HOST
-{% if not ((opensmtpd_listen_host == '') or (opensmtpd_listen_host == [])) %}
-{% for item in opensmtpd_listen_host %}
-# {{item.comment}}
-{% for config in item.config %}
-{{config}}
-{% endfor %}
-{% endfor %}
-{% else %}
-{% endif %}
 
 #-------------------------------------------------------------------------------
 # TABLE
 #-------------------------------------------------------------------------------
 
 # ALL
-{% if not ((opensmtpd_table_all == '') or (opensmtpd_table_all == [])) %}
+
+{% if not (opensmtpd_table_all == []) %}
 {% for item in opensmtpd_table_all %}
 # {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
+
 {% endfor %}
-{% else %}
 {% endif %}
 
+#-------------------------------------------------------------------------------
+
 # GROUP
-{% if not ((opensmtpd_table_group == '') or (opensmtpd_table_group == [])) %}
+
+{% if not (opensmtpd_table_group == []) %}
 {% for item in opensmtpd_table_group %}
 # {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
+
 {% endfor %}
-{% else %}
 {% endif %}
 
+#-------------------------------------------------------------------------------
+
 # HOST
-{% if not ((opensmtpd_table_host == '') or (opensmtpd_table_host == [])) %}
+
+{% if not (opensmtpd_table_host == []) %}
 {% for item in opensmtpd_table_host %}
 # {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
+
 {% endfor %}
-{% else %}
 {% endif %}
 
 #-------------------------------------------------------------------------------
-# ACCEPT
+# LISTEN
 #-------------------------------------------------------------------------------
 
 # ALL
-{% if not ((opensmtpd_accept_all == '') or (opensmtpd_accept_all == [])) %}
-{% for item in opensmtpd_accept_all %}
+
+{% if not (opensmtpd_listen_all == []) %}
+{% for item in opensmtpd_listen_all %}
 # {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
+
 {% endfor %}
-{% else %}
 {% endif %}
+
+#-------------------------------------------------------------------------------
 
 # GROUP
-{% if not ((opensmtpd_accept_group == '') or (opensmtpd_accept_group == [])) %}
-{% for item in opensmtpd_accept_group %}
+
+{% if not (opensmtpd_listen_group == []) %}
+{% for item in opensmtpd_listen_group %}
 # {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
+
 {% endfor %}
-{% else %}
 {% endif %}
 
+#-------------------------------------------------------------------------------
+
 # HOST
-{% if not ((opensmtpd_accept_host == '') or (opensmtpd_accept_host == [])) %}
-{% for item in opensmtpd_accept_host %}
+
+{% if not (opensmtpd_listen_host == []) %}
+{% for item in opensmtpd_listen_host %}
 # {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
+
 {% endfor %}
-{% else %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# ACTION
+#-------------------------------------------------------------------------------
+
+# ALL
+
+{% if not (opensmtpd_action_all == []) %}
+{% for item in opensmtpd_action_all %}
+# {{item.comment}}
+{% for config in item.config %}
+{{config}}
+{% endfor %}
+
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+
+# GROUP
+
+{% if not (opensmtpd_action_group == []) %}
+{% for item in opensmtpd_action_group %}
+# {{item.comment}}
+{% for config in item.config %}
+{{config}}
+{% endfor %}
+
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+
+# HOST
+
+{% if not (opensmtpd_action_host == []) %}
+{% for item in opensmtpd_action_host %}
+# {{item.comment}}
+{% for config in item.config %}
+{{config}}
+{% endfor %}
+
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# MATCH
+#-------------------------------------------------------------------------------
+
+# ALL
+
+{% if not (opensmtpd_match_all == []) %}
+{% for item in opensmtpd_match_all %}
+# {{item.comment}}
+{% for config in item.config %}
+{{config}}
+{% endfor %}
+
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+
+# GROUP
+
+{% if not (opensmtpd_match_group == []) %}
+{% for item in opensmtpd_match_group %}
+# {{item.comment}}
+{% for config in item.config %}
+{{config}}
+{% endfor %}
+
+{% endfor %}
+{% endif %}
+
+#-------------------------------------------------------------------------------
+
+# HOST
+
+{% if not (opensmtpd_match_host == []) %}
+{% for item in opensmtpd_match_host %}
+# {{item.comment}}
+{% for config in item.config %}
+{{config}}
+{% endfor %}
+
+{% endfor %}
 {% endif %}

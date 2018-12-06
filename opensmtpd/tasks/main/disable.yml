@@ -31,6 +31,17 @@
     - disable
     - opensmtpd
 
+- name: 'file create secrets'
+  template:
+    src: "{{file_src_secrets}}"
+    dest: "{{file_dst_secrets}}"
+    mode: "{{file_mode_secrets}}"
+    owner: "{{file_owner_secrets}}"
+    group: "{{file_group_secrets}}"
+  tags:
+    - disable
+    - opensmtpd
+
 - name: 'file create smtpd.conf'
   template:
     src: "{{file_src_smtpd_conf}}"
@@ -38,17 +49,6 @@
     mode: "{{file_mode_smtpd_conf}}"
     owner: "{{file_owner_smtpd_conf}}"
     group: "{{file_group_smtpd_conf}}"
-  tags:
-    - disable
-    - opensmtpd
-
-- name: 'line disable smtpd_enable'
-  lineinfile:
-    state: 'present'
-    line: "{{file_line_smtpd_enable}}=\"NO\" # Ansible: Disable opensmtpd"
-    regexp: "^{{file_line_smtpd_enable}}="
-    dest: "{{file_dst_smtpd_enable}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
     - opensmtpd
@@ -91,20 +91,6 @@
   command: "{{command_cmd_stop_opensmtpd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 0)
-  tags:
-    - disable
-    - opensmtpd
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
-
-- name: 'service stop opensmtpd'
-  service:
-    state: 'stopped'
-    enabled: 'no'
-    name: "{{service_name_opensmtpd}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
     - opensmtpd

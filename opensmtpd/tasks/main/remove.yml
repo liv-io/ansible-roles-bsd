@@ -59,59 +59,13 @@
     - opensmtpd
 
 #-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
-- name: 'package remove opensmtpd'
-  package:
-    state: 'absent'
-    name: "{{package_name_opensmtpd}}"
-  register: register_freebsd_opensmtpd
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - remove
-    - opensmtpd
-
-#-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'line remove smtpd_enable'
-  lineinfile:
-    state: 'absent'
-    line: "{{file_line_smtpd_enable}}=\"NO\" # Ansible: Remove opensmtpd"
-    regexp: "^{{file_line_smtpd_enable}}="
-    dest: "{{file_dst_smtpd_enable}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - remove
-    - opensmtpd
-
-- name: 'line remove sendmail_enable'
-  lineinfile:
-    state: 'absent'
-    line: "{{file_line_sendmail_enable}}=\"NONE\" # Ansible: Remove sendmail"
-    regexp: "^{{file_line_sendmail_enable}}="
-    dest: "{{file_dst_sendmail_enable}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - remove
-    - opensmtpd
-
-- name: 'file remove aliases'
+- name: 'file remove secrets'
   file:
     state: 'absent'
-    path: "{{file_dst_aliases}}"
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - remove
-    - opensmtpd
-
-- name: 'file remove smtpd.conf'
-  file:
-    state: 'absent'
-    path: "{{file_dst_smtpd_conf}}"
-  when: (ansible_os_family == 'FreeBSD')
+    path: "{{file_dst_secrets}}"
   tags:
     - remove
     - opensmtpd
