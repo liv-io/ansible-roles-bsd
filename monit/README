@@ -59,8 +59,8 @@ ENABLE
         - {address: 'mail02.domain.tld', port: '587'}
       monit_mail_to:
         - {address: "admin@domain.tld"}
-        - {address: "itops@domain.tld", filter: 'only', events: ['checksum', 'permission', 'uid', 'gid']}
-        - {address: "security@domain.tld", filter: 'not on', events: ['instance', 'action']}
+        - {address: "secops@domain.tld", filter: 'only', events: ['checksum', 'permission', 'uid', 'gid']}
+        - {address: "itops@domain.tld", filter: 'not on', events: ['instance', 'action']}
 
 DISABLE
   - hosts: all
@@ -73,8 +73,8 @@ DISABLE
         - {address: 'mail02.domain.tld', port: '587'}
       monit_mail_to:
         - {address: "admin@domain.tld"}
-        - {address: "itops@domain.tld", filter: 'only', events: ['checksum', 'permission', 'uid', 'gid']}
-        - {address: "security@domain.tld", filter: 'not on', events: ['instance', 'action']}
+        - {address: "secops@domain.tld", filter: 'only', events: ['checksum', 'permission', 'uid', 'gid']}
+        - {address: "itops@domain.tld", filter: 'not on', events: ['instance', 'action']}
 
 REMOVE
   - hosts: all
@@ -439,8 +439,8 @@ ROLE
     Default    : [{address: "admin@{{ansible_domain}}", filter: 'not on', events: ['instance', 'action']}]
     Options    :
       Examples: [{address: "admin@domain.tld"},
-                 {address: "itops@domain.tld", filter: 'only', events: ['checksum', 'permission', 'uid', 'gid']},
-                 {address: "security@domain.tld", filter: 'not on', events: ['instance', 'action']}]
+                 {address: "secops@domain.tld", filter: 'only', events: ['checksum', 'permission', 'uid', 'gid']},
+                 {address: "itops@domain.tld", filter: 'not on', events: ['instance', 'action']}]
       None    : []
 
   monit_web_server_address
