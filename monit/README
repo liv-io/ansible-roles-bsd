@@ -54,8 +54,13 @@ ENABLE
       - role: monit
     vars:
       monit_state: 'enable'
-      monit_mail_server: [{name: {'127.0.0.1'}, port: 25,
-                           comment: 'MTA localhost'}]
+      monit_mail_server:
+        - {address: 'mail01.domain.tld', port: '465'}
+        - {address: 'mail02.domain.tld', port: '587'}
+      monit_mail_to:
+        - {address: "admin@domain.tld"}
+        - {address: "itops@domain.tld", filter: 'only', events: ['checksum', 'permission', 'uid', 'gid']}
+        - {address: "security@domain.tld", filter: 'not on', events: ['instance', 'action']}
 
 DISABLE
   - hosts: all
@@ -63,8 +68,13 @@ DISABLE
        - role: monit
     vars:
       monit_state: 'disable'
-      monit_mail_server: [{name: {'127.0.0.1'}, port: 25,
-                           comment: 'MTA localhost'}]
+      monit_mail_server:
+        - {address: 'mail01.domain.tld', port: '465'}
+        - {address: 'mail02.domain.tld', port: '587'}
+      monit_mail_to:
+        - {address: "admin@domain.tld"}
+        - {address: "itops@domain.tld", filter: 'only', events: ['checksum', 'permission', 'uid', 'gid']}
+        - {address: "security@domain.tld", filter: 'not on', events: ['instance', 'action']}
 
 REMOVE
   - hosts: all
@@ -328,17 +338,6 @@ ROLE
     Options    :
       Examples: '/etc/monit.d/*.cfg' | '/usr/local/etc/monit.d/*.cfg'
 
-  monit_mail_exclusions
-    Description: Define the 'monit_mail_exclusions' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array
-    Default    : []
-    Options    :
-      Examples: ['instance', 'action']
-      None    : []
-
   monit_mail_from
     Description: Define the 'monit_mail_from' option.
     Implemented: 0.1
@@ -411,14 +410,14 @@ ROLE
 
   monit_mail_server
     Description: Define the 'monit_mail_server' option.
-    Implemented: 0.1
+    Implemented: 4.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: {'host01.domain.tld'}, port: 25, comment: 'Primary Mail Server'},
-                 {name: {'host02.domain.tld'}, port: 25, comment: 'Secondary Mail Server'}]
+      Examples: [{address: 'mail01.domain.tld', port: '465'},
+                 {address: 'mail02.domain.tld', port: '587'}]
       None    : []
 
   monit_mail_subject
@@ -433,14 +432,16 @@ ROLE
 
   monit_mail_to
     Description: Define the 'monit_mail_to' option.
-    Implemented: 0.1
+    Implemented: 4.0
     Required   : False
     Value      : Arbitrary
-    Type       : Array
-    Default    : ["admin@{{ansible_domain}}"]
+    Type       : Array/Hash
+    Default    : [{address: "admin@{{ansible_domain}}", filter: 'not on', events: ['instance', 'action']}]
     Options    :
-      Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld'] |
-                ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
+      Examples: [{address: "admin@domain.tld"},
+                 {address: "itops@domain.tld", filter: 'only', events: ['checksum', 'permission', 'uid', 'gid']},
+                 {address: "security@domain.tld", filter: 'not on', events: ['instance', 'action']}]
+      None    : []
 
   monit_web_server_address
     Description: Define the 'monit_web_server_address' option.
@@ -454,13 +455,13 @@ ROLE
 
   monit_web_server_allow
     Description: Define the 'monit_web_server_allow' option.
-    Implemented: 0.1
+    Implemented: 4.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : []
+    Default    : [{user: 'localhost'}]
     Options    :
-      Examples: [{user: 'localhost', comment: 'Allow localhost'}]
+      Examples: [{user: 'localhost'}, {user: 'monit_exporter', password: 's5g6qHb_KEWeLX.xY4vt'}
       None    : []
 
   monit_web_server_port

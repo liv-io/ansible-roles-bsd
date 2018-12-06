@@ -14,8 +14,6 @@ monit_daemon_interval: 60
 
 monit_include: "{{'/usr/local/etc/monit.d/*.cfg' if (ansible_os_family == 'FreeBSD') else '/etc/monit.d/*.cfg'}}"
 
-monit_mail_exclusions: []
-
 monit_mail_from: "monit@{{ansible_domain}}"
 
 monit_mail_message_action: '$ACTION'
@@ -34,10 +32,11 @@ monit_mail_server: []
 
 monit_mail_subject: "Monit: $EVENT '$SERVICE' ({{ansible_hostname}})"
 
-monit_mail_to: "admin@{{ansible_domain}}"
+monit_mail_to:
+  - {address: "admin@{{ansible_domain}}", filter: 'not on', events: ['instance', 'action']}
 
 monit_web_server_address: 'localhost'
 
-monit_web_server_allow: [{user: 'localhost', comment: 'Allow localhost'}]
+monit_web_server_allow: [{user: 'localhost'}]
 
 monit_web_server_port: 2812

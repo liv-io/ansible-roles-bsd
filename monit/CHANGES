@@ -13,6 +13,14 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 4.0.0 (2018-12-05)
+I: Improve 'monit_mail_server' parameter
+I: Redesign 'monit_mail_to' parameter
+I: Extend 'monit_web_server_allow' parameter
+I: Remove 'monit_mail_exclusions' parameter
+I: Remove kernel information from alert message
+I: Remove email information from alert message
+
 * Version 3.0.1 (2018-12-05)
 I: Minor style improvement
 
