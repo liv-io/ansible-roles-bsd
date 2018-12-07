@@ -426,9 +426,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : "Monit: $EVENT '$SERVICE' ({{ansible_hostname}})"
+    Default    : "Monit: $EVENT '$SERVICE' ($HOST)"
     Options    :
-      Examples: "Monit: $EVENT '$SERVICE' ({{ansible_hostname}})"
+      Examples: "Monit: $EVENT '$SERVICE' ($HOST)"
 
   monit_mail_to
     Description: Define the 'monit_mail_to' option.

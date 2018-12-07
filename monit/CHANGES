@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 4.0.1 (2018-12-07)
+I: Remove operating system information from alert message
+I: Minor 'monit_mail_subject' improvement
+
 * Version 4.0.0 (2018-12-05)
 I: Improve 'monit_mail_server' parameter
 I: Redesign 'monit_mail_to' parameter

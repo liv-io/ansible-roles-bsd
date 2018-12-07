@@ -30,7 +30,7 @@ monit_mail_message_service: '$SERVICE'
 
 monit_mail_server: []
 
-monit_mail_subject: "Monit: $EVENT '$SERVICE' ({{ansible_hostname}})"
+monit_mail_subject: "Monit: $EVENT '$SERVICE' ($HOST)"
 
 monit_mail_to:
   - {address: "admin@{{ansible_domain}}", filter: 'not on', events: ['instance', 'action']}
