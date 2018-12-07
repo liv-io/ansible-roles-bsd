@@ -254,7 +254,8 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : []
+    Default    : [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: aliases'},
+                  {config: {'table secrets file:/etc/mail/secrets'}, comment: 'Table: secrets'}]
     Options    :
       Examples: [{config: {'table aliases file:/etc/mail/aliases'}, comment: 'Table: aliases'},
                  {config: {'table secrets file:/etc/mail/secrets'}, comment: 'Table: secrets'}]
