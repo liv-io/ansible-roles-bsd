@@ -221,16 +221,6 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  restic_monitor_mail_subject
-    Description: Define the 'restic_monitor_mail_subject' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "restic: Run Backup - Error ({{ansible_hostname}})"
-    Options    :
-      Examples: 'restic: Run Backup - Error'
-
   restic_password
     Description: Define the 'restic_password' option.
     Implemented: 0.1
