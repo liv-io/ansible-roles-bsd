@@ -8,8 +8,6 @@ zfs_monitor_mail_sender: "root@{{ansible_domain}}"
 
 zfs_monitor_mail_state: 'false'
 
-zfs_monitor_mail_subject: "ZFS: Scrub Pool - Error ({{ansible_hostname}})"
-
 zfs_pools: []
 
 zfs_scrub_pools_cron_hour: 2

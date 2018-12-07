@@ -118,16 +118,6 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  zfs_monitor_mail_subject
-    Description: Define the 'zfs_monitor_mail_subject' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "ZFS: Scrub Pool - Error ({{ansible_hostname}})"
-    Options    :
-      Examples: 'ZFS: Scrub Pool - Error'
-
   zfs_pools
     Description: Define the 'zfs_pools' option.
     Implemented: 0.1

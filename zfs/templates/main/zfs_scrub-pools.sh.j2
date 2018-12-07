@@ -67,7 +67,7 @@ zfs_pools='{% for pool in zfs_pools %}{{pool}}{% if not loop.last %} {% endif %}
 {% if (zfs_monitor_mail_state is match('true|yes|enable')) %}
 mail_sender='{{zfs_monitor_mail_sender}}'
 mail_recipient='{% for mail_recipient in zfs_monitor_mail_recipient %}{{mail_recipient}}{% if not loop.last %},{% endif %}{% endfor %}'
-mail_subject='{{zfs_monitor_mail_subject}}'
+mail_subject='ZFS: Scrub Pool - Error ({{ansible_hostname}})'
 {% endif %}
 
 #-------------------------------------------------------------------------------
