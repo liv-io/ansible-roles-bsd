@@ -10,8 +10,6 @@ ntpd_monitor_mail_sender: "root@{{ansible_domain}}"
 
 ntpd_monitor_mail_state: 'false'
 
-ntpd_monitor_mail_subject: "NTPD: Update Time - Error ({{ansible_hostname}})"
-
 ntpd_restrict:
   - {config: {'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv4 restrictions'}
   - {config: {'-6', 'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv6 restrictions'}

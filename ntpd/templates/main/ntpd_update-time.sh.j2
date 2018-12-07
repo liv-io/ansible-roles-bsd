@@ -63,7 +63,7 @@ ntpd_servers='{% for item in ntpd_server %}{% if not ((item.server == '') or (it
 {% if (ntpd_monitor_mail_state is match('true|yes|enable')) %}
 mail_sender='{{ntpd_monitor_mail_sender}}'
 mail_recipient='{% for mail_recipient in ntpd_monitor_mail_recipient %}{{mail_recipient}}{% if not loop.last %},{% endif %}{% endfor %}'
-mail_subject='{{ntpd_monitor_mail_subject}}'
+mail_subject='ntpd: Update Time - Error ({{ansible_hostname}})'
 {% endif %}
 
 #-------------------------------------------------------------------------------

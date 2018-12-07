@@ -136,16 +136,6 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  ntpd_monitor_mail_subject
-    Description: Define the 'ntpd_monitor_mail_subject' option.
-    Implemented: 0.4
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "NTPD: Update Time - Error ({{ansible_hostname}})"
-    Options    :
-      Examples: 'NTPD: Update Time Error'
-
   ntpd_restrict
     Description: Define the 'ntpd_restrict' option.
     Implemented: 0.1
