@@ -112,15 +112,7 @@ SYSTEM
 --------------------------------------------------------------------------------
 
 Hostname    : {{ansible_hostname}}
-FQDN        : {{ansible_fqdn}}
-
---------------------------------------------------------------------------------
-MAIL
---------------------------------------------------------------------------------
-
-Sender      : ${mail_sender}
-Recipient   : ${mail_recipient}
-Subject     : ${mail_subject}"
+FQDN        : {{ansible_fqdn}}"
 
 {% if (ansible_os_family == 'FreeBSD') %}
   ${echo} "${mail_body}" | ${mailx} -s "${mail_subject}" -F "${mail_recipient}" > /dev/null 2>&1
