@@ -37,8 +37,9 @@ ENABLE
       - role: ntpd
     vars:
       ntpd_state: 'enable'
-      ntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                     comment: 'Server: domain.tld'}]
+      ntpd_server:
+        - {address: "{{ansible_default_ipv4.gateway}}", options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Default IPv4 gateway'}
+      ntpd_check_time_interval: 10
 
 DISABLE
   - hosts: all
@@ -46,8 +47,9 @@ DISABLE
       - role: ntpd
     vars:
       ntpd_state: 'disable'
-      ntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                     comment: 'Server: domain.tld'}]
+      ntpd_server:
+        - {address: "{{ansible_default_ipv4.gateway}}", options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Default IPv4 gateway'}
+      ntpd_check_time_interval: 10
 
 CRONJOB
   - hosts: all
@@ -55,8 +57,12 @@ CRONJOB
       - role: ntpd
     vars:
       ntpd_state: 'cronjob'
-      ntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                     comment: 'Server: domain.tld'}]
+      ntpd_server:
+        - {address: '162.23.41.55', options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Federal Institute of Metrology METAS'}
+        - {address: '162.23.41.56', options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Federal Institute of Metrology METAS'}
+        - {address: '162.23.41.10', options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Federal Institute of Metrology METAS'}
+        - {address: '192.33.96.101', options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Swiss Federal Institute of Technology Zurich'}
+        - {address: '192.33.96.102', options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Swiss Federal Institute of Technology Zurich'}
       ntpd_update_time_interval: 15
 
 REMOVE
@@ -92,6 +98,28 @@ ROLE
       Cronjob : 'cron' | 'cronjob'
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
+
+  ntpd_check_time_interval
+    Description: Set the 'ntpd_check_time_interval' option.
+                 Specify a value between 5-59.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary (5-59)
+    Type       : Integer
+    Default    : 10
+    Options    :
+      Examples: 5 | 11 | 15 | 20 | 23
+
+  ntpd_check_time_state
+    Description: Control the 'ntpd_check_time_state' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   ntpd_monitor
     Description: Control the 'ntpd_monitor' option.
@@ -138,35 +166,38 @@ ROLE
 
   ntpd_restrict
     Description: Define the 'ntpd_restrict' option.
-    Implemented: 0.1
+    Implemented: 4.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{config: {'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv4'},
-                  {config: {'-6', 'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv6'},
-                  {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'},
-                  {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'}]
+    Default    : [{address: 'default', options: {'nomodify', 'notrap', 'noquery', 'nopeer'}, comment: 'Default IPv4'},
+                  {address: '-6 default', options: {'nomodify', 'notrap', 'noquery', 'nopeer'}, comment: 'Default IPv6'},
+                  {address: '127.0.0.1', comment: 'IPv4 localhost'},
+                  {address: '-6 ::1', comment: 'IPv6 localhost'}]
     Options    :
-      Examples: [{config: {'192.168.1.0 mask 255.255.255.0', 'nomodify', 'notrap'}, comment: 'Network: Allow from 192.168.1.0/24'},
-                 {config: {'192.168.2.0 mask 255.255.255.0', 'nomodify', 'notrap'}, comment: 'Network: Allow from 192.168.2.0/24'},
-                 {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'},
-                 {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'}] |
-                [{config: {'2001:0db8:85a3:08d3:1319:8a2e:0370:7347', 'nomodify', 'notrap'}, comment: 'Network: Allow from host'},
-                 {config: {'2001:0ec9:96b4:19e4:2421:9b3f:1480:8458', 'nomodify', 'notrap'}, comment: 'Network: Allow from host'},
-                 {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'},
-                 {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'}]
+      Examples: [{address: '10.0.0.0 mask 255.255.255.0', options: {'nomodify', 'notrap'}, comment: '10.0.0.0/24'},
+                 {address: '10.0.1.0 mask 255.255.255.0', options: {'nomodify', 'notrap'}, comment: '10.0.1.0/24'},
+                 {address: '127.0.0.1', comment: 'IPv4 localhost'},
+                 {address: '-6 ::1', comment: 'IPv6 localhost'}] |
+                [{address: '2001:0db8:85a3:08d3:1319:8a2e:0370:7347', options: {'nomodify', 'notrap'}, comment: 'IPv6 host'},
+                 {address: '2001:0ec9:96b4:19e4:2421:9b3f:1480:8458', options: {'nomodify', 'notrap'}, comment: 'IPv6 host'},
+                 {address: '127.0.0.1', comment: 'IPv4 localhost'},
+                 {address: '-6 ::1', comment: 'IPv6 localhost'}]
       None    : []
 
   ntpd_server
     Description: Define the 'ntpd_server' option.
-    Implemented: 0.1
+    Implemented: 4.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{server: {'ntp'}, comment: 'Server: ntp'}]
+    Default    : [{address: "ntp.{{ansible_domain}}", options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Default NTP server'}]
     Options    :
-      Examples: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                  comment: 'Server: domain.tld'}]
+      Examples: [{address: '162.23.41.55', options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Federal Institute of Metrology METAS'},
+                 {address: '162.23.41.56', options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Federal Institute of Metrology METAS'},
+                 {address: '162.23.41.10', options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Federal Institute of Metrology METAS'},
+                 {address: '192.33.96.101', options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Swiss Federal Institute of Technology Zurich'},
+                 {address: '192.33.96.102', options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Swiss Federal Institute of Technology Zurich'}]
       None    : []
 
   ntpd_update_time_interval

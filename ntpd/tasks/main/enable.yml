@@ -32,6 +32,27 @@
     - enable
     - ntpd
 
+- name: 'file create ntpd_check-time.sh'
+  template:
+    src: "{{file_src_ntpd_check_time_sh}}"
+    dest: "{{file_dst_ntpd_check_time_sh}}"
+    mode: "{{file_mode_ntpd_check_time_sh}}"
+    owner: "{{file_owner_ntpd_check_time_sh}}"
+    group: "{{file_group_ntpd_check_time_sh}}"
+  tags:
+    - enable
+    - ntpd
+
+- name: 'line config ntpd_check-time'
+  lineinfile:
+    state: "{{'absent' if (ntpd_check_time_state is match('false|no|disable')) else 'present'}}"
+    line: "{{file_line_ntpd_check_time}} # Ansible: ntpd_check-time"
+    regexp: "# Ansible: ntpd_check-time$"
+    dest: "{{file_dst_ntpd_check_time}}"
+  tags:
+    - enable
+    - ntpd
+
 - name: 'file remove ntpd_update-time.sh'
   file:
     state: 'absent'

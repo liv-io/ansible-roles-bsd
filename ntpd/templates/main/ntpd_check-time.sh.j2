@@ -8,7 +8,7 @@
 # INFORMATION
 #-------------------------------------------------------------------------------
 #
-# Name   : ntpd_update-time.sh
+# Name   : ntpd_check-time.sh
 # Type   : Shell script
 # Role   : ntpd
 #
@@ -33,16 +33,19 @@ basename=$(${which} basename) || { echo "Error: Command 'basename' not found."; 
 date=$(${which} date) || { echo "Error: Command 'date' not found."; exit 127; }
 echo=$(${which} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
 expr=$(${which} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
+grep=$(${which} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
 hostname=$(${which} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
 logger=$(${which} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
 {% if (ntpd_monitor_mail_state is match('true|yes|enable')) %}
 mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
+ntpq=$(${which} ntpq) || { echo "Error: Command 'ntpq' not found."; exit 127; }
 rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
+sed=$(${which} sed) || { echo "Error: Command 'sed' not found."; exit 127; }
+sleep=$(${which} sleep) || { echo "Error: Command 'sleep' not found."; exit 127; }
+tr=$(${which} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
 touch=$(${which} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
 whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
-
-ntpd='{{ntpd}}'
 
 #-------------------------------------------------------------------------------
 # VARIABLES
@@ -52,18 +55,16 @@ host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
 script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
 date_start=$(${date} '+%Y-%m-%dT%H:%M:%S%z')
 time_start=$(${date} '+%s')
-user='{{file_owner_ntpd_update_time_sh}}'
-lockfile='{{file_dst_ntpd_script_dir}}/ntpd_update-time.lock'
+user='{{file_owner_ntpd_check_time_sh}}'
+lockfile='{{file_dst_ntpd_script_dir}}/ntpd_check-time.lock'
 retval=0
 severity='Debug'
 message='Please check log files for more information.'
 
-ntpd_servers='{% for item in ntpd_server %}{{item.address}}{% if not loop.last %} {% endif %}{% endfor %}'
-
 {% if (ntpd_monitor_mail_state is match('true|yes|enable')) %}
 mail_sender='{{ntpd_monitor_mail_sender}}'
 mail_recipient='{% for mail_recipient in ntpd_monitor_mail_recipient %}{{mail_recipient}}{% if not loop.last %},{% endif %}{% endfor %}'
-mail_subject='ntpd: Update Time - Error ({{ansible_hostname}})'
+mail_subject='ntpd: Check Time - Error ({{ansible_hostname}})'
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -87,7 +88,7 @@ Date & Time : $(${date} '+%Y-%m-%dT%H:%M:%S%z')
 SCRIPT
 --------------------------------------------------------------------------------
 
-Name        : ntpd_update-time.sh
+Name        : ntpd_check-time.sh
 Type        : Shell script
 PID         : $$
 
@@ -155,10 +156,26 @@ log_and_exit() {
 
   retval=0
   severity='Info'
-  message='System time and hardware clock updated.'
+  message='System time is synchronized.'
   ${logger} -t ${script} "${severity}: ${message} Duration: ${time_hr}"
 
   exit ${retval}
+}
+
+watch_and_wait_for_change() {
+  watch_key=$1
+  watch_value=$2
+  watch_option=$3
+  time_step=$4
+  time_maximum=$5
+  while ${watch_key} | ${grep} ${watch_option} "${watch_value}" > /dev/null 2>&1 ; do
+    if [ ${time_initial} -lt ${time_maximum} ]; then
+      time_initial=$(${expr} ${time_initial} + ${time_step})
+      ${sleep} ${time_initial}
+    else
+    log_and_exit_on_error "1" 'Error' 'System time is not synchronized.'
+    fi
+  done
 }
 
 #-------------------------------------------------------------------------------
@@ -169,17 +186,22 @@ check_script_user
 
 create_lockfile
 
-# Update the system time by polling NTP servers
-for ntpd_server in ${ntpd_servers} ; do
-  ${ntpd} ${ntpd_server} > /dev/null 2>&1
-  if [ $? -eq 0 ]; then
-    ntpd_status=0
-    break;
-  else
-    ntpd_status=1
-  fi
-done
-log_and_exit_on_error "${ntpd_status}" 'Error' 'Unable to update the system time.'
+# Get system time status and wait while 'reject'
+time_initial=0
+watch_and_wait_for_change "${ntpq} -c as" 'reject' '' '2' '32'
+
+# Get system time offset
+ntpd_status=$(${ntpq} -c rv)
+log_and_exit_on_error "$?" 'Error' 'Unable to get ntpd status.'
+
+# Extract system time offset
+offset=$($echo ${ntpd_status} | ${sed} -n 's@.*offset=\([-0-9]*\).*@\1@p' | ${tr} -d '-')
+log_and_exit_on_error "$?" 'Error' 'Unable to extract system time offset.'
+
+# Check system time offset
+if [ ${offset} -ge 1000 ]; then
+  log_and_exit_on_error '1' 'Error' "System time offset is too high (${offset} ms)."
+fi
 
 remove_lockfile
 

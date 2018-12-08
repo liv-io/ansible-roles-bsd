@@ -44,6 +44,10 @@ disable monitor
 #
 tos minclock 3 maxclock 6
 
+#-------------------------------------------------------------------------------
+# SERVER
+#-------------------------------------------------------------------------------
+
 #
 # The following pool statement will give you a random set of NTP servers
 # geographically close to you.  A single pool statement adds multiple
@@ -73,16 +77,19 @@ tos minclock 3 maxclock 6
 # minclock/maxclock targets are met.
 #
 #server time.my-internal.org iburst
-{% if not ((ntpd_server == '') or (ntpd_server == [])) %}
+
+{% if not (ntpd_server == []) %}
 {% for item in ntpd_server %}
 # {{item.comment}}
-{% for server in item.server %}
-server {{server}} {% for option in item.option %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
+server {{item.address}} {% for option in (item.options|default([])) %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
-{% endfor %}
 {% endfor %}
 {% else %}
 {% endif %}
+
+#-------------------------------------------------------------------------------
+# RESTRICT
+#-------------------------------------------------------------------------------
 
 #
 # Security:
@@ -122,10 +129,10 @@ server {{server}} {% for option in item.option %}{{option}}{% if not loop.last %
 #restrict 127.0.0.1
 #restrict -6 ::1
 
-{% if not ((ntpd_restrict == '') or (ntpd_restrict == [])) %}
+{% if not (ntpd_restrict == []) %}
 {% for item in ntpd_restrict %}
 # {{item.comment}}
-restrict {% for config in item.config %}{{config}}{% if not loop.last %} {% endif %}{% endfor %}
+restrict {{item.address}} {% for option in (item.options|default([])) %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
 {% else %}

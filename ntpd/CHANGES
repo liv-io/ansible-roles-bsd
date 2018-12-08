@@ -13,6 +13,11 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.0.0 (2018-12-08)
+F: Redesign 'ntpd_server' parameter
+F: Redesign 'ntpd_restrict' parameter
+F: Add 'ntpd_check-time' health check
+
 * Version 2.5.2 (2018-12-07)
 I: Remove 'ntpd_monitor_mail_subject' parameter
 

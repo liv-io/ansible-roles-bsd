@@ -2,6 +2,10 @@
 
 ntpd_state: 'enable'
 
+ntpd_check_time_interval: 10
+
+ntpd_check_time_state: 'enable'
+
 ntpd_monitor: 'false'
 
 ntpd_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
@@ -11,12 +15,12 @@ ntpd_monitor_mail_sender: "root@{{ansible_domain}}"
 ntpd_monitor_mail_state: 'false'
 
 ntpd_restrict:
-  - {config: {'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv4 restrictions'}
-  - {config: {'-6', 'default', 'kod', 'nomodify', 'notrap', 'nopeer', 'noquery'}, comment: 'Restrict: IPv6 restrictions'}
-  - {config: {'127.0.0.1'}, comment: 'Restrict: IPv4 localhost'}
-  - {config: {'-6 ::1'}, comment: 'Restrict: IPv6 localhost'}
+  - {address: 'default', options: {'nomodify', 'notrap', 'noquery', 'nopeer'}, comment: 'Default IPv4'}
+  - {address: '-6 default', options: {'nomodify', 'notrap', 'noquery', 'nopeer'}, comment: 'Default IPv6'}
+  - {address: '127.0.0.1', comment: 'IPv4 localhost'}
+  - {address: '-6 ::1', comment: 'IPv6 localhost'}
 
 ntpd_server:
-  - {server: {'ntp'}, option: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Server: ntp'}
+  - {address: "ntp.{{ansible_domain}}", options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Default NTP server'}
 
 ntpd_update_time_interval: 10

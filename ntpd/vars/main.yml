@@ -27,6 +27,13 @@ file_mode_ntpd_script_dir: '0755'
 file_owner_ntpd_script_dir: 'root'
 file_group_ntpd_script_dir: 'wheel'
 
+# ntpd_check-time.sh
+file_src_ntpd_check_time_sh: 'templates/main/ntpd_check-time.sh.j2'
+file_dst_ntpd_check_time_sh: "{{file_dst_ntpd_script_dir}}/ntpd_check-time.sh"
+file_mode_ntpd_check_time_sh: '0754'
+file_owner_ntpd_check_time_sh: 'root'
+file_group_ntpd_check_time_sh: 'wheel'
+
 # ntpd_update-time.sh
 file_src_ntpd_update_time_sh: 'templates/main/ntpd_update-time.sh.j2'
 file_dst_ntpd_update_time_sh: "{{file_dst_ntpd_script_dir}}/ntpd_update-time.sh"
