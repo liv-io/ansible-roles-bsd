@@ -37,8 +37,9 @@ ENABLE
       - role: openntpd
     vars:
       openntpd_state: 'enable'
-      openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                         type: 'single', comment: 'Server: Single NTP servers'}]
+      openntpd_server:
+        - {address: "{{ansible_default_ipv4.gateway}}", comment: 'Default IPv4 gateway'}
+      openntpd_check_time_interval: 10
 
 DISABLE
   - hosts: all
@@ -46,8 +47,9 @@ DISABLE
       - role: openntpd
     vars:
       openntpd_state: 'disable'
-      openntpd_server: [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'},
-                         type: 'single', comment: 'Server: Single NTP servers'}]
+      openntpd_server:
+        - {address: "{{ansible_default_ipv4.gateway}}", comment: 'Default IPv4 gateway'}
+      openntpd_check_time_interval: 10
 
 REMOVE
   - hosts: all
@@ -82,31 +84,113 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+  openntpd_check_time_interval
+    Description: Set the 'openntpd_check_time_interval' option.
+                 Specify a value between 5-59.
+    Implemented: 1.0
+    Required   : False
+    Value      : Arbitrary (5-59)
+    Type       : Integer
+    Default    : 10
+    Options    :
+      Examples: 5 | 11 | 15 | 20 | 23
+
+  openntpd_check_time_state
+    Description: Control the 'openntpd_check_time_state' option.
+    Implemented: 1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   openntpd_listen
     Description: Define the 'openntpd_listen' option.
-    Implemented: 0.1
+    Implemented: 1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{config: {'*'}, comment: 'Listen: All interfaces'}] |
-                [{config: {'127.0.0.1', '::1'}, comment: 'Listen: Localhost'}] |
-                [{config: {'192.168.1.10'}, comment: 'Listen: Specific interface'}]
+      Examples: [{address: '*', comment: 'All interfaces'}] |
+                [{address: '127.0.0.1', comment: IPv4 localhost'},
+                 {address: '::1', comment: 'IPv6 localhost'}] |
+                [{address: '10.0.0.10', comment: 'IPv4 interface'}]
       None    : []
+
+  openntpd_monitor
+    Description: Control the 'openntpd_monitor' option.
+    Implemented: 1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  openntpd_monitor_mail_recipient
+    Description: Define the 'openntpd_monitor_mail_recipient' option.
+    Implemented: 1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ["admin@{{ansible_domain}}"]
+    Options    :
+      Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
+                ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
+
+  openntpd_monitor_mail_sender
+    Description: Define the 'openntpd_monitor_mail_sender' option.
+    Implemented: 1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "root@{{ansible_domain}}"
+    Options    :
+      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
+
+  openntpd_monitor_mail_state
+    Description: Control the 'openntpd_monitor_mail_state' option.
+    Implemented: 1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
 
   openntpd_server
     Description: Define the 'openntpd_server' option.
-    Implemented: 0.1
+    Implemented: 1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{server: {'ntp'}, type: 'single', weight: 1, comment: 'Server: ntp'}]
+    Default    : [{address: "ntp.{{ansible_domain}}", weight: 1, comment: 'Default NTP server'}]
     Options    :
-      Examples: [{server: {'ntp01.domain.tld'}, type: 'single', weight: 1, comment: 'Server: Single NTP servers'},
-                 {server: {'ntp02.domain.tld'}, type: 'single', weight: 2, comment: 'Server: Single NTP servers'}] |
-                [{server: {'ntp01.domain.tld', 'ntp02.domain.tld'}, type: 'single', comment: 'Server: Single NTP servers'}] |
-                [{server: {'pool01.ntp.domain.tld', 'pool02.ntp.domain.tld'}, type: 'random', comment: 'Server: Random NTP servers'}]
+      Examples: [{address: '162.23.41.55', weight: 1, comment: 'Federal Institute of Metrology METAS'},
+                 {address: '162.23.41.56', weight: 2, comment: 'Federal Institute of Metrology METAS'}] |
+                [{address: '162.23.41.10', comment: 'Federal Institute of Metrology METAS'},
+                 {address: '192.33.96.101', comment: 'Swiss Federal Institute of Technology Zurich'},
+                 {address: '192.33.96.102', comment: 'Swiss Federal Institute of Technology Zurich'}]
+      None    : []
+
+  openntpd_servers
+    Description: Define the 'openntpd_servers' option.
+    Implemented: 1.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{address: '162.23.41.55', weight: 1, comment: 'Federal Institute of Metrology METAS'},
+                 {address: '162.23.41.56', weight: 2, comment: 'Federal Institute of Metrology METAS'}] |
+                [{address: '162.23.41.10', comment: 'Federal Institute of Metrology METAS'},
+                 {address: '192.33.96.101', comment: 'Swiss Federal Institute of Technology Zurich'},
+                 {address: '192.33.96.102', comment: 'Swiss Federal Institute of Technology Zurich'}]
       None    : []
 
 --------------------------------------------------------------------------------
@@ -167,11 +251,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.2-*
-      Status: Development
+      Status: Testing
 
   OpenBSD
     Version: 6.4
-      Status: Development
+      Status: Testing
 
 --------------------------------------------------------------------------------
 OTHER

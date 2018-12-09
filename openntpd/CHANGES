@@ -13,6 +13,12 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.0 (2018-12-09)
+F: Redesign 'openntpd_listen' parameter
+F: Redesign 'openntpd_server' parameter
+F: Add support for 'servers' option (openntpd_servers)
+F: Add 'openntpd_check-time' health check
+
 * Version 0.16.0 (2018-10-20)
 F: Add support for OpenBSD 6.4
 F: Drop support for OpenBSD 6.3

@@ -31,6 +31,24 @@
     - disable
     - openntpd
 
+- name: 'file remove openntpd_check-time.sh'
+  file:
+    state: 'absent'
+    path: "{{file_dst_openntpd_check_time_sh}}"
+  tags:
+    - disable
+    - openntpd
+
+- name: 'line config openntpd_check-time'
+  lineinfile:
+    state: 'absent'
+    line: "{{file_line_openntpd_check_time}} # Ansible: openntpd_check-time"
+    regexp: "# Ansible: openntpd_check-time$"
+    dest: "{{file_dst_openntpd_check_time}}"
+  tags:
+    - disable
+    - openntpd
+
 - name: 'line disable openntpd_enable'
   lineinfile:
     state: 'present'
@@ -88,7 +106,7 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: 'service stop ntpd'
+- name: 'service stop openntpd'
   service:
     state: 'stopped'
     enabled: 'no'

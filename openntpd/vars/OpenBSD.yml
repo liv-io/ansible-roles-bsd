@@ -1,6 +1,14 @@
 ---
 
 #-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# openntpd_check-time
+file_line_openntpd_check_time: "*/{% if ((openntpd_check_time_interval|int(10)) > 59) %}59{% elif ((openntpd_check_time_interval|int(10)) < 5) %}5{% else %}{{(openntpd_check_time_interval|int(10))}}{% endif %}    *       *       *       *       {{file_dst_openntpd_check_time_sh}}"
+file_dst_openntpd_check_time: '/var/cron/tabs/root'
+
+#-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
 

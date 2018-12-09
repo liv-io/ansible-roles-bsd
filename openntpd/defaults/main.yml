@@ -2,7 +2,21 @@
 
 openntpd_state: 'enable'
 
+openntpd_check_time_interval: 10
+
+openntpd_check_time_state: 'enable'
+
 openntpd_listen: []
 
+openntpd_monitor: 'false'
+
+openntpd_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
+
+openntpd_monitor_mail_sender: "root@{{ansible_domain}}"
+
+openntpd_monitor_mail_state: 'false'
+
 openntpd_server:
-  - {server: {'ntp'}, type: 'single', weight: 1, comment: 'Server: Single NTP server'}
+  - {address: "ntp.{{ansible_domain}}", weight: 1, comment: 'Default NTP server'}
+
+openntpd_servers: []
