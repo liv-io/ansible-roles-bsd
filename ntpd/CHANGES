@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.0.1 (2018-12-09)
+I: Minor Jinja2 parameter improvement
+
 * Version 3.0.0 (2018-12-08)
 F: Redesign 'ntpd_server' parameter
 F: Redesign 'ntpd_restrict' parameter

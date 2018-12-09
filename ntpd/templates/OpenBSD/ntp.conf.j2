@@ -55,7 +55,9 @@ disable monitor
 
 {% if not (ntpd_server == []) %}
 {% for item in ntpd_server %}
+{% if not ((item.comment|default('')) == '') %}
 # {{item.comment}}
+{% endif %}
 server {{item.address}} {% for option in (item.options|default([])) %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
@@ -101,7 +103,9 @@ server {{item.address}} {% for option in (item.options|default([])) %}{{option}}
 
 {% if not (ntpd_restrict == []) %}
 {% for item in ntpd_restrict %}
+{% if not ((item.comment|default('')) == '') %}
 # {{item.comment}}
+{% endif %}
 restrict {{item.address}} {% for option in (item.options|default([])) %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
