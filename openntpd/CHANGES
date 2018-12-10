@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.1.2 (2018-12-10)
+B: Fix 'mailx' command for OpenBSD systems
+
 * Version 1.1.1 (2018-12-10)
 B: Add missing Ansible role dependencies
 
