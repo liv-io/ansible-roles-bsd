@@ -62,6 +62,8 @@ retval=0
 severity='Debug'
 message='Please check log files for more information.'
 
+offset_limit='{{openntpd_check_time_offset_limit}}'
+
 {% if (openntpd_monitor_mail_state is match('true|yes|enable')) %}
 mail_sender='{{openntpd_monitor_mail_sender}}'
 mail_recipient='{% for mail_recipient in openntpd_monitor_mail_recipient %}{{mail_recipient}}{% if not loop.last %},{% endif %}{% endfor %}'
@@ -197,8 +199,8 @@ offset=$(${ntpctl} -s peers | ${awk} '/^ \*/ { print $7}' | ${sed} -n 's@\([-0-9
 log_and_exit_on_error "$?" 'Error' 'Unable to get system time offset.'
 
 # Check system time offset
-if [ ${offset} -ge 1000 ]; then
-  log_and_exit_on_error '1' 'Error' "System time offset exceeds 1000 ms (${offset} ms)."
+if [ ${offset} -ge ${offset_limit} ]; then
+  log_and_exit_on_error '1' 'Error' "System time offset limit exceeded (${offset}/${offset_limit} ms)."
 fi
 
 remove_lockfile

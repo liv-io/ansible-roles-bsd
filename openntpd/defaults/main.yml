@@ -4,6 +4,8 @@ openntpd_state: 'enable'
 
 openntpd_check_time_interval: 10
 
+openntpd_check_time_offset_limit: 1000
+
 openntpd_check_time_state: 'enable'
 
 openntpd_listen: []
