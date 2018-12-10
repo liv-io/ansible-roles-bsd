@@ -4,6 +4,8 @@ ntpd_state: 'enable'
 
 ntpd_check_time_interval: 10
 
+ntpd_check_time_offset_limit: 1000
+
 ntpd_check_time_state: 'enable'
 
 ntpd_monitor: 'false'

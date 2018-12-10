@@ -110,6 +110,16 @@ ROLE
     Options    :
       Examples: 5 | 11 | 15 | 20 | 23
 
+  ntpd_check_time_offset_limit
+    Description: Set the 'ntpd_check_time_offset_limit' option.
+    Implemented: 3.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer
+    Default    : 1000
+    Options    :
+      Examples: 200 | 500 | 1000 | 1500
+
   ntpd_check_time_state
     Description: Control the 'ntpd_check_time_state' option.
     Implemented: 3.0

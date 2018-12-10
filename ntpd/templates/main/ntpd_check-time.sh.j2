@@ -61,6 +61,8 @@ retval=0
 severity='Debug'
 message='Please check log files for more information.'
 
+offset_limit='{{ntpd_check_time_offset_limit}}'
+
 {% if (ntpd_monitor_mail_state is match('true|yes|enable')) %}
 mail_sender='{{ntpd_monitor_mail_sender}}'
 mail_recipient='{% for mail_recipient in ntpd_monitor_mail_recipient %}{{mail_recipient}}{% if not loop.last %},{% endif %}{% endfor %}'
@@ -168,7 +170,8 @@ watch_and_wait_for_change() {
   watch_option=$3
   time_step=$4
   time_maximum=$5
-  while ${watch_key} | ${grep} ${watch_option} "${watch_value}" > /dev/null 2>&1 ; do
+  while ! ${watch_key} | ${grep} ${watch_option} "${watch_value}" > /dev/null 2>&1 ; do
+    log_and_exit_on_error "$?" 'Error' 'Unable to get system time status.'
     if [ ${time_initial} -lt ${time_maximum} ]; then
       time_initial=$(${expr} ${time_initial} + ${time_step})
       ${sleep} ${time_initial}
@@ -186,21 +189,17 @@ check_script_user
 
 create_lockfile
 
-# Get system time status and wait while 'reject'
+# Get system time status and wait until 'sys.peer'
 time_initial=0
-watch_and_wait_for_change "${ntpq} -c as" 'reject' '' '2' '32'
+watch_and_wait_for_change "${ntpq} -c as" 'sys.peer' '' '2' '32'
 
 # Get system time offset
-ntpd_status=$(${ntpq} -c rv)
-log_and_exit_on_error "$?" 'Error' 'Unable to get ntpd status.'
-
-# Extract system time offset
-offset=$($echo ${ntpd_status} | ${sed} -n 's@.*offset=\([-0-9]*\).*@\1@p' | ${tr} -d '-')
-log_and_exit_on_error "$?" 'Error' 'Unable to extract system time offset.'
+offset=$(${ntpq} -c rv | ${sed} -n 's@.*offset=\([-0-9]*\).*@\1@p' | ${tr} -d '-')
+log_and_exit_on_error "$?" 'Error' 'Unable to get system time offset.'
 
 # Check system time offset
-if [ ${offset} -ge 1000 ]; then
-  log_and_exit_on_error '1' 'Error' "System time offset is too high (${offset} ms)."
+if [ ${offset} -ge ${offset_limit} ]; then
+  log_and_exit_on_error '1' 'Error' "System time offset limit exceeded (${offset}/${offset_limit} ms)."
 fi
 
 remove_lockfile
