@@ -410,14 +410,14 @@ ROLE
 
   monit_mail_server
     Description: Define the 'monit_mail_server' option.
-    Implemented: 4.0
+    Implemented: 4.1
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{address: 'mail01.domain.tld', port: '465'},
-                 {address: 'mail02.domain.tld', port: '587'}]
+      Examples: [{address: '127.0.0.1', port: '25'}] |
+                [{address: 'mail01.domain.tld', port: '587', username: 'user01.domain.tld', password: '5uaT,4hr32_WX.bnu78w', tls: 'TLSV12', timeout: 30}]
       None    : []
 
   monit_mail_subject

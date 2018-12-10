@@ -94,9 +94,24 @@ set statefile /var/monit/state
 # port 25 - it is possible to override this with the PORT option.
 #
 {% if not (monit_mail_server == []) %}
-set mailserver {% for item in monit_mail_server %}{{item.address}} {% if not ((item.port|default('')) == '') %}port {{(item.port|default(25))}}{% endif %}{% if not loop.last %}, {% endif %}
+{% for item in monit_mail_server %}
+set mailserver {{item.address}}
+{% if not ((item.port|default('')) == '') %}
+  port {{(item.port|default(25))}}
+{% endif %}
+{% if not ((item.username|default('')) == '') %}
+  username '{{item.username}}'
+{% endif %}
+{% if not ((item.password|default('')) == '') %}
+  password '{{item.password}}'
+{% endif %}
+{% if not ((item.tls|default('')) == '') %}
+  using {{item.tls}}
+{% endif %}
+{% if not ((item.timeout|default('')) == '') %}
+  with timeout {{(item.timeout|default(30))}} seconds
+{% endif %}
 {% endfor %}
-
 {% endif %}
 #
 #
