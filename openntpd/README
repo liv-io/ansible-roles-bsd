@@ -221,6 +221,9 @@ PACKAGES
       FreeBSD 11: 'openntpd'
 
 ROLES
+  common
+
+  mailx
 
 VARIABLES
 

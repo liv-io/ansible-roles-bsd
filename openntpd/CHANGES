@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.1.1 (2018-12-10)
+B: Add missing Ansible role dependencies
+
 * Version 1.1.0 (2018-12-10)
 F: Add option to set system time offset limit (openntpd_check_time_offset_limit)
 

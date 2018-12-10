@@ -1,3 +1,5 @@
 ---
 
-dependencies: []
+dependencies:
+  - {role: common, when: (openntpd_state is match('cron|cronjob'))}
+  - {role: mailx, when: (openntpd_monitor_mail_state is match('true|yes|enable'))}
