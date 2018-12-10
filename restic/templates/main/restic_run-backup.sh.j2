@@ -117,7 +117,7 @@ FQDN        : {{ansible_fqdn}}"
 {% if (ansible_os_family == 'FreeBSD') %}
   ${echo} "${mail_body}" | ${mailx} -s "${mail_subject}" -F "${mail_recipient}" > /dev/null 2>&1
 {% else %}
-  ${echo} "${mail_body}" | ${mailx} -a "From: "${mail_sender}"" -s "${mail_subject}" "${mail_recipient}" > /dev/null 2>&1
+  ${echo} "${mail_body}" | ${mailx} -r "${mail_sender}" -s "${mail_subject}" "${mail_recipient}" > /dev/null 2>&1
 {% endif %}
 }
 {% endif %}
