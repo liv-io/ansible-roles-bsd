@@ -12,7 +12,7 @@ zfs_pools: []
 
 zfs_scrub_pools_cron_hour: 2
 
-zfs_scrub_pools_cron_minute: "{{20|random(seed=inventory_hostname)}}"
+zfs_scrub_pools_cron_minute: "{{(20|random(seed=inventory_hostname))}}"
 
 zfs_scrub_pools_cron_weekday: 6
 

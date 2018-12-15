@@ -148,7 +148,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
-    Default    : "{{20|random(seed=inventory_hostname)}}"
+    Default    : "{{(20|random(seed=inventory_hostname))}}"
     Options    :
       Examples: 5 | 11 | 15 | 20 | 23
 

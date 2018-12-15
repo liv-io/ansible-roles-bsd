@@ -13,6 +13,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.3.7 (2018-12-15)
+I: Minor style improvement
+
 * Version 2.3.6 (2018-12-10)
 I: Change 'mailx' command for non FreeBSD systems
 
