@@ -92,8 +92,8 @@ ROLE
     Type       : String
     Default    : 'false'
     Options    :
-      Create: 'true' | 'yes' | 'create'
-      Remove: 'false' | 'no' | 'remove'
+      Install: 'true' | 'yes' | 'install'
+      Remove : 'false' | 'no' | 'remove'
 
   root_comment
     Description: Define the 'root_comment' option.

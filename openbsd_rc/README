@@ -69,8 +69,8 @@ CONFIG
     Type       : String
     Default    : 'true'
     Options    :
-      Create: 'true' | 'yes' | 'create'
-      Remove: 'false' | 'no' | 'remove'
+      Install: 'true' | 'yes' | 'install'
+      Remove : 'false' | 'no' | 'remove'
 
   comment
     Description: Define a comment for the 'rc' entry.

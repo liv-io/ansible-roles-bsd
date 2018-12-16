@@ -170,8 +170,8 @@ CONFIG
     Type       : String
     Default    : 'true'
     Options    :
-      Create: 'true' | 'yes' | 'create'
-      Remove: 'false' | 'no' | 'remove'
+      Install: 'true' | 'yes' | 'install'
+      Remove : 'false' | 'no' | 'remove'
 
   name
     Description: Define the 'name' of the monit file.
