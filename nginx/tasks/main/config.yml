@@ -20,14 +20,14 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'file create vhost'
+- name: 'file create config'
   template:
-    src: "{{file_src_vhost}}"
+    src: "{{file_src_config}}"
     dest: "{{file_dst_vhosts_d}}/{{item.name}}-{{(item.port|int)}}.conf"
-    mode: "{{file_mode_vhost}}"
-    owner: "{{file_owner_vhost}}"
-    group: "{{file_group_vhost}}"
-  with_items: "{{nginx_vhost}}"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
+  with_items: "{{nginx_config}}"
   notify:
     - 'command check nginx'
     - 'service reload nginx'
@@ -36,11 +36,11 @@
     - config
     - nginx
 
-- name: 'file remove vhost'
+- name: 'file remove config'
   file:
     state: 'absent'
     path: "{{file_dst_vhosts_d}}/{{item.name}}-{{(item.port|int)}}.conf"
-  with_items: "{{nginx_vhost}}"
+  with_items: "{{nginx_config}}"
   notify:
     - 'command check nginx'
     - 'service reload nginx'

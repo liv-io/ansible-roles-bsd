@@ -2,9 +2,9 @@
 
 nginx_state: 'enable'
 
-nginx_hsts_max_age: 31536000
+nginx_config: []
 
-nginx_vhost: []
+nginx_hsts_max_age: 31536000
 
 nginx_vhosts_d: 'vhosts.d'
 

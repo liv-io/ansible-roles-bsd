@@ -13,6 +13,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.0.0 (2018-12-17)
+I: Minor style improvement
+I: Rename config parameters
+
 * Version 1.4.0 (2018-10-20)
 F: Add support for OpenBSD 6.4
 F: Drop support for OpenBSD 6.3

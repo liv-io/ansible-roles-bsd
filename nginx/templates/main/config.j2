@@ -6,7 +6,7 @@
 # INFORMATION
 #-------------------------------------------------------------------------------
 #
-# Name   : nginx-config
+# Name   : config
 # Type   : nginx configuration file
 # Role   : nginx
 #
@@ -23,17 +23,17 @@ server {
 
   # Listen
   listen
-{%- if (item.listen is defined) and not (item.listen == '') %}
+{%- if not ((item.listen|default('')) == '') %}
  {{item.listen}}:{{(item.port|int)}}
 {%- else %}
  *:{{(item.port|int)}}
 {%- endif %}
-{%- if (item.ssl_state is defined) and (item.ssl_state is match('true|yes|enable')) %}
+{%- if ((item.ssl_state|default('false')) is match('true|yes|enable')) %}
  ssl
 {%- endif %};
   # Server name
   server_name {{item.name}}
-{%- if (item.alias is defined) and not (item.alias == []) %} {% for alias in item.alias %}{{alias}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
+{%- if not ((item.alias|default([])) == []) %} {% for alias in item.alias %}{{alias}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
 
   #-----------------------------------------------------------------------------
   # LOG
@@ -42,7 +42,7 @@ server {
   # Logging options
   error_log logs/{{item.name}}-{{(item.port|int)}}_error.log;
   access_log logs/{{item.name}}-{{(item.port|int)}}_access.log
-{%- if (item.ssl_state is defined) and (item.ssl_state is match('true|yes|enable')) %}
+{%- if ((item.ssl_state|default('false')) is match('true|yes|enable')) %}
  main_ssl;
 {% else %}
  main;
@@ -52,11 +52,11 @@ server {
   # HEADER
   #-----------------------------------------------------------------------------
 
-{% if (item.hsts_state is defined) and (item.hsts_state is match('true|yes|enable')) %}
+{% if ((item.hsts_state|default('false')) is match('true|yes|enable')) %}
   # HTTP Strict Transport Security (HSTS)
-  add_header Strict-Transport-Security 'max-age={% if (item.hsts_max_age is defined) and not (item.hsts_max_age == '') %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{nginx_hsts_max_age}}{% endif %}' always;
+  add_header Strict-Transport-Security 'max-age={% if not ((item.hsts_max_age|default('')) == '') %}{{(item.hsts_max_age|int(31536000))}}{% else %}{{nginx_hsts_max_age}}{% endif %}' always;
 {% endif %}
-{% if (item.xss_protection_state is defined) and (item.xss_protection_state is match('true|yes|enable')) %}
+{% if ((item.xss_protection_state|default('false')) is match('true|yes|enable')) %}
   # X-Frame-Options: Disable frame embedding (phishing, clickjacking prevention)
   add_header X-Frame-Options 'DENY' always;
   # X-Content-Type-Options: Disable MIME-sniffing (drive-by download attacks prevention)
@@ -65,67 +65,67 @@ server {
   add_header X-XSS-Protection '1; mode=block' always;
 {% endif %}
 
-{% if (item.ssl_state is defined) and (item.ssl_state is match('true|yes|enable')) %}
+{% if ((item.ssl_state|default('false')) is match('true|yes|enable')) %}
   #-----------------------------------------------------------------------------
   # SSL
   #-----------------------------------------------------------------------------
 
   # SSL/TLS protocol versions
-{% if (item.ssl_protocols is defined) and not (item.ssl_protocols == []) %}
+{% if not ((item.ssl_protocols|default([])) == []) %}
   ssl_protocols {% for ssl_protocols in item.ssl_protocols %}{{ssl_protocols}}{% if not loop.last %} {% endif %}{% endfor %};
 {% else %}
   ssl_protocols TLSv1.2;
 {% endif %}
   # Prefer the server ciphers over client ciphers
-{% if (item.ssl_prefer_server_ciphers is defined) and (item.ssl_prefer_server_ciphers is match('false|no|disable')) %}
+{% if ((item.ssl_prefer_server_ciphers|default('true')) is match('false|no|disable')) %}
   ssl_prefer_server_ciphers off;
 {% else %}
   ssl_prefer_server_ciphers on;
 {% endif %}
   # Cipher suite available for negotiation in SSL handshake
-{% if (item.ssl_ciphers is defined) and not (item.ssl_ciphers == []) %}
+{% if not ((item.ssl_ciphers|default('')) == '') %}
   ssl_ciphers '{{item.ssl_ciphers}}';
 {% else %}
   ssl_ciphers 'AES256+EECDH:AES256+EDH';
 {% endif %}
   # ECDHE ciphers curve
-{% if (item.ssl_ecdh_curve is defined) and (item.ssl_ecdh_curve is match('false|no|true')) %}
-  #ssl_ecdh_curve '';
+{% if not ((item.ssl_ecdh_curve|default('')) == '') %}
+  ssl_ecdh_curve '{{item.ssl_ecdh_curve}}';
 {% else %}
-  ssl_ecdh_curve "{{item.ssl_ecdh_curve|default('secp521r1')}}";
+  ssl_ecdh_curve 'secp521r1';
 {% endif %}
   # DH parameters for DHE ciphers
-{% if (item.ssl_dhparam is defined) and (item.ssl_dhparam is match('false|no|true')) %}
+{% if ((item.ssl_dhparam|default('true')) is match('false|no|disable')) %}
   #ssl_dhparam '';
 {% else %}
   ssl_dhparam '{{file_dst_dhparam_pem}}';
 {% endif %}
   # Server PEM-encoded X.509 certificate file
-{% if (item.ssl_certificate is defined) and not (item.ssl_certificate == '') %}
+{% if not ((item.ssl_certificate|default('')) == '') %}
   ssl_certificate '{{item.ssl_certificate}}';
 {% else %}
   #ssl_certificate '';
 {% endif %}
   # Server PEM-encoded private key file
-{% if (item.ssl_certificate_key is defined) and not (item.ssl_certificate_key == '') %}
+{% if not ((item.ssl_certificate_key|default('')) == '') %}
   ssl_certificate_key '{{item.ssl_certificate_key}}';
 {% else %}
   #ssl_certificate_key '';
 {% endif %}
   # CA certificate to verify client certificates and OCSP responses
-{% if (item.ssl_client_certificate is defined) and not (item.ssl_client_certificate == '') %}
+{% if not ((item.ssl_client_certificate|default('')) == '') %}
   ssl_client_certificate '{{item.ssl_client_certificate}}';
 {% else %}
   #ssl_client_certificate '';
 {% endif %}
   # Verify client certificates
-{% if (item.ssl_verify_client is defined) and (item.ssl_verify_client is match('true|yes|enable')) %}
+{% if ((item.ssl_verify_client|default('false')) is match('true|yes|enable')) %}
   ssl_verify_client on;
 {% else %}
   ssl_verify_client off;
 {% endif %}
   # Verification depth in the client certificates chain
-{% if (item.ssl_verify_depth is defined) and not (item.ssl_verify_depth == '') %}
+{% if not ((item.ssl_verify_depth|default('')) == '') %}
   ssl_verify_depth {{item.ssl_verify_depth}};
 {% else %}
   #ssl_verify_depth 1;
@@ -133,12 +133,12 @@ server {
 {% endif %}
 
   #-----------------------------------------------------------------------------
-  # CUSTOM CONFIGURATION
+  # CONFIG
   #-----------------------------------------------------------------------------
 
-{% if (item.custom_config is defined) and not (item.custom_config == []) %}
-{% for item in item.custom_config %}
-{% if (item.comment is defined) and not (item.comment == '') %}
+{% if not ((item.config|default([])) == []) %}
+{% for item in item.config %}
+{% if not ((item.comment|default('')) == '') %}
   #-----------------------------------------------------------------------------
   # {{(item.comment|upper)}}
   #-----------------------------------------------------------------------------

@@ -60,12 +60,12 @@ INACTIVE
 
 CONFIG
   vars:
-    nginx_vhost:
+    nginx_config:
       - name: 'host.domain.tld'
         state: 'true'
         listen: '*'
         port: 80
-        custom_config:
+        config:
           - comment: 'Reverse Proxy'
             config:
               - 'location / {'
@@ -87,7 +87,7 @@ CONFIG
         ssl_client_certificate: '/etc/ssl/example/ca.domain.tld.crt'
         ssl_verify_client: 'true'
         ssl_verify_depth: 1
-        custom_config:
+        config:
           - comment: 'Reverse Proxy'
             config:
               - 'location / {'
@@ -114,8 +114,8 @@ CONFIG
       Examples: ['domain.tld', 'www.domain.tld', 'web.domain.tld]
       None    : []
 
-  custom_config
-    Description: Define the 'custom_config' option.
+  config
+    Description: Define the 'config' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -315,22 +315,12 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  nginx_hsts_max_age
-    Description: Set the 'nginx_hsts_max_age' option.
+  nginx_config
+    Description: Define the 'nginx_config' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
-    Type       : Integer, String
-    Default    : '31536000'
-    Options    :
-      Examples: '15768000' | '31536000' | '47304000'
-
-  nginx_vhost
-    Description: Define the 'nginx_vhost' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array
+    Type       : Array/Hash
     Default    : []
     Options    :
       Examples: [{name: 'host.domain.tld', state: 'true', listen: '*', port: 80}] |
@@ -341,6 +331,16 @@ ROLE
                  ssl_client_certificate: '/etc/ssl/example/ca.domain.tld.crt',
                  ssl_verify_client: 'true',
                  ssl_verify_depth: 1}]
+
+  nginx_hsts_max_age
+    Description: Set the 'nginx_hsts_max_age' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '31536000'
+    Options    :
+      Examples: '15768000' | '31536000' | '47304000'
 
   nginx_vhosts_d
     Description: Define the 'nginx_vhosts_d' option.
