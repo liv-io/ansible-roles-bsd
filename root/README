@@ -64,37 +64,6 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  root_authorized_key
-    Description: Define the 'root_authorized_key' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA5Qg4nV3Jh9kqnCs3YAoVbTCN5DV3vrOPzf1eLp514TE+QC2IDNEV6c8hWUD5VZZF0FS7MfGhsYx3pcd+7OiSvkRtIomNG+GuDJWhD5nCRuvYotrEUGh/P+mm7eLmQUBmZuMBvwUZn9W92zqic8F+uCrOMOqNcxsVp6oHUZSfZUkEoRnJxdBfd4UsLxinwM1fLCm0qYNAAHRjIycXEkAp37gx+6k6qulvf8c3oS/+akZ3xV0hAu7Ce5K1e7dC5iLS0GahMfr16grx+qqK4BHhsN4i7Xg2f1/eMyxsubzH3OkPrzAhoUJbhLUnaaURGhIrMB+JYN0Jo0XMvIavgqcYcQ== root'
-
-  root_authorized_key_options
-    Description: Define the 'root_authorized_key_options' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : ''
-    Options    :
-      Examples: 'command="command"' | 'no-agent-forwarding' | 'no-port-forwarding'
-
-  root_authorized_key_state
-    Description: Control the 'root_authorized_key_state' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'false'
-    Options    :
-      Install: 'true' | 'yes' | 'install'
-      Remove : 'false' | 'no' | 'remove'
-
   root_comment
     Description: Define the 'root_comment' option.
     Implemented: 0.1

@@ -37,7 +37,7 @@
     comment: "{{user_comment_root}}"
     uid: "{{user_uid_root}}"
     group: "{{user_group_root}}"
-    groups: "{{user_groups_root|join(',')}}"
+    groups: "{{(user_groups_root|join(','))}}"
     append: "{{user_append_root}}"
     createhome: "{{user_home_create_root}}"
     move_home: "{{user_home_move_root}}"
@@ -47,16 +47,6 @@
     update_password: "{{user_password_update_root}}"
     shell: "{{user_shell_root}}"
     system: "{{user_system_root}}"
-  tags:
-    - install
-    - root
-
-- name: 'authorized_key create root'
-  authorized_key:
-    state: "{{'absent' if (root_authorized_key_state is match('false|no|remove')) else 'present'}}"
-    user: "{{authorized_key_user_root}}"
-    key: "{{'' if (root_authorized_key is match('false|no|remove')) else root_authorized_key}}"
-    key_options: "{{'' if (root_authorized_key_options is match('false|no|remove')) else root_authorized_key_options}}"
   tags:
     - install
     - root

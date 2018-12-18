@@ -2,12 +2,6 @@
 
 root_state: 'install'
 
-root_authorized_key: 'false'
-
-root_authorized_key_options: 'false'
-
-root_authorized_key_state: 'false'
-
 root_comment: 'root'
 
 root_groups: ['wheel']

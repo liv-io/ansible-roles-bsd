@@ -5,9 +5,3 @@
   when: not (root_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - root
-
-- name: 'task include remove'
-  import_tasks: remove.yml
-  when: (root_state is match('false|no|remove'))
-  tags:
-    - root
