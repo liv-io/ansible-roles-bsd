@@ -15,10 +15,10 @@
 #
 #-------------------------------------------------------------------------------
 
-{% for domain_allowed in squid_domain_allowed|default([]) %}
-{% if (domain_allowed.comment is defined) and not (domain_allowed.comment == '') %}
-# {{domain_allowed.comment}}
+{% for item in (squid_domain_allowed|default([])) %}
+{% if (item.comment|default('')) %}
+# {{item.comment}}
 {% endif %}
-{{domain_allowed.name}}
+{{item.name}}
 
 {% endfor %}

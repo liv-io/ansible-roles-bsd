@@ -15,10 +15,10 @@
 #
 #-------------------------------------------------------------------------------
 
-{% for network_unrestricted in squid_network_unrestricted|default([]) %}
-{% if (network_unrestricted.comment is defined) and not (network_unrestricted.comment == '') %}
-# {{network_unrestricted.comment}}
+{% for item in (squid_network_unrestricted|default([])) %}
+{% if (item.comment|default('')) %}
+# {{item.comment}}
 {% endif %}
-{{network_unrestricted.name}}
+{{item.name}}
 
 {% endfor %}

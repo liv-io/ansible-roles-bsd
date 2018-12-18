@@ -15,10 +15,10 @@
 #
 #-------------------------------------------------------------------------------
 
-{% for network_allowed in squid_network_allowed|default([]) %}
-{% if (network_allowed.comment is defined) and not (network_allowed.comment == '') %}
-# {{network_allowed.comment}}
+{% for item in (squid_network_allowed|default([])) %}
+{% if (item.comment|default('')) %}
+# {{item.comment}}
 {% endif %}
-{{network_allowed.name}}
+{{item.name}}
 
 {% endfor %}

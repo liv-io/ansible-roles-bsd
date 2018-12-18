@@ -20,7 +20,7 @@
 #-------------------------------------------------------------------------------
 
 # Ports
-acl SSL_ports port {% for ssl_ports in squid_acl_ssl_ports %}{{ssl_ports}}{% if not loop.last %} {% endif %}{% endfor %}
+acl SSL_ports port {% for item in squid_acl_ssl_ports %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
 
 acl http proto http
 acl ftp proto ftp
@@ -43,19 +43,19 @@ acl src_network_unrestricted src '{{file_dst_src_network_unrestricted_acl}}'
 # CUSTOM ACCESS CONTROLS
 #-------------------------------------------------------------------------------
 
-{% for acl in squid_acl|default([]) %}
-{% if (acl.comment is defined) and not (acl.comment == '') %}
-# {{acl.comment}}
+{% for item in (squid_acl|default([])) %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-acl {{acl.name}} {{acl.type}} {{acl.value}}
+acl {{item.name}} {{item.type}} {{item.value}}
 
 {% endfor %}
 
-{% for http_access in squid_http_access|default([]) %}
-{% if (http_access.comment is defined) and not (http_access.comment == '') %}
-# {{http_access.comment}}
+{% for item in (squid_http_access|default([])) %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-http_access {{http_access.action|default('deny')}} {{http_access.source}} {{http_access.protocol}} {{http_access.destination}}
+http_access {{(item.action|default('deny'))}} {{item.source}} {{item.protocol}} {{item.destination}}
 
 {% endfor %}
 
@@ -82,7 +82,7 @@ http_access deny all
 
 # Squid normally listens to port 3128
 {% if not (squid_http_port == '') %}
-http_port {{squid_http_port|int(3128)}}
+http_port {{(squid_http_port|int(3128))}}
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -115,7 +115,7 @@ cache_replacement_policy {{squid_cache_replacement_policy}}
 
 # Uncomment and adjust the following to add a disk cache directory.
 {% for item in squid_cache_dir %}
-cache_dir {{item.type|default('ufs')}} {{item.action|default('/var/squid/cache')}} {{item.size|default('8192')}} {{item.first_level|default('16')}} {{item.second_level|default('256')}} 
+cache_dir {{(item.type|default('ufs'))}} {{(item.action|default('/var/spool/squid'))}} {{(item.size|default('8192'))}} {{(item.first_level|default('16'))}} {{(item.second_level|default('256'))}}
 {% endfor %}
 
 # Objects smaller than this size will NOT be saved on disk
@@ -189,13 +189,13 @@ cache_mgr {{squid_cache_mgr}}
 {% endif %}
 
 # Specify passwords for cachemgr operations.
-{% for cachemgr_passwd in squid_cachemgr_passwd %}
-{% if (cachemgr_passwd.comment is defined) and not (cachemgr_passwd.comment == '') %}
-# {{cachemgr_passwd.comment}}
+{% for item in squid_cachemgr_passwd %}
+{% if (item.comment|default('')) %}
+# {{item.comment}}
 {% endif %}
 cachemgr_passwd
-{%- if (cachemgr_passwd.password is defined) and not (cachemgr_passwd.password == '') %} {{cachemgr_passwd.password}}{% endif %}
-{%- if (cachemgr_passwd.action is defined) and not (cachemgr_passwd.action == '') %} {{cachemgr_passwd.action}}{% endif %}
+{%- if not ((item.password|default('')) == '') %} {{item.password}}{% endif %}
+{%- if not ((item.action|default('')) == '') %} {{item.action}}{% endif %}
 
 {% endfor %}
 
