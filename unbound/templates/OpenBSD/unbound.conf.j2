@@ -22,9 +22,9 @@
 #-------------------------------------------------------------------------------
 
 server:
-	#-----------------------------------------------------------------------
-	# INTERFACE
-	#-----------------------------------------------------------------------
+        #-----------------------------------------------------------------------
+        # INTERFACE
+        #-----------------------------------------------------------------------
 
 {% if not (unbound_interface == []) %}
 {% for item in unbound_interface %}
@@ -44,132 +44,132 @@ server:
 	#outgoing-interface: 192.0.2.1
 	#outgoing-interface: 2001:db8::53
 
-	#-----------------------------------------------------------------------
-	# PORT
-	#-----------------------------------------------------------------------
+        #-----------------------------------------------------------------------
+        # PORT
+        #-----------------------------------------------------------------------
 
 {% if not (unbound_default_port == '') %}
-	port: {{(unbound_default_port|int(53))}}
+        port: {{(unbound_default_port|int(53))}}
 {% endif %}
 
-	#-----------------------------------------------------------------------
-	# INTERNET-PROTOCOL
-	#-----------------------------------------------------------------------
+        #-----------------------------------------------------------------------
+        # INTERNET-PROTOCOL
+        #-----------------------------------------------------------------------
 
 {% if (unbound_ip4_state is match('false|no|disable')) %}
-	do-ip4: no
+        do-ip4: no
 {% else %}
-	do-ip4: yes
+        do-ip4: yes
 {% endif %}
 {% if (unbound_ip6_state is match('true|yes|enable')) %}
-	do-ip6: yes
+        do-ip6: yes
 {% else %}
-	do-ip6: no
+        do-ip6: no
 {% endif %}
 
 {% if (unbound_prefer_ip6 is match('true|yes|enable')) %}
-	prefer-ip6: yes
+        prefer-ip6: yes
 {% else %}
-	prefer-ip6: no
+        prefer-ip6: no
 {% endif %}
 
-	#-----------------------------------------------------------------------
-	# TCP / UDP
-	#-----------------------------------------------------------------------
+        #-----------------------------------------------------------------------
+        # TCP / UDP
+        #-----------------------------------------------------------------------
 
 {% if (unbound_tcp_state is match('false|no|disable')) %}
-	do-tcp: no
+        do-tcp: no
 {% else %}
-	do-tcp: yes
+        do-tcp: yes
 {% endif %}
 {% if (unbound_udp_state is match('false|no|disable')) %}
-	do-udp: no
+        do-udp: no
 {% else %}
-	do-udp: yes
+        do-udp: yes
 {% endif %}
 
-	#-----------------------------------------------------------------------
-	# IDENTITY
-	#-----------------------------------------------------------------------
+        #-----------------------------------------------------------------------
+        # IDENTITY
+        #-----------------------------------------------------------------------
 
 {% if (unbound_hide_identity is match('false|no|disable')) %}
-	hide-identity: no
+        hide-identity: no
 {% else %}
-	hide-identity: yes
+        hide-identity: yes
 {% endif %}
 
 {% if not (unbound_identity == '') %}
-	identity: "{{unbound_identity}}"
+        identity: "{{unbound_identity}}"
 {% endif %}
 
-	#-----------------------------------------------------------------------
-	# VERSION
-	#-----------------------------------------------------------------------
+        #-----------------------------------------------------------------------
+        # VERSION
+        #-----------------------------------------------------------------------
 
 {% if (unbound_hide_version is match('false|no|disable')) %}
-	hide-version: no
+        hide-version: no
 {% else %}
-	hide-version: yes
+        hide-version: yes
 {% endif %}
 
 {% if not (unbound_version == '') %}
-	version: "{{unbound_version}}"
+        version: "{{unbound_version}}"
 {% endif %}
 
-	#-----------------------------------------------------------------------
-	# TRUSTANCHOR
-	#-----------------------------------------------------------------------
+        #-----------------------------------------------------------------------
+        # TRUSTANCHOR
+        #-----------------------------------------------------------------------
 
 {% if (unbound_hide_trustanchor is match('false|no|disable')) %}
-	hide-trustanchor: no
+        hide-trustanchor: no
 {% else %}
-	hide-trustanchor: yes
+        hide-trustanchor: yes
 {% endif %}
 
-	#-----------------------------------------------------------------------
-	# HARDENING
-	#-----------------------------------------------------------------------
+        #-----------------------------------------------------------------------
+        # HARDENING
+        #-----------------------------------------------------------------------
 
 {% if (unbound_harden_algo_downgrade is match('true|yes|enable')) %}
-	harden-algo-downgrade: yes
+        harden-algo-downgrade: yes
 {% else %}
-	harden-algo-downgrade: no
+        harden-algo-downgrade: no
 {% endif %}
 
 {% if (unbound_harden_below_nxdomain is match('true|yes|enable')) %}
-	harden-below-nxdomain: yes
+        harden-below-nxdomain: yes
 {% else %}
-	harden-below-nxdomain: no
+        harden-below-nxdomain: no
 {% endif %}
 
 {% if (unbound_harden_dnssec_stripped is match('false|no|disable')) %}
-	harden-dnssec-stripped: no
+        harden-dnssec-stripped: no
 {% else %}
-	harden-dnssec-stripped: yes
+        harden-dnssec-stripped: yes
 {% endif %}
 
 {% if (unbound_harden_glue is match('false|no|disable')) %}
-	harden-glue: no
+        harden-glue: no
 {% else %}
-	harden-glue: yes
+        harden-glue: yes
 {% endif %}
 
 {% if (unbound_harden_large_queries is match('true|yes|enable')) %}
-	harden-large-queries: yes
+        harden-large-queries: yes
 {% else %}
-	harden-large-queries: no
+        harden-large-queries: no
 {% endif %}
 
 {% if (unbound_harden_referral_path is match('true|yes|enable')) %}
-	harden-referral-path: yes
+        harden-referral-path: yes
 {% else %}
-	harden-referral-path: no
+        harden-referral-path: no
 {% endif %}
 
 {% if (unbound_harden_short_bufsize is match('true|yes|enable')) %}
-	harden-short-bufsize: yes
+        harden-short-bufsize: yes
 {% else %}
-	harden-short-bufsize: no
+        harden-short-bufsize: no
 {% endif %}
 
         #-----------------------------------------------------------------------
@@ -180,9 +180,9 @@ server:
         do-not-query-localhost: yes
 {% endif %}
 
-	#-----------------------------------------------------------------------
-	# ACCESS-CONTROL
-	#-----------------------------------------------------------------------
+        #-----------------------------------------------------------------------
+        # ACCESS-CONTROL
+        #-----------------------------------------------------------------------
 
 {% for item in unbound_access_control %}
 {% if not ((item.comment|default('')) == '') %}
@@ -209,9 +209,9 @@ server:
 	#
 	#aggressive-nsec: yes
 
-	#-----------------------------------------------------------------------
-	# LOCAL-ZONE
-	#-----------------------------------------------------------------------
+        #-----------------------------------------------------------------------
+        # LOCAL-ZONE
+        #-----------------------------------------------------------------------
 
 {% for item in unbound_local_zone %}
 {% if not ((item.comment|default('')) == '') %}
@@ -223,9 +223,9 @@ server:
 
 {% endfor %}
 
-	#-----------------------------------------------------------------------
-	# LOCAL-DATA
-	#-----------------------------------------------------------------------
+        #-----------------------------------------------------------------------
+        # LOCAL-DATA
+        #-----------------------------------------------------------------------
 
 {% for item in unbound_local_data %}
 {% if not ((item.comment|default('')) == '') %}
@@ -275,9 +275,9 @@ server:
 
 remote-control:
 {% if (unbound_control_enable is match('true|yes|enable')) %}
-	control-enable: yes
+        control-enable: yes
 {% else %}
-	control-enable: no
+        control-enable: no
 {% endif %}
 	control-use-cert: no
 	control-interface: /var/run/unbound.sock
