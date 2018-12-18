@@ -2,16 +2,12 @@
 
 sudo_state: 'install'
 
-sudo_all: []
+sudo_config_all: []
 
-sudo_dependencies: []
+sudo_config_group: []
 
-sudo_group: []
-
-sudo_host: []
+sudo_config_host: []
 
 sudo_insults: 'false'
 
 sudo_lecture: 'false'
-
-sudo_name_default: 'main'

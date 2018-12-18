@@ -51,19 +51,18 @@ INACTIVE
 
 CONFIG
   vars:
-    sudo_all:
+    sudo_config_all:
       - name: 'root'
         state: 'true'
         comment: 'root'
         config: ['root ALL=(ALL) ALL']
 
-    sudo_dependencies:
       - name: 'ansible'
         state: 'true'
         comment: 'Ansible Configuration Management'
         config: ['ansible ALL=(root) NOPASSWD: ALL']
 
-    sudo_group:
+    sudo_config_group:
       - name: 'sysadmin'
         state: 'true'
         comment: 'System Administrators'
@@ -79,7 +78,7 @@ CONFIG
         comment: 'Application Administrators'
         config: ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
 
-    sudo_host:
+    sudo_config_host:
       - name: 'obsolete'
         state: 'false'
 
@@ -106,7 +105,7 @@ CONFIG
     Required   : True
     Value      : Arbitrary
     Type       : String
-    Default    : "{{sudo_name_default}}"
+    Default    : 'config'
     Options    :
       Examples: 'sysadmin' | 'dbadmin' | 'appadmin'
 
@@ -160,8 +159,8 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  sudo_all
-    Description: Define the 'sudo_all' option.
+  sudo_config_all
+    Description: Define the 'sudo_config_all' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -172,8 +171,8 @@ ROLE
                  {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
       None    : []
 
-  sudo_dependencies
-    Description: Define the 'sudo_dependencies' option.
+  sudo_config_group
+    Description: Define the 'sudo_config_group' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -184,20 +183,8 @@ ROLE
                  {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
       None    : []
 
-  sudo_group
-    Description: Define the 'sudo_group' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{name: 'root', state: 'true', order: '10', comment: 'root', config: {'root ALL=(ALL) ALL'}},
-                 {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
-      None    : []
-
-  sudo_host
-    Description: Define the 'sudo_host' option.
+  sudo_config_host
+    Description: Define the 'sudo_config_host' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -229,16 +216,6 @@ ROLE
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
-
-  sudo_name_default
-    Description: Define the 'sudo_name_default' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'main'
-    Options    :
-      Examples: 'dummy' | 'example'
 
 --------------------------------------------------------------------------------
 CONFLICTS

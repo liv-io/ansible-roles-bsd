@@ -6,7 +6,7 @@
 # INFORMATION
 #-------------------------------------------------------------------------------
 #
-# Name   : sudo-config
+# Name   : config
 # Type   : sudo configuration file
 # Role   : sudo
 #
@@ -15,9 +15,17 @@
 #
 #-------------------------------------------------------------------------------
 
-{% if (item.config is defined) and not ((item.config == '') or (item.config == [])) %}
-{% for config in item.config %}
+{% if not ((item.name|default('')) == '') %}
+#-------------------------------------------------------------------------------
+# {{(item.name|upper)}}
+#-------------------------------------------------------------------------------
+
+{% endif %}
+{% if not ((item.config|default([])) == []) %}
+{% if (item.comment|default('')) %}
 # {{item.comment}}
+{% endif %}
+{% for config in item.config %}
 {{config}}
 {% endfor %}
 {% endif %}
