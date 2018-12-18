@@ -26,17 +26,17 @@ server:
 	# INTERFACE
 	#-----------------------------------------------------------------------
 
-{% if (unbound_interface is defined) and not (unbound_interface == []) %}
-{% for interface in unbound_interface %}
-{% if (interface.comment is defined) %}
-	# {{interface.comment}}
+{% if not (unbound_interface == []) %}
+{% for item in unbound_interface %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
-	interface: {{interface.address}}{% if (interface.port is defined) %}@{{interface.port|int(53)}}{% endif %}
+        interface: {{item.address}}{% if not ((item.port|default('53')) == '') %}@{{(item.port|int(53))}}{% endif %}
 
 {% endfor %}
 {% else %}
-	interface: 127.0.0.1
-	interface: ::1
+        interface: 127.0.0.1
+        interface: ::1
 {% endif %}
 
 	# override the default "any" address to send queries; if multiple
@@ -184,13 +184,13 @@ server:
 	# ACCESS-CONTROL
 	#-----------------------------------------------------------------------
 
-{% for access_control in unbound_access_control %}
-{% if (access_control.comment is defined) and not (access_control.comment == '') %}
-	# {{access_control.comment}}
+{% for item in unbound_access_control %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
-	access-control:
-{%- if (access_control.address is defined) and not (access_control.address == '') %} {{access_control.address}} {% endif %}
-{%- if (access_control.action is defined) and (access_control.action is match('allow|accept')) %}allow{% else %}refuse{% endif %}
+        access-control:
+{%- if not ((item.address|default('')) == '') %} {{item.address}} {% endif %}
+{%- if (item.action is match('allow|accept')) %}allow{% else %}refuse{% endif %}
 
 
 {% endfor %}
@@ -213,13 +213,13 @@ server:
 	# LOCAL-ZONE
 	#-----------------------------------------------------------------------
 
-{% for local_zone in unbound_local_zone %}
-{% if (local_zone.comment is defined) and not (local_zone.comment == '') %}
-	# {{local_zone.comment}}
+{% for item in unbound_local_zone %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
-	local-zone:
-{%- if (local_zone.zone is defined) and not (local_zone.zone == '') %} "{{local_zone.zone}}" {% endif %}
-{%- if (local_zone.type is defined) and not (local_zone.type == '') %}"{{local_zone.type}}"{% endif %}
+        local-zone:
+{%- if not ((item.zone|default('')) == '') %} "{{item.zone}}" {% endif %}
+{%- if not ((item.type|default('')) == '') %}"{{item.type}}"{% endif %}
 
 {% endfor %}
 
@@ -227,11 +227,11 @@ server:
 	# LOCAL-DATA
 	#-----------------------------------------------------------------------
 
-{% for local_data in unbound_local_data %}
-{% if (local_data.comment is defined) and not (local_data.comment == '') %}
-	# {{local_data.comment}}
+{% for item in unbound_local_data %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
-        local-data: {% if (local_data.record is defined) and not (local_data.record == '') %}"{{local_data.record}}"{% endif %}
+        local-data: {% if not ((item.record|default('')) == '') %}"{{item.record}}"{% endif %}
 
 {% endfor %}
 
@@ -239,11 +239,11 @@ server:
         # LOCAL-DATA-PTR
         #-----------------------------------------------------------------------
 
-{% for local_data_ptr in unbound_local_data_ptr %}
-{% if (local_data_ptr.comment is defined) and not (local_data_ptr.comment == '') %}
-	# {{local_data_ptr.comment}}
+{% for item in unbound_local_data_ptr %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
-	local-data-ptr: {% if (local_data_ptr.record is defined) and not (local_data_ptr.record == '') %}"{{local_data_ptr.record}}"{% endif %}
+        local-data-ptr: {% if not ((item.record|default('')) == '') %}"{{item.record}}"{% endif %}
 
 {% endfor %}
 
@@ -286,14 +286,14 @@ remote-control:
 # STUB-ZONE
 #-------------------------------------------------------------------------------
 
-{% if (unbound_stub_zone is defined) and not (unbound_stub_zone == []) %}
-{% for stub_zone in unbound_stub_zone %}
-{% if (stub_zone.comment is defined) %}
-        # {{stub_zone.comment}}
+{% if not ((unbound_stub_zone|default([])) == []) %}
+{% for item in unbound_stub_zone %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
 stub-zone:
-	name: "{{stub_zone.name}}"
-	stub-addr: {{stub_zone.address}}{% if (stub_zone.port is defined) %}@{{stub_zone.port|int(53)}}{% endif %}
+        name: "{{item.name}}"
+        stub-addr: {{item.address}}{% if not ((item.port|default('53')) == '') %}@{{(item.port|int(53))}}{% endif %}
 
 {% endfor %}
 {% endif %}

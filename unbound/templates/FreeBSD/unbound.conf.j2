@@ -67,12 +67,13 @@ server:
 	# specify 0.0.0.0 and ::0 to bind to all available interfaces.
 	# specify every interface[@port] on a new 'interface:' labelled line.
 	# The listen interfaces are not changed on reload, only on restart.
-{% if (unbound_interface is defined) and not (unbound_interface == []) %}
-{% for interface in unbound_interface %}
-{% if (interface.comment is defined) %}
-        # {{interface.comment}}
+
+{% if not (unbound_interface == []) %}
+{% for item in unbound_interface %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
-        interface: {{interface.address}}{% if (interface.port is defined) %}@{{interface.port|int(53)}}{% endif %}
+        interface: {{item.address}}{% if not ((item.port|default('53')) == '') %}@{{(item.port|int(53))}}{% endif %}
 
 {% endfor %}
 {% else %}
@@ -111,6 +112,7 @@ server:
 	# And: ip -6 route add local 2001:db8::/64 dev lo
 	# And set prefer-ip6: yes to use the ip6 randomness from a netblock.
 	# Set this to yes to prefer ipv6 upstream servers over ipv4.
+
 {% if (unbound_prefer_ip6 is match('true|yes|enable')) %}
         prefer-ip6: yes
 {% else %}
@@ -309,13 +311,13 @@ server:
 	# deny_non_local (drop queries unless can be answered from local-data)
 	# refuse_non_local (like deny_non_local but polite error reply).
 
-{% for access_control in unbound_access_control %}
-{% if (access_control.comment is defined) and not (access_control.comment == '') %}
-        # {{access_control.comment}}
+{% for item in unbound_access_control %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
         access-control:
-{%- if (access_control.address is defined) and not (access_control.address == '') %} {{access_control.address}} {% endif %}
-{%- if (access_control.action is defined) and (access_control.action is match('allow|accept')) %}allow{% else %}refuse{% endif %}
+{%- if not ((item.address|default('')) == '') %} {{item.address}} {% endif %}
+{%- if (item.action is match('allow|accept')) %}allow{% else %}refuse{% endif %}
 
 
 {% endfor %}
@@ -715,13 +717,14 @@ server:
 	# of the nodefault statements below.
 	# You may also have to use domain-insecure: zone to make DNSSEC work,
 	# unless you have your own trust anchors for this zone.
-{% for local_zone in unbound_local_zone %}
-{% if (local_zone.comment is defined) and not (local_zone.comment == '') %}
-        # {{local_zone.comment}}
+
+{% for item in unbound_local_zone %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
         local-zone:
-{%- if (local_zone.zone is defined) and not (local_zone.zone == '') %} "{{local_zone.zone}}" {% endif %}
-{%- if (local_zone.type is defined) and not (local_zone.type == '') %}"{{local_zone.type}}"{% endif %}
+{%- if not ((item.zone|default('')) == '') %} "{{item.zone}}" {% endif %}
+{%- if not ((item.type|default('')) == '') %}"{{item.type}}"{% endif %}
 
 {% endfor %}
 
@@ -740,11 +743,11 @@ server:
         # LOCAL-DATA
         #-----------------------------------------------------------------------
 
-{% for local_data in unbound_local_data %}
-{% if (local_data.comment is defined) and not (local_data.comment == '') %}
-        # {{local_data.comment}}
+{% for item in unbound_local_data %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
-        local-data: {% if (local_data.record is defined) and not (local_data.record == '') %}"{{local_data.record}}"{% endif %}
+        local-data: {% if not ((item.record|default('')) == '') %}"{{item.record}}"{% endif %}
 
 {% endfor %}
 
@@ -778,11 +781,12 @@ server:
 	# Shorthand to make PTR records, "IPv4 name" or "IPv6 name".
 	# You can also add PTR records using local-data directly, but then
 	# you need to do the reverse notation yourself.
-{% for local_data_ptr in unbound_local_data_ptr %}
-{% if (local_data_ptr.comment is defined) and not (local_data_ptr.comment == '') %}
-        # {{local_data_ptr.comment}}
+
+{% for item in unbound_local_data_ptr %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
-        local-data-ptr: {% if (local_data_ptr.record is defined) and not (local_data_ptr.record == '') %}"{{local_data_ptr.record}}"{% endif %}
+        local-data-ptr: {% if not ((item.record|default('')) == '') %}"{{item.record}}"{% endif %}
 
 {% endfor %}
 
@@ -887,11 +891,11 @@ server:
 # INCLUDE
 #-------------------------------------------------------------------------------
 
-{% for include in unbound_include %}
-{% if (include.comment is defined) and not (include.comment == '') %}
-# {{include.comment}}
+{% for item in unbound_include %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-include: {{include.file}}
+include: {{item.file}}
 
 {% endfor %}
 
@@ -955,14 +959,15 @@ remote-control:
 # With stub-first yes, it attempts without the stub if it fails.
 # Consider adding domain-insecure: name and local-zone: name nodefault
 # to the server: section if the stub is a locally served zone.
-{% if (unbound_stub_zone is defined) and not (unbound_stub_zone == []) %}
-{% for stub_zone in unbound_stub_zone %}
-{% if (stub_zone.comment is defined) %}
-        # {{stub_zone.comment}}
+
+{% if not ((unbound_stub_zone|default([])) == []) %}
+{% for item in unbound_stub_zone %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
 stub-zone:
-        name: "{{stub_zone.name}}"
-        stub-addr: {{stub_zone.address}}{% if (stub_zone.port is defined) %}@{{stub_zone.port|int(53)}}{% endif %}
+        name: "{{item.name}}"
+        stub-addr: {{item.address}}{% if not ((item.port|default('53')) == '') %}@{{(item.port|int(53))}}{% endif %}
 
 {% endfor %}
 {% endif %}
