@@ -2,10 +2,8 @@
 
 sysctl_state: 'install'
 
-sysctl_all: []
+sysctl_config_all: []
 
-sysctl_dependencies: []
+sysctl_config_group: []
 
-sysctl_group: []
-
-sysctl_host: []
+sysctl_config_host: []

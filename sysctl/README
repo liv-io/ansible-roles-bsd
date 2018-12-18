@@ -47,22 +47,21 @@ INACTIVE
 
 CONFIG
   vars:
-    sysctl_all:
+    sysctl_config_all:
       - key: 'net.inet.carp.preempt'
         state: 'true'
         value: '1'
 
-    sysctl_dependencies:
       - key: 'net.inet.carp.allow'
         state: 'true'
         value: '1'
 
-    sysctl_group:
+    sysctl_config_group:
       - key: 'net.inet.ip.ttl'
         state: 'false'
         value: '64'
 
-    sysctl_host:
+    sysctl_config_host:
       - key: 'kern.hostname'
         state: 'true'
         value: 'host.domain.tld'
@@ -84,9 +83,9 @@ ROLE
         Remove  : 'false' | 'no' | 'remove'
         Inactive: 'quiesce' | 'inactive'
 
-  sysctl_all
-    Description: Define the 'sysctl_all' option.
-    Implemented: 0.1
+  sysctl_config_all
+    Description: Define the 'sysctl_config_all' option.
+    Implemented: 1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -96,9 +95,9 @@ ROLE
                  {key: 'net.inet.carp.allow', value: '1'}]
       None    : []
 
-  sysctl_dependencies
-    Description: Define the 'sysctl_dependencies' option.
-    Implemented: 0.1
+  sysctl_config_group
+    Description: Define the 'sysctl_config_group' option.
+    Implemented: 1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -108,21 +107,9 @@ ROLE
                  {key: 'net.inet.carp.allow', value: '1'}]
       None    : []
 
-  sysctl_group
-    Description: Define the 'sysctl_group' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{key: 'net.inet.carp.preempt', value: '1'},
-                 {key: 'net.inet.carp.allow', value: '1'}]
-      None    : []
-
-  sysctl_host
-    Description: Define the 'sysctl_host' option.
-    Implemented: 0.1
+  sysctl_config_host
+    Description: Define the 'sysctl_config_host' option.
+    Implemented: 1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -185,11 +172,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.2-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.4
-      Status: Testing
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER

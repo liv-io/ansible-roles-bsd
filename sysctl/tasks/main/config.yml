@@ -22,14 +22,14 @@
 
 - name: 'line config sysctl.conf'
   lineinfile:
-    state: "{{'absent' if (item.state is defined) and (item.state is match('false|no|remove')) else 'present'}}"
+    state: "{{'absent' if ((item.state|default('true')) is match('false|no|remove')) else 'present'}}"
     mode: "{{file_mode_sysctl_conf}}"
     owner: "{{file_owner_sysctl_conf}}"
     group: "{{file_group_sysctl_conf}}"
-    line: "{{item.key}}={{item.value}} # {{item.comment if (item.comment is defined) else ''}}"
+    line: "{{item.key}}={{item.value}} # {{(item.comment|default(''))}}"
     regexp: '^{{item.key}}='
     dest: "{{file_dst_sysctl_conf}}"
-  with_items: "{{sysctl_all + sysctl_dependencies + sysctl_group + sysctl_host}}"
+  with_items: "{{sysctl_config_all + sysctl_config_group + sysctl_config_host}}"
   tags:
     - config
     - sysctl
@@ -43,7 +43,7 @@
   register: "register_config_sysctl"
   changed_when: (register_config_sysctl.rc > 1)
   failed_when: (register_config_sysctl.rc > 1)
-  with_items: "{{sysctl_all + sysctl_dependencies + sysctl_group + sysctl_host}}"
+  with_items: "{{sysctl_config_all + sysctl_config_group + sysctl_config_host}}"
   tags:
     - config
     - sysctl
