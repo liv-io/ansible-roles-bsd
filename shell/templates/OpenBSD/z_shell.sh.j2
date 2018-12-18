@@ -60,7 +60,7 @@ export https_proxy
 
 {% if not (shell_no_proxy == []) %}
 # no_proxy
-no_proxy='{% for no_proxy in shell_no_proxy %}{{no_proxy}}{% if not loop.last %},{% endif %}{% endfor %}'
+no_proxy='{% for item in shell_no_proxy %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 export no_proxy
 {% endif %}
 
