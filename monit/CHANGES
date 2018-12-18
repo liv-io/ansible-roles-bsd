@@ -33,7 +33,7 @@ E: Remove email information from alert message
 E: Minor style improvement
 
 * Version 3.0.0 (2018-12-02)
-E: Rename config parameters
+C: Rename config parameters
 
 * Version 2.5.0 (2018-10-20)
 F: Add support for OpenBSD 6.4
