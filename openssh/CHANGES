@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -25,13 +26,13 @@ F: Drop support for FreeBSD 11.1-RELEASE
 F: Port role to Ansible 2.5
 
 * Version 2.3.3 (2018-04-24)
-I: Simplify role by removing 'template' option
+E: Simplify role by removing 'template' option
 
 * Version 2.3.2 (2018-04-14)
-I: Relocate 'PermitRootLogin' parameter
+E: Relocate 'PermitRootLogin' parameter
 
 * Version 2.3.1 (2018-04-12)
-I: Improve 'Ciphers', 'HostKeyAlgorithms', 'KexAlgorithms' and 'MACs' defaults
+E: Improve 'Ciphers', 'HostKeyAlgorithms', 'KexAlgorithms' and 'MACs' defaults
 
 * Version 2.3.0 (2018-04-09)
 F: Add option to define HostKeyAlgorithms
@@ -45,13 +46,13 @@ F: Drop support for OpenBSD 6.2
 F: Port role to Ansible 2.4
 
 * Version 2.0.1 (2018-03-08)
-I: Allow additional key exchange algorithms and message authentication codes
+E: Allow additional key exchange algorithms and message authentication codes
 
 * Version 2.0.0 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 1.2.2 (2017-12-08)
-I: Ensure role works in check mode
+E: Ensure role works in check mode
 
 * Version 1.2.1 (2017-11-24)
 B: Remove unsupported option 'PrintLastLog' on FreeBSD
@@ -65,7 +66,7 @@ F: Add support for FreeBSD 11.1-RELEASE
 F: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.0 (2017-08-01)
-I: Stabilize, improve and cleanup Ansible role
+E: Stabilize, improve and cleanup Ansible role
 
 * Version 0.19.0 (2017-04-16)
 F: Add support for OpenBSD 6.1
@@ -83,7 +84,7 @@ F: Add support for OpenBSD 6.0
 F: Drop support for OpenBSD 5.9
 
 * Version 0.15.1 (2016-05-29)
-I: Improve FreeBSD support
+E: Improve FreeBSD support
 
 * Version 0.15.0 (2016-05-21)
 F: Add support for Ansible 2.0
@@ -107,7 +108,7 @@ F: Add support for OS family 'OpenBSD'
 F: Drop support for OS family 'Gentoo'
 
 * Version 0.10.1 (2015-11-17)
-I: Add missing Ansible tags
+E: Add missing Ansible tags
 
 * Version 0.10.0 (2015-11-16)
 F: Update 'Gentoo' configuration files
@@ -116,16 +117,16 @@ F: Update 'Gentoo' configuration files
 F: Update 'Gentoo' configuration files
 
 * Version 0.8.1 (2015-02-09)
-I: Improve OpenSSH validation
+E: Improve OpenSSH validation
 
 * Version 0.8.0 (2015-01-08)
 F: Add options to harden OpenSSH configuration
 
 * Version 0.7.2 (2014-12-30)
-I: Add handler for validating OpenSSH configuration
+E: Add handler for validating OpenSSH configuration
 
 * Version 0.7.1 (2014-12-22)
-I: Various small Ansible and Jinja2 improvements
+E: Various small Ansible and Jinja2 improvements
 
 * Version 0.7.0 (2014-12-07)
 F: Add option 'openssh_match' to override settings
@@ -134,7 +135,7 @@ F: Add option 'openssh_match' to override settings
 F: Update configuration files to FreeBSD version '10.1-RELEASE'
 
 * Version 0.5.1 (2014-09-11)
-I: Change license from 'GPLv2' to 'Simplified BSD License'
+E: Change license from 'GPLv2' to 'Simplified BSD License'
 
 * Version 0.5.0 (2014-08-25)
 F: Add support for OS family 'FreeBSD'
@@ -143,10 +144,10 @@ F: Add support for OS family 'FreeBSD'
 F: Remove support for OS family 'RedHat'
 
 * Version 0.3.2 (2014-08-14)
-I: Improve conditional statements
+E: Improve conditional statements
 
 * Version 0.3.1 (2014-07-22)
-I: Improve SSH client options to prevent SSH MITM (Downgrade) Attack
+E: Improve SSH client options to prevent SSH MITM (Downgrade) Attack
 
 * Version 0.3.0 (2014-07-07)
 F: Add support for 'UseDNS' option
@@ -158,7 +159,7 @@ B: Fix issue with 'openssh_print_motd' (PrintMotd) option
 B: Move file configuration from 'install' to 'enable' task
 
 * Version 0.2.1 (2014-05-26)
-I: Change default value of 'openssh_print_motd' (PrintMotd) option
+E: Change default value of 'openssh_print_motd' (PrintMotd) option
 
 * Version 0.2.0 (2014-05-05)
 F: Add support for running OpenSSH on multiple ports

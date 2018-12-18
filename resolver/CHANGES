@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -25,7 +26,7 @@ F: Drop support for FreeBSD 11.1-RELEASE
 F: Port role to Ansible 2.5
 
 * Version 0.15.1 (2018-04-24)
-I: Simplify role by removing 'template' option
+E: Simplify role by removing 'template' option
 
 * Version 0.15.0 (2018-04-04)
 F: Add support for OpenBSD 6.3
@@ -35,10 +36,10 @@ F: Drop support for OpenBSD 6.2
 F: Port role to Ansible 2.4
 
 * Version 0.13.2 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 0.13.1 (2017-12-29)
-I: Improve 'resolver_nameserver' option
+E: Improve 'resolver_nameserver' option
 
 * Version 0.13.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
@@ -49,7 +50,7 @@ F: Add support for FreeBSD 11.1-RELEASE
 F: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 0.11.1 (2017-08-01)
-I: Improve and cleanup Ansible role
+E: Improve and cleanup Ansible role
 
 * Version 0.11.0 (2017-04-16)
 F: Add support for OpenBSD 6.1
@@ -64,7 +65,7 @@ F: Add support for OpenBSD 6.0
 F: Drop support for OpenBSD 5.9
 
 * Version 0.8.1 (2016-05-29)
-I: Improve FreeBSD support
+E: Improve FreeBSD support
 
 * Version 0.8.0 (2016-05-21)
 F: Add support for Ansible 2.0
@@ -84,16 +85,16 @@ F: Add support for OS family 'OpenBSD'
 F: Drop support for OS family 'Gentoo'
 
 * Version 0.3.4 (2015-11-17)
-I: Add missing Ansible tags
+E: Add missing Ansible tags
 
 * Version 0.3.3 (2015-05-31)
-I: Minor Ansible role 'state' improvement
+E: Minor Ansible role 'state' improvement
 
 * Version 0.3.2 (2014-12-16)
-I: Various small Ansible and Jinja2 improvements
+E: Various small Ansible and Jinja2 improvements
 
 * Version 0.3.1 (2014-09-11)
-I: Change license from 'GPLv2' to 'Simplified BSD License'
+E: Change license from 'GPLv2' to 'Simplified BSD License'
 
 * Version 0.3.0 (2014-08-20)
 F: Add support for OS family 'FreeBSD'
@@ -102,7 +103,7 @@ F: Add support for OS family 'FreeBSD'
 F: Remove support for OS family 'RedHat'
 
 * Version 0.1.1 (2014-08-14)
-I: Improve conditional statements
+E: Improve conditional statements
 
 * Version 0.1.0 (2014-07-06)
 F: Initial release

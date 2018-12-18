@@ -8,14 +8,15 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
 
 * Version 1.2.0 (2018-11-15)
 F: Add support for 'quick' option
-I: Minor Jinja2 templating improvement
+E: Minor Jinja2 templating improvement
 
 * Version 1.1.0 (2018-10-20)
 F: Add support for OpenBSD 6.4
@@ -28,19 +29,19 @@ B: Fix 'command' variable names
 B: Fix 'command_shell_check_openbsd_pf' variable
 
 * Version 1.0.1 (2018-06-12)
-I: Correct 'command' variable names
+E: Correct 'command' variable names
 
 * Version 1.0.0 (2018-06-11)
 F: Add support for 'rdr-to' (DNAT) and 'nat-to' (SNAT)
 
 * Version 0.9.1 (2018-05-31)
-I: Correct 'command' variable names
+E: Correct 'command' variable names
 
 * Version 0.9.0 (2018-05-22)
 F: Port role to Ansible 2.5
 
 * Version 0.8.1 (2018-04-24)
-I: Simplify role by removing 'template' option
+E: Simplify role by removing 'template' option
 
 * Version 0.8.0 (2018-04-04)
 F: Add support for OpenBSD 6.3
@@ -53,15 +54,15 @@ F: Port role to Ansible 2.4
 B: Fix tags
 
 * Version 0.6.7 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 0.6.6 (2018-01-19)
-I: Remove 'dependencies' parameter until correctly implemented
+E: Remove 'dependencies' parameter until correctly implemented
 B: Add missing 'openbsd_pf_tables_group', 'openbsd_pf_tables_host' configuration
 
 * Version 0.6.4 (2017-12-08)
-I: Ensure role works in check mode
-I: Avoid usage of raw module
+E: Ensure role works in check mode
+E: Avoid usage of raw module
 
 * Version 0.6.3 (2017-11-27)
 B: Fix bug in 'filters.conf.j2' template
@@ -70,41 +71,41 @@ B: Fix bug in 'filters.conf.j2' template
 B: Fix multiple bugs in 'filters.conf.j2' template
 
 * Version 0.6.1 (2017-11-23)
-I: Improve variable names of 'openbsd_pf_options_limits' and 'openbsd_pf_options_timeouts'
+E: Improve variable names of 'openbsd_pf_options_limits' and 'openbsd_pf_options_timeouts'
 
 * Version 0.6.0 (2017-11-20)
 F: Add support for OpenBSD 6.2
 F: Drop support for OpenBSD 6.1
-I: Redesign, improve and cleanup Ansible role
+E: Redesign, improve and cleanup Ansible role
 
 * Version 0.5.2 (2017-08-01)
-I: Improve option 'openbsd_pf_option_loginterface'
+E: Improve option 'openbsd_pf_option_loginterface'
 
 * Version 0.5.1 (2017-08-01)
-I: Improve and cleanup Ansible role
+E: Improve and cleanup Ansible role
 
 * Version 0.5.0 (2017-04-16)
 F: Add support for OpenBSD 6.1
 F: Drop support for OpenBSD 6.0
 
 * Version 0.4.1 (2016-10-14)
-I: Update support information for FreeBSD 11.0-RELEASE
+E: Update support information for FreeBSD 11.0-RELEASE
 
 * Version 0.4.0 (2016-09-03)
 F: Add support for OpenBSD 6.0
 F: Drop support for OpenBSD 5.9
 
 * Version 0.3.1 (2016-05-29)
-I: Improve FreeBSD support
+E: Improve FreeBSD support
 
 * Version 0.3.0 (2016-05-21)
 F: Add support for Ansible 2.0
 
 * Version 0.2.2 (2016-04-15)
-I: Improve 'all' 'group' and 'host' options
+E: Improve 'all' 'group' and 'host' options
 
 * Version 0.2.1 (2016-04-09)
-I: Update support information for FreeBSD 10.3-RELEASE
+E: Update support information for FreeBSD 10.3-RELEASE
 
 * Version 0.2.0 (2016-04-02)
 F: Add support for OpenBSD 5.9

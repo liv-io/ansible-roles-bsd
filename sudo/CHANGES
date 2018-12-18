@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -25,7 +26,7 @@ F: Drop support for FreeBSD 11.1-RELEASE
 F: Port role to Ansible 2.5
 
 * Version 2.2.1 (2018-04-24)
-I: Simplify role by removing 'template' option
+E: Simplify role by removing 'template' option
 
 * Version 2.2.0 (2018-04-04)
 F: Add support for OpenBSD 6.3
@@ -35,10 +36,10 @@ F: Drop support for OpenBSD 6.2
 F: Port role to Ansible 2.4
 
 * Version 2.0.0 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 1.3.1 (2018-01-07)
-I: Improve 'sudo' order and name separation character
+E: Improve 'sudo' order and name separation character
 
 * Version 1.3.0 (2017-12-07)
 F: Add options 'sudo_insults' and 'sudo_lecture'
@@ -55,14 +56,14 @@ F: Add support for FreeBSD 11.1-RELEASE
 F: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.0 (2017-08-01)
-I: Stabilize, improve and cleanup Ansible role
+E: Stabilize, improve and cleanup Ansible role
 
 * Version 0.11.0 (2017-04-16)
 F: Add support for OpenBSD 6.1
 F: Drop support for OpenBSD 6.0
 
 * Version 0.10.1 (2016-12-14)
-I: Consolidate and improve redundant Ansible tasks
+E: Consolidate and improve redundant Ansible tasks
 
 * Version 0.10.0 (2016-10-14)
 F: Add support for FreeBSD 11.0-RELEASE
@@ -73,16 +74,16 @@ F: Add support for OpenBSD 6.0
 F: Drop support for OpenBSD 5.9
 
 * Version 0.8.2 (2016-05-29)
-I: Improve FreeBSD support
+E: Improve FreeBSD support
 
 * Version 0.8.1 (2016-05-27)
-I: Improve packaging tasks
+E: Improve packaging tasks
 
 * Version 0.8.0 (2016-05-21)
 F: Add support for Ansible 2.0
 
 * Version 0.7.1 (2016-04-15)
-I: Improve 'all' 'group' and 'host' options
+E: Improve 'all' 'group' and 'host' options
 
 * Version 0.7.0 (2016-04-09)
 F: Add support for FreeBSD 10.3-RELEASE
@@ -102,19 +103,19 @@ F: Add support for OS family 'OpenBSD'
 F: Drop support for OS family 'Gentoo'
 
 * Version 0.3.5 (2015-11-17)
-I: Add missing Ansible tags
+E: Add missing Ansible tags
 
 * Version 0.3.4 (2015-11-08)
-I: Improve 'group_vars' and 'host_vars' options
+E: Improve 'group_vars' and 'host_vars' options
 
 * Version 0.3.3 (2014-12-19)
-I: Various small Ansible and Jinja2 improvements
+E: Various small Ansible and Jinja2 improvements
 
 * Version 0.3.2 (2014-10-15)
-I: Update to version '1.8.11_p1' on Gentoo
+E: Update to version '1.8.11_p1' on Gentoo
 
 * Version 0.3.1 (2014-09-11)
-I: Change license from 'GPLv2' to 'Simplified BSD License'
+E: Change license from 'GPLv2' to 'Simplified BSD License'
 
 * Version 0.3.0 (2014-08-24)
 F: Add support for OS family 'FreeBSD'
@@ -123,10 +124,10 @@ F: Add support for OS family 'FreeBSD'
 F: Remove support for OS family 'RedHat'
 
 * Version 0.1.5 (2014-08-14)
-I: Improve conditional statements
+E: Improve conditional statements
 
 * Version 0.1.4 (2014-07-26)
-I: Disable 'requiretty' to speed-up Ansible
+E: Disable 'requiretty' to speed-up Ansible
 
 * Version 0.1.3 (2014-07-22)
 B: Remove 'recurse' argument from directory remove task

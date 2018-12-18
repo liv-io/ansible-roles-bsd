@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -25,13 +26,13 @@ B: Remove needless 'register' parameter
 
 * Version 0.5.0 (2018-08-20)
 F: Add support for 'do-not-query-localhost' option (unbound_do_not_query_localhost)
-I: Improve documentation
+E: Improve documentation
 
 * Version 0.4.2 (2018-07-24)
-I: Consolidate default path
+E: Consolidate default path
 
 * Version 0.4.1 (2018-07-24)
-I: Ensure 'root.hints.link' is being removed
+E: Ensure 'root.hints.link' is being removed
 
 * Version 0.4.0 (2018-07-22)
 F: Add support for FreeBSD operating system
@@ -46,7 +47,7 @@ B: Remove 'unbound_stub_zone' testing value
 * Version 0.2.0 (2018-06-21)
 F: Add option 'unbound_stub_zone'
 B: Fix position of '@' symbol in 'unbound_interface' parameter
-I: Update documentation
+E: Update documentation
 
 * Version 0.1.0 (2018-06-18)
 F: Initial release

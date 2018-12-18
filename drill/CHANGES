@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -28,7 +29,7 @@ F: Drop support for OpenBSD 6.2
 F: Port role to Ansible 2.4
 
 * Version 2.0.0 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 1.0.0 (2017-12-28)
 F: Initial release

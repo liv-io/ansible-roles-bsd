@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -19,7 +20,7 @@ F: Drop support for OpenBSD 6.3
 
 * Version 3.0.0 (2018-09-09)
 F: Add support for 'no_proxy' option (shell_no_proxy)
-I: Improve options to define no value (e.g. disable)
+E: Improve options to define no value (e.g. disable)
 
 * Version 2.5.0 (2018-09-05)
 F: Add support for 'https_proxy' option (shell_https_proxy)
@@ -32,7 +33,7 @@ F: Drop support for FreeBSD 11.1-RELEASE
 F: Port role to Ansible 2.5
 
 * Version 2.2.1 (2018-04-24)
-I: Simplify role by removing 'template' option
+E: Simplify role by removing 'template' option
 
 * Version 2.2.0 (2018-04-04)
 F: Add support for OpenBSD 6.3
@@ -45,10 +46,10 @@ F: Port role to Ansible 2.4
 B: Correct term in state filter
 
 * Version 2.0.0 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 1.2.1 (2017-12-27)
-I: Improve sourcing of Bash scripts
+E: Improve sourcing of Bash scripts
 
 * Version 1.2.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
@@ -62,7 +63,7 @@ F: Drop support for FreeBSD 11.0-RELEASE
 B: Fix default values of 'shell_ftp_proxy' and 'shell_http_proxy' option
 
 * Version 1.0.0 (2017-08-01)
-I: Stabilize, improve and cleanup Ansible role
+E: Stabilize, improve and cleanup Ansible role
 
 * Version 0.14.0 (2017-04-16)
 F: Add support for OpenBSD 6.1
@@ -77,13 +78,13 @@ F: Add support for OpenBSD 6.0
 F: Drop support for OpenBSD 5.9
 
 * Version 0.11.1 (2016-05-29)
-I: Improve FreeBSD support
+E: Improve FreeBSD support
 
 * Version 0.11.0 (2016-05-21)
 F: Add support for Ansible 2.0
 
 * Version 0.10.2 (2016-05-02)
-I: Improve option parameters
+E: Improve option parameters
 
 * Version 0.10.1 (2016-05-02)
 B: Fix Ansible role dependencies
@@ -112,25 +113,25 @@ F: Add support for OS family 'OpenBSD'
 F: Drop support for OS family 'Gentoo'
 
 * Version 0.3.4 (2015-11-17)
-I: Add missing Ansible tags
+E: Add missing Ansible tags
 
 * Version 0.3.3 (2015-11-04)
-I: Update 'Gentoo' configuration file
+E: Update 'Gentoo' configuration file
 
 * Version 0.3.2 (2015-06-23)
-I: Improve Shell variables
+E: Improve Shell variables
 
 * Version 0.3.1 (2015-03-05)
-I: Minor script improvements
+E: Minor script improvements
 
 * Version 0.3.0 (2015-01-19)
 F: Add option to define the default 'PAGER'
 
 * Version 0.2.2 (2014-12-17)
-I: Various small Ansible and Jinja2 improvements
+E: Various small Ansible and Jinja2 improvements
 
 * Version 0.2.1 (2014-12-08)
-I: Improve configuration of 'ls' aliases
+E: Improve configuration of 'ls' aliases
 
 * Version 0.2.0 (2014-11-27)
 F: Add options to control general shell variables

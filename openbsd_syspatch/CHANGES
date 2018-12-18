@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -21,7 +22,7 @@ F: Drop support for OpenBSD 6.3
 F: Port role to Ansible 2.5
 
 * Version 2.2.1 (2018-04-24)
-I: Simplify role by removing 'template' option
+E: Simplify role by removing 'template' option
 
 * Version 2.2.0 (2018-04-04)
 F: Add support for OpenBSD 6.3
@@ -31,17 +32,17 @@ F: Drop support for OpenBSD 6.2
 F: Port role to Ansible 2.4
 
 * Version 2.0.0 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 1.1.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
 F: Drop support for OpenBSD 6.1
 
 * Version 1.0.0 (2017-08-01)
-I: Stabilize, improve and cleanup Ansible role
+E: Stabilize, improve and cleanup Ansible role
 
 * Version 0.1.1 (2017-05-12)
-I: Remove unnecessary trailing slash in URL
+E: Remove unnecessary trailing slash in URL
 
 * Version 0.1.0 (2017-04-16)
 F: Initial release

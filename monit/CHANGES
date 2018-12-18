@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -17,22 +18,22 @@ F: feature
 F: Extend 'monit_mail_server' parameter
 
 * Version 4.0.1 (2018-12-07)
-I: Remove operating system information from alert message
-I: Minor 'monit_mail_subject' improvement
+E: Remove operating system information from alert message
+E: Minor 'monit_mail_subject' improvement
 
 * Version 4.0.0 (2018-12-05)
-I: Improve 'monit_mail_server' parameter
-I: Redesign 'monit_mail_to' parameter
-I: Extend 'monit_web_server_allow' parameter
-I: Remove 'monit_mail_exclusions' parameter
-I: Remove kernel information from alert message
-I: Remove email information from alert message
+E: Improve 'monit_mail_server' parameter
+E: Redesign 'monit_mail_to' parameter
+E: Extend 'monit_web_server_allow' parameter
+E: Remove 'monit_mail_exclusions' parameter
+E: Remove kernel information from alert message
+E: Remove email information from alert message
 
 * Version 3.0.1 (2018-12-05)
-I: Minor style improvement
+E: Minor style improvement
 
 * Version 3.0.0 (2018-12-02)
-I: Rename config parameters
+E: Rename config parameters
 
 * Version 2.5.0 (2018-10-20)
 F: Add support for OpenBSD 6.4
@@ -43,16 +44,16 @@ F: Add support for FreeBSD 11.2-RELEASE
 F: Drop support for FreeBSD 11.1-RELEASE
 
 * Version 2.3.2 (2018-06-12)
-I: Correct 'command' variable names
+E: Correct 'command' variable names
 
 * Version 2.3.1 (2018-05-31)
-I: Correct 'command' variable names
+E: Correct 'command' variable names
 
 * Version 2.3.0 (2018-05-22)
 F: Port role to Ansible 2.5
 
 * Version 2.2.1 (2018-04-24)
-I: Simplify role by removing 'template' option
+E: Simplify role by removing 'template' option
 
 * Version 2.2.0 (2018-04-04)
 F: Add support for OpenBSD 6.3
@@ -62,12 +63,12 @@ F: Drop support for OpenBSD 6.2
 F: Port role to Ansible 2.4
 
 * Version 2.0.0 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 1.2.1 (2017-12-08)
-I: Ensure role works in check mode
-I: Avoid usage of raw module
-I: Improve regular expression of grep command
+E: Ensure role works in check mode
+E: Avoid usage of raw module
+E: Improve regular expression of grep command
 
 * Version 1.2.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
@@ -78,14 +79,14 @@ F: Add support for FreeBSD 11.1-RELEASE
 F: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.0 (2017-08-01)
-I: Stabilize, improve and cleanup Ansible role
+E: Stabilize, improve and cleanup Ansible role
 
 * Version 0.10.0 (2017-04-16)
 F: Add support for OpenBSD 6.1
 F: Drop support for OpenBSD 6.0
 
 * Version 0.9.1 (2016-12-14)
-I: Consolidate and improve redundant Ansible tasks
+E: Consolidate and improve redundant Ansible tasks
 
 * Version 0.9.0 (2016-10-14)
 F: Add support for FreeBSD 11.0-RELEASE
@@ -96,16 +97,16 @@ F: Add support for OpenBSD 6.0
 F: Drop support for OpenBSD 5.9
 
 * Version 0.7.2 (2016-05-29)
-I: Improve FreeBSD support
+E: Improve FreeBSD support
 
 * Version 0.7.1 (2016-05-27)
-I: Improve packaging tasks
+E: Improve packaging tasks
 
 * Version 0.7.0 (2016-05-21)
 F: Add support for Ansible 2.0
 
 * Version 0.6.1 (2016-04-15)
-I: Improve 'all' 'group' and 'host' options
+E: Improve 'all' 'group' and 'host' options
 
 * Version 0.6.0 (2016-04-09)
 F: Add support for FreeBSD 10.3-RELEASE
@@ -125,10 +126,10 @@ F: Add support for OS family 'OpenBSD'
 F: Drop support for OS family 'Gentoo'
 
 * Version 0.2.2 (2015-11-17)
-I: Add missing Ansible tags
+E: Add missing Ansible tags
 
 * Version 0.2.1 (2015-11-08)
-I: Improve 'group_vars' and 'host_vars' options
+E: Improve 'group_vars' and 'host_vars' options
 
 * Version 0.2.0 (2015-05-28)
 F: Update configuration file 'monitrc'

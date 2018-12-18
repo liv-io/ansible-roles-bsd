@@ -8,17 +8,18 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
 
 * Version 3.4.0 (2018-11-15)
 F: Add support for 'quick' option
-I: Minor Jinja2 templating improvement
+E: Minor Jinja2 templating improvement
 
 * Version 3.3.1 (2018-10-20)
-I: Update support information of OpenBSD
+E: Update support information of OpenBSD
 
 * Version 3.3.0 (2018-07-01)
 F: Add support for FreeBSD 11.2-RELEASE
@@ -28,10 +29,10 @@ F: Drop support for FreeBSD 11.1-RELEASE
 F: Port role to Ansible 2.5
 
 * Version 3.1.2 (2018-04-24)
-I: Simplify role by removing 'template' option
+E: Simplify role by removing 'template' option
 
 * Version 3.1.1 (2018-04-04)
-I: Update support information of OpenBSD
+E: Update support information of OpenBSD
 
 * Version 3.1.0 (2018-03-30)
 F: Port role to Ansible 2.4
@@ -40,50 +41,50 @@ F: Port role to Ansible 2.4
 B: Fix tags
 
 * Version 3.0.0 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 2.0.1 (2018-01-19)
-I: Remove 'dependencies' parameter until correctly implemented
+E: Remove 'dependencies' parameter until correctly implemented
 B: Add missing 'freebsd_pf_tables_group', 'freebsd_pf_tables_host' configuration
 
 * Version 2.0.0 (2017-11-22)
-I: Redesign, improve and cleanup Ansible role
+E: Redesign, improve and cleanup Ansible role
 
 * Version 1.1.1 (2017-10-18)
-I: Update support information of OpenBSD
+E: Update support information of OpenBSD
 
 * Version 1.1.0 (2017-08-26)
 F: Add support for FreeBSD 11.1-RELEASE
 F: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.0 (2017-08-01)
-I: Stabilize, improve and cleanup Ansible role
+E: Stabilize, improve and cleanup Ansible role
 
 * Version 0.7.1 (2017-04-16)
-I: Update support information of OpenBSD
+E: Update support information of OpenBSD
 
 * Version 0.7.0 (2016-10-14)
 F: Add support for FreeBSD 11.0-RELEASE
 F: Drop support for FreeBSD 10.3-RELEASE
 
 * Version 0.6.2 (2016-09-03)
-I: Update support information of OpenBSD
+E: Update support information of OpenBSD
 
 * Version 0.6.1 (2016-05-29)
-I: Improve FreeBSD support
+E: Improve FreeBSD support
 
 * Version 0.6.0 (2016-05-21)
 F: Add support for Ansible 2.0
 
 * Version 0.5.1 (2016-04-15)
-I: Improve 'all' 'group' and 'host' options
+E: Improve 'all' 'group' and 'host' options
 
 * Version 0.5.0 (2016-04-09)
 F: Add support for FreeBSD 10.3-RELEASE
 F: Drop support for FreeBSD 10.2-RELEASE
 
 * Version 0.4.1 (2016-04-02)
-I: Update support information for OpenBSD 5.9
+E: Update support information for OpenBSD 5.9
 
 * Version 0.4.0 (2016-03-05)
 F: Rename role from 'pf' to 'freebsd_pf'
@@ -92,22 +93,22 @@ F: Rename role from 'pf' to 'freebsd_pf'
 F: Drop support for OS family 'Gentoo'
 
 * Version 0.2.4 (2015-11-17)
-I: Add missing Ansible tags
+E: Add missing Ansible tags
 
 * Version 0.2.3 (2015-11-08)
-I: Improve 'group_vars' and 'host_vars' options
+E: Improve 'group_vars' and 'host_vars' options
 
 * Version 0.2.2 (2015-02-10)
 B: Correct wrong variable name
 
 * Version 0.2.1 (2014-12-17)
-I: Various small Ansible and Jinja2 improvements
+E: Various small Ansible and Jinja2 improvements
 
 * Version 0.2.0 (2014-12-08)
 F: Add support for 'translation' (i.e. nat/rdr)
 
 * Version 0.1.1 (2014-11-27)
-I: Remove needless 'install' task
+E: Remove needless 'install' task
 
 * Version 0.1.0 (2014-11-14)
 F: Initial release

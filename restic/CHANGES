@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -17,16 +18,16 @@ F: feature
 B: Fix 'mailx' command for OpenBSD systems
 
 * Version 0.3.4 (2018-12-07)
-I: Remove 'restic_monitor_mail_subject' parameter
+E: Remove 'restic_monitor_mail_subject' parameter
 
 * Version 0.3.3 (2018-12-07)
-I: Remove email information from message
+E: Remove email information from message
 
 * Version 0.3.2 (2018-12-04)
 B: Fix 'limit-download' and 'limit-upload' variables in script
 
 * Version 0.3.1 (2018-11-27)
-I: Minor style improvements
+E: Minor style improvements
 
 * Version 0.3.0 (2018-11-19)
 F: Add support for 'limit-download' option (restic_limit_download)
@@ -37,10 +38,10 @@ F: Add support for OpenBSD 6.4
 F: Drop support for OpenBSD 6.3
 
 * Version 0.1.3 (2018-09-14)
-I: Add 'no_log' parameter to sensitive tasks
+E: Add 'no_log' parameter to sensitive tasks
 
 * Version 0.1.2 (2018-08-28)
-I: Ensure user's home directory is being removed during remove sequence
+E: Ensure user's home directory is being removed during remove sequence
 
 * Version 0.1.1 (2018-07-21)
 B: Fix remove tags

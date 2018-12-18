@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -21,7 +22,7 @@ F: Drop support for OpenBSD 6.3
 F: Add support for 'SSL_ports' option (squid_acl_ssl_ports)
 
 * Version 0.2.1 (2018-09-14)
-I: Add 'no_log' parameter to sensitive tasks
+E: Add 'no_log' parameter to sensitive tasks
 
 * Version 0.2.0 (2018-09-01)
 F: Add configuration options

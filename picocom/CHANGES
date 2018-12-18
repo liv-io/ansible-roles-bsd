@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -32,7 +33,7 @@ F: Drop support for OpenBSD 6.2
 F: Port role to Ansible 2.4
 
 * Version 2.0.0 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 1.2.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
@@ -43,7 +44,7 @@ F: Add support for FreeBSD 11.1-RELEASE
 F: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.0 (2017-08-01)
-I: Stabilize, improve and cleanup Ansible role
+E: Stabilize, improve and cleanup Ansible role
 
 * Version 0.7.0 (2017-04-16)
 F: Add support for OpenBSD 6.1
@@ -58,10 +59,10 @@ F: Add support for OpenBSD 6.0
 F: Drop support for OpenBSD 5.9
 
 * Version 0.4.2 (2016-05-29)
-I: Improve FreeBSD support
+E: Improve FreeBSD support
 
 * Version 0.4.1 (2016-05-27)
-I: Improve packaging tasks
+E: Improve packaging tasks
 
 * Version 0.4.0 (2016-05-21)
 F: Add support for Ansible 2.0

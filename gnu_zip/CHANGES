@@ -8,13 +8,14 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
 
 * Version 2.3.1 (2018-10-20)
-I: Update support information of OpenBSD
+E: Update support information of OpenBSD
 
 * Version 2.3.0 (2018-07-01)
 F: Add support for FreeBSD 11.2-RELEASE
@@ -24,39 +25,39 @@ F: Drop support for FreeBSD 11.1-RELEASE
 F: Port role to Ansible 2.5
 
 * Version 2.1.1 (2018-04-04)
-I: Update support information of OpenBSD
+E: Update support information of OpenBSD
 
 * Version 2.1.0 (2018-03-30)
 F: Port role to Ansible 2.4
 
 * Version 2.0.0 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 1.1.1 (2017-10-18)
-I: Update support information of OpenBSD
+E: Update support information of OpenBSD
 
 * Version 1.1.0 (2017-08-26)
 F: Add support for FreeBSD 11.1-RELEASE
 F: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.0 (2017-08-01)
-I: Stabilize, improve and cleanup Ansible role
+E: Stabilize, improve and cleanup Ansible role
 
 * Version 0.7.1 (2017-04-16)
-I: Update support information of OpenBSD
+E: Update support information of OpenBSD
 
 * Version 0.7.0 (2016-10-14)
 F: Add support for FreeBSD 11.0-RELEASE
 F: Drop support for FreeBSD 10.3-RELEASE
 
 * Version 0.6.3 (2016-09-03)
-I: Update support information of OpenBSD
+E: Update support information of OpenBSD
 
 * Version 0.6.2 (2016-05-29)
-I: Improve FreeBSD support
+E: Improve FreeBSD support
 
 * Version 0.6.1 (2016-05-27)
-I: Improve packaging tasks
+E: Improve packaging tasks
 
 * Version 0.6.0 (2016-05-21)
 F: Add support for Ansible 2.0
@@ -66,19 +67,19 @@ F: Add support for FreeBSD 10.3-RELEASE
 F: Drop support for FreeBSD 10.2-RELEASE
 
 * Version 0.4.1 (2016-04-02)
-I: Update support information for OpenBSD 5.9
+E: Update support information for OpenBSD 5.9
 
 * Version 0.4.0 (2016-01-21)
 F: Drop support for OS family 'Gentoo'
 
 * Version 0.3.3 (2015-11-17)
-I: Add missing Ansible tags
+E: Add missing Ansible tags
 
 * Version 0.3.2 (2014-12-23)
-I: Various small Ansible and Jinja2 improvements
+E: Various small Ansible and Jinja2 improvements
 
 * Version 0.3.1 (2014-09-11)
-I: Change license from 'GPLv2' to 'Simplified BSD License'
+E: Change license from 'GPLv2' to 'Simplified BSD License'
 
 * Version 0.3.0 (2014-08-27)
 F: Add support for OS family 'FreeBSD'

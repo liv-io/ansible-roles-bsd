@@ -8,7 +8,8 @@ to allow easy grepping by scripts.
 
 The fields are:
 B: bug
-I: improvement
+C: change
+E: enhancement
 F: feature
 
 --------------------------------------------------------------------------------
@@ -25,7 +26,7 @@ F: Drop support for FreeBSD 11.1-RELEASE
 F: Port role to Ansible 2.5
 
 * Version 2.2.1 (2018-04-24)
-I: Simplify role by removing 'template' option
+E: Simplify role by removing 'template' option
 
 * Version 2.2.0 (2018-04-04)
 F: Add support for OpenBSD 6.3
@@ -35,7 +36,7 @@ F: Drop support for OpenBSD 6.2
 F: Port role to Ansible 2.4
 
 * Version 2.0.0 (2018-02-20)
-I: Simplify and improve Ansible role
+E: Simplify and improve Ansible role
 
 * Version 1.2.0 (2017-10-18)
 F: Add support for OpenBSD 6.2
@@ -46,7 +47,7 @@ F: Add support for FreeBSD 11.1-RELEASE
 F: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.0 (2017-08-01)
-I: Stabilize, improve and cleanup Ansible role
+E: Stabilize, improve and cleanup Ansible role
 
 * Version 0.13.0 (2017-04-16)
 F: Add support for OpenBSD 6.1
@@ -61,10 +62,10 @@ F: Add support for OpenBSD 6.0
 F: Drop support for OpenBSD 5.9
 
 * Version 0.10.2 (2016-05-29)
-I: Improve FreeBSD support
+E: Improve FreeBSD support
 
 * Version 0.10.1 (2016-05-27)
-I: Improve packaging tasks
+E: Improve packaging tasks
 
 * Version 0.10.0 (2016-05-21)
 F: Add support for Ansible 2.0
@@ -84,45 +85,45 @@ F: Add support for OS family 'OpenBSD'
 F: Drop support for OS family 'Gentoo'
 
 * Version 0.5.1 (2015-11-17)
-I: Add missing Ansible tags
+E: Add missing Ansible tags
 
 * Version 0.5.0 (2015-06-20)
 F: Add Shell options
-I: Improve Ansible role overall
+E: Improve Ansible role overall
 
 * Version 0.4.1 (2015-06-19)
-I: Only load key bindings when running in interactive shell
-I: Improve comments
+E: Only load key bindings when running in interactive shell
+E: Improve comments
 
 * Version 0.4.0 (2015-06-17)
 F: Add key bindings for 'home' and 'end' keys under FreeBSD
 
 * Version 0.3.3 (2014-12-14)
-I: Various small Ansible and Jinja2 improvements
+E: Various small Ansible and Jinja2 improvements
 
 * Version 0.3.2 (2014-11-27)
-I: Ensure 'bash' variables get loaded after general 'shell' variables
+E: Ensure 'bash' variables get loaded after general 'shell' variables
 
 * Version 0.3.1 (2014-11-27)
-I: Move general shell variables to the 'shell' role
+E: Move general shell variables to the 'shell' role
 
 * Version 0.3.0 (2014-11-25)
 F: Add support for OS family 'FreeBSD'
 
 * Version 0.2.3 (2014-09-12)
-I: Append indicator to 'ls' entries
+E: Append indicator to 'ls' entries
 
 * Version 0.2.2 (2014-09-11)
-I: Change license from 'GPLv2' to 'Simplified BSD License'
+E: Change license from 'GPLv2' to 'Simplified BSD License'
 
 * Version 0.2.1 (2014-08-28)
-I: Ensure Ansible role is OS agnostic
+E: Ensure Ansible role is OS agnostic
 
 * Version 0.2.0 (2014-08-14)
 F: Remove support for OS family 'RedHat'
 
 * Version 0.1.1 (2014-08-14)
-I: Improve conditional statements
+E: Improve conditional statements
 
 * Version 0.1.0 (2014-03-28)
 F: Initial release
