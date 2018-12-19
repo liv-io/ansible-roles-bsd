@@ -4,6 +4,6 @@ resolver_state: 'install'
 
 resolver_domain: "{{ansible_domain}}"
 
-resolver_nameserver: [{server: '127.0.0.1', comment: 'Localhost'}]
+resolver_nameserver: [{address: '127.0.0.1', comment: 'Localhost'}]
 
 resolver_search: ["{{ansible_domain}}"]

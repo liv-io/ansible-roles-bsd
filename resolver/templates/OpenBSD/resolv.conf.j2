@@ -21,15 +21,15 @@ domain {{resolver_domain}}
 {% endif %}
 
 # Search list for host-name lookup
-{% if not ((resolver_search == '') or (resolver_search == [])) %}
-search {% for search in resolver_search %}{{search}}{% if not loop.last %} {% endif %}{% endfor %}
+{% if not (resolver_search == []) %}
+search {% for item in resolver_search %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endif %}
 
 # Name server IP address
-{% for nameserver in resolver_nameserver|default([]) %}
-{% if (nameserver.comment is defined) and not (nameserver.comment == '') %}
-# {{nameserver.comment}}
+{% for item in (resolver_nameserver|default([])) %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-nameserver {{nameserver.server}}
+nameserver {{item.address}}
 {% endfor %}
