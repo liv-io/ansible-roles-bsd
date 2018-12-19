@@ -65,3 +65,17 @@
   tags:
     - install
     - root
+
+- name: 'line config .bashrc'
+  lineinfile:
+    state: 'present'
+    line: 'source /etc/profile # Ansible: config bashrc'
+    regexp: '^source /etc/profile.*'
+    dest: "{{file_dst_bashrc}}"
+    mode: "{{file_mode_bashrc}}"
+    owner: "{{file_owner_bashrc}}"
+    group: "{{file_group_bashrc}}"
+    create: 'yes'
+  tags:
+    - install
+    - root

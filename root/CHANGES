@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.0.1 (2018-12-19)
+E: Add '.bashrc' file to source '/etc/profile' by default
+
 * Version 3.0.0 (2018-12-18)
 C: Remove config parameters
 E: Minor style improvement
