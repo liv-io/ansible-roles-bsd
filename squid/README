@@ -173,7 +173,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{type: 'ufs', path: '/var/squid/cache', size: '8192', first_level: '16', second_level: '256'}]
+    Default    : [{type: 'ufs', size: '8192', first_level: '16', second_level: '256'}]
     Options    :
       Examples: [{type: 'ufs', path: '/var/squid/cache', size: '2048', first_level: '16', second_level: '256'}]
 

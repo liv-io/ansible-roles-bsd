@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.1 (2018-12-19)
+B: Fix 'path' parameter in 'squid_cache_dir' option
+
 * Version 1.0.0 (2018-12-18)
 C: Mark Ansible role as 'stable'
 C: Rename config parameters

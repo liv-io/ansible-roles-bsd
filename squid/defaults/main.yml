@@ -7,7 +7,7 @@ squid_acl: []
 squid_acl_ssl_ports: ['443']
 
 squid_cache_dir:
-  - {type: 'ufs', path: '/var/squid/cache', size: '8192', first_level: '16', second_level: '256'}
+  - {type: 'ufs', size: '8192', first_level: '16', second_level: '256'}
 
 squid_cache_mem: '256 MB'
 
