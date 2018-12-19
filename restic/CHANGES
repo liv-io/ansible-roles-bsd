@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.3.6 (2018-12-19)
+E: Minor style improvement
+
 * Version 0.3.5 (2018-12-10)
 B: Fix 'mailx' command for OpenBSD systems
 

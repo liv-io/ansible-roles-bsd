@@ -50,7 +50,7 @@ restic_run_backup_day: '*'
 
 restic_run_backup_hour: 2
 
-restic_run_backup_minute: "{{10|random(seed=inventory_hostname)}}"
+restic_run_backup_minute: "{{(10|random(seed=inventory_hostname))}}"
 
 restic_run_backup_month: '*'
 
