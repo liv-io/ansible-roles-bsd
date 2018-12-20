@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.1 (2018-12-20)
+E: Define default IPv4 gateway as default nameserver
+
 * Version 1.0.0 (2018-12-19)
 C: Mark Ansible role as 'stable'
 C: Rename config parameters
