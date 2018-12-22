@@ -2,13 +2,13 @@
 
 postfix_state: 'enable'
 
-postfix_all: []
+postfix_config_all: []
+
+postfix_config_group: []
+
+postfix_config_host: []
 
 postfix_fallback_relay: "mx02.{{ansible_domain}}"
-
-postfix_group: []
-
-postfix_host: []
 
 postfix_inet_interfaces: []
 

@@ -150,8 +150,8 @@ myhostname = {{postfix_myhostname}}
 #inet_interfaces = all
 #inet_interfaces = $myhostname
 #inet_interfaces = $myhostname, localhost
-{% if not ((postfix_inet_interfaces == '') or (postfix_inet_interfaces == [])) %}
-inet_interfaces = {% for inet_interfaces in postfix_inet_interfaces %}{{inet_interfaces}}{% if not loop.last %}, {% endif %}{% endfor %}
+{% if not (postfix_inet_interfaces == []) %}
+inet_interfaces = {% for item in postfix_inet_interfaces %}{{item}}{% if not loop.last %}, {% endif %}{% endfor %}
 {% else %}
 inet_interfaces = localhost
 {% endif %}
@@ -713,8 +713,8 @@ shlib_directory = /usr/local/lib/postfix
 # ALL
 #-------------------------------------------------------------------------------
 
-{% if not ((postfix_all == '') or (postfix_all == [])) %}
-{% for item in postfix_all %}
+{% if not (postfix_config_all == []) %}
+{% for item in postfix_config_all %}
 # {{item.comment}}
 {% for config in item.config %}
 {{config}}
@@ -727,8 +727,8 @@ shlib_directory = /usr/local/lib/postfix
 # GROUP
 #-------------------------------------------------------------------------------
 
-{% if not ((postfix_group == '') or (postfix_group == [])) %}
-{% for item in postfix_group %}
+{% if not (postfix_config_group == []) %}
+{% for item in postfix_config_group %}
 # {{item.comment}}
 {% for config in item.config %}
 {{config}}
@@ -741,8 +741,8 @@ shlib_directory = /usr/local/lib/postfix
 # HOST
 #-------------------------------------------------------------------------------
 
-{% if not ((postfix_host == '') or (postfix_host == [])) %}
-{% for item in postfix_host %}
+{% if not (postfix_config_host == []) %}
+{% for item in postfix_config_host %}
 # {{item.comment}}
 {% for config in item.config %}
 {{config}}

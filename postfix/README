@@ -83,9 +83,35 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  postfix_all
-    Description: Define the 'postfix_all' option.
-    Implemented: 0.1
+  postfix_config_all
+    Description: Define the 'postfix_config_all' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'mynetworks = 168.100.189.0/28, 127.0.0.0/8',
+                 'mydestination = $myhostname, localhost.$mydomain, localhost'},
+                  comment: 'Custom configuration'}]
+      None    : []
+
+  postfix_config_group
+    Description: Define the 'postfix_config_group' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{config: {'mynetworks = 168.100.189.0/28, 127.0.0.0/8',
+                 'mydestination = $myhostname, localhost.$mydomain, localhost'},
+                  comment: 'Custom configuration'}]
+      None    : []
+
+  postfix_config_host
+    Description: Define the 'postfix_config_host' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -105,32 +131,6 @@ ROLE
     Default    : "mx02.{{ansible_domain}}"
     Options    :
       Examples: 'mx02.domain.tld' | 'mail02.domain.tld'
-
-  postfix_group
-    Description: Define the 'postfix_group' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'mynetworks = 168.100.189.0/28, 127.0.0.0/8',
-                 'mydestination = $myhostname, localhost.$mydomain, localhost'},
-                  comment: 'Custom configuration'}]
-      None    : []
-
-  postfix_host
-    Description: Define the 'postfix_host' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{config: {'mynetworks = 168.100.189.0/28, 127.0.0.0/8',
-                 'mydestination = $myhostname, localhost.$mydomain, localhost'},
-                  comment: 'Custom configuration'}]
-      None    : []
 
   postfix_inet_interfaces
     Description: Define the 'postfix_inet_interfaces' option.
