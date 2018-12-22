@@ -35,9 +35,9 @@
 # PORT
 #-------------------------------------------------------------------------------
 
-{% if not ((openssh_port == '') or (openssh_port == [])) %}
-{% for port in openssh_port %}
-Port {{(port|int(22))}}
+{% if not (openssh_port == []) %}
+{% for item in openssh_port %}
+Port {{(item|int(22))}}
 {% endfor %}
 {% else %}
 Port 22
@@ -54,16 +54,16 @@ AddressFamily inet
 {% elif (openssh_address_family is match('inet6|ipv6')) %}
 AddressFamily inet6
 {% else %}
-#AddressFamily
+#AddressFamily any
 {% endif %}
 
 #-------------------------------------------------------------------------------
 # LISTEN ADDRESS
 #-------------------------------------------------------------------------------
 
-{% if not ((openssh_listen_address == '') or (openssh_listen_address == [])) %}
-{% for listen_address in openssh_listen_address %}
-ListenAddress {{listen_address}}
+{% if not (openssh_listen_address == []) %}
+{% for item in openssh_listen_address %}
+ListenAddress {{item}}
 {% endfor %}
 {% else %}
 #ListenAddress 0.0.0.0
@@ -81,9 +81,9 @@ Protocol 2
 # HOST KEY
 #-------------------------------------------------------------------------------
 
-{% if not ((openssh_host_key == '') or (openssh_host_key == [])) %}
-{% for host_key in openssh_host_key %}
-HostKey {{host_key}}
+{% if not (openssh_host_key == []) %}
+{% for item in openssh_host_key %}
+HostKey {{item}}
 {% endfor %}
 {% else %}
 # HostKey for protocol version 1
@@ -99,8 +99,8 @@ HostKey /etc/ssh/ssh_host_ed25519_key
 # CIPHERS
 #-------------------------------------------------------------------------------
 
-{% if not ((openssh_ciphers == '') or (openssh_ciphers == [])) %}
-Ciphers {% for ciphers in openssh_ciphers %}{{ciphers}}{% if not loop.last %},{% endif %}{% endfor %}
+{% if not (openssh_ciphers == []) %}
+Ciphers {% for item in openssh_ciphers %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
 
 {% else %}
 Ciphers aes256-ctr,aes192-ctr
@@ -110,8 +110,8 @@ Ciphers aes256-ctr,aes192-ctr
 # HOST KEY ALGORITHMS
 #-------------------------------------------------------------------------------
 
-{% if not ((openssh_host_key_algorithms == '') or (openssh_host_key_algorithms == [])) %}
-HostKeyAlgorithms {% for host_key_algorithms in openssh_host_key_algorithms %}{{host_key_algorithms}}{% if not loop.last %},{% endif %}{% endfor %}
+{% if not (openssh_host_key_algorithms == []) %}
+HostKeyAlgorithms {% for item in openssh_host_key_algorithms %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
 
 {% else %}
 HostKeyAlgorithms ssh-ed25519,ssh-rsa
@@ -121,19 +121,19 @@ HostKeyAlgorithms ssh-ed25519,ssh-rsa
 # KEY EXCHANGE ALGORITHMS
 #-------------------------------------------------------------------------------
 
-{% if not ((openssh_kex_algorithms == '') or (openssh_kex_algorithms == [])) %}
-KexAlgorithms {% for kex_algorithms in openssh_kex_algorithms %}{{kex_algorithms}}{% if not loop.last %},{% endif %}{% endfor %}
+{% if not (openssh_kex_algorithms == []) %}
+KexAlgorithms {% for item in openssh_kex_algorithms %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
 
 {% else %}
-KexAlgorithms curve25519-sha256@libssh.org
+KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org
 {% endif %}
 
 #-------------------------------------------------------------------------------
 # MESSAGE AUTHENTICATION CODE ALGORITHMS
 #-------------------------------------------------------------------------------
 
-{% if not ((openssh_macs == '') or (openssh_macs == [])) %}
-MACs {% for macs in openssh_macs %}{{macs}}{% if not loop.last %},{% endif %}{% endfor %}
+{% if not (openssh_macs == []) %}
+MACs {% for item in openssh_macs %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}
 
 {% else %}
 MACs hmac-sha2-512,hmac-sha2-256
@@ -304,10 +304,10 @@ Subsystem	sftp	/usr/libexec/sftp-server
 # CONDITIONAL
 #-------------------------------------------------------------------------------
 
-{% if not ((openssh_match == '') or (openssh_match == [])) %}
-{% for match in openssh_match %}
-Match {{match.type}} {{match.name}}
-{% for key, value in match.config.items() %}
+{% if not (openssh_match == []) %}
+{% for item in openssh_match %}
+Match {{item.type}} {{item.name}}
+{% for key, value in item.config.items() %}
   {{key}} {{value}}
 {% endfor %}
 
@@ -326,8 +326,8 @@ Match {{match.type}} {{match.name}}
 #-------------------------------------------------------------------------------
 
 # Login is disallowed for user names that match one of the patterns.
-{% if not ((openssh_deny_users == '') or (openssh_deny_users == [])) %}
-DenyUsers {% for deny_users in openssh_deny_users %}{{deny_users}}{% if not loop.last %} {% endif %}{% endfor %}
+{% if not (openssh_deny_users == []) %}
+DenyUsers {% for item in openssh_deny_users %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
 #DenyUsers
@@ -335,8 +335,8 @@ DenyUsers {% for deny_users in openssh_deny_users %}{{deny_users}}{% if not loop
 {% endif %}
 
 # Login is allowed only for user names that match one of the patterns.
-{% if not ((openssh_allow_users == '') or (openssh_allow_users == [])) %}
-AllowUsers {% for allow_users in openssh_allow_users %}{{allow_users}}{% if not loop.last %} {% endif %}{% endfor %}
+{% if not (openssh_allow_users == []) %}
+AllowUsers {% for item in openssh_allow_users %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
 #AllowUsers
@@ -345,8 +345,8 @@ AllowUsers {% for allow_users in openssh_allow_users %}{{allow_users}}{% if not 
 
 # Login is disallowed for users whose primary group or
 # supplementary group list matches one of the patterns.
-{% if not ((openssh_deny_groups == '') or (openssh_deny_groups == [])) %}
-DenyGroups {% for deny_groups in openssh_deny_groups %}{{deny_groups}}{% if not loop.last %} {% endif %}{% endfor %}
+{% if not (openssh_deny_groups == []) %}
+DenyGroups {% for item in openssh_deny_groups %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
 #DenyGroups
@@ -355,8 +355,8 @@ DenyGroups {% for deny_groups in openssh_deny_groups %}{{deny_groups}}{% if not 
 
 # Login is allowed only for users whose primary group or
 # supplementary group list matches one of the patterns.
-{% if not ((openssh_allow_groups == '') or (openssh_allow_groups == [])) %}
-AllowGroups {% for allow_groups in openssh_allow_groups %}{{allow_groups}}{% if not loop.last %} {% endif %}{% endfor %}
+{% if not (openssh_allow_groups == []) %}
+AllowGroups {% for item in openssh_allow_groups %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% else %}
 #AllowGroups
