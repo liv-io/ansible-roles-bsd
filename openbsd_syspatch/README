@@ -28,7 +28,7 @@ INSTALL
     vars:
       openbsd_syspatch_state: 'install'
       openbsd_syspatch_installurl:
-        - {url: {'https://ftp.eu.openbsd.org/pub/OpenBSD'}, comment: 'OpenBSD Packages'}
+        - {url: 'https://ftp.eu.openbsd.org/pub/OpenBSD', comment: 'OpenBSD Packages'}
 
 REMOVE
   - hosts: all
@@ -63,14 +63,14 @@ ROLE
 
   openbsd_syspatch_installurl
     Description: Define the 'openbsd_syspatch_installurl' option.
-    Implemented: 0.1
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
-    Default    : [{url: {'https://ftp.OpenBSD.org/pub/OpenBSD'}, comment: 'OpenBSD Packages'}]
+    Default    : [{url: 'https://ftp.OpenBSD.org/pub/OpenBSD', comment: 'OpenBSD Packages'}]
     Options    :
-      Examples: [{url: {'https://ftp.eu.openbsd.org/pub/OpenBSD',
-                        'https://ftp2.eu.openbsd.org/pub/OpenBSD'}, comment: 'OpenBSD Packages'}]
+      Examples: [{url: 'https://ftp.eu.openbsd.org/pub/OpenBSD', comment 'OpenBSD Packages - EU1'},
+                       'https://ftp2.eu.openbsd.org/pub/OpenBSD', comment: 'OpenBSD Packages - EU2'}]
       None    : []
 
 --------------------------------------------------------------------------------
