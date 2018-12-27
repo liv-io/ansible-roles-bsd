@@ -65,7 +65,7 @@ offset_limit='{{ntpd_check_time_offset_limit}}'
 
 {% if (ntpd_monitor_mail_state is match('true|yes|enable')) %}
 mail_sender='{{ntpd_monitor_mail_sender}}'
-mail_recipient='{% for mail_recipient in ntpd_monitor_mail_recipient %}{{mail_recipient}}{% if not loop.last %},{% endif %}{% endfor %}'
+mail_recipient='{% for item in ntpd_monitor_mail_recipient %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 mail_subject='ntpd: Check Time - Error ({{ansible_hostname}})'
 {% endif %}
 

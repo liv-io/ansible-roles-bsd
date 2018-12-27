@@ -78,7 +78,6 @@ tos minclock 3 maxclock 6
 #
 #server time.my-internal.org iburst
 
-{% if not (ntpd_server == []) %}
 {% for item in ntpd_server %}
 {% if not ((item.comment|default('')) == '') %}
 # {{item.comment}}
@@ -86,8 +85,6 @@ tos minclock 3 maxclock 6
 server {{item.address}} {% for option in (item.options|default([])) %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
-{% else %}
-{% endif %}
 
 #-------------------------------------------------------------------------------
 # RESTRICT
@@ -131,7 +128,6 @@ server {{item.address}} {% for option in (item.options|default([])) %}{{option}}
 #restrict 127.0.0.1
 #restrict -6 ::1
 
-{% if not (ntpd_restrict == []) %}
 {% for item in ntpd_restrict %}
 {% if not ((item.comment|default('')) == '') %}
 # {{item.comment}}
@@ -139,8 +135,6 @@ server {{item.address}} {% for option in (item.options|default([])) %}{{option}}
 restrict {{item.address}} {% for option in (item.options|default([])) %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
-{% else %}
-{% endif %}
 
 #
 # If a server loses sync with all upstream servers, NTP clients

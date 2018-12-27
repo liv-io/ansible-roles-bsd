@@ -53,7 +53,6 @@ disable monitor
 # server 1.CC.pool.ntp.org iburst
 # server 2.CC.pool.ntp.org iburst
 
-{% if not (ntpd_server == []) %}
 {% for item in ntpd_server %}
 {% if not ((item.comment|default('')) == '') %}
 # {{item.comment}}
@@ -61,8 +60,6 @@ disable monitor
 server {{item.address}} {% for option in (item.options|default([])) %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
-{% else %}
-{% endif %}
 
 #-------------------------------------------------------------------------------
 # RESTRICT
@@ -101,7 +98,6 @@ server {{item.address}} {% for option in (item.options|default([])) %}{{option}}
 #restrict -6 ::1
 #restrict 127.127.1.0
 
-{% if not (ntpd_restrict == []) %}
 {% for item in ntpd_restrict %}
 {% if not ((item.comment|default('')) == '') %}
 # {{item.comment}}
@@ -109,8 +105,6 @@ server {{item.address}} {% for option in (item.options|default([])) %}{{option}}
 restrict {{item.address}} {% for option in (item.options|default([])) %}{{option}}{% if not loop.last %} {% endif %}{% endfor %}
 
 {% endfor %}
-{% else %}
-{% endif %}
 
 #
 # If a server loses sync with all upstream servers, NTP clients
