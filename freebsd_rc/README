@@ -38,13 +38,13 @@ INACTIVE
 
 CONFIG
   vars:
-    freebsd_rc_all:
+    freebsd_rc_config_all:
       - name: 'sshd_enable'
         value: 'YES'
         state: 'true'
         comment: 'Enable service OpenSSH'
 
-    freebsd_rc_group:
+    freebsd_rc_config_group:
       - name: 'hostname'
         value: 'example01'
         state: 'true'
@@ -55,7 +55,7 @@ CONFIG
         state: 'true'
         comment: 'Set keymap'
 
-    freebsd_rc_host:
+    freebsd_rc_config_host:
       - name: 'ifconfig_re0'
         value: 'inet 192.168.1.10 netmask 255.255.255.0'
         state: 'true'
@@ -149,9 +149,9 @@ ROLE
       Install : 'true' | 'yes' | 'install'
       Inactive: 'quiesce' | 'inactive'
 
-  freebsd_rc_all
-    Description: Define the 'freebsd_rc_all' option.
-    Implemented: 0.1
+  freebsd_rc_config_all
+    Description: Define the 'freebsd_rc_config_all' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -161,9 +161,9 @@ ROLE
                  {name: 'hostname', value: 'example01', state: 'true', comment: 'Define short hostname'}]
       None    : []
 
-  freebsd_rc_group
-    Description: Define the 'freebsd_rc_group' option.
-    Implemented: 0.1
+  freebsd_rc_config_group
+    Description: Define the 'freebsd_rc_config_group' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -173,9 +173,9 @@ ROLE
                  {name: 'hostname', value: 'example01', state: 'true', comment: 'Define short hostname'}]
       None    : []
 
-  freebsd_rc_host
-    Description: Define the 'freebsd_rc_host' option.
-    Implemented: 0.1
+  freebsd_rc_config_host
+    Description: Define the 'freebsd_rc_config_host' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash

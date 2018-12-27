@@ -4,4 +4,4 @@
   import_tasks: main/main.yml
   when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release is match("11\.2-*")))
   tags:
-    - main_rc
+    - freebsd_rc
