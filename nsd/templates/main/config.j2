@@ -1,0 +1,50 @@
+;-------------------------------------------------------------------------------
+;                             ANSIBLE MANAGED FILE
+;-------------------------------------------------------------------------------
+
+;-------------------------------------------------------------------------------
+; INFORMATION
+;-------------------------------------------------------------------------------
+;
+; Name   : config
+; Type   : BIND zone file
+; Role   : nsd
+;
+; Authors: liv community
+; License: Simplified BSD License
+;
+;-------------------------------------------------------------------------------
+
+$TTL		{{(item.ttl|default('1d'))}}		; default TTL
+$ORIGIN		{{item.name}}.		; base domain name
+
+;-------------------------------------------------------------------------------
+
+; Start Of Authority (SOA)
+@		IN		SOA		{{item.soa_mname}}. {{item.soa_rname}}. (
+						{{item.soa_serial}}	; serial
+						{{(item.soa_refresh|default('2h'))}}		; refresh
+						{{(item.soa_retry|default('15m'))}}		; retry
+						{{(item.soa_expire|default('1w'))}}		; expire
+						{{(item.soa_ttl|default('30m'))}}		; minimum
+						)
+
+;-------------------------------------------------------------------------------
+
+{% for item in (item.records|default([])) %}
+{% if not ((item.comment|default('')) == '') %}
+; {{item.comment}}
+{% endif %}
+{{item.name}}		IN
+{%- if (item.type is match('CNAME|cname')) %}		CNAME
+{%- elif (item.type is match('AAAA|aaaa')) %}		AAAA
+{%- elif (item.type is match('MX|mx')) %}		MX
+{%- elif (item.type is match('NS|ns')) %}		NS
+{%- elif (item.type is match('PTR|ptr')) %}		PTR
+{%- elif (item.type is match('SRV|srv')) %}		SRV
+{%- elif (item.type is match('TXT|txt')) %}		TXT
+{%- else %}		A{% endif %}
+{%- if not ((item.priority|default('')) == '') %}	{{item.priority}}{% endif %}
+		{{item.value}}
+
+{% endfor %}

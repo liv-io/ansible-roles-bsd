@@ -320,11 +320,11 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 11.2-*
-      Status: Testing
+      Status: Stable
 
   OpenBSD
     Version: 6.4
-      Status: Testing
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER

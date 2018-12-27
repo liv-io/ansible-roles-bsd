@@ -11,19 +11,19 @@ package_name_nsd: 'nsd'
 # FILES
 #-------------------------------------------------------------------------------
 
+# config
+file_src_config: 'templates/main/config.j2'
+file_dst_config: '/var/nsd/zones/master'
+file_mode_config: '0644'
+file_owner_config: 'root'
+file_group_config: 'wheel'
+
 # nsd.conf
 file_src_nsd_conf: "templates/{{ansible_os_family}}/nsd.conf.j2"
 file_dst_nsd_conf: '/var/nsd/etc/nsd.conf'
 file_mode_nsd_conf: '0644'
 file_owner_nsd_conf: 'root'
 file_group_nsd_conf: 'wheel'
-
-# zone-config.zone
-file_src_zone_config_zone: 'templates/main/zone-config.zone.j2'
-file_dst_zone_config_zone: '/var/nsd/zones/master'
-file_mode_zone_config_zone: '0644'
-file_owner_zone_config_zone: 'root'
-file_group_zone_config_zone: 'wheel'
 
 #-------------------------------------------------------------------------------
 # COMMANDS

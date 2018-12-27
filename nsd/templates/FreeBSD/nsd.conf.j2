@@ -45,12 +45,13 @@ server:
 	# For servers with multiple IP addresses, list them one by one,
 	# or the source address of replies could be wrong.
 	# Use ip-transparent to be able to list addresses that turn on later.
-{% if (nsd_interface is defined) and not (nsd_interface == []) %}
-{% for interface in nsd_interface %}
-{% if (interface.comment is defined) %}
-        # {{interface.comment}}
+
+{% if not (nsd_interface == []) %}
+{% for item in nsd_interface %}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
-        interface: {{interface.address}}{% if (interface.port is defined) %}@{{interface.port|int(53)}}{% endif %}
+        interface: {{item.address}}{% if not ((item.port|default('53')) == '') %}@{{(item.port|int(53))}}{% endif %}
 
 {% endfor %}
 {% else %}
@@ -369,17 +370,14 @@ remote-control:
 # ZONE
 #-------------------------------------------------------------------------------
 
-{% if (nsd_zone is defined) and not (nsd_zone == []) %}
-{% for zone in nsd_zone %}
-{% if not (zone.state|default('true') is match('false|no|disable')) %}
+{% for item in nsd_zone %}
+{% if not (item.state|default('true') is match('false|no|disable')) %}
 zone:
-{% if (zone.comment is defined) %}
-        # {{zone.comment}}
+{% if not ((item.comment|default('')) == '') %}
+        # {{item.comment}}
 {% endif %}
-        name: "{{zone.name}}"
-        zonefile: "{{file_dst_zone_config_zone}}/{{zone.name}}.zone"
+        name: "{{item.name}}"
+        zonefile: "{{file_dst_config}}/{{item.name}}.zone"
 {% endif %}
 
 {% endfor %}
-
-{% endif %}
