@@ -38,19 +38,19 @@ INACTIVE
 
 CONFIG
   vars:
-    openbsd_rc_all:
+    openbsd_rc_config_all:
       - name: 'dhcpd_flags'
         value: 'NO'
         state: 'true'
         comment: "Disable service 'dhcpd'"
 
-    openbsd_rc_group:
+    openbsd_rc_config_group:
       - name: 'nfs_server'
         value: 'YES'
         state: 'true'
         comment: 'Enable the NFS server'
 
-    openbsd_rc_host:
+    openbsd_rc_config_host:
       - name: 'nfsd_flags'
         value: '-tun 8'
         state: 'true'
@@ -125,9 +125,9 @@ ROLE
       Install : 'true' | 'yes' | 'install'
       Inactive: 'quiesce' | 'inactive'
 
-  openbsd_rc_all
-    Description: Define the 'openbsd_rc_all' option.
-    Implemented: 0.1
+  openbsd_rc_config_all
+    Description: Define the 'openbsd_rc_config_all' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -137,9 +137,9 @@ ROLE
                  {name: 'nfsd_flags', value: '-tun 8', state: 'true', comment: 'Start 4 copies of the NFS server'}]
       None    : []
 
-  openbsd_rc_group
-    Description: Define the 'openbsd_rc_group' option.
-    Implemented: 0.1
+  openbsd_rc_config_group
+    Description: Define the 'openbsd_rc_config_group' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -149,9 +149,9 @@ ROLE
                  {name: 'nfsd_flags', value: '-tun 8', state: 'true', comment: 'Start 4 copies of the NFS server'}]
       None    : []
 
-  openbsd_rc_host
-    Description: Define the 'openbsd_rc_host' option.
-    Implemented: 0.1
+  openbsd_rc_config_host
+    Description: Define the 'openbsd_rc_config_host' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash

@@ -4,4 +4,4 @@
   import_tasks: main/main.yml
   when: ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version == '6.4'))
   tags:
-    - main_rc
+    - openbsd_rc

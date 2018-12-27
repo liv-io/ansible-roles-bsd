@@ -14,7 +14,7 @@
       skip: 'true'
   tags:
     - config
-    - main_rc
+    - openbsd_rc
 
 #-------------------------------------------------------------------------------
 # FILES
@@ -22,11 +22,11 @@
 
 - name: 'line config rc'
   lineinfile:
-    state: "{{'absent' if (item.state is defined) and (item.state is match('false|no|remove')) else 'present'}}"
-    line: "{{item.name}}=\"{{item.value}}\" # Ansible: {{item.comment if (item.comment is defined) else ''}}"
+    state: "{{'absent' if ((item.state|default('true')) is match('false|no|remove')) else 'present'}}"
+    line: "{{item.name}}=\"{{item.value}}\" # Ansible: # {{(item.comment|default(''))}}"
     regexp: "^{{item.name}}="
-    dest: "{{item.path if (item.path is defined) and not (item.path == '') else file_dst_rc_conf}}"
-  with_items: "{{openbsd_rc_all + openbsd_rc_group + openbsd_rc_host}}"
+    dest: "{{item.path if not ((item.path|default('')) == '') else file_dst_rc_conf}}"
+  with_items: "{{openbsd_rc_config_all + openbsd_rc_config_group + openbsd_rc_config_host}}"
   tags:
     - config
-    - main_rc
+    - openbsd_rc

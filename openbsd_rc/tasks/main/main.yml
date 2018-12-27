@@ -4,4 +4,4 @@
   import_tasks: config.yml
   when: not (openbsd_rc_state is match('false|no|remove|quiesce|inactive'))
   tags:
-    - main_rc
+    - openbsd_rc
