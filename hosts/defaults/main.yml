@@ -2,10 +2,8 @@
 
 hosts_state: 'install'
 
-hosts_all: []
+hosts_config_all: []
 
-hosts_dependencies: []
+hosts_config_group: []
 
-hosts_group: []
-
-hosts_host: []
+hosts_config_host: []
