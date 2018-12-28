@@ -2,10 +2,8 @@
 
 fstab_state: 'install'
 
-fstab_all: []
+fstab_config_all: []
 
-fstab_dependencies: []
+fstab_config_group: []
 
-fstab_group: []
-
-fstab_host: []
+fstab_config_host: []

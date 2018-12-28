@@ -43,7 +43,7 @@ INACTIVE
 
 CONFIG
   vars:
-    fstab_all:
+    fstab_config_all:
       - filesystem: '/dev/mapper/system-root'
         state: 'true'
         mountpoint: '/'
@@ -52,7 +52,6 @@ CONFIG
         pass: 0
         comment: 'Root File System'
 
-    fstab_dependencies:
       - filesystem: '192.168.1.10:/nfs'
         state: 'true'
         mountpoint: '/nfs'
@@ -61,7 +60,7 @@ CONFIG
         pass: 0
         comment: 'NFS File System'
 
-    fstab_group:
+    fstab_config_group:
       - filesystem: '/dev/mapper/data-opt'
         state: 'true'
         mountpoint: '/opt'
@@ -70,7 +69,7 @@ CONFIG
         pass: 1
         comment: 'Optional File System'
 
-    fstab_host:
+    fstab_config_host:
       - filesystem: '/dev/mapper/data-remove'
         state: 'false'
         mountpoint: '/remove'
@@ -182,9 +181,9 @@ ROLE
       Install : 'true' | 'yes' | 'install'
       Inactive: 'quiesce' | 'inactive'
 
-  fstab_all
-    Description: Define the 'fstab_all' option.
-    Implemented: 0.1
+  fstab_config_all
+    Description: Define the 'fstab_config_all' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -194,9 +193,9 @@ ROLE
                  {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs'}]
       None    : []
 
-  fstab_dependencies
-    Description: Define the 'fstab_dependencies' option.
-    Implemented: 0.1
+  fstab_config_group
+    Description: Define the 'fstab_config_group' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -206,21 +205,9 @@ ROLE
                  {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs'}]
       None    : []
 
-  fstab_group
-    Description: Define the 'fstab_group' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{filesystem: '192.168.1.10:/nfs', state: 'true', mountpoint: '/nfs', type: 'nfs'},
-                 {filesystem: '/dev/mapper/data-opt', state: 'true', mountpoint: '/opt', type: 'xfs'}]
-      None    : []
-
-  fstab_host
-    Description: Define the 'fstab_host' option.
-    Implemented: 0.1
+  fstab_config_host
+    Description: Define the 'fstab_config_host' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
