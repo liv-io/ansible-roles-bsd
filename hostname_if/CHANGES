@@ -14,6 +14,11 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.0 (2018-12-28)
+C: Mark Ansible role as 'stable'
+C: Rename config parameters
+E: Minor style improvement
+
 * Version 0.5.1 (2018-11-30)
 E: Define default value for 'item.state' parameter
 

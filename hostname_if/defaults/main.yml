@@ -2,14 +2,12 @@
 
 hostname_if_state: 'install'
 
-hostname_if_all: []
-
 hostname_if_carp_allow: 'true'
 
 hostname_if_carp_preempt: 'true'
 
-hostname_if_dependencies: []
+hostname_if_config_all: []
 
-hostname_if_group: []
+hostname_if_config_group: []
 
-hostname_if_host: []
+hostname_if_config_host: []
