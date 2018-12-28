@@ -4,11 +4,11 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-# hostname.if
-file_src_hostname_if: 'templates/main/hostname.if.j2'
-file_mode_hostname_if: '0640'
-file_owner_hostname_if: 'root'
-file_group_hostname_if: 'wheel'
+# config
+file_src_config: 'templates/main/config.j2'
+file_mode_config: '0640'
+file_owner_config: 'root'
+file_group_config: 'wheel'
 
 #-------------------------------------------------------------------------------
 # COMMANDS

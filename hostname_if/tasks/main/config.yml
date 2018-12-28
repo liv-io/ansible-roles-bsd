@@ -20,13 +20,13 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'file create hostname.if'
+- name: 'file create config'
   template:
-    src: "{{file_src_hostname_if}}"
+    src: "{{file_src_config}}"
     dest: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
-    mode: "{{file_mode_hostname_if}}"
-    owner: "{{file_owner_hostname_if}}"
-    group: "{{file_group_hostname_if}}"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
   with_items: "{{hostname_if_config_all + hostname_if_config_group + hostname_if_config_host}}"
   notify: 'command run netstart'
   when: not (item.state|default('true') is match('false|no|remove'))
@@ -34,7 +34,7 @@
     - config
     - hostname_if
 
-- name: 'file remove hostname.if'
+- name: 'file remove config'
   file:
     state: 'absent'
     path: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
