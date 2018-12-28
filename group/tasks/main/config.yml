@@ -24,9 +24,9 @@
   group:
     state: "{{'absent' if (item.state|default('true') is match('false|no|remove')) else 'present'}}"
     name: "{{item.name}}"
-    gid: "{{item.gid|default(omit)}}"
+    gid: "{{(item.gid|default(omit))}}"
     system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
-  with_items: "{{group_all + group_dependencies + group_group + group_host}}"
+  with_items: "{{group_config_all + group_config_group + group_config_host}}"
   tags:
     - config
     - group

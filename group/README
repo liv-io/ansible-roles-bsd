@@ -37,22 +37,21 @@ INACTIVE
 
 CONFIG
   vars:
-    group_all:
+    group_config_all:
       - name: 'group01'
         state: 'true'
         gid: '2001'
 
-    group_dependencies:
       - name: 'group02'
         state: 'true'
         system: 'true'
 
-    group_group:
+    group_config_group:
       - name: 'group03'
         state: 'false'
         gid: '2003'
 
-    group_host:
+    group_config_host:
       - name: 'group04'
         state: 'false'
 
@@ -115,9 +114,9 @@ ROLE
       Install : 'true' | 'yes' | 'install'
       Inactive: 'quiesce' | 'inactive'
 
-  group_all
-    Description: Define the 'group_all' option.
-    Implemented: 0.1
+  group_config_all
+    Description: Define the 'group_config_all' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -127,9 +126,9 @@ ROLE
                  {name: 'group02', state: 'true', gid: '2002'}]
       None    : []
 
-  group_dependencies
-    Description: Define the 'group_dependencies' option.
-    Implemented: 0.1
+  group_config_group
+    Description: Define the 'group_config_group' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -139,21 +138,9 @@ ROLE
                  {name: 'group02', state: 'true', gid: '2002'}]
       None    : []
 
-  group_group
-    Description: Define the 'group_group' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{name: 'group01', state: 'true', gid: '2001'},
-                 {name: 'group02', state: 'true', gid: '2002'}]
-      None    : []
-
-  group_host
-    Description: Define the 'group_host' option.
-    Implemented: 0.1
+  group_config_host
+    Description: Define the 'group_config_host' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash

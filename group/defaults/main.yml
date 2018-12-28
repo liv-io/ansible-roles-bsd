@@ -2,10 +2,8 @@
 
 group_state: 'install'
 
-group_all: []
+group_config_all: []
 
-group_dependencies: []
+group_config_group: []
 
-group_group: []
-
-group_host: []
+group_config_host: []
