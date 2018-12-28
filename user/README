@@ -37,7 +37,7 @@ INACTIVE
 
 CONFIG
   vars:
-    user_all:
+    user_config_all:
       - name: 'user01'
         state: 'true'
         comment: 'Example User 01'
@@ -53,7 +53,7 @@ CONFIG
           - state: 'true'
             key: 'ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAylF0+CUcLIiVcZNG3psSLzu5f4qS1yjMEPJhCiI9TCD7Vc3j+Z+o5J5SO7jt5FKzhx7vVndVMtASmTQppZ5L7d+qCNDO3rFwcM/VKKO7I8gU24tO4WKGK/3f8ACIxrfNHRslNJLjt6TFYc20ZU+60JF7objO/uN7Dh3BOhUKO8ZK8M9Tk5EnYQqm1jicfix/kozcHqzIKEM7+m3Uxq3t1sA6yRo3/R6RzTydWmvzX85852i0MBNTYM6SCy727aEJNZDPr3/rFCVd5Ai2j+z3vMjbkczNyNeifd8kCojdeDjkYEv4VQ3fG/0EsBXsXyVdzRHCAt31Yh77OlPWIR/2MQ== user01'
 
-    user_dependencies:
+    user_config_group:
       - name: 'user02'
         state: 'true'
         comment: 'Example User 02'
@@ -65,22 +65,10 @@ CONFIG
         shell: '/bin/bash'
         authorized_key: []
 
-    user_group:
+    user_config_host:
       - name: 'user03'
-        state: 'true'
-        comment: 'Example User 03'
-        uid: '1003'
-        groups: ['group03']
-        groups_append: 'true'
-        password: '$6$Zmgm4Yd2$d3L6CMZLZk6BFrRelx0YEHeXqmrQqAOVaPhElTq.lqH14MhFS6w6Tupp8LJ1fjvvlicnZ4/Ok9VnC.Pvs0hsQ0'
-        password_update: 'true'
-        shell: '/bin/bash'
-        authorized_key: []
-
-    user_host:
-      - name: 'user04'
         state: 'false'
-        uid: '1004'
+        uid: '1003'
         home_remove: 'true'
         home_force: 'true'
         authorized_key: []
@@ -312,9 +300,9 @@ ROLE
       Install : 'true' | 'yes' | 'install'
       Inactive: 'quiesce' | 'inactive'
 
-  user_all
-    Description: Define the 'user_all' option.
-    Implemented: 0.1
+  user_config_all
+    Description: Define the 'user_config_all' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -325,9 +313,9 @@ ROLE
                  password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
       None    : []
 
-  user_dependencies
-    Description: Define the 'user_dependencies' option.
-    Implemented: 0.1
+  user_config_group
+    Description: Define the 'user_config_group' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -338,22 +326,9 @@ ROLE
                  password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
       None    : []
 
-  user_group
-    Description: Define the 'user_group' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
-    Options    :
-      Examples: [{name: 'user01', state: 'true', comment: 'Example User 01', uid: '1001', groups: {'group01'},
-                 groups_append: 'true', password: '$6$qnvq4oxb$F5E0WGpSCSGLYbbgOaqcz/uNagqAWRy8eDEsH1HzQ8Mq5tkfbHrXKhyt9f8XiJpancQw8AOGLnA0ITynFIOrV1',
-                 password_update: 'true', shell: '/bin/bash', authorized_key: {}}]
-      None    : []
-
-  user_host
-    Description: Define the 'user_host' option.
-    Implemented: 0.1
+  user_config_host
+    Description: Define the 'user_config_host' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
