@@ -15,12 +15,9 @@
 #
 #-------------------------------------------------------------------------------
 
-{% if not ((denyhosts_allowed_hosts == '') or (denyhosts_allowed_hosts == [])) %}
 {% for item in denyhosts_allowed_hosts %}
 # {{item.comment}}
 {% for config in item.config %}
 {{config}}
 {% endfor %}
 {% endfor %}
-{% else %}
-{% endif %}
