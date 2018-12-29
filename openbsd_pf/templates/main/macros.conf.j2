@@ -21,12 +21,12 @@
 
 # ALL
 
-{% for all in openbsd_pf_macros_state_all|default([]) %}
-{% if (all.comment is defined) and not (all.comment == '') %}
-# {{all.comment}}
+{% for item in openbsd_pf_macros_state_all %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-{%- if (all.name is defined) and not (all.name == '') %}{{all.name}}{% endif %}
-='{% for option in all.options|default([]) %}
+{%- if not ((item.name|default('')) == '') %}{{item.name}}{% endif %}
+='{% for option in (item.options|default([])) %}
 {{option}}{% if not loop.last %} {% endif %}
 {%- endfor %}'
 {% if not loop.last %}
@@ -38,12 +38,12 @@
 
 # GROUP
 
-{% for group in openbsd_pf_macros_state_group|default([]) %}
-{% if (group.comment is defined) and not (group.comment == '') %}
-# {{group.comment}}
+{% for item in openbsd_pf_macros_state_group %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-{%- if (group.name is defined) and not (group.name == '') %}{{group.name}}{% endif %}
-='{% for option in group.options|default([]) %}
+{%- if not ((item.name|default('')) == '') %}{{item.name}}{% endif %}
+='{% for option in (item.options|default([])) %}
 {{option}}{% if not loop.last %} {% endif %}
 {%- endfor %}'
 {% if not loop.last %}
@@ -55,12 +55,12 @@
 
 # HOST
 
-{% for host in openbsd_pf_macros_state_host|default([]) %}
-{% if (host.comment is defined) and not (host.comment == '') %}
-# {{host.comment}}
+{% for item in openbsd_pf_macros_state_host %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-{%- if (host.name is defined) and not (host.name == '') %}{{host.name}}{% endif %}
-='{% for option in host.options|default([]) %}
+{%- if not ((item.name|default('')) == '') %}{{item.name}}{% endif %}
+='{% for option in (item.options|default([])) %}
 {{option}}{% if not loop.last %} {% endif %}
 {%- endfor %}'
 {% if not loop.last %}
@@ -74,12 +74,12 @@
 
 # ALL
 
-{% for all in openbsd_pf_macros_all|default([]) %}
-{% if (all.comment is defined) and not (all.comment == '') %}
-# {{all.comment}}
+{% for item in openbsd_pf_macros_all %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-{%- if (all.name is defined) and not (all.name == '') %}{{all.name}}{% endif %}
-='{{all.value}}'
+{%- if not ((item.name|default('')) == '') %}{{item.name}}{% endif %}
+='{{item.value}}'
 {% if not loop.last %}
 
 {% endif %}
@@ -89,12 +89,12 @@
 
 # GROUP
 
-{% for group in openbsd_pf_macros_group|default([]) %}
-{% if (group.comment is defined) and not (group.comment == '') %}
-# {{group.comment}}
+{% for item in openbsd_pf_macros_group %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-{%- if (group.name is defined) and not (group.name == '') %}{{group.name}}{% endif %}
-='{{group.value}}'
+{%- if not ((item.name|default('')) == '') %}{{item.name}}{% endif %}
+='{{item.value}}'
 {% if not loop.last %}
 
 {% endif %}
@@ -104,12 +104,12 @@
 
 # HOST
 
-{% for host in openbsd_pf_macros_host|default([]) %}
-{% if (host.comment is defined) and not (host.comment == '') %}
-# {{host.comment}}
+{% for item in openbsd_pf_macros_host %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-{%- if (host.name is defined) and not (host.name == '') %}{{host.name}}{% endif %}
-='{{host.value}}'
+{%- if not ((item.name|default('')) == '') %}{{item.name}}{% endif %}
+='{{item.value}}'
 {% if not loop.last %}
 
 {% endif %}

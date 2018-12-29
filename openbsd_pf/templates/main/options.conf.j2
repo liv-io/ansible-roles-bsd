@@ -55,12 +55,12 @@ set hostid {{openbsd_pf_options_hostid}}
 {% endif %}
 
 # Limits
-{% for limit in openbsd_pf_options_limits|default([]) %}
-{% if (limit.comment is defined) and not (limit.comment == '') %}
-# {{limit.comment}}
+{% for item in openbsd_pf_options_limits %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-set limit {% if (limit.name is defined) and not (limit.name == '') %}{{limit.name}} {% endif %}
-{% if (limit.value is defined) and not (limit.value == '') %}{{limit.value}}{% endif %}
+set limit {% if not ((item.name|default('')) == '') %}{{item.name}} {% endif %}
+{% if not ((item.value|default('')) == '') %}{{item.value}}{% endif %}
 
 {% endfor %}
 
@@ -101,14 +101,14 @@ set ruleset-optimization none
 {% endif %}
 
 # Skip
-{% if not ((openbsd_pf_options_skip == '') or (openbsd_pf_options_skip == [])) %}
-set skip on {% for option_skip in openbsd_pf_options_skip %}{{option_skip}}{% if not loop.last %}, {% endif %}{% endfor %}
+{% if not (openbsd_pf_options_skip == []) %}
+set skip on {% for item in openbsd_pf_options_skip %}{{item}}{% if not loop.last %}, {% endif %}{% endfor %}
 
 {% endif %}
 
 # State defaults
-{% if not ((openbsd_pf_options_state_defaults == '') or (openbsd_pf_options_state_defaults == [])) %}
-set state-defaults {% for state_groups in openbsd_pf_options_state_defaults %}{{state_groups}}{% if not loop.last %}, {% endif %}{% endfor %}
+{% if not (openbsd_pf_options_state_defaults == []) %}
+set state-defaults {% for item in openbsd_pf_options_state_defaults %}{{item}}{% if not loop.last %}, {% endif %}{% endfor %}
 
 {% endif %}
 
@@ -120,11 +120,11 @@ set state-policy if-bound
 {% endif %}
 
 # Timeouts
-{% for timeout in openbsd_pf_options_timeouts|default([]) %}
-{% if (timeout.comment is defined) and not (timeout.comment == '') %}
-# {{timeout.comment}}
+{% for item in openbsd_pf_options_timeouts %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-set timeout {% if (timeout.name is defined) and not (timeout.name == '') %}{{timeout.name}} {% endif %}
-{% if (timeout.value is defined) and not (timeout.value == '') %}{{timeout.value}}{% endif %}
+set timeout {% if not ((item.name|default('')) == '') %}{{item.name}} {% endif %}
+{% if not ((item.value|default('')) == '') %}{{item.value}}{% endif %}
 
 {% endfor %}

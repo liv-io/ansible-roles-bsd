@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.2.1 (2018-12-29)
+E: Minor style improvement
+
 * Version 1.2.0 (2018-11-15)
 F: Add support for 'quick' option
 E: Minor Jinja2 templating improvement
