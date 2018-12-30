@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.0.1 (2018-12-30)
+E: Remove needless hashtag
+
 * Version 3.0.0 (2018-12-27)
 C: Rename config parameters
 E: Minor style improvement
