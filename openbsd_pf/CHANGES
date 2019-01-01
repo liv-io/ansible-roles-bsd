@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.2.3 (2019-01-01)
+E: Minor Jinja2 templating improvement
+
 * Version 1.2.2 (2018-12-29)
 E: Remove needless new line
 

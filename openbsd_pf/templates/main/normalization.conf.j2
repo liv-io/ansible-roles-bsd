@@ -47,7 +47,7 @@ include '/etc/pf/tables.conf'
 {%- if not ((item.destinations|default([])) == []) %}} {% endif %}
 {%- if not ((item.options|default([])) == []) %}scrub ({% endif %}
 {% for option in (item.options|default([])) %}
-{{option}}{% if not loop.last %}, {% else %}{% endif %}
+{{option}}{% if not loop.last %}, {% endif %}
 {% endfor %}
 {%- if not ((item.options|default([])) == []) %}){% endif %}
 {% if not loop.last %}
