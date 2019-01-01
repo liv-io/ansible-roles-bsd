@@ -29,24 +29,24 @@ include '/etc/pf/tables.conf'
 # SCRUB
 #-------------------------------------------------------------------------------
 
-{% for scrub in freebsd_pf_normalization_scrub|default([]) %}
-{% if (scrub.comment is defined) and not (scrub.comment == '') %}
-# {{scrub.comment}}
+{% for item in freebsd_pf_normalization_scrub %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-{%- if (scrub.action is defined) and (scrub.action is match('scrub')) %}scrub {% endif %}
-{%- if (scrub.direction is defined) and (scrub.direction is match('in')) %}in {% else %}out {% endif %}
-{%- if (scrub.sources is defined) and not (scrub.sources == []) %}from { {% endif %}
-{% for source in scrub.sources|default([]) %}
+{%- if ((item.action|default('')) is match('scrub')) %}scrub {% endif %}
+{%- if ((item.direction|default('out')) is match('in')) %}in {% else %}out {% endif %}
+{%- if not ((item.sources|default([])) == []) %}from { {% endif %}
+{% for source in (item.sources|default([])) %}
 {{source}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
-{%- if (scrub.sources is defined) and not (scrub.sources == []) %}} {% endif %}
-{%- if (scrub.destinations is defined) and not (scrub.destinations == []) %}to { {% endif %}
-{% for destination in scrub.destinations|default([]) %}
+{%- if not ((item.sources|default([])) == []) %}} {% endif %}
+{%- if not ((item.destinations|default([])) == []) %}to { {% endif %}
+{% for destination in (item.destinations|default([])) %}
 {{destination}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
-{%- if (scrub.destinations is defined) and not (scrub.destinations == []) %}} {% endif %}
-{% for option in scrub.options|default([]) %}
-{{option}}{% if not loop.last %} {% else %}{% endif %}
+{%- if not ((item.destinations|default([])) == []) %}} {% endif %}
+{% for option in (item.options|default([])) %}
+{{option}}{% if not loop.last %} {% endif %}
 {% endfor %}
 {% if not loop.last %}
 

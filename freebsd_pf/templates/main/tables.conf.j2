@@ -21,13 +21,13 @@
 
 # ALL
 
-{% for all in freebsd_pf_tables_all|default([]) %}
-{% if (all.comment is defined) and not (all.comment == '') %}
-# {{all.comment}}
+{% for item in freebsd_pf_tables_all %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-table {% if (all.name is defined) and not (all.name == '') %}<{{all.name}}> {% endif %}
-{%- if (all.attribute is defined) and (all.attribute is match('counters')) %}counters{% elif (all.attribute is defined) and (all.attribute is match('counters')) %}persistq {% else %}const {% endif %}
-{ {% for value in all.value|default([]) %}
+table {% if not ((item.name|default('')) == '') %}<{{item.name}}> {% endif %}
+{%- if (item.attribute is match('counters')) %}counters{% elif (item.attribute is match('persist')) %}persist {% else %}const {% endif %}
+{ {% for value in (item.value|default([])) %}
 {{value}}{% if not loop.last %}, {% endif %}
 {%- endfor %} }
 {% if not loop.last %}
@@ -39,13 +39,13 @@ table {% if (all.name is defined) and not (all.name == '') %}<{{all.name}}> {% e
 
 # GROUP
 
-{% for group in freebsd_pf_tables_group|default([]) %}
-{% if (group.comment is defined) and not (group.comment == '') %}
-# {{group.comment}}
+{% for item in freebsd_pf_tables_group %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-table {% if (group.name is defined) and not (group.name == '') %}<{{group.name}}> {% endif %}
-{%- if (group.attribute is defined) and (group.attribute is match('counters')) %}counters{% elif (group.attribute is defined) and (group.attribute is match('counters')) %}persistq {% else %}const {% endif %}
-{ {% for value in group.value|default([]) %}
+table {% if not ((item.name|default('')) == '') %}<{{item.name}}> {% endif %}
+{%- if (item.attribute is match('counters')) %}counters{% elif (item.attribute is match('persist')) %}persist {% else %}const {% endif %}
+{ {% for value in (item.value|default([])) %}
 {{value}}{% if not loop.last %}, {% endif %}
 {%- endfor %} }
 {% if not loop.last %}
@@ -57,13 +57,13 @@ table {% if (group.name is defined) and not (group.name == '') %}<{{group.name}}
 
 # HOST
 
-{% for host in freebsd_pf_tables_host|default([]) %}
-{% if (host.comment is defined) and not (host.comment == '') %}
-# {{host.comment}}
+{% for item in freebsd_pf_tables_host %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
 {% endif %}
-table {% if (host.name is defined) and not (host.name == '') %}<{{host.name}}> {% endif %}
-{%- if (host.attribute is defined) and (host.attribute is match('counters')) %}counters{% elif (host.attribute is defined) and (host.attribute is match('counters')) %}persistq {% else %}const {% endif %}
-{ {% for value in host.value|default([]) %}
+table {% if not ((item.name|default('')) == '') %}<{{item.name}}> {% endif %}
+{%- if (item.attribute is match('counters')) %}counters{% elif (item.attribute is match('persist')) %}persist {% else %}const {% endif %}
+{ {% for value in (item.value|default([])) %}
 {{value}}{% if not loop.last %}, {% endif %}
 {%- endfor %} }
 {% if not loop.last %}
