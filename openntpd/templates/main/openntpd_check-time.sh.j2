@@ -53,8 +53,7 @@ whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 1
 #-------------------------------------------------------------------------------
 
 host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
-script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
-date_start=$(${date} '+%Y-%m-%dT%H:%M:%S%z')
+script="$(${basename} "$0")[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
 time_start=$(${date} '+%s')
 user='{{file_owner_openntpd_check_time_sh}}'
 lockfile='{{file_dst_openntpd_script_dir}}/openntpd_check-time.lock'
@@ -115,13 +114,13 @@ check_script_user() {
     retval=77
     severity='Error'
     message="Please run script as user '${user}'"
-    ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: "${severity}: ${message}""
-    exit ${retval}
+    ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
+    exit "${retval}"
   fi
 }
 
 create_lockfile() {
-  if [ ! -e ${lockfile} ]; then
+  if [ ! -e "${lockfile}" ]; then
     ${touch} ${lockfile} || log_and_exit_on_error "$?" 'Warning' 'Could not create lockfile. Please investigate.'
   else
     log_and_exit_on_error "$?" 'Warning' 'Lockfile does already exist. Please investigate.'
@@ -129,7 +128,7 @@ create_lockfile() {
 }
 
 remove_lockfile() {
-  if [ -e ${lockfile} ]; then
+  if [ -e "${lockfile}" ]; then
     ${rm} -f ${lockfile} || log_and_exit_on_error "$?" 'Warning' 'Could not remove lockfile. Please investigate.'
   else
     log_and_exit_on_error "$?" 'Warning' 'Lockfile did not exist. Please investigate.'
@@ -140,29 +139,27 @@ log_and_exit_on_error() {
   retval=$1
   severity=$2
   message=$3
-  if [ ${retval} -ne 0 ]; then
+  if [ "${retval}" -ne 0 ]; then
     ${rm} -f ${lockfile}
-    ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: "${severity}: ${message}""
-    ${logger} -t ${script} "${severity}: ${message}"
+    ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
+    ${logger} -t "${script}" "${severity}: ${message}"
 {% if (openntpd_monitor_mail_state is match('true|yes|enable')) %}
-    mail_error ${retval} "${severity}" "${message}"
+    mail_error "${retval}" "${severity}" "${message}"
 {% endif %}
-    exit ${retval}
+    exit "${retval}"
   fi
 }
 
 log_and_exit() {
-  date_end=$(${date} '+%Y-%m-%dT%H:%M:%S%z')
   time_end=$(${date} '+%s')
-  time_exec=$(${expr} ${time_end} - ${time_start})
+  time_exec=$(${expr} "${time_end}" - "${time_start}")
   time_hr=$(${date} -u -r "${time_exec}" '+%H:%M:%S')
 
   retval=0
   severity='Info'
   message='System time is synchronized.'
-  ${logger} -t ${script} "${severity}: ${message} Duration: ${time_hr}"
-
-  exit ${retval}
+  ${logger} -t "${script}" "${severity}: ${message} Duration: ${time_hr}"
+  exit "${retval}"
 }
 
 watch_and_wait_for_change() {
@@ -171,11 +168,11 @@ watch_and_wait_for_change() {
   watch_option=$3
   time_step=$4
   time_maximum=$5
-  while ${watch_key} | ${grep} ${watch_option} "${watch_value}" > /dev/null 2>&1 ; do
+  while ${watch_key} | ${grep} "${watch_option}" "${watch_value}" > /dev/null 2>&1 ; do
     log_and_exit_on_error "$?" 'Error' 'Unable to get system time status.'
-    if [ ${time_initial} -lt ${time_maximum} ]; then
-      time_initial=$(${expr} ${time_initial} + ${time_step})
-      ${sleep} ${time_initial}
+    if [ "${time_initial}" -lt "${time_maximum}" ]; then
+      time_initial=$(${expr} "${time_initial}" + "${time_step}")
+      ${sleep} "${time_initial}"
     else
     log_and_exit_on_error "1" 'Error' 'System time is not synchronized.'
     fi
@@ -199,7 +196,9 @@ offset=$(${ntpctl} -s peers | ${awk} '/^ \*/ { print $7}' | ${sed} -n 's@\([-0-9
 log_and_exit_on_error "$?" 'Error' 'Unable to get system time offset.'
 
 # Check system time offset
-if [ ${offset} -ge ${offset_limit} ]; then
+if [ -z "${offset}" ] ; then
+  log_and_exit_on_error '1' 'Error' 'System time is not synchronized to any peer.'
+elif [ "${offset}" -ge "${offset_limit}" ]; then
   log_and_exit_on_error '1' 'Error' "System time offset limit exceeded (${offset}/${offset_limit} ms)."
 fi
 
