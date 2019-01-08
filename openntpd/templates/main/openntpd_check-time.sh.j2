@@ -197,7 +197,7 @@ log_and_exit_on_error "$?" 'Error' 'Unable to get system time offset.'
 
 # Check system time offset
 if [ -z "${offset}" ] ; then
-  log_and_exit_on_error '1' 'Error' 'System time is not synchronized to any peer.'
+  log_and_exit_on_error '1' 'Error' 'System time is not synchronized with any peer.'
 elif [ "${offset}" -ge "${offset_limit}" ]; then
   log_and_exit_on_error '1' 'Error' "System time offset limit exceeded (${offset}/${offset_limit} ms)."
 fi
