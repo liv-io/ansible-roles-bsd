@@ -168,7 +168,7 @@ watch_and_wait_for_change() {
   watch_option=$3
   time_step=$4
   time_maximum=$5
-  while ! ${watch_key} | ${grep} "${watch_option}" "${watch_value}" > /dev/null 2>&1 ; do
+  while ! ${watch_key} | ${grep} ${watch_option} "${watch_value}" > /dev/null 2>&1 ; do
     log_and_exit_on_error "$?" 'Error' 'Unable to get system time status.'
     if [ "${time_initial}" -lt "${time_maximum}" ]; then
       time_initial=$(${expr} "${time_initial}" + "${time_step}")
