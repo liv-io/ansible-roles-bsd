@@ -159,6 +159,7 @@ log_and_exit() {
   severity='Info'
   message='System time is synchronized.'
   ${logger} -t "${script}" "${severity}: ${message} Duration: ${time_hr}"
+
   exit "${retval}"
 }
 
