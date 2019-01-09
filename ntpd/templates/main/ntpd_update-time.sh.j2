@@ -155,6 +155,7 @@ log_and_exit() {
   severity='Info'
   message='System time and hardware clock updated.'
   ${logger} -t "${script}" "${severity}: ${message} Duration: ${time_hr}"
+
   exit "${retval}"
 }
 
