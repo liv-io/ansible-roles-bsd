@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.1.3 (2019-01-09)
+B: Improve return value verification and fix unexpected operator/operand issue
+E: Improve Shell script to prevent globbing and word splitting
+
 * Version 3.1.2 (2018-12-27)
 E: Minor style improvement
 
