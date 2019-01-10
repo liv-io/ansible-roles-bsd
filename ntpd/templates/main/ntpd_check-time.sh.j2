@@ -74,9 +74,9 @@ mail_subject='ntpd: Check Time - Error ({{ansible_hostname}})'
 
 {% if (ntpd_monitor_mail_state is match('true|yes|enable')) %}
 mail_error() {
-  retval=$1
-  severity=$2
-  message=$3
+  retval="$1"
+  severity="$2"
+  message="$3"
   mail_body="--------------------------------------------------------------------------------
 ERROR
 --------------------------------------------------------------------------------
@@ -135,9 +135,9 @@ remove_lockfile() {
 }
 
 log_and_exit_on_error() {
-  retval=$1
-  severity=$2
-  message=$3
+  retval="$1"
+  severity="$2"
+  message="$3"
   if [ "${retval}" -ne 0 ]; then
     ${rm} -f "${lockfile}"
     ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
@@ -163,11 +163,11 @@ log_and_exit() {
 }
 
 watch_and_wait_for_change() {
-  watch_key=$1
-  watch_value=$2
-  watch_option=$3
-  time_step=$4
-  time_maximum=$5
+  watch_key="$1"
+  watch_value="$2"
+  watch_option="$3"
+  time_step="$4"
+  time_maximum="$5"
   while ! ${watch_key} | ${grep} ${watch_option} "${watch_value}" > /dev/null 2>&1 ; do
     log_and_exit_on_error "$?" 'Error' 'Unable to get system time status.'
     if [ "${time_initial}" -lt "${time_maximum}" ]; then

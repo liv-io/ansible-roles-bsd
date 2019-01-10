@@ -71,9 +71,9 @@ mail_subject='ntpd: Update Time - Error ({{ansible_hostname}})'
 
 {% if (ntpd_monitor_mail_state is match('true|yes|enable')) %}
 mail_error() {
-  retval=$1
-  severity=$2
-  message=$3
+  retval="$1"
+  severity="$2"
+  message="$3"
   mail_body="--------------------------------------------------------------------------------
 ERROR
 --------------------------------------------------------------------------------
@@ -132,9 +132,9 @@ remove_lockfile() {
 }
 
 log_and_exit_on_error() {
-  retval=$1
-  severity=$2
-  message=$3
+  retval="$1"
+  severity="$2"
+  message="$3"
   if [ "${retval}" -ne 0 ]; then
     ${rm} -f "${lockfile}"
     ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
