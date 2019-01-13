@@ -74,7 +74,7 @@ PACKAGES
   icmpinfo
     Version: >= 1.11
     Name   :
-      FreeBSD 11: 'icmpinfo'
+      FreeBSD 12: 'icmpinfo'
       OpenBSD 6 : 'icmpinfo'
 
 ROLES
@@ -117,7 +117,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
