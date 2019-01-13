@@ -15,8 +15,8 @@
 #
 #-------------------------------------------------------------------------------
 
-#	$OpenBSD: ssh_config,v 1.30 2016/02/20 23:06:23 sobrado Exp $
-#	$FreeBSD: releng/11.2/crypto/openssh/ssh_config 323136 2017-09-02 23:39:51Z des $
+#	$OpenBSD: ssh_config,v 1.33 2017/05/07 23:12:57 djm Exp $
+#	$FreeBSD: releng/12.0/crypto/openssh/ssh_config 338561 2018-09-10 16:20:12Z des $
 
 # This is the ssh client system-wide configuration file.  See
 # ssh_config(5) for more information.  This file provides defaults for
@@ -38,8 +38,6 @@
 # Host *
 #   ForwardAgent no
 #   ForwardX11 no
-#   RhostsRSAAuthentication no
-#   RSAAuthentication yes
 #   PasswordAuthentication yes
 #   HostbasedAuthentication no
 #   GSSAPIAuthentication no
@@ -49,16 +47,14 @@
 #   AddressFamily any
 #   ConnectTimeout 0
 #   StrictHostKeyChecking ask
-#   IdentityFile ~/.ssh/identity
 #   IdentityFile ~/.ssh/id_rsa
 #   IdentityFile ~/.ssh/id_dsa
 #   IdentityFile ~/.ssh/id_ecdsa
 #   IdentityFile ~/.ssh/id_ed25519
 #   Port 22
 #   Protocol 2
-#   Cipher 3des
-#   Ciphers aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc
-#   MACs hmac-md5,hmac-sha1,umac-64@openssh.com,hmac-ripemd160
+#   Ciphers aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc
+#   MACs hmac-md5,hmac-sha1,umac-64@openssh.com
 #   EscapeChar ~
 #   Tunnel no
 #   TunnelDevice any:any
@@ -67,11 +63,11 @@
 #   ProxyCommand ssh -q -W %h:%p gateway.example.com
 #   RekeyLimit 1G 1h
 #   VerifyHostKeyDNS yes
-#   VersionAddendum FreeBSD-20170903
+#   VersionAddendum FreeBSD-20180909
 
 Host *
   Ciphers aes256-ctr,aes192-ctr
   HostKeyAlgorithms ssh-ed25519,ssh-rsa
   KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group14-sha1
-  MACs hmac-sha2-512,hmac-sha2-256
+  MACs hmac-sha2-512,hmac-sha2-256,hmac-sha1
   Protocol 2
