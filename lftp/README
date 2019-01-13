@@ -76,7 +76,7 @@ PACKAGES
   lftp
     Version: >= 4.0
     Name   :
-      FreeBSD 11: 'lftp'
+      FreeBSD 12: 'lftp'
       OpenBSD 6 : 'lftp'
 
 ROLES
@@ -119,7 +119,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
