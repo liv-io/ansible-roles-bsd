@@ -74,7 +74,7 @@ PACKAGES
   ncdu
     Version: >= 1.7
     Name   :
-      FreeBSD 11: 'ncdu'
+      FreeBSD 12: 'ncdu'
       OpenBSD 6 : 'ncdu'
 
 ROLES
@@ -117,7 +117,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
