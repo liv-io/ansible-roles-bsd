@@ -76,7 +76,7 @@ PACKAGES
   mtr
     Version: >= 0.75
     Name   :
-      FreeBSD 11: 'mtr-nox11'
+      FreeBSD 12: 'mtr-nox11'
       OpenBSD 6 : 'mtr--'
 
 ROLES
@@ -119,7 +119,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
