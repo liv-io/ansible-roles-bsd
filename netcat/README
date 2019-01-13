@@ -79,7 +79,7 @@ PACKAGES
   netcat
     Version: >= 1.10
     Name   :
-      FreeBSD 11: 'nc'
+      FreeBSD 12: 'nc'
 
 ROLES
 
@@ -121,7 +121,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
