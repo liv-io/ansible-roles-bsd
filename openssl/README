@@ -75,7 +75,7 @@ PACKAGES
   openssl
     Version: >= 1.0
     Name   :
-      FreeBSD 11: 'openssl'
+      FreeBSD 12: 'openssl'
       OpenBSD 6 : 'openssl'
 
 ROLES
@@ -118,7 +118,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
