@@ -78,7 +78,7 @@ PACKAGES
   gnu-diff
     Version: >= 3.3
     Name   :
-      FreeBSD 11: 'diffutils'
+      FreeBSD 12: 'diffutils'
       OpenBSD 6 : 'gdiff'
 
 ROLES
@@ -121,7 +121,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
