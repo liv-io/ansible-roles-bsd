@@ -75,7 +75,7 @@ PACKAGES
   arping
     Version: >= 2.13
     Name   :
-      FreeBSD 11: 'arping'
+      FreeBSD 12: 'arping'
       OpenBSD 6 : 'arping'
 
 ROLES
@@ -118,7 +118,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
