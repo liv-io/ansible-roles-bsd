@@ -75,7 +75,7 @@ PACKAGES
   git
     Version: >= 1.7
     Name   :
-      FreeBSD 11: 'git-lite'
+      FreeBSD 12: 'git-lite'
       OpenBSD 6 : 'git'
 
 ROLES
@@ -118,7 +118,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
