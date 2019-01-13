@@ -76,7 +76,7 @@ PACKAGES
   nload
     Version: >= 0.7
     Name   :
-      FreeBSD 11: 'nload'
+      FreeBSD 12: 'nload'
       OpenBSD 6 : 'nload'
 
 ROLES
@@ -119,7 +119,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
