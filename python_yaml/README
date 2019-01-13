@@ -81,7 +81,7 @@ PACKAGES
   python-yaml
     Version: >= 3.10
     Name   :
-      FreeBSD 11: 'py27-yaml'
+      FreeBSD 12: 'py27-yaml'
       OpenBSD 6 : 'py-yaml'
 
 ROLES
@@ -124,7 +124,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
