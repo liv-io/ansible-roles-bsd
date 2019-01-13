@@ -75,7 +75,7 @@ PACKAGES
   iperf3
     Version: >= 3.0
     Name   :
-      FreeBSD 11: 'iperf3'
+      FreeBSD 12: 'iperf3'
       OpenBSD 6 : 'iperf3'
 
 ROLES
@@ -118,7 +118,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
