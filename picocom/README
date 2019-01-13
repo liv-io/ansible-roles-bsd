@@ -76,7 +76,7 @@ PACKAGES
   picocom
     Version: >= 1.7
     Name   :
-      FreeBSD 11: 'picocom'
+      FreeBSD 12: 'picocom'
       OpenBSD 6 : 'picocom'
 
 ROLES
@@ -119,7 +119,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
