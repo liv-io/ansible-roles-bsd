@@ -207,7 +207,7 @@ PACKAGES
   openntpd
     Version: >= 20080406
     Name   :
-      FreeBSD 11: 'openntpd'
+      FreeBSD 12: 'openntpd'
 
 ROLES
   common
@@ -252,7 +252,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
