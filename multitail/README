@@ -85,7 +85,7 @@ PACKAGES
   multitail
     Version: >= 5.2
     Name   :
-      FreeBSD 11: 'multitail'
+      FreeBSD 12: 'multitail'
       OpenBSD 6 : 'multitail'
 
 ROLES
@@ -128,7 +128,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
