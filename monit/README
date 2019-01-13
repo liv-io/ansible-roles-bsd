@@ -488,7 +488,7 @@ PACKAGES
   monit
     Version: >= 5.9
     Name   :
-      FreeBSD 11: 'monit'
+      FreeBSD 12: 'monit'
       OpenBSD 6 : 'monit'
 
 ROLES
@@ -531,7 +531,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
