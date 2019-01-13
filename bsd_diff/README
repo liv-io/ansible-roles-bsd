@@ -76,7 +76,7 @@ PACKAGES
   bsd-diff
     Version: >= 20120705
     Name   :
-      FreeBSD 11: 'bsd-diff'
+      FreeBSD 12: 'bsd-diff'
 
 ROLES
 
@@ -118,7 +118,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
