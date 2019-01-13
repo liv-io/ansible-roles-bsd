@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.6.0 (2019-01-13)
+C: Add support for FreeBSD 12.0-RELEASE
+C: Drop support for FreeBSD 11.2-RELEASE
+
 * Version 3.5.0 (2018-10-20)
 F: Add support for OpenBSD 6.4
 F: Drop support for OpenBSD 6.3
