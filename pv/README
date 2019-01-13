@@ -77,7 +77,7 @@ PACKAGES
   pv
     Version: >= 1.1
     Name   :
-      FreeBSD 11: 'pv'
+      FreeBSD 12: 'pv'
       OpenBSD 6 : 'pv'
 
 ROLES
@@ -120,7 +120,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
