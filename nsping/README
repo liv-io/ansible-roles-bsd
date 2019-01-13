@@ -77,7 +77,7 @@ PACKAGES
   nsping
     Version: >= 0.8
     Name   :
-      FreeBSD 11: 'nsping'
+      FreeBSD 12: 'nsping'
       OpenBSD 6 : 'nsping'
 
 ROLES
@@ -120,7 +120,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
