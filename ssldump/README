@@ -79,7 +79,7 @@ PACKAGES
   ssldump
     Version: >= 0.9
     Name   :
-      FreeBSD 11: 'ssldump'
+      FreeBSD 12: 'ssldump'
       OpenBSD 6 : 'ssldump'
 
 ROLES
@@ -122,7 +122,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
