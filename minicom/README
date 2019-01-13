@@ -75,7 +75,7 @@ PACKAGES
   minicom
     Version: >= 2.3
     Name   :
-      FreeBSD 11: 'minicom'
+      FreeBSD 12: 'minicom'
       OpenBSD 6 : 'minicom'
 
 ROLES
@@ -118,7 +118,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
