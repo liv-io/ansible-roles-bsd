@@ -78,7 +78,7 @@ PACKAGES
   scrub
     Version: >= 2.2
     Name   :
-      FreeBSD 11: 'diskscrub'
+      FreeBSD 12: 'diskscrub'
 
 ROLES
 
@@ -120,7 +120,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
