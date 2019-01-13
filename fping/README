@@ -76,7 +76,7 @@ PACKAGES
   fping
     Version: >= 2.4
     Name   :
-      FreeBSD 11: 'fping'
+      FreeBSD 12: 'fping'
       OpenBSD 6 : 'fping'
 
 ROLES
@@ -119,7 +119,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
