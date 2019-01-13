@@ -16,7 +16,7 @@
 #-------------------------------------------------------------------------------
 
 #
-# $FreeBSD: releng/11.2/etc/ntp.conf 314531 2017-03-02 01:23:17Z ian $
+# $FreeBSD: releng/12.0/usr.sbin/ntp/ntpd/ntp.conf 337649 2018-08-11 17:42:42Z brd $
 #
 # Default NTP servers for the FreeBSD operating system.
 #
@@ -103,15 +103,13 @@ server {{item.address}} {% for option in (item.options|default([])) %}{{option}}
 # See http://support.ntp.org/bin/view/Support/AccessRestrictions
 # for more information.
 #
-#restrict    default limited kod nomodify notrap noquery nopeer
-#restrict -6 default limited kod nomodify notrap noquery nopeer
-#restrict    source  limited kod nomodify notrap noquery
+#restrict default limited kod nomodify notrap noquery nopeer
+#restrict source  limited kod nomodify notrap noquery
 
 #
 # Alternatively, the following rules would block all unauthorized access.
 #
 #restrict default ignore
-#restrict -6 default ignore
 #
 # In this case, all remote NTP time servers also need to be explicitly
 # allowed or they would not be able to exchange time information with
@@ -126,7 +124,7 @@ server {{item.address}} {% for option in (item.options|default([])) %}{{option}}
 #
 # The following settings allow unrestricted access from the localhost
 #restrict 127.0.0.1
-#restrict -6 ::1
+#restrict ::1
 
 {% for item in ntpd_restrict %}
 {% if not ((item.comment|default('')) == '') %}
@@ -150,6 +148,6 @@ restrict {{item.address}} {% for option in (item.options|default([])) %}{{option
 # See http://support.ntp.org/bin/view/Support/ConfiguringNTP#Section_6.14.
 # for documentation regarding leapfile. Updates to the file can be obtained
 # from ftp://time.nist.gov/pub/ or ftp://tycho.usno.navy.mil/pub/ntp/.
-# Use either leapfile in /etc/ntp or weekly updated leapfile in /var/db.
+# Use either leapfile in /etc/ntp or periodically updated leapfile in /var/db.
 #leapfile "/etc/ntp/leap-seconds"
 leapfile "/var/db/ntpd.leap-seconds.list"
