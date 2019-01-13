@@ -90,7 +90,7 @@ PACKAGES
   moreutils
     Version: >= 0.40
     Name   :
-      FreeBSD 11: 'moreutils'
+      FreeBSD 12: 'moreutils'
       OpenBSD 6 : 'moreutils'
 
 ROLES
@@ -133,7 +133,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
