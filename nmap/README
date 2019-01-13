@@ -82,7 +82,7 @@ PACKAGES
   nmap
     Version: >= 5.51
     Name   :
-      FreeBSD 11: 'nmap'
+      FreeBSD 12: 'nmap'
       OpenBSD 6 : 'nmap'
 
 ROLES
@@ -125,7 +125,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
