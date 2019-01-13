@@ -76,7 +76,7 @@ PACKAGES
   bind-tools
     Version: >= 9.8
     Name   :
-      FreeBSD 11: 'bind-tools'
+      FreeBSD 12: 'bind-tools'
 
 ROLES
 
@@ -118,7 +118,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
