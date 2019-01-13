@@ -76,7 +76,7 @@ PACKAGES
   stress
     Version: >= 1.0
     Name   :
-      FreeBSD 11: 'stress'
+      FreeBSD 12: 'stress'
       OpenBSD 6 : 'stress'
 
 ROLES
@@ -119,7 +119,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
