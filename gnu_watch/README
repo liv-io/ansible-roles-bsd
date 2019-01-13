@@ -74,7 +74,7 @@ PACKAGES
   gnu-watch
     Version: >= 3.2
     Name   :
-      FreeBSD 11: 'gnu-watch'
+      FreeBSD 12: 'gnu-watch'
       OpenBSD 6 : 'gnuwatch'
 
 ROLES
@@ -117,7 +117,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
