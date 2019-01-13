@@ -74,7 +74,7 @@ PACKAGES
   python-crypto
     Version: >= 2.0
     Name   :
-      FreeBSD 11: 'py27-pycrypto'
+      FreeBSD 12: 'py27-pycrypto'
       OpenBSD 6 : 'py-crypto'
 
 ROLES
@@ -117,7 +117,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
