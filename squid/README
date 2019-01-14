@@ -464,7 +464,7 @@ PACKAGES
   squid
     Version: >= 3.5
     Name   :
-      FreeBSD 11: 'squid'
+      FreeBSD 12: 'squid'
       OpenBSD 6 : 'squid'
 
 ROLES
@@ -507,7 +507,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
