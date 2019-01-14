@@ -404,7 +404,7 @@ PACKAGES
   unbound
     Version: >= 1.5
     Name   :
-      FreeBSD 11: 'unbound'
+      FreeBSD 12: 'unbound'
 
 ROLES
 
@@ -446,7 +446,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 11.2-*
+    Version: 12.0-*
       Status: Stable
 
   OpenBSD
