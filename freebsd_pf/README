@@ -84,7 +84,7 @@ CONFIG
       - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}
 
 --------------------------------------------------------------------------------
-VARIABLES
+PARAMETERS
 --------------------------------------------------------------------------------
 
 ROLE
@@ -558,7 +558,7 @@ PACKAGES
 
 ROLES
 
-VARIABLES
+PARAMETERS
 
 --------------------------------------------------------------------------------
 REQUIREMENTS
