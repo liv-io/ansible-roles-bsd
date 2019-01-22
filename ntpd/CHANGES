@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.2.2 (2019-01-22)
+E: Improve script by throwing error message if script is executed interactively
+
 * Version 3.2.1 (2019-01-21)
 E: Improve script and reduce noise by removing echo command from alerting function
 
