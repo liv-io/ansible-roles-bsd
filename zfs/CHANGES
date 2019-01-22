@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.0.1 (2019-01-22)
+E: Improve script by throwing error message if script is executed interactively
+
 * Version 3.0.0 (2019-01-22)
 C: Rename option 'zfs_pools' to 'zfs_scrub_pools_pools'
 C: Rename option 'zfs_scrub_pools_cron_hour' to 'zfs_scrub_pools_hour'
