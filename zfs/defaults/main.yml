@@ -2,18 +2,26 @@
 
 zfs_state: 'enable'
 
+zfs_check_pools_interval: 15
+
+zfs_check_pools_state: 'enable'
+
 zfs_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
 
 zfs_monitor_mail_sender: "root@{{ansible_domain}}"
 
 zfs_monitor_mail_state: 'false'
 
-zfs_pools: []
+zfs_scrub_pools_day: '*'
 
-zfs_scrub_pools_cron_hour: 2
+zfs_scrub_pools_hour: 1
 
-zfs_scrub_pools_cron_minute: "{{(20|random(seed=inventory_hostname))}}"
+zfs_scrub_pools_minute: "{{(30|random(seed=inventory_hostname))}}"
 
-zfs_scrub_pools_cron_weekday: 6
+zfs_scrub_pools_month: '*'
+
+zfs_scrub_pools_weekday: 5
+
+zfs_scrub_pools_pools: []
 
 zfs_scrub_pools_state: 'enable'

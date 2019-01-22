@@ -20,6 +20,17 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: 'line add zfs_check-pools'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_zfs_check_pools}} # Ansible: zfs_check-pools"
+    regexp: "# Ansible: zfs_check-pools$"
+    dest: "{{file_dst_zfs_check_pools}}"
+  when: (ansible_os_family == 'FreeBSD') and not (zfs_check_pools_state is match('false|no|remove'))
+  tags:
+    - enable
+    - zfs
+
 - name: 'line add zfs_scrub-pools'
   lineinfile:
     state: 'present'
@@ -27,17 +38,6 @@
     regexp: "# Ansible: zfs_scrub-pools$"
     dest: "{{file_dst_zfs_scrub_pools}}"
   when: (ansible_os_family == 'FreeBSD') and not (zfs_scrub_pools_state is match('false|no|remove'))
-  tags:
-    - enable
-    - zfs
-
-- name: 'line remove zfs_scrub-pools'
-  lineinfile:
-    state: 'absent'
-    line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
-    regexp: "# Ansible: zfs_scrub-pools$"
-    dest: "{{file_dst_zfs_scrub_pools}}"
-  when: (ansible_os_family == 'FreeBSD') and (zfs_scrub_pools_state is match('false|no|remove'))
   tags:
     - enable
     - zfs

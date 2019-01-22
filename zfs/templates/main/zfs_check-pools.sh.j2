@@ -8,7 +8,7 @@
 # INFORMATION
 #-------------------------------------------------------------------------------
 #
-# Name   : zfs_scrub-pools.sh
+# Name   : zfs_check-pools.sh
 # Type   : Shell script
 # Role   : zfs
 #
@@ -29,6 +29,7 @@ PATH='/sbin:/bin:/usr/sbin:/usr/bin'
 #-------------------------------------------------------------------------------
 
 which='/usr/bin/which' && [ -x ${which} ] || { echo "Error: Command 'which' not found."; exit 127; }
+awk=$(${which} awk) || { echo "Error: Command 'awk' not found."; exit 127; }
 basename=$(${which} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
 date=$(${which} date) || { echo "Error: Command 'date' not found."; exit 127; }
 echo=$(${which} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
@@ -53,18 +54,16 @@ zpool=$(${which} zpool) || { echo "Error: Command 'zpool' not found."; exit 127;
 host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
 script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
 time_start=$(${date} '+%s')
-user='{{file_owner_zfs_scrub_pools_sh}}'
-lockfile='{{file_dst_zfs_script_dir}}/zfs_scrub-pools.lock'
+user='{{file_owner_zfs_check_pools_sh}}'
+lockfile='{{file_dst_zfs_script_dir}}/zfs_check-pools.lock'
 retval=0
 severity='Debug'
 message='Please check log files for more information.'
 
-zfs_scrub_pools_pools='{% for item in zfs_scrub_pools_pools %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}'
-
 {% if (zfs_monitor_mail_state is match('true|yes|enable')) %}
 mail_sender='{{zfs_monitor_mail_sender}}'
 mail_recipient='{% for item in zfs_monitor_mail_recipient %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
-mail_subject='zfs: Scrub Pool - Error ({{ansible_hostname}})'
+mail_subject='zfs: Check Pool - Error ({{ansible_hostname}})'
 {% endif %}
 
 #-------------------------------------------------------------------------------
@@ -88,7 +87,7 @@ Date & Time : $(${date} '+%Y-%m-%dT%H:%M:%S%z')
 SCRIPT
 --------------------------------------------------------------------------------
 
-Name        : zfs_scrub-pools.sh
+Name        : zfs_check-pools.sh
 Type        : Shell script
 PID         : $$
 
@@ -106,22 +105,6 @@ FQDN        : {{ansible_fqdn}}"
 {% endif %}
 }
 {% endif %}
-
-watch_and_wait_for_change() {
-  watch_key="$1"
-  watch_value="$2"
-  watch_option="$3"
-  time_step="$4"
-  time_maximum="$5"
-  while ${watch_key} | ${grep} ${watch_option} "${watch_value}" > /dev/null 2>&1 ; do
-    if [ "${time_initial}" -lt "${time_maximum}" ]; then
-      time_initial=$(${expr} "${time_initial}" + "${time_step}")
-      ${sleep} "${time_initial}"
-    else
-      ${sleep} "${time_initial}"
-    fi
-  done
-}
 
 check_script_user() {
   if [ "$(${whoami})" != "${user}" ]; then
@@ -170,11 +153,7 @@ log_and_exit() {
 
   retval=0
   severity='Info'
-  if [ -z "${zfs_scrub_pools_pools}" ]; then
-    message='No ZFS pools have been specified for scrubbing.'
-  else
-    message='Specified ZFS pools have been scrubbed and are healthy.'
-  fi
+  message='All ZFS pools are healthy.'
   ${logger} -t "${script}" "${severity}: ${message} Duration: ${time_hr}"
 
   exit "${retval}"
@@ -188,36 +167,15 @@ check_script_user
 
 create_lockfile
 
-# Scrub ZFS pools
-for pool in ${zfs_scrub_pools_pools} ; do
-  # Wait until previous scrub has finished
-  time_initial=0
-  watch_and_wait_for_change "${zpool} status" 'scrub in progress' '' '5' '300'
-
-  # Scrub next ZFS pool
-  ${zpool} scrub ${pool}
-  log_and_exit_on_error "$?" 'Error' "Unable to scrub ZFS pool: '${pool}'"
-done
-
 # Check ZFS pools
-for pool in ${zfs_scrub_pools_pools} ; do
-  # Wait until previous scrub has finished
-  time_initial=0
-  watch_and_wait_for_change "${zpool} status" 'scrub in progress' '' '5' '300'
-
-  # Get next ZFS pool status
+for pool in $(${zpool} list | ${awk} '!/NAME/{print $1}') ; do
+  # Get ZFS pool status
   zfs_pool_status="$(${zpool} status -xv ${pool})"
   log_and_exit_on_error "$?" 'Error' "Unable to get ZFS pool status: '${pool}'"
 
-  # Check next ZFS pool status
+  # Check ZFS pool status
   echo "${zfs_pool_status}" | ${grep} 'healthy' > /dev/null 2>&1
-  if [ "$?" -eq 0 ]; then
-    severity='Info'
-    message="ZFS pool has been scrubbed and is healthy: '${pool}'"
-    ${logger} -t "${script}" "${severity}: ${message}"
-  else
-    log_and_exit_on_error "$?" 'Critical' "ZFS pool is unhealthy: '${pool}'"
-  fi
+  log_and_exit_on_error "$?" 'Critical' "ZFS pool is unhealthy: '${pool}'"
 done
 
 remove_lockfile

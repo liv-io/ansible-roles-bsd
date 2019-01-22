@@ -36,7 +36,7 @@ ENABLE
     vars:
       zfs_state: 'enable'
       zfs_scrub_pools_state: 'enable'
-      zfs_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
+      zfs_scrub_pools_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
       zfs_monitor_mail_recipient: ["user@domain.tld"]
       zfs_monitor_mail_sender: 'root@domain.tld'
       zfs_monitor_mail_state: 'true'
@@ -48,7 +48,7 @@ DISABLE
     vars:
       zfs_state: 'disable'
       zfs_scrub_pools_state: 'disable'
-      zfs_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
+      zfs_scrub_pools_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
       zfs_monitor_mail_recipient: ["user@domain.tld"]
       zfs_monitor_mail_sender: 'root@domain.tld'
       zfs_monitor_mail_state: 'true'
@@ -86,6 +86,28 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+  zfs_check_pools_interval
+    Description: Set the 'zfs_check_pools_interval' option.
+                 Specify a value between 1-59.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary (5-59)
+    Type       : Integer
+    Default    : 15
+    Options    :
+      Examples: 5 | 11 | 15 | 20 | 23
+
+  zfs_check_pools_state
+    Description: Control the 'zfs_check_pools_state' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   zfs_monitor_mail_recipient
     Description: Define the 'zfs_monitor_mail_recipient' option.
     Implemented: 0.1
@@ -118,9 +140,59 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  zfs_pools
-    Description: Define the 'zfs_pools' option.
-    Implemented: 0.1
+  zfs_scrub_pools_day
+    Description: Define the 'zfs_scrub_pools_day' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '1' | '*/2'
+
+  zfs_scrub_pools_hour
+    Description: Define the 'zfs_scrub_pools_hour' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 1
+    Options    :
+      Examples: '5' | '*/6'
+
+  zfs_scrub_pools_minute
+    Description: Define the 'zfs_scrub_pools_minute' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : "{{(30|random(seed=inventory_hostname))}}"
+    Options    :
+      Examples: '42' | '*/30'
+
+  zfs_scrub_pools_month
+    Description: Define the 'zfs_scrub_pools_month' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '10' | '*/1'
+
+  zfs_scrub_pools_weekday
+    Description: Define the 'zfs_scrub_pools_weekday' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 5
+    Options    :
+      Examples: '6' | 'Saturday'
+
+  zfs_scrub_pools_pools
+    Description: Define the 'zfs_scrub_pools_pools' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -129,43 +201,6 @@ ROLE
       Examples: ['tank'] | ['ssd_pool', 'hdd_pool'] |
                 ['ssd-slc_pool', 'ssd-mlc_pool', 'ssd-tlc_pool']
       None    : []
-
-  zfs_scrub_pools_cron_hour
-    Description: Set the 'zfs_scrub_pools_cron_hour' option.
-                 Specify a value between 0-24.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Integer, String
-    Default    : 2
-    Options    :
-      Examples: 5 | 11 | 15 | 20 | 23
-
-  zfs_scrub_pools_cron_minute
-    Description: Set the 'zfs_scrub_pools_cron_minute' option.
-                 Specify a value between 0-60.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Integer, String
-    Default    : "{{(20|random(seed=inventory_hostname))}}"
-    Options    :
-      Examples: 5 | 11 | 15 | 20 | 23
-
-  zfs_scrub_pools_cron_weekday
-    Description: Set the 'zfs_scrub_pools_cron_weekday' option.
-                 Specify a value between 0-7.
-                 Sunday   : 0    |    Thursday : 4
-                 Monday   : 1    |    Friday   : 5
-                 Tuesday  : 2    |    Saturday : 6
-                 Wednesday: 3    |    Sunday   : 7
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Integer, String
-    Default    : 6
-    Options    :
-      Examples: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 
   zfs_scrub_pools_state
     Description: Control the 'zfs_scrub_pools_state' option.

@@ -20,6 +20,17 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: 'line remove zfs_check-pools'
+  lineinfile:
+    state: 'absent'
+    line: "{{file_line_zfs_check_pools}} # Ansible: zfs_check-pools"
+    regexp: "# Ansible: zfs_check-pools$"
+    dest: "{{file_dst_zfs_check_pools}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - remove
+    - zfs
+
 - name: 'line remove zfs_scrub-pools'
   lineinfile:
     state: 'absent'
@@ -27,14 +38,6 @@
     regexp: "# Ansible: zfs_scrub-pools$"
     dest: "{{file_dst_zfs_scrub_pools}}"
   when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - remove
-    - zfs
-
-- name: 'file remove zfs_scrub-pools.sh'
-  file:
-    state: 'absent'
-    path: "{{file_dst_zfs_scrub_pools_sh}}"
   tags:
     - remove
     - zfs
