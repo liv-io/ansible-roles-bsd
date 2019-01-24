@@ -130,9 +130,19 @@ ROLE
                 [{address: '10.0.0.10', comment: 'IPv4 interface'}]
       None    : []
 
-  openntpd_monitor_mail_recipient
-    Description: Define the 'openntpd_monitor_mail_recipient' option.
-    Implemented: 1.0
+  openntpd_monitor_mail_from_address
+    Description: Define the 'openntpd_monitor_mail_from_address' option.
+    Implemented: 3.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "root@{{ansible_domain}}"
+    Options    :
+      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
+
+  openntpd_monitor_mail_to_address
+    Description: Define the 'openntpd_monitor_mail_to_address' option.
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -140,16 +150,6 @@ ROLE
     Options    :
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld']
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
-
-  openntpd_monitor_mail_sender
-    Description: Define the 'openntpd_monitor_mail_sender' option.
-    Implemented: 1.0
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "root@{{ansible_domain}}"
-    Options    :
-      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
   openntpd_monitor_mail_state
     Description: Control the 'openntpd_monitor_mail_state' option.
