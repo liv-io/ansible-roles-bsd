@@ -6,9 +6,9 @@ zfs_check_pools_interval: 15
 
 zfs_check_pools_state: 'enable'
 
-zfs_monitor_mail_recipient: ["admin@{{ansible_domain}}"]
+zfs_monitor_mail_from_address: "root@{{ansible_domain}}"
 
-zfs_monitor_mail_sender: "root@{{ansible_domain}}"
+zfs_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
 
 zfs_monitor_mail_state: 'false'
 

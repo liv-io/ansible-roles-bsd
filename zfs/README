@@ -37,8 +37,8 @@ ENABLE
       zfs_state: 'enable'
       zfs_scrub_pools_state: 'enable'
       zfs_scrub_pools_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
-      zfs_monitor_mail_recipient: ["user@domain.tld"]
-      zfs_monitor_mail_sender: 'root@domain.tld'
+      zfs_monitor_mail_from_address: 'root@domain.tld'
+      zfs_monitor_mail_to_address: ["user@domain.tld"]
       zfs_monitor_mail_state: 'true'
 
 DISABLE
@@ -49,8 +49,8 @@ DISABLE
       zfs_state: 'disable'
       zfs_scrub_pools_state: 'disable'
       zfs_scrub_pools_pools: ['hdd_pool', 'ssd-slc_pool', 'ssd-mlc_pool']
-      zfs_monitor_mail_recipient: ["user@domain.tld"]
-      zfs_monitor_mail_sender: 'root@domain.tld'
+      zfs_monitor_mail_from_address: 'root@domain.tld'
+      zfs_monitor_mail_to_address: ["user@domain.tld"]
       zfs_monitor_mail_state: 'true'
 
 REMOVE
@@ -108,9 +108,19 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  zfs_monitor_mail_recipient
-    Description: Define the 'zfs_monitor_mail_recipient' option.
-    Implemented: 0.1
+  zfs_monitor_mail_from_address
+    Description: Define the 'zfs_monitor_mail_from_address' option.
+    Implemented: 4.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "root@{{ansible_domain}}"
+    Options    :
+      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
+
+  zfs_monitor_mail_to_address
+    Description: Define the 'zfs_monitor_mail_to_address' option.
+    Implemented: 4.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -118,16 +128,6 @@ ROLE
     Options    :
       Examples: ['root@domain.tld'] | ['root@domain.tld', 'admin@domain.tld'] |
                 ['root@domain.tld', 'admin@domain.tld', 'user@domain.tld']
-
-  zfs_monitor_mail_sender
-    Description: Define the 'zfs_monitor_mail_sender' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : "root@{{ansible_domain}}"
-    Options    :
-      Examples: 'root@domain.tld' | 'admin@domain.tld' | 'user@domain.tld'
 
   zfs_monitor_mail_state
     Description: Control the 'zfs_monitor_mail_state' option.

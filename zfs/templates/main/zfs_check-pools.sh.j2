@@ -61,8 +61,8 @@ severity='Debug'
 message='Please check log files for more information.'
 
 {% if (zfs_monitor_mail_state is match('true|yes|enable')) %}
-mail_sender='{{zfs_monitor_mail_sender}}'
-mail_recipient='{% for item in zfs_monitor_mail_recipient %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+mail_from_address='{{zfs_monitor_mail_from_address}}'
+mail_to_address='{% for item in zfs_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
 mail_subject='zfs: Check Pool - Error ({{ansible_hostname}})'
 {% endif %}
 
@@ -99,9 +99,9 @@ Hostname    : {{ansible_hostname}}
 FQDN        : {{ansible_fqdn}}"
 
 {% if (ansible_os_family == 'FreeBSD') %}
-  ${echo} "${mail_body}" | ${mailx} -s "${mail_subject}" -F "${mail_recipient}" > /dev/null 2>&1
+  ${echo} "${mail_body}" | ${mailx} -s "${mail_subject}" -F "${mail_to_address}" > /dev/null 2>&1
 {% else %}
-  ${echo} "${mail_body}" | ${mailx} -r "${mail_sender}" -s "${mail_subject}" "${mail_recipient}" > /dev/null 2>&1
+  ${echo} "${mail_body}" | ${mailx} -r "${mail_from_address}" -s "${mail_subject}" "${mail_to_address}" > /dev/null 2>&1
 {% endif %}
 }
 {% endif %}
