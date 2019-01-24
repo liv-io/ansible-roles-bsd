@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 4.0.0 (2019-01-24)
+C: Rename option 'ntpd_monitor_mail_recipient' to 'ntpd_monitor_mail_from_address'
+C: Rename option 'ntpd_monitor_mail_sender' to 'ntpd_monitor_mail_to_address'
+
 * Version 3.2.2 (2019-01-22)
 E: Improve script by throwing error message if script is executed interactively
 
