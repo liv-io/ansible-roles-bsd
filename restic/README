@@ -178,17 +178,6 @@ ROLE
     Options    :
       Examples: 0 | 1024 | 4096 | 8192
 
-  restic_monitor
-    Description: Control the 'restic_monitor' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Predetermined
-    Type       : String
-    Default    : 'false'
-    Options    :
-      Enable : 'true' | 'yes' | 'enable'
-      Disable: 'false' | 'no' | 'disable'
-
   restic_monitor_mail_from_address
     Description: Define the 'restic_monitor_mail_from_address' option.
     Implemented: 0.4

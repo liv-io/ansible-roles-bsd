@@ -36,8 +36,6 @@ restic_limit_download: 0
 
 restic_limit_upload: 0
 
-restic_monitor: 'false'
-
 restic_monitor_mail_from_address: "root@{{ansible_domain}}"
 
 restic_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
