@@ -96,7 +96,7 @@ CONFIG
       - name: 'system'
         state: 'true'
         comment: 'system'
-        config:
+        config: |
           check system {{ansible_hostname}}
             if cpu usage (user) > 80% for 5 cycles then alert
             if cpu usage (system) > 20% for 5 cycles then alert
@@ -111,7 +111,7 @@ CONFIG
       - name: 'storage'
         state: 'true'
         comment: 'boot'
-        config:
+        config: |
           check filesystem "boot" with path /boot
             if space usage > 80% for 5 cycles then alert
 
@@ -129,7 +129,7 @@ CONFIG
       - name: 'ntpd'
         state: 'true'
         comment: 'ntpd'
-        config:
+        config: |
           check process ntpd matching "/usr/sbin/ntpd.*"
             start program = "/sbin/service ntpd start"
             stop program = "/sbin/service ntpd stop"
@@ -138,7 +138,7 @@ CONFIG
       - name: 'openssh'
         state: 'true'
         comment: 'openssh'
-        config:
+        config: |
           check process openssh with pidfile "/run/sshd.pid"
             start program = "/sbin/service sshd start"
             stop program = "/sbin/service sshd stop"
@@ -149,7 +149,7 @@ CONFIG
       - name: 'nsd'
         state: 'true'
         comment: 'nsd'
-        config:
+        config: |
           check process nsd with pidfile "/run/nsd/nsd.pid"
             start program = "/sbin/service nsd start"
             stop program = "/sbin/service nsd stop"
@@ -205,15 +205,15 @@ CONFIG
     Options    :
       Examples: config: |
                   check process apache with pidfile "/run/apache2.pid"
-                  group web
-                  start program = "/sbin/service apache2 start"
-                  stop program = "/sbin/service apache2 stop"
-                  if cpu > 60% for 2 cycles then alert
-                  if cpu > 80% for 5 cycles then restart
-                  if totalmem > 512.0 MB for 2 cycles then alert
-                  if totalmem > 512.0 MB for 5 cycles then restart
-                  if failed host 127.0.0.1 port 80 type tcp protocol http with timeout 10 seconds then restart
-                  if 5 restarts within 5 cycles then timeout
+                    group web
+                    start program = "/sbin/service apache2 start"
+                    stop program = "/sbin/service apache2 stop"
+                    if cpu > 60% for 2 cycles then alert
+                    if cpu > 80% for 5 cycles then restart
+                    if totalmem > 512.0 MB for 2 cycles then alert
+                    if totalmem > 512.0 MB for 5 cycles then restart
+                    if failed host 127.0.0.1 port 80 type tcp protocol http with timeout 10 seconds then restart
+                    if 5 restarts within 5 cycles then timeout
       None    : ''
 
 ROLE
@@ -236,72 +236,72 @@ ROLE
     Implemented: 5.0
     Required   : False
     Value      : Arbitrary
-    Type       : String
-    Default    : ''
+    Type       : Array/Hash
+    Default    : []
     Options    :
       Examples: name: 'openssh'
                 state: 'true'
                 comment: 'OpenSSH'
                 config: |
                   check process openssh with pidfile "/run/sshd.pid"
-                  group system
-                  start program = "/sbin/service sshd start"
-                  stop program = "/sbin/service sshd stop"
-                  if cpu > 60% for 2 cycles then alert
-                  if cpu > 80% for 5 cycles then restart
-                  if totalmem > 256.0 MB for 2 cycles then alert
-                  if totalmem > 256.0 MB for 5 cycles then restart
-                  if failed host 127.0.0.1 port 22 type tcp protocol ssh with timeout 10 seconds then restart
-                  if 5 restarts within 5 cycles then timeout
-      None    : ''
+                    group system
+                    start program = "/sbin/service sshd start"
+                    stop program = "/sbin/service sshd stop"
+                    if cpu > 60% for 2 cycles then alert
+                    if cpu > 80% for 5 cycles then restart
+                    if totalmem > 256.0 MB for 2 cycles then alert
+                    if totalmem > 256.0 MB for 5 cycles then restart
+                    if failed host 127.0.0.1 port 22 type tcp protocol ssh with timeout 10 seconds then restart
+                    if 5 restarts within 5 cycles then timeout
+      None    : []
 
   monit_config_group
     Description: Define the 'monit_config_group' option.
     Implemented: 5.0
     Required   : False
     Value      : Arbitrary
-    Type       : String
-    Default    : ''
+    Type       : Array/Hash
+    Default    : []
     Options    :
       Examples: name: 'apache'
                 state: 'true'
                 comment: 'Apache HTTP'
                 config: |
                   check process apache with pidfile "/run/apache2.pid"
-                  group web
-                  start program = "/sbin/service apache2 start"
-                  stop program = "/sbin/service apache2 stop"
-                  if cpu > 60% for 2 cycles then alert
-                  if cpu > 80% for 5 cycles then restart
-                  if totalmem > 512.0 MB for 2 cycles then alert
-                  if totalmem > 512.0 MB for 5 cycles then restart
-                  if failed host 127.0.0.1 port 80 type tcp protocol http with timeout 10 seconds then restart
-                  if 5 restarts within 5 cycles then timeout
-      None    : ''
+                    group web
+                    start program = "/sbin/service apache2 start"
+                    stop program = "/sbin/service apache2 stop"
+                    if cpu > 60% for 2 cycles then alert
+                    if cpu > 80% for 5 cycles then restart
+                    if totalmem > 512.0 MB for 2 cycles then alert
+                    if totalmem > 512.0 MB for 5 cycles then restart
+                    if failed host 127.0.0.1 port 80 type tcp protocol http with timeout 10 seconds then restart
+                    if 5 restarts within 5 cycles then timeout
+      None    : []
 
   monit_config_host
     Description: Define the 'monit_config_host' option.
     Implemented: 5.0
     Required   : False
     Value      : Arbitrary
-    Type       : String
-    Default    : ''
+    Type       : Array/Hash
+    Default    : []
     Options    :
       Examples: name: 'apache'
                 state: 'true'
-                comment: 'Apache HTTP
+                comment: 'Apache HTTP'
                 config: |
                   check process apache with pidfile "/run/apache2.pid"
-                  group web
-                  start program = "/sbin/service apache2 start"
-                  stop program = "/sbin/service apache2 stop"
-                  if cpu > 60% for 2 cycles then alert
-                  if cpu > 80% for 5 cycles then restart
-                  if totalmem > 512.0 MB for 2 cycles then alert
-                  if totalmem > 512.0 MB for 5 cycles then restart
-                  if failed host 127.0.0.1 port 80 type tcp protocol http with timeout 10 seconds then restart
-                  if 5 restarts within 5 cycles then timeout
-      None    : ''
+                    group web
+                    start program = "/sbin/service apache2 start"
+                    stop program = "/sbin/service apache2 stop"
+                    if cpu > 60% for 2 cycles then alert
+                    if cpu > 80% for 5 cycles then restart
+                    if totalmem > 512.0 MB for 2 cycles then alert
+                    if totalmem > 512.0 MB for 5 cycles then restart
+                    if failed host 127.0.0.1 port 80 type tcp protocol http with timeout 10 seconds then restart
+                    if 5 restarts within 5 cycles then timeout
+      None    : []
 
   monit_daemon_delay
     Description: Set the 'monit_daemon_delay' option.
