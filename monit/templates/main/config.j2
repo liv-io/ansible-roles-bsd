@@ -21,8 +21,6 @@
 #-------------------------------------------------------------------------------
 
 {% endif %}
-{% if not ((item.config|default([])) == []) %}
-{% for config in item.config %}
-{{config}}
-{% endfor %}
+{% if not ((item.config|default('')) == '') %}
+{{item.config}}
 {% endif %}
