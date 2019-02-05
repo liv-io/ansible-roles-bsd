@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.0.0 (2019-02-05)
+C: Redesign 'nginx_config' option (alter config variable to string)
+
 * Version 2.1.0 (2019-01-13)
 C: Add support for FreeBSD 12.0-RELEASE
 C: Drop support for FreeBSD 11.2-RELEASE

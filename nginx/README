@@ -65,16 +65,14 @@ CONFIG
         state: 'true'
         listen: '*'
         port: 80
-        config:
-          - comment: 'Reverse Proxy'
-            config:
-              - 'location / {'
-              - '  proxy_pass http://localhost:8080;'
-              - '  proxy_set_header Host              $host;'
-              - '  proxy_set_header X-Real-IP         $remote_addr;'
-              - '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;'
-              - '  proxy_set_header X-Forwarded-Proto $scheme;'
-              - '}'
+        config: |
+          location / {
+            proxy_pass http://localhost:8080;
+            proxy_set_header Host              $host;
+            proxy_set_header X-Real-IP         $remote_addr;
+            proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+          }
 
       - name: 'host.domain.tld'
         state: 'true'
@@ -87,16 +85,14 @@ CONFIG
         ssl_client_certificate: '/etc/ssl/example/ca.domain.tld.crt'
         ssl_verify_client: 'true'
         ssl_verify_depth: 1
-        config:
-          - comment: 'Reverse Proxy'
-            config:
-              - 'location / {'
-              - '  proxy_pass https://localhost:8443;'
-              - '  proxy_set_header Host              $host;'
-              - '  proxy_set_header X-Real-IP         $remote_addr;'
-              - '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;'
-              - '  proxy_set_header X-Forwarded-Proto $scheme;'
-              - '}'
+        config: |
+          location / {
+            proxy_pass https://localhost:8443;
+            proxy_set_header Host              $host;
+            proxy_set_header X-Real-IP         $remote_addr;
+            proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+          }
 
 --------------------------------------------------------------------------------
 PARAMETERS
@@ -116,21 +112,21 @@ CONFIG
 
   config
     Description: Define the 'config' option.
-    Implemented: 0.1
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
-    Type       : Array/Hash
-    Default    : []
+    Type       : String
+    Default    : ''
     Options    :
-      Examples: [{comment: 'Reverse Proxy',
-                  config: {'location / {',
-                           '  proxy_pass http://localhost:8080;',
-                           '  proxy_set_header Host              $host;',
-                           '  proxy_set_header X-Real-IP         $remote_addr;',
-                           '  proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;',
-                           '  proxy_set_header X-Forwarded-Proto $scheme;',
-                           '}'}}]
-      None: []
+      Examples: |
+        location / {
+          proxy_pass http://localhost:8080;
+          proxy_set_header Host              $host;
+          proxy_set_header X-Real-IP         $remote_addr;
+          proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+        }
+      None: ''
 
   hsts_max_age
     Description: Set the 'hsts_max_age' option.
@@ -317,7 +313,7 @@ ROLE
 
   nginx_config
     Description: Define the 'nginx_config' option.
-    Implemented: 0.1
+    Implemented: 3.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash

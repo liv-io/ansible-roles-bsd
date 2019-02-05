@@ -136,18 +136,7 @@ server {
   # CONFIG
   #-----------------------------------------------------------------------------
 
-{% if not ((item.config|default([])) == []) %}
-{% for item in item.config %}
-{% if not ((item.comment|default('')) == '') %}
-  #-----------------------------------------------------------------------------
-  # {{(item.comment|upper)}}
-  #-----------------------------------------------------------------------------
-
-{% endif %}
-{% for config in item.config %}
-  {{config}}
-{% endfor %}
-
-{% endfor %}
+{% if not (item.config == '') %}
+{{(item.config|indent(width=2, first=True))}}
 {% endif %}
 }
