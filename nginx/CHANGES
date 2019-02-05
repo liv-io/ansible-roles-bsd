@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.0.1 (2019-02-05)
+E: Use Jinja2 argument 'indentfirst' instead of 'first' (support older Jinja2 versions)
+
 * Version 3.0.0 (2019-02-05)
 C: Redesign 'nginx_config' option (alter config variable to string)
 
