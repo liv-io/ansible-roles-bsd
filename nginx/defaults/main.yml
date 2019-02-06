@@ -2,7 +2,7 @@
 
 nginx_state: 'enable'
 
-nginx_config: ''
+nginx_config: []
 
 nginx_hsts_max_age: 31536000
 

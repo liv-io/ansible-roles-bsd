@@ -327,6 +327,7 @@ ROLE
                  ssl_client_certificate: '/etc/ssl/example/ca.domain.tld.crt',
                  ssl_verify_client: 'true',
                  ssl_verify_depth: 1}]
+      None    : []
 
   nginx_hsts_max_age
     Description: Set the 'nginx_hsts_max_age' option.
