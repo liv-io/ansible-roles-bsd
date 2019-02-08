@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.0.3 (2019-02-08)
+E: Add possibility to disable 'ssl_dhparam' and 'ssl_ecdh_curve' parameters
+
 * Version 3.0.2 (2019-02-06)
 B: Correct default value of 'nginx_config' parameter (array instead of string)
 

@@ -89,16 +89,16 @@ server {
   ssl_ciphers 'AES256+EECDH:AES256+EDH';
 {% endif %}
   # ECDHE ciphers curve
-{% if not ((item.ssl_ecdh_curve|default('')) == '') %}
-  ssl_ecdh_curve '{{item.ssl_ecdh_curve}}';
+{% if not ((item.ssl_ecdh_curve|default('secp521r1')) == '') %}
+  ssl_ecdh_curve '{{(item.ssl_ecdh_curve|default("secp521r1"))}}';
 {% else %}
-  ssl_ecdh_curve 'secp521r1';
+  #ssl_ecdh_curve '';
 {% endif %}
   # DH parameters for DHE ciphers
-{% if ((item.ssl_dhparam|default('true')) is match('false|no|disable')) %}
-  #ssl_dhparam '';
-{% else %}
+{% if not ((item.ssl_dhparam|default(file_dst_dhparam_pem)) == '') %}
   ssl_dhparam '{{file_dst_dhparam_pem}}';
+{% else %}
+  #ssl_dhparam '';
 {% endif %}
   # Server PEM-encoded X.509 certificate file
 {% if not ((item.ssl_certificate|default('')) == '') %}
