@@ -4,6 +4,8 @@ sysctl_state: 'install'
 
 sysctl_config_all: []
 
+sysctl_config_dependencies: []
+
 sysctl_config_group: []
 
 sysctl_config_host: []

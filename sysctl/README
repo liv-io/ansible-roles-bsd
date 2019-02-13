@@ -95,6 +95,18 @@ ROLE
                  {key: 'net.inet.carp.allow', value: '1'}]
       None    : []
 
+  sysctl_config_dependencies
+    Description: Define the 'sysctl_config_dependencies' option.
+    Implemented: 1.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{key: 'net.inet.carp.preempt', value: '1'},
+                 {key: 'net.inet.carp.allow', value: '1'}]
+      None    : []
+
   sysctl_config_group
     Description: Define the 'sysctl_config_group' option.
     Implemented: 1.0
