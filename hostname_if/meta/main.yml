@@ -5,13 +5,13 @@ allow_duplicates: 'yes'
 dependencies:
   - role: sysctl
     vars:
-      sysctl_dependencies:
+      sysctl_config_dependencies:
         - key: 'net.inet.carp.allow'
           value: '1'
     when: (hostname_if_carp_allow is match('true|yes|enable'))
   - role: sysctl
     vars:
-      sysctl_dependencies:
+      sysctl_config_dependencies:
         - key: 'net.inet.carp.preempt'
           value: '1'
     when: (hostname_if_carp_preempt is match('true|yes|enable'))
