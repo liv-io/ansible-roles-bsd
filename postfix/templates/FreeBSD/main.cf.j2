@@ -713,40 +713,22 @@ shlib_directory = /usr/local/lib/postfix
 # ALL
 #-------------------------------------------------------------------------------
 
-{% if not (postfix_config_all == []) %}
-{% for item in postfix_config_all %}
-# {{item.comment}}
-{% for config in item.config %}
-{{config}}
-{% endfor %}
-{% endfor %}
-{% else %}
+{% if not (postfix_config_all == '') %}
+{{postfix_config_all}}
 {% endif %}
 
 #-------------------------------------------------------------------------------
 # GROUP
 #-------------------------------------------------------------------------------
 
-{% if not (postfix_config_group == []) %}
-{% for item in postfix_config_group %}
-# {{item.comment}}
-{% for config in item.config %}
-{{config}}
-{% endfor %}
-{% endfor %}
-{% else %}
+{% if not (postfix_config_group == '') %}
+{{postfix_config_group}}
 {% endif %}
 
 #-------------------------------------------------------------------------------
 # HOST
 #-------------------------------------------------------------------------------
 
-{% if not (postfix_config_host == []) %}
-{% for item in postfix_config_host %}
-# {{item.comment}}
-{% for config in item.config %}
-{{config}}
-{% endfor %}
-{% endfor %}
-{% else %}
+{% if not (postfix_config_host == '') %}
+{{postfix_config_host}}
 {% endif %}
