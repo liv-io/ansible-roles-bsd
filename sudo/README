@@ -167,7 +167,6 @@ ROLE
       Examples: - name: 'root'
                   state: 'true'
                   order: '10'
-                  comment: 'root'
                   config: |
                     root ALL=(ALL) ALL
                 - name: 'sysadmin'
@@ -188,7 +187,6 @@ ROLE
       Examples: - name: 'root'
                   state: 'true'
                   order: '10'
-                  comment: 'root'
                   config: |
                     root ALL=(ALL) ALL
                 - name: 'sysadmin'
@@ -209,7 +207,6 @@ ROLE
       Examples: - name: 'root'
                   state: 'true'
                   order: '10'
-                  comment: 'root'
                   config: |
                     root ALL=(ALL) ALL
                 - name: 'sysadmin'
