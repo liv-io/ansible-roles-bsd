@@ -54,29 +54,34 @@ CONFIG
     sudo_config_all:
       - name: 'root'
         state: 'true'
-        comment: 'root'
-        config: ['root ALL=(ALL) ALL']
+        config: |
+          # root
+          root ALL=(ALL) ALL
 
       - name: 'ansible'
         state: 'true'
-        comment: 'Ansible Configuration Management'
-        config: ['ansible ALL=(root) NOPASSWD: ALL']
+        config: |
+          # Ansible Configuration Management
+          ansible ALL=(root) NOPASSWD: ALL
 
     sudo_config_group:
       - name: 'sysadmin'
         state: 'true'
-        comment: 'System Administrators'
-        config: ['%sysadmin ALL=(ALL) ALL']
+        config: |
+          # System Administrators
+          %sysadmin ALL=(ALL) ALL
 
       - name: 'dbadmin'
         state: 'true'
-        comment: 'Database Administrators'
-        config: ['%dbadmin ALL=(root) service mysqld restart, service mysql restart']
+        config: |
+          # Database Administrators
+          %dbadmin ALL=(root) service mysqld restart, service mysql restart
 
       - name: 'appadmin'
         state: 'true'
-        comment: 'Application Administrators'
-        config: ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
+        config: |
+          # Application Administrators
+          %appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful
 
     sudo_config_host:
       - name: 'obsolete'
@@ -109,30 +114,22 @@ CONFIG
     Options    :
       Examples: 'sysadmin' | 'dbadmin' | 'appadmin'
 
-  comment
-    Description: Define a 'comment' for the sudo file.
-    Implemented: 0.1
+  config
+    Description: Define the 'config' entry/entries.
+    Implemented: 4.0
     Required   : False
     Value      : Arbitrary
     Type       : String
     Default    : ''
     Options    :
-      Examples: 'System Administrators' | 'Database Administrators' |
-                'Application Administrators'
+      Examples: |
+        # System Administrators
+        %sysadmin ALL=(ALL) ALL
+        # Database Administrators
+        %dbadmin ALL=(root) service mysqld restart, service mysql restart
+        # Application Administrators
+        %appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful
       None    : ''
-
-  config
-    Description: Define the 'config' entry/entries.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : Array
-    Default    : []
-    Options    :
-      Examples: ['%sysadmin ALL=(ALL) ALL'] |
-                ['%dbadmin ALL=(root) service mysqld restart, service mysql restart'] |
-                ['%appadmin ALL=(root) NOPASSWD: service apache2 graceful, NOPASSWD: service httpd graceful']
-      None    : []
 
   order
     Description: Define the 'order' of the sudo file.
@@ -161,38 +158,65 @@ ROLE
 
   sudo_config_all
     Description: Define the 'sudo_config_all' option.
-    Implemented: 0.1
+    Implemented: 4.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'root', state: 'true', order: '10', comment: 'root', config: {'root ALL=(ALL) ALL'}},
-                 {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
+      Examples: - name: 'root'
+                  state: 'true'
+                  order: '10'
+                  comment: 'root'
+                  config: |
+                    root ALL=(ALL) ALL
+                - name: 'sysadmin'
+                  state: 'true'
+                  order: '50'
+                  config: |
+                    %sysadmin ALL=(ALL) ALL
       None    : []
 
   sudo_config_group
     Description: Define the 'sudo_config_group' option.
-    Implemented: 0.1
+    Implemented: 4.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'root', state: 'true', order: '10', comment: 'root', config: {'root ALL=(ALL) ALL'}},
-                 {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
+      Examples: - name: 'root'
+                  state: 'true'
+                  order: '10'
+                  comment: 'root'
+                  config: |
+                    root ALL=(ALL) ALL
+                - name: 'sysadmin'
+                  state: 'true'
+                  order: '50'
+                  config: |
+                    %sysadmin ALL=(ALL) ALL
       None    : []
 
   sudo_config_host
     Description: Define the 'sudo_config_host' option.
-    Implemented: 0.1
+    Implemented: 4.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{name: 'root', state: 'true', order: '10', comment: 'root', config: {'root ALL=(ALL) ALL'}},
-                 {name: 'sysadmin', state: 'true', order: '50', config: {'%sysadmin ALL=(ALL) ALL'}]
+      Examples: - name: 'root'
+                  state: 'true'
+                  order: '10'
+                  comment: 'root'
+                  config: |
+                    root ALL=(ALL) ALL
+                - name: 'sysadmin'
+                  state: 'true'
+                  order: '50'
+                  config: |
+                    %sysadmin ALL=(ALL) ALL
       None    : []
 
   sudo_insults

@@ -14,6 +14,11 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 4.0.0 (2019-02-15)
+C: Redesign 'sudo_config_all' option (alter config variable to string)
+C: Redesign 'sudo_config_group' option (alter config variable to string)
+C: Redesign 'sudo_config_host' option (alter config variable to string)
+
 * Version 3.1.0 (2019-01-13)
 C: Add support for FreeBSD 12.0-RELEASE
 C: Drop support for FreeBSD 11.2-RELEASE
