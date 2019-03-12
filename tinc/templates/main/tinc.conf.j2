@@ -37,3 +37,13 @@ ConnectTo = {{connect_to}}
 # /dev/tun0 for Solaris
 # /dev/net/tun for Linux tun/tap
 Device = {{(item.device|default('/dev/tap0'))}}
+
+# The priority of the tincd process.
+# Increasing the priority may help to reduce latency and packet loss on the VPN.
+{% if (item.process_priority is match('low')) %}
+ProcessPriority = low
+{% elif (item.process_priority is match('high')) %}
+ProcessPriority = high
+{% else %}
+ProcessPriority = normal
+{% endif %}

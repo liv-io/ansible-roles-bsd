@@ -43,6 +43,7 @@ ENABLE
         - name: 'dc_to_dc'
           state: 'enable'
           device: '/dev/tap0'
+          process_priority: 'high'
           address: '10.0.0.1'
           netmask: '255.255.255.0'
           routes:
@@ -123,6 +124,7 @@ DISABLE
         - name: 'dc_to_dc'
           state: 'enable'
           device: '/dev/tap0'
+          process_priority: 'high'
           address: '10.0.0.1'
           netmask: '255.255.255.0'
           routes:
