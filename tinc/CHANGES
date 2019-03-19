@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.3.1 (2019-03-19)
+E: Define default value (normal) for 'ProcessPriority' option
+
 * Version 0.3.0 (2019-03-12)
 F: Add support for 'ProcessPriority' option (process_priority)
 

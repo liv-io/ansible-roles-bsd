@@ -40,9 +40,9 @@ Device = {{(item.device|default('/dev/tap0'))}}
 
 # The priority of the tincd process.
 # Increasing the priority may help to reduce latency and packet loss on the VPN.
-{% if (item.process_priority is match('low')) %}
+{% if ((item.process_priority|default('normal')) is match('low')) %}
 ProcessPriority = low
-{% elif (item.process_priority is match('high')) %}
+{% elif ((item.process_priority|default('normal')) is match('high')) %}
 ProcessPriority = high
 {% else %}
 ProcessPriority = normal
