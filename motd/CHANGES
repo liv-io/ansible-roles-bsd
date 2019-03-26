@@ -14,8 +14,11 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.7.2 (2019-03-26)
+E: Extend processor information (sockets and cores)
+
 * Version 2.7.1 (2019-03-26)
-I: Improve processor information
+E: Improve processor information (cores instead of sockets)
 
 * Version 2.7.0 (2019-01-13)
 C: Add support for FreeBSD 12.0-RELEASE
