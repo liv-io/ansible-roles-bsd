@@ -6,7 +6,7 @@ IP Address      : [0m[0;33m{{motd_host_ip_address}}[0m
 Description     : [0m[0;33m{{motd_host_description}}[0m
 Environment     : [0m[{% if (motd_env_name is match('Production|production|Prod|prod')) %}1;31m{% elif (motd_env_name is match('Testing|testing|Test|test')) %}1;32m{% else %}0;33m{% endif %}{{motd_env_name}}[0m
 Operating System: [0m[{{motd_os_color}}{{ansible_distribution}} {{ansible_distribution_version}} ({{ansible_machine}})[0m
-Processor Count : [0m[0;31m{{ansible_processor_count}}[0m
+Processor Cores : [0m[0;31m{{ansible_processor_cores}}[0m
 Memory Size     : [0;31m{{ansible_memtotal_mb}} MB[0m
 
 --------------------------------------------------------------------------------
