@@ -83,6 +83,12 @@ CONFIG
       - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}
       - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}
 
+    openbsd_pf_queues_all:
+      - {name: 'root_data', interface: 'vio0', bandwidth: '1G'}
+      - {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'}
+      - {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'}
+      - {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: 'true'}
+
 --------------------------------------------------------------------------------
 PARAMETERS
 --------------------------------------------------------------------------------
