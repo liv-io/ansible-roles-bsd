@@ -18,3 +18,58 @@
 #-------------------------------------------------------------------------------
 # QUEUES
 #-------------------------------------------------------------------------------
+
+# ALL
+
+{% for item in openbsd_pf_queues_all %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
+{% endif %}
+queue {{item.name}}
+{%- if not ((item.interface|default('')) == '') %} on {{item.interface}} {% endif %}
+{%- if not ((item.parent|default('')) == '') %} parent {{item.parent}} {% endif %}
+{%- if not ((item.bandwidth|default('')) == '') %}bandwidth {{item.bandwidth}} {% endif %}
+{%- if ((item.default|default('false')) is match('true|yes|enable')) %}default{% endif %}
+{% if not loop.last %}
+
+{% endif %}
+
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# GROUP
+
+{% for item in openbsd_pf_queues_group %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
+{% endif %}
+queue {{item.name}}
+{%- if not ((item.interface|default('')) == '') %} on {{item.interface}} {% endif %}
+{%- if not ((item.parent|default('')) == '') %} parent {{item.parent}} {% endif %}
+{%- if not ((item.bandwidth|default('')) == '') %}bandwidth {{item.bandwidth}} {% endif %}
+{%- if ((item.default|default('false')) is match('true|yes|enable')) %}default{% endif %}
+{% if not loop.last %}
+
+{% endif %}
+
+{% endfor %}
+
+#-------------------------------------------------------------------------------
+
+# HOST
+
+{% for item in openbsd_pf_queues_host %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
+{% endif %}
+queue {{item.name}}
+{%- if not ((item.interface|default('')) == '') %} on {{item.interface}} {% endif %}
+{%- if not ((item.parent|default('')) == '') %} parent {{item.parent}} {% endif %}
+{%- if not ((item.bandwidth|default('')) == '') %}bandwidth {{item.bandwidth}} {% endif %}
+{%- if ((item.default|default('false')) is match('true|yes|enable')) %}default{% endif %}
+{% if not loop.last %}
+
+{% endif %}
+
+{% endfor %}

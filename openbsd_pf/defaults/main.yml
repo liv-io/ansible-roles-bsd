@@ -69,6 +69,12 @@ openbsd_pf_options_timeouts: []
 
 openbsd_pf_pf_dir_name: 'pf'
 
+openbsd_pf_queues_all: []
+
+openbsd_pf_queues_group: []
+
+openbsd_pf_queues_host: []
+
 openbsd_pf_tables_all:
   - {name: 'rfc1918', attribute: 'const', value: {'10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'}, comment: 'Table: private address space (RFC 1918)'}
 

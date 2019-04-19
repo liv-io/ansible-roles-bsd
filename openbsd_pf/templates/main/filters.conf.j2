@@ -83,6 +83,7 @@ include '/etc/pf/queues.conf'
 {{port}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if not ((item.ports|default([])) == []) %}} {% endif %}
+{%- if not ((item.queue|default('')) == '') %}queue {{item.queue}} {% endif %}
 {%- if not ((item.dnat|default('')) == '') %}rdr-to {{item.dnat}} {% endif %}
 {%- if not ((item.snat|default('')) == '') %}nat-to {{item.snat}} {% endif %}
 {%- if ((item.type|default('')) is match('icmpv6|icmp6|icmp-inet6|ipv6|ip6|inet6')) %}icmp6-type {% elif ((item.type|default('')) is match('icmpv4|icmp4|icmp-inet|ipv4|ip4|inet')) %}icmp-type {% endif %}
@@ -131,6 +132,7 @@ include '/etc/pf/queues.conf'
 {{port}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if not ((item.ports|default([])) == []) %}} {% endif %}
+{%- if not ((item.queue|default('')) == '') %}queue {{item.queue}} {% endif %}
 {%- if not ((item.dnat|default('')) == '') %}rdr-to {{item.dnat}} {% endif %}
 {%- if not ((item.snat|default('')) == '') %}nat-to {{item.snat}} {% endif %}
 {%- if ((item.type|default('')) is match('icmpv6|icmp6|icmp-inet6|ipv6|ip6|inet6')) %}icmp6-type {% elif ((item.type|default('')) is match('icmpv4|icmp4|icmp-inet|ipv4|ip4|inet')) %}icmp-type {% endif %}
@@ -179,6 +181,7 @@ include '/etc/pf/queues.conf'
 {{port}}{% if not loop.last %}, {% else %} {% endif %}
 {% endfor %}
 {%- if not ((item.ports|default([])) == []) %}} {% endif %}
+{%- if not ((item.queue|default('')) == '') %}queue {{item.queue}} {% endif %}
 {%- if not ((item.dnat|default('')) == '') %}rdr-to {{item.dnat}} {% endif %}
 {%- if not ((item.snat|default('')) == '') %}nat-to {{item.snat}} {% endif %}
 {%- if ((item.type|default('')) is match('icmpv6|icmp6|icmp-inet6|ipv6|ip6|inet6')) %}icmp6-type {% elif ((item.type|default('')) is match('icmpv4|icmp4|icmp-inet|ipv4|ip4|inet')) %}icmp-type {% endif %}

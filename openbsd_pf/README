@@ -65,7 +65,7 @@ CONFIG
       - {action: 'pass', direction: 'in', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'}
       - {action: 'pass', direction: 'in', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'}
       - {action: 'pass', direction: 'in', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'}
-      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'}
+      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, queue: 'ssh', state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'}
       - {action: 'pass', direction: 'out', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'}
       - {action: 'pass', direction: 'out', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'}
       - {action: 'pass', direction: 'out', quick: 'true', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'}
@@ -75,12 +75,12 @@ CONFIG
       - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'10.2.1.15'}, ports: {'http', 'https'} , state: '$default_tcp', comment: 'HTTP(S): To package repository'}
 
     openbsd_pf_filters_group:
-      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'}
-      - {action: 'pass', direction: 'in', version: 'inet6', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'}
+      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}
+      - {action: 'pass', direction: 'in', version: 'inet6', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}
 
     openbsd_pf_filters_host:
       - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'}
-      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'}
+      - {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}
       - {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}
 
 --------------------------------------------------------------------------------
@@ -111,7 +111,7 @@ ROLE
     Default    : [{action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'},
                   {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'},
                   {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'},
-                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'},
+                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, queue: 'ssh', state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'},
                   {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'},
                   {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'},
                   {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'},
@@ -123,7 +123,7 @@ ROLE
       Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: From any'},
                   {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: From any'},
                   {action: 'pass', direction: 'in', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: From any'},
-                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'},
+                  {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'192.168.0.0/16', '172.16.0.0/12', '10.0.0.0/8'}, destinations: {'any'}, ports: {'ssh'}, queue: 'ssh', state: '$default_tcp', comment: 'SSH: From private address space (RFC 1918)'},
                   {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'unreach', state: '$default_udp', comment: 'ICMP Destination Unreachable: To any'},
                   {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'squench', state: '$default_udp', comment: 'ICMP Source Quench: To any'},
                   {action: 'pass', direction: 'out', version: 'inet', protocols: {'icmp'}, type: 'icmp-inet', code: 'echoreq', state: '$default_udp', comment: 'ICMP Echo Request: To any'},
@@ -141,8 +141,8 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'},
-                 {action: 'pass', direction: 'in', version: 'inet6', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'}]
+      Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'},
+                 {action: 'pass', direction: 'in', version: 'inet6', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'}]
       None    : []
 
   openbsd_pf_filters_host
@@ -154,7 +154,7 @@ ROLE
     Default    : []
     Options    :
       Examples: [{action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission', 'imaps'}, state: '$default_tcp', comment: 'MAIL: From any'},
-                 {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, state: '$default_tcp', comment: 'HTTP(S): From any'},
+                 {action: 'pass', direction: 'in', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'http', 'https'}, queue: 'http', state: '$default_tcp', comment: 'HTTP(S): From any'},
                  {action: 'pass', direction: 'out', version: 'inet', protocols: {'tcp'}, sources: {'any'}, destinations: {'any'}, ports: {'smtp', 'submission'}, state: '$default_tcp', comment: 'MAIL: To any'}]
       None    : []
 
@@ -440,6 +440,48 @@ ROLE
     Default    : 'pf'
     Options    :
       Examples: 'pf' | 'pf.d' | 'pf.conf.d'
+
+  openbsd_pf_queues_all
+    Description: Define the 'openbsd_pf_queues_all' option.
+    Implemented: 1.3
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'root_data', interface: 'vio0', bandwidth: '1G'},
+                 {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'},
+                 {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'},
+                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: 'true'}]
+      None    : []
+
+  openbsd_pf_queues_group
+    Description: Define the 'openbsd_pf_queues_group' option.
+    Implemented: 1.3
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'root_data', interface: 'vio0', bandwidth: '1G'},
+                 {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'},
+                 {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'},
+                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: 'true'}]
+      None    : []
+
+  openbsd_pf_queues_host
+    Description: Define the 'openbsd_pf_queues_host' option.
+    Implemented: 1.3
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array/Hash
+    Default    : []
+    Options    :
+      Examples: [{name: 'root_data', interface: 'vio0', bandwidth: '1G'},
+                 {name: 'ssh', parent: 'root_data', bandwidth: '5M min 1M max 100M'},
+                 {name: 'http', parent: 'root_data', bandwidth: '10M max 400M'},
+                 {name: 'other', parent: 'root_data', bandwidth: '50M max 500M', default: 'true'}]
+      None    : []
 
   openbsd_pf_tables_all
     Description: Define the 'openbsd_pf_tables_all' option.
