@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.1.0 (2019-04-27)
+F: Add support for OpenBSD 6.5
+F: Drop support for OpenBSD 6.4
+
 * Version 3.0.0 (2018-12-06)
 F: Add support for managing 'secrets'
 F: Add support for OpenBSD 6.4
