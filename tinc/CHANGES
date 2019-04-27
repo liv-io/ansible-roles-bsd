@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.4.0 (2019-04-27)
+F: Add support for OpenBSD 6.5
+F: Drop support for OpenBSD 6.4
+
 * Version 0.3.1 (2019-03-19)
 E: Define default value (normal) for 'ProcessPriority' option
 
