@@ -15,7 +15,7 @@
 #
 #-------------------------------------------------------------------------------
 
-# $OpenBSD: unbound.conf,v 1.8 2018/03/29 20:40:22 florian Exp $
+# $OpenBSD: unbound.conf,v 1.14 2018/12/16 20:41:30 tim Exp $
 
 #-------------------------------------------------------------------------------
 # SERVER
@@ -302,11 +302,9 @@ stub-zone:
 # FORWARD-ZONE
 #-------------------------------------------------------------------------------
 
+# Use an upstream forwarder (recursive resolver) for some or all zones.
+#
 #forward-zone:
 #	name: "."				# use for ALL queries
-#	forward-addr: 74.82.42.42		# he.net
-#	forward-addr: 2001:470:20::2		# he.net v6
-#	forward-addr: 8.8.8.8			# google.com
-#	forward-addr: 2001:4860:4860::8888	# google.com v6
-#	forward-addr: 208.67.222.222		# opendns.com
+#	forward-addr: 192.0.2.53		# example address only
 #	forward-first: yes			# try direct if forwarder fails
