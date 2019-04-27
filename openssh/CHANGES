@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.8.0 (2019-04-27)
+F: Add support for OpenBSD 6.5
+F: Drop support for OpenBSD 6.4
+
 * Version 2.7.1 (2019-02-07)
 E: Only use SSH host keys 'rsa' and 'ed25519' even when variable is empty
 

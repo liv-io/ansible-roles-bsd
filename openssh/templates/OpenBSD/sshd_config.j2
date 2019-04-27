@@ -168,12 +168,12 @@ AuthorizedKeysFile	.ssh/authorized_keys
 #AuthorizedKeysCommandUser nobody
 
 # For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
-HostbasedAuthentication no
+#HostbasedAuthentication no
 # Change to yes if you don't trust ~/.ssh/known_hosts for
 # HostbasedAuthentication
 #IgnoreUserKnownHosts no
 # Don't read the user's ~/.rhosts and ~/.shosts files
-IgnoreRhosts yes
+#IgnoreRhosts yes
 
 # To disable tunneled clear text passwords, change to no here!
 {% if (openssh_password_authentication is match('false|no|disable')) %}
@@ -181,10 +181,10 @@ PasswordAuthentication no
 {% else %}
 PasswordAuthentication yes
 {% endif %}
-PermitEmptyPasswords no
+#PermitEmptyPasswords no
 
 # Change to no to disable s/key passwords
-ChallengeResponseAuthentication no
+#ChallengeResponseAuthentication yes
 
 #-------------------------------------------------------------------------------
 # FORWARDING
@@ -227,7 +227,6 @@ TCPKeepAlive no
 {% else %}
 TCPKeepAlive yes
 {% endif %}
-#UseLogin no
 #PermitUserEnvironment no
 {% if (openssh_compression is match('true|yes|enable')) %}
 Compression yes
