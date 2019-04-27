@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 4.1.0 (2019-04-27)
+F: Add support for OpenBSD 6.5
+F: Drop support for OpenBSD 6.4
+
 * Version 4.0.0 (2019-02-15)
 C: Redesign 'sudo_config_all' option (alter config variable to string)
 C: Redesign 'sudo_config_group' option (alter config variable to string)
