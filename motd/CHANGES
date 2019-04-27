@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.8.0 (2019-04-27)
+F: Add support for OpenBSD 6.5
+F: Drop support for OpenBSD 6.4
+
 * Version 2.7.2 (2019-03-26)
 E: Extend processor information (sockets and cores)
 
