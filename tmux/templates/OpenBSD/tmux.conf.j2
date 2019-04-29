@@ -1,0 +1,101 @@
+#-------------------------------------------------------------------------------
+#                             ANSIBLE MANAGED FILE
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# INFORMATION
+#-------------------------------------------------------------------------------
+#
+# Name   : tmux.conf
+# Type   : tmux configuration file
+# Role   : tmux
+#
+# Authors: liv community
+# License: Simplified BSD License
+#
+#-------------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------------
+# SESSION OPTIONS
+#-------------------------------------------------------------------------------
+
+# Set the base index
+set-option -g base-index 0
+
+# Control the window bell
+set-option -g bell-action none
+
+# Define the default value of the TERM environment variable
+set-option -g default-terminal 'xterm'
+
+# Set the history limit
+set-option -g history-limit 65536
+
+# Control the windows renumbering
+set-option -g renumber-windows off
+
+# Control the status bar state
+set-option -g status on
+
+# Set the status refresh interval
+set-option -g status-interval 60
+
+# Control the window list position
+set-option -g status-justify left
+
+# Control the key bindings
+set-option -g status-keys vi
+
+# Define the left status string
+set-option -g status-left '[#S] #[fg=grey]#(hostname -s) #[fg=grey]|'
+
+# Set the left status length
+set-option -g status-left-length 20
+
+# Define the status bar position
+set-option -g status-position bottom
+
+# Define the right status string
+set-option -g status-right "#[fg=grey]| #[fg=grey]#(uptime | sed 's@.*average.*: @@g' | sed 's@, @ @g') #[fg=grey]| #[fg=grey]%H:%M %Z %Y-%m-%d"
+
+# Set the right status length
+set-option -g status-right-length 50
+
+#-------------------------------------------------------------------------------
+# STYLE
+#-------------------------------------------------------------------------------
+
+# Define the message bar style
+set-option -g message-command-style "bg=default,fg=black,none"
+set-option -g message-style "bg=default,fg=black,none"
+
+# Define the mode style
+set-option -g mode-style "bg=default,fg=black,none"
+
+# Define the status bar style
+set-option -g status-style "bg=cyan,fg=black"
+
+# Define the window style
+set-option -g window-status-activity-style "bg=default,fg=yellow,none"
+set-option -g window-status-current-style "bg=default,fg=red,none"
+set-option -g window-status-last-style "bg=default,fg=black,none"
+set-option -g window-status-style "bg=default,fg=black,none"
+
+#-------------------------------------------------------------------------------
+# WINDOW OPTIONS
+#-------------------------------------------------------------------------------
+
+# Control the window resizing
+set-window-option -g aggressive-resize on
+
+# Control the window renaming by programs
+set-window-option -g allow-rename off
+
+# Control the window renaming
+set-window-option -g automatic-rename off
+
+# Define the key bindings
+set-window-option -g mode-keys vi
+
+# Control the window activity monitor
+set-window-option -g monitor-activity on
