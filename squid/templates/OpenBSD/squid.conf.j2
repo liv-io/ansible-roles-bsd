@@ -33,8 +33,8 @@ acl dst_network_rfc1918 dst 172.16.0.0/12 10.0.0.0/8 192.168.0.0/16
 acl src_host_localhost src 127.0.0.1/32
 
 # ACL files
-acl dst_domain_allowed dstdomain -i '{{file_dst_dst_domain_allowed_acl}}'
-acl dst_domain_blocked dstdomain -i '{{file_dst_dst_domain_blocked_acl}}'
+acl dst_domain_allowed dstdom_regex -i '{{file_dst_dst_domain_allowed_acl}}'
+acl dst_domain_blocked dstdom_regex -i '{{file_dst_dst_domain_blocked_acl}}'
 acl dst_network_allowed dst '{{file_dst_dst_network_allowed_acl}}'
 acl dst_network_blocked dst '{{file_dst_dst_network_blocked_acl}}'
 acl src_network_unrestricted src '{{file_dst_src_network_unrestricted_acl}}'
