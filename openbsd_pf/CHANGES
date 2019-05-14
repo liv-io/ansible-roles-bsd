@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.4.1 (2019-05-14)
+E: Use more distinct 'set queue' parameter
+
 * Version 1.4.0 (2019-04-27)
 F: Add support for OpenBSD 6.5
 F: Drop support for OpenBSD 6.4
