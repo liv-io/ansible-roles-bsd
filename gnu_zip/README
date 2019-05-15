@@ -35,7 +35,7 @@ REMOVE
     roles:
       - role: gnu_zip
     vars:
-      gnu_zip_state: 'gnu_zip'
+      gnu_zip_state: 'remove'
 
 INACTIVE
   - hosts: all
