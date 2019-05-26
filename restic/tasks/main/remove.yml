@@ -11,7 +11,7 @@
       - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
       - "vars/{{ansible_os_family}}.yml"
       - 'vars/main.yml'
-      skip: 'true'
+      errors: 'ignore'
   tags:
     - remove
     - restic
@@ -58,6 +58,7 @@
   cron:
     state: 'absent'
     name: "{{cron_name_restic_run_backup}}"
+    user: "{{cron_user_restic_run_backup}}"
   tags:
     - remove
     - restic
