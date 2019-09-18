@@ -13,10 +13,3 @@ file_dst_nsd_conf: '/usr/local/etc/nsd/nsd.conf'
 # nsd_enable
 file_line_nsd_enable: 'nsd_enable'
 file_dst_nsd_enable: '/etc/rc.conf'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
-# nsd-checkconf
-command_cmd_nsd_checkconf: 'nsd-checkconf /usr/local/etc/nsd/nsd.conf'
