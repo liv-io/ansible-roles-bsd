@@ -27,7 +27,7 @@
     mode: "{{file_mode_root_hints}}"
     owner: "{{file_owner_root_hints}}"
     group: "{{file_group_root_hints}}"
-  notify: 'command unbound-checkconf'
+    validate: "{{file_validate_root_hints}}"
   tags:
     - disable
     - unbound
@@ -39,7 +39,7 @@
     mode: "{{file_mode_unbound_conf}}"
     owner: "{{file_owner_unbound_conf}}"
     group: "{{file_group_unbound_conf}}"
-  notify: 'command unbound-checkconf'
+    validate: "{{file_validate_unbound_conf}}"
   tags:
     - disable
     - unbound

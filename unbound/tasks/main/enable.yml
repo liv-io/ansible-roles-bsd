@@ -27,9 +27,8 @@
     mode: "{{file_mode_root_hints}}"
     owner: "{{file_owner_root_hints}}"
     group: "{{file_group_root_hints}}"
-  notify:
-    - 'command unbound-checkconf'
-    - 'service restart unbound'
+    validate: "{{file_validate_root_hints}}"
+  notify: 'service restart unbound'
   tags:
     - enable
     - unbound
@@ -41,9 +40,7 @@
     path: "{{file_dst_root_hints_link}}"
     owner: "{{file_owner_root_hints_link}}"
     group: "{{file_group_root_hints_link}}"
-  notify:
-    - 'command unbound-checkconf'
-    - 'service restart unbound'
+  notify: 'service restart unbound'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - install
@@ -56,9 +53,8 @@
     mode: "{{file_mode_unbound_conf}}"
     owner: "{{file_owner_unbound_conf}}"
     group: "{{file_group_unbound_conf}}"
-  notify:
-    - 'command unbound-checkconf'
-    - 'service restart unbound'
+    validate: "{{file_validate_unbound_conf}}"
+  notify: 'service restart unbound'
   tags:
     - enable
     - unbound
@@ -70,9 +66,7 @@
     path: "{{file_dst_unbound_conf_link}}"
     owner: "{{file_owner_unbound_conf_link}}"
     group: "{{file_group_unbound_conf_link}}"
-  notify:
-    - 'command unbound-checkconf'
-    - 'service restart unbound'
+  notify: 'service restart unbound'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - install
