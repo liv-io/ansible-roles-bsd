@@ -27,7 +27,7 @@
     mode: "{{file_mode_nsd_conf}}"
     owner: "{{file_owner_nsd_conf}}"
     group: "{{file_group_nsd_conf}}"
-  notify: 'command nsd-checkconf'
+    validate: "{{file_validate_nsd_conf}}"
   tags:
     - disable
     - nsd

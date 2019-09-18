@@ -20,6 +20,30 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: 'command locate unbound'
+  command: "{{command_cmd_locate_unbound}}"
+  register: register_locate_unbound
+  changed_when: (register_locate_unbound.rc > 1)
+  failed_when: (register_locate_unbound.rc > 1)
+  check_mode: 'no'
+  tags:
+    - config
+    - nsd
+
+- name: 'file create config'
+  template:
+    src: "{{file_src_config}}"
+    dest: "{{file_dst_config}}/{{item.name}}.zone"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
+  with_items: "{{nsd_zone}}"
+  notify: 'service restart nsd'
+  when: not (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 1)
+  tags:
+    - config
+    - nsd
+
 - name: 'file create config'
   template:
     src: "{{file_src_config}}"
@@ -29,9 +53,20 @@
     group: "{{file_group_config}}"
   with_items: "{{nsd_zone}}"
   notify:
-    - 'command nsd-checkconf'
     - 'service restart nsd'
-  when: not (item.state|default('true') is match('false|no|remove'))
+    - 'service restart unbound'
+  when: not (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 0)
+  tags:
+    - config
+    - nsd
+
+- name: 'file remove config'
+  file:
+    state: 'absent'
+    path: "{{file_dst_config}}/{{item.name}}.zone"
+  with_items: "{{nsd_zone}}"
+  notify: 'service restart nsd'
+  when: (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 1)
   tags:
     - config
     - nsd
@@ -42,9 +77,9 @@
     path: "{{file_dst_config}}/{{item.name}}.zone"
   with_items: "{{nsd_zone}}"
   notify:
-    - 'command nsd-checkconf'
     - 'service restart nsd'
-  when: (item.state|default('true') is match('false|no|remove'))
+    - 'service restart unbound'
+  when: (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 0)
   tags:
     - config
     - nsd

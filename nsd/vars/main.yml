@@ -24,13 +24,14 @@ file_dst_nsd_conf: '/var/nsd/etc/nsd.conf'
 file_mode_nsd_conf: '0644'
 file_owner_nsd_conf: 'root'
 file_group_nsd_conf: 'wheel'
+file_validate_nsd_conf: 'nsd-checkconf %s'
 
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
 
-# nsd-checkconf
-command_cmd_nsd_checkconf: 'nsd-checkconf /var/nsd/etc/nsd.conf'
+# locate-unbound
+command_cmd_locate_unbound: 'which unbound'
 
 #-------------------------------------------------------------------------------
 # SYSTEM
@@ -38,3 +39,6 @@ command_cmd_nsd_checkconf: 'nsd-checkconf /var/nsd/etc/nsd.conf'
 
 # nsd
 service_name_nsd: 'nsd'
+
+# unbound
+service_name_unbound: 'unbound'

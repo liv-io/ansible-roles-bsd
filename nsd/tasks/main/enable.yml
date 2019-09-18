@@ -20,6 +20,16 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: 'command locate unbound'
+  command: "{{command_cmd_locate_unbound}}"
+  register: register_locate_unbound
+  changed_when: (register_locate_unbound.rc > 1)
+  failed_when: (register_locate_unbound.rc > 1)
+  check_mode: 'no'
+  tags:
+    - enable
+    - nsd
+
 - name: 'file create nsd.conf'
   template:
     src: "{{file_src_nsd_conf}}"
@@ -27,9 +37,25 @@
     mode: "{{file_mode_nsd_conf}}"
     owner: "{{file_owner_nsd_conf}}"
     group: "{{file_group_nsd_conf}}"
+    validate: "{{file_validate_nsd_conf}}"
+  notify: 'service restart nsd'
+  when: (register_locate_unbound.rc == 1)
+  tags:
+    - enable
+    - nsd
+
+- name: 'file create nsd.conf'
+  template:
+    src: "{{file_src_nsd_conf}}"
+    dest: "{{file_dst_nsd_conf}}"
+    mode: "{{file_mode_nsd_conf}}"
+    owner: "{{file_owner_nsd_conf}}"
+    group: "{{file_group_nsd_conf}}"
+    validate: "{{file_validate_nsd_conf}}"
   notify:
-    - 'command nsd-checkconf'
     - 'service restart nsd'
+    - 'service restart unbound'
+  when: (register_locate_unbound.rc == 0)
   tags:
     - enable
     - nsd

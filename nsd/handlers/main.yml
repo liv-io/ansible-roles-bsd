@@ -14,13 +14,6 @@
       errors: 'ignore'
 
 #-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
-- name: 'command nsd-checkconf'
-  command: "{{command_cmd_nsd_checkconf}}"
-
-#-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
@@ -28,3 +21,8 @@
   service:
     state: 'restarted'
     name: "{{service_name_nsd}}"
+
+- name: 'service restart unbound'
+  service:
+    state: 'restarted'
+    name: "{{service_name_unbound}}"
