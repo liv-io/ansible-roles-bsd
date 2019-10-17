@@ -78,7 +78,7 @@ PACKAGES
     Version: >= 4.4
     Name   :
       FreeBSD 12: 'findutils'
-      OpenBSD 6 : 'findutils'
+      OpenBSD  6: 'findutils'
 
 ROLES
 
@@ -124,7 +124,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
