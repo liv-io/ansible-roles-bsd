@@ -76,7 +76,7 @@ PACKAGES
     Version: >= 2.6
     Name   :
       FreeBSD 12: 'gnugrep'
-      OpenBSD 6 : 'ggrep'
+      OpenBSD  6: 'ggrep'
 
 ROLES
 
@@ -122,7 +122,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
