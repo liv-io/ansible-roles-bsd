@@ -79,7 +79,7 @@ PACKAGES
     Version: >= 7.19
     Name   :
       FreeBSD 12: 'curl'
-      OpenBSD 6 : 'curl'
+      OpenBSD  6: 'curl'
 
 ROLES
 
@@ -125,7 +125,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
