@@ -79,7 +79,7 @@ PACKAGES
     Version: >= 4.2
     Name   :
       FreeBSD 12: 'gsed'
-      OpenBSD 6 : 'gsed'
+      OpenBSD  6: 'gsed'
 
 ROLES
 
@@ -125,7 +125,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
