@@ -79,7 +79,7 @@ PACKAGES
     Version: >= 1.28
     Name   :
       FreeBSD 12: 'gtar'
-      OpenBSD 6 : 'gtar--'
+      OpenBSD  6: 'gtar--'
 
 ROLES
 
@@ -125,7 +125,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
