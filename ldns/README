@@ -77,6 +77,7 @@ PACKAGES
     Version: >= 1.0
     Name   :
       FreeBSD 12: 'ldns'
+      OpenBSD  6: 'ldns-utils'
 
 ROLES
 
@@ -122,8 +123,8 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
-      Status: Unsupported
+    Version: 6.6
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER
