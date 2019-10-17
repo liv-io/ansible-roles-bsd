@@ -76,6 +76,7 @@ PACKAGES
     Version: >= 1.05
     Name   :
       FreeBSD 12: 'sshpass'
+      OpenBSD  6: 'sshpass'
 
 ROLES
 
@@ -121,8 +122,8 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
-      Status: Unsupported
+    Version: 6.6
+      Status: Stable
 
 --------------------------------------------------------------------------------
 OTHER
