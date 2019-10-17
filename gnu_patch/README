@@ -77,7 +77,7 @@ PACKAGES
     Version: >= 2.7
     Name   :
       FreeBSD 12: 'patch'
-      OpenBSD 6 : 'gpatch'
+      OpenBSD  6: 'gpatch'
 
 ROLES
 
@@ -123,7 +123,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
