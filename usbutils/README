@@ -78,7 +78,7 @@ PACKAGES
   usbutils
     Version: >= 007p0
     Name   :
-      OpenBSD 6 : 'usbutils'
+      OpenBSD  6: 'usbutils'
 
 ROLES
 
@@ -124,7 +124,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
