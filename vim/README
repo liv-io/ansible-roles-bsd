@@ -79,7 +79,7 @@ PACKAGES
     Version: >= 7.2
     Name   :
       FreeBSD 12: 'vim-console'
-      OpenBSD 6 : 'vim--no_x11'
+      OpenBSD  6: 'vim--no_x11'
 
 ROLES
 
@@ -125,7 +125,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
