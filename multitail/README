@@ -86,7 +86,7 @@ PACKAGES
     Version: >= 5.2
     Name   :
       FreeBSD 12: 'multitail'
-      OpenBSD 6 : 'multitail'
+      OpenBSD  6: 'multitail'
 
 ROLES
 
@@ -132,7 +132,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
