@@ -465,7 +465,7 @@ PACKAGES
     Version: >= 3.5
     Name   :
       FreeBSD 12: 'squid'
-      OpenBSD 6 : 'squid'
+      OpenBSD  6: 'squid'
 
 ROLES
 
@@ -511,7 +511,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
