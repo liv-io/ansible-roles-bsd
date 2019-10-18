@@ -84,7 +84,7 @@ PACKAGES
     Version: >= 1.5
     Name   :
       FreeBSD 12: 'jq'
-      OpenBSD 6 : 'jq'
+      OpenBSD  6: 'jq'
 
 ROLES
 
@@ -130,7 +130,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
