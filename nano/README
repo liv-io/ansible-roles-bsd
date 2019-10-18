@@ -74,7 +74,7 @@ PACKAGES
     Version: >= 2.0
     Name   :
       FreeBSD 12: 'nano'
-      OpenBSD 6 : 'nano'
+      OpenBSD  6: 'nano'
 
 ROLES
 
@@ -120,7 +120,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
