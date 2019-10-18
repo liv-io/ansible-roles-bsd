@@ -75,7 +75,7 @@ PACKAGES
     Version: >= 1.6
     Name   :
       FreeBSD 12: 'mytop'
-      OpenBSD 6 : 'mytop'
+      OpenBSD  6: 'mytop'
 
 ROLES
 
@@ -121,7 +121,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
