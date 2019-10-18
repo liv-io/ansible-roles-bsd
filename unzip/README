@@ -78,7 +78,7 @@ PACKAGES
     Version: >= 6.0
     Name   :
       FreeBSD 12: 'unzip'
-      OpenBSD 6 : 'unzip--'
+      OpenBSD  6: 'unzip--'
 
 ROLES
 
@@ -124,7 +124,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
