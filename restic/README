@@ -285,7 +285,7 @@ PACKAGES
     Version: >= 0.8.3
     Name   :
       FreeBSD 12: 'restic'
-      OpenBSD 6 : 'restic'
+      OpenBSD  6: 'restic'
 
 ROLES
   common
@@ -334,7 +334,7 @@ OPERATING SYSTEMS
       Status: Testing
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Testing
 
 --------------------------------------------------------------------------------
