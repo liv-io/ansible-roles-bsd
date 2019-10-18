@@ -237,7 +237,7 @@ PACKAGES
     Version: >= 4.2
     Name   :
       FreeBSD 12: 'ntp'
-      OpenBSD 6 : 'ntp'
+      OpenBSD  6: 'ntp'
 
 ROLES
   common
@@ -286,7 +286,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
