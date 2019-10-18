@@ -80,7 +80,7 @@ PACKAGES
     Version: >= 1.45
     Name   :
       FreeBSD 12: 'ngrep'
-      OpenBSD 6 : 'ngrep'
+      OpenBSD  6: 'ngrep'
 
 ROLES
 
@@ -126,7 +126,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
