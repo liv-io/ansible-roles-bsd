@@ -89,7 +89,7 @@ PACKAGES
     Version: >= 0.4
     Name   :
       FreeBSD 12: 'sysbench'
-      OpenBSD 6 : 'sysbench--'
+      OpenBSD  6: 'sysbench--'
 
 ROLES
 
@@ -135,7 +135,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
