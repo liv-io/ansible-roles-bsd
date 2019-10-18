@@ -253,7 +253,7 @@ PACKAGES
     Version: >= 1.8
     Name   :
       FreeBSD 12: 'sudo'
-      OpenBSD 6 : 'sudo'
+      OpenBSD  6: 'sudo'
 
 ROLES
 
@@ -299,7 +299,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
