@@ -75,7 +75,7 @@ PACKAGES
     Version: >= 1.2
     Name   :
       FreeBSD 12: 'nyancat'
-      OpenBSD 6 : 'nyancat'
+      OpenBSD  6: 'nyancat'
 
 ROLES
 
@@ -121,7 +121,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
