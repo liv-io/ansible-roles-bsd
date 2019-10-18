@@ -80,7 +80,7 @@ PACKAGES
     Version: >= 2.2
     Name   :
       FreeBSD 12: 'py27-Jinja2'
-      OpenBSD 6 : 'py-jinja2'
+      OpenBSD  6: 'py-jinja2'
 
 ROLES
 
@@ -126,7 +126,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
