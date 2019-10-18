@@ -5,6 +5,8 @@ unbound_state: 'enable'
 unbound_access_control:
   - {address: '127.0.0.1', action: 'allow', comment: 'IP4 localhost'}
   - {address: '0.0.0.0/0', action: 'refuse', comment: 'IP4 any'}
+  - {address: '::1', action: 'allow', comment: 'IP6 localhost'}
+  - {address: '::0/0', action: 'refuse', comment: 'IP6 any'}
 
 unbound_control_enable: 'false'
 

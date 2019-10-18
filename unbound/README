@@ -95,7 +95,9 @@ ROLE
     Value      : Arbitrary
     Type       : Array/Hash
     Default    : [{address: '127.0.0.1', action: 'allow', comment: 'IP4 localhost'},
-                  {address: '0.0.0.0/0', action: 'refuse', comment: 'IP4 any'}]
+                  {address: '0.0.0.0/0', action: 'refuse', comment: 'IP4 any'},
+                  {address: '::1', action: 'allow', comment: 'IP6 localhost'},
+                  {address: '::0/0', action: 'refuse', comment: 'IP6 any'}]
     Options    :
       Examples: [{address: '127.0.0.1', action: 'allow', comment: 'IP4 localhost'},
                  {address: '0.0.0.0/0', action: 'refuse', comment: 'IP4 any'},
@@ -450,7 +452,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
