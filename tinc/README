@@ -260,7 +260,7 @@ PACKAGES
   tinc
     Version: >= 1.0
     Name   :
-      OpenBSD 6 : 'tinc'
+      OpenBSD  6: 'tinc'
 
 ROLES
 
@@ -306,7 +306,7 @@ OPERATING SYSTEMS
       Status: Planned
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Testing
 
 --------------------------------------------------------------------------------
