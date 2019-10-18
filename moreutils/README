@@ -91,7 +91,7 @@ PACKAGES
     Version: >= 0.40
     Name   :
       FreeBSD 12: 'moreutils'
-      OpenBSD 6 : 'moreutils'
+      OpenBSD  6: 'moreutils'
 
 ROLES
 
@@ -137,7 +137,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
