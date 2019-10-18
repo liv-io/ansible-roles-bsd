@@ -78,7 +78,7 @@ PACKAGES
     Version: >= 1.7.2.3
     Name   :
       FreeBSD 12: 'socat'
-      OpenBSD 6 : 'socat'
+      OpenBSD  6: 'socat'
 
 ROLES
 
@@ -124,7 +124,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
