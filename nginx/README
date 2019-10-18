@@ -384,7 +384,7 @@ PACKAGES
     Version: >= 1.8
     Name   :
       FreeBSD 12: 'nginx'
-      OpenBSD 6 : 'nginx'
+      OpenBSD  6: 'nginx'
 
 ROLES
 
@@ -430,7 +430,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
