@@ -77,7 +77,7 @@ PACKAGES
     Version: >= 1.7
     Name   :
       FreeBSD 12: 'picocom'
-      OpenBSD 6 : 'picocom'
+      OpenBSD  6: 'picocom'
 
 ROLES
 
@@ -123,7 +123,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
