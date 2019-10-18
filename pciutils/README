@@ -76,7 +76,7 @@ PACKAGES
     Version: >= 3.1
     Name   :
       FreeBSD 12: 'pciutils'
-      OpenBSD 6 : 'pciutils'
+      OpenBSD  6: 'pciutils'
 
 ROLES
 
@@ -122,7 +122,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
