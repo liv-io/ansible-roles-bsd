@@ -77,7 +77,7 @@ PACKAGES
     Version: >= 0.75
     Name   :
       FreeBSD 12: 'mtr-nox11'
-      OpenBSD 6 : 'mtr--'
+      OpenBSD  6: 'mtr--'
 
 ROLES
 
@@ -123,7 +123,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
