@@ -81,7 +81,7 @@ PACKAGES
     Version: >= 1.7
     Name   :
       FreeBSD 12: 'py27-paramiko'
-      OpenBSD 6 : 'py-paramiko'
+      OpenBSD  6: 'py-paramiko'
 
 ROLES
 
@@ -127,7 +127,7 @@ OPERATING SYSTEMS
       Status: Stable
 
   OpenBSD
-    Version: 6.5
+    Version: 6.6
       Status: Stable
 
 --------------------------------------------------------------------------------
