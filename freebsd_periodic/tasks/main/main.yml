@@ -1,0 +1,13 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (freebsd_periodic_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - freebsd_periodic
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (freebsd_periodic_state is match('false|no|remove'))
+  tags:
+    - freebsd_periodic

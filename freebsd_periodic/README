@@ -2,7 +2,7 @@
 INFORMATION
 --------------------------------------------------------------------------------
 
-Name   : periodic
+Name   : freebsd_periodic
 Type   : Ansible role
 
 Authors: liv community
@@ -24,33 +24,33 @@ USAGE
 INSTALL
   - hosts: all
     roles:
-      - role: periodic
+      - role: freebsd_periodic
     vars:
-      periodic_state: 'install'
-      periodic_daily_show_info: 'false'
-      periodic_monthly_show_info: 'false'
-      periodic_weekly_show_info: 'false'
+      freebsd_periodic_state: 'install'
+      freebsd_periodic_daily_show_info: 'false'
+      freebsd_periodic_monthly_show_info: 'false'
+      freebsd_periodic_weekly_show_info: 'false'
 
 REMOVE
   - hosts: all
     roles:
-      - role: periodic
+      - role: freebsd_periodic
     vars:
-      periodic_state: 'remove'
+      freebsd_periodic_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
-      - role: periodic
+      - role: freebsd_periodic
     vars:
-      periodic_state: 'inactive'
+      freebsd_periodic_state: 'inactive'
 
 --------------------------------------------------------------------------------
 PARAMETERS
 --------------------------------------------------------------------------------
 
 ROLE
-  periodic_state
+  freebsd_periodic_state
     Description: Control the state of the role.
     Implemented: 0.1
     Required   : False
@@ -62,8 +62,8 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  periodic_daily_output
-    Description: Define the 'periodic_daily_output' option.
+  freebsd_periodic_daily_output
+    Description: Define the 'freebsd_periodic_daily_output' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -72,8 +72,8 @@ ROLE
     Options    :
       Examples: 'root' | 'admin' | 'user' | '/path/logfile' | '/dev/null'
 
-  periodic_daily_show_badconfig
-    Description: Control the 'periodic_daily_show_badconfig' option.
+  freebsd_periodic_daily_show_badconfig
+    Description: Control the 'freebsd_periodic_daily_show_badconfig' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -83,8 +83,8 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  periodic_daily_show_info
-    Description: Control the 'periodic_daily_show_info' option.
+  freebsd_periodic_daily_show_info
+    Description: Control the 'freebsd_periodic_daily_show_info' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -94,8 +94,8 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  periodic_daily_show_success
-    Description: Control the 'periodic_daily_show_success' option.
+  freebsd_periodic_daily_show_success
+    Description: Control the 'freebsd_periodic_daily_show_success' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -105,8 +105,8 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  periodic_monthly_output
-    Description: Define the 'periodic_monthly_output' option.
+  freebsd_periodic_monthly_output
+    Description: Define the 'freebsd_periodic_monthly_output' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -115,8 +115,8 @@ ROLE
     Options    :
       Examples: 'root' | 'admin' | 'user' | '/path/logfile' | '/dev/null'
 
-  periodic_monthly_show_badconfig
-    Description: Control the 'periodic_monthly_show_badconfig' option.
+  freebsd_periodic_monthly_show_badconfig
+    Description: Control the 'freebsd_periodic_monthly_show_badconfig' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -126,8 +126,8 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  periodic_monthly_show_info
-    Description: Control the 'periodic_monthly_show_info' option.
+  freebsd_periodic_monthly_show_info
+    Description: Control the 'freebsd_periodic_monthly_show_info' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -137,8 +137,8 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  periodic_monthly_show_success
-    Description: Control the 'periodic_monthly_show_success' option.
+  freebsd_periodic_monthly_show_success
+    Description: Control the 'freebsd_periodic_monthly_show_success' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -148,8 +148,8 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  periodic_weekly_output
-    Description: Define the 'periodic_weekly_output' option.
+  freebsd_periodic_weekly_output
+    Description: Define the 'freebsd_periodic_weekly_output' option.
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary
@@ -158,8 +158,8 @@ ROLE
     Options    :
       Examples: 'root' | 'admin' | 'user' | '/path/logfile' | '/dev/null'
 
-  periodic_weekly_show_badconfig
-    Description: Control the 'periodic_weekly_show_badconfig' option.
+  freebsd_periodic_weekly_show_badconfig
+    Description: Control the 'freebsd_periodic_weekly_show_badconfig' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -169,8 +169,8 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  periodic_weekly_show_info
-    Description: Control the 'periodic_weekly_show_info' option.
+  freebsd_periodic_weekly_show_info
+    Description: Control the 'freebsd_periodic_weekly_show_info' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -180,8 +180,8 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
-  periodic_weekly_show_success
-    Description: Control the 'periodic_weekly_show_success' option.
+  freebsd_periodic_weekly_show_success
+    Description: Control the 'freebsd_periodic_weekly_show_success' option.
     Implemented: 0.1
     Required   : False
     Value      : Predetermined
@@ -243,7 +243,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 12.0-*
+    Version: 12.1-*
       Status: Stable
 
   OpenBSD

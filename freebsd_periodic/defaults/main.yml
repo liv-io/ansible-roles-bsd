@@ -1,0 +1,27 @@
+---
+
+freebsd_periodic_state: 'install'
+
+freebsd_periodic_daily_output: 'root'
+
+freebsd_periodic_daily_show_badconfig: 'false'
+
+freebsd_periodic_daily_show_info: 'true'
+
+freebsd_periodic_daily_show_success: 'true'
+
+freebsd_periodic_monthly_output: 'root'
+
+freebsd_periodic_monthly_show_badconfig: 'false'
+
+freebsd_periodic_monthly_show_info: 'true'
+
+freebsd_periodic_monthly_show_success: 'true'
+
+freebsd_periodic_weekly_output: 'root'
+
+freebsd_periodic_weekly_show_badconfig: 'false'
+
+freebsd_periodic_weekly_show_info: 'true'
+
+freebsd_periodic_weekly_show_success: 'true'

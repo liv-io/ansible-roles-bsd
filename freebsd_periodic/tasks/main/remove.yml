@@ -13,20 +13,17 @@
       - 'vars/main.yml'
       errors: 'ignore'
   tags:
-    - install
-    - periodic
+    - remove
+    - freebsd_periodic
 
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'file create periodic.conf'
-  template:
-    src: "{{file_src_periodic_conf}}"
-    dest: "{{file_dst_periodic_conf}}"
-    mode: "{{file_mode_periodic_conf}}"
-    owner: "{{file_owner_periodic_conf}}"
-    group: "{{file_group_periodic_conf}}"
+- name: 'file remove periodic.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_periodic_conf}}"
   tags:
-    - install
-    - periodic
+    - remove
+    - freebsd_periodic
