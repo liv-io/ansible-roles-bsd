@@ -529,7 +529,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 12.0-*
+    Version: 12.1-*
       Status: Stable
 
   OpenBSD
