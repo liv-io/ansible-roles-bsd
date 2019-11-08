@@ -413,6 +413,9 @@ OPERATING SYSTEMS
     Version: 12.0-*
       Status: Stable
 
+    Version: 12.1-*
+      Status: Unsupported
+
   OpenBSD
     Version: 6.6
       Status: Unsupported
