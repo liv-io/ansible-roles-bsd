@@ -15,8 +15,8 @@ F: feature
 --------------------------------------------------------------------------------
 
 * Version 1.6.0 (2019-10-18)
-F: Add support for OpenBSD 6.6
-F: Drop support for OpenBSD 6.5
+C: Add support for OpenBSD 6.6
+C: Drop support for OpenBSD 6.5
 
 * Version 1.5.0 (2019-05-26)
 F: Port role to Ansible 2.8
@@ -25,11 +25,11 @@ F: Port role to Ansible 2.8
 E: Use more distinct 'set queue' parameter
 
 * Version 1.4.0 (2019-04-27)
-F: Add support for OpenBSD 6.5
-F: Drop support for OpenBSD 6.4
+C: Add support for OpenBSD 6.5
+C: Drop support for OpenBSD 6.4
 
 * Version 1.3.0 (2019-04-19)
-F: Add support for 'queue' option
+C: Add support for 'queue' option
 
 * Version 1.2.3 (2019-01-01)
 E: Minor Jinja2 templating improvement
@@ -41,12 +41,12 @@ E: Remove needless new line
 E: Minor style improvement
 
 * Version 1.2.0 (2018-11-15)
-F: Add support for 'quick' option
+C: Add support for 'quick' option
 E: Minor Jinja2 templating improvement
 
 * Version 1.1.0 (2018-10-20)
-F: Add support for OpenBSD 6.4
-F: Drop support for OpenBSD 6.3
+C: Add support for OpenBSD 6.4
+C: Drop support for OpenBSD 6.3
 
 * Version 1.0.3 (2018-06-21)
 B: Fix 'command' variable names
@@ -58,7 +58,7 @@ B: Fix 'command_shell_check_openbsd_pf' variable
 E: Correct 'command' variable names
 
 * Version 1.0.0 (2018-06-11)
-F: Add support for 'rdr-to' (DNAT) and 'nat-to' (SNAT)
+C: Add support for 'rdr-to' (DNAT) and 'nat-to' (SNAT)
 
 * Version 0.9.1 (2018-05-31)
 E: Correct 'command' variable names
@@ -70,8 +70,8 @@ F: Port role to Ansible 2.5
 E: Simplify role by removing 'template' option
 
 * Version 0.8.0 (2018-04-04)
-F: Add support for OpenBSD 6.3
-F: Drop support for OpenBSD 6.2
+C: Add support for OpenBSD 6.3
+C: Drop support for OpenBSD 6.2
 
 * Version 0.7.0 (2018-03-30)
 F: Port role to Ansible 2.4
@@ -100,8 +100,8 @@ B: Fix multiple bugs in 'filters.conf.j2' template
 E: Improve variable names of 'openbsd_pf_options_limits' and 'openbsd_pf_options_timeouts'
 
 * Version 0.6.0 (2017-11-20)
-F: Add support for OpenBSD 6.2
-F: Drop support for OpenBSD 6.1
+C: Add support for OpenBSD 6.2
+C: Drop support for OpenBSD 6.1
 E: Redesign, improve and cleanup Ansible role
 
 * Version 0.5.2 (2017-08-01)
@@ -111,21 +111,21 @@ E: Improve option 'openbsd_pf_option_loginterface'
 E: Improve and cleanup Ansible role
 
 * Version 0.5.0 (2017-04-16)
-F: Add support for OpenBSD 6.1
-F: Drop support for OpenBSD 6.0
+C: Add support for OpenBSD 6.1
+C: Drop support for OpenBSD 6.0
 
 * Version 0.4.1 (2016-10-14)
 E: Update support information for FreeBSD 11.0-RELEASE
 
 * Version 0.4.0 (2016-09-03)
-F: Add support for OpenBSD 6.0
-F: Drop support for OpenBSD 5.9
+C: Add support for OpenBSD 6.0
+C: Drop support for OpenBSD 5.9
 
 * Version 0.3.1 (2016-05-29)
 E: Improve FreeBSD support
 
 * Version 0.3.0 (2016-05-21)
-F: Add support for Ansible 2.0
+C: Add support for Ansible 2.0
 
 * Version 0.2.2 (2016-04-15)
 E: Improve 'all' 'group' and 'host' options
@@ -134,8 +134,8 @@ E: Improve 'all' 'group' and 'host' options
 E: Update support information for FreeBSD 10.3-RELEASE
 
 * Version 0.2.0 (2016-04-02)
-F: Add support for OpenBSD 5.9
-F: Drop support for OpenBSD 5.8
+C: Add support for OpenBSD 5.9
+C: Drop support for OpenBSD 5.8
 
 * Version 0.1.0 (2016-03-05)
 F: Initial release

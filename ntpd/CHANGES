@@ -19,15 +19,15 @@ C: Add support for FreeBSD 12.1-RELEASE
 C: Drop support for FreeBSD 12.0-RELEASE
 
 * Version 4.3.0 (2019-10-18)
-F: Add support for OpenBSD 6.6
-F: Drop support for OpenBSD 6.5
+C: Add support for OpenBSD 6.6
+C: Drop support for OpenBSD 6.5
 
 * Version 4.2.0 (2019-05-26)
 F: Port role to Ansible 2.8
 
 * Version 4.1.0 (2019-04-27)
-F: Add support for OpenBSD 6.5
-F: Drop support for OpenBSD 6.4
+C: Add support for OpenBSD 6.5
+C: Drop support for OpenBSD 6.4
 
 * Version 4.0.0 (2019-01-24)
 C: Rename option 'ntpd_monitor_mail_recipient' to 'ntpd_monitor_mail_from_address'
@@ -76,8 +76,8 @@ E: Remove 'ntpd_monitor_mail_subject' parameter
 E: Remove email information from message
 
 * Version 2.5.0 (2018-10-20)
-F: Add support for OpenBSD 6.4
-F: Drop support for OpenBSD 6.3
+C: Add support for OpenBSD 6.4
+C: Drop support for OpenBSD 6.3
 
 * Version 2.4.3 (2018-07-21)
 B: Fix brackets in Shell script
@@ -89,8 +89,8 @@ E: Shell script improvements
 E: Minor role improvements
 
 * Version 2.4.0 (2018-07-01)
-F: Add support for FreeBSD 11.2-RELEASE
-F: Drop support for FreeBSD 11.1-RELEASE
+C: Add support for FreeBSD 11.2-RELEASE
+C: Drop support for FreeBSD 11.1-RELEASE
 
 * Version 2.3.2 (2018-06-12)
 E: Correct 'command' variable names
@@ -105,8 +105,8 @@ F: Port role to Ansible 2.5
 E: Simplify role by removing 'template' option
 
 * Version 2.2.0 (2018-04-04)
-F: Add support for OpenBSD 6.3
-F: Drop support for OpenBSD 6.2
+C: Add support for OpenBSD 6.3
+C: Drop support for OpenBSD 6.2
 
 * Version 2.1.0 (2018-03-30)
 F: Port role to Ansible 2.4
@@ -125,15 +125,15 @@ E: Avoid usage of raw module
 E: Improve regular expression of grep command
 
 * Version 1.2.0 (2017-10-18)
-F: Add support for OpenBSD 6.2
-F: Drop support for OpenBSD 6.1
+C: Add support for OpenBSD 6.2
+C: Drop support for OpenBSD 6.1
 
 * Version 1.1.1 (2017-09-16)
 B: Fix variables of task 'line enable ntpd_enable'
 
 * Version 1.1.0 (2017-08-26)
-F: Add support for FreeBSD 11.1-RELEASE
-F: Drop support for FreeBSD 11.0-RELEASE
+C: Add support for FreeBSD 11.1-RELEASE
+C: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.1 (2017-08-06)
 E: Revise Ansible tags
@@ -142,16 +142,16 @@ E: Revise Ansible tags
 E: Stabilize, improve and cleanup Ansible role
 
 * Version 0.17.0 (2017-04-16)
-F: Add support for OpenBSD 6.1
-F: Drop support for OpenBSD 6.0
+C: Add support for OpenBSD 6.1
+C: Drop support for OpenBSD 6.0
 
 * Version 0.16.0 (2016-10-14)
-F: Add support for FreeBSD 11.0-RELEASE
-F: Drop support for FreeBSD 10.3-RELEASE
+C: Add support for FreeBSD 11.0-RELEASE
+C: Drop support for FreeBSD 10.3-RELEASE
 
 * Version 0.15.0 (2016-09-03)
-F: Add support for OpenBSD 6.0
-F: Drop support for OpenBSD 5.9
+C: Add support for OpenBSD 6.0
+C: Drop support for OpenBSD 5.9
 
 * Version 0.14.2 (2016-05-29)
 E: Improve FreeBSD support
@@ -160,24 +160,24 @@ E: Improve FreeBSD support
 E: Improve packaging tasks
 
 * Version 0.14.0 (2016-05-21)
-F: Add support for Ansible 2.0
+C: Add support for Ansible 2.0
 
 * Version 0.13.1 (2016-04-23)
 B: Ensure OpenNTPD is stopped on OpenBSD
 
 * Version 0.13.0 (2016-04-09)
-F: Add support for FreeBSD 10.3-RELEASE
-F: Drop support for FreeBSD 10.2-RELEASE
+C: Add support for FreeBSD 10.3-RELEASE
+C: Drop support for FreeBSD 10.2-RELEASE
 
 * Version 0.12.0 (2016-04-02)
-F: Add support for OpenBSD 5.9
-F: Drop support for OpenBSD 5.8
+C: Add support for OpenBSD 5.9
+C: Drop support for OpenBSD 5.8
 
 * Version 0.11.0 (2016-02-29)
-F: Add support for OS family 'OpenBSD'
+C: Add support for OS family 'OpenBSD'
 
 * Version 0.10.0 (2016-01-21)
-F: Drop support for OS family 'Gentoo'
+C: Drop support for OS family 'Gentoo'
 
 * Version 0.9.5 (2015-11-17)
 E: Add missing Ansible tags
@@ -198,7 +198,7 @@ E: Improve NTP update script
 F: Update 'sntp' command for OS family 'Gentoo'
 
 * Version 0.8.0 (2014-12-12)
-F: Add support for OS family 'FreeBSD'
+C: Add support for OS family 'FreeBSD'
 E: Various small Ansible and Jinja2 improvements
 
 * Version 0.7.2 (2014-09-11)
@@ -208,7 +208,7 @@ E: Change license from 'GPLv2' to 'Simplified BSD License'
 E: Ensure Ansible role is OS agnostic
 
 * Version 0.7.0 (2014-08-14)
-F: Remove support for OS family 'RedHat'
+C: Drop support for OS family 'RedHat'
 
 * Version 0.6.5 (2014-08-14)
 E: Improve conditional statements

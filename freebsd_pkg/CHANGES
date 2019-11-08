@@ -32,8 +32,8 @@ C: Mark Ansible role as 'stable'
 E: Update support information of OpenBSD
 
 * Version 0.9.0 (2018-07-01)
-F: Add support for FreeBSD 11.2-RELEASE
-F: Drop support for FreeBSD 11.1-RELEASE
+C: Add support for FreeBSD 11.2-RELEASE
+C: Drop support for FreeBSD 11.1-RELEASE
 
 * Version 0.8.0 (2018-05-22)
 F: Port role to Ansible 2.5
@@ -57,8 +57,8 @@ F: Add option 'freebsd_pkg_release' to set package release
 E: Update support information of OpenBSD
 
 * Version 0.5.0 (2017-08-26)
-F: Add support for FreeBSD 11.1-RELEASE
-F: Drop support for FreeBSD 11.0-RELEASE
+C: Add support for FreeBSD 11.1-RELEASE
+C: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 0.4.2 (2017-08-01)
 E: Improve and cleanup Ansible role
@@ -67,8 +67,8 @@ E: Improve and cleanup Ansible role
 E: Update support information of OpenBSD
 
 * Version 0.4.0 (2016-10-14)
-F: Add support for FreeBSD 11.0-RELEASE
-F: Drop support for FreeBSD 10.3-RELEASE
+C: Add support for FreeBSD 11.0-RELEASE
+C: Drop support for FreeBSD 10.3-RELEASE
 
 * Version 0.3.2 (2016-09-03)
 E: Update support information of OpenBSD
@@ -77,11 +77,11 @@ E: Update support information of OpenBSD
 E: Improve FreeBSD support
 
 * Version 0.3.0 (2016-05-21)
-F: Add support for Ansible 2.0
+C: Add support for Ansible 2.0
 
 * Version 0.2.0 (2016-04-09)
-F: Add support for FreeBSD 10.3-RELEASE
-F: Drop support for FreeBSD 10.2-RELEASE
+C: Add support for FreeBSD 10.3-RELEASE
+C: Drop support for FreeBSD 10.2-RELEASE
 
 * Version 0.1.1 (2016-04-02)
 E: Update support information for OpenBSD 5.9

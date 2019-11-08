@@ -28,8 +28,8 @@ E: Minor style improvement
 E: Update support information of OpenBSD
 
 * Version 2.3.0 (2018-07-01)
-F: Add support for FreeBSD 11.2-RELEASE
-F: Drop support for FreeBSD 11.1-RELEASE
+C: Add support for FreeBSD 11.2-RELEASE
+C: Drop support for FreeBSD 11.1-RELEASE
 
 * Version 2.2.0 (2018-05-22)
 F: Port role to Ansible 2.5
@@ -50,8 +50,8 @@ E: Simplify and improve Ansible role
 E: Update support information of OpenBSD
 
 * Version 1.1.0 (2017-08-26)
-F: Add support for FreeBSD 11.1-RELEASE
-F: Drop support for FreeBSD 11.0-RELEASE
+C: Add support for FreeBSD 11.1-RELEASE
+C: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.0 (2017-08-01)
 E: Stabilize, improve and cleanup Ansible role
@@ -60,8 +60,8 @@ E: Stabilize, improve and cleanup Ansible role
 E: Update support information of OpenBSD
 
 * Version 0.9.0 (2016-10-14)
-F: Add support for FreeBSD 11.0-RELEASE
-F: Drop support for FreeBSD 10.3-RELEASE
+C: Add support for FreeBSD 11.0-RELEASE
+C: Drop support for FreeBSD 10.3-RELEASE
 
 * Version 0.8.3 (2016-09-03)
 E: Update support information of OpenBSD
@@ -73,11 +73,11 @@ E: Improve FreeBSD support
 E: Improve packaging tasks
 
 * Version 0.8.0 (2016-05-21)
-F: Add support for Ansible 2.0
+C: Add support for Ansible 2.0
 
 * Version 0.7.0 (2016-04-09)
-F: Add support for FreeBSD 10.3-RELEASE
-F: Drop support for FreeBSD 10.2-RELEASE
+C: Add support for FreeBSD 10.3-RELEASE
+C: Drop support for FreeBSD 10.2-RELEASE
 
 * Version 0.6.2 (2016-04-02)
 E: Update support information for OpenBSD 5.9
@@ -86,7 +86,7 @@ E: Update support information for OpenBSD 5.9
 E: Minor Ansible role improvements
 
 * Version 0.6.0 (2016-01-21)
-F: Drop support for OS family 'Gentoo'
+C: Drop support for OS family 'Gentoo'
 
 * Version 0.5.1 (2015-11-17)
 E: Add missing Ansible tags
@@ -102,17 +102,17 @@ B: Create inexistent directory before managing file
 B: Fix incorrect default variables
 
 * Version 0.4.0 (2014-12-29)
-F: Add support for OS family 'FreeBSD'
+C: Add support for OS family 'FreeBSD'
 E: Various small Ansible and Jinja2 improvements
 
 * Version 0.3.1 (2014-09-11)
 E: Change license from 'GPLv2' to 'Simplified BSD License'
 
 * Version 0.3.0 (2014-08-28)
-F: Add support for OS family 'FreeBSD'
+C: Add support for OS family 'FreeBSD'
 
 * Version 0.2.0 (2014-08-14)
-F: Remove support for OS family 'RedHat'
+C: Drop support for OS family 'RedHat'
 
 * Version 0.1.5 (2014-08-14)
 E: Improve conditional statements

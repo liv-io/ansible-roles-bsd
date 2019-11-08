@@ -19,15 +19,15 @@ C: Add support for FreeBSD 12.1-RELEASE
 C: Drop support for FreeBSD 12.0-RELEASE
 
 * Version 3.3.0 (2019-10-18)
-F: Add support for OpenBSD 6.6
-F: Drop support for OpenBSD 6.5
+C: Add support for OpenBSD 6.6
+C: Drop support for OpenBSD 6.5
 
 * Version 3.2.0 (2019-05-26)
 F: Port role to Ansible 2.8
 
 * Version 3.1.0 (2019-04-27)
-F: Add support for OpenBSD 6.5
-F: Drop support for OpenBSD 6.4
+C: Add support for OpenBSD 6.5
+C: Drop support for OpenBSD 6.4
 
 * Version 3.0.3 (2019-02-08)
 E: Add possibility to disable 'ssl_dhparam' and 'ssl_ecdh_curve' parameters
@@ -50,15 +50,15 @@ C: Rename config parameters
 E: Minor style improvement
 
 * Version 1.4.0 (2018-10-20)
-F: Add support for OpenBSD 6.4
-F: Drop support for OpenBSD 6.3
+C: Add support for OpenBSD 6.4
+C: Drop support for OpenBSD 6.3
 
 * Version 1.3.0 (2018-09-05)
 F: Add options to disable 'ssl_dhparam' and 'ssl_ecdh_curve'
 
 * Version 1.2.0 (2018-07-01)
-F: Add support for FreeBSD 11.2-RELEASE
-F: Drop support for FreeBSD 11.1-RELEASE
+C: Add support for FreeBSD 11.2-RELEASE
+C: Drop support for FreeBSD 11.1-RELEASE
 
 * Version 1.1.3 (2018-06-12)
 E: Correct 'command' variable names
@@ -96,8 +96,8 @@ E: Change default 'ssl_ciphers' value from 'AES256+EECDH:AES256+EDH' to 'AES256+
 E: Change curve for ECDHE ciphers from 'secp384r1' to 'secp521r1'
 
 * Version 0.11.0 (2018-04-04)
-F: Add support for OpenBSD 6.3
-F: Drop support for OpenBSD 6.2
+C: Add support for OpenBSD 6.3
+C: Drop support for OpenBSD 6.2
 
 * Version 0.10.0 (2018-03-30)
 F: Port role to Ansible 2.4
@@ -114,12 +114,12 @@ E: Avoid usage of raw module
 E: Improve regular expression of grep command
 
 * Version 0.9.0 (2017-10-18)
-F: Add support for OpenBSD 6.2
-F: Drop support for OpenBSD 6.1
+C: Add support for OpenBSD 6.2
+C: Drop support for OpenBSD 6.1
 
 * Version 0.8.0 (2017-08-26)
-F: Add support for FreeBSD 11.1-RELEASE
-F: Drop support for FreeBSD 11.0-RELEASE
+C: Add support for FreeBSD 11.1-RELEASE
+C: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 0.7.2 (2017-08-06)
 E: Revise Ansible tags
@@ -134,19 +134,19 @@ F: Add option to specify a curve for ECDHE ciphers (ssl_ecdh_curve)
 F: Add DH parameters for DHE ciphers
 
 * Version 0.5.0 (2017-04-16)
-F: Add support for OpenBSD 6.1
-F: Drop support for OpenBSD 6.0
+C: Add support for OpenBSD 6.1
+C: Drop support for OpenBSD 6.0
 
 * Version 0.4.1 (2016-12-29)
 E: Ensure HTTP headers are set on every HTTP status code
 
 * Version 0.4.0 (2016-10-14)
-F: Add support for FreeBSD 11.0-RELEASE
-F: Drop support for FreeBSD 10.3-RELEASE
+C: Add support for FreeBSD 11.0-RELEASE
+C: Drop support for FreeBSD 10.3-RELEASE
 
 * Version 0.3.0 (2016-09-03)
-F: Add support for OpenBSD 6.0
-F: Drop support for OpenBSD 5.9
+C: Add support for OpenBSD 6.0
+C: Drop support for OpenBSD 5.9
 
 * Version 0.2.2 (2016-05-29)
 E: Improve FreeBSD support
@@ -155,7 +155,7 @@ E: Improve FreeBSD support
 E: Improve packaging tasks
 
 * Version 0.2.0 (2016-05-21)
-F: Add support for Ansible 2.0
+C: Add support for Ansible 2.0
 
 * Version 0.1.1 (2016-04-17)
 B: Remove unnecessary new-line after for-loop

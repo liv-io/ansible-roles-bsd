@@ -29,15 +29,15 @@ C: Drop support for FreeBSD 11.2-RELEASE
 E: Minor style improvement
 
 * Version 3.4.0 (2018-11-15)
-F: Add support for 'quick' option
+C: Add support for 'quick' option
 E: Minor Jinja2 templating improvement
 
 * Version 3.3.1 (2018-10-20)
 E: Update support information of OpenBSD
 
 * Version 3.3.0 (2018-07-01)
-F: Add support for FreeBSD 11.2-RELEASE
-F: Drop support for FreeBSD 11.1-RELEASE
+C: Add support for FreeBSD 11.2-RELEASE
+C: Drop support for FreeBSD 11.1-RELEASE
 
 * Version 3.2.0 (2018-05-22)
 F: Port role to Ansible 2.5
@@ -68,8 +68,8 @@ E: Redesign, improve and cleanup Ansible role
 E: Update support information of OpenBSD
 
 * Version 1.1.0 (2017-08-26)
-F: Add support for FreeBSD 11.1-RELEASE
-F: Drop support for FreeBSD 11.0-RELEASE
+C: Add support for FreeBSD 11.1-RELEASE
+C: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.0 (2017-08-01)
 E: Stabilize, improve and cleanup Ansible role
@@ -78,8 +78,8 @@ E: Stabilize, improve and cleanup Ansible role
 E: Update support information of OpenBSD
 
 * Version 0.7.0 (2016-10-14)
-F: Add support for FreeBSD 11.0-RELEASE
-F: Drop support for FreeBSD 10.3-RELEASE
+C: Add support for FreeBSD 11.0-RELEASE
+C: Drop support for FreeBSD 10.3-RELEASE
 
 * Version 0.6.2 (2016-09-03)
 E: Update support information of OpenBSD
@@ -88,14 +88,14 @@ E: Update support information of OpenBSD
 E: Improve FreeBSD support
 
 * Version 0.6.0 (2016-05-21)
-F: Add support for Ansible 2.0
+C: Add support for Ansible 2.0
 
 * Version 0.5.1 (2016-04-15)
 E: Improve 'all' 'group' and 'host' options
 
 * Version 0.5.0 (2016-04-09)
-F: Add support for FreeBSD 10.3-RELEASE
-F: Drop support for FreeBSD 10.2-RELEASE
+C: Add support for FreeBSD 10.3-RELEASE
+C: Drop support for FreeBSD 10.2-RELEASE
 
 * Version 0.4.1 (2016-04-02)
 E: Update support information for OpenBSD 5.9
@@ -104,7 +104,7 @@ E: Update support information for OpenBSD 5.9
 F: Rename role from 'pf' to 'freebsd_pf'
 
 * Version 0.3.0 (2016-01-21)
-F: Drop support for OS family 'Gentoo'
+C: Drop support for OS family 'Gentoo'
 
 * Version 0.2.4 (2015-11-17)
 E: Add missing Ansible tags
@@ -119,7 +119,7 @@ B: Correct wrong variable name
 E: Various small Ansible and Jinja2 improvements
 
 * Version 0.2.0 (2014-12-08)
-F: Add support for 'translation' (i.e. nat/rdr)
+C: Add support for 'translation' (i.e. nat/rdr)
 
 * Version 0.1.1 (2014-11-27)
 E: Remove needless 'install' task

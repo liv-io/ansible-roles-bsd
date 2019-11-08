@@ -19,8 +19,8 @@ C: Add support for FreeBSD 12.1-RELEASE
 C: Drop support for FreeBSD 12.0-RELEASE
 
 * Version 1.4.0 (2019-10-18)
-F: Add support for OpenBSD 6.6
-F: Drop support for OpenBSD 6.5
+C: Add support for OpenBSD 6.6
+C: Drop support for OpenBSD 6.5
 
 * Version 1.3.0 (2019-05-26)
 F: Port role to Ansible 2.8
@@ -29,8 +29,8 @@ F: Port role to Ansible 2.8
 B: Update squid syntax
 
 * Version 1.2.0 (2019-04-27)
-F: Add support for OpenBSD 6.5
-F: Drop support for OpenBSD 6.4
+C: Add support for OpenBSD 6.5
+C: Drop support for OpenBSD 6.4
 
 * Version 1.1.0 (2019-01-14)
 C: Add support for FreeBSD 12.0-RELEASE
@@ -45,11 +45,11 @@ C: Rename config parameters
 E: Minor style improvement
 
 * Version 0.4.0 (2018-10-20)
-F: Add support for OpenBSD 6.4
-F: Drop support for OpenBSD 6.3
+C: Add support for OpenBSD 6.4
+C: Drop support for OpenBSD 6.3
 
 * Version 0.3.0 (2018-10-18)
-F: Add support for 'SSL_ports' option (squid_acl_ssl_ports)
+C: Add support for 'SSL_ports' option (squid_acl_ssl_ports)
 
 * Version 0.2.1 (2018-09-14)
 E: Add 'no_log' parameter to sensitive tasks

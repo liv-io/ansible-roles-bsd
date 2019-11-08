@@ -19,19 +19,19 @@ C: Add support for FreeBSD 12.1-RELEASE
 C: Drop support for FreeBSD 12.0-RELEASE
 
 * Version 1.5.0 (2019-10-18)
-F: Add support for OpenBSD 6.6
-F: Drop support for OpenBSD 6.5
+C: Add support for OpenBSD 6.6
+C: Drop support for OpenBSD 6.5
 
 * Version 1.4.0 (2019-09-18)
-F: Add support for managing 'unbound'
+C: Add support for managing 'unbound'
 E: Utilize 'validate' parameter
 
 * Version 1.3.0 (2019-05-26)
 F: Port role to Ansible 2.8
 
 * Version 1.2.0 (2019-04-27)
-F: Add support for OpenBSD 6.5
-F: Drop support for OpenBSD 6.4
+C: Add support for OpenBSD 6.5
+C: Drop support for OpenBSD 6.4
 
 * Version 1.1.0 (2019-01-13)
 C: Add support for FreeBSD 12.0-RELEASE
@@ -45,8 +45,8 @@ E: Minor style improvement
 E: Define default value for 'item.state' parameter
 
 * Version 0.3.0 (2018-10-20)
-F: Add support for OpenBSD 6.4
-F: Drop support for OpenBSD 6.3
+C: Add support for OpenBSD 6.4
+C: Drop support for OpenBSD 6.3
 
 * Version 0.2.3 (2018-08-21)
 B: Correct comment symbol in zone file
@@ -60,7 +60,7 @@ B: Correct 'config' destination path on OpenBSD
 B: Remove 'nsd_control_enable' option on OpenBSD (rcctl requires 'control-enable: yes')
 
 * Version 0.2.0 (2018-08-20)
-F: Add support for 'zone' option (nsd_zone)
+C: Add support for 'zone' option (nsd_zone)
 
 * Version 0.1.0 (2018-08-19)
 F: Initial release

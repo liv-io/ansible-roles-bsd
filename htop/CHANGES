@@ -19,34 +19,34 @@ C: Add support for FreeBSD 12.1-RELEASE
 C: Drop support for FreeBSD 12.0-RELEASE
 
 * Version 2.9.0 (2019-10-18)
-F: Add support for OpenBSD 6.6
-F: Drop support for OpenBSD 6.5
+C: Add support for OpenBSD 6.6
+C: Drop support for OpenBSD 6.5
 
 * Version 2.8.0 (2019-05-26)
 F: Port role to Ansible 2.8
 
 * Version 2.7.0 (2019-04-27)
-F: Add support for OpenBSD 6.5
-F: Drop support for OpenBSD 6.4
+C: Add support for OpenBSD 6.5
+C: Drop support for OpenBSD 6.4
 
 * Version 2.6.0 (2019-01-13)
 C: Add support for FreeBSD 12.0-RELEASE
 C: Drop support for FreeBSD 11.2-RELEASE
 
 * Version 2.5.0 (2018-10-20)
-F: Add support for OpenBSD 6.4
-F: Drop support for OpenBSD 6.3
+C: Add support for OpenBSD 6.4
+C: Drop support for OpenBSD 6.3
 
 * Version 2.4.0 (2018-07-01)
-F: Add support for FreeBSD 11.2-RELEASE
-F: Drop support for FreeBSD 11.1-RELEASE
+C: Add support for FreeBSD 11.2-RELEASE
+C: Drop support for FreeBSD 11.1-RELEASE
 
 * Version 2.3.0 (2018-05-22)
 F: Port role to Ansible 2.5
 
 * Version 2.2.0 (2018-04-04)
-F: Add support for OpenBSD 6.3
-F: Drop support for OpenBSD 6.2
+C: Add support for OpenBSD 6.3
+C: Drop support for OpenBSD 6.2
 
 * Version 2.1.0 (2018-03-30)
 F: Port role to Ansible 2.4
@@ -55,12 +55,12 @@ F: Port role to Ansible 2.4
 E: Simplify and improve Ansible role
 
 * Version 1.2.0 (2017-10-18)
-F: Add support for OpenBSD 6.2
-F: Drop support for OpenBSD 6.1
+C: Add support for OpenBSD 6.2
+C: Drop support for OpenBSD 6.1
 
 * Version 1.1.0 (2017-08-26)
-F: Add support for FreeBSD 11.1-RELEASE
-F: Drop support for FreeBSD 11.0-RELEASE
+C: Add support for FreeBSD 11.1-RELEASE
+C: Drop support for FreeBSD 11.0-RELEASE
 
 * Version 1.0.0 (2017-08-01)
 E: Stabilize, improve and cleanup Ansible role
@@ -69,8 +69,8 @@ E: Stabilize, improve and cleanup Ansible role
 E: Update support information of OpenBSD
 
 * Version 0.4.0 (2016-10-14)
-F: Add support for FreeBSD 11.0-RELEASE
-F: Drop support for FreeBSD 10.3-RELEASE
+C: Add support for FreeBSD 11.0-RELEASE
+C: Drop support for FreeBSD 10.3-RELEASE
 
 * Version 0.3.3 (2016-09-03)
 E: Update support information of OpenBSD
@@ -82,11 +82,11 @@ E: Improve FreeBSD support
 E: Improve packaging tasks
 
 * Version 0.3.0 (2016-05-21)
-F: Add support for Ansible 2.0
+C: Add support for Ansible 2.0
 
 * Version 0.2.0 (2016-04-09)
-F: Add support for FreeBSD 10.3-RELEASE
-F: Drop support for FreeBSD 10.2-RELEASE
+C: Add support for FreeBSD 10.3-RELEASE
+C: Drop support for FreeBSD 10.2-RELEASE
 
 * Version 0.1.1 (2016-04-02)
 E: Update support information for OpenBSD 5.9
