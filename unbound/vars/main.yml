@@ -25,7 +25,7 @@ file_dst_unbound_conf: '/var/unbound/etc/unbound.conf'
 file_mode_unbound_conf: '0644'
 file_owner_unbound_conf: 'root'
 file_group_unbound_conf: 'wheel'
-file_validate_unbound_conf: 'unbound-checkconf'
+file_validate_unbound_conf: 'unbound-checkconf %s'
 
 #-------------------------------------------------------------------------------
 # SYSTEM
