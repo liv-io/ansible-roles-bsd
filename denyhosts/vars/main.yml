@@ -14,7 +14,7 @@ denyhosts_secure_log: '/var/log/auth.log'
 #-------------------------------------------------------------------------------
 
 # denyhosts
-package_name_denyhosts: 'denyhosts'
+package_name_denyhosts: 'denyhosts-py37'
 
 #-------------------------------------------------------------------------------
 # FILES
