@@ -75,6 +75,7 @@ PACKAGES
   hping3
     Version: >= 20051105
     Name   :
+      FreeBSD 12: 'hping3'
       OpenBSD  6: 'hping'
 
 ROLES
@@ -118,7 +119,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 12.1-*
-      Status: Unsupported
+      Status: Stable
 
   OpenBSD
     Version: 6.6
