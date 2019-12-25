@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 3.4.1 (2019-12-25)
+B: Add missing FreeBSD conditional statement
+
 * Version 3.4.0 (2019-12-24)
 C: Add support for FreeBSD 12.1-RELEASE
 
