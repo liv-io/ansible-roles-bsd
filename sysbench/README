@@ -29,8 +29,8 @@ Primarily written for MySQL server benchmarking, SysBench will be further
 extended to support multiple database backends, distributed benchmarks and
 third-party plug-in modules.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

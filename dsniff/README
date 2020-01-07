@@ -20,8 +20,8 @@ to an attacker (e.g, due to layer-2 switching). Sshmitm and webmitm implement
 active monkey-in-the-middle attacks against redirected SSH and HTTPS sessions
 by exploiting weak bindings in ad-hoc PKI.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

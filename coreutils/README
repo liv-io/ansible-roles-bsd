@@ -15,8 +15,8 @@ DESCRIPTION
 These are the GNU core utilities. This package is the combination of the old GNU
 fileutils, sh-utils, and textutils packages.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

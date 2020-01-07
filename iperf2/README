@@ -16,8 +16,8 @@ Iperf is a tool to measure maximum TCP bandwidth, allowing the tuning of various
 parameters and UDP characteristics. Iperf reports bandwidth, delay jitter,
 datagram loss.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

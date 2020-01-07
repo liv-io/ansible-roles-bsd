@@ -15,8 +15,8 @@ DESCRIPTION
 drill is a tool ala dig from BIND. It was designed with DNSSEC in mind and
 should be a useful debugging/query tool for DNSSEC.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

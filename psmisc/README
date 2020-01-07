@@ -19,8 +19,8 @@ signal (SIGTERM if nothing is specified) to processes identified by name. The
 fuser command identifies the PIDs of processes that are using specified files or
 filesystems.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

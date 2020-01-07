@@ -24,8 +24,8 @@ jq can mangle the data format that you have into the one that you want with very
 little effort, and the program to do so is often shorter and simpler than you'd
 expect.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

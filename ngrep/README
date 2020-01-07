@@ -20,8 +20,8 @@ Ethernet, PPP, SLIP, FDDI, Token Ring, 802.11 and null interfaces, and
 understands bpf filter logic in the same fashion as more common packet sniffing
 tools, such as tcpdump and snoop.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

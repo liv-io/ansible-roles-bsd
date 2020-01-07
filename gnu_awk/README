@@ -18,8 +18,8 @@ the description in The AWK Programming Language, by Aho, Kernighan, and
 Weinberger. Gawk provides the additional features found in the current version
 of Brian Kernighan's awk(1) and a number of GNU-specific extensions.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

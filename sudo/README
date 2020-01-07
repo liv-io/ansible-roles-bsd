@@ -21,8 +21,8 @@ commands a user may run on a per-host basis, copious logging of each command
 sudo command, and the ability to use the same configuration file (sudoers) on
 many different machines.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

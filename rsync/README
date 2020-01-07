@@ -19,8 +19,8 @@ powerful mirroring process or just as a more capable replacement for the rcp
 command. A technical report which describes the rsync algorithm is included in
 this package.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

@@ -20,8 +20,8 @@ or Django, you should feel right at home with Jinja2. It's both designer and
 developer friendly by sticking to Python's principles and adding functionality
 useful for templating environments.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

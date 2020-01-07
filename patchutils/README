@@ -17,8 +17,8 @@ ways, such as interpolating between two pre-patches, combining two incremental
 patches, fixing line numbers in hand-edited patches, and simply listing the
 files modified by a patch.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

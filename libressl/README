@@ -21,8 +21,8 @@ the OpenSSL code so as to provide a more secure implementation.
 LibreSSL was forked from the OpenSSL library starting with the 1.0.1g branch
 and will follow the security guidelines used elsewhere in the OpenBSD project.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

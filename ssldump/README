@@ -20,8 +20,8 @@ the appropriate keying material, ssldump will also decrypt the connections and
 display the application data traffic. This program is based on tcpdump,
 a network monitoring and data acquisition tool.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

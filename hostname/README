@@ -15,8 +15,8 @@ DESCRIPTION
 The hostname utility is used to set or print the name of the current host.
 If no argument is given, the name of the current host is printed.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

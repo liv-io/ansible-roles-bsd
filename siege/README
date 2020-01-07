@@ -19,8 +19,8 @@ authentication, cookies, HTTP and HTTPS protocols. It allows the user hit a web
 server with a configurable number of concurrent simulated users. Those users
 place the web-server "under siege."
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

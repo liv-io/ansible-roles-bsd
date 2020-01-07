@@ -20,8 +20,8 @@ channel.
 OpenSSH is OpenBSD's version of the last free version of SSH, bringing it up to
 date in terms of security and features.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

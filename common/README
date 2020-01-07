@@ -18,8 +18,8 @@ This role creates the following common system directories:
  - /data/
  - /script/
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

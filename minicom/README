@@ -16,8 +16,8 @@ Minicom is a simple text-based modem control and terminal emulation program
 somewhat similar to MSDOS Telix. Minicom includes a dialing directory, full ANSI
 and VT100 emulation, an (external) scripting language, and other features.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

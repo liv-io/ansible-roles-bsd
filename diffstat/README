@@ -17,8 +17,8 @@ diff command and displays a histogram of the insertions, deletions and
 modifications in each file. Diffstat is commonly used to provide a summary of
 the changes in large, complex patch files.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

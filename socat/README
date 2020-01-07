@@ -18,8 +18,8 @@ etc. or a pseudo terminal), a socket (UNIX, IP4, IP6 - raw, UDP, TCP), an SSL
 socket, proxy CONNECT connection, a file descriptor (stdin etc.), the GNU line
 editor (readline), a program, or a combination of two of these.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

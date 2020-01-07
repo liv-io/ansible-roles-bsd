@@ -21,8 +21,8 @@ telnet and rsh for secure access to remote shells, but the protocol also
 includes the ability to open arbitrary channels to remote services across an
 encrypted tunnel. (This is how sftp works, for example.)
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

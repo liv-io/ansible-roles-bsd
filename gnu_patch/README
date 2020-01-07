@@ -17,8 +17,8 @@ takes a patch file containing a difference listing produced by the diff program
 and applies those differences to one or more original files, producing patched
 versions.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

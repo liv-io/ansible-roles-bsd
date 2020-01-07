@@ -17,8 +17,8 @@ usage in real time. It visualizes the in and outgoing traffic using two graphs
 and provides additional info like total amount of transfered data and min/max
 network usage.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

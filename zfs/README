@@ -15,8 +15,8 @@ DESCRIPTION
 ZFS is a combined file system and logical volume manager designed by Sun
 Microsystems.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

@@ -23,8 +23,8 @@ data transfer, redirection, and debugging tool (netcat utility ncat), a utility
 for comparing scan results (ndiff), and a packet generation and response
 analysis tool (nping).
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

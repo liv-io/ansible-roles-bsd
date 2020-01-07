@@ -17,8 +17,8 @@ capabilities. Less allows you to move backwards in the file as well as forwards.
 Since less doesn't have to read the entire input file before it starts, less
 starts up more quickly than text editors (for example, vi).
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

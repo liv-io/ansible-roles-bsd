@@ -15,8 +15,8 @@ DESCRIPTION
 zfs-stats displays ZFS statistics in human-readable format including
 ARC, L2ARC, zfetch (DMU) and vdev cache statistics.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

@@ -19,8 +19,8 @@ multi-level undo, block highlighting and more. The vim-enhanced package contains
 a version of VIM with extra, recently introduced features like Python and Perl
 interpreters.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

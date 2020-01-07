@@ -16,8 +16,8 @@ The zip program is a compression and file packaging utility. Zip is analogous to
 a combination of the UNIX tar and compress commands and is compatible with PKZIP
 (a compression and file packaging utility for MS-DOS systems).
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

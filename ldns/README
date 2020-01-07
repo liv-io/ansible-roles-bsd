@@ -17,8 +17,8 @@ allow depelopers to easily create software conforming to current RFCs and
 experimental software for current Internet drafts. Because ldns is written in C
 it should be a lot faster than Perl or other scripting languages.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

@@ -18,8 +18,8 @@ handles all requests in a single, non-blocking, I/O-driven process. Squid keeps
 meta data and especially hot objects cached in RAM, caches DNS lookups, supports
 non-blocking DNS lookups, and implements negative caching of failed requests.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

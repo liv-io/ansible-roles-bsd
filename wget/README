@@ -19,8 +19,8 @@ remote file timestamp storage and comparison, use of Rest with FTP servers and
 Range with HTTP servers to retrieve files over slow or unstable connections,
 support for Proxy servers, and configurability.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

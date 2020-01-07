@@ -15,8 +15,8 @@ DESCRIPTION
 mytop is a console-based tool for monitoring the threads and overall performance
 of MySQL servers. The user interface is modeled after familiar top application.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

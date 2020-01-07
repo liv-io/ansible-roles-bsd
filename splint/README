@@ -17,8 +17,8 @@ security vulnerabilities. With minimal effort, Splint can be used as a better
 lint. If additional effort is invested adding annotations to programs, Splint
 can perform even stronger checks than can be done by any standard lint.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

@@ -17,8 +17,8 @@ another reference time source. This package includes ntpd (a daemon which
 continuously adjusts system time) and utilities used to query and configure the
 ntpd daemon.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

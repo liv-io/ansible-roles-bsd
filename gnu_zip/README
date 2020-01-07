@@ -16,8 +16,8 @@ The gnu-zip package contains the popular GNU gnu-zip data compression program.
 Gzipped files have a .gz extension. Gzip should be installed on your system,
 because it is a very commonly used data compression program.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

@@ -17,8 +17,8 @@ under a specified load. Instances in which this is useful include those in which
 a system administrator wishes to perform tuning activities, a kernel or libc
 programmer wishes to evaluate denial of service possibilities, etc.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

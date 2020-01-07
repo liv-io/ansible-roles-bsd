@@ -18,8 +18,8 @@ DNS queries to the nameserver (avoiding the effects of DNS caching) and
 measuring the amount of time between the sending of the query and the receipt
 of the response packet.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

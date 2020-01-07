@@ -19,8 +19,8 @@ provide network connectivity to other applications and users. Netcat will not
 only work with IPv4 and IPv6 but provides the user with a virtually limitless
 number of potential uses.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

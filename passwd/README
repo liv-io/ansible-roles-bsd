@@ -14,8 +14,8 @@ DESCRIPTION
 
 '/etc/passwd' is a text file which defines the users on the system.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

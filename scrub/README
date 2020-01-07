@@ -19,8 +19,8 @@ is scrubbed and only the data in the file (and optionally its name in the
 directory entry) is destroyed; or 3) a regular file is created, expanded until
 the file system is full, then scrubbed as in 2).
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

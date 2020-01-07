@@ -15,8 +15,8 @@ DESCRIPTION
 "echoping" is a small program to test (approximatively) performances of a remote
 host by sending it TCP "echo" (or other protocol) packets.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

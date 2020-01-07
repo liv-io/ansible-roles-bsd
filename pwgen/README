@@ -17,8 +17,8 @@ contain either only lowercase letters, or upper and lower case, or upper case,
 lower case and numeric digits. Upper case letters and numeric digits are placed
 in a way that eases memorizing the password.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

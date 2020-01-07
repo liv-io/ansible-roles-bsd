@@ -19,8 +19,8 @@ frequency of attempts from each host and, upon discovering a repeated attack
 host, updates the /etc/hosts.deny file to prevent future break-in attempts from
 that host. Email reports can be sent to a system admin.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

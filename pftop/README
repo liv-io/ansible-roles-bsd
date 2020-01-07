@@ -15,8 +15,8 @@ DESCRIPTION
 pfTop is a curses-based utility for real-time display of active states and rules
 for pf. It is a cross between top and pfctl -sr and pfctl -ss.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

@@ -17,8 +17,8 @@ Unlike its setuid counterpart, it won't allow flood-pings, security compromises
 and other typical problems. It uses TCP syn-rst challenge/response instead of
 ICMP echo and echo-reply.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

@@ -25,8 +25,8 @@ Besides the "mailx" command, this package provides "mail" and "Mail"
 (which should be compatible with its predecessors from the mailx-8.x source),
 as well as "nail" (the initial name of this project).
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

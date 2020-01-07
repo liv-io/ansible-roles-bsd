@@ -17,8 +17,8 @@ that is compatible with the Bourne shell (sh). Bash incorporates useful features
 from the Korn shell (ksh) and the C shell (csh). Most sh scripts can be run by
 bash without modification.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

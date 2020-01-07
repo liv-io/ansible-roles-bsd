@@ -16,8 +16,8 @@ hping2 is a network tool able to send custom TCP/IP packets and to display
 target replies like ping do with ICMP replies. hping2 can handle fragmentation,
 and almost arbitrary packet size and content, using the command line interface.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

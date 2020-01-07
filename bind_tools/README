@@ -17,8 +17,8 @@ System) name servers to find out information about Internet hosts. These tools
 will provide you with the IP addresses for given host names, as well as other
 information about registered domains and network addresses.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

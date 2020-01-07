@@ -19,8 +19,8 @@ automatic archive compression/decompression, remote archives and special
 features that allow tar to be used for incremental and full backups. This
 distribution also includes rmt, the remote tape server.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

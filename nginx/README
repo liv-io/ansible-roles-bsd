@@ -16,8 +16,8 @@ Nginx is a web server and a reverse proxy server for HTTP, SMTP, POP3 and IMAP
 protocols, with a strong focus on high concurrency, performance and low memory
 usage.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

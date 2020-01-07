@@ -19,8 +19,8 @@ useful. Requires the linux kernel 2.4 series or later. In the 2.6 series any
 device node the understands a SCSI command set may be used (e.g. /dev/sda). In
 the 2.4 series SCSI device node may be used.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

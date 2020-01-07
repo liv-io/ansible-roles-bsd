@@ -16,8 +16,8 @@ The pciutils package contains various utilities for inspecting and setting
 devices connected to the PCI bus. The utilities provided require kernel version
 2.1.82 or newer (which support the /proc/bus/pci interface).
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

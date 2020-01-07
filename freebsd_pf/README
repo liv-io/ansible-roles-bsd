@@ -17,8 +17,8 @@ software for firewalling. PF is developed on OpenBSD, but has been ported to
 many other operating systems including FreeBSD, NetBSD, DragonFly BSD and
 Mac OS X.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

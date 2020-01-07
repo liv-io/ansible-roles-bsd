@@ -19,8 +19,8 @@ command line options. This set of differences is often called a 'diff' or
 'patch'. For files that are identical, diff normally produces no output; for
 binary (non-text) files, diff normally reports only that they are different.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

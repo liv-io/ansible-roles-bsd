@@ -15,8 +15,8 @@ DESCRIPTION
 GNU watch runs a command repeatedly, displaying its output (the first
 screenfull). This allows you to watch the program output change over time.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

@@ -22,8 +22,8 @@ Python object.
 PyYAML is applicable for a broad range of tasks from complex configuration files
 to object serialization and persistance.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

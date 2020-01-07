@@ -17,8 +17,8 @@ network traffic on a named interface and displays a table of current bandwidth
 usage by pairs of hosts. Handy for answering the question "why is our ADSL link
 so slow?".
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

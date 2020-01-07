@@ -20,8 +20,8 @@ spaces. Lines starting with '#' are comments, blank lines are ignored. The order
 of records in fstab is important because fsck, mount, and umount sequentially
 iterate through fstab doing their thing.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

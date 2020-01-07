@@ -17,8 +17,8 @@ control and uses the readline library for input. It has bookmarks, built-in
 mirroring, and can transfer several files in parallel. It is designed with
 reliability in mind.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

@@ -18,8 +18,8 @@ the zip package, creates zip archives. Zip and unzip are both compatible with
 archives created by PKWARE(R)'s PKZIP for MS-DOS, but the programs' options and
 default behaviors do differ in some respects.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

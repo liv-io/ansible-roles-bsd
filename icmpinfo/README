@@ -15,8 +15,8 @@ DESCRIPTION
 icmpinfo is a tool for looking at the icmp messages received on the running
 host.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

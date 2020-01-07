@@ -19,8 +19,8 @@ the password of the user who started vlock or the root password is typed.
 Install vlock if you need to disable access to one console or to all virtual
 consoles.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE

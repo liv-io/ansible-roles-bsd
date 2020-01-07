@@ -16,8 +16,8 @@ The screen utility allows you to have multiple logins on just one terminal.
 Screen is useful for users who telnet into a machine or are connected via a dumb
 terminal, but want to use more than just one login.
 
-For more detailed information on the usage and available configuration options
-please consult the following sections.
+For more information on the usage and available configuration options,
+consult the following sections.
 
 --------------------------------------------------------------------------------
 USAGE
