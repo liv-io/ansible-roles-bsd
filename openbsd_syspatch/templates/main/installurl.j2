@@ -16,7 +16,7 @@
 #-------------------------------------------------------------------------------
 
 {% for item in openbsd_syspatch_installurl %}
-{% if (item.comment|default('')) %}
+{% if not ((item.comment|default('')) == '') %}
 # {{item.comment}}
 {% endif %}
 {{item.url}}
