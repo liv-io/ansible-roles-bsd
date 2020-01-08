@@ -21,7 +21,7 @@
 #-------------------------------------------------------------------------------
 
 {% endif %}
-{% if (item.comment|default('')) %}
+{% if not ((item.comment|default('')) == '') %}
 # {{item.comment}}
 {% endif %}
 {% if not ((item.config|default('')) == '') %}
