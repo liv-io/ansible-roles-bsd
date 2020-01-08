@@ -190,7 +190,7 @@ cache_mgr {{squid_cache_mgr}}
 
 # Specify passwords for cachemgr operations.
 {% for item in squid_cachemgr_passwd %}
-{% if (item.comment|default('')) %}
+{% if not ((item.comment|default('')) == '') %}
 # {{item.comment}}
 {% endif %}
 cachemgr_passwd

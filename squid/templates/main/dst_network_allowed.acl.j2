@@ -16,7 +16,7 @@
 #-------------------------------------------------------------------------------
 
 {% for item in (squid_network_allowed|default([])) %}
-{% if (item.comment|default('')) %}
+{% if not ((item.comment|default('')) == '') %}
 # {{item.comment}}
 {% endif %}
 {{item.name}}
