@@ -1,0 +1,46 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# daily
+file_dst_daily: '/etc/daily'
+
+# monthly
+file_dst_monthly: '/etc/monthly'
+
+# weekly
+file_dst_weekly: '/etc/weekly'
+
+# enable daily output
+file_regexp_enable_daily_output: '^} #(}\s2\>\&1\s\|\smail.*)'
+file_replace_enable_daily_output: '\1'
+
+# enable daily insecurity output
+file_regexp_enable_daily_insecurity_output: '^#(\[\s\-s\s\$MAINOUT\s\]\s\&\&\smail.*)'
+file_replace_enable_daily_insecurity_output: '\1'
+
+# enable monthly output
+file_regexp_enable_monthly_output: '^#(\[\s\-s\s\$MAINOUT\s\]\s\&\&\smail.*)'
+file_replace_enable_monthly_output: '\1'
+
+# enable weekly output
+file_regexp_enable_weekly_output: '^#(\[\s\-s\s\$MAINOUT\s\]\s\&\&\smail.*)'
+file_replace_enable_weekly_output: '\1'
+
+# disable daily output
+file_regexp_disable_daily_output: '(^}\s2\>\&1\s\|\smail.*)'
+file_replace_disable_daily_output: '} #\1'
+
+# disable daily insecurity output
+file_regexp_disable_daily_insecurity_output: '(^\[\s\-s\s\$MAINOUT\s\]\s\&\&\smail.*)'
+file_replace_disable_daily_insecurity_output: '#\1'
+
+# disable monthly output
+file_regexp_disable_monthly_output: '(^\[\s\-s\s\$MAINOUT\s\]\s\&\&\smail.*)'
+file_replace_disable_monthly_output: '#\1'
+
+# disable weekly output
+file_regexp_disable_weekly_output: '(^\[\s\-s\s\$MAINOUT\s\]\s\&\&\smail.*)'
+file_replace_disable_weekly_output: '#\1'

@@ -1,0 +1,101 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      errors: 'ignore'
+  tags:
+    - install
+    - openbsd_periodic
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line enable daily output'
+  replace:
+    path: "{{file_dst_daily}}"
+    regexp: "{{file_regexp_enable_daily_output}}"
+    replace: "{{file_replace_enable_daily_output}}"
+  when: not (openbsd_periodic_daily_state is match('false|no|disable'))
+  tags:
+    - install
+    - openbsd_periodic
+
+- name: 'line enable daily insecurity output'
+  replace:
+    path: "{{file_dst_daily}}"
+    regexp: "{{file_regexp_enable_daily_insecurity_output}}"
+    replace: "{{file_replace_enable_daily_insecurity_output}}"
+  when: not (openbsd_periodic_daily_state is match('false|no|disable'))
+  tags:
+    - install
+    - openbsd_periodic
+
+- name: 'line enable monthly output'
+  replace:
+    path: "{{file_dst_monthly}}"
+    regexp: "{{file_regexp_enable_monthly_output}}"
+    replace: "{{file_replace_enable_monthly_output}}"
+  when: not (openbsd_periodic_monthly_state is match('false|no|disable'))
+  tags:
+    - install
+    - openbsd_periodic
+
+- name: 'line enable weekly output'
+  replace:
+    path: "{{file_dst_weekly}}"
+    regexp: "{{file_regexp_enable_weekly_output}}"
+    replace: "{{file_replace_enable_weekly_output}}"
+  when: not (openbsd_periodic_weekly_state is match('false|no|disable'))
+  tags:
+    - install
+    - openbsd_periodic
+
+- name: 'line disable daily output'
+  replace:
+    path: "{{file_dst_daily}}"
+    regexp: "{{file_regexp_disable_daily_output}}"
+    replace: "{{file_replace_disable_daily_output}}"
+  when: (openbsd_periodic_daily_state is match('false|no|disable'))
+  tags:
+    - install
+    - openbsd_periodic
+
+- name: 'line disable daily insecurity output'
+  replace:
+    path: "{{file_dst_daily}}"
+    regexp: "{{file_regexp_disable_daily_insecurity_output}}"
+    replace: "{{file_replace_disable_daily_insecurity_output}}"
+  when: (openbsd_periodic_daily_state is match('false|no|disable'))
+  tags:
+    - install
+    - openbsd_periodic
+
+- name: 'line disable monthly output'
+  replace:
+    path: "{{file_dst_monthly}}"
+    regexp: "{{file_regexp_disable_monthly_output}}"
+    replace: "{{file_replace_disable_monthly_output}}"
+  when: (openbsd_periodic_monthly_state is match('false|no|disable'))
+  tags:
+    - install
+    - openbsd_periodic
+
+- name: 'line disable weekly output'
+  replace:
+    path: "{{file_dst_weekly}}"
+    regexp: "{{file_regexp_disable_weekly_output}}"
+    replace: "{{file_replace_disable_weekly_output}}"
+  when: (openbsd_periodic_weekly_state is match('false|no|disable'))
+  tags:
+    - install
+    - openbsd_periodic

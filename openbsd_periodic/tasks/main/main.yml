@@ -1,0 +1,7 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (openbsd_periodic_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - openbsd_periodic

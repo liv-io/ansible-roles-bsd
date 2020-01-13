@@ -1,0 +1,9 @@
+---
+
+openbsd_periodic_state: 'install'
+
+openbsd_periodic_daily_state: 'false'
+
+openbsd_periodic_monthly_state: 'false'
+
+openbsd_periodic_weekly_state: 'false'
