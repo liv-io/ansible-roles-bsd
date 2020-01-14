@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2020-01-14)
+B: Fix regular expressions for enabling and disabling daily output
+
 * Version 0.1.0 (2020-01-13)
 F: Initial release
