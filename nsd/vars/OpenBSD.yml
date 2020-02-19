@@ -4,6 +4,10 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+# config
+file_mode_config: '0640'
+file_group_config: '_nsd'
+
 # nsd.conf
 file_mode_nsd_conf: '0640'
 file_group_nsd_conf: '_nsd'
