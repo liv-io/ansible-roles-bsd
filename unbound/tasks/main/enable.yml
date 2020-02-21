@@ -20,8 +20,8 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'file create root.hints'
-  template:
+- name: 'file copy root.hints'
+  copy:
     src: "{{file_src_root_hints}}"
     dest: "{{file_dst_root_hints}}"
     mode: "{{file_mode_root_hints}}"

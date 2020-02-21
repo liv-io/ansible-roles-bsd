@@ -6,7 +6,7 @@
 ; INFORMATION
 ;-------------------------------------------------------------------------------
 ;
-; Name   : unbound.conf
+; Name   : root.hints
 ; Type   : unbound configuration file
 ; Role   : unbound
 ;
