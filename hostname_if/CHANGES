@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.4.0 (2020-02-22)
+F: Add option to configure default gateway (hostname_if_mygate)
+
 * Version 1.3.0 (2019-10-18)
 C: Add support for OpenBSD 6.6
 C: Drop support for OpenBSD 6.5
