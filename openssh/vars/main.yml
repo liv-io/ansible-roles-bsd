@@ -12,7 +12,7 @@ file_owner_banner: 'root'
 file_group_banner: 'wheel'
 
 # moduli
-file_src_moduli: "templates/{{ansible_os_family}}/moduli.j2"
+file_src_moduli: "files/{{ansible_os_family}}/moduli"
 file_dst_moduli: '/etc/ssh/moduli'
 file_mode_moduli: '0600'
 file_owner_moduli: 'root'

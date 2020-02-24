@@ -34,8 +34,8 @@
     - enable
     - openssh
 
-- name: 'file create moduli'
-  template:
+- name: 'file copy moduli'
+  copy:
     src: "{{file_src_moduli}}"
     dest: "{{file_dst_moduli}}"
     mode: "{{file_mode_moduli}}"
