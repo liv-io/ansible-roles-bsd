@@ -14,7 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
-* Version 1.6.0 (2020-02-19)
+* Version 1.7.0 (2020-03-04)
+F: Add support for CAA record type
+
+* Version 1.6.1 (2020-02-19)
 B: Fix POSIX permissions and group for config files on OpenBSD
 
 * Version 1.6.0 (2019-11-08)

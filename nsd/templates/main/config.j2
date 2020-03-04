@@ -36,7 +36,8 @@ $ORIGIN		{{item.name}}.		; base domain name
 ; {{item.comment}}
 {% endif %}
 {{item.name}}		IN
-{%- if (item.type is match('CNAME|cname')) %}		CNAME
+{%- if (item.type is match('CAA|caa')) %}		CAA
+{%- elif (item.type is match('CNAME|cname')) %}		CNAME
 {%- elif (item.type is match('AAAA|aaaa')) %}		AAAA
 {%- elif (item.type is match('MX|mx')) %}		MX
 {%- elif (item.type is match('NS|ns')) %}		NS
