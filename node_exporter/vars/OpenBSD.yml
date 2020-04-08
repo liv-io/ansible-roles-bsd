@@ -1,0 +1,23 @@
+---
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check node_exporter
+command_cmd_check_node_exporter: 'rcctl check node_exporter'
+
+# disable node_exporter
+command_cmd_disable_node_exporter: 'rcctl disable node_exporter'
+
+# enable node_exporter
+command_cmd_enable_node_exporter: 'rcctl enable node_exporter'
+
+# start node_exporter
+command_cmd_start_node_exporter: 'rcctl start node_exporter'
+
+# status node_exporter
+command_cmd_status_node_exporter: 'rcctl get node_exporter status'
+
+# stop node_exporter
+command_cmd_stop_node_exporter: 'rcctl stop node_exporter'

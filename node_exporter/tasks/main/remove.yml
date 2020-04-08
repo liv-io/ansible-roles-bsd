@@ -1,0 +1,72 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{item}}"
+  with_first_found:
+    - files:
+      - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+      - "vars/{{ansible_os_family}}.yml"
+      - 'vars/main.yml'
+      errors: 'ignore'
+  tags:
+    - remove
+    - node_exporter
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status node_exporter'
+  command: "{{command_cmd_status_node_exporter}}"
+  register: register_status_node_exporter
+  changed_when: (register_status_node_exporter.rc > 1)
+  failed_when: (register_status_node_exporter.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'command disable node_exporter'
+  command: "{{command_cmd_disable_node_exporter}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_node_exporter.rc == 0)
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'command check node_exporter'
+  command: "{{command_cmd_check_node_exporter}}"
+  register: register_check_node_exporter
+  changed_when: (register_check_node_exporter.rc > 1)
+  failed_when: (register_check_node_exporter.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'command stop node_exporter'
+  command: "{{command_cmd_stop_node_exporter}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_node_exporter.rc == 0)
+  tags:
+    - remove
+    - node_exporter
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove node_exporter'
+  package:
+    state: 'absent'
+    name: "{{package_name_node_exporter}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - remove
+    - node_exporter
