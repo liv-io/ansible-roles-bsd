@@ -207,7 +207,7 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : 'AES256+EECDH:AES256+EDH'
+    Default    : 'TLS13-AES-256-GCM-SHA384:AES256+EECDH:AES256+EDH'
     Options    :
       Examples: 'AES256+EECDH:AES256+EDH'
 
@@ -249,9 +249,9 @@ CONFIG
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['TLSv1.2']
+    Default    : ['TLSv1.2', 'TLSv1.3']
     Options    :
-      Examples: ['TLSv1', 'TLSv1.1', 'TLSv1.2']
+      Examples: ['TLSv1.3']
 
   ssl_state
     Description: Control the 'ssl_state' option.
