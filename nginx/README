@@ -339,6 +339,40 @@ ROLE
     Options    :
       Examples: '15768000' | '31536000' | '47304000'
 
+  nginx_log_format_main
+    Description: Define the 'nginx_log_format_main' option.
+    Implemented: 3.5
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |-
+      '$remote_addr - $remote_user [$time_local] "$request" '
+      '$status $body_bytes_sent "$http_referer" '
+      '"$http_user_agent" "$http_x_forwarded_for"'
+    Options    :
+      Examples: |-
+        'remote_addr:$remote_addr - $remote_user [$time_local] request:"$request" '
+        'status:$status $body_bytes_sent "$http_referer" '
+        '"$http_user_agent" http_x_forwarded_for:"$http_x_forwarded_for"'
+
+  nginx_log_format_main_ssl
+    Description: Define the 'nginx_log_format_main_ssl' option.
+    Implemented: 3.5
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : |-
+      '$remote_addr - $remote_user [$time_local] "$request" '
+      '$status $body_bytes_sent "$http_referer" '
+      '"$http_user_agent" "$http_x_forwarded_for" '
+      '$ssl_protocol/$ssl_cipher '
+    Options    :
+      Examples: |-
+        'remote_addr:$remote_addr - $remote_user [$time_local] request:"$request" '
+        'status:$status $body_bytes_sent "$http_referer" '
+        '"$http_user_agent" http_x_forwarded_for:"$http_x_forwarded_for" '
+        '$ssl_protocol/$ssl_cipher '
+
   nginx_vhosts_d
     Description: Define the 'nginx_vhosts_d' option.
     Implemented: 0.1
