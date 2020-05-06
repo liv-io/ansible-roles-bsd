@@ -38,6 +38,7 @@
     mode: "{{file_mode_secrets}}"
     owner: "{{file_owner_secrets}}"
     group: "{{file_group_secrets}}"
+  no_log: 'true'
   tags:
     - disable
     - opensmtpd
