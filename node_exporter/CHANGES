@@ -14,5 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2020-05-19)
+F: Add support for OpenBSD 6.7
+F: Drop support for OpenBSD 6.6
+
 * Version 0.1.0 (2020-04-08)
 F: Initial release
