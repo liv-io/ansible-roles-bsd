@@ -15,7 +15,7 @@
 #
 #-------------------------------------------------------------------------------
 
-# $OpenBSD: unbound.conf,v 1.17 2019/08/25 15:50:21 ajacoutot Exp $
+# $OpenBSD: unbound.conf,v 1.19 2019/11/07 15:46:37 sthen Exp $
 
 #-------------------------------------------------------------------------------
 # SERVER
@@ -195,19 +195,16 @@ server:
 
 {% endfor %}
 
-	# Uncomment to enable qname minimisation.
-	# https://tools.ietf.org/html/rfc7816
-	#
-	#qname-minimisation: yes
 
-	# Uncomment to enable DNSSEC validation.
+	# Perform DNSSEC validation. Comment out the below option to disable.
 	#
-	#auto-trust-anchor-file: "/var/unbound/db/root.key"
-	
+	auto-trust-anchor-file: "/var/unbound/db/root.key"
+	val-log-level: 2
+
 	# Uncomment to synthesize NXDOMAINs from DNSSEC NSEC chains
 	# https://tools.ietf.org/html/rfc8198
 	#
-	#aggressive-nsec: yes
+	aggressive-nsec: yes
 
         #-----------------------------------------------------------------------
         # LOCAL-ZONE
@@ -258,12 +255,10 @@ server:
 	#
 	#tcp-upstream: yes
 
-	# DNS64 options, synthesizes AAAA records for hosts that don't have
-	# them. For use with NAT64 (PF "af-to").
-	#
-	#module-config: "dns64 validator iterator"
-	#dns64-prefix: 64:ff9b::/96     # well-known prefix (default)
-	#dns64-synthall: no
+	# CA Certificates used for forward-tls-upstream (RFC7858) hostname
+	# verification.  Since it's outside the chroot it is only loaded at
+	# startup and thus cannot be changed via a reload.
+	#tls-cert-bundle: "/etc/ssl/cert.pem"
 
 	# file to read root hints from.
 	# get one from https://www.internic.net/domain/named.cache
@@ -279,7 +274,6 @@ remote-control:
 {% else %}
         control-enable: no
 {% endif %}
-	control-use-cert: no
 	control-interface: /var/run/unbound.sock
 
 #-------------------------------------------------------------------------------
