@@ -44,6 +44,7 @@ ENABLE
           state: 'enable'
           device: '/dev/tap0'
           process_priority: 'high'
+          replay_window: '64'
           address: '10.0.0.1'
           netmask: '255.255.255.0'
           routes:
@@ -125,6 +126,7 @@ DISABLE
           state: 'enable'
           device: '/dev/tap0'
           process_priority: 'high'
+          replay_window: '64'
           address: '10.0.0.1'
           netmask: '255.255.255.0'
           routes:

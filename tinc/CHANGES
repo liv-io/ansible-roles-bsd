@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.9.0 (2020-05-26)
+F: Add option to configure ReplayWindow size (Default: 32)
+
 * Version 0.8.0 (2020-05-19)
 F: Add support for OpenBSD 6.7
 F: Drop support for OpenBSD 6.6
