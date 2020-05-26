@@ -52,6 +52,18 @@
 {%- if not (((interface.description|default('')) == '') and not ((interface.alias|default('false')) is match('true|yes|enable'))) %}description "{{interface.description}}" {% endif %}
 {%- if not ((interface.comment|default('')) == '') %}# {{interface.comment}}{% endif %}
 
+{% elif ((interface.type|default('')) is match('aggr')) %}
+{%- if not ((interface.trunkports|default([])) == []) %}{% for trunkport in interface.trunkports %}trunkport {{trunkport}} {% endfor %}{% endif %}
+{%- if ((interface.lacpmode|default('active')) is match('passive')) %}passive {% else %}active {% endif %}
+{%- if ((interface.lacptimeout|default('slow')) is match('fast')) %}fast {% else %}slow {% endif %}
+{%- if not ((interface.ip|default('')) == '') %}{{interface.ip}} {% endif %}
+{%- if not ((interface.netmask|default('')) == '') %}{{interface.netmask}} {% endif %}
+{%- if not ((interface.ip|default('')) == '') %}
+{%- if not ((interface.broadcast|default('')) == '') %}{{interface.broadcast}} {% else %}NONE {% endif %}
+{% endif %}
+{%- if not (((interface.description|default('')) == '') and not ((interface.alias|default('false')) is match('true|yes|enable'))) %}description "{{interface.description}}" {% endif %}
+{%- if not ((interface.comment|default('')) == '') %}# {{interface.comment}}{% endif %}
+
 {% else %}
 {%- if ((interface.version|default('inet')) is match('ipv6|ip6|inet6')) %}inet6 {% else %}inet {% endif %}
 {%- if ((interface.alias|default('false')) is match('true|yes|enable')) %}alias {% endif %}
