@@ -54,8 +54,8 @@
 
 {% elif ((interface.type|default('')) is match('aggr')) %}
 {%- if not ((interface.trunkports|default([])) == []) %}{% for trunkport in interface.trunkports %}trunkport {{trunkport}} {% endfor %}{% endif %}
-{%- if ((interface.lacpmode|default('active')) is match('passive')) %}passive {% else %}active {% endif %}
-{%- if ((interface.lacptimeout|default('slow')) is match('fast')) %}fast {% else %}slow {% endif %}
+{%- if ((interface.lacpmode|default('active')) is match('passive')) %}lacpmode passive {% else %}lacpmode active {% endif %}
+{%- if ((interface.lacptimeout|default('slow')) is match('fast')) %}lacptimeout fast {% else %}lacptimeout slow {% endif %}
 {%- if not ((interface.ip|default('')) == '') %}{{interface.ip}} {% endif %}
 {%- if not ((interface.netmask|default('')) == '') %}{{interface.netmask}} {% endif %}
 {%- if not ((interface.ip|default('')) == '') %}
