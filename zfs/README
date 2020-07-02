@@ -226,8 +226,6 @@ DEPENDENCIES
 PACKAGES
 
 ROLES
-  common
-
   mailx
 
 PARAMETERS

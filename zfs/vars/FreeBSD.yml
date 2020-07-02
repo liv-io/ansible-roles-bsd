@@ -5,9 +5,13 @@
 #-------------------------------------------------------------------------------
 
 # zfs_check-pools
-file_line_zfs_check_pools: "*/{{(zfs_check_pools_interval|int(15))}} * * * * {{file_owner_zfs_check_pools_sh}} {{file_dst_zfs_check_pools_sh}}"
-file_dst_zfs_check_pools: '/etc/crontab'
+file_line_zfs_check_pools: "*/{{(zfs_check_pools_interval|int(15))}} * * * * {{file_owner_zfs_check_pools}} {{file_dst_zfs_check_pools}}"
+
+# zfs_check-pools
+cron_dst_zfs_check_pools: '/etc/crontab'
 
 # zfs_scrub-pools
-file_line_zfs_scrub_pools: "{{zfs_scrub_pools_minute}} {{zfs_scrub_pools_hour}} {{zfs_scrub_pools_day}} {{zfs_scrub_pools_month}} {{zfs_scrub_pools_weekday}} {{file_owner_zfs_scrub_pools_sh}} {{file_dst_zfs_scrub_pools_sh}}"
-file_dst_zfs_scrub_pools: '/etc/crontab'
+file_line_zfs_scrub_pools: "{{zfs_scrub_pools_minute}} {{zfs_scrub_pools_hour}} {{zfs_scrub_pools_day}} {{zfs_scrub_pools_month}} {{zfs_scrub_pools_weekday}} {{file_owner_zfs_scrub_pools}} {{file_dst_zfs_scrub_pools}}"
+
+# zfs_scrub-pools
+cron_dst_zfs_scrub_pools: '/etc/crontab'

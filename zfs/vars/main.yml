@@ -4,22 +4,16 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-# zfs_script.dir
-file_dst_zfs_script_dir: "/{{common_script_dir}}/zfs"
-file_mode_zfs_script_dir: '0755'
-file_owner_zfs_script_dir: 'root'
-file_group_zfs_script_dir: 'wheel'
+# zfs_check-pools
+file_src_zfs_check_pools: 'templates/main/zfs_check-pools.j2'
+file_dst_zfs_check_pools: '/usr/local/sbin/zfs_check-pools'
+file_mode_zfs_check_pools: '0754'
+file_owner_zfs_check_pools: 'root'
+file_group_zfs_check_pools: 'wheel'
 
-# zfs_check-pools.sh
-file_src_zfs_check_pools_sh: 'templates/main/zfs_check-pools.sh.j2'
-file_dst_zfs_check_pools_sh: "{{file_dst_zfs_script_dir}}/zfs_check-pools.sh"
-file_mode_zfs_check_pools_sh: '0754'
-file_owner_zfs_check_pools_sh: 'root'
-file_group_zfs_check_pools_sh: 'wheel'
-
-# zfs_scrub-pools.sh
-file_src_zfs_scrub_pools_sh: 'templates/main/zfs_scrub-pools.sh.j2'
-file_dst_zfs_scrub_pools_sh: "{{file_dst_zfs_script_dir}}/zfs_scrub-pools.sh"
-file_mode_zfs_scrub_pools_sh: '0754'
-file_owner_zfs_scrub_pools_sh: 'root'
-file_group_zfs_scrub_pools_sh: 'wheel'
+# zfs_scrub-pools
+file_src_zfs_scrub_pools: 'templates/main/zfs_scrub-pools.j2'
+file_dst_zfs_scrub_pools: '/usr/local/sbin/zfs_scrub-pools'
+file_mode_zfs_scrub_pools: '0754'
+file_owner_zfs_scrub_pools: 'root'
+file_group_zfs_scrub_pools: 'wheel'
