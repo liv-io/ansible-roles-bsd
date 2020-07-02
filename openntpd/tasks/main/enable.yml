@@ -32,13 +32,13 @@
     - enable
     - openntpd
 
-- name: 'file create openntpd_check-time.sh'
+- name: 'file create openntpd_check-time'
   template:
-    src: "{{file_src_openntpd_check_time_sh}}"
-    dest: "{{file_dst_openntpd_check_time_sh}}"
-    mode: "{{file_mode_openntpd_check_time_sh}}"
-    owner: "{{file_owner_openntpd_check_time_sh}}"
-    group: "{{file_group_openntpd_check_time_sh}}"
+    src: "{{file_src_openntpd_check_time}}"
+    dest: "{{file_dst_openntpd_check_time}}"
+    mode: "{{file_mode_openntpd_check_time}}"
+    owner: "{{file_owner_openntpd_check_time}}"
+    group: "{{file_group_openntpd_check_time}}"
   tags:
     - enable
     - openntpd
@@ -48,7 +48,7 @@
     state: "{{'absent' if (openntpd_check_time_state is match('false|no|disable')) else 'present'}}"
     line: "{{file_line_openntpd_check_time}} # Ansible: openntpd_check-time"
     regexp: "# Ansible: openntpd_check-time$"
-    dest: "{{file_dst_openntpd_check_time}}"
+    dest: "{{cron_dst_openntpd_check_time}}"
   tags:
     - enable
     - openntpd

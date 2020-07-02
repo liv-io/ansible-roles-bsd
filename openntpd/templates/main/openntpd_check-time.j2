@@ -8,7 +8,7 @@
 # INFORMATION
 #-------------------------------------------------------------------------------
 #
-# Name   : openntpd_check-time.sh
+# Name   : openntpd_check-time
 # Type   : Shell script
 # Role   : openntpd
 #
@@ -55,8 +55,8 @@ whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 1
 host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
 script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
 time_start=$(${date} '+%s')
-user='{{file_owner_openntpd_check_time_sh}}'
-lockfile='{{file_dst_openntpd_script_dir}}/openntpd_check-time.lock'
+user='{{file_owner_openntpd_check_time}}'
+lockfile='/var/tmp/openntpd_check-time.lock'
 retval=0
 severity='Debug'
 message='Please check log files for more information.'
@@ -90,7 +90,7 @@ Date & Time : $(${date} '+%Y-%m-%dT%H:%M:%S%z')
 SCRIPT
 --------------------------------------------------------------------------------
 
-Name        : openntpd_check-time.sh
+Name        : openntpd_check-time
 Type        : Shell script
 PID         : $$
 

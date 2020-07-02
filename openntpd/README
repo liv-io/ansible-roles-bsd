@@ -210,8 +210,6 @@ PACKAGES
       FreeBSD 12: 'openntpd'
 
 ROLES
-  common
-
   mailx
 
 PARAMETERS

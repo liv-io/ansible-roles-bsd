@@ -28,18 +28,3 @@
   tags:
     - install
     - openntpd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
-- name: 'file create openntpd_script.dir'
-  file:
-    state: 'directory'
-    path: "{{file_dst_openntpd_script_dir}}"
-    mode: "{{file_mode_openntpd_script_dir}}"
-    owner: "{{file_owner_openntpd_script_dir}}"
-    group: "{{file_group_openntpd_script_dir}}"
-  tags:
-    - install
-    - openntpd
