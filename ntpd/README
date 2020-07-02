@@ -240,8 +240,6 @@ PACKAGES
       OpenBSD  6: 'ntp'
 
 ROLES
-  common
-
   mailx
 
 PARAMETERS

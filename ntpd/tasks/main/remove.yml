@@ -79,7 +79,7 @@
     state: 'absent'
     line: "{{file_line_ntpd_check_time}} # Ansible: ntpd_check-time"
     regexp: "# Ansible: ntpd_check-time$"
-    dest: "{{file_dst_ntpd_check_time}}"
+    dest: "{{cron_dst_ntpd_check_time}}"
   tags:
     - remove
     - ntpd
@@ -89,15 +89,23 @@
     state: 'absent'
     line: "{{file_line_ntpd_update_time}} # Ansible: ntpd_update-time"
     regexp: "# Ansible: ntpd_update-time$"
-    dest: "{{file_dst_ntpd_update_time}}"
+    dest: "{{cron_dst_ntpd_update_time}}"
   tags:
     - remove
     - ntpd
 
-- name: 'file remove ntpd_script.dir'
+- name: 'file remove ntpd_check-time'
   file:
     state: 'absent'
-    path: "{{file_dst_ntpd_script_dir}}"
+    path: "{{file_dst_ntpd_check_time}}"
+  tags:
+    - remove
+    - ntpd
+
+- name: 'file remove ntpd_update-time'
+  file:
+    state: 'absent'
+    path: "{{file_dst_ntpd_update_time}}"
   tags:
     - remove
     - ntpd

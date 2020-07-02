@@ -31,10 +31,10 @@
     - disable
     - ntpd
 
-- name: 'file remove ntpd_check-time.sh'
+- name: 'file remove ntpd_check-time'
   file:
     state: 'absent'
-    path: "{{file_dst_ntpd_check_time_sh}}"
+    path: "{{file_dst_ntpd_check_time}}"
   tags:
     - disable
     - ntpd
@@ -44,15 +44,15 @@
     state: 'absent'
     line: "{{file_line_ntpd_check_time}} # Ansible: ntpd_check-time"
     regexp: "# Ansible: ntpd_check-time$"
-    dest: "{{file_dst_ntpd_check_time}}"
+    dest: "{{cron_dst_ntpd_check_time}}"
   tags:
     - disable
     - ntpd
 
-- name: 'file remove ntpd_update-time.sh'
+- name: 'file remove ntpd_update-time'
   file:
     state: 'absent'
-    path: "{{file_dst_ntpd_update_time_sh}}"
+    path: "{{file_dst_ntpd_update_time}}"
   tags:
     - disable
     - ntpd
@@ -62,7 +62,7 @@
     state: 'absent'
     line: "{{file_line_ntpd_update_time}} # Ansible: ntpd_update-time"
     regexp: "# Ansible: ntpd_update-time$"
-    dest: "{{file_dst_ntpd_update_time}}"
+    dest: "{{cron_dst_ntpd_update_time}}"
   tags:
     - disable
     - ntpd

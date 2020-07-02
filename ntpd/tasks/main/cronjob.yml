@@ -98,10 +98,10 @@
     - cronjob
     - ntpd
 
-- name: 'file remove ntpd_check-time.sh'
+- name: 'file remove ntpd_check-time'
   file:
     state: 'absent'
-    path: "{{file_dst_ntpd_check_time_sh}}"
+    path: "{{file_dst_ntpd_check_time}}"
   tags:
     - cronjob
     - ntpd
@@ -111,18 +111,18 @@
     state: 'absent'
     line: "{{file_line_ntpd_check_time}} # Ansible: ntpd_check-time"
     regexp: "# Ansible: ntpd_check-time$"
-    dest: "{{file_dst_ntpd_check_time}}"
+    dest: "{{cron_dst_ntpd_check_time}}"
   tags:
     - cronjob
     - ntpd
 
-- name: 'file create ntpd_update-time.sh'
+- name: 'file create ntpd_update-time'
   template:
-    src: "{{file_src_ntpd_update_time_sh}}"
-    dest: "{{file_dst_ntpd_update_time_sh}}"
-    mode: "{{file_mode_ntpd_update_time_sh}}"
-    owner: "{{file_owner_ntpd_update_time_sh}}"
-    group: "{{file_group_ntpd_update_time_sh}}"
+    src: "{{file_src_ntpd_update_time}}"
+    dest: "{{file_dst_ntpd_update_time}}"
+    mode: "{{file_mode_ntpd_update_time}}"
+    owner: "{{file_owner_ntpd_update_time}}"
+    group: "{{file_group_ntpd_update_time}}"
   tags:
     - cronjob
     - ntpd
@@ -132,7 +132,7 @@
     state: 'present'
     line: "{{file_line_ntpd_update_time}} # Ansible: ntpd_update-time"
     regexp: "# Ansible: ntpd_update-time$"
-    dest: "{{file_dst_ntpd_update_time}}"
+    dest: "{{cron_dst_ntpd_update_time}}"
   tags:
     - cronjob
     - ntpd
