@@ -24,6 +24,10 @@ ntpd_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
 
 ntpd_monitor_mail_state: 'false'
 
+ntpd_monitor_prom_state: 'false'
+
+ntpd_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+
 ntpd_restrict:
   - {address: 'default', options: {'nomodify', 'notrap', 'noquery', 'nopeer'}, comment: 'Default IPv4'}
   - {address: '-6 default', options: {'nomodify', 'notrap', 'noquery', 'nopeer'}, comment: 'Default IPv6'}
