@@ -64,13 +64,13 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'file create restic_backup.dir'
+- name: 'file create restic_etc.dir'
   file:
     state: 'directory'
-    path: "{{file_dst_restic_backup_dir}}"
-    mode: "{{file_mode_restic_backup_dir}}"
-    owner: "{{file_owner_restic_backup_dir}}"
-    group: "{{file_group_restic_backup_dir}}"
+    path: "{{file_dst_restic_etc_dir}}"
+    mode: "{{file_mode_restic_etc_dir}}"
+    owner: "{{file_owner_restic_etc_dir}}"
+    group: "{{file_group_restic_etc_dir}}"
   tags:
     - install
     - restic
@@ -82,17 +82,6 @@
     mode: "{{file_mode_restic_log_dir}}"
     owner: "{{file_owner_restic_log_dir}}"
     group: "{{file_group_restic_log_dir}}"
-  tags:
-    - install
-    - restic
-
-- name: 'file create restic_script.dir'
-  file:
-    state: 'directory'
-    path: "{{file_dst_restic_script_dir}}"
-    mode: "{{file_mode_restic_script_dir}}"
-    owner: "{{file_owner_restic_script_dir}}"
-    group: "{{file_group_restic_script_dir}}"
   tags:
     - install
     - restic
@@ -143,13 +132,13 @@
     - install
     - restic
 
-- name: 'file create restic_run-backup.sh'
+- name: 'file create restic_run-backup'
   template:
-    src: "{{file_src_restic_run_backup_sh}}"
-    dest: "{{file_dst_restic_run_backup_sh}}"
-    mode: "{{file_mode_restic_run_backup_sh}}"
-    owner: "{{file_owner_restic_run_backup_sh}}"
-    group: "{{file_group_restic_run_backup_sh}}"
+    src: "{{file_src_restic_run_backup}}"
+    dest: "{{file_dst_restic_run_backup}}"
+    mode: "{{file_mode_restic_run_backup}}"
+    owner: "{{file_owner_restic_run_backup}}"
+    group: "{{file_group_restic_run_backup}}"
   tags:
     - install
     - restic

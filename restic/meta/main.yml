@@ -1,5 +1,4 @@
 ---
 
 dependencies:
-  - {role: common, when: not (restic_state is match('false|no|remove|quiesce|inactive'))}
   - {role: mailx, when: (restic_monitor_mail_state is match('true|yes|enable'))}

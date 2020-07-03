@@ -63,10 +63,18 @@
     - remove
     - restic
 
-- name: 'file remove restic_script.dir'
+- name: 'file remove restic_run-backup'
   file:
     state: 'absent'
-    path: "{{file_dst_restic_script_dir}}"
+    path: "{{file_dst_restic_run_backup}}"
+  tags:
+    - remove
+    - restic
+
+- name: 'file remove restic_etc.dir'
+  file:
+    state: 'absent'
+    path: "{{file_dst_restic_etc_dir}}"
   tags:
     - remove
     - restic

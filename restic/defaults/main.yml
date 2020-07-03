@@ -19,7 +19,6 @@ restic_include:
   - '/home'
   - '/opt'
   - '/root'
-  - '/script'
   - '/usr/local'
   - '/var/log'
   - '/var/www'

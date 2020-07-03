@@ -8,7 +8,7 @@
 # INFORMATION
 #-------------------------------------------------------------------------------
 #
-# Name   : restic_run-backup.sh
+# Name   : restic_run-backup
 # Type   : Shell script
 # Role   : restic
 #
@@ -54,8 +54,8 @@ host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
 script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
 date_start=$(${date} '+%Y-%m-%dT%H:%M:%S%z')
 time_start=$(${date} '+%s')
-user='{{file_owner_restic_run_backup_sh}}'
-lockfile='{{file_dst_restic_script_dir}}/restic_run-backup.lock'
+user='{{file_owner_restic_run_backup}}'
+lockfile='/var/tmp/restic_run-backup.lock'
 retval=0
 severity='Debug'
 message='Please check log files for more information.'
@@ -103,7 +103,7 @@ Date & Time : $(${date} '+%Y-%m-%dT%H:%M:%S%z')
 SCRIPT
 --------------------------------------------------------------------------------
 
-Name        : restic_run-backup.sh
+Name        : restic_run-backup
 Type        : Shell script
 PID         : $$
 

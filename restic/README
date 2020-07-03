@@ -288,8 +288,6 @@ PACKAGES
       OpenBSD  6: 'restic'
 
 ROLES
-  common
-
   mailx
 
 PARAMETERS
