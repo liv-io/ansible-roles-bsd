@@ -35,6 +35,26 @@ file_mode_ntpd_update_time: '0754'
 file_owner_ntpd_update_time: 'root'
 file_group_ntpd_update_time: 'wheel'
 
+# ntpd_check-time
+cron_name_ntpd_check_time: 'ntpd: Check Time'
+cron_day_ntpd_check_time: "{{ntpd_check_time_day}}"
+cron_hour_ntpd_check_time: "{{ntpd_check_time_hour}}"
+cron_minute_ntpd_check_time: "{{ntpd_check_time_minute}}"
+cron_month_ntpd_check_time: "{{ntpd_check_time_month}}"
+cron_weekday_ntpd_check_time: "{{ntpd_check_time_weekday}}"
+cron_user_ntpd_check_time: "{{file_owner_ntpd_check_time}}"
+cron_job_ntpd_check_time: "{{file_dst_ntpd_check_time}}"
+
+# ntpd_update-time
+cron_name_ntpd_update_time: 'ntpd: Update Time'
+cron_day_ntpd_update_time: "{{ntpd_update_time_day}}"
+cron_hour_ntpd_update_time: "{{ntpd_update_time_hour}}"
+cron_minute_ntpd_update_time: "{{ntpd_update_time_minute}}"
+cron_month_ntpd_update_time: "{{ntpd_update_time_month}}"
+cron_weekday_ntpd_update_time: "{{ntpd_update_time_weekday}}"
+cron_user_ntpd_update_time: "{{file_owner_ntpd_update_time}}"
+cron_job_ntpd_update_time: "{{file_dst_ntpd_update_time}}"
+
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------

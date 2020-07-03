@@ -2,7 +2,15 @@
 
 ntpd_state: 'enable'
 
-ntpd_check_time_interval: 10
+ntpd_check_time_day: '*'
+
+ntpd_check_time_hour: '*'
+
+ntpd_check_time_minute: '*/10'
+
+ntpd_check_time_month: '*'
+
+ntpd_check_time_weekday: '*'
 
 ntpd_check_time_offset_limit: 1000
 
@@ -25,4 +33,12 @@ ntpd_restrict:
 ntpd_server:
   - {address: "ntp.{{ansible_domain}}", options: {'burst', 'prefer', 'minpoll 4', 'maxpoll 6'}, comment: 'Default NTP server'}
 
-ntpd_update_time_interval: 10
+ntpd_update_time_day: '*'
+
+ntpd_update_time_hour: '*'
+
+ntpd_update_time_minute: '*/10'
+
+ntpd_update_time_month: '*'
+
+ntpd_update_time_weekday: '*'

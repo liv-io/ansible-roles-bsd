@@ -39,12 +39,18 @@
     - disable
     - ntpd
 
-- name: 'line config ntpd_check-time'
-  lineinfile:
-    state: 'absent'
-    line: "{{file_line_ntpd_check_time}} # Ansible: ntpd_check-time"
-    regexp: "# Ansible: ntpd_check-time$"
-    dest: "{{cron_dst_ntpd_check_time}}"
+- name: 'cron create ntpd_check-time'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_ntpd_check_time}}"
+    day: "{{cron_day_ntpd_check_time}}"
+    hour: "{{cron_hour_ntpd_check_time}}"
+    minute: "{{cron_minute_ntpd_check_time}}"
+    month: "{{cron_month_ntpd_check_time}}"
+    weekday: "{{cron_weekday_ntpd_check_time}}"
+    user: "{{cron_user_ntpd_check_time}}"
+    job: "{{cron_job_ntpd_check_time}}"
   tags:
     - disable
     - ntpd
@@ -57,12 +63,11 @@
     - disable
     - ntpd
 
-- name: 'line config ntpd_update-time'
-  lineinfile:
+- name: 'cron remove ntpd_update-time'
+  cron:
     state: 'absent'
-    line: "{{file_line_ntpd_update_time}} # Ansible: ntpd_update-time"
-    regexp: "# Ansible: ntpd_update-time$"
-    dest: "{{cron_dst_ntpd_update_time}}"
+    name: "{{cron_name_ntpd_update_time}}"
+    user: "{{cron_user_ntpd_update_time}}"
   tags:
     - disable
     - ntpd
