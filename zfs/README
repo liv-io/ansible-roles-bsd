@@ -179,6 +179,27 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+  zfs_monitor_prom_state
+    Description: Control the 'zfs_monitor_prom_state' option.
+    Implemented: 6.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  zfs_monitor_prom_textfile_collector
+    Description: Define the 'zfs_monitor_prom_textfile_collector' option.
+    Implemented: 6.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/data/node_exporter/textfile_collector'
+    Options    :
+      Examples: '/data/node_exporter/textfile_collector'
+
   zfs_scrub_pools_day
     Description: Define the 'zfs_scrub_pools_day' option.
     Implemented: 3.0

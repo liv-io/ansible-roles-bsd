@@ -59,6 +59,7 @@ retval=0
 severity='Debug'
 message='Please check log files for more information.'
 
+textfile_collector='{{zfs_monitor_prom_textfile_collector}}'
 zfs_scrub_pools_pools='{% for item in zfs_scrub_pools_pools %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}'
 
 {% if (zfs_monitor_mail_state is match('true|yes|enable')) %}
@@ -104,6 +105,36 @@ FQDN        : {{ansible_fqdn}}"
 {% else %}
   ${echo} "${mail_body}" | ${mailx} -r "${mail_from_address}" -s "${mail_subject}" "${mail_to_address}" > /dev/null 2>&1
 {% endif %}
+}
+{% endif %}
+
+{% if (zfs_monitor_prom_state is match('true|yes|enable')) %}
+update_prom() {
+  retval="$1"
+  time_start="$2"
+  time_exec="$3"
+
+  if [ -w "${textfile_collector}" ]; then
+    ${echo} -e "# HELP zfs_scrub_pools_exit The script's exit code.\n"\
+"# TYPE zfs_scrub_pools_exit counter\n"\
+"zfs_scrub_pools_exit ${retval}" > "${textfile_collector}/zfs_scrub_pools_exit.prom"
+
+    if [ -z "${time_start}" ] ; then
+      ${rm} -f "${textfile_collector}/zfs_scrub_pools_start.prom"
+    else
+      ${echo} -e "# HELP zfs_scrub_pools_start The script's start time in epoch.\n"\
+"# TYPE zfs_scrub_pools_start counter\n"\
+"zfs_scrub_pools_start ${time_start}" > "${textfile_collector}/zfs_scrub_pools_start.prom"
+    fi
+
+    if [ -z "${time_exec}" ] ; then
+      ${rm} -f "${textfile_collector}/zfs_scrub_pools_duration.prom"
+    else
+      ${echo} -e "# HELP zfs_scrub_pools_duration The script's execution duration in seconds.\n"\
+"# TYPE zfs_scrub_pools_duration counter\n"\
+"zfs_scrub_pools_duration ${time_exec}" > "${textfile_collector}/zfs_scrub_pools_duration.prom"
+    fi
+  fi
 }
 {% endif %}
 
@@ -162,6 +193,11 @@ log_and_exit_on_error() {
 {% if (zfs_monitor_mail_state is match('true|yes|enable')) %}
     mail_error "${retval}" "${severity}" "${message}"
 {% endif %}
+
+{% if (zfs_monitor_prom_state is match('true|yes|enable')) %}
+    update_prom "${retval}" "${time_start}" "${time_exec}"
+{% endif %}
+
     exit "${retval}"
   fi
 }
@@ -179,6 +215,10 @@ log_and_exit() {
     message='Specified ZFS pools have been scrubbed and are healthy.'
   fi
   ${logger} -t "${script}" "${severity}: ${message} Duration: ${time_hr}"
+
+{% if (zfs_monitor_prom_state is match('true|yes|enable')) %}
+  update_prom "${retval}" "${time_start}" "${time_exec}"
+{% endif %}
 
   exit "${retval}"
 }

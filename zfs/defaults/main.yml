@@ -20,6 +20,10 @@ zfs_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
 
 zfs_monitor_mail_state: 'false'
 
+zfs_monitor_prom_state: 'false'
+
+zfs_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+
 zfs_scrub_pools_day: '*'
 
 zfs_scrub_pools_hour: 1

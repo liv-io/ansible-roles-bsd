@@ -23,7 +23,7 @@
 - name: 'cron create zfs_check-pools'
   cron:
     state: 'present'
-    disabled: 'no'
+    disabled: "{{'yes' if (zfs_check_pools_state is match('false|no|disable')) else 'no'}}"
     name: "{{cron_name_zfs_check_pools}}"
     day: "{{cron_day_zfs_check_pools}}"
     hour: "{{cron_hour_zfs_check_pools}}"
@@ -39,7 +39,7 @@
 - name: 'cron create zfs_scrub-pools'
   cron:
     state: 'present'
-    disabled: 'no'
+    disabled: "{{'yes' if (zfs_scrub_pools_state is match('false|no|disable')) else 'no'}}"
     name: "{{cron_name_zfs_scrub_pools}}"
     day: "{{cron_day_zfs_scrub_pools}}"
     hour: "{{cron_hour_zfs_scrub_pools}}"
