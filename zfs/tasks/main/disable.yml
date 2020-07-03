@@ -20,24 +20,34 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'line remove zfs_check-pools'
-  lineinfile:
-    state: 'absent'
-    line: "{{file_line_zfs_check_pools}} # Ansible: zfs_check-pools"
-    regexp: "# Ansible: zfs_check-pools$"
-    dest: "{{cron_dst_zfs_check_pools}}"
-  when: (ansible_os_family == 'FreeBSD')
+- name: 'cron create zfs_check-pools'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_zfs_check_pools}}"
+    day: "{{cron_day_zfs_check_pools}}"
+    hour: "{{cron_hour_zfs_check_pools}}"
+    minute: "{{cron_minute_zfs_check_pools}}"
+    month: "{{cron_month_zfs_check_pools}}"
+    weekday: "{{cron_weekday_zfs_check_pools}}"
+    user: "{{cron_user_zfs_check_pools}}"
+    job: "{{cron_job_zfs_check_pools}}"
   tags:
     - disable
     - zfs
 
-- name: 'line remove zfs_scrub-pools'
-  lineinfile:
-    state: 'absent'
-    line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
-    regexp: "# Ansible: zfs_scrub-pools$"
-    dest: "{{cron_dst_zfs_scrub_pools}}"
-  when: (ansible_os_family == 'FreeBSD')
+- name: 'cron create zfs_scrub-pools'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_zfs_scrub_pools}}"
+    day: "{{cron_day_zfs_scrub_pools}}"
+    hour: "{{cron_hour_zfs_scrub_pools}}"
+    minute: "{{cron_minute_zfs_scrub_pools}}"
+    month: "{{cron_month_zfs_scrub_pools}}"
+    weekday: "{{cron_weekday_zfs_scrub_pools}}"
+    user: "{{cron_user_zfs_scrub_pools}}"
+    job: "{{cron_job_zfs_scrub_pools}}"
   tags:
     - disable
     - zfs

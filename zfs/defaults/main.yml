@@ -2,7 +2,15 @@
 
 zfs_state: 'enable'
 
-zfs_check_pools_interval: 15
+zfs_check_pools_day: '*'
+
+zfs_check_pools_hour: '*'
+
+zfs_check_pools_minute: '*/15'
+
+zfs_check_pools_month: '*'
+
+zfs_check_pools_weekday: '*'
 
 zfs_check_pools_state: 'enable'
 

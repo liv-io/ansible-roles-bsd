@@ -20,13 +20,11 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'line remove zfs_check-pools'
-  lineinfile:
+- name: 'cron remove zfs_check-pools'
+  cron:
     state: 'absent'
-    line: "{{file_line_zfs_check_pools}} # Ansible: zfs_check-pools"
-    regexp: "# Ansible: zfs_check-pools$"
-    dest: "{{cron_dst_zfs_check_pools}}"
-  when: (ansible_os_family == 'FreeBSD')
+    name: "{{cron_name_zfs_check_pools}}"
+    user: "{{cron_user_zfs_check_pools}}"
   tags:
     - remove
     - zfs
@@ -39,13 +37,11 @@
     - remove
     - zfs
 
-- name: 'line remove zfs_scrub-pools'
-  lineinfile:
+- name: 'cron remove zfs_scrub-pools'
+  cron:
     state: 'absent'
-    line: "{{file_line_zfs_scrub_pools}} # Ansible: zfs_scrub-pools"
-    regexp: "# Ansible: zfs_scrub-pools$"
-    dest: "{{cron_dst_zfs_scrub_pools}}"
-  when: (ansible_os_family == 'FreeBSD')
+    name: "{{cron_name_zfs_scrub_pools}}"
+    user: "{{cron_user_zfs_scrub_pools}}"
   tags:
     - remove
     - zfs

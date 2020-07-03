@@ -86,16 +86,55 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  zfs_check_pools_interval
-    Description: Set the 'zfs_check_pools_interval' option.
-                 Specify a value between 1-59.
-    Implemented: 3.0
+  zfs_check_pools_day
+    Description: Define the 'zfs_check_pools_day' option.
+    Implemented: 6.0
     Required   : False
-    Value      : Arbitrary (5-59)
-    Type       : Integer
-    Default    : 15
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
     Options    :
-      Examples: 5 | 11 | 15 | 20 | 23
+      Examples: '1' | '*/2'
+
+  zfs_check_pools_hour
+    Description: Define the 'zfs_check_pools_hour' option.
+    Implemented: 6.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '5' | '*/6'
+
+  zfs_check_pools_minute
+    Description: Define the 'zfs_check_pools_minute' option.
+    Implemented: 6.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*/15'
+    Options    :
+      Examples: '42' | '*/30'
+
+  zfs_check_pools_month
+    Description: Define the 'zfs_check_pools_month' option.
+    Implemented: 6.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '10' | '*/1'
+
+  zfs_check_pools_weekday
+    Description: Define the 'zfs_check_pools_weekday' option.
+    Implemented: 6.0
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '6' | 'Saturday'
 
   zfs_check_pools_state
     Description: Control the 'zfs_check_pools_state' option.
