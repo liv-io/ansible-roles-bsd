@@ -199,6 +199,27 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+  openntpd_monitor_prom_state
+    Description: Control the 'openntpd_monitor_prom_state' option.
+    Implemented: 5.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  openntpd_monitor_prom_textfile_collector
+    Description: Define the 'openntpd_monitor_prom_textfile_collector' option.
+    Implemented: 5.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '/data/node_exporter/textfile_collector'
+    Options    :
+      Examples: '/data/node_exporter/textfile_collector'
+
   openntpd_server
     Description: Define the 'openntpd_server' option.
     Implemented: 1.0

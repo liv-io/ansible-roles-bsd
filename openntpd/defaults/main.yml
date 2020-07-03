@@ -24,6 +24,10 @@ openntpd_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
 
 openntpd_monitor_mail_state: 'false'
 
+openntpd_monitor_prom_state: 'false'
+
+openntpd_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+
 openntpd_server:
   - {address: "ntp.{{ansible_domain}}", weight: 1, comment: 'Default NTP server'}
 
