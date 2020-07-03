@@ -75,6 +75,7 @@ keep_weekly='{{restic_keep_weekly}}'
 keep_monthly='{{restic_keep_monthly}}'
 limit_download='{{restic_limit_download}}'
 limit_upload='{{restic_limit_upload}}'
+textfile_collector='{{restic_monitor_prom_textfile_collector}}'
 
 {% if (restic_monitor_mail_state is match('true|yes|enable')) %}
 mail_from_address='{{restic_monitor_mail_from_address}}'
@@ -122,6 +123,36 @@ FQDN        : {{ansible_fqdn}}"
 }
 {% endif %}
 
+{% if (restic_monitor_prom_state is match('true|yes|enable')) %}
+update_prom() {
+  retval="$1"
+  time_start="$2"
+  time_exec="$3"
+
+  if [ -w "${textfile_collector}" ]; then
+    ${echo} -e "# HELP restic_run_backup_exit The script's exit code.\n"\
+"# TYPE restic_run_backup_exit counter\n"\
+"restic_run_backup_exit ${retval}" > "${textfile_collector}/restic_run_backup_exit.prom"
+
+    if [ -z "${time_start}" ] ; then
+      ${rm} -f "${textfile_collector}/restic_run_backup_start.prom"
+    else
+      ${echo} -e "# HELP restic_run_backup_start The script's start time in epoch.\n"\
+"# TYPE restic_run_backup_start counter\n"\
+"restic_run_backup_start ${time_start}" > "${textfile_collector}/restic_run_backup_start.prom"
+    fi
+
+    if [ -z "${time_exec}" ] ; then
+      ${rm} -f "${textfile_collector}/restic_run_backup_duration.prom"
+    else
+      ${echo} -e "# HELP restic_run_backup_duration The script's execution duration in seconds.\n"\
+"# TYPE restic_run_backup_duration counter\n"\
+"restic_run_backup_duration ${time_exec}" > "${textfile_collector}/restic_run_backup_duration.prom"
+    fi
+  fi
+}
+{% endif %}
+
 check_script_user() {
   if [ "$(${whoami})" != "${user}" ]; then
     retval=77
@@ -157,10 +188,17 @@ log_and_exit_on_error() {
     if [ -t 1 ] ; then
       ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
     fi
+
     ${logger} -t ${script} "${severity}: ${message}"
+
 {% if (restic_monitor_mail_state is match('true|yes|enable')) %}
     mail_error ${retval} "${severity}" "${message}"
 {% endif %}
+
+{% if (restic_monitor_prom_state is match('true|yes|enable')) %}
+    update_prom "${retval}" "${time_start}" "${time_exec}"
+{% endif %}
+
     add_log_header 'backup failed'
 
     exit ${retval}
@@ -175,8 +213,12 @@ log_and_exit() {
 
   retval=0
   severity='Info'
-  message='System time and hardware clock updated.'
+  message='Backup created successfully.'
   ${logger} -t ${script} "${severity}: ${message} Duration: ${time_hr}"
+
+{% if (restic_monitor_prom_state is match('true|yes|enable')) %}
+  update_prom "${retval}" "${time_start}" "${time_exec}"
+{% endif %}
 
   exit ${retval}
 }
