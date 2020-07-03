@@ -7,12 +7,6 @@
 # ntpd.conf
 file_dst_ntpd_conf: '/usr/local/etc/ntpd.conf'
 
-# openntpd_check-time
-file_line_openntpd_check_time: "*/{% if ((openntpd_check_time_interval|int(10)) > 59) %}59{% elif ((openntpd_check_time_interval|int(10)) < 5) %}5{% else %}{{(openntpd_check_time_interval|int(10))}}{% endif %} * * * * {{file_owner_openntpd_check_time}} {{file_dst_openntpd_check_time}}"
-
-# openntpd_check-time
-cron_dst_openntpd_check_time: '/etc/crontab'
-
 # openntpd_enable
 file_line_openntpd_enable: 'openntpd_enable'
 file_dst_openntpd_enable: '/etc/rc.conf'

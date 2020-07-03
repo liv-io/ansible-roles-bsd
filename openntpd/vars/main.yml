@@ -25,6 +25,16 @@ file_mode_openntpd_check_time: '0754'
 file_owner_openntpd_check_time: 'root'
 file_group_openntpd_check_time: 'wheel'
 
+# openntpd_check-time
+cron_name_openntpd_check_time: 'OpenNTPD: Check Time'
+cron_day_openntpd_check_time: "{{openntpd_check_time_day}}"
+cron_hour_openntpd_check_time: "{{openntpd_check_time_hour}}"
+cron_minute_openntpd_check_time: "{{openntpd_check_time_minute}}"
+cron_month_openntpd_check_time: "{{openntpd_check_time_month}}"
+cron_weekday_openntpd_check_time: "{{openntpd_check_time_weekday}}"
+cron_user_openntpd_check_time: "{{file_owner_openntpd_check_time}}"
+cron_job_openntpd_check_time: "{{file_dst_openntpd_check_time}}"
+
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------

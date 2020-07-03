@@ -2,7 +2,15 @@
 
 openntpd_state: 'enable'
 
-openntpd_check_time_interval: 10
+openntpd_check_time_day: '*'
+
+openntpd_check_time_hour: '*'
+
+openntpd_check_time_minute: '*/10'
+
+openntpd_check_time_month: '*'
+
+openntpd_check_time_weekday: '*'
 
 openntpd_check_time_offset_limit: 1000
 
