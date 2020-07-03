@@ -19,7 +19,7 @@ file_owner_zfs_scrub_pools: 'root'
 file_group_zfs_scrub_pools: 'wheel'
 
 # zfs_check-pools
-cron_name_zfs_check_pools: 'zfs: Check Pools'
+cron_name_zfs_check_pools: 'ZFS: Check Pools'
 cron_day_zfs_check_pools: "{{zfs_check_pools_day}}"
 cron_hour_zfs_check_pools: "{{zfs_check_pools_hour}}"
 cron_minute_zfs_check_pools: "{{zfs_check_pools_minute}}"
@@ -29,7 +29,7 @@ cron_user_zfs_check_pools: "{{file_owner_zfs_check_pools}}"
 cron_job_zfs_check_pools: "{{file_dst_zfs_check_pools}}"
 
 # zfs_scrub-pools
-cron_name_zfs_scrub_pools: 'zfs: Scrub Pools'
+cron_name_zfs_scrub_pools: 'ZFS: Scrub Pools'
 cron_day_zfs_scrub_pools: "{{zfs_scrub_pools_day}}"
 cron_hour_zfs_scrub_pools: "{{zfs_scrub_pools_hour}}"
 cron_minute_zfs_scrub_pools: "{{zfs_scrub_pools_minute}}"
