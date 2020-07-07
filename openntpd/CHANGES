@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 5.1.1 (2020-07-07)
+B: Add missing openntpd_check_time_state condition
+
 * Version 5.1.0 (2020-07-03)
 F: Add support for monitoring via Prometheus node_exporter (textfile_collector)
 

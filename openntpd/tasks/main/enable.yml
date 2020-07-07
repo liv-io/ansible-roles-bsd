@@ -46,7 +46,7 @@
 - name: 'cron create openntpd_check-time'
   cron:
     state: 'present'
-    disabled: 'no'
+    disabled: "{{'yes' if (openntpd_check_time_state is match('false|no|disable')) else 'no'}}"
     name: "{{cron_name_openntpd_check_time}}"
     day: "{{cron_day_openntpd_check_time}}"
     hour: "{{cron_hour_openntpd_check_time}}"
