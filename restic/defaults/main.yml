@@ -7,9 +7,10 @@ restic_backup_server: "backup.{{ansible_domain}}"
 restic_backup_user: 'restic'
 
 restic_exclude:
-  - '/backup/restic'
+  - '/data/restic'
+  - '/data/rest-server'
   - '/tmp'
-  - '/usr/tmp'
+  - '/var/tmp'
 
 restic_include:
   - '/app'
@@ -19,8 +20,9 @@ restic_include:
   - '/home'
   - '/opt'
   - '/root'
-  - '/usr/local'
+  - '/usr/local/etc'
   - '/var/log'
+  - '/var/opt'
   - '/var/www'
 
 restic_keep_daily: 7

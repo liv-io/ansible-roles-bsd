@@ -102,7 +102,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['/backup/restic', '/tmp', '/usr/tmp']
+    Default    : ['/data/restic', '/data/rest-server', '/tmp', '/var/tmp']
     Options    :
       Examples: ['/tmp', '/data/example/*.tmp']
       None    : []
@@ -113,7 +113,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['/app', '/backup', '/data', '/etc', '/home', '/opt', '/root', '/script', '/usr/local', '/var/log', '/var/www']
+    Default    : ['/app', '/backup', '/data', '/etc', '/home', '/opt', '/root', '/usr/local/etc', '/var/log', '/var/opt', '/var/www']
     Options    :
       Examples: ['/backup', '/data/example/*.data']
       None    : []
