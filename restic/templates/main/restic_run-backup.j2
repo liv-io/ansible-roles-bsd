@@ -39,7 +39,6 @@ logger=$(${which} logger) || { echo "Error: Command 'logger' not found."; exit 1
 mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
-ssh=$(${which} ssh) || { echo "Error: Command 'ssh' not found."; exit 127; }
 tr=$(${which} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
 touch=$(${which} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
 whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
@@ -60,11 +59,11 @@ retval=0
 severity='Debug'
 message='Please check log files for more information.'
 
-ssh_options='-q -o PasswordAuthentication=no -o StrictHostKeyChecking=no -o ConnectTimeout=5'
-backup_user='{{restic_backup_user}}'
-backup_server='{{restic_backup_server}}'
-backup_folder="/backup/restic/$(hostname -s)"
-repo="sftp:${backup_user}@${backup_server}:${backup_folder}"
+server_username='{{restic_server_username}}'
+server_password='{{restic_server_password}}'
+server_address='{{restic_server_address}}'
+server_port='{{restic_server_port}}'
+repo="rest:https://${server_username}:${server_password}@${server_address}:${server_port}/$(${hostname} -s)"
 password='{{file_dst_password_conf}}'
 include='{{file_dst_include_conf}}'
 exclude='{{file_dst_exclude_conf}}'
@@ -245,16 +244,8 @@ create_lockfile
 
 add_log_header 'backup started'
 
-# Check SSH connectivity
-${ssh} ${ssh_options} ${backup_user}@${backup_server} true
-log_and_exit_on_error "$?" 'Error' "Unable to connect to backup server: '${backup_server}'"
-
-# Check backup repository
-${ssh} ${ssh_options} ${backup_user}@${backup_server} test -s ${backup_folder}/config
-if [ $? -ne 0 ]; then
-  ${restic} init -r ${repo} -p ${password} >> ${log_file} 2>&1
-  log_and_exit_on_error "$?" 'Error' "Unable to create backup repository: '${repo}'"
-fi
+# Initialize backup repository
+${restic} init -r ${repo} -p ${password} >> ${log_file} 2>&1
 
 # Create new backup
 ${restic} backup -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --files-from ${include} --exclude-caches --exclude-file ${exclude} >> ${log_file} 2>&1

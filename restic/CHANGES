@@ -14,6 +14,12 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.0.0 (2020-07-20)
+C: Replace SFTP protocol by REST (Rest Server)
+C: Deprecate options restic_backup_server, restic_backup_user
+F: Add options restic_server_address, restic_server_password, restic_server_port, restic_server_username
+E: Remove 'restic' POSIX user and group
+
 * Version 0.11.1 (2020-07-17)
 E: Improve default includes and excludes
 

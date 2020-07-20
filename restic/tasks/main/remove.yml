@@ -29,28 +29,6 @@
     - restic
 
 #-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
-
-- name: 'group remove restic'
-  group:
-    state: 'absent'
-    name: "{{group_name_restic}}"
-  tags:
-    - remove
-    - restic
-
-- name: 'user remove restic'
-  user:
-    state: 'absent'
-    name: "{{user_name_restic}}"
-    remove: "{{user_home_remove_restic}}"
-    force: "{{user_home_force_restic}}"
-  tags:
-    - remove
-    - restic
-
-#-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
 

@@ -66,25 +66,3 @@ cron_month_restic_run_backup: "{{restic_run_backup_month}}"
 cron_weekday_restic_run_backup: "{{restic_run_backup_weekday}}"
 cron_user_restic_run_backup: "{{file_owner_restic_run_backup}}"
 cron_job_restic_run_backup: "{{file_dst_restic_run_backup}}"
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
-
-# restic
-group_name_restic: 'restic'
-group_system_restic: 'yes'
-
-# restic
-user_name_restic: 'restic'
-user_comment_restic: 'restic backup'
-user_group_restic: 'restic'
-user_append_restic: 'yes'
-user_home_create_restic: 'yes'
-user_home_move_restic: 'no'
-user_home_remove_restic: 'yes'
-user_home_force_restic: 'no'
-user_password_restic: '!'
-user_password_update_restic: 'always'
-user_shell_restic: '/bin/sh'
-user_system_restic: 'yes'
