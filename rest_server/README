@@ -1,0 +1,183 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : rest_server
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+Rest Server is a high performance HTTP server that implements restic's REST
+backend API.
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: rest_server
+    vars:
+      rest_server_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+      - role: rest_server
+    vars:
+      rest_server_state: 'enable'
+
+DISABLE
+  - hosts: all
+    roles:
+      - role: rest_server
+    vars:
+      rest_server_state: 'disable'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: rest_server
+    vars:
+      rest_server_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: rest_server
+    vars:
+      rest_server_state: 'inactive'
+
+--------------------------------------------------------------------------------
+PARAMETERS
+--------------------------------------------------------------------------------
+
+ROLE
+  rest_server_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+  rest_server_checksum
+    Description: Define the 'rest_server_checksum' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '71b96f26c4980cca85a75ccf39b73738856dbebf9285c9f278e59d8c5cbd0b69'
+    Options    :
+      Examples: 'e92a601a5ef4f77cce967266b488a978711dabc527a720bea26505cba426c029' |
+                '2f18a32a7bb1c91307ed776cce50559bbcd66af90a61ea0a22a661ebe79e4fda'
+
+  rest_server_checksum_algorithm
+    Description: Define the 'rest_server_checksum_algorithm' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : 'sha256'
+    Options    :
+      Examples: 'sha256' | 'sha512'
+
+  rest_server_options
+    Description: Define the 'rest_server_options' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : ['--path /data/rest-server', '--prometheus']
+    Options    :
+      Examples: ['--prometheus'] | ['--path /data/restic', '--prometheus']
+      None    : []
+
+  rest_server_version
+    Description: Define the 'rest_server_version' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '0.9.7'
+    Options    :
+      Examples: '0.9.5' | '0.9.6'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  rest-server
+
+ROLES
+
+PARAMETERS
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL MACHINE
+  Ansible
+    Version: >= 2.8
+
+  Python
+    Version: >= 2.4
+
+  Python-Crypto
+    Version: >= 2.0
+
+  Python-Jinja2
+    Version: >= 2.0
+
+  Python-Paramiko
+    Version: >= 1.0
+
+  Python-YAML
+    Version: >= 3.0
+
+  sshpass
+    Version: >= 1.0
+
+MANAGED NODE
+  Python
+    Version: >= 2.4
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 12.1-*
+      Status: Planned
+
+  OpenBSD
+    Version: 6.7
+      Status: Development
+
+--------------------------------------------------------------------------------
+OTHER
+--------------------------------------------------------------------------------

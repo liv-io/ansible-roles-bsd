@@ -1,0 +1,117 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status rest_server'
+  command: "{{command_cmd_status_rest_server}}"
+  register: register_status_rest_server
+  changed_when: (register_status_rest_server.rc > 1)
+  failed_when: (register_status_rest_server.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - rest_server
+
+- name: 'command disable rest_server'
+  command: "{{command_cmd_disable_rest_server}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_rest_server.rc == 0)
+  tags:
+    - remove
+    - rest_server
+
+- name: 'command check rest_server'
+  command: "{{command_cmd_check_rest_server}}"
+  register: register_check_rest_server
+  changed_when: (register_check_rest_server.rc > 1)
+  failed_when: (register_check_rest_server.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - rest_server
+
+- name: 'command stop rest_server'
+  command: "{{command_cmd_stop_rest_server}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_rest_server.rc == 0)
+  tags:
+    - remove
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'user remove rest-server'
+  user:
+    state: 'absent'
+    name: "{{user_name_rest_server}}"
+    remove: "{{user_home_remove_rest_server}}"
+    force: "{{user_home_force_rest_server}}"
+  tags:
+    - remove
+    - rest_server
+
+- name: 'group remove rest-server'
+  group:
+    state: 'absent'
+    name: "{{group_name_rest_server}}"
+  tags:
+    - remove
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove rest-server.service'
+  file:
+    state: 'absent'
+    path: "{{file_dst_rest_server_service}}"
+  tags:
+    - remove
+    - rest_server
+
+- name: 'file remove rest-server'
+  file:
+    state: 'absent'
+    path: "{{file_dst_rest_server}}"
+  tags:
+    - remove
+    - rest_server
+
+- name: 'file remove unarchive-rest-server'
+  file:
+    state: 'absent'
+    path: "{{command_creates_unarchive_rest_server_gz}}"
+  tags:
+    - remove
+    - rest_server
+
+- name: 'file remove rest-server.gz'
+  file:
+    state: 'absent'
+    path: "{{file_dst_rest_server_gz}}"
+  tags:
+    - remove
+    - rest_server

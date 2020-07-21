@@ -1,0 +1,74 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# src.dir
+file_dst_src_dir: '/usr/local/src'
+file_mode_src_dir: '0755'
+file_owner_src_dir: 'root'
+file_group_src_dir: 'wheel'
+
+# data.dir
+file_dst_data_dir: '/data'
+file_mode_data_dir: '0755'
+file_owner_data_dir: 'root'
+file_group_data_dir: 'wheel'
+
+# rest-server_data.dir
+file_dst_rest_server_data_dir: '/data/rest-server'
+file_mode_rest_server_data_dir: '0750'
+file_owner_rest_server_data_dir: '_rest-server'
+file_group_rest_server_data_dir: '_rest-server'
+
+# rest-server.gz
+file_src_rest_server_gz: "https://github.com/restic/rest-server/releases/download/v{{rest_server_version}}/rest-server-{{rest_server_version}}-openbsd-amd64.gz"
+file_dst_rest_server_gz: "/usr/local/src/rest-server-{{rest_server_version}}-openbsd-amd64.gz"
+file_mode_rest_server_gz: '0644'
+file_owner_rest_server_gz: 'root'
+file_group_rest_server_gz: 'wheel'
+
+# unarchive-rest_server.gz
+command_cmd_unarchive_rest_server_gz: "gunzip -q /usr/local/src/rest-server-{{rest_server_version}}-openbsd-amd64.gz"
+command_creates_unarchive_rest_server_gz: "/usr/local/src/rest-server-{{rest_server_version}}-openbsd-amd64"
+
+# rest-server
+file_src_rest_server: "/usr/local/src/rest-server-{{rest_server_version}}-openbsd-amd64"
+file_dst_rest_server: '/usr/local/bin/rest-server'
+file_mode_rest_server: '0755'
+file_owner_rest_server: 'root'
+file_group_rest_server: 'wheel'
+
+# rest_server.service
+file_src_rest_server_service: 'templates/main/rest_server.service.j2'
+file_dst_rest_server_service: '/etc/rc.d/rest_server'
+file_mode_rest_server_service: '0555'
+file_owner_rest_server_service: 'root'
+file_group_rest_server_service: 'wheel'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# rest-server
+group_name_rest_server: '_rest-server'
+group_system_rest_server: 'yes'
+
+# rest-server
+user_name_rest_server: '_rest-server'
+user_comment_rest_server: 'Rest Server'
+user_group_rest_server: '_rest-server'
+user_append_rest_server: 'yes'
+user_home_rest_server: '/var/empty'
+user_home_create_rest_server: 'no'
+user_home_move_rest_server: 'no'
+user_home_remove_rest_server: 'yes'
+user_home_force_rest_server: 'no'
+user_password_rest_server: '!'
+user_password_update_rest_server: 'always'
+user_shell_rest_server: '/sbin/nologin'
+user_system_rest_server: 'yes'
+
+# rest_server
+service_name_rest_server: 'rest_server'

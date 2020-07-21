@@ -1,0 +1,13 @@
+---
+
+rest_server_state: 'enable'
+
+rest_server_checksum_algorithm: 'sha256'
+
+rest_server_checksum: '71b96f26c4980cca85a75ccf39b73738856dbebf9285c9f278e59d8c5cbd0b69'
+
+rest_server_options:
+  - '--path /data/rest-server'
+  - '--prometheus'
+
+rest_server_version: '0.9.7'

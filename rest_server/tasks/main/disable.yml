@@ -1,0 +1,87 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create rest_server.service'
+  template:
+    src: "{{file_src_rest_server_service}}"
+    dest: "{{file_dst_rest_server_service}}"
+    mode: "{{file_mode_rest_server_service}}"
+    owner: "{{file_owner_rest_server_service}}"
+    group: "{{file_group_rest_server_service}}"
+  tags:
+    - disable
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status rest_server'
+  command: "{{command_cmd_status_rest_server}}"
+  register: register_status_rest_server
+  changed_when: (register_status_rest_server.rc > 1)
+  failed_when: (register_status_rest_server.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - disable
+    - rest_server
+
+- name: 'command disable rest_server'
+  command: "{{command_cmd_disable_rest_server}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_rest_server.rc == 0)
+  tags:
+    - disable
+    - rest_server
+
+- name: 'command check rest_server'
+  command: "{{command_cmd_check_rest_server}}"
+  register: register_check_rest_server
+  changed_when: (register_check_rest_server.rc > 1)
+  failed_when: (register_check_rest_server.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - disable
+    - rest_server
+
+- name: 'command stop rest_server'
+  command: "{{command_cmd_stop_rest_server}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_rest_server.rc == 0)
+  tags:
+    - disable
+    - rest_server
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop rest_server'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_rest_server}}"
+  tags:
+    - disable
+    - rest_server
