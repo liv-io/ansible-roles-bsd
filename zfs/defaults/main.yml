@@ -37,3 +37,17 @@ zfs_scrub_pools_weekday: 5
 zfs_scrub_pools_pools: []
 
 zfs_scrub_pools_state: 'enable'
+
+zfs_trim_pools_day: '*'
+
+zfs_trim_pools_hour: 6
+
+zfs_trim_pools_minute: "{{(30|random(seed=inventory_hostname))}}"
+
+zfs_trim_pools_month: '*'
+
+zfs_trim_pools_weekday: 5
+
+zfs_trim_pools_pools: []
+
+zfs_trim_pools_state: 'enable'

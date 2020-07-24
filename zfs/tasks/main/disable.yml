@@ -51,3 +51,19 @@
   tags:
     - disable
     - zfs
+
+- name: 'cron create zfs_trim-pools'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_zfs_trim_pools}}"
+    day: "{{cron_day_zfs_trim_pools}}"
+    hour: "{{cron_hour_zfs_trim_pools}}"
+    minute: "{{cron_minute_zfs_trim_pools}}"
+    month: "{{cron_month_zfs_trim_pools}}"
+    weekday: "{{cron_weekday_zfs_trim_pools}}"
+    user: "{{cron_user_zfs_trim_pools}}"
+    job: "{{cron_job_zfs_trim_pools}}"
+  tags:
+    - disable
+    - zfs

@@ -273,6 +273,79 @@ ROLE
       Enable : 'start' | 'on' | 'enable'
       Disable: 'stop' | 'off' | 'disable'
 
+  zfs_trim_pools_day
+    Description: Define the 'zfs_trim_pools_day' option.
+    Implemented: 6.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '1' | '*/2'
+
+  zfs_trim_pools_hour
+    Description: Define the 'zfs_trim_pools_hour' option.
+    Implemented: 6.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 6
+    Options    :
+      Examples: '5' | '*/6'
+
+  zfs_trim_pools_minute
+    Description: Define the 'zfs_trim_pools_minute' option.
+    Implemented: 6.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : "{{(30|random(seed=inventory_hostname))}}"
+    Options    :
+      Examples: '42' | '*/30'
+
+  zfs_trim_pools_month
+    Description: Define the 'zfs_trim_pools_month' option.
+    Implemented: 6.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : '*'
+    Options    :
+      Examples: '10' | '*/1'
+
+  zfs_trim_pools_weekday
+    Description: Define the 'zfs_trim_pools_weekday' option.
+    Implemented: 6.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Integer, String
+    Default    : 5
+    Options    :
+      Examples: '6' | 'Saturday'
+
+  zfs_trim_pools_pools
+    Description: Define the 'zfs_trim_pools_pools' option.
+    Implemented: 6.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: ['tank'] | ['ssd_pool', 'hdd_pool'] |
+                ['ssd-slc_pool', 'ssd-mlc_pool', 'ssd-tlc_pool']
+      None    : []
+
+  zfs_trim_pools_state
+    Description: Control the 'zfs_trim_pools_state' option.
+    Implemented: 6.2
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Enable : 'start' | 'on' | 'enable'
+      Disable: 'stop' | 'off' | 'disable'
+
 --------------------------------------------------------------------------------
 CONFLICTS
 --------------------------------------------------------------------------------

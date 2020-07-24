@@ -18,6 +18,13 @@ file_mode_zfs_scrub_pools: '0754'
 file_owner_zfs_scrub_pools: 'root'
 file_group_zfs_scrub_pools: 'wheel'
 
+# zfs_trim-pools
+file_src_zfs_trim_pools: 'templates/main/zfs_trim-pools.j2'
+file_dst_zfs_trim_pools: '/usr/local/sbin/zfs_trim-pools'
+file_mode_zfs_trim_pools: '0754'
+file_owner_zfs_trim_pools: 'root'
+file_group_zfs_trim_pools: 'wheel'
+
 # zfs_check-pools
 cron_name_zfs_check_pools: 'ZFS: Check Pools'
 cron_day_zfs_check_pools: "{{zfs_check_pools_day}}"
@@ -37,3 +44,13 @@ cron_month_zfs_scrub_pools: "{{zfs_scrub_pools_month}}"
 cron_weekday_zfs_scrub_pools: "{{zfs_scrub_pools_weekday}}"
 cron_user_zfs_scrub_pools: "{{file_owner_zfs_scrub_pools}}"
 cron_job_zfs_scrub_pools: "{{file_dst_zfs_scrub_pools}}"
+
+# zfs_trim-pools
+cron_name_zfs_trim_pools: 'zfs: Trim Pools'
+cron_day_zfs_trim_pools: "{{zfs_trim_pools_day}}"
+cron_hour_zfs_trim_pools: "{{zfs_trim_pools_hour}}"
+cron_minute_zfs_trim_pools: "{{zfs_trim_pools_minute}}"
+cron_month_zfs_trim_pools: "{{zfs_trim_pools_month}}"
+cron_weekday_zfs_trim_pools: "{{zfs_trim_pools_weekday}}"
+cron_user_zfs_trim_pools: "{{file_owner_zfs_trim_pools}}"
+cron_job_zfs_trim_pools: "{{file_dst_zfs_trim_pools}}"

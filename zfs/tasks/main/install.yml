@@ -41,3 +41,14 @@
   tags:
     - install
     - zfs
+
+- name: 'file create zfs_trim-pools'
+  template:
+    src: "{{file_src_zfs_trim_pools}}"
+    dest: "{{file_dst_zfs_trim_pools}}"
+    mode: "{{file_mode_zfs_trim_pools}}"
+    owner: "{{file_owner_zfs_trim_pools}}"
+    group: "{{file_group_zfs_trim_pools}}"
+  tags:
+    - install
+    - zfs

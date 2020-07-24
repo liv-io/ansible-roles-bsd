@@ -53,3 +53,20 @@
   tags:
     - remove
     - zfs
+
+- name: 'cron remove zfs_trim-pools'
+  cron:
+    state: 'absent'
+    name: "{{cron_name_zfs_trim_pools}}"
+    user: "{{cron_user_zfs_trim_pools}}"
+  tags:
+    - remove
+    - zfs
+
+- name: 'file remove zfs_trim-pools'
+  file:
+    state: 'absent'
+    path: "{{file_src_zfs_trim_pools}}"
+  tags:
+    - remove
+    - zfs
