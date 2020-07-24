@@ -47,7 +47,7 @@ restic_password: '2t-C7s9fC_VR4jtm-Nv5,Uj7UdM3kv.8'
 
 restic_run_backup_day: '*'
 
-restic_run_backup_hour: 2
+restic_run_backup_hour: '2'
 
 restic_run_backup_minute: "{{(10|random(seed=inventory_hostname))}}"
 

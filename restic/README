@@ -237,7 +237,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
-    Default    : 2
+    Default    : '2'
     Options    :
       Examples: '5' | '*/6'
 
