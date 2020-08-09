@@ -68,7 +68,9 @@ password='{{file_dst_password_conf}}'
 include='{{file_dst_include_conf}}'
 exclude='{{file_dst_exclude_conf}}'
 log_file='{{file_dst_restic_log}}'
+{% if not (restic_cacert == '') %}
 ca_file='{{restic_cacert}}'
+{% endif %}
 keep_hourly='{{restic_keep_hourly}}'
 keep_daily='{{restic_keep_daily}}'
 keep_weekly='{{restic_keep_weekly}}'
