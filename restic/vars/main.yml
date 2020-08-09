@@ -18,7 +18,7 @@ file_owner_restic_etc_dir: 'root'
 file_group_restic_etc_dir: 'wheel'
 
 # restic_log.dir
-file_dst_restic_log_dir: "/var/log/restic/log"
+file_dst_restic_log_dir: "/var/log/restic"
 file_mode_restic_log_dir: '0700'
 file_owner_restic_log_dir: 'root'
 file_group_restic_log_dir: 'wheel'
@@ -45,7 +45,7 @@ file_owner_password_conf: 'root'
 file_group_password_conf: 'wheel'
 
 # restic.log
-file_dst_restic_log: '/var/log/restic/log/restic.log'
+file_dst_restic_log: '/var/log/restic/restic.log'
 file_mode_restic_log: '0600'
 file_owner_restic_log: 'root'
 file_group_restic_log: 'wheel'

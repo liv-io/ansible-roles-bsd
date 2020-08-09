@@ -76,6 +76,17 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+  restic_cacert
+    Description: Define the 'restic_cacert' option.
+    Implemented: 1.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : ''
+    Options    :
+      Examples: '/etc/pki/file.crt' | '/etc/ssl/file.crt'
+      None    : ''
+
   restic_exclude
     Description: Define the 'restic_exclude' option.
     Implemented: 0.1

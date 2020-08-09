@@ -2,6 +2,8 @@
 
 restic_state: 'enable'
 
+restic_cacert: ''
+
 restic_exclude:
   - '/data/restic'
   - '/data/rest-server'

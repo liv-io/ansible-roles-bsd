@@ -68,6 +68,7 @@ password='{{file_dst_password_conf}}'
 include='{{file_dst_include_conf}}'
 exclude='{{file_dst_exclude_conf}}'
 log_file='{{file_dst_restic_log}}'
+ca_file='{{restic_cacert}}'
 keep_hourly='{{restic_keep_hourly}}'
 keep_daily='{{restic_keep_daily}}'
 keep_weekly='{{restic_keep_weekly}}'
@@ -245,18 +246,18 @@ create_lockfile
 add_log_header 'backup started'
 
 # Initialize backup repository
-${restic} init -r ${repo} -p ${password} >> ${log_file} 2>&1
+${restic} init -r ${repo} -p ${password} {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
 
 # Create new backup
-${restic} backup -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --files-from ${include} --exclude-caches --exclude-file ${exclude} >> ${log_file} 2>&1
+${restic} backup -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --files-from ${include} --exclude-caches --exclude-file ${exclude} {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
 log_and_exit_on_error "$?" 'Error' 'Unable to create new backup.'
 
 # Remove old backups
-${restic} forget -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --keep-hourly ${keep_hourly} --keep-daily ${keep_daily} --keep-weekly ${keep_weekly} --keep-monthly ${keep_monthly} --prune >> ${log_file} 2>&1
+${restic} forget -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --keep-hourly ${keep_hourly} --keep-daily ${keep_daily} --keep-weekly ${keep_weekly} --keep-monthly ${keep_monthly} --prune {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
 log_and_exit_on_error "$?" 'Error' 'Unable to remove old backups.'
 
 # Check backup repository
-${restic} check -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --with-cache >> ${log_file} 2>&1
+${restic} check -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --with-cache {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
 log_and_exit_on_error "$?" 'Error' 'Unable to check backup repository.'
 
 add_log_header 'backup successful'
