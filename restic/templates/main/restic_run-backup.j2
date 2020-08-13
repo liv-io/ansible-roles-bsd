@@ -247,8 +247,13 @@ create_lockfile
 
 add_log_header 'backup started'
 
-# Initialize backup repository
-${restic} init -r ${repo} -p ${password} {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
+# Get stats and check backup repository
+${restic} stats -r ${repo} -p ${password} --cacert "${ca_file}" >> ${log_file} 2>&1
+if [ $? -ne 0 ]; then
+  # Initialize backup repository
+  ${restic} init -r ${repo} -p ${password} {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} > /dev/null 2>&1
+  log_and_exit_on_error "$?" 'Error' "Unable to create backup repository: '${repo}'"
+fi
 
 # Create new backup
 ${restic} backup -r ${repo} -p ${password} --limit-download ${limit_download} --limit-upload ${limit_upload} --files-from ${include} --exclude-caches --exclude-file ${exclude} {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} >> ${log_file} 2>&1
