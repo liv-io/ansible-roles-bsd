@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.1.3 (2020-08-13)
+E: Prevent stats command from leaking sensitive data (credentials) to log file
+
 * Version 1.1.2 (2020-08-13)
 E: Improve repository creation
 E: Avoid logging sensitive data (credentials when initializing repository)
