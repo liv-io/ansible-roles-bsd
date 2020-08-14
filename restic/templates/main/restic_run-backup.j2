@@ -248,7 +248,7 @@ create_lockfile
 add_log_header 'backup started'
 
 # Get stats and check backup repository
-${restic} stats -r ${repo} -p ${password} --cacert "${ca_file}" > /dev/null 2>&1
+${restic} stats -r ${repo} -p ${password} {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} > /dev/null 2>&1
 if [ $? -ne 0 ]; then
   # Initialize backup repository
   ${restic} init -r ${repo} -p ${password} {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} > /dev/null 2>&1
