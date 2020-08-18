@@ -115,24 +115,24 @@ update_prom() {
   time_exec="$3"
 
   if [ -w "${textfile_collector}" ]; then
-    ${echo} -e "# HELP zfs_trim_pools_exit The script's exit code.\n"\
-"# TYPE zfs_trim_pools_exit counter\n"\
-"zfs_trim_pools_exit ${retval}" > "${textfile_collector}/zfs_trim_pools_exit.prom"
+    ${echo} "# HELP zfs_trim_pools_exit The script's exit code.
+# TYPE zfs_trim_pools_exit counter
+zfs_trim_pools_exit ${retval}" > "${textfile_collector}/zfs_trim_pools_exit.prom"
 
     if [ -z "${time_start}" ] ; then
       ${rm} -f "${textfile_collector}/zfs_trim_pools_start.prom"
     else
-      ${echo} -e "# HELP zfs_trim_pools_start The script's start time in epoch.\n"\
-"# TYPE zfs_trim_pools_start counter\n"\
-"zfs_trim_pools_start ${time_start}" > "${textfile_collector}/zfs_trim_pools_start.prom"
+      ${echo} "# HELP zfs_trim_pools_start The script's start time in epoch.
+# TYPE zfs_trim_pools_start counter
+zfs_trim_pools_start ${time_start}" > "${textfile_collector}/zfs_trim_pools_start.prom"
     fi
 
     if [ -z "${time_exec}" ] ; then
       ${rm} -f "${textfile_collector}/zfs_trim_pools_duration.prom"
     else
-      ${echo} -e "# HELP zfs_trim_pools_duration The script's execution duration in seconds.\n"\
-"# TYPE zfs_trim_pools_duration counter\n"\
-"zfs_trim_pools_duration ${time_exec}" > "${textfile_collector}/zfs_trim_pools_duration.prom"
+      ${echo} "# HELP zfs_trim_pools_duration The script's execution duration in seconds.
+# TYPE zfs_trim_pools_duration counter
+zfs_trim_pools_duration ${time_exec}" > "${textfile_collector}/zfs_trim_pools_duration.prom"
     fi
   fi
 }

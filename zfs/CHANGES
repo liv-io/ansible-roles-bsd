@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 6.2.1 (2020-08-18)
+B: Fix echo commands (BSD echo does not support backslash character sequences)
+
 * Version 6.2.0 (2020-07-24)
 F: Add script 'zfs_trim-pools' to trim ZFS pools
 
