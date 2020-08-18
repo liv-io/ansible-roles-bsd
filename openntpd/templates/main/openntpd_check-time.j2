@@ -117,32 +117,32 @@ update_prom() {
   time_exec="$3"
 
   if [ -w "${textfile_collector}" ]; then
-    ${echo} -e "# HELP openntpd_check_time_exit The script's exit code.\n"\
-"# TYPE openntpd_check_time_exit counter\n"\
-"openntpd_check_time_exit ${retval}" > "${textfile_collector}/openntpd_check_time_exit.prom"
+    ${echo} "# HELP openntpd_check_time_exit The script's exit code.
+# TYPE openntpd_check_time_exit counter
+openntpd_check_time_exit ${retval}" > "${textfile_collector}/openntpd_check_time_exit.prom"
 
     if [ -z "${time_start}" ] ; then
       ${rm} -f "${textfile_collector}/openntpd_check_time_start.prom"
     else
-      ${echo} -e "# HELP openntpd_check_time_start The script's start time in epoch.\n"\
-"# TYPE openntpd_check_time_start counter\n"\
-"openntpd_check_time_start ${time_start}" > "${textfile_collector}/openntpd_check_time_start.prom"
+      ${echo} "# HELP openntpd_check_time_start The script's start time in epoch.
+# TYPE openntpd_check_time_start counter
+openntpd_check_time_start ${time_start}" > "${textfile_collector}/openntpd_check_time_start.prom"
     fi
 
     if [ -z "${time_exec}" ] ; then
       ${rm} -f "${textfile_collector}/openntpd_check_time_duration.prom"
     else
-      ${echo} -e "# HELP openntpd_check_time_duration The script's execution duration in seconds.\n"\
-"# TYPE openntpd_check_time_duration counter\n"\
-"openntpd_check_time_duration ${time_exec}" > "${textfile_collector}/openntpd_check_time_duration.prom"
+      ${echo} "# HELP openntpd_check_time_duration The script's execution duration in seconds.
+# TYPE openntpd_check_time_duration counter
+openntpd_check_time_duration ${time_exec}" > "${textfile_collector}/openntpd_check_time_duration.prom"
     fi
 
     if [ -z "${offset_raw}" ] ; then
       ${rm} -f "${textfile_collector}/openntpd_check_time_offset.prom"
     else
-      ${echo} -e "# HELP openntpd_check_time_offset The system time offset in milliseconds.\n"\
-"# TYPE openntpd_check_time_offset counter\n"\
-"openntpd_check_time_offset{limit=\"${offset_limit}\"} ${offset_raw}" > "${textfile_collector}/openntpd_check_time_offset.prom"
+      ${echo} "# HELP openntpd_check_time_offset The system time offset in milliseconds.
+# TYPE openntpd_check_time_offset counter
+openntpd_check_time_offset{limit=\"${offset_limit}\"} ${offset_raw}" > "${textfile_collector}/openntpd_check_time_offset.prom"
     fi
   fi
 }
