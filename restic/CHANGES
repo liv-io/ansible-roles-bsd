@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.1.5 (2020-08-18)
+B: Fix echo commands (BSD echo does not support backslash character sequences)
+
 * Version 1.1.4 (2020-08-14)
 B: Ensure cacert is only applied when defined
 
