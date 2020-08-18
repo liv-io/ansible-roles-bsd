@@ -44,7 +44,6 @@ ntpctl=$(${which} ntpctl) || { echo "Error: Command 'ntpctl' not found."; exit 1
 rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
 sed=$(${which} sed) || { echo "Error: Command 'sed' not found."; exit 127; }
 sleep=$(${which} sleep) || { echo "Error: Command 'sleep' not found."; exit 127; }
-tr=$(${which} tr) || { echo "Error: Command 'tr' not found."; exit 127; }
 touch=$(${which} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
 whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
 
@@ -243,8 +242,12 @@ time_initial=0
 watch_and_wait_for_change "${ntpctl} -s status" 'unsynced' '' '2' '32'
 
 # Get system time offset
-offset=$(${ntpctl} -s peers | ${awk} '/^ \*/ { print $7}' | ${sed} -n 's@\([-0-9]*\).*@\1@p' | ${tr} -d '-')
+offset_raw=$(${ntpctl} -s peers | ${awk} '/^ \*/ {gsub(/ms/,"");print $7}')
 log_and_exit_on_error "$?" 'Error' 'Unable to get system time offset.'
+
+# Convert system time offset
+offset=$(${echo} "${offset_raw}" | ${sed} -n 's@\([-0-9]*\).*@\1@p' | ${sed} 's@[-]@@g')
+log_and_exit_on_error "$?" 'Error' 'Unable to convert system time offset.'
 
 # Check system time offset
 if [ -z "${offset}" ] ; then

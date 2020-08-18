@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 5.1.3 (2020-08-18)
+B: Assign offset_raw variable
+E: Minor script improvements
+
 * Version 5.1.2 (2020-08-18)
 B: Fix echo commands (BSD echo does not support backslash character sequences)
 
