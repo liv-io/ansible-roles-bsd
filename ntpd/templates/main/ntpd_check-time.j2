@@ -116,32 +116,32 @@ update_prom() {
   time_exec="$3"
 
   if [ -w "${textfile_collector}" ]; then
-    ${echo} -e "# HELP ntpd_check_time_exit The script's exit code.\n"\
-"# TYPE ntpd_check_time_exit counter\n"\
-"ntpd_check_time_exit ${retval}" > "${textfile_collector}/ntpd_check_time_exit.prom"
+    ${echo} "# HELP ntpd_check_time_exit The script's exit code.
+# TYPE ntpd_check_time_exit counter
+ntpd_check_time_exit ${retval}" > "${textfile_collector}/ntpd_check_time_exit.prom"
 
     if [ -z "${time_start}" ] ; then
       ${rm} -f "${textfile_collector}/ntpd_check_time_start.prom"
     else
-      ${echo} -e "# HELP ntpd_check_time_start The script's start time in epoch.\n"\
-"# TYPE ntpd_check_time_start counter\n"\
-"ntpd_check_time_start ${time_start}" > "${textfile_collector}/ntpd_check_time_start.prom"
+      ${echo} "# HELP ntpd_check_time_start The script's start time in epoch.
+# TYPE ntpd_check_time_start counter
+ntpd_check_time_start ${time_start}" > "${textfile_collector}/ntpd_check_time_start.prom"
     fi
 
     if [ -z "${time_exec}" ] ; then
       ${rm} -f "${textfile_collector}/ntpd_check_time_duration.prom"
     else
-      ${echo} -e "# HELP ntpd_check_time_duration The script's execution duration in seconds.\n"\
-"# TYPE ntpd_check_time_duration counter\n"\
-"ntpd_check_time_duration ${time_exec}" > "${textfile_collector}/ntpd_check_time_duration.prom"
+      ${echo} "# HELP ntpd_check_time_duration The script's execution duration in seconds.
+# TYPE ntpd_check_time_duration counter
+ntpd_check_time_duration ${time_exec}" > "${textfile_collector}/ntpd_check_time_duration.prom"
     fi
 
     if [ -z "${offset_raw}" ] ; then
       ${rm} -f "${textfile_collector}/ntpd_check_time_offset.prom"
     else
-      ${echo} -e "# HELP ntpd_check_time_offset The system time offset in milliseconds.\n"\
-"# TYPE ntpd_check_time_offset counter\n"\
-"ntpd_check_time_offset{limit=\"${offset_limit}\"} ${offset_raw}" > "${textfile_collector}/ntpd_check_time_offset.prom"
+      ${echo} "# HELP ntpd_check_time_offset The system time offset in milliseconds.
+# TYPE ntpd_check_time_offset counter
+ntpd_check_time_offset{limit=\"${offset_limit}\"} ${offset_raw}" > "${textfile_collector}/ntpd_check_time_offset.prom"
     fi
   fi
 }
