@@ -70,3 +70,26 @@
   tags:
     - remove
     - node_exporter
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line config node_exporter_flags'
+  lineinfile:
+    state: 'absent'
+    line: "{{file_line_node_exporter_flags}}"
+    regexp: "^{{file_regexp_node_exporter_flags}}=.*"
+    dest: "{{file_destnode_exporter_flags}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - node_exporter
+
+- name: 'file remove node_exporter_data.dir'
+  file:
+    state: 'absent'
+    path: "{{file_dst_node_exporter_data_dir}}"
+  tags:
+    - remove
+    - node_exporter

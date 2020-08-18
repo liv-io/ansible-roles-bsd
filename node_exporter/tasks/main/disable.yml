@@ -17,6 +17,21 @@
     - node_exporter
 
 #-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line config node_exporter_flags'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_node_exporter_flags}}"
+    regexp: "^{{file_regexp_node_exporter_flags}}=.*"
+    dest: "{{file_dest_node_exporter_flags}}"
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - disable
+    - node_exporter
+
+#-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
 
