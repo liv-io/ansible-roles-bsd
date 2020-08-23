@@ -75,12 +75,23 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: 'line config node_exporter_textfile_dir'
+  lineinfile:
+    state: 'absent'
+    line: "{{file_line_node_exporter_textfile_dir}}"
+    regexp: "^{{file_regexp_node_exporter_textfile_dir}}=.*"
+    dest: "{{file_dest_node_exporter_textfile_dir}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - remove
+    - node_exporter
+
 - name: 'line config node_exporter_flags'
   lineinfile:
     state: 'absent'
     line: "{{file_line_node_exporter_flags}}"
     regexp: "^{{file_regexp_node_exporter_flags}}=.*"
-    dest: "{{file_destnode_exporter_flags}}"
+    dest: "{{file_dest_node_exporter_flags}}"
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - remove

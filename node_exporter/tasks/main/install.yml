@@ -65,6 +65,17 @@
     - install
     - node_exporter
 
+- name: 'line config node_exporter_textfile_dir'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_node_exporter_textfile_dir}}"
+    regexp: "^{{file_regexp_node_exporter_textfile_dir}}=.*"
+    dest: "{{file_dest_node_exporter_textfile_dir}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - install
+    - node_exporter
+
 - name: 'line config node_exporter_flags'
   lineinfile:
     state: 'present'

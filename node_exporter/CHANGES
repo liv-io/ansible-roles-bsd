@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.4.0 (2020-08-23)
+F: Configure --collector.textfile.directory flag on FreeBSD
+B: Fix remove task variable on OpenBSD
+
 * Version 0.3.0 (2020-08-18)
 F: Create directories for --collector.textfile.directory
 F: Configure --collector.textfile.directory flag on OpenBSD
