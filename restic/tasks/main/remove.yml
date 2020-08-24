@@ -45,6 +45,7 @@
   file:
     state: 'absent'
     path: "{{file_dst_restic_run_backup}}"
+  no_log: 'true'
   tags:
     - remove
     - restic

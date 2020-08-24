@@ -107,6 +107,7 @@
     mode: "{{file_mode_restic_run_backup}}"
     owner: "{{file_owner_restic_run_backup}}"
     group: "{{file_group_restic_run_backup}}"
+  no_log: 'true'
   tags:
     - install
     - restic
