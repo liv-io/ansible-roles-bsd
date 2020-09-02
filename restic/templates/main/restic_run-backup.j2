@@ -252,7 +252,7 @@ ${restic} stats -r ${repo} -p ${password} {% if not (restic_cacert == '') %}--ca
 if [ $? -ne 0 ]; then
   # Initialize backup repository
   ${restic} init -r ${repo} -p ${password} {% if not (restic_cacert == '') %}--cacert "${ca_file}"{% endif %} > /dev/null 2>&1
-  log_and_exit_on_error "$?" 'Error' "Unable to create backup repository: '${repo}'"
+  log_and_exit_on_error "$?" 'Error' 'Unable to create backup repository.'
 fi
 
 # Create new backup
