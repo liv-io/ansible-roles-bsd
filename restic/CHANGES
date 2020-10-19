@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.2.0 (2020-10-19)
+F: Add support for OpenBSD 6.8
+F: Drop support for OpenBSD 6.7
+
 * Version 1.1.7 (2020-09-02)
 B: Prevent error message from leaking sensitive data (credentials)
 
