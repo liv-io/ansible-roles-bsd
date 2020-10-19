@@ -15,7 +15,7 @@
 #
 #-------------------------------------------------------------------------------
 
-# $OpenBSD: unbound.conf,v 1.19 2019/11/07 15:46:37 sthen Exp $
+# $OpenBSD: unbound.conf,v 1.20 2020/06/21 16:59:45 sthen Exp $
 
 #-------------------------------------------------------------------------------
 # SERVER
@@ -196,7 +196,7 @@ server:
 {% endfor %}
 
 
-	# Perform DNSSEC validation. Comment out the below option to disable.
+	# Perform DNSSEC validation.
 	#
 	auto-trust-anchor-file: "/var/unbound/db/root.key"
 	val-log-level: 2
