@@ -201,7 +201,7 @@ server:
 	auto-trust-anchor-file: "/var/unbound/db/root.key"
 	val-log-level: 2
 
-	# Uncomment to synthesize NXDOMAINs from DNSSEC NSEC chains
+	# Synthesize NXDOMAINs from DNSSEC NSEC chains.
 	# https://tools.ietf.org/html/rfc8198
 	#
 	aggressive-nsec: yes
@@ -210,6 +210,9 @@ server:
         # LOCAL-ZONE
         #-----------------------------------------------------------------------
 
+	# Serve zones authoritatively from Unbound to resolver clients.
+	# Not for external service.
+	#
 {% for item in unbound_local_zone %}
 {% if not ((item.comment|default('')) == '') %}
         # {{item.comment}}
@@ -302,3 +305,12 @@ stub-zone:
 #	name: "."				# use for ALL queries
 #	forward-addr: 192.0.2.53		# example address only
 #	forward-first: yes			# try direct if forwarder fails
+
+# Use an upstream DNS-over-TLS forwarder and do not fall back to cleartext
+# if that fails.
+#forward-zone:
+#	name: "."
+#	forward-tls-upstream: yes		# use DNS-over-TLS forwarder
+#	forward-first: no			# do NOT send direct
+#	# the hostname after "#" is not a comment, it is used for TLS checks:
+#	forward-addr: 192.0.2.53@853#resolver.hostname.example
