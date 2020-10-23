@@ -28,7 +28,7 @@
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
     validate: "{{file_validate_config}}"
-  with_items: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
+  loop: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
   when: not (item.state is match('false|no|remove'))
   tags:
     - config
@@ -38,7 +38,7 @@
   file:
     state: 'absent'
     path: "{{file_dst_sudoers_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}"
-  with_items: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
+  loop: "{{sudo_config_all + sudo_config_group + sudo_config_host}}"
   when: (item.state is match('false|no|remove'))
   tags:
     - config

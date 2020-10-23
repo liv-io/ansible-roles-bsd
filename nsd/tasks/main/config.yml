@@ -37,7 +37,7 @@
     mode: "{{file_mode_config}}"
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
-  with_items: "{{nsd_zone}}"
+  loop: "{{nsd_zone}}"
   notify: 'service restart nsd'
   when: not (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 1)
   tags:
@@ -51,7 +51,7 @@
     mode: "{{file_mode_config}}"
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
-  with_items: "{{nsd_zone}}"
+  loop: "{{nsd_zone}}"
   notify:
     - 'service restart nsd'
     - 'service restart unbound'
@@ -64,7 +64,7 @@
   file:
     state: 'absent'
     path: "{{file_dst_config}}/{{item.name}}.zone"
-  with_items: "{{nsd_zone}}"
+  loop: "{{nsd_zone}}"
   notify: 'service restart nsd'
   when: (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 1)
   tags:
@@ -75,7 +75,7 @@
   file:
     state: 'absent'
     path: "{{file_dst_config}}/{{item.name}}.zone"
-  with_items: "{{nsd_zone}}"
+  loop: "{{nsd_zone}}"
   notify:
     - 'service restart nsd'
     - 'service restart unbound'

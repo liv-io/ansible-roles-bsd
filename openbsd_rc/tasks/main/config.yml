@@ -26,7 +26,7 @@
     line: "{{item.name}}=\"{{item.value}}\" # Ansible: {{(item.comment|default(''))}}"
     regexp: "^{{item.name}}="
     dest: "{{item.path if not ((item.path|default('')) == '') else file_dst_rc_conf}}"
-  with_items: "{{openbsd_rc_config_all + openbsd_rc_config_group + openbsd_rc_config_host}}"
+  loop: "{{openbsd_rc_config_all + openbsd_rc_config_group + openbsd_rc_config_host}}"
   tags:
     - config
     - openbsd_rc

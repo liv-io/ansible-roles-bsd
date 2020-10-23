@@ -26,7 +26,7 @@
     name: "{{item.name}}"
     gid: "{{(item.gid|default(omit))}}"
     system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
-  with_items: "{{group_config_all + group_config_group + group_config_host}}"
+  loop: "{{group_config_all + group_config_group + group_config_host}}"
   tags:
     - config
     - group

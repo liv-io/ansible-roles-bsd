@@ -30,7 +30,7 @@
   notify:
     - 'command validate monit'
     - 'service restart monit'
-  with_items: "{{monit_config_all + monit_config_group + monit_config_host}}"
+  loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
   when: not (item.state is match('false|no|remove'))
   tags:
     - config
@@ -43,7 +43,7 @@
   notify:
     - 'command validate monit'
     - 'service restart monit'
-  with_items: "{{monit_config_all + monit_config_group + monit_config_host}}"
+  loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
   when: (item.state is match('false|no|remove'))
   tags:
     - config

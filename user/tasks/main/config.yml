@@ -38,7 +38,7 @@
     update_password: "{{'on_create' if (item.password_update|default('true') is match('false|no|disable')) else 'always'}}"
     shell: "{{(item.shell|default('/bin/bash'))}}"
     system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
-  with_items: "{{user_config_all + user_config_group + user_config_host}}"
+  loop: "{{user_config_all + user_config_group + user_config_host}}"
   tags:
     - config
     - user

@@ -27,7 +27,7 @@
     mode: "{{file_mode_config_dir}}"
     owner: "{{file_owner_config_dir}}"
     group: "{{file_group_config_dir}}"
-  with_items: "{{tinc_config}}"
+  loop: "{{tinc_config}}"
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
@@ -41,7 +41,7 @@
     mode: "{{file_mode_hosts_dir}}"
     owner: "{{file_owner_hosts_dir}}"
     group: "{{file_group_hosts_dir}}"
-  with_items: "{{tinc_config}}"
+  loop: "{{tinc_config}}"
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
@@ -74,7 +74,7 @@
     owner: "{{file_owner_rsa_key_priv}}"
     group: "{{file_group_rsa_key_priv}}"
   no_log: 'true'
-  with_items: "{{tinc_config}}"
+  loop: "{{tinc_config}}"
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
@@ -88,7 +88,7 @@
     mode: "{{file_mode_tinc_conf}}"
     owner: "{{file_owner_tinc_conf}}"
     group: "{{file_group_tinc_conf}}"
-  with_items: "{{tinc_config}}"
+  loop: "{{tinc_config}}"
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
@@ -102,7 +102,7 @@
     mode: "{{file_mode_tinc_down}}"
     owner: "{{file_owner_tinc_down}}"
     group: "{{file_group_tinc_down}}"
-  with_items: "{{tinc_config}}"
+  loop: "{{tinc_config}}"
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
@@ -116,7 +116,7 @@
     mode: "{{file_mode_tinc_up}}"
     owner: "{{file_owner_tinc_up}}"
     group: "{{file_group_tinc_up}}"
-  with_items: "{{tinc_config}}"
+  loop: "{{tinc_config}}"
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
@@ -129,7 +129,7 @@
     line: "{{file_line_tincd_flags}} --net={{item.name}} # Ansible: Configure tinc"
     regexp: "^{{file_line_tincd_flags}}"
     dest: "{{file_dst_tincd_flags}}"
-  with_items: "{{tinc_config}}"
+  loop: "{{tinc_config}}"
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
@@ -140,7 +140,7 @@
   file:
     state: 'absent'
     path: "{{file_dst_tinc_dir}}/{{item.name}}"
-  with_items: "{{tinc_config}}"
+  loop: "{{tinc_config}}"
   notify: 'service restart tinc'
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
@@ -152,7 +152,7 @@
     state: 'absent'
     regexp: "^{{file_line_tincd_flags}}.*"
     dest: "{{file_dst_tincd_flags}}"
-  with_items: "{{tinc_config}}"
+  loop: "{{tinc_config}}"
   notify: 'service restart tinc'
   when: (item.state|default('true') is match('false|no|remove'))
   tags:

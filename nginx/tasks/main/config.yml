@@ -27,7 +27,7 @@
     mode: "{{file_mode_config}}"
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
-  with_items: "{{nginx_config}}"
+  loop: "{{nginx_config}}"
   notify:
     - 'command check nginx'
     - 'service reload nginx'
@@ -40,7 +40,7 @@
   file:
     state: 'absent'
     path: "{{file_dst_vhosts_d}}/{{item.name}}-{{(item.port|int)}}.conf"
-  with_items: "{{nginx_config}}"
+  loop: "{{nginx_config}}"
   notify:
     - 'command check nginx'
     - 'service reload nginx'
