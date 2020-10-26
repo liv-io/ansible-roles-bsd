@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.7.2 (2020-10-26)
+E: Remove double quotes for local-zone type
+
 * Version 1.7.1 (2020-10-20)
 E: Update unbound.conf template to OpenBSD 6.8
 

@@ -40,6 +40,8 @@ ENABLE
     vars:
       unbound_state: 'enable'
       unbound_do_not_query_localhost: 'no'
+      unbound_local_zone:
+        - {zone: '10.in-addr.arpa.', type: 'nodefault', comment: 'Enable reverse lookup for 10.0.0.0/8'}
       unbound_stub_zone:
        - {name: 'example.com', address: '127.0.0.1', port: '5300', comment: 'example.com'}
        - {name: 'example.org', address: '127.0.0.1', port: '5300', comment: 'example.org'}
@@ -51,6 +53,8 @@ DISABLE
     vars:
       unbound_state: 'disable'
       unbound_do_not_query_localhost: 'no'
+      unbound_local_zone:
+        - {zone: '10.in-addr.arpa.', type: 'nodefault', comment: 'Enable reverse lookup for 10.0.0.0/8'}
       unbound_stub_zone:
        - {name: 'example.com', address: '127.0.0.1', port: '5300', comment: 'example.com'}
        - {name: 'example.org', address: '127.0.0.1', port: '5300', comment: 'example.org'}
@@ -334,7 +338,8 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{zone: 'domain.tld', type: 'static', comment: 'domain.tld'}]
+      Examples: [{zone: 'domain.tld', type: 'static', comment: 'domain.tld'}] |
+                [{zone: '10.in-addr.arpa.', type: 'nodefault', comment: 'Enable reverse lookup for 10.0.0.0/8'}]
       None    : []
 
   unbound_prefer_ip6
