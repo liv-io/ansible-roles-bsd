@@ -754,7 +754,7 @@ server:
 {% endif %}
         local-zone:
 {%- if not ((item.zone|default('')) == '') %} "{{item.zone}}" {% endif %}
-{%- if not ((item.type|default('')) == '') %}"{{item.type}}"{% endif %}
+{%- if not ((item.type|default('')) == '') %}{{item.type}}{% endif %}
 
 {% endfor %}
 
