@@ -19,7 +19,7 @@
 #
 # $OpenBSD: rest_server,v 0.9.7 2020/07/21 09:30:00 l Exp $
 
-daemon="{{file_dst_rest_server}}"
+daemon="{{file_creates_rest_server}}"
 daemon_flags="{% for item in (rest_server_options|default([])) %}{{item}}{% if not loop.last %} {% endif %}{% endfor %}"
 daemon_user="{{user_name_rest_server}}"
 

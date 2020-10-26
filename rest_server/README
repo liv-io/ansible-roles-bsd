@@ -82,7 +82,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '71b96f26c4980cca85a75ccf39b73738856dbebf9285c9f278e59d8c5cbd0b69'
+    Default    : '3c06ba675d59f05ee73e3e14aa2bac49db9debddf6c359d7aa2daea095ef4faa'
     Options    :
       Examples: 'e92a601a5ef4f77cce967266b488a978711dabc527a720bea26505cba426c029' |
                 '2f18a32a7bb1c91307ed776cce50559bbcd66af90a61ea0a22a661ebe79e4fda'
@@ -103,7 +103,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : ['--path /data/rest-server', '--prometheus']
+    Default    : ['--path /data/rest-server', '--prometheus', '--no-auth']
     Options    :
       Examples: ['--prometheus'] | ['--path /data/restic', '--prometheus']
       None    : []
@@ -114,7 +114,7 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '0.9.7'
+    Default    : '0.10.0'
     Options    :
       Examples: '0.9.5' | '0.9.6'
 

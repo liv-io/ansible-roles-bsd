@@ -86,34 +86,27 @@
     - install
     - rest_server
 
-- name: 'file download rest-server.gz'
+- name: 'file download rest-server.tar.gz'
   get_url:
-    url: "{{file_src_rest_server_gz}}"
-    dest: "{{file_dst_rest_server_gz}}"
-    mode: "{{file_mode_rest_server_gz}}"
-    owner: "{{file_owner_rest_server_gz}}"
-    group: "{{file_group_rest_server_gz}}"
+    url: "{{file_src_rest_server_tar_gz}}"
+    dest: "{{file_dst_rest_server_tar_gz}}"
+    mode: "{{file_mode_rest_server_tar_gz}}"
+    owner: "{{file_owner_rest_server_tar_gz}}"
+    group: "{{file_group_rest_server_tar_gz}}"
     checksum: "{{rest_server_checksum_algorithm}}:{{rest_server_checksum}}"
   tags:
     - install
     - rest_server
 
-- name: 'command unarchive rest-server.gz'
-  shell: "{{command_cmd_unarchive_rest_server_gz}}"
-  args:
-    creates: "{{command_creates_unarchive_rest_server_gz}}"
-  tags:
-    - install
-    - rest_server
-
-- name: 'file copy rest-server'
-  copy:
+- name: 'file unarchive rest-server'
+  unarchive:
     src: "{{file_src_rest_server}}"
     dest: "{{file_dst_rest_server}}"
-    mode: "{{file_mode_rest_server}}"
     owner: "{{file_owner_rest_server}}"
     group: "{{file_group_rest_server}}"
-    remote_src: "yes"
+    exclude: "{{file_exclude_rest_server}}"
+    extra_opts: "{{file_extra_opts_rest_server}}"
+    remote_src: 'yes'
   tags:
     - install
     - rest_server
