@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 6.2.2 (2020-10-30)
+E: Simplify Ansible file header (ansible_managed)
+
 * Version 6.2.1 (2020-08-18)
 B: Fix echo commands (BSD echo does not support backslash character sequences)
 
