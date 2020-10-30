@@ -1,19 +1,4 @@
-#-------------------------------------------------------------------------------
-#                             ANSIBLE MANAGED FILE
-#-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
-#
-# Name   : host
-# Type   : tinc configuration file
-# Role   : tinc
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
+{{ansible_managed|comment(decoration='#')}}
 
 # The real IP address of this tinc host. Can be used by other tinc hosts.
 Address = {{item.1.address}}
