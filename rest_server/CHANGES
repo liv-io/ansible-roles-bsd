@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.3.2 (2020-10-30)
+E: Simplify Ansible file header (ansible_managed)
+
 * Version 0.3.1 (2020-10-30)
 E: Simplify checksum verification
 
