@@ -1,19 +1,4 @@
-#-------------------------------------------------------------------------------
-#                             ANSIBLE MANAGED FILE
-#-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
-#
-# Name   : installurl
-# Type   : syspatch configuration file
-# Role   : openbsd_syspatch
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
+{{ansible_managed|comment(decoration='#')}}
 
 {% for item in openbsd_syspatch_installurl %}
 {% if not ((item.comment|default('')) == '') %}
