@@ -93,7 +93,7 @@
     mode: "{{file_mode_rest_server_tar_gz}}"
     owner: "{{file_owner_rest_server_tar_gz}}"
     group: "{{file_group_rest_server_tar_gz}}"
-    checksum: "{{rest_server_checksum_algorithm}}:{{rest_server_checksum}}"
+    checksum: "{{file_checksum_rest_server_tar_gz}}"
   tags:
     - install
     - rest_server

@@ -76,27 +76,6 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  rest_server_checksum
-    Description: Define the 'rest_server_checksum' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : '3c06ba675d59f05ee73e3e14aa2bac49db9debddf6c359d7aa2daea095ef4faa'
-    Options    :
-      Examples: 'e92a601a5ef4f77cce967266b488a978711dabc527a720bea26505cba426c029' |
-                '2f18a32a7bb1c91307ed776cce50559bbcd66af90a61ea0a22a661ebe79e4fda'
-
-  rest_server_checksum_algorithm
-    Description: Define the 'rest_server_checksum_algorithm' option.
-    Implemented: 0.1
-    Required   : False
-    Value      : Arbitrary
-    Type       : String
-    Default    : 'sha256'
-    Options    :
-      Examples: 'sha256' | 'sha512'
-
   rest_server_options
     Description: Define the 'rest_server_options' option.
     Implemented: 0.1

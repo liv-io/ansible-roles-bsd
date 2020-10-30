@@ -28,6 +28,7 @@ file_dst_rest_server_tar_gz: "/usr/local/src/rest-server_{{rest_server_version}}
 file_mode_rest_server_tar_gz: '0644'
 file_owner_rest_server_tar_gz: 'root'
 file_group_rest_server_tar_gz: 'wheel'
+file_checksum_rest_server_tar_gz: "sha256:https://github.com/restic/rest-server/releases/download/v{{rest_server_version}}/SHA256SUMS"
 
 # rest-server
 file_src_rest_server: "/usr/local/src/rest-server_{{rest_server_version}}_openbsd_amd64.tar.gz"
