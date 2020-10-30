@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 4.2.1 (2020-10-30)
+E: Simplify Ansible file header (ansible_managed)
+
 * Version 4.2.0 (2019-11-08)
 C: Add support for FreeBSD 12.1-RELEASE
 C: Drop support for FreeBSD 12.0-RELEASE
