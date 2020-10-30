@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 1.7.4 (2020-10-30)
+E: Simplify Ansible file header (ansible_managed)
+
 * Version 1.7.3 (2020-10-26)
 E: Remove double quotes for local-zone type (FreeBSD)
 

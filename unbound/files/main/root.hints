@@ -1,18 +1,5 @@
 ;-------------------------------------------------------------------------------
-;                             ANSIBLE MANAGED FILE
-;-------------------------------------------------------------------------------
-
-;-------------------------------------------------------------------------------
-; INFORMATION
-;-------------------------------------------------------------------------------
-;
-; Name   : root.hints
-; Type   : unbound configuration file
-; Role   : unbound
-;
-; Authors: liv community
-; License: Simplified BSD License
-;
+; ANSIBLE MANAGED FILE
 ;-------------------------------------------------------------------------------
 
 ;       This file holds the information on root name servers needed to 
