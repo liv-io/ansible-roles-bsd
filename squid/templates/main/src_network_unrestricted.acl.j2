@@ -1,19 +1,4 @@
-#-------------------------------------------------------------------------------
-#                             ANSIBLE MANAGED FILE
-#-------------------------------------------------------------------------------
-
-#-------------------------------------------------------------------------------
-# INFORMATION
-#-------------------------------------------------------------------------------
-#
-# Name   : src_network_unrestricted.acl
-# Type   : Squid access control list
-# Role   : squid
-#
-# Authors: liv community
-# License: Simplified BSD License
-#
-#-------------------------------------------------------------------------------
+{{ansible_managed|comment(decoration='#')}}
 
 {% for item in (squid_network_unrestricted|default([])) %}
 {% if not ((item.comment|default('')) == '') %}
