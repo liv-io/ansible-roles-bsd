@@ -421,31 +421,13 @@ PARAMETERS
 REQUIREMENTS
 --------------------------------------------------------------------------------
 
-CONTROL MACHINE
+CONTROL NODE
   Ansible
     Version: >= 2.5
 
-  Python
-    Version: >= 2.4
-
-  Python-Crypto
-    Version: >= 2.0
-
-  Python-Jinja2
-    Version: >= 2.0
-
-  Python-Paramiko
-    Version: >= 1.0
-
-  Python-YAML
-    Version: >= 3.0
-
-  sshpass
-    Version: >= 1.0
-
 MANAGED NODE
   Python
-    Version: >= 2.4
+    Version: >= 2.7
 
 --------------------------------------------------------------------------------
 SUPPORT
@@ -459,7 +441,3 @@ OPERATING SYSTEMS
   OpenBSD
     Version: 6.8
       Status: Stable
-
---------------------------------------------------------------------------------
-OTHER
---------------------------------------------------------------------------------

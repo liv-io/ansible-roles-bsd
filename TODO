@@ -28,7 +28,7 @@ FEATURES
 - opensmtpd: Add support for FreeBSD 12.0
 
 --------------------------------------------------------------------------------
-OTHER
+ROLES
 --------------------------------------------------------------------------------
 
 - ajaxterm: web-based SSH client
@@ -46,7 +46,6 @@ OTHER
 - gitolite
 - gnu gatekeeper
 - go
-- grafana
 - graylog2
 - greensql
 - honeyd
@@ -54,7 +53,6 @@ OTHER
 - keepalived
 - loganalyzer
 - logrotate
-- modsecurity
 - mumble
 - pacemaker
 - pallet
@@ -63,7 +61,6 @@ OTHER
 - postgresql
 - postgrey
 - prelude
-- prometheus
 - pulp
 - relayd
 - rsyslog
@@ -72,13 +69,10 @@ OTHER
 - samhain-server: Samhain Intrusion Detection System - server
 - snort
 - sqlite
-- suricata
-- tinc
 - tinyproxy
 - umurmur: minimalistic Mumble server
 - varnish
 - virtalbox
-- zabbix
 - zoneminder
 
 - ajaxterm: web-based SSH client
