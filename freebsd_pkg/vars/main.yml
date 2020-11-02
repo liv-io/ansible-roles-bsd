@@ -5,14 +5,14 @@
 #-------------------------------------------------------------------------------
 
 # FreeBSD.conf
-file_src_freebsd_conf: 'templates/main/FreeBSD.conf.j2'
+file_src_freebsd_conf: 'templates/main/FreeBSD.conf'
 file_dst_freebsd_conf: '/etc/pkg/FreeBSD.conf'
 file_mode_freebsd_conf: '0644'
 file_owner_freebsd_conf: 'root'
 file_group_freebsd_conf: 'wheel'
 
 # pkg.conf
-file_src_pkg_conf: 'templates/main/pkg.conf.j2'
+file_src_pkg_conf: 'templates/main/pkg.conf'
 file_dst_pkg_conf: '/usr/local/etc/pkg.conf'
 file_mode_pkg_conf: '0644'
 file_owner_pkg_conf: 'root'

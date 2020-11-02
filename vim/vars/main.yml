@@ -12,7 +12,7 @@ package_name_vim: 'vim'
 #-------------------------------------------------------------------------------
 
 # vimrc
-file_src_vimrc: 'templates/main/vimrc.j2'
+file_src_vimrc: 'templates/main/vimrc'
 file_dst_vimrc: '/usr/local/share/vim/vimrc'
 file_mode_vimrc: '0644'
 file_owner_vimrc: 'root'

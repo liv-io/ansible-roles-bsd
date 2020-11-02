@@ -5,21 +5,21 @@
 #-------------------------------------------------------------------------------
 
 # aliases
-file_src_aliases: "templates/{{ansible_os_family}}/aliases.j2"
+file_src_aliases: "templates/{{ansible_os_family}}/aliases"
 file_dst_aliases: '/etc/mail/aliases'
 file_mode_aliases: '0644'
 file_owner_aliases: 'root'
 file_group_aliases: 'wheel'
 
 # secrets
-file_src_secrets: 'templates/main/secrets.j2'
+file_src_secrets: 'templates/main/secrets'
 file_dst_secrets: '/etc/mail/secrets'
 file_mode_secrets: '0640'
 file_owner_secrets: 'root'
 file_group_secrets: '_smtpd'
 
 # smtpd.conf
-file_src_smtpd_conf: 'templates/main/smtpd.conf.j2'
+file_src_smtpd_conf: 'templates/main/smtpd.conf'
 file_dst_smtpd_conf: '/etc/mail/smtpd.conf'
 file_mode_smtpd_conf: '0644'
 file_owner_smtpd_conf: 'root'

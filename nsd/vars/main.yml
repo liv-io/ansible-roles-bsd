@@ -12,14 +12,14 @@ package_name_nsd: 'nsd'
 #-------------------------------------------------------------------------------
 
 # config
-file_src_config: 'templates/main/config.j2'
+file_src_config: 'templates/main/config'
 file_dst_config: '/var/nsd/zones/master'
 file_mode_config: '0644'
 file_owner_config: 'root'
 file_group_config: 'wheel'
 
 # nsd.conf
-file_src_nsd_conf: "templates/{{ansible_os_family}}/nsd.conf.j2"
+file_src_nsd_conf: "templates/{{ansible_os_family}}/nsd.conf"
 file_dst_nsd_conf: '/var/nsd/etc/nsd.conf'
 file_mode_nsd_conf: '0644'
 file_owner_nsd_conf: 'root'

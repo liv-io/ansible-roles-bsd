@@ -5,13 +5,13 @@
 #-------------------------------------------------------------------------------
 
 # config
-file_src_config: 'templates/main/config.j2'
+file_src_config: 'templates/main/config'
 file_mode_config: '0640'
 file_owner_config: 'root'
 file_group_config: 'wheel'
 
 # mygate
-file_src_mygate: 'templates/main/mygate.j2'
+file_src_mygate: 'templates/main/mygate'
 file_dst_mygate: '/etc/mygate'
 file_mode_mygate: '0644'
 file_owner_mygate: 'root'

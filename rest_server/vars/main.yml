@@ -40,7 +40,7 @@ file_exclude_rest_server: ['CHANGELOG.md', 'LICENSE', 'README.md']
 file_extra_opts_rest_server: ['--strip-components=1']
 
 # rest_server.service
-file_src_rest_server_service: 'templates/main/rest_server.service.j2'
+file_src_rest_server_service: 'templates/main/rest_server.service'
 file_dst_rest_server_service: '/etc/rc.d/rest_server'
 file_mode_rest_server_service: '0555'
 file_owner_rest_server_service: 'root'

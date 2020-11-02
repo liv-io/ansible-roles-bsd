@@ -12,7 +12,7 @@ package_name_nginx: 'nginx'
 #-------------------------------------------------------------------------------
 
 # config
-file_src_config: 'templates/main/config.j2'
+file_src_config: 'templates/main/config'
 file_mode_config: '0644'
 file_owner_config: 'root'
 file_group_config: 'wheel'
@@ -21,7 +21,7 @@ file_group_config: 'wheel'
 file_dst_dhparam_pem: '/etc/nginx/dhparam.pem'
 
 # nginx.conf
-file_src_nginx_conf: "templates/{{ansible_os_family}}/nginx.conf.j2"
+file_src_nginx_conf: "templates/{{ansible_os_family}}/nginx.conf"
 file_dst_nginx_conf: '/etc/nginx/nginx.conf'
 file_mode_nginx_conf: '0644'
 file_owner_nginx_conf: 'root'

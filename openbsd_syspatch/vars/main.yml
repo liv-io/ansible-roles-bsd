@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # installurl
-file_src_installurl: 'templates/main/installurl.j2'
+file_src_installurl: 'templates/main/installurl'
 file_dst_installurl: '/etc/installurl'
 file_mode_installurl: '0644'
 file_owner_installurl: 'root'

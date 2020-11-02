@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # periodic.conf
-file_src_periodic_conf: "templates/{{ansible_os_family}}/periodic.conf.j2"
+file_src_periodic_conf: "templates/{{ansible_os_family}}/periodic.conf"
 file_dst_periodic_conf: '/etc/periodic.conf'
 file_mode_periodic_conf: '0644'
 file_owner_periodic_conf: 'root'

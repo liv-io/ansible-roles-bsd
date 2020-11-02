@@ -11,56 +11,56 @@ file_owner_pf_dir: 'root'
 file_group_pf_dir: 'wheel'
 
 # anchors.conf
-file_src_anchors_conf: 'templates/main/anchors.conf.j2'
+file_src_anchors_conf: 'templates/main/anchors.conf'
 file_dst_anchors_conf: "{{file_dst_pf_dir}}/anchors.conf"
 file_mode_anchors_conf: '0600'
 file_owner_anchors_conf: 'root'
 file_group_anchors_conf: 'wheel'
 
 # filters.conf
-file_src_filters_conf: 'templates/main/filters.conf.j2'
+file_src_filters_conf: 'templates/main/filters.conf'
 file_dst_filters_conf: "{{file_dst_pf_dir}}/filters.conf"
 file_mode_filters_conf: '0600'
 file_owner_filters_conf: 'root'
 file_group_filters_conf: 'wheel'
 
 # macros.conf
-file_src_macros_conf: 'templates/main/macros.conf.j2'
+file_src_macros_conf: 'templates/main/macros.conf'
 file_dst_macros_conf: "{{file_dst_pf_dir}}/macros.conf"
 file_mode_macros_conf: '0600'
 file_owner_macros_conf: 'root'
 file_group_macros_conf: 'wheel'
 
 # normalization.conf
-file_src_normalization_conf: 'templates/main/normalization.conf.j2'
+file_src_normalization_conf: 'templates/main/normalization.conf'
 file_dst_normalization_conf: "{{file_dst_pf_dir}}/normalization.conf"
 file_mode_normalization_conf: '0600'
 file_owner_normalization_conf: 'root'
 file_group_normalization_conf: 'wheel'
 
 # options.conf
-file_src_options_conf: 'templates/main/options.conf.j2'
+file_src_options_conf: 'templates/main/options.conf'
 file_dst_options_conf: "{{file_dst_pf_dir}}/options.conf"
 file_mode_options_conf: '0600'
 file_owner_options_conf: 'root'
 file_group_options_conf: 'wheel'
 
 # pf.conf
-file_src_pf_conf: 'templates/main/pf.conf.j2'
+file_src_pf_conf: 'templates/main/pf.conf'
 file_dst_pf_conf: '/etc/pf.conf'
 file_mode_pf_conf: '0600'
 file_owner_pf_conf: 'root'
 file_group_pf_conf: 'wheel'
 
 # queues.conf
-file_src_queues_conf: 'templates/main/queues.conf.j2'
+file_src_queues_conf: 'templates/main/queues.conf'
 file_dst_queues_conf: "{{file_dst_pf_dir}}/queues.conf"
 file_mode_queues_conf: '0600'
 file_owner_queues_conf: 'root'
 file_group_queues_conf: 'wheel'
 
 # tables.conf
-file_src_tables_conf: 'templates/main/tables.conf.j2'
+file_src_tables_conf: 'templates/main/tables.conf'
 file_dst_tables_conf: "{{file_dst_pf_dir}}/tables.conf"
 file_mode_tables_conf: '0600'
 file_owner_tables_conf: 'root'

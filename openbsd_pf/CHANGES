@@ -99,10 +99,10 @@ E: Ensure role works in check mode
 E: Avoid usage of raw module
 
 * Version 0.6.3 (2017-11-27)
-B: Fix bug in 'filters.conf.j2' template
+B: Fix bug in 'filters.conf' template
 
 * Version 0.6.2 (2017-11-24)
-B: Fix multiple bugs in 'filters.conf.j2' template
+B: Fix multiple bugs in 'filters.conf' template
 
 * Version 0.6.1 (2017-11-23)
 E: Improve variable names of 'openbsd_pf_options_limits' and 'openbsd_pf_options_timeouts'

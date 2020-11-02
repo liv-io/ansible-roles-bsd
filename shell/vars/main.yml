@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # profile
-file_src_profile: "templates/{{ansible_os_family}}/profile.j2"
+file_src_profile: "templates/{{ansible_os_family}}/profile"
 file_dst_profile: '/etc/profile'
 file_mode_profile: '0644'
 file_owner_profile: 'root'
@@ -18,14 +18,14 @@ file_owner_profile_d: 'root'
 file_group_profile_d: 'wheel'
 
 # shell.sh
-file_src_shell_shell: "templates/{{ansible_os_family}}/shell.sh.j2"
+file_src_shell_shell: "templates/{{ansible_os_family}}/shell.sh"
 file_dst_shell_shell: '/etc/profile.d/shell.sh'
 file_mode_shell_shell: '0644'
 file_owner_shell_shell: 'root'
 file_group_shell_shell: 'wheel'
 
 # z_shell.sh
-file_src_z_shell_shell: "templates/{{ansible_os_family}}/z_shell.sh.j2"
+file_src_z_shell_shell: "templates/{{ansible_os_family}}/z_shell.sh"
 file_dst_z_shell_shell: '/etc/profile.d/z_shell.sh'
 file_mode_z_shell_shell: '0644'
 file_owner_z_shell_shell: 'root'

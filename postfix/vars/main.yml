@@ -12,21 +12,21 @@ package_name_postfix: 'postfix'
 #-------------------------------------------------------------------------------
 
 # aliases
-file_src_aliases: "templates/{{ansible_os_family}}/aliases.j2"
+file_src_aliases: "templates/{{ansible_os_family}}/aliases"
 file_dst_aliases: '/etc/mail/aliases'
 file_mode_aliases: '0644'
 file_owner_aliases: 'root'
 file_group_aliases: 'root'
 
 # main.cf
-file_src_main_cf: "templates/{{ansible_os_family}}/main.cf.j2"
+file_src_main_cf: "templates/{{ansible_os_family}}/main.cf"
 file_dst_main_cf: '/etc/postfix/main.cf'
 file_mode_main_cf: '0644'
 file_owner_main_cf: 'root'
 file_group_main_cf: 'root'
 
 # master.cf
-file_src_master_cf: "templates/{{ansible_os_family}}/master.cf.j2"
+file_src_master_cf: "templates/{{ansible_os_family}}/master.cf"
 file_dst_master_cf: '/etc/postfix/master.cf'
 file_mode_master_cf: '0644'
 file_owner_master_cf: 'root'

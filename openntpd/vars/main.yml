@@ -12,14 +12,14 @@ package_name_openntpd: 'openntpd'
 #-------------------------------------------------------------------------------
 
 # ntpd.conf
-file_src_ntpd_conf: "templates/{{ansible_os_family}}/ntpd.conf.j2"
+file_src_ntpd_conf: "templates/{{ansible_os_family}}/ntpd.conf"
 file_dst_ntpd_conf: '/etc/ntpd.conf'
 file_mode_ntpd_conf: '0644'
 file_owner_ntpd_conf: 'root'
 file_group_ntpd_conf: 'wheel'
 
 # openntpd_check-time
-file_src_openntpd_check_time: 'templates/main/openntpd_check-time.j2'
+file_src_openntpd_check_time: 'templates/main/openntpd_check-time'
 file_dst_openntpd_check_time: '/usr/local/sbin/openntpd_check-time'
 file_mode_openntpd_check_time: '0754'
 file_owner_openntpd_check_time: 'root'

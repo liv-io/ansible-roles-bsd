@@ -89,11 +89,11 @@ ROLE
       None    : ''
 
   motd_motd_template
-    Description: Define the template source for 'motd.j2'.
+    Description: Define the template source for 'motd'.
                  Any value other than 'main' requires a Jinja2 file to be
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
-                 'motd/templates/example/motd.j2'
+                 'motd/templates/example/motd'
     Implemented: 0.1
     Required   : False
     Value      : Arbitrary

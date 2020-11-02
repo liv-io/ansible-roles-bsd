@@ -20,7 +20,7 @@ file_group_root_hints: 'wheel'
 file_validate_root_hints: 'unbound-checkconf %s'
 
 # unbound.conf
-file_src_unbound_conf: "templates/{{ansible_os_family}}/unbound.conf.j2"
+file_src_unbound_conf: "templates/{{ansible_os_family}}/unbound.conf"
 file_dst_unbound_conf: '/var/unbound/etc/unbound.conf'
 file_mode_unbound_conf: '0644'
 file_owner_unbound_conf: 'root'

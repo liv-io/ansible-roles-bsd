@@ -12,14 +12,14 @@ package_name_bash: 'bash'
 #-------------------------------------------------------------------------------
 
 # bash.bash
-file_src_bash_bash: "templates/{{ansible_os_family}}/bash.bash.j2"
+file_src_bash_bash: "templates/{{ansible_os_family}}/bash.bash"
 file_dst_bash_bash: '/etc/profile.d/bash.bash'
 file_mode_bash_bash: '0644'
 file_owner_bash_bash: 'root'
 file_group_bash_bash: 'wheel'
 
 # zz_bash.bash
-file_src_zz_bash_bash: "templates/{{ansible_os_family}}/zz_bash.bash.j2"
+file_src_zz_bash_bash: "templates/{{ansible_os_family}}/zz_bash.bash"
 file_dst_zz_bash_bash: '/etc/profile.d/zz_bash.bash'
 file_mode_zz_bash_bash: '0644'
 file_owner_zz_bash_bash: 'root'

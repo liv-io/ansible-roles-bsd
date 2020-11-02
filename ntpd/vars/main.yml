@@ -15,21 +15,21 @@ package_name_ntpd: 'ntp'
 #-------------------------------------------------------------------------------
 
 # ntp.conf
-file_src_ntp_conf: "templates/{{ansible_os_family}}/ntp.conf.j2"
+file_src_ntp_conf: "templates/{{ansible_os_family}}/ntp.conf"
 file_dst_ntp_conf: '/etc/ntp.conf'
 file_mode_ntp_conf: '0644'
 file_owner_ntp_conf: 'root'
 file_group_ntp_conf: 'wheel'
 
 # ntpd_check-time
-file_src_ntpd_check_time: 'templates/main/ntpd_check-time.j2'
+file_src_ntpd_check_time: 'templates/main/ntpd_check-time'
 file_dst_ntpd_check_time: '/usr/local/sbin/ntpd_check-time'
 file_mode_ntpd_check_time: '0754'
 file_owner_ntpd_check_time: 'root'
 file_group_ntpd_check_time: 'wheel'
 
 # ntpd_update-time
-file_src_ntpd_update_time: 'templates/main/ntpd_update-time.j2'
+file_src_ntpd_update_time: 'templates/main/ntpd_update-time'
 file_dst_ntpd_update_time: '/usr/local/sbin/ntpd_update-time'
 file_mode_ntpd_update_time: '0754'
 file_owner_ntpd_update_time: 'root'

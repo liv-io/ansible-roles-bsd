@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # sysctl.conf
-file_src_sysctl_conf: 'templates/main/sysctl.conf.j2'
+file_src_sysctl_conf: 'templates/main/sysctl.conf'
 file_dst_sysctl_conf: '/etc/sysctl.conf'
 file_mode_sysctl_conf: '0644'
 file_owner_sysctl_conf: 'root'

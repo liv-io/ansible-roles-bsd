@@ -12,14 +12,14 @@ package_name_sudo: 'sudo'
 #-------------------------------------------------------------------------------
 
 # config
-file_src_config: 'templates/main/config.j2'
+file_src_config: 'templates/main/config'
 file_mode_config: '0440'
 file_owner_config: 'root'
 file_group_config: 'wheel'
 file_validate_config: 'visudo -cf %s'
 
 # sudoers
-file_src_sudoers: "templates/{{ansible_os_family}}/sudoers.j2"
+file_src_sudoers: "templates/{{ansible_os_family}}/sudoers"
 file_dst_sudoers: '/etc/sudoers'
 file_mode_sudoers: '0440'
 file_owner_sudoers: 'root'

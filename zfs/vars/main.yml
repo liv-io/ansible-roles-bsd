@@ -5,21 +5,21 @@
 #-------------------------------------------------------------------------------
 
 # zfs_check-pools
-file_src_zfs_check_pools: 'templates/main/zfs_check-pools.j2'
+file_src_zfs_check_pools: 'templates/main/zfs_check-pools'
 file_dst_zfs_check_pools: '/usr/local/sbin/zfs_check-pools'
 file_mode_zfs_check_pools: '0754'
 file_owner_zfs_check_pools: 'root'
 file_group_zfs_check_pools: 'wheel'
 
 # zfs_scrub-pools
-file_src_zfs_scrub_pools: 'templates/main/zfs_scrub-pools.j2'
+file_src_zfs_scrub_pools: 'templates/main/zfs_scrub-pools'
 file_dst_zfs_scrub_pools: '/usr/local/sbin/zfs_scrub-pools'
 file_mode_zfs_scrub_pools: '0754'
 file_owner_zfs_scrub_pools: 'root'
 file_group_zfs_scrub_pools: 'wheel'
 
 # zfs_trim-pools
-file_src_zfs_trim_pools: 'templates/main/zfs_trim-pools.j2'
+file_src_zfs_trim_pools: 'templates/main/zfs_trim-pools'
 file_dst_zfs_trim_pools: '/usr/local/sbin/zfs_trim-pools'
 file_mode_zfs_trim_pools: '0754'
 file_owner_zfs_trim_pools: 'root'

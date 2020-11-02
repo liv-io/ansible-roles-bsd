@@ -21,42 +21,42 @@ file_group_acl_dir: 'wheel'
 file_dst_cache_dir: '/var/squid/cache/00'
 
 # dst_domain_allowed.acl
-file_src_dst_domain_allowed_acl: 'templates/main/dst_domain_allowed.acl.j2'
+file_src_dst_domain_allowed_acl: 'templates/main/dst_domain_allowed.acl'
 file_dst_dst_domain_allowed_acl: '/etc/squid/acl/dst_domain_allowed.acl'
 file_mode_dst_domain_allowed_acl: '0644'
 file_owner_dst_domain_allowed_acl: 'root'
 file_group_dst_domain_allowed_acl: 'wheel'
 
 # dst_domain_blocked.acl
-file_src_dst_domain_blocked_acl: 'templates/main/dst_domain_blocked.acl.j2'
+file_src_dst_domain_blocked_acl: 'templates/main/dst_domain_blocked.acl'
 file_dst_dst_domain_blocked_acl: '/etc/squid/acl/dst_domain_blocked.acl'
 file_mode_dst_domain_blocked_acl: '0644'
 file_owner_dst_domain_blocked_acl: 'root'
 file_group_dst_domain_blocked_acl: 'wheel'
 
 # dst_network_allowed.acl
-file_src_dst_network_allowed_acl: 'templates/main/dst_network_allowed.acl.j2'
+file_src_dst_network_allowed_acl: 'templates/main/dst_network_allowed.acl'
 file_dst_dst_network_allowed_acl: '/etc/squid/acl/dst_network_allowed.acl'
 file_mode_dst_network_allowed_acl: '0644'
 file_owner_dst_network_allowed_acl: 'root'
 file_group_dst_network_allowed_acl: 'wheel'
 
 # dst_network_blocked.acl
-file_src_dst_network_blocked_acl: 'templates/main/dst_network_blocked.acl.j2'
+file_src_dst_network_blocked_acl: 'templates/main/dst_network_blocked.acl'
 file_dst_dst_network_blocked_acl: '/etc/squid/acl/dst_network_blocked.acl'
 file_mode_dst_network_blocked_acl: '0644'
 file_owner_dst_network_blocked_acl: 'root'
 file_group_dst_network_blocked_acl: 'wheel'
 
 # squid.conf
-file_src_squid_conf: "templates/{{ansible_os_family}}/squid.conf.j2"
+file_src_squid_conf: "templates/{{ansible_os_family}}/squid.conf"
 file_dst_squid_conf: '/etc/squid/squid.conf'
 file_mode_squid_conf: '0644'
 file_owner_squid_conf: 'root'
 file_group_squid_conf: 'wheel'
 
 # src_network_unrestricted.acl
-file_src_src_network_unrestricted_acl: 'templates/main/src_network_unrestricted.acl.j2'
+file_src_src_network_unrestricted_acl: 'templates/main/src_network_unrestricted.acl'
 file_dst_src_network_unrestricted_acl: '/etc/squid/acl/src_network_unrestricted.acl'
 file_mode_src_network_unrestricted_acl: '0644'
 file_owner_src_network_unrestricted_acl: 'root'

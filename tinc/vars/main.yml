@@ -17,7 +17,7 @@ file_owner_config_dir: 'root'
 file_group_config_dir: '_tinc'
 
 # host
-file_src_host: 'templates/main/host.j2'
+file_src_host: 'templates/main/host'
 file_mode_host: '0640'
 file_owner_host: 'root'
 file_group_host: '_tinc'
@@ -33,7 +33,7 @@ file_owner_rsa_key_priv: 'root'
 file_group_rsa_key_priv: '_tinc'
 
 # tinc.conf
-file_src_tinc_conf: 'templates/main/tinc.conf.j2'
+file_src_tinc_conf: 'templates/main/tinc.conf'
 file_mode_tinc_conf: '0640'
 file_owner_tinc_conf: 'root'
 file_group_tinc_conf: '_tinc'
@@ -45,7 +45,7 @@ file_owner_tinc_dir: 'root'
 file_group_tinc_dir: '_tinc'
 
 # tinc-down
-file_src_tinc_down: 'templates/main/tinc-down.j2'
+file_src_tinc_down: 'templates/main/tinc-down'
 file_mode_tinc_down: '0750'
 file_owner_tinc_down: 'root'
 file_group_tinc_down: '_tinc'
@@ -55,7 +55,7 @@ file_line_tincd_flags: 'tincd_flags=-U _tinc --chroot'
 file_dst_tincd_flags: '/etc/rc.conf.local'
 
 # tinc-up
-file_src_tinc_up: 'templates/main/tinc-up.j2'
+file_src_tinc_up: 'templates/main/tinc-up'
 file_mode_tinc_up: '0750'
 file_owner_tinc_up: 'root'
 file_group_tinc_up: '_tinc'
