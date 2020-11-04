@@ -1,0 +1,27 @@
+---
+
+unbound_adblock_state: 'enable'
+
+unbound_adblock_monitor_mail_from_address: "root@{{ansible_domain}}"
+
+unbound_adblock_monitor_mail_to_address: ["admin@{{ansible_domain}}"]
+
+unbound_adblock_monitor_mail_state: 'false'
+
+unbound_adblock_monitor_prom_state: 'false'
+
+unbound_adblock_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+
+unbound_adblock_source: 'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts'
+
+unbound_adblock_update_list_day: '*'
+
+unbound_adblock_update_list_hour: '5'
+
+unbound_adblock_update_list_minute: "{{(20|random(seed=inventory_hostname))}}"
+
+unbound_adblock_update_list_month: '*'
+
+unbound_adblock_update_list_weekday: '*'
+
+unbound_adblock_update_list_state: 'enable'

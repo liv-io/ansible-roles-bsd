@@ -1,0 +1,45 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - unbound_adblock
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove unbound-adblock_update-list'
+  file:
+    state: 'absent'
+    path: "{{file_dst_unbound_adblock_update_list}}"
+  tags:
+    - disable
+    - unbound_adblock
+
+- name: 'cron create unbound-adblock_update-list'
+  cron:
+    state: 'present'
+    disabled: 'yes'
+    name: "{{cron_name_unbound_adblock_update_list}}"
+    day: "{{cron_day_unbound_adblock_update_list}}"
+    hour: "{{cron_hour_unbound_adblock_update_list}}"
+    minute: "{{cron_minute_unbound_adblock_update_list}}"
+    month: "{{cron_month_unbound_adblock_update_list}}"
+    weekday: "{{cron_weekday_unbound_adblock_update_list}}"
+    user: "{{cron_user_unbound_adblock_update_list}}"
+    job: "{{cron_job_unbound_adblock_update_list}}"
+  tags:
+    - disable
+    - unbound_adblock

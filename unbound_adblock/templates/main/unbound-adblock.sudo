@@ -1,0 +1,11 @@
+{{ansible_managed|comment(decoration='#')}}
+
+#-------------------------------------------------------------------------------
+# UNBOUND_ADBLOCK
+#-------------------------------------------------------------------------------
+
+{% if (ansible_os_family == 'OpenBSD') %}
+{{user_name_unbound_adblock}} ALL=(root) NOPASSWD: {{service}} restart {{service_name_unbound}}, {{service}} check {{service_name_unbound}}
+{% else %}
+{{user_name_unbound_adblock}} ALL=(root) NOPASSWD: {{service}} {{service_name_unbound}} restart, {{service}} {{service_name_unbound}} status
+{% endif %}

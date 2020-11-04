@@ -1,0 +1,80 @@
+---
+
+# service
+service: '/usr/sbin/service'
+
+# unbound
+unbound: '/usr/sbin/unbound'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# adblock.conf
+file_dst_adblock_conf: '/data/unbound-adblock/adblock.conf'
+
+# data.dir
+file_dst_data_dir: '/data'
+file_mode_data_dir: '0755'
+file_owner_data_dir: 'root'
+file_group_data_dir: 'wheel'
+
+# hosts
+file_src_hosts: "{{unbound_adblock_source}}"
+file_dst_hosts: '/data/unbound-adblock/hosts'
+
+# unbound-adblock.sudo
+file_src_unbound_adblock_sudo: 'templates/main/unbound-adblock.sudo'
+file_dst_unbound_adblock_sudo: '/etc/sudoers.d/unbound-adblock'
+file_mode_unbound_adblock_sudo: '0440'
+file_owner_unbound_adblock_sudo: 'root'
+file_group_unbound_adblock_sudo: 'wheel'
+
+# unbound-adblock_data.dir
+file_dst_unbound_adblock_data_dir: '/data/unbound-adblock'
+file_mode_unbound_adblock_data_dir: '0750'
+file_owner_unbound_adblock_data_dir: '_unbound-adblock'
+file_group_unbound_adblock_data_dir: '_unbound-adblock'
+
+# unbound-adblock_update-list
+file_src_unbound_adblock_update_list: 'templates/main/unbound-adblock_update-list'
+file_dst_unbound_adblock_update_list: '/usr/local/bin/unbound-adblock_update-list'
+file_mode_unbound_adblock_update_list: '0554'
+file_owner_unbound_adblock_update_list: '_unbound-adblock'
+file_group_unbound_adblock_update_list: '_unbound-adblock'
+
+# unbound-adblock_update-list
+cron_name_unbound_adblock_update_list: 'Unbound AdBlock: Update List'
+cron_day_unbound_adblock_update_list: "{{unbound_adblock_update_list_day}}"
+cron_hour_unbound_adblock_update_list: "{{unbound_adblock_update_list_hour}}"
+cron_minute_unbound_adblock_update_list: "{{unbound_adblock_update_list_minute}}"
+cron_month_unbound_adblock_update_list: "{{unbound_adblock_update_list_month}}"
+cron_weekday_unbound_adblock_update_list: "{{unbound_adblock_update_list_weekday}}"
+cron_user_unbound_adblock_update_list: "{{file_owner_unbound_adblock_update_list}}"
+cron_job_unbound_adblock_update_list: "{{file_dst_unbound_adblock_update_list}}"
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# unbound-adblock
+group_name_unbound_adblock: '_unbound-adblock'
+group_system_unbound_adblock: 'yes'
+
+# unbound-adblock
+user_name_unbound_adblock: '_unbound-adblock'
+user_comment_unbound_adblock: 'Unbound AdBlock'
+user_group_unbound_adblock: '_unbound-adblock'
+user_append_unbound_adblock: 'yes'
+user_home_unbound_adblock: '/var/empty'
+user_home_create_unbound_adblock: 'no'
+user_home_move_unbound_adblock: 'no'
+user_home_remove_unbound_adblock: 'yes'
+user_home_force_unbound_adblock: 'no'
+user_password_unbound_adblock: '!'
+user_password_update_unbound_adblock: 'always'
+user_shell_unbound_adblock: '/bin/sh'
+user_system_unbound_adblock: 'yes'
+
+# unbound
+service_name_unbound: 'unbound'

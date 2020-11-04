@@ -1,0 +1,48 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - unbound_adblock
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create unbound-adblock_update-list'
+  template:
+    src: "{{file_src_unbound_adblock_update_list}}"
+    dest: "{{file_dst_unbound_adblock_update_list}}"
+    mode: "{{file_mode_unbound_adblock_update_list}}"
+    owner: "{{file_owner_unbound_adblock_update_list}}"
+    group: "{{file_group_unbound_adblock_update_list}}"
+  tags:
+    - enable
+    - unbound_adblock
+
+- name: 'cron create unbound-adblock_update-list'
+  cron:
+    state: 'present'
+    disabled: "{{'yes' if (unbound_adblock_update_list_state is match('false|no|disable')) else 'no'}}"
+    name: "{{cron_name_unbound_adblock_update_list}}"
+    day: "{{cron_day_unbound_adblock_update_list}}"
+    hour: "{{cron_hour_unbound_adblock_update_list}}"
+    minute: "{{cron_minute_unbound_adblock_update_list}}"
+    month: "{{cron_month_unbound_adblock_update_list}}"
+    weekday: "{{cron_weekday_unbound_adblock_update_list}}"
+    user: "{{cron_user_unbound_adblock_update_list}}"
+    job: "{{cron_job_unbound_adblock_update_list}}"
+  tags:
+    - enable
+    - unbound_adblock

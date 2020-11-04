@@ -1,0 +1,229 @@
+#!/usr/bin/env sh
+
+{{ansible_managed|comment(decoration='#')}}
+
+#-------------------------------------------------------------------------------
+# SHELL VARIABLES
+#-------------------------------------------------------------------------------
+
+SHELL='/bin/sh'
+PATH='/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+which='/usr/bin/which' && [ -x ${which} ] || { echo "Error: Command 'which' not found."; exit 127; }
+awk=$(${which} awk) || { echo "Error: Command 'awk' not found."; exit 127; }
+basename=$(${which} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
+cat=$(${which} cat) || { echo "Error: Command 'cat' not found."; exit 127; }
+curl=$(${which} curl) || { echo "Error: Command 'curl' not found."; exit 127; }
+date=$(${which} date) || { echo "Error: Command 'date' not found."; exit 127; }
+echo=$(${which} echo) || { echo "Error: Command 'echo' not found."; exit 127; }
+expr=$(${which} expr) || { echo "Error: Command 'expr' not found."; exit 127; }
+grep=$(${which} grep) || { echo "Error: Command 'grep' not found."; exit 127; }
+hostname=$(${which} hostname) || { echo "Error: Command 'hostname' not found."; exit 127; }
+logger=$(${which} logger) || { echo "Error: Command 'logger' not found."; exit 127; }
+{% if (unbound_adblock_monitor_mail_state is match('true|yes|enable')) %}
+mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
+{% endif %}
+rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
+sleep=$(${which} sleep) || { echo "Error: Command 'sleep' not found."; exit 127; }
+sudo=$(${which} sudo) || { echo "Error: Command 'sudo' not found."; exit 127; }
+touch=$(${which} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
+whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
+
+service="{{service}}"
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
+script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
+time_start=$(${date} '+%s')
+user='{{file_owner_unbound_adblock_update_list}}'
+lockfile='/var/tmp/unbound-adblock_update-list.lock'
+retval=0
+severity='Debug'
+message='Please check log files for more information.'
+
+textfile_collector='{{unbound_adblock_monitor_prom_textfile_collector}}'
+
+{% if (unbound_adblock_monitor_mail_state is match('true|yes|enable')) %}
+mail_from_address='{{unbound_adblock_monitor_mail_from_address}}'
+mail_to_address='{% for item in unbound_adblock_monitor_mail_to_address %}{{item}}{% if not loop.last %},{% endif %}{% endfor %}'
+mail_subject='Unbound AdBlock: Update List - Error ({{ansible_hostname}})'
+{% endif %}
+
+#-------------------------------------------------------------------------------
+# FUNCTIONS
+#-------------------------------------------------------------------------------
+
+{% if (unbound_adblock_monitor_mail_state is match('true|yes|enable')) %}
+mail_error() {
+  retval="$1"
+  severity="$2"
+  message="$3"
+  mail_body="--------------------------------------------------------------------------------
+ERROR
+--------------------------------------------------------------------------------
+
+Message     : ${message}
+Severity    : ${severity}
+Date & Time : $(${date} '+%Y-%m-%dT%H:%M:%S%z')
+
+--------------------------------------------------------------------------------
+SCRIPT
+--------------------------------------------------------------------------------
+
+Name        : unbound-adblock_update-list
+Type        : Shell script
+PID         : $$
+
+--------------------------------------------------------------------------------
+SYSTEM
+--------------------------------------------------------------------------------
+
+Hostname    : {{ansible_hostname}}
+FQDN        : {{ansible_fqdn}}"
+
+{% if (ansible_os_family == 'FreeBSD') %}
+  ${echo} "${mail_body}" | ${mailx} -s "${mail_subject}" -F "${mail_to_address}" > /dev/null 2>&1
+{% else %}
+  ${echo} "${mail_body}" | ${mailx} -r "${mail_from_address}" -s "${mail_subject}" "${mail_to_address}" > /dev/null 2>&1
+{% endif %}
+}
+{% endif %}
+
+{% if (unbound_adblock_monitor_prom_state is match('true|yes|enable')) %}
+update_prom() {
+  retval="$1"
+  time_start="$2"
+  time_exec="$3"
+
+  if [ -w "${textfile_collector}" ]; then
+    ${echo} "# HELP unbound_adblock_update_list_exit The script's exit code.
+# TYPE unbound_adblock_update_list_exit counter
+unbound_adblock_update_list_exit ${retval}" > "${textfile_collector}/unbound_adblock_update_list_exit.prom"
+
+    if [ -z "${time_start}" ] ; then
+      ${rm} -f "${textfile_collector}/unbound_adblock_update_list_start.prom"
+    else
+      ${echo} "# HELP unbound_adblock_update_list_start The script's start time in epoch.
+# TYPE unbound_adblock_update_list_start counter
+unbound_adblock_update_list_start ${time_start}" > "${textfile_collector}/unbound_adblock_update_list_start.prom"
+    fi
+
+    if [ -z "${time_exec}" ] ; then
+      ${rm} -f "${textfile_collector}/unbound_adblock_update_list_duration.prom"
+    else
+      ${echo} "# HELP unbound_adblock_update_list_duration The script's execution duration in seconds.
+# TYPE unbound_adblock_update_list_duration counter
+unbound_adblock_update_list_duration ${time_exec}" > "${textfile_collector}/unbound_adblock_update_list_duration.prom"
+    fi
+
+  fi
+}
+{% endif %}
+
+check_script_user() {
+  if [ "$(${whoami})" != "${user}" ]; then
+    retval=77
+    severity='Error'
+    message="Please run script as user '${user}'"
+    ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
+    exit "${retval}"
+  fi
+}
+
+create_lockfile() {
+  if [ ! -e "${lockfile}" ]; then
+    ${touch} "${lockfile}" || log_and_exit_on_error "$?" 'Warning' 'Could not create lockfile. Please investigate.'
+  else
+    log_and_exit_on_error "$?" 'Warning' 'Lockfile does already exist. Please investigate.'
+  fi
+}
+
+remove_lockfile() {
+  if [ -e "${lockfile}" ]; then
+    ${rm} -f "${lockfile}" || log_and_exit_on_error "$?" 'Warning' 'Could not remove lockfile. Please investigate.'
+  else
+    log_and_exit_on_error "$?" 'Warning' 'Lockfile did not exist. Please investigate.'
+  fi
+}
+
+log_and_exit_on_error() {
+  retval="$1"
+  severity="$2"
+  message="$3"
+  if [ "${retval}" -ne 0 ]; then
+    ${rm} -f "${lockfile}"
+    if [ -t 1 ] ; then
+      ${echo} "$(${date} '+%Y-%m-%dT%H:%M:%S%z') - ${host} - ${script}: ${severity}: ${message}"
+    fi
+    ${logger} -t "${script}" "${severity}: ${message}"
+{% if (unbound_adblock_monitor_mail_state is match('true|yes|enable')) %}
+    mail_error "${retval}" "${severity}" "${message}"
+{% endif %}
+
+{% if (unbound_adblock_monitor_prom_state is match('true|yes|enable')) %}
+    update_prom "${retval}" "${time_start}" "${time_exec}"
+{% endif %}
+
+    exit "${retval}"
+  fi
+}
+
+log_and_exit() {
+  time_end=$(${date} '+%s')
+  time_exec=$(${expr} "${time_end}" - "${time_start}")
+  time_hr=$(${date} -u -r "${time_exec}" '+%H:%M:%S')
+
+  retval=0
+  severity='Info'
+  message='Unbound AdBlock list has been updated.'
+  ${logger} -t "${script}" "${severity}: ${message} Duration: ${time_hr}"
+
+{% if (unbound_adblock_monitor_prom_state is match('true|yes|enable')) %}
+  update_prom "${retval}" "${time_start}" "${time_exec}"
+{% endif %}
+
+  exit "${retval}"
+}
+
+#-------------------------------------------------------------------------------
+# SCRIPT
+#-------------------------------------------------------------------------------
+
+check_script_user
+
+create_lockfile
+
+# Get latest upstream hosts file
+${curl} -s -o {{file_dst_hosts}} "{{unbound_adblock_source}}"
+log_and_exit_on_error "$?" 'Error' 'Unable to download upstream hosts file.'
+
+# Transform hosts file into Unbound syntax
+${cat} {{file_dst_hosts}} | ${grep} '^0\.0\.0\.0' | ${awk} '{print "local-zone: \""$2"\" redirect\nlocal-data: \""$2" A 0.0.0.0\""}' > {{file_dst_adblock_conf}}
+log_and_exit_on_error "$?" 'Error' 'Unable to transform hosts file into Unbound syntax.'
+
+# Restart Unbound service
+{% if (ansible_os_family == 'OpenBSD') %}
+${sudo} ${service} restart {{service_name_unbound}} > /dev/null 2>&1
+{% else %}
+${sudo} ${service} {{service_name_unbound}} restart > /dev/null 2>&1
+{% endif %}
+log_and_exit_on_error "$?" 'Error' 'Unable to restart Unbound service.'
+
+# Check Unbound service
+{% if (ansible_os_family == 'OpenBSD') %}
+${sudo} ${service} check {{service_name_unbound}} > /dev/null 2>&1
+{% else %}
+${sudo} ${service} {{service_name_unbound}} status > /dev/null 2>&1
+{% endif %}
+log_and_exit_on_error "$?" 'Error' 'Unable to check Unbound service.'
+
+remove_lockfile
+
+log_and_exit

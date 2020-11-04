@@ -1,0 +1,76 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - unbound_adblock
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'cron remove unbound-adblock_update-list'
+  cron:
+    state: 'absent'
+    name: "{{cron_name_unbound_adblock_update_list}}"
+    user: "{{cron_user_unbound_adblock_update_list}}"
+  tags:
+    - remove
+    - unbound_adblock
+
+- name: 'file remove unbound-adblock_update-list'
+  file:
+    state: 'absent'
+    path: "{{file_dst_unbound_adblock_update_list}}"
+  tags:
+    - remove
+    - unbound_adblock
+
+- name: 'file remove unbound-adblock.sudo'
+  file:
+    state: 'absent'
+    path: "{{file_dst_unbound_adblock_sudo}}"
+  tags:
+    - remove
+    - unbound_adblock
+
+- name: 'file remove unbound-adblock_data.dir'
+  file:
+    state: 'absent'
+    path: "{{file_dst_unbound_adblock_data_dir}}"
+  tags:
+    - remove
+    - unbound_adblock
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'user remove unbound-adblock'
+  user:
+    state: 'absent'
+    name: "{{user_name_unbound_adblock}}"
+    remove: "{{user_home_remove_unbound_adblock}}"
+    force: "{{user_home_force_unbound_adblock}}"
+  tags:
+    - remove
+    - unbound_adblock
+
+- name: 'group remove unbound-adblock'
+  group:
+    state: 'absent'
+    name: "{{group_name_unbound_adblock}}"
+  tags:
+    - remove
+    - unbound_adblock

@@ -1,0 +1,4 @@
+---
+
+# service
+service: '/usr/sbin/rcctl'
