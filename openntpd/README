@@ -82,8 +82,8 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
-  openopenntpd_check_time_day
-    Description: Define the 'openopenntpd_check_time_day' option.
+  openntpd_check_time_day
+    Description: Define the 'openntpd_check_time_day' option.
     Implemented: 5.0
     Required   : False
     Value      : Arbitrary
@@ -92,8 +92,8 @@ ROLE
     Options    :
       Examples: '1' | '*/2'
 
-  openopenntpd_check_time_hour
-    Description: Define the 'openopenntpd_check_time_hour' option.
+  openntpd_check_time_hour
+    Description: Define the 'openntpd_check_time_hour' option.
     Implemented: 5.0
     Required   : False
     Value      : Arbitrary
@@ -102,8 +102,8 @@ ROLE
     Options    :
       Examples: '5' | '*/6'
 
-  openopenntpd_check_time_minute
-    Description: Define the 'openopenntpd_check_time_minute' option.
+  openntpd_check_time_minute
+    Description: Define the 'openntpd_check_time_minute' option.
     Implemented: 5.0
     Required   : False
     Value      : Arbitrary
@@ -112,8 +112,8 @@ ROLE
     Options    :
       Examples: '42' | '*/30'
 
-  openopenntpd_check_time_month
-    Description: Define the 'openopenntpd_check_time_month' option.
+  openntpd_check_time_month
+    Description: Define the 'openntpd_check_time_month' option.
     Implemented: 5.0
     Required   : False
     Value      : Arbitrary
@@ -122,8 +122,8 @@ ROLE
     Options    :
       Examples: '10' | '*/1'
 
-  openopenntpd_check_time_weekday
-    Description: Define the 'openopenntpd_check_time_weekday' option.
+  openntpd_check_time_weekday
+    Description: Define the 'openntpd_check_time_weekday' option.
     Implemented: 5.0
     Required   : False
     Value      : Arbitrary
