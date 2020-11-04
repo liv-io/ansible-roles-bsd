@@ -2,7 +2,7 @@
 INFORMATION
 --------------------------------------------------------------------------------
 
-Name   : openssh
+Name   : rest_server
 Type   : Ansible role
 
 Authors: liv community
@@ -17,8 +17,8 @@ BUGS
 --------------------------------------------------------------------------------
 
 MAP_STACK
-  rest-server 0.9.7 binary has been compiled with Go version 1.10
-  (https://github.com/restic/rest-server/releases).
+- rest-server 0.9.7 binary has been compiled with Go version 1.10
+ (https://github.com/restic/rest-server/releases).
   OpenBSD requires MAP_STACK for stacks and support has only been added in Go
   version 1.11 (https://github.com/golang/go/issues/26142).
 
@@ -30,5 +30,4 @@ ENHANCEMENTS
 FEATURES
 --------------------------------------------------------------------------------
 
-FreeBSD
-  Add support for FreeBSD 12.1-*
+-  Add support for FreeBSD 12.1-*
