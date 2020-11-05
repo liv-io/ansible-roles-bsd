@@ -28,7 +28,6 @@ logger=$(${which} logger) || { echo "Error: Command 'logger' not found."; exit 1
 mailx=$(${which} mailx) || { echo "Error: Command 'mailx' not found."; exit 127; }
 {% endif %}
 rm=$(${which} rm) || { echo "Error: Command 'rm' not found."; exit 127; }
-sleep=$(${which} sleep) || { echo "Error: Command 'sleep' not found."; exit 127; }
 sudo=$(${which} sudo) || { echo "Error: Command 'sudo' not found."; exit 127; }
 touch=$(${which} touch) || { echo "Error: Command 'touch' not found."; exit 127; }
 whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 127; }
