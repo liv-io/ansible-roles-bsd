@@ -271,7 +271,7 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{file: '/data/adblock/adblock.conf', comment: 'Adblock'}]
+      Examples: [{file: '/data/unbound-adblock/adblock.conf', comment: 'Unbound AdBlock List'}]
       None    : []
 
   unbound_interface
