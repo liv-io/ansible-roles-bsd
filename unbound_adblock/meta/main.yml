@@ -1,0 +1,5 @@
+---
+
+dependencies:
+  - {role: curl, when: (unbound_adblock_state is match('true|yes|enable'))}
+  - {role: sudo, when: (unbound_adblock_state is match('true|yes|enable'))}

@@ -24,4 +24,4 @@ ENHANCEMENTS
 FEATURES
 --------------------------------------------------------------------------------
 
-- Add support for FreeBSD 12.1-*
+- Add option to specify multiple hosts file sources

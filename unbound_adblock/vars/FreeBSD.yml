@@ -1,0 +1,14 @@
+---
+
+# unbound
+unbound: '/usr/local/sbin/unbound'
+
+# service
+service: '/usr/sbin/service'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# unbound-adblock.sudo
+file_dst_unbound_adblock_sudo: '/usr/local/etc/sudoers.d/unbound-adblock'

@@ -226,6 +226,8 @@ PACKAGES
   unbound-adblock
 
 ROLES
+  curl
+
   sudo
 
   unbound
@@ -251,7 +253,7 @@ SUPPORT
 OPERATING SYSTEMS
   FreeBSD
     Version: 12.1-*
-      Status: Planned
+      Status: Development
 
   OpenBSD
     Version: 6.8

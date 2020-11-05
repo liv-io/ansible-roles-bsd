@@ -2,3 +2,6 @@
 
 # service
 service: '/usr/sbin/rcctl'
+
+# unbound
+unbound: '/usr/sbin/unbound'
