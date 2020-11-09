@@ -38,7 +38,6 @@
     mode: "{{file_mode_moduli}}"
     owner: "{{file_owner_moduli}}"
     group: "{{file_group_moduli}}"
-  when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable
     - openssh

@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.13.3 (2020-11-09)
+B: Activate moduli disable task for OpenBSD
+
 * Version 2.13.2 (2020-10-30)
 E: Simplify Ansible file header (ansible_managed)
 
