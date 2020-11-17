@@ -24,3 +24,4 @@ FEATURES
 --------------------------------------------------------------------------------
 
 - Add cronjob to update Suricata ruleset signatures on a regular basis
+- Add support for FreeBSD 12.1-*
