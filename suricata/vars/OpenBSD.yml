@@ -1,0 +1,41 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# suricata_flags
+file_line_suricata_flags: 'suricata_flags='
+file_dst_suricata_flags: '/etc/rc.conf.local'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check suricata
+command_cmd_check_suricata: 'rcctl check suricata'
+
+# disable suricata
+command_cmd_disable_suricata: 'rcctl disable suricata'
+
+# enable suricata
+command_cmd_enable_suricata: 'rcctl enable suricata'
+
+# info suricata
+command_cmd_info_suricata: 'pkg_info | grep -q "^ntp-[0-9]\..*"'
+
+# start suricata
+command_cmd_start_suricata: 'rcctl start suricata'
+
+# status suricata
+command_cmd_status_suricata: 'rcctl get suricata status'
+
+# stop suricata
+command_cmd_stop_suricata: 'rcctl stop suricata'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# suricata
+service_name_suricata: 'suricata'

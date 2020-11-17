@@ -1,0 +1,77 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# suricata
+package_name_suricata: 'suricata'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# config
+file_src_config: 'templates/main/config'
+file_dst_config: '/etc/suricata/rules'
+file_mode_config: '0640'
+file_owner_config: 'root'
+file_group_config: '_suricata'
+
+# eve.json
+file_dst_eve_json: '/var/log/suricata/eve.json'
+file_mode_eve_json: '0664'
+file_owner_eve_json: '_suricata'
+file_group_eve_json: '_suricata'
+
+# fast.log
+file_dst_fast_log: '/var/log/suricata/fast.log'
+file_mode_fast_log: '0664'
+file_owner_fast_log: '_suricata'
+file_group_fast_log: '_suricata'
+
+# stats.log
+file_dst_stats_log: '/var/log/suricata/stats.log'
+file_mode_stats_log: '0664'
+file_owner_stats_log: '_suricata'
+file_group_stats_log: '_suricata'
+
+# sources.dir
+file_dst_sources_dir: '/var/lib/suricata/update/sources/'
+
+# suricata.rules
+file_dst_suricata_rules: '/var/lib/suricata/rules/suricata.rules'
+
+# suricata.yaml
+file_src_suricata_yaml: "templates/{{ansible_os_family}}/suricata.yaml"
+file_dst_suricata_yaml: '/etc/suricata/suricata.yaml'
+file_mode_suricata_yaml: '0640'
+file_owner_suricata_yaml: 'root'
+file_group_suricata_yaml: '_suricata'
+file_validate_suricata_yaml: 'suricata -T -c %s'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# enable ruleset
+command_cmd_enable_ruleset: 'suricata-update enable-source'
+
+# install ruleset
+command_cmd_install_ruleset: 'suricata-update add-source'
+
+# list enabled rulesets
+command_cmd_list_enabled_rulesets: 'suricata-update list-enabled-sources'
+
+# remove ruleset
+command_cmd_remove_ruleset: 'suricata-update remove-source'
+
+# update suricata
+command_cmd_update_suricata: 'suricata-update --local /etc/suricata/rules/ --output /var/lib/suricata/rules/ --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36 Edg/85.0.564.63"'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# suricata
+service_name_suricata: 'suricata'

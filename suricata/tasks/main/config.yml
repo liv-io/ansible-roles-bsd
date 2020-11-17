@@ -1,0 +1,99 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - config
+    - suricata
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create config'
+  template:
+    src: "{{file_src_config}}"
+    dest: "{{file_dst_config}}/{{item.name}}.rules"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
+  loop: "{{suricata_config}}"
+  notify:
+    - 'command update suricata'
+    - 'service reload suricata'
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - suricata
+
+- name: 'file remove config'
+  file:
+    state: 'absent'
+    path: "{{file_dst_config}}/{{item.name}}.rules"
+  loop: "{{suricata_config}}"
+  notify: 'service reload suricata'
+  when: (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - suricata
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command list enabled ruleset'
+  shell: "{{command_cmd_list_enabled_rulesets}} | grep '{{item.name}}'"
+  register: register_list_enabled_rulesets
+  changed_when: (register_list_enabled_rulesets.rc > 1)
+  failed_when: (register_list_enabled_rulesets.rc > 1)
+  check_mode: 'no'
+  loop: "{{suricata_ruleset}}"
+  tags:
+    - config
+    - suricata
+
+- name: 'command install ruleset'
+  shell: "{{command_cmd_install_ruleset}} {{item.item.name}} {{item.item.link}}"
+  check_mode: 'no'
+  loop: "{{register_list_enabled_rulesets.results}}"
+  notify:
+    - 'command update suricata'
+    - 'service reload suricata'
+  when: (item.rc != 0) and (item.item.state|default('true') is match('install'))
+  tags:
+    - config
+    - suricata
+
+- name: 'command enable ruleset'
+  shell: "{{command_cmd_enable_ruleset}} {{item.item.name}}"
+  check_mode: 'no'
+  loop: "{{register_list_enabled_rulesets.results}}"
+  notify:
+    - 'command update suricata'
+    - 'service reload suricata'
+  when: (item.rc != 0) and not (item.item.state|default('true') is match('false|no|remove|disable|install'))
+  tags:
+    - config
+    - suricata
+
+- name: 'command remove ruleset'
+  shell: "{{command_cmd_remove_ruleset}} {{item.item.name}}"
+  check_mode: 'no'
+  loop: "{{register_list_enabled_rulesets.results}}"
+  notify:
+    - 'command update suricata'
+    - 'service reload suricata'
+  when: (item.rc == 0) and (item.item.state|default('true') is match('false|no|remove|disable'))
+  tags:
+    - config
+    - suricata

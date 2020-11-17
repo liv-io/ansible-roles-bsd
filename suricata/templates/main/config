@@ -1,0 +1,52 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{% for item in (item.rules|default([])) %}
+{% if not ((item.comment|default('')) == '') %}
+# {{item.comment}}
+{% endif %}
+{%- if (item.action is match('PASS|pass')) %}pass
+{%- elif (item.action is match('DROP|drop')) %}drop
+{%- elif (item.action is match('REJECT|reject')) %}reject
+{%- else %}alert{% endif %}
+{%- if (item.protocol is match('TCP|tcp')) %} tcp
+{%- elif (item.protocol is match('UDP|udp')) %} udp
+{%- elif (item.protocol is match('ICMP|icmp')) %} icmp
+{%- elif (item.protocol is match('HTTP|http')) %} http
+{%- elif (item.protocol is match('FTP|ftp')) %} ftp
+{%- elif (item.protocol is match('TLS|tls|SSL|ssl')) %} tls
+{%- elif (item.protocol is match('SMB|smb')) %} smb
+{%- elif (item.protocol is match('DNS|dns')) %} dns
+{%- elif (item.protocol is match('DCERPC|dcerpc')) %} dcerpc
+{%- elif (item.protocol is match('SSH|ssh')) %} ssh
+{%- elif (item.protocol is match('SMTP|smtp')) %} smtp
+{%- elif (item.protocol is match('IMAP|imap')) %} imap
+{%- elif (item.protocol is match('MODBUS|modbus')) %} modbus
+{%- elif (item.protocol is match('DNP3|dnp3')) %} dnp3
+{%- elif (item.protocol is match('ENIP|enip')) %} enip
+{%- elif (item.protocol is match('NFS|nfs')) %} nfs
+{%- elif (item.protocol is match('IKEV2|ikev2')) %} ikev2
+{%- elif (item.protocol is match('KRB5|krb5')) %} krb5
+{%- elif (item.protocol is match('NTP|ntp')) %} ntp
+{%- elif (item.protocol is match('DHCP|dhcp')) %} dhcp
+{%- elif (item.protocol is match('IPv6|ipv6|ip6')) %} ipv6
+{%- else %} ip{% endif %}
+{%- if not ((item.srcaddr|default('any')) == '') %} {{item.srcaddr}}{% else %} any{% endif %}
+{%- if not ((item.srcport|default('any')) == '') %} {{item.srcport}}{% else %} any{% endif %}
+{%- if (item.direction is match('<>|both|bidirectional')) %} <>
+{%- else %} ->{% endif %}
+{%- if not ((item.dstaddr|default('$HOME_NET')) == '') %} {{item.dstaddr}}{% else %} $HOME_NET{% endif %}
+{%- if not ((item.dstport|default('any')) == '') %} {{item.dstport}}{% else %} any{% endif %} (
+{%- if not ((item.message|default('')) == '') %}msg:"{{item.message}}";
+{%- else %}msg:"{{item.msg}}";{% endif %}
+{%- if not ((item.options|default('')) == '') %} {{item.options}}{% endif %}
+{%- for item in (item.reference|default([])) %}
+ reference:{{item}};
+{%- endfor %}
+{%- if not ((item.class|default('')) == '') %} classtype:{{item.class}};
+{%- else %} classtype:{{item.classtype}};{% endif %}
+{%- if not ((item.meta|default('')) == '') %} metadata:{{item.meta}};
+{%- else %} metadata:{{item.metadata}};{% endif %}
+{%- if not ((item.sid|default('')) == '') %} sid:{{item.sid}};{% endif %}
+{%- if not ((item.revision|default('')) == '') %} rev:{{item.revision}};
+{%- else %} rev:{{item.rev}};{% endif %})
+{% endfor %}

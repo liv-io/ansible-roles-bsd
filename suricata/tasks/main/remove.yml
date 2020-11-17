@@ -1,0 +1,88 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - suricata
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'line remove suricata_flags'
+  lineinfile:
+    state: 'absent'
+    regexp: "^{{file_line_suricata_flags}}.*"
+    dest: "{{file_dst_suricata_flags}}"
+  tags:
+    - remove
+    - suricata
+
+- name: 'command info suricata'
+  shell: "{{command_cmd_info_suricata}}"
+  register: register_info_suricata
+  failed_when: (register_info_suricata.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - suricata
+
+- name: 'command disable suricata'
+  command: "{{command_cmd_disable_suricata}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_info_suricata.rc == 0)
+  tags:
+    - remove
+    - suricata
+
+- name: 'command stop suricata'
+  command: "{{command_cmd_stop_suricata}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_info_suricata.rc == 0)
+  tags:
+    - remove
+    - suricata
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove suricata'
+  package:
+    state: 'absent'
+    name: "{{package_name_suricata}}"
+  tags:
+    - remove
+    - suricata
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove suricata.yaml'
+  file:
+    state: 'absent'
+    path: "{{file_dst_suricata_yaml}}"
+  tags:
+    - remove
+    - suricata
+
+- name: 'file remove suricata.rules'
+  file:
+    state: 'absent'
+    path: "{{file_dst_suricata_rules}}"
+  tags:
+    - remove
+    - suricata

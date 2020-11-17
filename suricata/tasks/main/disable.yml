@@ -1,0 +1,99 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - suricata
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line config suricata_flags'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_suricata_flags}}-i={{suricata_interface}} # Ansible: Configure suricata"
+    regexp: "^{{file_line_suricata_flags}}"
+    dest: "{{file_dst_suricata_flags}}"
+  notify: 'service reload suricata'
+  tags:
+    - disable
+    - suricata
+
+- name: 'file create suricata.yaml'
+  template:
+    src: "{{file_src_suricata_yaml}}"
+    dest: "{{file_dst_suricata_yaml}}"
+    mode: "{{file_mode_suricata_yaml}}"
+    owner: "{{file_owner_suricata_yaml}}"
+    group: "{{file_group_suricata_yaml}}"
+    validate: "{{file_validate_suricata_yaml}}"
+  tags:
+    - disable
+    - suricata
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status suricata'
+  command: "{{command_cmd_status_suricata}}"
+  register: register_status_suricata
+  changed_when: (register_status_suricata.rc > 1)
+  failed_when: (register_status_suricata.rc > 1)
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - disable
+    - suricata
+
+- name: 'command disable suricata'
+  command: "{{command_cmd_disable_suricata}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_suricata.rc == 0)
+  tags:
+    - disable
+    - suricata
+
+- name: 'command check suricata'
+  command: "{{command_cmd_check_suricata}}"
+  register: register_check_suricata
+  changed_when: (register_check_suricata.rc > 1)
+  failed_when: (register_check_suricata.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - disable
+    - suricata
+
+- name: 'command stop suricata'
+  command: "{{command_cmd_stop_suricata}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_suricata.rc == 0)
+  tags:
+    - disable
+    - suricata
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop suricata'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_suricata}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - disable
+    - suricata
