@@ -17,7 +17,6 @@ ENHANCEMENTS
 --------------------------------------------------------------------------------
 
 - Improve install, enable, disable, remove tasks of suricata_ruleset option
-- Add newsyslog entries to rotates log files
 
 --------------------------------------------------------------------------------
 FEATURES
