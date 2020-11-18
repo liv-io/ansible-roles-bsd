@@ -37,7 +37,7 @@ command_cmd_disable_suricata: 'rcctl disable suricata'
 command_cmd_enable_suricata: 'rcctl enable suricata'
 
 # info suricata
-command_cmd_info_suricata: 'pkg_info | grep -q "^ntp-[0-9]\..*"'
+command_cmd_info_suricata: 'pkg_info | grep -q "^suricata-[0-9]\..*"'
 
 # start suricata
 command_cmd_start_suricata: 'rcctl start suricata'
