@@ -1,0 +1,86 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - openbsd_syslogd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line config syslogd_flags'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_syslogd_flags}}-h # Ansible: Configure syslogd"
+    regexp: "^{{file_line_syslogd_flags}}"
+    dest: "{{file_dst_syslogd_flags}}"
+  notify: 'service reload syslogd'
+  tags:
+    - enable
+    - openbsd_syslogd
+
+- name: 'file create syslog.conf'
+  template:
+    src: "{{file_src_syslog_conf}}"
+    dest: "{{file_dst_syslog_conf}}"
+    mode: "{{file_mode_syslog_conf}}"
+    owner: "{{file_owner_syslog_conf}}"
+    group: "{{file_group_syslog_conf}}"
+  notify: 'service reload syslogd'
+  tags:
+    - enable
+    - openbsd_syslogd
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status syslogd'
+  command: "{{command_cmd_status_syslogd}}"
+  register: register_status_syslogd
+  changed_when: (register_status_syslogd.rc > 1)
+  failed_when: (register_status_syslogd.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - enable
+    - openbsd_syslogd
+
+- name: 'command enable syslogd'
+  command: "{{command_cmd_enable_syslogd}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_syslogd.rc == 1)
+  tags:
+    - enable
+    - openbsd_syslogd
+
+- name: 'command check syslogd'
+  command: "{{command_cmd_check_syslogd}}"
+  register: register_check_syslogd
+  changed_when: (register_check_syslogd.rc > 1)
+  failed_when: (register_check_syslogd.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - enable
+    - openbsd_syslogd
+
+- name: 'command start syslogd'
+  command: "{{command_cmd_start_syslogd}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_syslogd.rc == 1)
+  tags:
+    - enable
+    - openbsd_syslogd

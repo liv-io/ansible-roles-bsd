@@ -1,0 +1,45 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# syslog.conf
+file_src_syslog_conf: 'templates/main/syslog.conf'
+file_dst_syslog_conf: '/etc/syslog.conf'
+file_mode_syslog_conf: '0644'
+file_owner_syslog_conf: 'root'
+file_group_syslog_conf: 'wheel'
+
+# syslogd_flags
+file_line_syslogd_flags: 'syslogd_flags='
+file_dst_syslogd_flags: '/etc/rc.conf.local'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check syslogd
+command_cmd_check_syslogd: 'rcctl check syslogd'
+
+# disable syslogd
+command_cmd_disable_syslogd: 'rcctl disable syslogd'
+
+# enable syslogd
+command_cmd_enable_syslogd: 'rcctl enable syslogd'
+
+# start syslogd
+command_cmd_start_syslogd: 'rcctl start syslogd'
+
+# status syslogd
+command_cmd_status_syslogd: 'rcctl get syslogd status'
+
+# stop syslogd
+command_cmd_stop_syslogd: 'rcctl stop syslogd'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# syslogd
+service_name_syslogd: 'syslogd'

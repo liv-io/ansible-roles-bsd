@@ -1,0 +1,7 @@
+---
+
+openbsd_syslogd_state: 'enable'
+
+openbsd_syslogd_role: 'client'
+
+openbsd_syslogd_server: 'tcp4://log.{{ansible_domain}}:514'
