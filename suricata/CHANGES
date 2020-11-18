@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.1 (2020-11-18)
+B: Correct suricata_flags interface syntax
+
 * Version 0.2.0 (2020-11-18)
 F: Add newsyslog entries for log files (eve.json, fast.log, stats.log)
 B: Do not reload service in disabled state

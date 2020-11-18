@@ -23,7 +23,7 @@
 - name: 'line config suricata_flags'
   lineinfile:
     state: 'present'
-    line: "{{file_line_suricata_flags}}-i={{suricata_interface}} # Ansible: Configure suricata"
+    line: "{{file_line_suricata_flags}}-i {{suricata_interface}} # Ansible: Configure suricata"
     regexp: "^{{file_line_suricata_flags}}"
     dest: "{{file_dst_suricata_flags}}"
   notify: 'service reload suricata'
