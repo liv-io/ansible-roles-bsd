@@ -20,6 +20,33 @@
 # COMMANDS
 #-------------------------------------------------------------------------------
 
+- name: 'line remove eve.json.newsyslog'
+  lineinfile:
+    state: 'absent'
+    regexp: "{{file_regexp_eve_json_newsyslog}}"
+    dest: "{{file_dst_eve_json_newsyslog}}"
+  tags:
+    - remove
+    - suricata
+
+- name: 'line remove fast.log.newsyslog'
+  lineinfile:
+    state: 'absent'
+    regexp: "{{file_regexp_fast_log_newsyslog}}"
+    dest: "{{file_dst_fast_log_newsyslog}}"
+  tags:
+    - remove
+    - suricata
+
+- name: 'line remove stats.log.newsyslog'
+  lineinfile:
+    state: 'absent'
+    regexp: "{{file_regexp_stats_log_newsyslog}}"
+    dest: "{{file_dst_stats_log_newsyslog}}"
+  tags:
+    - remove
+    - suricata
+
 - name: 'line remove suricata_flags'
   lineinfile:
     state: 'absent'
