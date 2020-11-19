@@ -50,6 +50,7 @@
     line: "{{file_line_unbound_enable}}=\"NO\" # Ansible: Disable unbound"
     regexp: "^{{file_line_unbound_enable}}="
     dest: "{{file_dst_unbound_enable}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable

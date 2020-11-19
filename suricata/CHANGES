@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.3 (2020-11-19)
+E: Ensure lineinfile tasks can create file if missing
+
 * Version 0.2.2 (2020-11-18)
 B: Correct command_cmd_info_suricata variable (only required in remove state)
 

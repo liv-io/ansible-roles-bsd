@@ -26,6 +26,7 @@
     line: "{{item.name}}=\"{{item.value}}\" # Ansible: {{(item.comment|default(''))}}"
     regexp: "^{{item.name}}="
     dest: "{{item.path if not ((item.path|default('')) == '') else file_dst_rc_conf}}"
+    create: 'yes'
   loop: "{{freebsd_rc_config_all + freebsd_rc_config_group + freebsd_rc_config_host}}"
   tags:
     - config

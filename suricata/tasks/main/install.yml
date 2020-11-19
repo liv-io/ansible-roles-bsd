@@ -82,6 +82,7 @@
     line: "{{file_line_eve_json_newsyslog}} # Ansible: Configure suricata"
     regexp: "{{file_regexp_eve_json_newsyslog}}"
     dest: "{{file_dst_eve_json_newsyslog}}"
+    create: 'yes'
   tags:
     - install
     - suricata
@@ -92,6 +93,7 @@
     line: "{{file_line_fast_log_newsyslog}} # Ansible: Configure suricata"
     regexp: "{{file_regexp_fast_log_newsyslog}}"
     dest: "{{file_dst_fast_log_newsyslog}}"
+    create: 'yes'
   tags:
     - install
     - suricata
@@ -102,6 +104,7 @@
     line: "{{file_line_stats_log_newsyslog}} # Ansible: Configure suricata"
     regexp: "{{file_regexp_stats_log_newsyslog}}"
     dest: "{{file_dst_stats_log_newsyslog}}"
+    create: 'yes'
   tags:
     - install
     - suricata

@@ -59,6 +59,7 @@
     line: "{{file_line_postfix_enable}}=\"NO\" # Ansible: Disable postfix"
     regexp: "^{{file_line_postfix_enable}}="
     dest: "{{file_dst_postfix_enable}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable

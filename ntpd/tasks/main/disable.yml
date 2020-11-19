@@ -78,6 +78,7 @@
     line: "{{file_line_ntpd_enable}}=\"NO\" # Ansible: Disable ntp"
     regexp: "^{{file_line_ntpd_enable}}="
     dest: "{{file_dst_ntpd_enable}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable

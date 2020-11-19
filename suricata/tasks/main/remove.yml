@@ -25,6 +25,7 @@
     state: 'absent'
     regexp: "{{file_regexp_eve_json_newsyslog}}"
     dest: "{{file_dst_eve_json_newsyslog}}"
+    create: 'yes'
   tags:
     - remove
     - suricata
@@ -34,6 +35,7 @@
     state: 'absent'
     regexp: "{{file_regexp_fast_log_newsyslog}}"
     dest: "{{file_dst_fast_log_newsyslog}}"
+    create: 'yes'
   tags:
     - remove
     - suricata
@@ -43,6 +45,7 @@
     state: 'absent'
     regexp: "{{file_regexp_stats_log_newsyslog}}"
     dest: "{{file_dst_stats_log_newsyslog}}"
+    create: 'yes'
   tags:
     - remove
     - suricata
@@ -52,6 +55,7 @@
     state: 'absent'
     regexp: "^{{file_line_suricata_flags}}.*"
     dest: "{{file_dst_suricata_flags}}"
+    create: 'yes'
   tags:
     - remove
     - suricata

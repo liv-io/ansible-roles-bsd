@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.10.2 (2020-11-19)
+E: Ensure lineinfile tasks can create file if missing
+
 * Version 0.10.1 (2020-10-30)
 E: Simplify Ansible file header (ansible_managed)
 

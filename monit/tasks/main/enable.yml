@@ -40,6 +40,7 @@
     line: "{{file_line_monit_enable}}=\"YES\" # Ansible: Enable monit"
     regexp: "^{{file_line_monit_enable}}="
     dest: "{{file_dst_monit_enable}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable

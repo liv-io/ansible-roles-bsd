@@ -119,6 +119,7 @@
     line: "{{file_line_squid_enable}}=\"YES\" # Ansible: Enable squid"
     regexp: "^{{file_line_squid_enable}}="
     dest: "{{file_dst_squid_enable}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable

@@ -152,6 +152,7 @@
     line: "{{file_line_pf_enable}}=\"YES\" # Ansible: Enable pf"
     regexp: "^{{file_line_pf_enable}}="
     dest: "{{file_dst_pf_enable}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable
@@ -163,6 +164,7 @@
     line: "{{file_line_gateway_ipv4}}=\"YES\" # Ansible: Enable gateway-ipv4"
     regexp: "^{{file_line_gateway_ipv4}}="
     dest: "{{file_dst_gateway_ipv4}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
     - enable
@@ -174,6 +176,7 @@
     line: "{{file_line_gateway_ipv4}}=\"NO\" # Ansible: Disable gateway-ipv4"
     regexp: "^{{file_line_gateway_ipv4}}="
     dest: "{{file_dst_gateway_ipv4}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
     - enable
@@ -185,6 +188,7 @@
     line: "{{file_line_gateway_ipv6}}=\"YES\" # Ansible: Enable gateway-ipv6"
     regexp: "^{{file_line_gateway_ipv6}}="
     dest: "{{file_dst_gateway_ipv6}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
     - enable
@@ -196,6 +200,7 @@
     line: "{{file_line_gateway_ipv6}}=\"NO\" # Ansible: Disable gateway-ipv6"
     regexp: "^{{file_line_gateway_ipv6}}="
     dest: "{{file_dst_gateway_ipv6}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
     - enable

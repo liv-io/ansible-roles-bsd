@@ -26,6 +26,7 @@
     line: "{{file_line_syslogd_flags}}=-h # Ansible: Configure syslogd"
     regexp: "^{{file_line_syslogd_flags}}=.*"
     dest: "{{file_dst_syslogd_flags}}"
+    create: 'yes'
   tags:
     - disable
     - openbsd_syslogd

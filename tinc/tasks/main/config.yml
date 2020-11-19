@@ -129,6 +129,7 @@
     line: "{{file_line_tincd_flags}} --net={{item.name}} # Ansible: Configure tinc"
     regexp: "^{{file_line_tincd_flags}}"
     dest: "{{file_dst_tincd_flags}}"
+    create: 'yes'
   loop: "{{tinc_config}}"
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
@@ -152,6 +153,7 @@
     state: 'absent'
     regexp: "^{{file_line_tincd_flags}}.*"
     dest: "{{file_dst_tincd_flags}}"
+    create: 'yes'
   loop: "{{tinc_config}}"
   notify: 'service restart tinc'
   when: (item.state|default('true') is match('false|no|remove'))

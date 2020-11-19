@@ -68,6 +68,7 @@
     line: "{{file_line_nginx_enable}}=\"NO\" # Ansible: Remove nginx"
     regexp: "^{{file_line_nginx_enable}}="
     dest: "{{file_dst_nginx_enable}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - remove

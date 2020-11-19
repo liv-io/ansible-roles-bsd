@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2020-11-19)
+E: Ensure lineinfile tasks can create file if missing
+
 * Version 0.1.0 (2020-11-19)
 F: Initial release

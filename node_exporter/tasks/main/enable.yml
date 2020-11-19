@@ -26,6 +26,7 @@
     line: "{{file_line_node_exporter_flags}}"
     regexp: "^{{file_regexp_node_exporter_flags}}=.*"
     dest: "{{file_dest_node_exporter_flags}}"
+    create: 'yes'
   notify: 'service restart node_exporter'
   when: (ansible_os_family == 'OpenBSD')
   tags:

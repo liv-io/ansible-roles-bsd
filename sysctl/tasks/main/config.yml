@@ -29,6 +29,7 @@
     line: "{{item.key}}={{item.value}} # {{(item.comment|default(''))}}"
     regexp: '^{{item.key}}='
     dest: "{{file_dst_sysctl_conf}}"
+    create: 'yes'
   loop: "{{sysctl_config_all + sysctl_config_dependencies + sysctl_config_group + sysctl_config_host}}"
   tags:
     - config

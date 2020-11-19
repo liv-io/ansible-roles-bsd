@@ -26,6 +26,7 @@
     line: "{{file_line_syslogd_flags}}=\"-s -v -v\" # Ansible: Configure syslogd"
     regexp: "^{{file_line_syslogd_flags}}=.*"
     dest: "{{file_dst_syslogd_flags}}"
+    create: 'yes'
   notify: 'service reload syslogd'
   tags:
     - enable
@@ -49,6 +50,7 @@
     line: "{{file_line_syslogd_enable}}=\"YES\" # Ansible: Enable syslogd"
     regexp: "^{{file_line_syslogd_enable}}=.*"
     dest: "{{file_dst_syslogd_enable}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - enable

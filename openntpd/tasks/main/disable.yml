@@ -61,6 +61,7 @@
     line: "{{file_line_openntpd_enable}}=\"NO\" # Ansible: Disable openntpd"
     regexp: "^{{file_line_openntpd_enable}}="
     dest: "{{file_dst_openntpd_enable}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable

@@ -70,6 +70,7 @@
     line: "{{file_line_sshd_enable}}=\"NO\" # Ansible: Disable openssh"
     regexp: "^{{file_line_sshd_enable}}="
     dest: "{{file_dst_sshd_enable}}"
+    create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - disable

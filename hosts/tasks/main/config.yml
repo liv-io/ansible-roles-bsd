@@ -26,6 +26,7 @@
     line: "{{item.ip}} {{item.name}} {{item.aliases|join(' ') if not ((item.aliases|default([])) == []) else ''}} # {{(item.comment|default(''))}}"
     regexp: '^{{item.ip}}\s'
     dest: "{{item.path if not ((item.path|default('')) == '') else file_dst_hosts}}"
+    create: 'yes'
   loop: "{{hosts_config_all + hosts_config_group + hosts_config_host}}"
   tags:
     - config
