@@ -23,8 +23,8 @@
 - name: 'line config syslogd_flags'
   lineinfile:
     state: 'present'
-    line: "{{file_line_syslogd_flags}}-h # Ansible: Configure syslogd"
-    regexp: "^{{file_line_syslogd_flags}}"
+    line: "{{file_line_syslogd_flags}}=-h # Ansible: Configure syslogd"
+    regexp: "^{{file_line_syslogd_flags}}=.*"
     dest: "{{file_dst_syslogd_flags}}"
   tags:
     - disable

@@ -12,7 +12,7 @@ file_owner_syslog_conf: 'root'
 file_group_syslog_conf: 'wheel'
 
 # syslogd_flags
-file_line_syslogd_flags: 'syslogd_flags='
+file_line_syslogd_flags: 'syslogd_flags'
 file_dst_syslogd_flags: '/etc/rc.conf.local'
 
 #-------------------------------------------------------------------------------

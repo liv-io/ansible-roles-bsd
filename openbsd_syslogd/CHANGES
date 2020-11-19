@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2020-11-19)
+E: Improve configuration of daemon arguments
+
 * Version 0.1.0 (2020-11-18)
 F: Initial release
