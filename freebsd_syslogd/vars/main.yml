@@ -1,0 +1,27 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# syslog.conf
+file_src_syslog_conf: 'templates/main/syslog.conf'
+file_dst_syslog_conf: '/etc/syslog.conf'
+file_mode_syslog_conf: '0644'
+file_owner_syslog_conf: 'root'
+file_group_syslog_conf: 'wheel'
+
+# syslogd_enable
+file_line_syslogd_enable: 'syslogd_enable'
+file_dst_syslogd_enable: '/etc/rc.conf'
+
+# syslogd_flags
+file_line_syslogd_flags: 'syslogd_flags'
+file_dst_syslogd_flags: '/etc/rc.conf'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# syslogd
+service_name_syslogd: 'syslogd'

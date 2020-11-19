@@ -1,0 +1,141 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : freebsd_syslogd
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+The syslogd utility reads and logs messages to the system console, log files,
+other machines and/or users as specified by its configuration file.
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: freebsd_syslogd
+    vars:
+      freebsd_syslogd_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+      - role: freebsd_syslogd
+    vars:
+      freebsd_syslogd_state: 'enable'
+      freebsd_syslogd_server: 'log.example.com:514'
+
+DISABLE
+  - hosts: all
+    roles:
+      - role: freebsd_syslogd
+    vars:
+      freebsd_syslogd_state: 'disable'
+      freebsd_syslogd_server: 'log.example.com:514'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: freebsd_syslogd
+    vars:
+      freebsd_syslogd_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: freebsd_syslogd
+    vars:
+      freebsd_syslogd_state: 'inactive'
+
+--------------------------------------------------------------------------------
+PARAMETERS
+--------------------------------------------------------------------------------
+
+ROLE
+  freebsd_syslogd_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+  freebsd_syslogd_role
+    Description: Set the 'freebsd_syslogd_role' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'client'
+    Options    :
+      Client: 'client'
+
+  freebsd_syslogd_server
+    Description: Define the 'freebsd_syslogd_server' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "log.{{ansible_domain}}:514"
+    Options    :
+      Examples: 'log.example.com:514' | 'logs.example.com:514'
+      None    : ''
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+
+ROLES
+
+PARAMETERS
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL NODE
+  Ansible
+    Version: >= 2.8
+
+MANAGED NODE
+  Python
+    Version: >= 2.7
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 12.1-*
+      Status: Testing
+
+  OpenBSD
+    Version: 6.8
+      Status: Unsupported

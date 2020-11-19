@@ -1,0 +1,69 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - freebsd_syslogd
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line config syslogd_flags'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_syslogd_flags}}=\"-s -v -v\" # Ansible: Configure syslogd"
+    regexp: "^{{file_line_syslogd_flags}}=.*"
+    dest: "{{file_dst_syslogd_flags}}"
+  notify: 'service reload syslogd'
+  tags:
+    - enable
+    - freebsd_syslogd
+
+- name: 'file create syslog.conf'
+  template:
+    src: "{{file_src_syslog_conf}}"
+    dest: "{{file_dst_syslog_conf}}"
+    mode: "{{file_mode_syslog_conf}}"
+    owner: "{{file_owner_syslog_conf}}"
+    group: "{{file_group_syslog_conf}}"
+  notify: 'service reload syslogd'
+  tags:
+    - enable
+    - freebsd_syslogd
+
+- name: 'line enable syslogd_enable'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_syslogd_enable}}=\"YES\" # Ansible: Enable syslogd"
+    regexp: "^{{file_line_syslogd_enable}}=.*"
+    dest: "{{file_dst_syslogd_enable}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - enable
+    - freebsd_syslogd
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start syslogd'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_syslogd}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - enable
+    - freebsd_syslogd
