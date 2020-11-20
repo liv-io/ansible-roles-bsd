@@ -5,17 +5,17 @@
 #-------------------------------------------------------------------------------
 
 # eve.json.newsyslog
-file_line_eve_json_newsyslog: '/var/log/suricata/eve.json  _suricata:_suricata  664  4  *  $D0  Z  "/var/suricata/run/suricata.pid"'
+file_line_eve_json_newsyslog: '/var/log/suricata/eve.json  _suricata:_suricata  664  4  *  $D0  Z  "pkill -HUP -u root -U root -x suricata"'
 file_regexp_eve_json_newsyslog: '^\/var\/log\/suricata\/eve.json.*'
 file_dst_eve_json_newsyslog: '/etc/newsyslog.conf'
 
 # fast.log.newsyslog
-file_line_fast_log_newsyslog: '/var/log/suricata/fast.log  _suricata:_suricata  664  4  *  $D0  Z  "/var/suricata/run/suricata.pid"'
+file_line_fast_log_newsyslog: '/var/log/suricata/fast.log  _suricata:_suricata  664  4  *  $D0  Z  "pkill -HUP -u root -U root -x suricata"'
 file_regexp_fast_log_newsyslog: '^\/var\/log\/suricata\/fast.log.*'
 file_dst_fast_log_newsyslog: '/etc/newsyslog.conf'
 
 # stats.log.newsyslog
-file_line_stats_log_newsyslog: '/var/log/suricata/stats.log  _suricata:_suricata  664  4  *  $D0  Z  "/var/suricata/run/suricata.pid"'
+file_line_stats_log_newsyslog: '/var/log/suricata/stats.log  _suricata:_suricata  664  4  *  $D0  Z  "pkill -HUP -u root -U root -x suricata"'
 file_regexp_stats_log_newsyslog: '^\/var\/log\/suricata\/stats.log.*'
 file_dst_stats_log_newsyslog: '/etc/newsyslog.conf'
 

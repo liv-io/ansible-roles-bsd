@@ -79,7 +79,7 @@
 - name: 'line config eve.json.newsyslog'
   lineinfile:
     state: 'present'
-    line: "{{file_line_eve_json_newsyslog}} # Ansible: Configure suricata"
+    line: "{{file_line_eve_json_newsyslog}}"
     regexp: "{{file_regexp_eve_json_newsyslog}}"
     dest: "{{file_dst_eve_json_newsyslog}}"
     create: 'yes'
@@ -90,7 +90,7 @@
 - name: 'line config fast.log.newsyslog'
   lineinfile:
     state: 'present'
-    line: "{{file_line_fast_log_newsyslog}} # Ansible: Configure suricata"
+    line: "{{file_line_fast_log_newsyslog}}"
     regexp: "{{file_regexp_fast_log_newsyslog}}"
     dest: "{{file_dst_fast_log_newsyslog}}"
     create: 'yes'
@@ -101,7 +101,7 @@
 - name: 'line config stats.log.newsyslog'
   lineinfile:
     state: 'present'
-    line: "{{file_line_stats_log_newsyslog}} # Ansible: Configure suricata"
+    line: "{{file_line_stats_log_newsyslog}}"
     regexp: "{{file_regexp_stats_log_newsyslog}}"
     dest: "{{file_dst_stats_log_newsyslog}}"
     create: 'yes'
