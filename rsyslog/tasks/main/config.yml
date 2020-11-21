@@ -1,0 +1,46 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - config
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create config'
+  template:
+    src: "{{file_src_config}}"
+    dest: "{{file_dst_config}}/{{item.name}}.conf"
+    mode: "{{file_mode_config}}"
+    owner: "{{file_owner_config}}"
+    group: "{{file_group_config}}"
+  loop: "{{rsyslog_config_all + rsyslog_config_group + rsyslog_config_host}}"
+  notify: 'service restart rsyslogd'
+  when: not (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - rsyslog
+
+- name: 'file remove config'
+  file:
+    state: 'absent'
+    path: "{{file_dst_config}}/{{item.name}}.conf"
+  loop: "{{rsyslog_config_all + rsyslog_config_group + rsyslog_config_host}}"
+  notify: 'service restart rsyslogd'
+  when: (item.state|default('true') is match('false|no|remove'))
+  tags:
+    - config
+    - rsyslog

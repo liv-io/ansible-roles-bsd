@@ -1,0 +1,88 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - disable
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create rsyslog.conf'
+  template:
+    src: "{{file_src_rsyslog_conf}}"
+    dest: "{{file_dst_rsyslog_conf}}"
+    mode: "{{file_mode_rsyslog_conf}}"
+    owner: "{{file_owner_rsyslog_conf}}"
+    group: "{{file_group_rsyslog_conf}}"
+  tags:
+    - disable
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status rsyslogd'
+  command: "{{command_cmd_status_rsyslogd}}"
+  register: register_status_rsyslogd
+  changed_when: (register_status_rsyslogd.rc > 1)
+  failed_when: (register_status_rsyslogd.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - disable
+    - rsyslog
+
+- name: 'command disable rsyslogd'
+  command: "{{command_cmd_disable_rsyslogd}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_rsyslogd.rc == 0)
+  tags:
+    - disable
+    - rsyslog
+
+- name: 'command check rsyslogd'
+  command: "{{command_cmd_check_rsyslogd}}"
+  register: register_check_rsyslogd
+  changed_when: (register_check_rsyslogd.rc > 1)
+  failed_when: (register_check_rsyslogd.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - disable
+    - rsyslog
+
+- name: 'command stop rsyslogd'
+  command: "{{command_cmd_stop_rsyslogd}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_rsyslogd.rc == 0)
+  tags:
+    - disable
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service stop rsyslogd'
+  service:
+    state: 'stopped'
+    enabled: 'no'
+    name: "{{service_name_rsyslogd}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - disable
+    - rsyslog

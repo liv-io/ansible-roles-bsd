@@ -1,0 +1,13 @@
+---
+
+rsyslog_state: 'enable'
+
+rsyslog_config_all: []
+
+rsyslog_config_group: []
+
+rsyslog_config_host: []
+
+rsyslog_role: 'client'
+
+rsyslog_server: 'log.{{ansible_domain}}'

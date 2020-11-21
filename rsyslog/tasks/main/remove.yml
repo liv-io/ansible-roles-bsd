@@ -1,0 +1,79 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command info rsyslog'
+  shell: "{{command_cmd_info_rsyslog}}"
+  register: register_info_rsyslog
+  failed_when: (register_info_rsyslog.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - rsyslog
+
+- name: 'command disable rsyslogd'
+  command: "{{command_cmd_disable_rsyslogd}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_info_rsyslog.rc == 0)
+  tags:
+    - remove
+    - rsyslog
+
+- name: 'command stop rsyslogd'
+  command: "{{command_cmd_stop_rsyslogd}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_info_rsyslog.rc == 0)
+  tags:
+    - remove
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package remove rsyslog'
+  package:
+    state: 'absent'
+    name: "{{package_name_rsyslog}}"
+  tags:
+    - remove
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove rsyslog.conf'
+  file:
+    state: 'absent'
+    path: "{{file_dst_rsyslog_conf}}"
+  tags:
+    - remove
+    - rsyslog
+
+- name: 'file remove rsyslog.d'
+  file:
+    state: 'absent'
+    path: "{{file_dst_rsyslog_d}}"
+  tags:
+    - remove
+    - rsyslog

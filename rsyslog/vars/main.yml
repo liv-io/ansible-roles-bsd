@@ -1,0 +1,39 @@
+---
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+# rsyslog
+package_name_rsyslog: 'rsyslog'
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# config
+file_src_config: 'templates/main/config'
+file_dst_config: '/etc/rsyslog.d'
+file_mode_config: '0644'
+file_owner_config: 'root'
+file_group_config: 'wheel'
+
+# rsyslog.conf
+file_src_rsyslog_conf: "templates/{{ansible_os_family}}/rsyslog.conf"
+file_dst_rsyslog_conf: '/etc/rsyslog.conf'
+file_mode_rsyslog_conf: '0644'
+file_owner_rsyslog_conf: 'root'
+file_group_rsyslog_conf: 'wheel'
+
+# rsyslog.d
+file_dst_rsyslog_d: '/etc/rsyslog.d'
+file_mode_rsyslog_d: '0755'
+file_owner_rsyslog_d: 'root'
+file_group_rsyslog_d: 'wheel'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# rsyslogd
+service_name_rsyslogd: 'rsyslogd'

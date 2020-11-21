@@ -1,0 +1,197 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : rsyslog
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+Rsyslog is an enhanced, multi-threaded syslog daemon. It supports MySQL,
+syslog/TCP, RFC 3195, permitted sender lists, filtering on any message part, and
+fine grain output format control. It is compatible with stock sysklogd and can
+be used as a drop-in replacement. Rsyslog is simple to set up, with advanced
+features suitable for enterprise-class, encryption-protected syslog relay chains.
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: rsyslog
+    vars:
+      rsyslog_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+      - role: rsyslog
+    vars:
+      rsyslog_state: 'enable'
+
+DISABLE
+  - hosts: all
+    roles:
+      - role: rsyslog
+    vars:
+      rsyslog_state: 'disable'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: rsyslog
+    vars:
+      rsyslog_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: rsyslog
+    vars:
+      rsyslog_state: 'inactive'
+
+CONFIG
+  vars:
+    rsyslog_config_all:
+      - name: "httpd"
+        comment: "Apache HTTPD"
+        section: "input"
+        config:
+          - {type: imfile, File: /var/www/logs/*access_log, Tag: httpd, Severity: info, Facility: local6}
+          - {type: imfile, File: /var/www/logs/*error_log, Tag: httpd, Severity: info, Facility: local6}
+
+      - name: nginx
+        comment: Nginx
+        section: input
+        config:
+          - {type: imfile, File: /var/www/logs/*_access.log, Tag: nginx, Severity: info, Facility: local6}
+          - {type: imfile, File: /var/www/logs/*_error.log, Tag: nginx, Severity: info, Facility: local6}
+
+--------------------------------------------------------------------------------
+PARAMETERS
+--------------------------------------------------------------------------------
+
+ROLE
+  rsyslog_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+  rsyslog_config_all
+    Description: Define the 'rsyslog_config_all' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: [{name: httpd, comment: Apache HTTPD, section: input, config: [{type: imfile, File: /var/www/logs/*access_log, Tag: httpd, Severity: info, Facility: local6}, {type: imfile, File: /var/www/logs/*error_log, Tag: httpd, Severity: info, Facility: local6}]}]
+      None    : []
+
+  rsyslog_config_group
+    Description: Define the 'rsyslog_config_group' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: [{name: httpd, comment: Apache HTTPD, section: input, config: [{type: imfile, File: /var/www/logs/*access_log, Tag: httpd, Severity: info, Facility: local6}, {type: imfile, File: /var/www/logs/*error_log, Tag: httpd, Severity: info, Facility: local6}]}]
+      None    : []
+
+  rsyslog_config_host
+    Description: Define the 'rsyslog_config_host' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Arbitrary
+    Type       : Array
+    Default    : []
+    Options    :
+      Examples: [{name: httpd, comment: Apache HTTPD, section: input, config: [{type: imfile, File: /var/www/logs/*access_log, Tag: httpd, Severity: info, Facility: local6}, {type: imfile, File: /var/www/logs/*error_log, Tag: httpd, Severity: info, Facility: local6}]}]
+      None    : []
+
+  rsyslog_role
+    Description: Set the 'rsyslog_role' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'client'
+    Options    :
+      Client: 'client'
+      Server: 'server'
+
+  rsyslog_server
+    Description: Define the 'rsyslog_server' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : "log.{{ansible_domain}}"
+    Options    :
+      Examples: 'log.example.com' | 'logs.example.com'
+      None    : ''
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  rsyslog
+    Version: >= 8.0
+    Name   :
+      OpenBSD 6: 'rsyslog'
+
+ROLES
+
+PARAMETERS
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL NODE
+  Ansible
+    Version: >= 2.8
+
+MANAGED NODE
+  Python
+    Version: >= 2.7
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 12.1-*
+      Status: Planned
+
+  OpenBSD
+    Version: 6.8
+      Status: Development

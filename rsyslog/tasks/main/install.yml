@@ -1,0 +1,44 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package install rsyslog'
+  package:
+    state: 'present'
+    name: "{{package_name_rsyslog}}"
+  tags:
+    - install
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create rsyslog.d'
+  file:
+    state: 'directory'
+    path: "{{file_dst_rsyslog_d}}"
+    mode: "{{file_mode_rsyslog_d}}"
+    owner: "{{file_owner_rsyslog_d}}"
+    group: "{{file_group_rsyslog_d}}"
+  tags:
+    - install
+    - rsyslog

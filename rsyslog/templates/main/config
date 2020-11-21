@@ -1,0 +1,22 @@
+{{ansible_managed|comment(decoration='#')}}
+
+{% if not ((item.comment|default('')) == '') %}
+#-------------------------------------------------------------------------------
+# {{(item.comment|upper)}}
+#-------------------------------------------------------------------------------
+{% endif %}
+
+{% if ((item.section|default('')) is match('input|in')) %}
+{% for config in item.config %}
+input(
+{%- for key, value in config.items() %}
+{{key}}="{{value}}"
+{% if loop.last %}
+)
+{% endif %}
+{% endfor %}
+{% if not loop.last %}
+
+{% endif %}
+{% endfor %}
+{% endif %}

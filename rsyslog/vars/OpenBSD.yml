@@ -1,0 +1,26 @@
+---
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check rsyslogd
+command_cmd_check_rsyslogd: 'rcctl check rsyslogd'
+
+# disable rsyslogd
+command_cmd_disable_rsyslogd: 'rcctl disable rsyslogd'
+
+# enable rsyslogd
+command_cmd_enable_rsyslogd: 'rcctl enable rsyslogd'
+
+# info rsyslog
+command_cmd_info_rsyslog: 'pkg_info | grep -q "^rsyslog-[0-9]\..*"'
+
+# start rsyslogd
+command_cmd_start_rsyslogd: 'rcctl start rsyslogd'
+
+# status rsyslogd
+command_cmd_status_rsyslogd: 'rcctl get rsyslogd status'
+
+# stop rsyslogd
+command_cmd_stop_rsyslogd: 'rcctl stop rsyslogd'
