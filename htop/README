@@ -74,6 +74,7 @@ PACKAGES
     Version: >= 2.0
     Name   :
       FreeBSD 12: 'htop'
+      OpenBSD  6: 'htop'
 
 ROLES
 
