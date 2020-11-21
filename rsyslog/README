@@ -98,7 +98,7 @@ ROLE
 
   rsyslog_config_all
     Description: Define the 'rsyslog_config_all' option.
-    Implemented: 0.2
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -109,7 +109,7 @@ ROLE
 
   rsyslog_config_group
     Description: Define the 'rsyslog_config_group' option.
-    Implemented: 0.2
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -120,7 +120,7 @@ ROLE
 
   rsyslog_config_host
     Description: Define the 'rsyslog_config_host' option.
-    Implemented: 0.2
+    Implemented: 0.1
     Required   : False
     Value      : Arbitrary
     Type       : Array
