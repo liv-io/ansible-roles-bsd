@@ -111,6 +111,7 @@ PACKAGES
   rest-server
 
 ROLES
+  gnu_tar
 
 PARAMETERS
 

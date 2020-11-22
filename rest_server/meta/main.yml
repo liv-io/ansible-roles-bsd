@@ -1,0 +1,4 @@
+---
+
+dependencies:
+  - {role: gnu_tar, when: not (rest_server_state is match('false|no|remove|quiesce|inactive'))}
