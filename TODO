@@ -20,18 +20,13 @@ ENHANCEMENTS
 FEATURES
 --------------------------------------------------------------------------------
 
-- opensmtpd: Add support for FreeBSD 12.0
-
 --------------------------------------------------------------------------------
 ROLES
 --------------------------------------------------------------------------------
 
 - ajaxterm: web-based SSH client
-- apache httpd
-- bro
+- apache-httpd
 - clamav
-- corosync
-- crmsh
 - dhcpd
 - dokuwiki
 - dovecot
@@ -41,28 +36,22 @@ ROLES
 - gitolite
 - gnu gatekeeper
 - go
-- graylog2
 - greensql
 - honeyd
 - incron
 - keepalived
-- loganalyzer
 - logrotate
 - mumble
-- pacemaker
 - pallet
 - phpipam
 - postfixadmin
 - postgresql
 - postgrey
-- prelude
 - pulp
 - relayd
-- rsyslog
 - samhain: Samhain Intrusion Detection System - client
 - samhain-docs: Samhain Intrusion Detection System - documentation
 - samhain-server: Samhain Intrusion Detection System - server
-- snort
 - sqlite
 - tinyproxy
 - umurmur: minimalistic Mumble server
