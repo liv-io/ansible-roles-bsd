@@ -371,6 +371,17 @@ ROLE
     Options    :
       Examples: '128 KB' | '256 KB' | '512 KB'
 
+  squid_monitor_monit_state
+    Description: Control the 'squid_monitor_monit_state' option.
+    Implemented: 1.8
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   squid_network_allowed
     Description: Define the 'squid_network_allowed' option.
     Implemented: 0.2

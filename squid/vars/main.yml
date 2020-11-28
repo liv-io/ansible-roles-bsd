@@ -62,6 +62,19 @@ file_mode_src_network_unrestricted_acl: '0644'
 file_owner_src_network_unrestricted_acl: 'root'
 file_group_src_network_unrestricted_acl: 'wheel'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# squid.cfg
+file_src_squid_cfg: "templates/{{ansible_os_family}}/squid.cfg"
+file_dst_squid_cfg: '/etc/monit.d/squid.cfg'
+file_mode_squid_cfg: '0640'
+file_owner_squid_cfg: 'root'
+file_group_squid_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
@@ -75,6 +88,9 @@ command_cmd_parse_config: 'squid -k parse > /dev/null 2>&1'
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # squid
 service_name_squid: 'squid'

@@ -46,6 +46,8 @@ squid_memory_replacement_policy: 'lru'
 
 squid_minimum_object_size: '0 KB'
 
+squid_monitor_monit_state: 'false'
+
 squid_network_allowed: []
 
 squid_network_blocked:

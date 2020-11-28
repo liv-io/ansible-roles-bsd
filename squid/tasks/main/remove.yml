@@ -74,6 +74,15 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: 'file remove squid.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_squid_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - squid
+
 - name: 'line remove squid_enable'
   lineinfile:
     state: 'absent'

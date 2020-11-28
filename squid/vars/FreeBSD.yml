@@ -34,3 +34,16 @@ file_dst_src_network_unrestricted_acl: '/usr/local/etc/squid/acl/src_network_unr
 # squid_enable
 file_line_squid_enable: 'squid_enable'
 file_dst_squid_enable: '/etc/rc.conf'
+
+# monit.d
+file_dst_monit_d: '/usr/local/etc/monit.d'
+
+# squid.cfg
+file_dst_squid_cfg: '/usr/local/etc/monit.d/squid.cfg'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'service -l | grep "^monit$" > /dev/null 2>&1'

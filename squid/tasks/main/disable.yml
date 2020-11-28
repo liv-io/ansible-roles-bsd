@@ -112,6 +112,19 @@
     - disable
     - squid
 
+- name: 'file create squid.cfg'
+  template:
+    src: "{{file_src_squid_cfg}}"
+    dest: "{{file_dst_squid_cfg}}"
+    mode: "{{file_mode_squid_cfg}}"
+    owner: "{{file_owner_squid_cfg}}"
+    group: "{{file_group_squid_cfg}}"
+  notify: 'service reload monit'
+  when: (squid_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - squid
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
