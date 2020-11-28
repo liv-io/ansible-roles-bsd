@@ -14,7 +14,7 @@ F: feature
 
 --------------------------------------------------------------------------------
 
-* Version 0.6.0 (2020-11-29)
+* Version 0.6.0 (2020-11-28)
 F: Add support for Monit service monitoring (node_exporter_monitor_monit_state)
 
 * Version 0.5.1 (2020-11-19)
