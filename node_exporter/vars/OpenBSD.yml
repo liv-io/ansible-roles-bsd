@@ -16,6 +16,9 @@ file_dest_node_exporter_flags: '/etc/rc.conf.local'
 # check node_exporter
 command_cmd_check_node_exporter: 'rcctl check node_exporter'
 
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
 # disable node_exporter
 command_cmd_disable_node_exporter: 'rcctl disable node_exporter'
 

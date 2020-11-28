@@ -8,3 +8,16 @@
 file_line_node_exporter_textfile_dir: 'node_exporter_textfile_dir="/data/node_exporter/textfile_collector"'
 file_regexp_node_exporter_textfile_dir: 'node_exporter_textfile_dir'
 file_dest_node_exporter_textfile_dir: '/etc/rc.conf'
+
+# monit.d
+file_dst_monit_d: '/usr/local/etc/monit.d'
+
+# node_exporter.cfg
+file_dst_node_exporter_cfg: '/usr/local/etc/monit.d/node_exporter.cfg'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'service -l | grep "^monit$" > /dev/null 2>&1'

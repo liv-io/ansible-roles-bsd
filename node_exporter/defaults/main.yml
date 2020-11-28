@@ -1,3 +1,5 @@
 ---
 
 node_exporter_state: 'enable'
+
+node_exporter_monitor_monit_state: 'false'

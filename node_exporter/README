@@ -76,6 +76,17 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+  node_exporter_monitor_monit_state
+    Description: Control the 'node_exporter_monitor_monit_state' option.
+    Implemented: 0.6
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 --------------------------------------------------------------------------------
 CONFLICTS
 --------------------------------------------------------------------------------

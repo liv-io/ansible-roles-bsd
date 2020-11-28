@@ -32,6 +32,19 @@
     - disable
     - node_exporter
 
+- name: 'file create node_exporter.cfg'
+  template:
+    src: "{{file_src_node_exporter_cfg}}"
+    dest: "{{file_dst_node_exporter_cfg}}"
+    mode: "{{file_mode_node_exporter_cfg}}"
+    owner: "{{file_owner_node_exporter_cfg}}"
+    group: "{{file_group_node_exporter_cfg}}"
+  notify: 'service reload monit'
+  when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - node_exporter
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------

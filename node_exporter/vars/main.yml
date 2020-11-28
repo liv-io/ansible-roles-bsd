@@ -22,6 +22,19 @@ file_mode_textfile_collector_dir: '1777'
 file_owner_textfile_collector_dir: 'root'
 file_group_textfile_collector_dir: 'wheel'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# node_exporter.cfg
+file_src_node_exporter_cfg: "templates/{{ansible_os_family}}/node_exporter.cfg"
+file_dst_node_exporter_cfg: '/etc/monit.d/node_exporter.cfg'
+file_mode_node_exporter_cfg: '0640'
+file_owner_node_exporter_cfg: 'root'
+file_group_node_exporter_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
@@ -32,6 +45,9 @@ package_name_node_exporter: 'node_exporter'
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # node_exporter
 service_name_node_exporter: 'node_exporter'
