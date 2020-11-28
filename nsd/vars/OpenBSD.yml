@@ -19,6 +19,9 @@ file_group_nsd_conf: '_nsd'
 # check nsd
 command_cmd_check_nsd: 'rcctl check nsd'
 
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
 # disable nsd
 command_cmd_disable_nsd: 'rcctl disable nsd'
 

@@ -44,6 +44,19 @@
     - disable
     - nsd
 
+- name: 'file create nsd.cfg'
+  template:
+    src: "{{file_src_nsd_cfg}}"
+    dest: "{{file_dst_nsd_cfg}}"
+    mode: "{{file_mode_nsd_cfg}}"
+    owner: "{{file_owner_nsd_cfg}}"
+    group: "{{file_group_nsd_cfg}}"
+  notify: 'service reload monit'
+  when: (nsd_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - nsd
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------

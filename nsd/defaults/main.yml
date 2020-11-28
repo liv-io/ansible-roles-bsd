@@ -16,6 +16,8 @@ nsd_ip4_state: 'true'
 
 nsd_ip6_state: 'false'
 
+nsd_monitor_monit_state: 'false'
+
 nsd_version: ''
 
 nsd_zone: []

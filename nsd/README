@@ -220,6 +220,17 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+  nsd_monitor_monit_state
+    Description: Control the 'nsd_monitor_monit_state' option.
+    Implemented: 1.10
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   nsd_version
     Description: Define the 'nsd_version' option.
     Implemented: 0.1
