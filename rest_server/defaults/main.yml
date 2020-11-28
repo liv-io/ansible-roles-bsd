@@ -2,6 +2,8 @@
 
 rest_server_state: 'enable'
 
+rest_server_monitor_monit_state: 'false'
+
 rest_server_options:
   - '--path /data/rest-server'
   - '--prometheus'

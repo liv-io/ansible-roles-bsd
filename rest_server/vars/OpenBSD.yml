@@ -7,6 +7,9 @@
 # check rest_server
 command_cmd_check_rest_server: 'rcctl check rest_server'
 
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
 # disable rest_server
 command_cmd_disable_rest_server: 'rcctl disable rest_server'
 

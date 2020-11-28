@@ -84,7 +84,16 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-- name: 'file remove rest-server.service'
+- name: 'file remove rest_server.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_rest_server_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - rest_server
+
+- name: 'file remove rest_server.service'
   file:
     state: 'absent'
     path: "{{file_dst_rest_server_service}}"

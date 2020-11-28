@@ -76,6 +76,17 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+  rest_server_monitor_monit_state
+    Description: Control the 'rest_server_monitor_monit_state' option.
+    Implemented: 0.4
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   rest_server_options
     Description: Define the 'rest_server_options' option.
     Implemented: 0.1

@@ -16,6 +16,12 @@
 # SYSTEM
 #-------------------------------------------------------------------------------
 
+- name: 'service reload monit'
+  service:
+    state: 'reloaded'
+    name: "{{service_name_monit}}"
+  when: (register_check_service_monit.rc == 0)
+
 - name: 'service restart rest_server'
   service:
     state: 'restarted'

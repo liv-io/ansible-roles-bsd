@@ -32,6 +32,19 @@
     - enable
     - rest_server
 
+- name: 'file create rest_server.cfg'
+  template:
+    src: "{{file_src_rest_server_cfg}}"
+    dest: "{{file_dst_rest_server_cfg}}"
+    mode: "{{file_mode_rest_server_cfg}}"
+    owner: "{{file_owner_rest_server_cfg}}"
+    group: "{{file_group_rest_server_cfg}}"
+  notify: 'service reload monit'
+  when: (rest_server_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - rest_server
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
@@ -45,7 +58,7 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - rest-server
+    - rest_server
 
 - name: 'command enable rest_server'
   command: "{{command_cmd_enable_rest_server}}"
@@ -53,7 +66,7 @@
   when: (ansible_os_family == 'OpenBSD') and (register_status_rest_server.rc == 1)
   tags:
     - enable
-    - rest-server
+    - rest_server
 
 - name: 'command check rest_server'
   command: "{{command_cmd_check_rest_server}}"
@@ -64,7 +77,7 @@
   when: (ansible_os_family == 'OpenBSD')
   tags:
     - enable
-    - rest-server
+    - rest_server
 
 - name: 'command start rest_server'
   command: "{{command_cmd_start_rest_server}}"
@@ -72,7 +85,7 @@
   when: (ansible_os_family == 'OpenBSD') and (register_check_rest_server.rc == 1)
   tags:
     - enable
-    - rest-server
+    - rest_server
 
 #-------------------------------------------------------------------------------
 # SYSTEM

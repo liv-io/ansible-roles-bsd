@@ -31,6 +31,19 @@
     - disable
     - rest_server
 
+- name: 'file create rest_server.cfg'
+  template:
+    src: "{{file_src_rest_server_cfg}}"
+    dest: "{{file_dst_rest_server_cfg}}"
+    mode: "{{file_mode_rest_server_cfg}}"
+    owner: "{{file_owner_rest_server_cfg}}"
+    group: "{{file_group_rest_server_cfg}}"
+  notify: 'service reload monit'
+  when: (rest_server_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - rest_server
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------

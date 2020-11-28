@@ -46,9 +46,25 @@ file_mode_rest_server_service: '0555'
 file_owner_rest_server_service: 'root'
 file_group_rest_server_service: 'wheel'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# rest_server.cfg
+file_src_rest_server_cfg: "templates/{{ansible_os_family}}/rest_server.cfg"
+file_dst_rest_server_cfg: '/etc/monit.d/rest_server.cfg'
+file_mode_rest_server_cfg: '0640'
+file_owner_rest_server_cfg: 'root'
+file_group_rest_server_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # rest-server
 group_name_rest_server: '_rest-server'
