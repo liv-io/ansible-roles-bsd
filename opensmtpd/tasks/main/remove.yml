@@ -62,6 +62,15 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: 'file remove opensmtpd.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_opensmtpd_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - opensmtpd
+
 - name: 'file remove secrets'
   file:
     state: 'absent'

@@ -25,6 +25,19 @@ file_mode_smtpd_conf: '0644'
 file_owner_smtpd_conf: 'root'
 file_group_smtpd_conf: 'wheel'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# opensmtpd.cfg
+file_src_opensmtpd_cfg: "templates/{{ansible_os_family}}/opensmtpd.cfg"
+file_dst_opensmtpd_cfg: '/etc/monit.d/opensmtpd.cfg'
+file_mode_opensmtpd_cfg: '0640'
+file_owner_opensmtpd_cfg: 'root'
+file_group_opensmtpd_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
@@ -41,6 +54,9 @@ command_cmd_smtpctl_aliases: 'smtpctl update table aliases'
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # smtpd
 service_name_opensmtpd: 'smtpd'

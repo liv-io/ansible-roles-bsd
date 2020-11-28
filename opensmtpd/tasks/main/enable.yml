@@ -60,6 +60,19 @@
     - enable
     - opensmtpd
 
+- name: 'file create opensmtpd.cfg'
+  template:
+    src: "{{file_src_opensmtpd_cfg}}"
+    dest: "{{file_dst_opensmtpd_cfg}}"
+    mode: "{{file_mode_opensmtpd_cfg}}"
+    owner: "{{file_owner_opensmtpd_cfg}}"
+    group: "{{file_group_opensmtpd_cfg}}"
+  notify: 'service reload monit'
+  when: (opensmtpd_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - opensmtpd
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------

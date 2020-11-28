@@ -202,6 +202,17 @@ ROLE
                  {config: {'match for any action "relay"'}, comment: 'Match: relay'}]
       None    : []
 
+  opensmtpd_monitor_monit_state
+    Description: Control the 'opensmtpd_monitor_monit_state' option.
+    Implemented: 3.6
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   opensmtpd_root_mail_address
     Description: Define the 'opensmtpd_root_mail_address' option.
     Implemented: 0.1
