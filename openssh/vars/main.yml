@@ -32,6 +32,19 @@ file_mode_sshd_config: '0600'
 file_owner_sshd_config: 'root'
 file_group_sshd_config: 'wheel'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# openssh.cfg
+file_src_openssh_cfg: "templates/{{ansible_os_family}}/openssh.cfg"
+file_dst_openssh_cfg: '/etc/monit.d/openssh.cfg'
+file_mode_openssh_cfg: '0640'
+file_owner_openssh_cfg: 'root'
+file_group_openssh_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
@@ -42,6 +55,9 @@ command_cmd_validate_openssh: '/usr/sbin/sshd -t'
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # sshd
 service_name_openssh: 'sshd'

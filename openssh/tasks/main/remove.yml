@@ -12,25 +12,19 @@
         - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
+  tags:
+    - remove
+    - openssh
 
 #-------------------------------------------------------------------------------
-# COMMANDS
+# FILES
 #-------------------------------------------------------------------------------
 
-- name: 'command validate openssh'
-  command: "{{command_cmd_validate_openssh}}"
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
-
-- name: 'service reload monit'
-  service:
-    state: 'reloaded'
-    name: "{{service_name_monit}}"
-  when: (register_check_service_monit.rc == 0)
-
-- name: 'service reload openssh'
-  service:
-    state: 'reloaded'
-    name: "{{service_name_openssh}}"
+- name: 'file remove openssh.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_openssh_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - openssh

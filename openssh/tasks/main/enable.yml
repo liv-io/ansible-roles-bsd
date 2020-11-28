@@ -88,6 +88,19 @@
     - enable
     - openssh
 
+- name: 'file create openssh.cfg'
+  template:
+    src: "{{file_src_openssh_cfg}}"
+    dest: "{{file_dst_openssh_cfg}}"
+    mode: "{{file_mode_openssh_cfg}}"
+    owner: "{{file_owner_openssh_cfg}}"
+    group: "{{file_group_openssh_cfg}}"
+  notify: 'service reload monit'
+  when: (openssh_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - openssh
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------

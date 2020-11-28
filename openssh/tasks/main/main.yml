@@ -17,3 +17,9 @@
   when: (openssh_state is match('stop|off|disable'))
   tags:
     - openssh
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (openssh_state is match('false|no|remove'))
+  tags:
+    - openssh

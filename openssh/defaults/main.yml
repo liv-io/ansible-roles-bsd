@@ -30,6 +30,8 @@ openssh_macs: ['hmac-sha2-512', 'hmac-sha2-256']
 
 openssh_match: []
 
+openssh_monitor_monit_state: 'false'
+
 openssh_password_authentication: 'yes'
 
 openssh_permit_root_login: 'no'

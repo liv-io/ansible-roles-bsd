@@ -241,6 +241,17 @@ ROLE
                  {name: 'sftpgroup', type: 'Group', config: {'ChrootDirectory': '/opt/sftp', 'ForceCommand': 'internal-sftp'}}]
       None    : []
 
+  openssh_monitor_monit_state
+    Description: Control the 'openssh_monitor_monit_state' option.
+    Implemented: 2.14
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   openssh_password_authentication
     Description: Control the 'openssh_password_authentication' option.
     Implemented: 0.1
