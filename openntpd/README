@@ -199,6 +199,17 @@ ROLE
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
 
+  openntpd_monitor_monit_state
+    Description: Control the 'openntpd_monitor_monit_state' option.
+    Implemented: 5.3
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   openntpd_monitor_prom_state
     Description: Control the 'openntpd_monitor_prom_state' option.
     Implemented: 5.1

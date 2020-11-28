@@ -58,6 +58,15 @@
     - remove
     - openntpd
 
+- name: 'file remove openntpd.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_openntpd_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - openntpd
+
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------

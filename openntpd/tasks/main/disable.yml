@@ -67,6 +67,19 @@
     - disable
     - openntpd
 
+- name: 'file create openntpd.cfg'
+  template:
+    src: "{{file_src_openntpd_cfg}}"
+    dest: "{{file_dst_openntpd_cfg}}"
+    mode: "{{file_mode_openntpd_cfg}}"
+    owner: "{{file_owner_openntpd_cfg}}"
+    group: "{{file_group_openntpd_cfg}}"
+  notify: 'service reload monit'
+  when: (openntpd_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - openntpd
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------

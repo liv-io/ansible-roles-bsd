@@ -35,9 +35,25 @@ cron_weekday_openntpd_check_time: "{{openntpd_check_time_weekday}}"
 cron_user_openntpd_check_time: "{{file_owner_openntpd_check_time}}"
 cron_job_openntpd_check_time: "{{file_dst_openntpd_check_time}}"
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# openntpd.cfg
+file_src_openntpd_cfg: "templates/{{ansible_os_family}}/openntpd.cfg"
+file_dst_openntpd_cfg: '/etc/monit.d/openntpd.cfg'
+file_mode_openntpd_cfg: '0640'
+file_owner_openntpd_cfg: 'root'
+file_group_openntpd_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # ntpd
 service_name_openntpd: 'ntpd'

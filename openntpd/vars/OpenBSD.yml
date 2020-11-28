@@ -7,6 +7,9 @@
 # check openntpd
 command_cmd_check_openntpd: 'rcctl check ntpd'
 
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
 # disable openntpd
 command_cmd_disable_openntpd: 'rcctl disable ntpd'
 
