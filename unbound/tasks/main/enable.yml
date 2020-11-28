@@ -83,6 +83,19 @@
     - enable
     - unbound
 
+- name: 'file create unbound.cfg'
+  template:
+    src: "{{file_src_unbound_cfg}}"
+    dest: "{{file_dst_unbound_cfg}}"
+    mode: "{{file_mode_unbound_cfg}}"
+    owner: "{{file_owner_unbound_cfg}}"
+    group: "{{file_group_unbound_cfg}}"
+  notify: 'service reload monit'
+  when: (unbound_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - unbound
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------

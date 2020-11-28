@@ -27,9 +27,25 @@ file_owner_unbound_conf: 'root'
 file_group_unbound_conf: 'wheel'
 file_validate_unbound_conf: 'unbound-checkconf %s'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# unbound.cfg
+file_src_unbound_cfg: "templates/{{ansible_os_family}}/unbound.cfg"
+file_dst_unbound_cfg: '/etc/monit.d/unbound.cfg'
+file_mode_unbound_cfg: '0640'
+file_owner_unbound_cfg: 'root'
+file_group_unbound_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # unbound
 service_name_unbound: 'unbound'

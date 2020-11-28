@@ -75,6 +75,15 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: 'file remove unbound.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_unbound_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - unbound
+
 - name: 'line remove unbound_enable'
   lineinfile:
     state: 'absent'

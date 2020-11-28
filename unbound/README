@@ -342,6 +342,17 @@ ROLE
                 [{zone: '10.in-addr.arpa.', type: 'nodefault', comment: 'Enable reverse lookup for 10.0.0.0/8'}]
       None    : []
 
+  unbound_monitor_monit_state
+    Description: Control the 'unbound_monitor_monit_state' option.
+    Implemented: 1.8
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   unbound_prefer_ip6
     Description: Control the 'unbound_prefer_ip6' option.
     Implemented: 0.1

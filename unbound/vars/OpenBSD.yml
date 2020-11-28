@@ -7,6 +7,9 @@
 # check unbound
 command_cmd_check_unbound: 'rcctl check unbound'
 
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
 # disable unbound
 command_cmd_disable_unbound: 'rcctl disable unbound'
 

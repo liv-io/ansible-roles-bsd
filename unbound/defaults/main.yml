@@ -50,6 +50,8 @@ unbound_local_data_ptr: []
 
 unbound_local_zone: []
 
+unbound_monitor_monit_state: 'false'
+
 unbound_prefer_ip6: 'false'
 
 unbound_stub_zone: []

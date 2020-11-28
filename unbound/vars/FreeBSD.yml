@@ -25,3 +25,16 @@ file_src_root_hints_link: '/usr/local/etc/unbound/root.hints'
 file_dst_root_hints_link: '/var/unbound/root.hints'
 file_owner_root_hints_link: 'root'
 file_group_root_hints_link: 'wheel'
+
+# monit.d
+file_dst_monit_d: '/usr/local/etc/monit.d'
+
+# unbound.cfg
+file_dst_unbound_cfg: '/usr/local/etc/monit.d/unbound.cfg'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'service -l | grep "^monit$" > /dev/null 2>&1'
