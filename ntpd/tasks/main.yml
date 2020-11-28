@@ -1,7 +1,0 @@
----
-
-- name: 'task include main'
-  import_tasks: main/main.yml
-  when: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release is match("12\.1-*"))) or ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version == '6.8'))
-  tags:
-    - ntpd
