@@ -15,12 +15,28 @@ file_group_syslog_conf: 'wheel'
 file_line_syslogd_flags: 'syslogd_flags'
 file_dst_syslogd_flags: '/etc/rc.conf.local'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# syslogd.cfg
+file_src_syslogd_cfg: 'templates/main/syslogd.cfg'
+file_dst_syslogd_cfg: '/etc/monit.d/syslogd.cfg'
+file_mode_syslogd_cfg: '0640'
+file_owner_syslogd_cfg: 'root'
+file_group_syslogd_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
 
 # check syslogd
 command_cmd_check_syslogd: 'rcctl check syslogd'
+
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
 
 # disable syslogd
 command_cmd_disable_syslogd: 'rcctl disable syslogd'
@@ -40,6 +56,9 @@ command_cmd_stop_syslogd: 'rcctl stop syslogd'
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # syslogd
 service_name_syslogd: 'syslogd'

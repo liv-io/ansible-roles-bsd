@@ -12,18 +12,19 @@
         - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
+  tags:
+    - remove
+    - openbsd_syslogd
 
 #-------------------------------------------------------------------------------
-# SYSTEM
+# FILES
 #-------------------------------------------------------------------------------
 
-- name: 'service reload monit'
-  service:
-    state: 'reloaded'
-    name: "{{service_name_monit}}"
-  when: (register_check_service_monit.rc == 0)
-
-- name: 'service reload syslogd'
-  service:
-    state: 'reloaded'
-    name: "{{service_name_syslogd}}"
+- name: 'file remove syslogd.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_syslogd_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - openbsd_syslogd

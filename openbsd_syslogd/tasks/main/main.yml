@@ -17,3 +17,9 @@
   when: (openbsd_syslogd_state is match('stop|off|disable'))
   tags:
     - openbsd_syslogd
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (openbsd_syslogd_state is match('false|no|remove'))
+  tags:
+    - openbsd_syslogd
