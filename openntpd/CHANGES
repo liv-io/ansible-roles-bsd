@@ -14,7 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
- * Version 5.3.0 (2020-11-28)
+* Version 5.3.1 (2020-11-29)
+B: Adjust return code for monit service check
+
+* Version 5.3.0 (2020-11-28)
 F: Add support for Monit service monitoring (openntpd_monitor_monit_state)
 
 * Version 5.2.2 (2020-11-19)
