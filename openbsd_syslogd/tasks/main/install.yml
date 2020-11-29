@@ -48,8 +48,8 @@
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
-  changed_when: (register_check_service_monit.rc > 1)
-  failed_when: (register_check_service_monit.rc > 1)
+  changed_when: (register_check_service_monit.rc > 2)
+  failed_when: (register_check_service_monit.rc > 2)
   check_mode: 'no'
   when: (openbsd_syslogd_monitor_monit_state is match('true|yes|enable'))
   tags:
