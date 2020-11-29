@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.0 (2020-11-29)
+F: Add support for Monit service monitoring (rsyslog_monitor_monit_state)
+
 * Version 0.1.0 (2020-11-21)
 F: Initial release

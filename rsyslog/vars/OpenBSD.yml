@@ -7,6 +7,9 @@
 # check rsyslogd
 command_cmd_check_rsyslogd: 'rcctl check rsyslogd'
 
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
 # disable rsyslogd
 command_cmd_disable_rsyslogd: 'rcctl disable rsyslogd'
 

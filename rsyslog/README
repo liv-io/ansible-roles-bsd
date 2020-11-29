@@ -129,6 +129,17 @@ ROLE
       Examples: [{name: httpd, comment: Apache HTTPD, section: input, config: [{type: imfile, File: /var/www/logs/*access_log, Tag: httpd, Severity: info, Facility: local6}, {type: imfile, File: /var/www/logs/*error_log, Tag: httpd, Severity: info, Facility: local6}]}]
       None    : []
 
+  rsyslog_monitor_monit_state
+    Description: Control the 'rsyslog_monitor_monit_state' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   rsyslog_role
     Description: Set the 'rsyslog_role' option.
     Implemented: 0.1

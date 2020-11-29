@@ -31,9 +31,25 @@ file_mode_rsyslog_d: '0755'
 file_owner_rsyslog_d: 'root'
 file_group_rsyslog_d: 'wheel'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# rsyslog.cfg
+file_src_rsyslog_cfg: "templates/{{ansible_os_family}}/rsyslog.cfg"
+file_dst_rsyslog_cfg: '/etc/monit.d/rsyslog.cfg'
+file_mode_rsyslog_cfg: '0640'
+file_owner_rsyslog_cfg: 'root'
+file_group_rsyslog_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # rsyslogd
 service_name_rsyslogd: 'rsyslogd'

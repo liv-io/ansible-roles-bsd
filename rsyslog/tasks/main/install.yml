@@ -42,3 +42,39 @@
   tags:
     - install
     - rsyslog
+
+- name: 'stat file monit.d'
+  stat:
+    path: "{{file_dst_monit_d}}"
+  register: register_monit_d
+  when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - rsyslog
+
+- name: 'file create monit.d'
+  file:
+    state: 'directory'
+    path: "{{file_dst_monit_d}}"
+    mode: "{{file_mode_monit_d}}"
+    owner: "{{file_owner_monit_d}}"
+    group: "{{file_group_monit_d}}"
+  when: (rsyslog_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
+  tags:
+    - install
+    - rsyslog
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command check service monit'
+  shell: "{{command_cmd_check_service_monit}}"
+  register: register_check_service_monit
+  changed_when: (register_check_service_monit.rc > 1)
+  failed_when: (register_check_service_monit.rc > 1)
+  check_mode: 'no'
+  when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - install
+    - rsyslog
