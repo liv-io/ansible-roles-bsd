@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.4.1 (2020-11-29)
+B: Adjust return code for monit service check
+
 * Version 0.4.0 (2020-11-29)
 F: Add support for Monit service monitoring (rest_server_monitor_monit_state)
 
