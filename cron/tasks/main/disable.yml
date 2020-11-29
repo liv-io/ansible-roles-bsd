@@ -32,6 +32,19 @@
     - disable
     - cron
 
+- name: 'file create cron.cfg'
+  template:
+    src: "{{file_src_cron_cfg}}"
+    dest: "{{file_dst_cron_cfg}}"
+    mode: "{{file_mode_cron_cfg}}"
+    owner: "{{file_owner_cron_cfg}}"
+    group: "{{file_group_cron_cfg}}"
+  notify: 'service reload monit'
+  when: (cron_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - cron
+
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------

@@ -1,3 +1,5 @@
 ---
 
 cron_state: 'enable'
+
+cron_monitor_monit_state: 'false'

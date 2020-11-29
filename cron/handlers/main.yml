@@ -12,31 +12,13 @@
         - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
-  tags:
-    - remove
-    - cron
 
 #-------------------------------------------------------------------------------
-# FILES
+# SYSTEM
 #-------------------------------------------------------------------------------
 
-- name: 'file remove cron.cfg'
-  file:
-    state: 'absent'
-    path: "{{file_dst_cron_cfg}}"
-  notify: 'service reload monit'
-  tags:
-    - remove
-    - cron
-
-- name: 'line remove cron_enable'
-  lineinfile:
-    state: 'absent'
-    line: "{{file_line_cron_enable}}=\"NO\" # Ansible: Remove cron"
-    regexp: "^{{file_line_cron_enable}}="
-    dest: "{{file_dst_cron_enable}}"
-    create: 'yes'
-  when: (ansible_os_family == 'FreeBSD')
-  tags:
-    - remove
-    - cron
+- name: 'service reload monit'
+  service:
+    state: 'reloaded'
+    name: "{{service_name_monit}}"
+  when: (register_check_service_monit.rc == 0)

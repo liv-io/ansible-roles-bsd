@@ -1,15 +1,24 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
 
-# cronie
-package_name_cron: 'cronie'
+# cron.cfg
+file_src_cron_cfg: "templates/{{ansible_os_family}}/cron.cfg"
+file_dst_cron_cfg: '/etc/monit.d/cron.cfg'
+file_mode_cron_cfg: '0640'
+file_owner_cron_cfg: 'root'
+file_group_cron_cfg: 'wheel'
 
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
 
-# cronie
-service_name_cron: 'cronie'
+# cron
+service_name_cron: 'cron'
+
+# monit
+service_name_monit: 'monit'

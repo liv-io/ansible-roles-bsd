@@ -78,6 +78,17 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+  cron_monitor_monit_state
+    Description: Control the 'cron_monitor_monit_state' option.
+    Implemented: 2.7
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
 --------------------------------------------------------------------------------
 CONFLICTS
 --------------------------------------------------------------------------------
