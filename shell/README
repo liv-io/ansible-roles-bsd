@@ -131,9 +131,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : Array
-    Default    : []
+    Default    : ['localhost', '127.0.0.1', '::1']
     Options    :
-      Examples: ['example.org', 'example.com']
+      Examples: ['localhost', '127.0.0.1', '::1', 'example.org', 'example.com']
       None    : []
 
   shell_pager

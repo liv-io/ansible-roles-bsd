@@ -14,7 +14,7 @@ shell_https_proxy: ''
 
 shell_ls_time_style: '%Y-%m-%d %H:%M:%S'
 
-shell_no_proxy: []
+shell_no_proxy: ['localhost', '127.0.0.1', '::1']
 
 shell_pager: 'less'
 
