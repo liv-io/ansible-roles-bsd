@@ -62,6 +62,15 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: 'file remove nginx.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_nginx_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - nginx
+
 - name: 'line remove nginx_enable'
   lineinfile:
     state: 'absent'

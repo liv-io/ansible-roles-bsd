@@ -44,6 +44,19 @@
     - disable
     - nginx
 
+- name: 'file create nginx.cfg'
+  template:
+    src: "{{file_src_nginx_cfg}}"
+    dest: "{{file_dst_nginx_cfg}}"
+    mode: "{{file_mode_nginx_cfg}}"
+    owner: "{{file_owner_nginx_cfg}}"
+    group: "{{file_group_nginx_cfg}}"
+  notify: 'service reload monit'
+  when: (nginx_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - nginx
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------

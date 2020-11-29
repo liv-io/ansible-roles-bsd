@@ -33,6 +33,19 @@ file_mode_vhosts_d: '0755'
 file_owner_vhosts_d: 'root'
 file_group_vhosts_d: 'wheel'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# nginx.cfg
+file_src_nginx_cfg: "templates/{{ansible_os_family}}/nginx.cfg"
+file_dst_nginx_cfg: '/etc/monit.d/nginx.cfg'
+file_mode_nginx_cfg: '0640'
+file_owner_nginx_cfg: 'root'
+file_group_nginx_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
@@ -46,6 +59,9 @@ command_cmd_generate_dhparam: "openssl dhparam -dsaparam 4096 -out {{file_dst_dh
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # nginx
 service_name_nginx: 'nginx'

@@ -373,6 +373,17 @@ ROLE
         '"$http_user_agent" http_x_forwarded_for:"$http_x_forwarded_for" '
         '$ssl_protocol/$ssl_cipher '
 
+  nginx_monitor_monit_state
+    Description: Control the 'nginx_monitor_monit_state' option.
+    Implemented: 3.8
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   nginx_vhosts_d
     Description: Define the 'nginx_vhosts_d' option.
     Implemented: 0.1

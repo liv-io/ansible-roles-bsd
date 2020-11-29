@@ -17,6 +17,8 @@ nginx_log_format_main_ssl: |-
   '"$http_user_agent" "$http_x_forwarded_for" '
   '$ssl_protocol/$ssl_cipher '
 
+nginx_monitor_monit_state: 'false'
+
 nginx_vhosts_d: 'vhosts.d'
 
 nginx_worker_connections: 1024
