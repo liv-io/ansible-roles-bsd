@@ -50,6 +50,19 @@ file_owner_suricata_yaml: 'root'
 file_group_suricata_yaml: '_suricata'
 file_validate_suricata_yaml: 'suricata -T -c %s'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# suricata.cfg
+file_src_suricata_cfg: "templates/{{ansible_os_family}}/suricata.cfg"
+file_dst_suricata_cfg: '/etc/monit.d/suricata.cfg'
+file_mode_suricata_cfg: '0640'
+file_owner_suricata_cfg: 'root'
+file_group_suricata_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------
@@ -72,6 +85,9 @@ command_cmd_update_suricata: 'suricata-update --local /etc/suricata/rules/ --out
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # suricata
 service_name_suricata: 'suricata'

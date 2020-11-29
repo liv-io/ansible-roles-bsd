@@ -102,6 +102,15 @@
 # FILES
 #-------------------------------------------------------------------------------
 
+- name: 'file remove suricata.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_suricata_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - suricata
+
 - name: 'file remove suricata.yaml'
   file:
     state: 'absent'

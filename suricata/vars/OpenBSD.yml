@@ -30,6 +30,9 @@ file_dst_suricata_flags: '/etc/rc.conf.local'
 # check suricata
 command_cmd_check_suricata: 'rcctl check suricata'
 
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
 # disable suricata
 command_cmd_disable_suricata: 'rcctl disable suricata'
 

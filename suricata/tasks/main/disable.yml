@@ -43,6 +43,19 @@
     - disable
     - suricata
 
+- name: 'file create suricata.cfg'
+  template:
+    src: "{{file_src_suricata_cfg}}"
+    dest: "{{file_dst_suricata_cfg}}"
+    mode: "{{file_mode_suricata_cfg}}"
+    owner: "{{file_owner_suricata_cfg}}"
+    group: "{{file_group_suricata_cfg}}"
+  notify: 'service reload monit'
+  when: (suricata_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - disable
+    - suricata
+
 #-------------------------------------------------------------------------------
 # COMMANDS
 #-------------------------------------------------------------------------------

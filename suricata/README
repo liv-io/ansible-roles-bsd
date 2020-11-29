@@ -175,6 +175,17 @@ ROLE
     Options    :
       Examples: 'eth0' | 'em0' | 'eno1' | 'ens18'
 
+  suricata_monitor_monit_state
+    Description: Control the 'suricata_monitor_monit_state' option.
+    Implemented: 0.3
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   suricata_ruleset
     Description: Define the 'suricata_ruleset' option.
     Implemented: 0.1
