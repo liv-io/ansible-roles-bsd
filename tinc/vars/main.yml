@@ -60,9 +60,25 @@ file_mode_tinc_up: '0750'
 file_owner_tinc_up: 'root'
 file_group_tinc_up: '_tinc'
 
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# tinc.cfg
+file_src_tinc_cfg: "templates/{{ansible_os_family}}/tinc.cfg"
+file_dst_tinc_cfg: '/etc/monit.d/tinc.cfg'
+file_mode_tinc_cfg: '0640'
+file_owner_tinc_cfg: 'root'
+file_group_tinc_cfg: 'wheel'
+
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
 
 # tincd
 service_name_tinc: 'tincd'

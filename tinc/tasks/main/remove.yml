@@ -69,3 +69,16 @@
   tags:
     - remove
     - tinc
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove tinc.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_tinc_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - tinc
