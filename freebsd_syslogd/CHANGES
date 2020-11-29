@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.2 (2020-11-29)
+B: Adjust return code for monit service check
+
 * Version 0.2.1 (2020-11-29)
 B: Fix Ansible tag
 
