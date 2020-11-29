@@ -42,7 +42,7 @@
   notify: 'service restart unbound'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - install
+    - enable
     - unbound
 
 - name: 'file create unbound.conf'
@@ -68,7 +68,7 @@
   notify: 'service restart unbound'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - install
+    - enable
     - unbound
 
 - name: 'line enable unbound_enable'
