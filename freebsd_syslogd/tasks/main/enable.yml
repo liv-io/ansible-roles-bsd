@@ -56,6 +56,19 @@
     - enable
     - freebsd_syslogd
 
+- name: 'file create syslogd.cfg'
+  template:
+    src: "{{file_src_syslogd_cfg}}"
+    dest: "{{file_dst_syslogd_cfg}}"
+    mode: "{{file_mode_syslogd_cfg}}"
+    owner: "{{file_owner_syslogd_cfg}}"
+    group: "{{file_group_syslogd_cfg}}"
+  notify: 'service reload monit'
+  when: (freebsd_syslogd_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - freebsd_syslogd
+
 #-------------------------------------------------------------------------------
 # SYSTEM
 #-------------------------------------------------------------------------------

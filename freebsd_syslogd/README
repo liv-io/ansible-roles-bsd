@@ -78,6 +78,17 @@ ROLE
       Remove  : 'false' | 'no' | 'remove'
       Inactive: 'quiesce' | 'inactive'
 
+  freebsd_syslogd_monitor_monit_state
+    Description: Control the 'freebsd_syslogd_monitor_monit_state' option.
+    Implemented: 0.2
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
   freebsd_syslogd_role
     Description: Set the 'freebsd_syslogd_role' option.
     Implemented: 0.1

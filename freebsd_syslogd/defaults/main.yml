@@ -2,6 +2,8 @@
 
 freebsd_syslogd_state: 'enable'
 
+freebsd_syslogd_monitor_monit_state: 'false'
+
 freebsd_syslogd_role: 'client'
 
 freebsd_syslogd_server: 'log.{{ansible_domain}}:514'
