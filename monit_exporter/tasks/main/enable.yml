@@ -1,0 +1,128 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - enable
+    - monit_exporter
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'line config monit_exporter_config'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_monit_exporter_config}}"
+    regexp: "^{{file_regexp_monit_exporter_config}}=.*"
+    dest: "{{file_dest_monit_exporter_config}}"
+    create: 'yes'
+  notify: 'service restart monit_exporter'
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - enable
+    - monit_exporter
+
+- name: 'line config monit_exporter_flags'
+  lineinfile:
+    state: 'present'
+    line: "{{file_line_monit_exporter_flags}}"
+    regexp: "^{{file_regexp_monit_exporter_flags}}=.*"
+    dest: "{{file_dest_monit_exporter_flags}}"
+    create: 'yes'
+  notify: 'service restart monit_exporter'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - enable
+    - monit_exporter
+
+- name: 'file create config.toml'
+  template:
+    src: "{{file_src_config_toml}}"
+    dest: "{{file_dst_config_toml}}"
+    mode: "{{file_mode_config_toml}}"
+    owner: "{{file_owner_config_toml}}"
+    group: "{{file_group_config_toml}}"
+  notify: 'service restart monit_exporter'
+  tags:
+    - enable
+    - monit_exporter
+
+- name: 'file create monit_exporter.cfg'
+  template:
+    src: "{{file_src_monit_exporter_cfg}}"
+    dest: "{{file_dst_monit_exporter_cfg}}"
+    mode: "{{file_mode_monit_exporter_cfg}}"
+    owner: "{{file_owner_monit_exporter_cfg}}"
+    group: "{{file_group_monit_exporter_cfg}}"
+  notify: 'service reload monit'
+  when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
+  tags:
+    - enable
+    - monit_exporter
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status monit_exporter'
+  command: "{{command_cmd_status_monit_exporter}}"
+  register: register_status_monit_exporter
+  changed_when: (register_status_monit_exporter.rc > 1)
+  failed_when: (register_status_monit_exporter.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - enable
+    - monit_exporter
+
+- name: 'command enable monit_exporter'
+  command: "{{command_cmd_enable_monit_exporter}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_monit_exporter.rc == 1)
+  tags:
+    - enable
+    - monit_exporter
+
+- name: 'command check monit_exporter'
+  command: "{{command_cmd_check_monit_exporter}}"
+  register: register_check_monit_exporter
+  changed_when: (register_check_monit_exporter.rc > 1)
+  failed_when: (register_check_monit_exporter.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - enable
+    - monit_exporter
+
+- name: 'command start monit_exporter'
+  command: "{{command_cmd_start_monit_exporter}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_monit_exporter.rc == 1)
+  tags:
+    - enable
+    - monit_exporter
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'service start monit_exporter'
+  service:
+    state: 'started'
+    enabled: 'yes'
+    name: "{{service_name_monit_exporter}}"
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - enable
+    - monit_exporter

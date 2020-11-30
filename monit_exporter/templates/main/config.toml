@@ -1,0 +1,6 @@
+listen_address = ":9388"
+metrics_path = "/metrics"
+ignore_ssl = true
+monit_scrape_uri = "http://localhost:2812/_status?format=xml&level=full"
+monit_user = ""
+monit_password = ""

@@ -1,0 +1,38 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# config.toml
+file_dst_config_toml: '/usr/local/etc/monit_exporter/config.toml'
+
+# monit_exporter_config
+file_line_monit_exporter_config: 'monit_exporter_config="/usr/local/etc/monit_exporter/config.toml"'
+file_regexp_monit_exporter_config: 'monit_exporter_config'
+file_dest_monit_exporter_config: '/etc/rc.conf'
+
+# monit_exporter_etc.dir
+file_dst_monit_exporter_etc_dir: '/usr/local/etc/monit_exporter'
+
+# monit_exporter.service
+file_dst_monit_exporter_service: '/usr/local/etc/rc.d/monit_exporter'
+
+# monit.d
+file_dst_monit_d: '/usr/local/etc/monit.d'
+
+# monit_exporter.cfg
+file_dst_monit_exporter_cfg: '/usr/local/etc/monit.d/monit_exporter.cfg'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check service monit
+command_cmd_check_service_monit: 'service -l | grep "^monit$" > /dev/null 2>&1'
+
+# status monit_exporter
+command_cmd_status_monit_exporter: 'service monit_exporter status'
+
+# stop monit_exporter
+command_cmd_stop_monit_exporter: 'service monit_exporter stop'

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+{{ansible_managed|comment(decoration='#')}}
+
+daemon="{{file_creates_monit_exporter}}"
+daemon_user=_monit_exporter
+
+. /etc/rc.d/rc.subr
+
+pexp="${daemon}.*"
+rc_bg=YES
+rc_reload=NO
+
+rc_start() {
+	${rcexec} "${daemon} ${daemon_flags} < /dev/null 2>&1 | \
+		logger -p daemon.info -t monit_exporter"
+}
+
+rc_cmd $1

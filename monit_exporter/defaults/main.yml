@@ -1,0 +1,7 @@
+---
+
+monit_exporter_state: 'enable'
+
+monit_exporter_monitor_monit_state: 'false'
+
+monit_exporter_version: '0.1.0'

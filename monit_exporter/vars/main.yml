@@ -1,0 +1,88 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# src.dir
+file_dst_src_dir: '/usr/local/src'
+file_mode_src_dir: '0755'
+file_owner_src_dir: 'root'
+file_group_src_dir: 'wheel'
+
+# config.toml
+file_src_config_toml: 'templates/main/config.toml'
+file_dst_config_toml: '/etc/monit_exporter/config.toml'
+file_mode_config_toml: '0644'
+file_owner_config_toml: 'root'
+file_group_config_toml: 'wheel'
+
+# monit_exporter_etc.dir
+file_dst_monit_exporter_etc_dir: '/etc/monit_exporter'
+file_mode_monit_exporter_etc_dir: '0755'
+file_owner_monit_exporter_etc_dir: 'root'
+file_group_monit_exporter_etc_dir: 'wheel'
+
+# monit_exporter.tar.gz
+file_src_monit_exporter_tar_gz: "https://github.com/liv-io/monit_exporter/releases/download/v{{monit_exporter_version}}/monit_exporter_{{monit_exporter_version}}_{{ansible_os_family}}_amd64.tar.gz"
+file_dst_monit_exporter_tar_gz: "/usr/local/src/monit_exporter_{{monit_exporter_version}}_{{ansible_os_family}}_amd64.tar.gz"
+file_mode_monit_exporter_tar_gz: '0644'
+file_owner_monit_exporter_tar_gz: 'root'
+file_group_monit_exporter_tar_gz: 'wheel'
+file_checksum_monit_exporter_tar_gz: "sha256:https://github.com/liv-io/monit_exporter/releases/download/v{{monit_exporter_version}}/sha256sums.txt"
+
+# monit_exporter
+file_src_monit_exporter: "/usr/local/src/monit_exporter_{{monit_exporter_version}}_{{ansible_os_family}}_amd64.tar.gz"
+file_dst_monit_exporter: '/usr/local/bin'
+file_owner_monit_exporter: 'root'
+file_group_monit_exporter: 'wheel'
+file_creates_monit_exporter: '/usr/local/bin/monit_exporter'
+file_exclude_monit_exporter: ['LICENSE', 'README.md']
+
+# monit_exporter.service
+file_src_monit_exporter_service: "templates/{{ansible_os_family}}/monit_exporter.service"
+file_dst_monit_exporter_service: '/usr/lib/systemd/system/monit_exporter.service'
+file_mode_monit_exporter_service: '0755'
+file_owner_monit_exporter_service: 'root'
+file_group_monit_exporter_service: 'wheel'
+
+# monit.d
+file_dst_monit_d: '/etc/monit.d'
+file_mode_monit_d: '0750'
+file_owner_monit_d: 'root'
+file_group_monit_d: 'wheel'
+
+# monit_exporter.cfg
+file_src_monit_exporter_cfg: "templates/{{ansible_os_family}}/monit_exporter.cfg"
+file_dst_monit_exporter_cfg: '/etc/monit.d/monit_exporter.cfg'
+file_mode_monit_exporter_cfg: '0640'
+file_owner_monit_exporter_cfg: 'root'
+file_group_monit_exporter_cfg: 'wheel'
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+# monit
+service_name_monit: 'monit'
+
+# monit_exporter
+group_name_monit_exporter: '_monit_exporter'
+group_system_monit_exporter: 'yes'
+
+# monit_exporter
+user_name_monit_exporter: '_monit_exporter'
+user_comment_monit_exporter: 'Monit Exporter'
+user_group_monit_exporter: '_monit_exporter'
+user_append_monit_exporter: 'yes'
+user_home_create_monit_exporter: 'no'
+user_home_move_monit_exporter: 'no'
+user_home_remove_monit_exporter: 'yes'
+user_home_force_monit_exporter: 'no'
+user_password_monit_exporter: '!'
+user_password_update_monit_exporter: 'always'
+user_shell_monit_exporter: '/sbin/nologin'
+user_system_monit_exporter: 'yes'
+
+# monit_exporter
+service_name_monit_exporter: 'monit_exporter'

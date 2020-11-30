@@ -1,0 +1,140 @@
+--------------------------------------------------------------------------------
+INFORMATION
+--------------------------------------------------------------------------------
+
+Name   : monit_exporter
+Type   : Ansible role
+
+Authors: liv community
+License: Simplified BSD License
+
+--------------------------------------------------------------------------------
+DESCRIPTION
+--------------------------------------------------------------------------------
+
+monit_exporter periodically scrapes the monit status and provides its data via
+HTTP to Prometheus.
+
+For more information on the usage and available configuration options,
+consult the following sections.
+
+--------------------------------------------------------------------------------
+USAGE
+--------------------------------------------------------------------------------
+
+INSTALL
+  - hosts: all
+    roles:
+      - role: monit_exporter
+    vars:
+      monit_exporter_state: 'install'
+
+ENABLE
+  - hosts: all
+    roles:
+      - role: monit_exporter
+    vars:
+      monit_exporter_state: 'enable'
+
+DISABLE
+  - hosts: all
+    roles:
+      - role: monit_exporter
+    vars:
+      monit_exporter_state: 'disable'
+
+REMOVE
+  - hosts: all
+    roles:
+      - role: monit_exporter
+    vars:
+      monit_exporter_state: 'remove'
+
+INACTIVE
+  - hosts: all
+    roles:
+      - role: monit_exporter
+    vars:
+      monit_exporter_state: 'inactive'
+
+--------------------------------------------------------------------------------
+PARAMETERS
+--------------------------------------------------------------------------------
+
+ROLE
+  monit_exporter_state
+    Description: Control the state of the role.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'enable'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Enable  : 'start' | 'on' | 'enable'
+      Disable : 'stop' | 'off' | 'disable'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
+
+  monit_exporter_monitor_monit_state
+    Description: Control the 'monit_exporter_monitor_monit_state' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'false'
+    Options    :
+      Enable : 'true' | 'yes' | 'enable'
+      Disable: 'false' | 'no' | 'disable'
+
+  monit_exporter_version
+    Description: Define the 'monit_exporter_version' option.
+    Implemented: 0.1
+    Required   : False
+    Value      : Arbitrary
+    Type       : String
+    Default    : '0.1.0'
+    Options    :
+      Examples: '0.0.1' | '0.0.2'
+
+--------------------------------------------------------------------------------
+CONFLICTS
+--------------------------------------------------------------------------------
+
+ROLES
+
+--------------------------------------------------------------------------------
+DEPENDENCIES
+--------------------------------------------------------------------------------
+
+PACKAGES
+  monit_exporter
+
+ROLES
+
+PARAMETERS
+
+--------------------------------------------------------------------------------
+REQUIREMENTS
+--------------------------------------------------------------------------------
+
+CONTROL NODE
+  Ansible
+    Version: >= 2.8
+
+MANAGED NODE
+  Python
+    Version: >= 2.7
+
+--------------------------------------------------------------------------------
+SUPPORT
+--------------------------------------------------------------------------------
+
+OPERATING SYSTEMS
+  FreeBSD
+    Version: 12.1-*
+      Status: Testing
+
+  OpenBSD
+    Version: 6.8
+      Status: Testing

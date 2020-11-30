@@ -1,0 +1,35 @@
+#!/bin/sh
+
+{{ansible_managed|comment(decoration='#')}}
+
+# PROVIDE: monit_exporter
+# REQUIRE: NETWORKING SERVERS
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+#
+# Add the following lines to /etc/rc.conf to enable monit:
+# monit_exporter_enable (bool): Set to "NO" by default.
+#                               Set it to "YES" to enable monit
+# monit_exporter_flags (str):   Flags passed to monit on startup.
+#                               Default is "".
+#
+
+. /etc/rc.subr
+
+name=monit_exporter
+rcvar=monit_exporter_enable
+load_rc_config ${name}
+
+: ${monit_exporter_enable:=NO}
+
+extra_commands=reload
+restart_precmd=monit_checkconfig
+reload_precmd=monit_checkconfig
+
+default_config="{{file_dst_config_toml}}"
+required_files="${default_config}"
+command="{{file_creates_monit_exporter}}"
+command_args="-conf=\"${default_config}\" > /dev/null 2>&1 &"
+
+run_rc_command "$1"

@@ -1,0 +1,38 @@
+---
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+# monit_exporter_flags
+file_line_monit_exporter_flags: "monit_exporter_flags=\"-conf='/etc/monit_exporter/config.toml'\""
+file_regexp_monit_exporter_flags: 'monit_exporter_flags'
+file_dest_monit_exporter_flags: '/etc/rc.conf.local'
+
+# monit_exporter.service
+file_dst_monit_exporter_service: '/etc/rc.d/monit_exporter'
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+# check monit_exporter
+command_cmd_check_monit_exporter: 'rcctl check monit_exporter'
+
+# check service monit
+command_cmd_check_service_monit: 'rcctl get monit > /dev/null 2>&1'
+
+# disable monit_exporter
+command_cmd_disable_monit_exporter: 'rcctl disable monit_exporter'
+
+# enable monit_exporter
+command_cmd_enable_monit_exporter: 'rcctl enable monit_exporter'
+
+# start monit_exporter
+command_cmd_start_monit_exporter: 'rcctl start monit_exporter'
+
+# status monit_exporter
+command_cmd_status_monit_exporter: 'rcctl get monit_exporter status'
+
+# stop monit_exporter
+command_cmd_stop_monit_exporter: 'rcctl stop monit_exporter'

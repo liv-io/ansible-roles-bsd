@@ -1,0 +1,157 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - remove
+    - monit_exporter
+
+#-------------------------------------------------------------------------------
+# COMMANDS
+#-------------------------------------------------------------------------------
+
+- name: 'command status monit_exporter'
+  command: "{{command_cmd_status_monit_exporter}}"
+  register: register_status_monit_exporter
+  changed_when: (register_status_monit_exporter.rc > 2)
+  failed_when: (register_status_monit_exporter.rc > 2)
+  check_mode: 'no'
+  tags:
+    - remove
+    - monit_exporter
+
+- name: 'command stop monit_exporter'
+  command: "{{command_cmd_stop_monit_exporter}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'FreeBSD') and (register_status_monit_exporter.rc == 0)
+  tags:
+    - remove
+    - monit_exporter
+
+- name: 'command disable monit_exporter'
+  command: "{{command_cmd_disable_monit_exporter}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_status_monit_exporter.rc == 0)
+  tags:
+    - remove
+    - monit_exporter
+
+- name: 'command check monit_exporter'
+  command: "{{command_cmd_check_monit_exporter}}"
+  register: register_check_monit_exporter
+  changed_when: (register_check_monit_exporter.rc > 1)
+  failed_when: (register_check_monit_exporter.rc > 1)
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - monit_exporter
+
+- name: 'command stop monit_exporter'
+  command: "{{command_cmd_stop_monit_exporter}}"
+  check_mode: 'no'
+  when: (ansible_os_family == 'OpenBSD') and (register_check_monit_exporter.rc == 0)
+  tags:
+    - remove
+    - monit_exporter
+
+#-------------------------------------------------------------------------------
+# SYSTEM
+#-------------------------------------------------------------------------------
+
+- name: 'user remove monit_exporter'
+  user:
+    state: 'absent'
+    name: "{{user_name_monit_exporter}}"
+    remove: "{{user_home_remove_monit_exporter}}"
+    force: "{{user_home_force_monit_exporter}}"
+  tags:
+    - remove
+    - monit_exporter
+
+- name: 'group remove monit_exporter'
+  group:
+    state: 'absent'
+    name: "{{group_name_monit_exporter}}"
+  tags:
+    - remove
+    - monit_exporter
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file remove monit_exporter.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_monit_exporter_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - monit_exporter
+
+- name: 'line config monit_exporter_config'
+  lineinfile:
+    state: 'absent'
+    line: "{{file_line_monit_exporter_config}}"
+    regexp: "^{{file_regexp_monit_exporter_config}}=.*"
+    dest: "{{file_dest_monit_exporter_config}}"
+    create: 'yes'
+  when: (ansible_os_family == 'FreeBSD')
+  tags:
+    - remove
+    - monit_exporter
+
+- name: 'line config monit_exporter_flags'
+  lineinfile:
+    state: 'absent'
+    line: "{{file_line_monit_exporter_flags}}"
+    regexp: "^{{file_regexp_monit_exporter_flags}}=.*"
+    dest: "{{file_dest_monit_exporter_flags}}"
+    create: 'yes'
+  when: (ansible_os_family == 'OpenBSD')
+  tags:
+    - remove
+    - monit_exporter
+
+- name: 'file remove monit_exporter_etc.dir'
+  file:
+    state: 'absent'
+    path: "{{file_dst_monit_exporter_etc_dir}}"
+  tags:
+    - remove
+    - monit_exporter
+
+- name: 'file remove monit_exporter.service'
+  file:
+    state: 'absent'
+    path: "{{file_dst_monit_exporter_service}}"
+  tags:
+    - remove
+    - monit_exporter
+
+- name: 'file remove monit_exporter'
+  file:
+    state: 'absent'
+    path: "{{file_creates_monit_exporter}}"
+  tags:
+    - remove
+    - monit_exporter
+
+- name: 'file remove monit_exporter.tar.gz'
+  file:
+    state: 'absent'
+    path: "{{file_dst_monit_exporter_tar_gz}}"
+  tags:
+    - remove
+    - monit_exporter
