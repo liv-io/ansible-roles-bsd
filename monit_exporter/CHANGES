@@ -14,5 +14,8 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.1.1 (2020-11-30)
+B: Remove needless configuration checks in FreeBSD service file
+
 * Version 0.1.0 (2020-11-30)
 F: Initial release

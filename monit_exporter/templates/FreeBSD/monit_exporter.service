@@ -24,8 +24,6 @@ load_rc_config ${name}
 : ${monit_exporter_enable:=NO}
 
 extra_commands=reload
-restart_precmd=monit_checkconfig
-reload_precmd=monit_checkconfig
 
 default_config="{{file_dst_config_toml}}"
 required_files="${default_config}"
