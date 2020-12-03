@@ -37,8 +37,8 @@ ansible-roles-bsd is a collection of well curated Ansible roles for FreeBSD and 
 * Services can be monitored with Monit and exported via monit_exporter to Prometheus
 * Scripts support Email and Prometheus monitoring
 * Logs can be forwarded with syslog to Loki
-* Prometheus has built-in alerting rules and Grafana dashboards for scripts and services
-* Loki has built-in alerting rules and Grafana dashboards for scripts and services
+* Prometheus has built-in alerting rules and Grafana dashboards
+* Loki has built-in alerting rules and Grafana dashboards
 * Restic and rest-server can be used to backup machines
 * Time can be synchronized with NTP client
 * Host-based firewall restricts ingress and egress traffic by default
