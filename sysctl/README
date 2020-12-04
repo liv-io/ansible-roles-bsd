@@ -157,7 +157,7 @@ CONTROL NODE
 
 MANAGED NODE
   Python
-    Version: >= 2.7
+    Version: >= 2.7.0
 
 --------------------------------------------------------------------------------
 SUPPORT
