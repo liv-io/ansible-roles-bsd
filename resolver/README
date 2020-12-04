@@ -52,7 +52,7 @@ ROLE
   resolver_state
     Description: Control the state of the role.
                  'resolv.conf' is a core file and can therefore not be removed.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -63,7 +63,7 @@ ROLE
 
   resolver_domain
     Description: Define the 'resolver_domain' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -74,7 +74,7 @@ ROLE
 
   resolver_nameserver
     Description: Define the 'resolver_nameserver' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -86,7 +86,7 @@ ROLE
 
   resolver_search
     Description: Define the 'resolver_search' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array

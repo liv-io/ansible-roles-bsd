@@ -83,7 +83,7 @@ PARAMETERS
 CONFIG
   state
     Description: Control the state of the 'rc' entry.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -94,7 +94,7 @@ CONFIG
 
   comment
     Description: Define a comment for the 'rc' entry.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -106,7 +106,7 @@ CONFIG
 
   name
     Description: Define the name of the 'rc' entry.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -117,7 +117,7 @@ CONFIG
 
   path
     Description: Define the path of the 'rc' file.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -127,7 +127,7 @@ CONFIG
 
   value
     Description: Define the value of the 'rc' entry.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -140,7 +140,7 @@ CONFIG
 ROLE
   freebsd_rc_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -151,7 +151,7 @@ ROLE
 
   freebsd_rc_config_all
     Description: Define the 'freebsd_rc_config_all' option.
-    Implemented: 3.0
+    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -163,7 +163,7 @@ ROLE
 
   freebsd_rc_config_group
     Description: Define the 'freebsd_rc_config_group' option.
-    Implemented: 3.0
+    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -175,7 +175,7 @@ ROLE
 
   freebsd_rc_config_host
     Description: Define the 'freebsd_rc_config_host' option.
-    Implemented: 3.0
+    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash

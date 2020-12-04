@@ -51,7 +51,7 @@ PARAMETERS
 ROLE
   openbsd_syspatch_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -63,7 +63,7 @@ ROLE
 
   openbsd_syspatch_installurl
     Description: Define the 'openbsd_syspatch_installurl' option.
-    Implemented: 3.0
+    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash

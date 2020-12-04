@@ -50,7 +50,7 @@ PARAMETERS
 ROLE
   freebsd_pkg_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -62,7 +62,7 @@ ROLE
 
   freebsd_pkg_release
     Description: Define the 'freebsd_pkg_release' option.
-    Implemented: 0.6
+    Implemented: 0.6.0
     Required   : False
     Value      : Arbitrary
     Type       : String

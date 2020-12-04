@@ -122,7 +122,7 @@ PARAMETERS
 ROLE
   suricata_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -136,7 +136,7 @@ ROLE
 
   suricata_config
     Description: Define the 'suricata_config' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -147,7 +147,7 @@ ROLE
 
   suricata_external_net
     Description: Define the 'suricata_external_net' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -157,7 +157,7 @@ ROLE
 
   suricata_home_net
     Description: Define the 'suricata_home_net' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -167,7 +167,7 @@ ROLE
 
   suricata_interface
     Description: Define the 'suricata_interface' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -177,7 +177,7 @@ ROLE
 
   suricata_monitor_monit_state
     Description: Control the 'suricata_monitor_monit_state' option.
-    Implemented: 0.3
+    Implemented: 0.3.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -188,7 +188,7 @@ ROLE
 
   suricata_ruleset
     Description: Define the 'suricata_ruleset' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash

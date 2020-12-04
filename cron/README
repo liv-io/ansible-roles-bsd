@@ -66,7 +66,7 @@ PARAMETERS
 ROLE
   cron_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -80,7 +80,7 @@ ROLE
 
   cron_monitor_monit_state
     Description: Control the 'cron_monitor_monit_state' option.
-    Implemented: 2.7
+    Implemented: 2.7.0
     Required   : False
     Value      : Predetermined
     Type       : String

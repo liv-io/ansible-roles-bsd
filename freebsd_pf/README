@@ -90,7 +90,7 @@ PARAMETERS
 ROLE
   freebsd_pf_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -104,7 +104,7 @@ ROLE
 
   freebsd_pf_filters_all
     Description: Define the 'freebsd_pf_filters_all' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -135,7 +135,7 @@ ROLE
 
   freebsd_pf_filters_group
     Description: Define the 'freebsd_pf_filters_group' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -147,7 +147,7 @@ ROLE
 
   freebsd_pf_filters_host
     Description: Define the 'freebsd_pf_filters_host' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -160,7 +160,7 @@ ROLE
 
   freebsd_pf_filters_policies
     Description: Define the 'freebsd_pf_filters_policies' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -173,7 +173,7 @@ ROLE
 
   freebsd_pf_gateway_ipv4_state
     Description: Control the 'freebsd_pf_gateway_ipv4_state' option.
-    Implemented: 0.2
+    Implemented: 0.2.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -184,7 +184,7 @@ ROLE
 
   freebsd_pf_gateway_ipv6_state
     Description: Control the 'freebsd_pf_gateway_ipv6_state' option.
-    Implemented: 0.2
+    Implemented: 0.2.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -195,7 +195,7 @@ ROLE
 
   freebsd_pf_macros_all
     Description: Define the 'freebsd_pf_macros_all' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -213,7 +213,7 @@ ROLE
 
   freebsd_pf_macros_group
     Description: Define the 'freebsd_pf_macros_group' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -226,7 +226,7 @@ ROLE
 
   freebsd_pf_macros_host
     Description: Define the 'freebsd_pf_macros_host' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -241,7 +241,7 @@ ROLE
     Description: Define the 'freebsd_pf_macros_state_all' option.
                  The flags 'S/SA' are safe when using scrubbing. Use the flags
                  'S/SFRA' when scrubbing is disabled.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -256,7 +256,7 @@ ROLE
     Description: Define the 'freebsd_pf_macros_state_group' option.
                  The flags 'S/SA' are safe when using scrubbing. Use the flags
                  'S/SFRA' when scrubbing is disabled.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -270,7 +270,7 @@ ROLE
     Description: Define the 'freebsd_pf_macros_state_host' option.
                  The flags 'S/SA' are safe when using scrubbing. Use the flags
                  'S/SFRA' when scrubbing is disabled.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -282,7 +282,7 @@ ROLE
 
   freebsd_pf_normalization_scrub
     Description: Define the 'freebsd_pf_normalization_scrub' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -295,7 +295,7 @@ ROLE
 
   freebsd_pf_options_block_policy
     Description: Control the 'freebsd_pf_options_block_policy' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -307,7 +307,7 @@ ROLE
 
   freebsd_pf_options_debug
     Description: Control the 'freebsd_pf_options_debug' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -321,7 +321,7 @@ ROLE
 
   freebsd_pf_options_fingerprints
     Description: Define the 'freebsd_pf_options_fingerprints' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -331,7 +331,7 @@ ROLE
 
   freebsd_pf_options_hostid
     Description: Define the 'freebsd_pf_options_hostid' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -342,7 +342,7 @@ ROLE
 
   freebsd_pf_options_limits
     Description: Define the 'freebsd_pf_options_limits' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -357,7 +357,7 @@ ROLE
 
   freebsd_pf_options_loginterface
     Description: Define the 'freebsd_pf_options_loginterface' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -368,7 +368,7 @@ ROLE
 
   freebsd_pf_options_optimization
     Description: Control the 'freebsd_pf_options_optimization' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -382,7 +382,7 @@ ROLE
 
   freebsd_pf_options_require_order
     Description: Control the 'freebsd_pf_options_require_order' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -393,7 +393,7 @@ ROLE
 
   freebsd_pf_options_ruleset_optimization
     Description: Control the 'freebsd_pf_options_ruleset_optimization' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -405,7 +405,7 @@ ROLE
 
   freebsd_pf_options_skip
     Description: Define the 'freebsd_pf_options_skip' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -416,7 +416,7 @@ ROLE
 
   freebsd_pf_options_state_defaults
     Description: Define the 'freebsd_pf_options_state_defaults' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -427,7 +427,7 @@ ROLE
 
   freebsd_pf_options_state_policy
     Description: Control the 'freebsd_pf_options_state_policy' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -438,7 +438,7 @@ ROLE
 
   freebsd_pf_options_timeouts
     Description: Define the 'freebsd_pf_options_timeouts' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -452,7 +452,7 @@ ROLE
 
   freebsd_pf_pf_dir_name
     Description: Define the 'freebsd_pf_pf_dir_name' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -462,7 +462,7 @@ ROLE
 
   freebsd_pf_tables_all
     Description: Define the 'freebsd_pf_tables_all' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -473,7 +473,7 @@ ROLE
 
   freebsd_pf_tables_group
     Description: Define the 'freebsd_pf_tables_group' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -484,7 +484,7 @@ ROLE
 
   freebsd_pf_tables_host
     Description: Define the 'freebsd_pf_tables_host' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -495,7 +495,7 @@ ROLE
 
   freebsd_pf_translations_all
    Description: Define the 'freebsd_pf_translations_all' option.
-    Implemented: 0.2
+    Implemented: 0.2.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -512,7 +512,7 @@ ROLE
 
   freebsd_pf_translations_group
    Description: Define the 'freebsd_pf_translations_group' option.
-    Implemented: 0.2
+    Implemented: 0.2.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -529,7 +529,7 @@ ROLE
 
   freebsd_pf_translations_host
    Description: Define the 'freebsd_pf_translations_host' option.
-    Implemented: 0.2
+    Implemented: 0.2.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash

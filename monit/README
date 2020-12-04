@@ -164,7 +164,7 @@ PARAMETERS
 CONFIG
   state
     Description: Control the 'state' of the monit file.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -176,7 +176,7 @@ CONFIG
   name
     Description: Define the 'name' of the monit file.
                  For more details see 'man monit' or 'monit --help'.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -186,7 +186,7 @@ CONFIG
 
   comment
     Description: Define a 'comment' for the monit file.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -197,7 +197,7 @@ CONFIG
 
   config
     Description: Define the 'config' entry/entries.
-    Implemented: 5.0
+    Implemented: 5.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -219,7 +219,7 @@ CONFIG
 ROLE
   monit_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -233,7 +233,7 @@ ROLE
 
   monit_config_all
     Description: Define the 'monit_config_all' option.
-    Implemented: 5.0
+    Implemented: 5.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -257,7 +257,7 @@ ROLE
 
   monit_config_group
     Description: Define the 'monit_config_group' option.
-    Implemented: 5.0
+    Implemented: 5.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -281,7 +281,7 @@ ROLE
 
   monit_config_host
     Description: Define the 'monit_config_host' option.
-    Implemented: 5.0
+    Implemented: 5.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -305,7 +305,7 @@ ROLE
 
   monit_daemon_delay
     Description: Set the 'monit_daemon_delay' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -315,7 +315,7 @@ ROLE
 
   monit_daemon_interval
     Description: Set the 'monit_daemon_interval' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -326,7 +326,7 @@ ROLE
 
   monit_include
     Description: Define the 'monit_include' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -338,7 +338,7 @@ ROLE
 
   monit_mail_from
     Description: Define the 'monit_mail_from' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -348,7 +348,7 @@ ROLE
 
   monit_mail_message_action
     Description: Define the 'monit_mail_message_action' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -358,7 +358,7 @@ ROLE
 
   monit_mail_message_date
     Description: Define the 'monit_mail_message_date' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -368,7 +368,7 @@ ROLE
 
   monit_mail_message_description
     Description: Define the 'monit_mail_message_description' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -378,7 +378,7 @@ ROLE
 
   monit_mail_message_event
     Description: Define the 'monit_mail_message_event' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -388,7 +388,7 @@ ROLE
 
   monit_mail_message_host
     Description: Define the 'monit_mail_message_host' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -398,7 +398,7 @@ ROLE
 
   monit_mail_message_service
     Description: Define the 'monit_mail_message_service' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -408,7 +408,7 @@ ROLE
 
   monit_mail_server
     Description: Define the 'monit_mail_server' option.
-    Implemented: 4.1
+    Implemented: 4.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -420,7 +420,7 @@ ROLE
 
   monit_mail_subject
     Description: Define the 'monit_mail_subject' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -430,7 +430,7 @@ ROLE
 
   monit_mail_to
     Description: Define the 'monit_mail_to' option.
-    Implemented: 4.0
+    Implemented: 4.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -443,7 +443,7 @@ ROLE
 
   monit_web_server_address
     Description: Define the 'monit_web_server_address' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -453,7 +453,7 @@ ROLE
 
   monit_web_server_allow
     Description: Define the 'monit_web_server_allow' option.
-    Implemented: 4.0
+    Implemented: 4.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -464,7 +464,7 @@ ROLE
 
   monit_web_server_port
     Description: Set the 'monit_web_server_port' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String

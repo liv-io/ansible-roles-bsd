@@ -72,20 +72,20 @@ PARAMETERS
 
 ROLE
   sysctl_state
-      Description: Control the state of the role.
-      Implemented: 0.1
-      Required   : False
-      Value      : Predetermined
-      Type       : String
-      Default    : 'install'
-      Options    :
-        Install : 'true' | 'yes' | 'install'
-        Remove  : 'false' | 'no' | 'remove'
-        Inactive: 'quiesce' | 'inactive'
+    Description: Control the state of the role.
+    Implemented: 0.1.0
+    Required   : False
+    Value      : Predetermined
+    Type       : String
+    Default    : 'install'
+    Options    :
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
   sysctl_config_all
     Description: Define the 'sysctl_config_all' option.
-    Implemented: 1.0
+    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -97,7 +97,7 @@ ROLE
 
   sysctl_config_dependencies
     Description: Define the 'sysctl_config_dependencies' option.
-    Implemented: 1.1
+    Implemented: 1.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -109,7 +109,7 @@ ROLE
 
   sysctl_config_group
     Description: Define the 'sysctl_config_group' option.
-    Implemented: 1.0
+    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -121,7 +121,7 @@ ROLE
 
   sysctl_config_host
     Description: Define the 'sysctl_config_host' option.
-    Implemented: 1.0
+    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash

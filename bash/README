@@ -52,7 +52,7 @@ PARAMETERS
 ROLE
   bash_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -64,7 +64,7 @@ ROLE
 
   bash_checkwinsize
     Description: Control the state of the 'checkwinsize' Bash option.
-    Implemented: 0.5
+    Implemented: 0.5.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -75,7 +75,7 @@ ROLE
 
   bash_color_prompt
     Description: Control the state of a colored Bash prompt.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -86,7 +86,7 @@ ROLE
 
   bash_histappend
     Description: Control the state of the 'histappend' Bash option.
-    Implemented: 0.5
+    Implemented: 0.5.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -98,7 +98,7 @@ ROLE
   bash_histcontrol
     Description: Define values to control how commands are saved in the Bash
                  history.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -109,7 +109,7 @@ ROLE
 
   bash_histfilesize
     Description: Set the size of the Bash history file.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -121,7 +121,7 @@ ROLE
   bash_histignore
     Description: Define patterns to decide which command lines should not be
                  saved in the Bash history.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -132,7 +132,7 @@ ROLE
 
   bash_history_readonly
     Description: Control the readonly state of the Bash history variable.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -143,7 +143,7 @@ ROLE
 
   bash_histsize
     Description: Set the size of the Bash history variable.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -154,7 +154,7 @@ ROLE
 
   bash_histtimeformat
     Description: Define the time format of the Bash history.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -165,7 +165,7 @@ ROLE
 
   bash_prompt_command
     Description: Define the 'bash_prompt_command' option.
-    Implemented: 0.5
+    Implemented: 0.5.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -176,7 +176,7 @@ ROLE
   bash_tmout
     Description: Set the number of seconds after Bash terminates its session
                  if no input arrives.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -187,7 +187,7 @@ ROLE
 
   bash_tmout_readonly
     Description: Control the readonly state of the Bash 'TMOUT' variable.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String

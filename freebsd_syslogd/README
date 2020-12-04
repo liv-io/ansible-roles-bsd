@@ -66,7 +66,7 @@ PARAMETERS
 ROLE
   freebsd_syslogd_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -80,7 +80,7 @@ ROLE
 
   freebsd_syslogd_monitor_monit_state
     Description: Control the 'freebsd_syslogd_monitor_monit_state' option.
-    Implemented: 0.2
+    Implemented: 0.2.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -91,7 +91,7 @@ ROLE
 
   freebsd_syslogd_role
     Description: Set the 'freebsd_syslogd_role' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -101,7 +101,7 @@ ROLE
 
   freebsd_syslogd_server
     Description: Define the 'freebsd_syslogd_server' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String

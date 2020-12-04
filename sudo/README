@@ -94,7 +94,7 @@ PARAMETERS
 CONFIG
   state
     Description: Control the 'state' of the sudo file.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -106,7 +106,7 @@ CONFIG
   name
     Description: Define the 'name' of the sudo file.
                  For more details see 'man sudo' or 'sudo --help'.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -116,7 +116,7 @@ CONFIG
 
   config
     Description: Define the 'config' entry/entries.
-    Implemented: 4.0
+    Implemented: 4.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -133,7 +133,7 @@ CONFIG
 
   order
     Description: Define the 'order' of the sudo file.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -146,7 +146,7 @@ ROLE
   sudo_state
     Description: Control the state of the role.
                  'sudo' is a core package and should therefore not be removed.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -158,7 +158,7 @@ ROLE
 
   sudo_config_all
     Description: Define the 'sudo_config_all' option.
-    Implemented: 4.0
+    Implemented: 4.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -178,7 +178,7 @@ ROLE
 
   sudo_config_group
     Description: Define the 'sudo_config_group' option.
-    Implemented: 4.0
+    Implemented: 4.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -198,7 +198,7 @@ ROLE
 
   sudo_config_host
     Description: Define the 'sudo_config_host' option.
-    Implemented: 4.0
+    Implemented: 4.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -218,7 +218,7 @@ ROLE
 
   sudo_insults
     Description: Control the 'sudo_insults' option.
-    Implemented: 1.3
+    Implemented: 1.3.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -229,7 +229,7 @@ ROLE
 
   sudo_lecture
     Description: Control the 'sudo_lecture' option.
-    Implemented: 1.3
+    Implemented: 1.3.0
     Required   : False
     Value      : Predetermined
     Type       : String

@@ -67,7 +67,7 @@ PARAMETERS
 ROLE
   openbsd_syslogd_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -81,7 +81,7 @@ ROLE
 
   openbsd_syslogd_monitor_monit_state
     Description: Control the 'openbsd_syslogd_monitor_monit_state' option.
-    Implemented: 0.2
+    Implemented: 0.2.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -92,7 +92,7 @@ ROLE
 
   openbsd_syslogd_role
     Description: Set the 'openbsd_syslogd_role' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -102,7 +102,7 @@ ROLE
 
   openbsd_syslogd_server
     Description: Define the 'openbsd_syslogd_server' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String

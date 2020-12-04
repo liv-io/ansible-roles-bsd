@@ -64,7 +64,7 @@ PARAMETERS
 ROLE
   restic_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -78,7 +78,7 @@ ROLE
 
   restic_cacert
     Description: Define the 'restic_cacert' option.
-    Implemented: 1.1
+    Implemented: 1.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -89,7 +89,7 @@ ROLE
 
   restic_exclude
     Description: Define the 'restic_exclude' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -100,7 +100,7 @@ ROLE
 
   restic_include
     Description: Define the 'restic_include' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -111,7 +111,7 @@ ROLE
 
   restic_keep_daily
     Description: Set the 'restic_keep_daily' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -121,7 +121,7 @@ ROLE
 
   restic_keep_hourly
     Description: Set the 'restic_keep_hourly' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -131,7 +131,7 @@ ROLE
 
   restic_keep_monthly
     Description: Set the 'restic_keep_monthly' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -141,7 +141,7 @@ ROLE
 
   restic_keep_weekly
     Description: Set the 'restic_keep_weekly' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -151,7 +151,7 @@ ROLE
 
   restic_limit_download
     Description: Set the 'restic_limit_download' option.
-    Implemented: 0.3
+    Implemented: 0.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -161,7 +161,7 @@ ROLE
 
   restic_limit_upload
     Description: Set the 'restic_limit_upload' option.
-    Implemented: 0.3
+    Implemented: 0.3.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer
@@ -171,7 +171,7 @@ ROLE
 
   restic_monitor_mail_from_address
     Description: Define the 'restic_monitor_mail_from_address' option.
-    Implemented: 0.4
+    Implemented: 0.4.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -181,7 +181,7 @@ ROLE
 
   restic_monitor_mail_to_address
     Description: Define the 'restic_monitor_mail_to_address' option.
-    Implemented: 0.4
+    Implemented: 0.4.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -192,7 +192,7 @@ ROLE
 
   restic_monitor_mail_state
     Description: Control the 'restic_monitor_mail_state' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -203,7 +203,7 @@ ROLE
 
   restic_monitor_prom_state
     Description: Control the 'restic_monitor_prom_state' option.
-    Implemented: 0.11
+    Implemented: 0.11.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -214,7 +214,7 @@ ROLE
 
   restic_monitor_prom_textfile_collector
     Description: Define the 'restic_monitor_prom_textfile_collector' option.
-    Implemented: 0.11
+    Implemented: 0.11.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -224,7 +224,7 @@ ROLE
 
   restic_password
     Description: Define the 'restic_password' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -234,7 +234,7 @@ ROLE
 
   restic_run_backup_day
     Description: Define the 'restic_run_backup_day' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -244,7 +244,7 @@ ROLE
 
   restic_run_backup_hour
     Description: Define the 'restic_run_backup_hour' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -254,7 +254,7 @@ ROLE
 
   restic_run_backup_minute
     Description: Define the 'restic_run_backup_minute' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -264,7 +264,7 @@ ROLE
 
   restic_run_backup_month
     Description: Define the 'restic_run_backup_month' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -274,7 +274,7 @@ ROLE
 
   restic_run_backup_weekday
     Description: Define the 'restic_run_backup_weekday' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -284,7 +284,7 @@ ROLE
 
   restic_server_address
     Description: Define the 'restic_server_address' option.
-    Implemented: 1.0
+    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -294,7 +294,7 @@ ROLE
 
   restic_server_password
     Description: Define the 'restic_server_password' option.
-    Implemented: 1.0
+    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -304,7 +304,7 @@ ROLE
 
   restic_server_port
     Description: Define the 'restic_server_port' option.
-    Implemented: 1.0
+    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Integer, String
@@ -314,7 +314,7 @@ ROLE
 
   restic_server_username
     Description: Define the 'restic_server_username' option.
-    Implemented: 1.0
+    Implemented: 1.0.0
     Required   : False
     Value      : Arbitrary
     Type       : String

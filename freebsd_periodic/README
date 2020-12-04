@@ -52,7 +52,7 @@ PARAMETERS
 ROLE
   freebsd_periodic_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -64,7 +64,7 @@ ROLE
 
   freebsd_periodic_daily_output
     Description: Define the 'freebsd_periodic_daily_output' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -74,7 +74,7 @@ ROLE
 
   freebsd_periodic_daily_show_badconfig
     Description: Control the 'freebsd_periodic_daily_show_badconfig' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -85,7 +85,7 @@ ROLE
 
   freebsd_periodic_daily_show_info
     Description: Control the 'freebsd_periodic_daily_show_info' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -96,7 +96,7 @@ ROLE
 
   freebsd_periodic_daily_show_success
     Description: Control the 'freebsd_periodic_daily_show_success' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -107,7 +107,7 @@ ROLE
 
   freebsd_periodic_monthly_output
     Description: Define the 'freebsd_periodic_monthly_output' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -117,7 +117,7 @@ ROLE
 
   freebsd_periodic_monthly_show_badconfig
     Description: Control the 'freebsd_periodic_monthly_show_badconfig' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -128,7 +128,7 @@ ROLE
 
   freebsd_periodic_monthly_show_info
     Description: Control the 'freebsd_periodic_monthly_show_info' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -139,7 +139,7 @@ ROLE
 
   freebsd_periodic_monthly_show_success
     Description: Control the 'freebsd_periodic_monthly_show_success' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -150,7 +150,7 @@ ROLE
 
   freebsd_periodic_weekly_output
     Description: Define the 'freebsd_periodic_weekly_output' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -160,7 +160,7 @@ ROLE
 
   freebsd_periodic_weekly_show_badconfig
     Description: Control the 'freebsd_periodic_weekly_show_badconfig' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -171,7 +171,7 @@ ROLE
 
   freebsd_periodic_weekly_show_info
     Description: Control the 'freebsd_periodic_weekly_show_info' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -182,7 +182,7 @@ ROLE
 
   freebsd_periodic_weekly_show_success
     Description: Control the 'freebsd_periodic_weekly_show_success' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String

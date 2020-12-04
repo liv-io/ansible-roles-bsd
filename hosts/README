@@ -72,7 +72,7 @@ PARAMETERS
 CONFIG
   state
     Description: Control the state of the hosts entry.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -83,7 +83,7 @@ CONFIG
 
   name
     Description: Define the hostname of the hosts entry.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -93,7 +93,7 @@ CONFIG
 
   aliases
     Description: Define the aliases for the hosts entry.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -107,7 +107,7 @@ CONFIG
 
   comment
     Description: Define a comment for the hosts entry.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -118,7 +118,7 @@ CONFIG
 
   ip
     Description: Define the ip of the hosts entry.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : True
     Value      : Arbitrary
     Type       : String
@@ -128,7 +128,7 @@ CONFIG
 
   path
     Description: Define the path of the hosts file.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -139,7 +139,7 @@ CONFIG
 ROLE
   hosts_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -150,7 +150,7 @@ ROLE
 
   hosts_config_all
     Description: Define the 'hosts_config_all' option.
-    Implemented: 3.0
+    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -164,7 +164,7 @@ ROLE
 
   hosts_config_group
     Description: Define the 'hosts_config_group' option.
-    Implemented: 3.0
+    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash
@@ -178,7 +178,7 @@ ROLE
 
   hosts_config_host
     Description: Define the 'hosts_config_host' option.
-    Implemented: 3.0
+    Implemented: 3.0.0
     Required   : False
     Value      : Arbitrary
     Type       : Array/Hash

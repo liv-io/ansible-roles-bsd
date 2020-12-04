@@ -64,7 +64,7 @@ PARAMETERS
 ROLE
   rest_server_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -78,7 +78,7 @@ ROLE
 
   rest_server_monitor_monit_state
     Description: Control the 'rest_server_monitor_monit_state' option.
-    Implemented: 0.4
+    Implemented: 0.4.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -89,7 +89,7 @@ ROLE
 
   rest_server_options
     Description: Define the 'rest_server_options' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : Array
@@ -100,7 +100,7 @@ ROLE
 
   rest_server_version
     Description: Define the 'rest_server_version' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String

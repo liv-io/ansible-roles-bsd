@@ -55,7 +55,7 @@ PARAMETERS
 ROLE
   openbsd_periodic_state
     Description: Control the state of the role.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -67,7 +67,7 @@ ROLE
 
   openbsd_periodic_daily_state
     Description: Control the 'openbsd_periodic_daily_state' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -78,7 +78,7 @@ ROLE
 
   openbsd_periodic_monthly_state
     Description: Control the 'openbsd_periodic_monthly_state' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -89,7 +89,7 @@ ROLE
 
   openbsd_periodic_weekly_state
     Description: Control the 'openbsd_periodic_weekly_state' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String

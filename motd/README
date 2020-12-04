@@ -46,7 +46,7 @@ ROLE
   motd_state
     Description: Control the state of the role.
                  'motd' is a core file and can therefore not be removed.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Predetermined
     Type       : String
@@ -57,7 +57,7 @@ ROLE
 
   motd_env_name
     Description: Define the 'motd_env_name' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -68,7 +68,7 @@ ROLE
 
   motd_host_description
     Description: Define the 'motd_host_description' option.
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -79,7 +79,7 @@ ROLE
 
   motd_host_ip_address
     Description: Define the 'motd_host_ip_address' option.
-    Implemented: 2.3
+    Implemented: 2.3.0
     Required   : False
     Value      : Arbitrary
     Type       : String
@@ -94,7 +94,7 @@ ROLE
                  created. The custom Jinja2 file for an example configuration
                  called 'example' needs to be placed as follows:
                  'motd/templates/example/motd'
-    Implemented: 0.1
+    Implemented: 0.1.0
     Required   : False
     Value      : Arbitrary
     Type       : String
