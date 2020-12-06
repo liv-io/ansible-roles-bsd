@@ -26,7 +26,7 @@
 
 ## About
 
-`ansible-roles-bsd` is a collection of well curated Ansible roles for FreeBSD and OpenBSD. The Ansible roles are licensed under the Simplified BSD License.
+`ansible-roles-bsd` is a collection of well curated Ansible roles for the FreeBSD and OpenBSD operating system. All Ansible roles are licensed under the Simplified BSD License.
 
 ### Features
 
@@ -52,7 +52,7 @@
 
 ### Support
 
-The Ansible roles support the following operating systems:
+The following operating systems are supported:
 * FreeBSD 12.1-*
 * OpenBSD 6.8
 
