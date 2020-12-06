@@ -99,6 +99,22 @@ See `CREDITS` file for more information.
 
 ## Appendix
 
+### Loki/Grafana Dashboards
+
+| Suricata |
+| --- |
+| <img src=https://user-images.githubusercontent.com/19646270/101278206-40784280-37ba-11eb-8108-54231ae62679.png height="200" title="Suricata"> |
+
+### Prometheus/Grafana Dashboards
+
+| System Status | Script Status |
+| --- | --- |
+| <img src=https://user-images.githubusercontent.com/19646270/101277238-57fffd00-37b3-11eb-8fc4-3dc013536e37.png height="200" title="System Status"> | <img src=https://user-images.githubusercontent.com/19646270/101277235-546c7600-37b3-11eb-8561-303f2b62d178.png height="200" title="Script Status"> |
+
+| Network Traffic | Ping Prober |
+| --- | --- |
+| <img src=https://user-images.githubusercontent.com/19646270/101277644-32282780-37b6-11eb-9131-5a58aae74f42.png height="200" title="Network Traffic"> | <img src=https://user-images.githubusercontent.com/19646270/101277645-33595480-37b6-11eb-841f-68738ca45693.png height="200" title="Ping Prober"> |
+
 <!-- shields.io -->
 [contributors-shield]: https://img.shields.io/github/contributors/liv-io/ansible-roles-bsd.svg?style=flat
 [contributors-url]: https://github.com/liv-io/ansible-roles-bsd/graphs/contributors
