@@ -8,4 +8,4 @@
 file_dst_group: '/etc/group'
 file_mode_group: '0644'
 file_owner_group: 'root'
-file_group_config_group: 'wheel'
+file_group_group: 'wheel'

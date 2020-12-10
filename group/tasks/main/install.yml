@@ -26,7 +26,7 @@
     dest: "{{file_dst_group}}"
     mode: "{{file_mode_group}}"
     owner: "{{file_owner_group}}"
-    group: "{{file_group_config_group}}"
+    group: "{{file_group_group}}"
   tags:
     - install
     - group
