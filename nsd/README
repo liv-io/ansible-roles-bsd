@@ -300,7 +300,7 @@ REQUIREMENTS
 
 CONTROL NODE
   Ansible
-    Version: >= 2.5
+    Version: >= 2.8.0
 
 MANAGED NODE
   Python
