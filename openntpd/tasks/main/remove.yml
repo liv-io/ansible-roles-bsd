@@ -58,15 +58,6 @@
     - remove
     - openntpd
 
-- name: 'file remove openntpd.cfg'
-  file:
-    state: 'absent'
-    path: "{{file_dst_openntpd_cfg}}"
-  notify: 'service reload monit'
-  tags:
-    - remove
-    - openntpd
-
 #-------------------------------------------------------------------------------
 # PACKAGING
 #-------------------------------------------------------------------------------
@@ -83,6 +74,15 @@
 #-------------------------------------------------------------------------------
 # FILES
 #-------------------------------------------------------------------------------
+
+- name: 'file remove openntpd.cfg'
+  file:
+    state: 'absent'
+    path: "{{file_dst_openntpd_cfg}}"
+  notify: 'service reload monit'
+  tags:
+    - remove
+    - openntpd
 
 - name: 'cron remove openntpd_check-time'
   cron:
