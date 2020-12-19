@@ -27,10 +27,10 @@
     mode: "{{file_mode_config}}"
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
+  loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
   notify:
     - 'command validate monit'
     - 'service restart monit'
-  loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
   when: not (item.state is match('false|no|remove'))
   tags:
     - config
@@ -40,10 +40,10 @@
   file:
     state: 'absent'
     path: "{{file_dst_monit_d}}/{{item.name}}.cfg"
+  loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
   notify:
     - 'command validate monit'
     - 'service restart monit'
-  loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
   when: (item.state is match('false|no|remove'))
   tags:
     - config
