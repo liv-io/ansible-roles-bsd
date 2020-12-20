@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # node_exporter_textfile_dir
-file_line_node_exporter_textfile_dir: 'node_exporter_textfile_dir="/data/node_exporter/textfile_collector"'
+file_line_node_exporter_textfile_dir: 'node_exporter_textfile_dir="/var/node_exporter/textfile_collector"'
 file_regexp_node_exporter_textfile_dir: 'node_exporter_textfile_dir'
 file_dest_node_exporter_textfile_dir: '/etc/rc.conf'
 

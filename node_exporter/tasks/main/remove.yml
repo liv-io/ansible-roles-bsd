@@ -108,10 +108,10 @@
     - remove
     - node_exporter
 
-- name: 'file remove node_exporter_data.dir'
+- name: 'file remove node_exporter_var.dir'
   file:
     state: 'absent'
-    path: "{{file_dst_node_exporter_data_dir}}"
+    path: "{{file_dst_node_exporter_var_dir}}"
   tags:
     - remove
     - node_exporter

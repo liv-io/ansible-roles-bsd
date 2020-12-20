@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 
 # node_exporter_flags
-file_line_node_exporter_flags: "node_exporter_flags=\"--collector.textfile.directory='/data/node_exporter/textfile_collector'\""
+file_line_node_exporter_flags: "node_exporter_flags=\"--collector.textfile.directory='/var/node_exporter/textfile_collector'\""
 file_regexp_node_exporter_flags: 'node_exporter_flags'
 file_dest_node_exporter_flags: '/etc/rc.conf.local'
 

@@ -4,20 +4,14 @@
 # FILES
 #-------------------------------------------------------------------------------
 
-# data.dir
-file_dst_data_dir: '/data'
-file_mode_data_dir: '0755'
-file_owner_data_dir: 'root'
-file_group_data_dir: 'wheel'
-
-# node_exporter_data.dir
-file_dst_node_exporter_data_dir: '/data/node_exporter'
-file_mode_node_exporter_data_dir: '0755'
-file_owner_node_exporter_data_dir: 'root'
-file_group_node_exporter_data_dir: 'wheel'
+# node_exporter_var.dir
+file_dst_node_exporter_var_dir: '/var/node_exporter'
+file_mode_node_exporter_var_dir: '0755'
+file_owner_node_exporter_var_dir: 'root'
+file_group_node_exporter_var_dir: 'wheel'
 
 # textfile_collector.dir
-file_dst_textfile_collector_dir: '/data/node_exporter/textfile_collector'
+file_dst_textfile_collector_dir: '/var/node_exporter/textfile_collector'
 file_mode_textfile_collector_dir: '1777'
 file_owner_textfile_collector_dir: 'root'
 file_group_textfile_collector_dir: 'wheel'

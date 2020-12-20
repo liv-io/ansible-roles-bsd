@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.6.2 (2020-12-20)
+E: Modify 'textfile_collector' path to comply with BSD directory structure
+
 * Version 0.6.1 (2020-11-29)
 B: Adjust return code for monit service check
 
