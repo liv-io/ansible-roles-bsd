@@ -127,9 +127,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '/data/node_exporter/textfile_collector'
+    Default    : '/var/node_exporter/textfile_collector'
     Options    :
-      Examples: '/data/node_exporter/textfile_collector'
+      Examples: '/var/node_exporter/textfile_collector'
 
   unbound_adblock_source
     Description: Define the 'unbound_adblock_source' option.

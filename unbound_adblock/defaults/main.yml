@@ -10,7 +10,7 @@ unbound_adblock_monitor_mail_state: 'false'
 
 unbound_adblock_monitor_prom_state: 'false'
 
-unbound_adblock_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+unbound_adblock_monitor_prom_textfile_collector: '/var/node_exporter/textfile_collector'
 
 unbound_adblock_source: 'https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts'
 

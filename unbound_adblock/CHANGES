@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.2.1 (2020-12-20)
+E: Modify 'textfile_collector' path to comply with BSD directory structure
+
 * Version 0.2.0 (2020-11-05)
 F: Add support for FreeBSD
 
