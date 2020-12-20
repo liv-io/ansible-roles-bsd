@@ -28,7 +28,7 @@ openntpd_monitor_monit_state: 'false'
 
 openntpd_monitor_prom_state: 'false'
 
-openntpd_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+openntpd_monitor_prom_textfile_collector: '/var/node_exporter/textfile_collector'
 
 openntpd_server:
   - {address: "ntp.{{ansible_domain}}", weight: 1, comment: 'Default NTP server'}

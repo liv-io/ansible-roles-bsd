@@ -227,9 +227,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '/data/node_exporter/textfile_collector'
+    Default    : '/var/node_exporter/textfile_collector'
     Options    :
-      Examples: '/data/node_exporter/textfile_collector'
+      Examples: '/var/node_exporter/textfile_collector'
 
   openntpd_server
     Description: Define the 'openntpd_server' option.

@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 5.3.4 (2020-12-20)
+E: Modify 'textfile_collector' path to comply with BSD directory structure
+
 * Version 5.3.3 (2020-12-10)
 B: Correct Jinja2 statement in Monit check
 
