@@ -196,9 +196,9 @@ ROLE
     Required   : False
     Value      : Arbitrary
     Type       : String
-    Default    : '/data/node_exporter/textfile_collector'
+    Default    : '/var/node_exporter/textfile_collector'
     Options    :
-      Examples: '/data/node_exporter/textfile_collector'
+      Examples: '/var/node_exporter/textfile_collector'
 
   zfs_scrub_pools_day
     Description: Define the 'zfs_scrub_pools_day' option.

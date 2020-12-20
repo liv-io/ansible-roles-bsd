@@ -22,7 +22,7 @@ zfs_monitor_mail_state: 'false'
 
 zfs_monitor_prom_state: 'false'
 
-zfs_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+zfs_monitor_prom_textfile_collector: '/var/node_exporter/textfile_collector'
 
 zfs_scrub_pools_day: '*'
 
