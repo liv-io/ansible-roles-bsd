@@ -43,7 +43,7 @@ restic_monitor_mail_state: 'false'
 
 restic_monitor_prom_state: 'false'
 
-restic_monitor_prom_textfile_collector: '/data/node_exporter/textfile_collector'
+restic_monitor_prom_textfile_collector: '/var/node_exporter/textfile_collector'
 
 restic_password: '2t-C7s9fC_VR4jtm-Nv5,Uj7UdM3kv.8'
 
