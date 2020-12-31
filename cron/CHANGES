@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.8.0 (2020-12-31)
+C: Add support for FreeBSD 12.2-RELEASE
+C: Drop support for FreeBSD 12.1-RELEASE
+
 * Version 2.7.1 (2020-11-29)
 B: Adjust return code for monit service check
 

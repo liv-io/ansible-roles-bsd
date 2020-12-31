@@ -34,8 +34,8 @@ F: Update 'rest-server' to version '0.10.0'
 C: Set '--no-auth' by default (to activate, create: /data/rest-server/.htpasswd)
 
 * Version 0.2.0 (2020-10-19)
-F: Add support for OpenBSD 6.8
-F: Drop support for OpenBSD 6.7
+C: Add support for OpenBSD 6.8
+C: Drop support for OpenBSD 6.7
 
 * Version 0.1.0 (2020-07-21)
 F: Initial release

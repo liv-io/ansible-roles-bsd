@@ -120,5 +120,4 @@ Defaults !lecture
 # Defaults passprompt="%p's password:"
 
 ## Read drop-in files from /usr/local/etc/sudoers.d
-## (the '#' here does not indicate a comment)
-#includedir /usr/local/etc/sudoers.d
+@includedir /usr/local/etc/sudoers.d

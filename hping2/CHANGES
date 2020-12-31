@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.9.0 (2020-12-31)
+C: Add support for FreeBSD 12.2-RELEASE
+C: Drop support for FreeBSD 12.1-RELEASE
+
 * Version 2.8.0 (2019-11-08)
 C: Add support for FreeBSD 12.1-RELEASE
 C: Drop support for FreeBSD 12.0-RELEASE

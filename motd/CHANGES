@@ -14,16 +14,20 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.14.0 (2020-12-31)
+C: Add support for FreeBSD 12.2-RELEASE
+C: Drop support for FreeBSD 12.1-RELEASE
+
 * Version 2.13.1 (2020-11-19)
 E: Ensure lineinfile tasks can create file if missing
 
 * Version 2.13.0 (2020-10-19)
-F: Add support for OpenBSD 6.8
-F: Drop support for OpenBSD 6.7
+C: Add support for OpenBSD 6.8
+C: Drop support for OpenBSD 6.7
 
 * Version 2.12.0 (2020-05-19)
-F: Add support for OpenBSD 6.7
-F: Drop support for OpenBSD 6.6
+C: Add support for OpenBSD 6.7
+C: Drop support for OpenBSD 6.6
 
 * Version 2.11.0 (2019-11-08)
 C: Add support for FreeBSD 12.1-RELEASE

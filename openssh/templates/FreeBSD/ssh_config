@@ -1,7 +1,8 @@
 {{ansible_managed|comment(decoration='#')}}
 
+
 #	$OpenBSD: ssh_config,v 1.33 2017/05/07 23:12:57 djm Exp $
-#	$FreeBSD: releng/12.1/crypto/openssh/ssh_config 338561 2018-09-10 16:20:12Z des $
+#	$FreeBSD: releng/12.2/crypto/openssh/ssh_config 360313 2020-04-25 15:38:48Z emaste $
 
 # This is the ssh client system-wide configuration file.  See
 # ssh_config(5) for more information.  This file provides defaults for
@@ -48,7 +49,7 @@
 #   ProxyCommand ssh -q -W %h:%p gateway.example.com
 #   RekeyLimit 1G 1h
 #   VerifyHostKeyDNS yes
-#   VersionAddendum FreeBSD-20180909
+#   VersionAddendum FreeBSD-20200214
 
 Host *
   Ciphers aes256-ctr,aes192-ctr

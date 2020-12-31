@@ -18,8 +18,8 @@ F: feature
 E: Simplify Ansible file header (ansible_managed)
 
 * Version 1.8.0 (2020-10-19)
-F: Add support for OpenBSD 6.8
-F: Drop support for OpenBSD 6.7
+C: Add support for OpenBSD 6.8
+C: Drop support for OpenBSD 6.7
 
 * Version 1.7.1 (2020-05-28)
 B: Fix aggr lacpmode and lacptimeout options
@@ -28,8 +28,8 @@ B: Fix aggr lacpmode and lacptimeout options
 F: Add option to configure interface type aggr
 
 * Version 1.6.0 (2020-05-19)
-F: Add support for OpenBSD 6.7
-F: Drop support for OpenBSD 6.6
+C: Add support for OpenBSD 6.7
+C: Drop support for OpenBSD 6.6
 
 * Version 1.5.0 (2020-02-22)
 F: Add option to configure interface type trunk

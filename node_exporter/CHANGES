@@ -14,6 +14,10 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 0.7.0 (2020-12-31)
+C: Add support for FreeBSD 12.2-RELEASE
+C: Drop support for FreeBSD 12.1-RELEASE
+
 * Version 0.6.2 (2020-12-20)
 E: Modify 'textfile_collector' path to comply with BSD directory structure
 
@@ -27,8 +31,8 @@ F: Add support for Monit service monitoring (node_exporter_monitor_monit_state)
 E: Ensure lineinfile tasks can create file if missing
 
 * Version 0.5.0 (2020-10-19)
-F: Add support for OpenBSD 6.8
-F: Drop support for OpenBSD 6.7
+C: Add support for OpenBSD 6.8
+C: Drop support for OpenBSD 6.7
 
 * Version 0.4.0 (2020-08-23)
 F: Configure --collector.textfile.directory flag on FreeBSD
@@ -39,8 +43,8 @@ F: Create directories for --collector.textfile.directory
 F: Configure --collector.textfile.directory flag on OpenBSD
 
 * Version 0.2.0 (2020-05-19)
-F: Add support for OpenBSD 6.7
-F: Drop support for OpenBSD 6.6
+C: Add support for OpenBSD 6.7
+C: Drop support for OpenBSD 6.6
 
 * Version 0.1.0 (2020-04-08)
 F: Initial release

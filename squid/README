@@ -500,7 +500,7 @@ SUPPORT
 
 OPERATING SYSTEMS
   FreeBSD
-    Version: 12.1-*
+    Version: 12.2-*
       Status: Stable
 
   OpenBSD

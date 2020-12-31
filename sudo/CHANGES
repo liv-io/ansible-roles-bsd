@@ -14,16 +14,20 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 4.7.0 (2020-12-31)
+C: Add support for FreeBSD 12.2-RELEASE
+C: Drop support for FreeBSD 12.1-RELEASE
+
 * Version 4.6.1 (2020-10-30)
 E: Simplify Ansible file header (ansible_managed)
 
 * Version 4.6.0 (2020-10-19)
-F: Add support for OpenBSD 6.8
-F: Drop support for OpenBSD 6.7
+C: Add support for OpenBSD 6.8
+C: Drop support for OpenBSD 6.7
 
 * Version 4.5.0 (2020-05-19)
-F: Add support for OpenBSD 6.7
-F: Drop support for OpenBSD 6.6
+C: Add support for OpenBSD 6.7
+C: Drop support for OpenBSD 6.6
 
 * Version 4.4.0 (2019-11-08)
 C: Add support for FreeBSD 12.1-RELEASE
