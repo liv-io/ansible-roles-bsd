@@ -29,21 +29,21 @@ INSTALL
     roles:
       - role: bsd_diff
     vars:
-      bsd_diff_state: 'install'
+      bsd_diff_state: "install"
 
 REMOVE
   - hosts: all
     roles:
       - role: bsd_diff
     vars:
-      bsd_diff_state: 'remove'
+      bsd_diff_state: "remove"
 
 INACTIVE
   - hosts: all
     roles:
       - role: bsd_diff
     vars:
-      bsd_diff_state: 'inactive'
+      bsd_diff_state: "inactive"
 
 --------------------------------------------------------------------------------
 PARAMETERS
@@ -56,11 +56,11 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'install'
+    Default    : "install"
     Options    :
-      Install : 'true' | 'yes' | 'install'
-      Remove  : 'false' | 'no' | 'remove'
-      Inactive: 'quiesce' | 'inactive'
+      Install : "true" | "yes" | "install"
+      Remove  : "false" | "no" | "remove"
+      Inactive: "quiesce" | "inactive"
 
 --------------------------------------------------------------------------------
 CONFLICTS
@@ -76,7 +76,7 @@ PACKAGES
   bsd-diff
     Version: >= 20120705
     Name   :
-      FreeBSD 12: 'bsd-diff'
+      FreeBSD 12: "bsd-diff"
 
 ROLES
 
