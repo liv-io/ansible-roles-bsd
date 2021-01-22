@@ -1,12 +1,12 @@
 ---
 
 - name: include variables
-  include_vars: "{{lookup('first_found', params)}}"
+  include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
       files:
-        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
-        - "vars/{{ansible_os_family}}.yml"
+        - "vars/{{ ansible_os_family }}{{ ansible_distribution_release }}.yml"
+        - "vars/{{ ansible_os_family }}.yml"
         - "vars/main.yml"
   tags:
     - htop
@@ -14,6 +14,6 @@
 - name: remove package htop
   package:
     state: absent
-    name: "{{package_name_htop}}"
+    name: "{{ package_name_htop }}"
   tags:
     - htop
