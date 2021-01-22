@@ -1,27 +1,27 @@
 ---
 
-bash_state: 'install'
+bash_state: "install"
 
-bash_checkwinsize: 'true'
+bash_checkwinsize: "true"
 
-bash_color_prompt: 'true'
+bash_color_prompt: "true"
 
-bash_histappend: 'true'
+bash_histappend: "true"
 
-bash_histcontrol: 'false'
+bash_histcontrol: "false"
 
-bash_histfilesize: '262144'
+bash_histfilesize: "262144"
 
-bash_histignore: 'false'
+bash_histignore: "false"
 
-bash_history_readonly: 'true'
+bash_history_readonly: "true"
 
-bash_histsize: '262144'
+bash_histsize: "262144"
 
-bash_histtimeformat: '%F %T  '
+bash_histtimeformat: "%F %T  "
 
-bash_prompt_command: 'history -a'
+bash_prompt_command: "history -a"
 
-bash_tmout: '1800'
+bash_tmout: "1800"
 
-bash_tmout_readonly: 'true'
+bash_tmout_readonly: "true"

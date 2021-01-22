@@ -1,0 +1,33 @@
+---
+
+- name: include variables
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "vars/{{ ansible_os_family }}{{ ansible_distribution_release }}.yml"
+        - "vars/{{ ansible_os_family }}.yml"
+        - "vars/main.yml"
+  tags:
+    - bash
+
+- name: remove package bash
+  package:
+    state: absent
+    name: "{{ package_name_bash }}"
+  tags:
+    - bash
+
+- name: remove file bash.bash
+  file:
+    state: absent
+    path: "{{ file_dst_bash_bash }}"
+  tags:
+    - bash
+
+- name: remove file zz_bash.bash
+  file:
+    state: absent
+    path: "{{ file_dst_zz_bash_bash }}"
+  tags:
+    - bash
