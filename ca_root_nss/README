@@ -27,21 +27,21 @@ INSTALL
     roles:
       - role: ca_root_nss
     vars:
-      ca_root_nss_state: 'install'
+      ca_root_nss_state: "install"
 
 REMOVE
   - hosts: all
     roles:
       - role: ca_root_nss
     vars:
-      ca_root_nss_state: 'remove'
+      ca_root_nss_state: "remove"
 
 INACTIVE
   - hosts: all
     roles:
       - role: ca_root_nss
     vars:
-      ca_root_nss_state: 'inactive'
+      ca_root_nss_state: "inactive"
 
 --------------------------------------------------------------------------------
 PARAMETERS
@@ -54,11 +54,11 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'install'
+    Default    : "install"
     Options    :
-      Install : 'true' | 'yes' | 'install'
-      Remove  : 'false' | 'no' | 'remove'
-      Inactive: 'quiesce' | 'inactive'
+      Install : "true" | "yes" | "install"
+      Remove  : "false" | "no" | "remove"
+      Inactive: "quiesce" | "inactive"
 
 --------------------------------------------------------------------------------
 CONFLICTS
@@ -74,7 +74,7 @@ PACKAGES
   ca_root_nss
     Version: >= 3.0
     Name   :
-      FreeBSD 12: 'ca_root_nss'
+      FreeBSD 12: "ca_root_nss"
 
 ROLES
 
