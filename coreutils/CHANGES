@@ -14,6 +14,9 @@ F: feature
 
 --------------------------------------------------------------------------------
 
+* Version 2.13.1 (2021-01-23)
+E: Remodel Ansible structure and syntax
+
 * Version 2.13.0 (2020-12-31)
 C: Add support for FreeBSD 12.2-RELEASE
 C: Drop support for FreeBSD 12.1-RELEASE
