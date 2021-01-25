@@ -1,0 +1,55 @@
+---
+
+#-------------------------------------------------------------------------------
+# VARIABLES
+#-------------------------------------------------------------------------------
+
+- name: 'include variables'
+  include_vars: "{{lookup('first_found', params)}}"
+  vars:
+    params:
+      files:
+        - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
+        - "vars/{{ansible_os_family}}.yml"
+        - 'vars/main.yml'
+  tags:
+    - install
+    - bash
+
+#-------------------------------------------------------------------------------
+# PACKAGING
+#-------------------------------------------------------------------------------
+
+- name: 'package install bash'
+  package:
+    state: 'present'
+    name: "{{package_name_bash}}"
+  tags:
+    - install
+    - bash
+
+#-------------------------------------------------------------------------------
+# FILES
+#-------------------------------------------------------------------------------
+
+- name: 'file create bash.bash'
+  template:
+    src: "{{file_src_bash_bash}}"
+    dest: "{{file_dst_bash_bash}}"
+    mode: "{{file_mode_bash_bash}}"
+    owner: "{{file_owner_bash_bash}}"
+    group: "{{file_group_bash_bash}}"
+  tags:
+    - install
+    - bash
+
+- name: 'file create zz_bash.bash'
+  template:
+    src: "{{file_src_zz_bash_bash}}"
+    dest: "{{file_dst_zz_bash_bash}}"
+    mode: "{{file_mode_zz_bash_bash}}"
+    owner: "{{file_owner_zz_bash_bash}}"
+    group: "{{file_group_zz_bash_bash}}"
+  tags:
+    - install
+    - bash

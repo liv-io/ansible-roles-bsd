@@ -1,9 +1,0 @@
----
-
-- name: assert operating system
-  assert:
-    that: ((ansible_os_family == 'FreeBSD') and (ansible_distribution_release is match("12\.2-*"))) or ((ansible_os_family == 'OpenBSD') and (ansible_distribution_version == '6.8'))
-    fail_msg: "Operating system is not supported."
-    success_msg: "Operating system is supported."
-  tags:
-    - coreutils

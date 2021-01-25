@@ -1,0 +1,13 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (bash_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - bash
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (bash_state is match('false|no|remove'))
+  tags:
+    - bash

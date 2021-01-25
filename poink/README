@@ -76,7 +76,7 @@ PACKAGES
   poink
     Version: >= 1.6
     Name   :
-      OpenBSD 5: 'poink'
+      OpenBSD 6: 'poink'
 
 ROLES
 

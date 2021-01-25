@@ -26,21 +26,21 @@ INSTALL
     roles:
       - role: htop
     vars:
-      htop_state: "install"
+      htop_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
       - role: htop
     vars:
-      htop_state: "remove"
+      htop_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
       - role: htop
     vars:
-      htop_state: "inactive"
+      htop_state: 'inactive'
 
 --------------------------------------------------------------------------------
 PARAMETERS
@@ -53,11 +53,11 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : "install"
+    Default    : 'install'
     Options    :
-      Install : "true" | "yes" | "install"
-      Remove  : "false" | "no" | "remove"
-      Inactive: "quiesce" | "inactive"
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
 CONFLICTS
@@ -73,8 +73,8 @@ PACKAGES
   htop
     Version: >= 2.0
     Name   :
-      FreeBSD 12: "htop"
-      OpenBSD  6: "htop"
+      FreeBSD 12: 'htop'
+      OpenBSD  6: 'htop'
 
 ROLES
 

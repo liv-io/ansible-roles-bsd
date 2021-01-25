@@ -14,9 +14,6 @@ F: feature
 
 --------------------------------------------------------------------------------
 
-* Version 2.9.1 (2021-01-23)
-E: Remodel Ansible structure and syntax
-
 * Version 2.9.0 (2020-10-19)
 C: Add support for OpenBSD 6.8
 C: Drop support for OpenBSD 6.7

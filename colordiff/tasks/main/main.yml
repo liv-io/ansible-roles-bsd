@@ -1,0 +1,13 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (colordiff_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - colordiff
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (colordiff_state is match('false|no|remove'))
+  tags:
+    - colordiff

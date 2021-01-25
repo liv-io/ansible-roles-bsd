@@ -28,21 +28,21 @@ INSTALL
     roles:
       - role: bsd_grep
     vars:
-      bsd_grep_state: "install"
+      bsd_grep_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
       - role: bsd_grep
     vars:
-      bsd_grep_state: "remove"
+      bsd_grep_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
       - role: bsd_grep
     vars:
-      bsd_grep_state: "inactive"
+      bsd_grep_state: 'inactive'
 
 --------------------------------------------------------------------------------
 PARAMETERS
@@ -55,11 +55,11 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : "install"
+    Default    : 'install'
     Options    :
-      Install : "true" | "yes" | "install"
-      Remove  : "false" | "no" | "remove"
-      Inactive: "quiesce" | "inactive"
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
 CONFLICTS
@@ -75,7 +75,7 @@ PACKAGES
   bsd-grep
     Version: >= 20111002
     Name   :
-      FreeBSD 12: "bsd-grep"
+      FreeBSD 12: 'bsd-grep'
 
 ROLES
 

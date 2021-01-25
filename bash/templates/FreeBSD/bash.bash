@@ -1,4 +1,4 @@
-{{ ansible_managed | comment(decoration='#') }}
+{{ansible_managed|comment(decoration='#')}}
 
 #-------------------------------------------------------------------------------
 # NOTE

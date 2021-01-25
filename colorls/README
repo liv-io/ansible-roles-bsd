@@ -26,21 +26,21 @@ INSTALL
     roles:
       - role: colorls
     vars:
-      colorls_state: "install"
+      colorls_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
       - role: colorls
     vars:
-      colorls_state: "remove"
+      colorls_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
       - role: colorls
     vars:
-      colorls_state: "inactive"
+      colorls_state: 'inactive'
 
 --------------------------------------------------------------------------------
 PARAMETERS
@@ -53,11 +53,11 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : "install"
+    Default    : 'install'
     Options    :
-      Install : "true" | "yes" | "install"
-      Remove  : "false" | "no" | "remove"
-      Inactive: "quiesce" | "inactive"
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
 CONFLICTS
@@ -73,7 +73,7 @@ PACKAGES
   colorls
     Version: >= 5.7
     Name   :
-      OpenBSD 6: "colorls"
+      OpenBSD 6: 'colorls'
 
 ROLES
 

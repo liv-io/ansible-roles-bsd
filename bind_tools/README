@@ -29,21 +29,21 @@ INSTALL
     roles:
       - role: bind_tools
     vars:
-      bind_tools_state: "install"
+      bind_tools_state: 'install'
 
 REMOVE
   - hosts: all
     roles:
       - role: bind_tools
     vars:
-      bind_tools_state: "remove"
+      bind_tools_state: 'remove'
 
 INACTIVE
   - hosts: all
     roles:
       - role: bind_tools
     vars:
-      bind_tools_state: "inactive"
+      bind_tools_state: 'inactive'
 
 --------------------------------------------------------------------------------
 PARAMETERS
@@ -56,11 +56,11 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : "install"
+    Default    : 'install'
     Options    :
-      Install : "true" | "yes" | "install"
-      Remove  : "false" | "no" | "remove"
-      Inactive: "quiesce" | "inactive"
+      Install : 'true' | 'yes' | 'install'
+      Remove  : 'false' | 'no' | 'remove'
+      Inactive: 'quiesce' | 'inactive'
 
 --------------------------------------------------------------------------------
 CONFLICTS
@@ -76,7 +76,7 @@ PACKAGES
   bind-tools
     Version: >= 9.8
     Name   :
-      FreeBSD 12: "bind-tools"
+      FreeBSD 12: 'bind-tools'
 
 ROLES
 

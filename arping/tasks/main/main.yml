@@ -1,0 +1,13 @@
+---
+
+- name: 'task include install'
+  import_tasks: install.yml
+  when: not (arping_state is match('false|no|remove|quiesce|inactive'))
+  tags:
+    - arping
+
+- name: 'task include remove'
+  import_tasks: remove.yml
+  when: (arping_state is match('false|no|remove'))
+  tags:
+    - arping
