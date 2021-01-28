@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # root.dir
 file_dst_root_dir: '/root'
 file_mode_root_dir: "{{root_root_dir_mode}}"
@@ -15,10 +11,6 @@ file_dst_bashrc: '/root/.bashrc'
 file_mode_bashrc: '0644'
 file_owner_bashrc: "{{root_root_dir_owner}}"
 file_group_bashrc: "{{root_root_dir_group}}"
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # root
 group_name_root: 'wheel'

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # aliases
 file_src_aliases: "templates/{{ansible_os_family}}/aliases"
 file_dst_aliases: '/etc/mail/aliases'
@@ -38,10 +34,6 @@ file_mode_opensmtpd_cfg: '0640'
 file_owner_opensmtpd_cfg: 'root'
 file_group_opensmtpd_cfg: 'wheel'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # pkill postfix
 command_cmd_pkill_postfix: 'pkill master ; true'
 
@@ -50,10 +42,6 @@ command_cmd_pkill_sendmail: 'pkill sendmail ; true'
 
 # smtpctl aliases
 command_cmd_smtpctl_aliases: 'smtpctl update table aliases'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # monit
 service_name_monit: 'monit'

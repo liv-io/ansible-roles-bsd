@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - motd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create motd'
   template:
@@ -28,7 +19,6 @@
     owner: "{{file_owner_motd}}"
     group: "{{file_group_motd}}"
   tags:
-    - install
     - motd
 
 - name: 'line disable motd-patch'
@@ -40,5 +30,4 @@
     create: 'yes'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - install
     - motd

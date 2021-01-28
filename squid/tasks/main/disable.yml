@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - squid
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create dst_domain_allowed.acl'
   template:
@@ -29,7 +20,6 @@
     group: "{{file_group_dst_domain_allowed_acl}}"
   notify: 'command parse config'
   tags:
-    - disable
     - squid
 
 - name: 'file create dst_domain_blocked.acl'
@@ -41,7 +31,6 @@
     group: "{{file_group_dst_domain_blocked_acl}}"
   notify: 'command parse config'
   tags:
-    - disable
     - squid
 
 - name: 'file create dst_network_allowed.acl'
@@ -53,7 +42,6 @@
     group: "{{file_group_dst_network_allowed_acl}}"
   notify: 'command parse config'
   tags:
-    - disable
     - squid
 
 - name: 'file create dst_network_blocked.acl'
@@ -65,7 +53,6 @@
     group: "{{file_group_dst_network_blocked_acl}}"
   notify: 'command parse config'
   tags:
-    - disable
     - squid
 
 - name: 'file create src_network_unrestricted.acl'
@@ -77,7 +64,6 @@
     group: "{{file_group_src_network_unrestricted_acl}}"
   notify: 'command parse config'
   tags:
-    - disable
     - squid
 
 - name: 'file create squid.conf'
@@ -89,7 +75,6 @@
     group: "{{file_group_squid_conf}}"
   notify: 'command parse config'
   tags:
-    - disable
     - squid
 
 - name: 'line disable squid_enable'
@@ -101,7 +86,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - disable
     - squid
 
 - name: 'stat file cache.dir'
@@ -109,7 +93,6 @@
     path: "{{file_dst_cache_dir}}"
   register: register_cache_dir
   tags:
-    - disable
     - squid
 
 - name: 'file create squid.cfg'
@@ -122,19 +105,13 @@
   notify: 'service reload monit'
   when: (squid_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - disable
     - squid
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command create cache.dir'
   shell: "{{command_cmd_create_cache_dir}}"
   check_mode: 'no'
   when: (register_cache_dir.stat.exists == False)
   tags:
-    - disable
     - squid
 
 - name: 'command status squid'
@@ -145,7 +122,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - squid
 
 - name: 'command disable squid'
@@ -153,7 +129,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_squid.rc == 0)
   tags:
-    - disable
     - squid
 
 - name: 'command check squid'
@@ -164,7 +139,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - squid
 
 - name: 'command stop squid'
@@ -172,12 +146,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_squid.rc == 0)
   tags:
-    - disable
     - squid
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service stop squid'
   service:
@@ -185,5 +154,4 @@
     enabled: 'no'
     name: "{{service_name_squid}}"
   tags:
-    - disable
     - squid

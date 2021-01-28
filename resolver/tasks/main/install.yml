@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - resolver
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create resolv.conf'
   template:
@@ -28,5 +19,4 @@
     owner: "{{file_owner_resolv_conf}}"
     group: "{{file_group_resolv_conf}}"
   tags:
-    - install
     - resolver

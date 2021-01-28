@@ -1,8 +1,6 @@
 {{ansible_managed|comment(decoration='#')}}
 
-#-------------------------------------------------------------------------------
 # INTERFACE
-#-------------------------------------------------------------------------------
 
 {% if not ((item.description|default('')) == '') %}description "{{item.description}}" {% endif %}
 {%- if not ((item.comment|default('')) == '') %}# {{item.comment}}{% endif %}
@@ -64,9 +62,7 @@
 {% endfor %}
 
 {%- if not ((item.routes|default([])) == []) %}
-#-------------------------------------------------------------------------------
 # ROUTE
-#-------------------------------------------------------------------------------
 
 {% for route in (item.routes|default([])) %}
 !route add -net {{route.network}}
@@ -77,9 +73,7 @@
 {% endfor %}
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # STATE
-#-------------------------------------------------------------------------------
 
 {% if ((item.status|default('true')) is match('false|no|disable|down')) %}
 down

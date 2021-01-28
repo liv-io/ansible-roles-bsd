@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - suricata
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'line config suricata_flags'
   lineinfile:
@@ -29,7 +20,6 @@
     create: 'yes'
   notify: 'service reload suricata'
   tags:
-    - enable
     - suricata
 
 - name: 'file create suricata.yaml'
@@ -42,7 +32,6 @@
     validate: "{{file_validate_suricata_yaml}}"
   notify: 'service reload suricata'
   tags:
-    - enable
     - suricata
 
 - name: 'file create suricata.cfg'
@@ -55,12 +44,7 @@
   notify: 'service reload monit'
   when: (suricata_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - suricata
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status suricata'
   command: "{{command_cmd_status_suricata}}"
@@ -70,7 +54,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - suricata
 
 - name: 'command enable suricata'
@@ -78,7 +61,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_suricata.rc == 1)
   tags:
-    - enable
     - suricata
 
 - name: 'command check suricata'
@@ -89,7 +71,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - suricata
 
 - name: 'command start suricata'
@@ -97,12 +78,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_suricata.rc == 1)
   tags:
-    - enable
     - suricata
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start suricata'
   service:
@@ -111,5 +87,4 @@
     name: "{{service_name_suricata}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - suricata

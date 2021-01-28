@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - openbsd_syslogd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'line config syslogd_flags'
   lineinfile:
@@ -28,7 +19,6 @@
     dest: "{{file_dst_syslogd_flags}}"
     create: 'yes'
   tags:
-    - disable
     - openbsd_syslogd
 
 - name: 'file create syslog.conf'
@@ -39,7 +29,6 @@
     owner: "{{file_owner_syslog_conf}}"
     group: "{{file_group_syslog_conf}}"
   tags:
-    - disable
     - openbsd_syslogd
 
 - name: 'file create syslogd.cfg'
@@ -52,12 +41,7 @@
   notify: 'service reload monit'
   when: (openbsd_syslogd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - disable
     - openbsd_syslogd
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status syslogd'
   command: "{{command_cmd_status_syslogd}}"
@@ -66,7 +50,6 @@
   failed_when: (register_status_syslogd.rc > 1)
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - openbsd_syslogd
 
 - name: 'command disable syslogd'
@@ -74,7 +57,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_syslogd.rc == 0)
   tags:
-    - disable
     - openbsd_syslogd
 
 - name: 'command check syslogd'
@@ -85,7 +67,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - openbsd_syslogd
 
 - name: 'command stop syslogd'
@@ -93,5 +74,4 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_syslogd.rc == 0)
   tags:
-    - disable
     - openbsd_syslogd

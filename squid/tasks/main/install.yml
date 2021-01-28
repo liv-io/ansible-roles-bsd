@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,24 +9,14 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - squid
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install squid'
   package:
     state: 'present'
     name: "{{package_name_squid}}"
   tags:
-    - install
     - squid
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create acl.dir'
   file:
@@ -40,12 +26,7 @@
     owner: "{{file_owner_acl_dir}}"
     group: "{{file_group_acl_dir}}"
   tags:
-    - install
     - squid
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'stat file monit.d'
   stat:
@@ -53,7 +34,6 @@
   register: register_monit_d
   when: (squid_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - squid
 
 - name: 'file create monit.d'
@@ -65,12 +45,7 @@
     group: "{{file_group_monit_d}}"
   when: (squid_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - squid
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -80,5 +55,4 @@
   check_mode: 'no'
   when: (squid_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - squid

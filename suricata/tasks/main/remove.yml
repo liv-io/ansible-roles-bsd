@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - suricata
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'line remove eve.json.newsyslog'
   lineinfile:
@@ -27,7 +18,6 @@
     dest: "{{file_dst_eve_json_newsyslog}}"
     create: 'yes'
   tags:
-    - remove
     - suricata
 
 - name: 'line remove fast.log.newsyslog'
@@ -37,7 +27,6 @@
     dest: "{{file_dst_fast_log_newsyslog}}"
     create: 'yes'
   tags:
-    - remove
     - suricata
 
 - name: 'line remove stats.log.newsyslog'
@@ -47,7 +36,6 @@
     dest: "{{file_dst_stats_log_newsyslog}}"
     create: 'yes'
   tags:
-    - remove
     - suricata
 
 - name: 'line remove suricata_flags'
@@ -57,7 +45,6 @@
     dest: "{{file_dst_suricata_flags}}"
     create: 'yes'
   tags:
-    - remove
     - suricata
 
 - name: 'command info suricata'
@@ -67,7 +54,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - suricata
 
 - name: 'command disable suricata'
@@ -75,7 +61,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_suricata.rc == 0)
   tags:
-    - remove
     - suricata
 
 - name: 'command stop suricata'
@@ -83,24 +68,14 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_suricata.rc == 0)
   tags:
-    - remove
     - suricata
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove suricata'
   package:
     state: 'absent'
     name: "{{package_name_suricata}}"
   tags:
-    - remove
     - suricata
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove suricata.cfg'
   file:
@@ -108,7 +83,6 @@
     path: "{{file_dst_suricata_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - suricata
 
 - name: 'file remove suricata.yaml'
@@ -116,7 +90,6 @@
     state: 'absent'
     path: "{{file_dst_suricata_yaml}}"
   tags:
-    - remove
     - suricata
 
 - name: 'file remove suricata.rules'
@@ -124,5 +97,4 @@
     state: 'absent'
     path: "{{file_dst_suricata_rules}}"
   tags:
-    - remove
     - suricata

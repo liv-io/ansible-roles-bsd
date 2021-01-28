@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - freebsd_pf
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create anchors.conf'
   template:
@@ -31,7 +22,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'file create filters.conf'
@@ -45,7 +35,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'file create macros.conf'
@@ -59,7 +48,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'file create normalization.conf'
@@ -73,7 +61,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'file create options.conf'
@@ -87,7 +74,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'file create queues.conf'
@@ -101,7 +87,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'file create tables.conf'
@@ -115,7 +100,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'file create translations.conf'
@@ -129,7 +113,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'file create pf.conf'
@@ -143,7 +126,6 @@
     - 'command validate freebsd_pf'
     - 'command reload freebsd_pf'
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'line enable pf_enable'
@@ -155,7 +137,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'line enable gateway-ipv4'
@@ -167,7 +148,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'line disable gateway-ipv4'
@@ -179,7 +159,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'line enable gateway-ipv6'
@@ -191,7 +170,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
-    - enable
     - freebsd_pf
 
 - name: 'line disable gateway-ipv6'
@@ -203,12 +181,7 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
-    - enable
     - freebsd_pf
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start freebsd_pf'
   service:
@@ -217,5 +190,4 @@
     name: "{{service_name_freebsd_pf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - freebsd_pf

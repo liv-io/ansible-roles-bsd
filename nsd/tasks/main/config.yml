@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - nsd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'command locate unbound'
   command: "{{command_cmd_locate_unbound}}"
@@ -27,7 +18,6 @@
   failed_when: (register_locate_unbound.rc > 1)
   check_mode: 'no'
   tags:
-    - config
     - nsd
 
 - name: 'file create config'
@@ -41,7 +31,6 @@
   notify: 'service restart nsd'
   when: not (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 1)
   tags:
-    - config
     - nsd
 
 - name: 'file create config'
@@ -57,7 +46,6 @@
     - 'service restart unbound'
   when: not (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 0)
   tags:
-    - config
     - nsd
 
 - name: 'file remove config'
@@ -68,7 +56,6 @@
   notify: 'service restart nsd'
   when: (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 1)
   tags:
-    - config
     - nsd
 
 - name: 'file remove config'
@@ -81,5 +68,4 @@
     - 'service restart unbound'
   when: (item.state|default('true') is match('false|no|remove')) and (register_locate_unbound.rc == 0)
   tags:
-    - config
     - nsd

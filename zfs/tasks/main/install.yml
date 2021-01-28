@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - zfs
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create zfs_check-pools'
   template:
@@ -28,7 +19,6 @@
     owner: "{{file_owner_zfs_check_pools}}"
     group: "{{file_group_zfs_check_pools}}"
   tags:
-    - install
     - zfs
 
 - name: 'file create zfs_scrub-pools'
@@ -39,7 +29,6 @@
     owner: "{{file_owner_zfs_scrub_pools}}"
     group: "{{file_group_zfs_scrub_pools}}"
   tags:
-    - install
     - zfs
 
 - name: 'file create zfs_trim-pools'
@@ -50,5 +39,4 @@
     owner: "{{file_owner_zfs_trim_pools}}"
     group: "{{file_group_zfs_trim_pools}}"
   tags:
-    - install
     - zfs

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,24 +9,14 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install rsyslog'
   package:
     state: 'present'
     name: "{{package_name_rsyslog}}"
   tags:
-    - install
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create rsyslog.d'
   file:
@@ -40,7 +26,6 @@
     owner: "{{file_owner_rsyslog_d}}"
     group: "{{file_group_rsyslog_d}}"
   tags:
-    - install
     - rsyslog
 
 - name: 'stat file monit.d'
@@ -49,7 +34,6 @@
   register: register_monit_d
   when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - rsyslog
 
 - name: 'file create monit.d'
@@ -61,12 +45,7 @@
     group: "{{file_group_monit_d}}"
   when: (rsyslog_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -76,5 +55,4 @@
   check_mode: 'no'
   when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - rsyslog

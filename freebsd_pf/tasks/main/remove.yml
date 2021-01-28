@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,19 +9,13 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - freebsd_pf
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove anchors.conf'
   file:
     state: 'absent'
     path: "{{file_dst_anchors_conf}}"
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'file remove filters.conf'
@@ -33,7 +23,6 @@
     state: 'absent'
     path: "{{file_dst_filters_conf}}"
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'file remove macros.conf'
@@ -41,7 +30,6 @@
     state: 'absent'
     path: "{{file_dst_macros_conf}}"
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'file remove normalization.conf'
@@ -49,7 +37,6 @@
     state: 'absent'
     path: "{{file_dst_normalization_conf}}"
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'file remove options.conf'
@@ -57,7 +44,6 @@
     state: 'absent'
     path: "{{file_dst_options_conf}}"
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'file remove queues.conf'
@@ -65,7 +51,6 @@
     state: 'absent'
     path: "{{file_dst_queues_conf}}"
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'file remove tables.conf'
@@ -73,7 +58,6 @@
     state: 'absent'
     path: "{{file_dst_tables_conf}}"
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'file remove translations.conf'
@@ -81,7 +65,6 @@
     state: 'absent'
     path: "{{file_dst_translations_conf}}"
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'file remove pf.conf'
@@ -89,7 +72,6 @@
     state: 'absent'
     path: "{{file_dst_pf_conf}}"
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'file remove pf.dir'
@@ -97,7 +79,6 @@
     state: 'absent'
     path: "{{file_dst_ntp_script_dir}}"
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'line remove pf_enable'
@@ -109,7 +90,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'line remove gateway-ipv4'
@@ -121,7 +101,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
-    - remove
     - freebsd_pf
 
 - name: 'line remove gateway-ipv6'
@@ -133,5 +112,4 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
-    - remove
     - freebsd_pf

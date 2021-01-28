@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # src.dir
 file_dst_src_dir: '/usr/local/src'
 file_mode_src_dir: '0755'
@@ -58,10 +54,6 @@ file_dst_monit_exporter_cfg: '/etc/monit.d/monit_exporter.cfg'
 file_mode_monit_exporter_cfg: '0640'
 file_owner_monit_exporter_cfg: 'root'
 file_group_monit_exporter_cfg: 'wheel'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # monit
 service_name_monit: 'monit'

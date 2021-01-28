@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - tinc
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create config.dir'
   file:
@@ -31,7 +22,6 @@
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - tinc
 
 - name: 'file create hosts.dir'
@@ -45,7 +35,6 @@
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - tinc
 
 - name: 'file create host'
@@ -63,7 +52,6 @@
   notify: 'service restart tinc'
   when: not (item.0.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - tinc
 
 - name: 'file copy rsa_key.priv'
@@ -78,7 +66,6 @@
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - tinc
 
 - name: 'file create tinc.conf'
@@ -92,7 +79,6 @@
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - tinc
 
 - name: 'file create tinc-down'
@@ -106,7 +92,6 @@
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - tinc
 
 - name: 'file create tinc-up'
@@ -120,7 +105,6 @@
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - tinc
 
 - name: 'line config tincd_flags'
@@ -134,7 +118,6 @@
   notify: 'service restart tinc'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - tinc
 
 - name: 'file remove config.dir'
@@ -145,7 +128,6 @@
   notify: 'service restart tinc'
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - tinc
 
 - name: 'line disable tincd_flags'
@@ -158,5 +140,4 @@
   notify: 'service restart tinc'
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - tinc

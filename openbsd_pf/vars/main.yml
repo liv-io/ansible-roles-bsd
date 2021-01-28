@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # pf.dir
 file_dst_pf_dir: "/etc/{{openbsd_pf_pf_dir_name}}"
 file_mode_pf_dir: '0755'
@@ -65,10 +61,6 @@ file_dst_tables_conf: "{{file_dst_pf_dir}}/tables.conf"
 file_mode_tables_conf: '0600'
 file_owner_tables_conf: 'root'
 file_group_tables_conf: 'wheel'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # check openbsd_pf
 command_cmd_check_openbsd_pf: 'pfctl -s info | grep -iq "^status: enabled.*"'

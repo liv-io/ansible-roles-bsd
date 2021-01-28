@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - rest_server
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create rest-server'
   group:
@@ -26,7 +17,6 @@
     name: "{{group_name_rest_server}}"
     system: "{{group_system_rest_server}}"
   tags:
-    - install
     - rest_server
 
 - name: 'user create rest-server'
@@ -46,12 +36,7 @@
     shell: "{{user_shell_rest_server}}"
     system: "{{user_system_rest_server}}"
   tags:
-    - install
     - rest_server
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create src.dir'
   file:
@@ -61,7 +46,6 @@
     owner: "{{file_owner_src_dir}}"
     group: "{{file_group_src_dir}}"
   tags:
-    - install
     - rest_server
 
 - name: 'file create data.dir'
@@ -72,7 +56,6 @@
     owner: "{{file_owner_data_dir}}"
     group: "{{file_group_data_dir}}"
   tags:
-    - install
     - rest_server
 
 - name: 'file create rest-server_data.dir'
@@ -83,7 +66,6 @@
     owner: "{{file_owner_rest_server_data_dir}}"
     group: "{{file_group_rest_server_data_dir}}"
   tags:
-    - install
     - rest_server
 
 - name: 'file download rest-server.tar.gz'
@@ -95,7 +77,6 @@
     group: "{{file_group_rest_server_tar_gz}}"
     checksum: "{{file_checksum_rest_server_tar_gz}}"
   tags:
-    - install
     - rest_server
 
 - name: 'file unarchive rest-server'
@@ -108,12 +89,7 @@
     extra_opts: "{{file_extra_opts_rest_server}}"
     remote_src: 'yes'
   tags:
-    - install
     - rest_server
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'stat file monit.d'
   stat:
@@ -121,7 +97,6 @@
   register: register_monit_d
   when: (rest_server_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - rest_server
 
 - name: 'file create monit.d'
@@ -133,12 +108,7 @@
     group: "{{file_group_monit_d}}"
   when: (rest_server_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - rest_server
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -148,15 +118,9 @@
   check_mode: 'no'
   when: (rest_server_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - rest_server
-
-#-------------------------------------------------------------------------------
-# META
-#-------------------------------------------------------------------------------
 
 - name: 'meta flush handlers'
   meta: 'flush_handlers'
   tags:
-    - install
     - rest_server

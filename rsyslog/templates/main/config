@@ -1,9 +1,7 @@
 {{ansible_managed|comment(decoration='#')}}
 
 {% if not ((item.comment|default('')) == '') %}
-#-------------------------------------------------------------------------------
 # {{(item.comment|upper)}}
-#-------------------------------------------------------------------------------
 {% endif %}
 
 {% if ((item.section|default('')) is match('input|in')) %}

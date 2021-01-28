@@ -2,9 +2,7 @@
 
 server {
 
-  #-----------------------------------------------------------------------------
   # CORE
-  #-----------------------------------------------------------------------------
 
   # Listen
   listen
@@ -20,9 +18,7 @@ server {
   server_name {{item.name}}
 {%- if not ((item.alias|default([])) == []) %} {% for alias in item.alias %}{{alias}}{% if not loop.last %} {% endif %}{% endfor %}{% endif %};
 
-  #-----------------------------------------------------------------------------
   # LOG
-  #-----------------------------------------------------------------------------
 
   # Logging options
   error_log logs/{{item.name}}-{{(item.port|int)}}_error.log;
@@ -33,9 +29,7 @@ server {
  main;
 {% endif %}
 
-  #-----------------------------------------------------------------------------
   # HEADER
-  #-----------------------------------------------------------------------------
 
 {% if ((item.hsts_state|default('false')) is match('true|yes|enable')) %}
   # HTTP Strict Transport Security (HSTS)
@@ -51,9 +45,7 @@ server {
 {% endif %}
 
 {% if ((item.ssl_state|default('false')) is match('true|yes|enable')) %}
-  #-----------------------------------------------------------------------------
   # SSL
-  #-----------------------------------------------------------------------------
 
   # SSL/TLS protocol versions
 {% if not ((item.ssl_protocols|default([])) == []) %}
@@ -117,9 +109,7 @@ server {
 {% endif %}
 {% endif %}
 
-  #-----------------------------------------------------------------------------
   # CONFIG
-  #-----------------------------------------------------------------------------
 
 {% if not (item.config == '') %}
 {{(item.config|indent(width=2, indentfirst=True))}}

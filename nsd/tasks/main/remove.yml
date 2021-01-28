@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - nsd
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status nsd'
   command: "{{command_cmd_status_nsd}}"
@@ -28,7 +19,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - nsd
 
 - name: 'command disable nsd'
@@ -36,7 +26,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_nsd.rc == 0)
   tags:
-    - remove
     - nsd
 
 - name: 'command check nsd'
@@ -47,7 +36,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - nsd
 
 - name: 'command stop nsd'
@@ -55,12 +43,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_nsd.rc == 0)
   tags:
-    - remove
     - nsd
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove nsd'
   package:
@@ -68,12 +51,7 @@
     name: "{{package_name_nsd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - nsd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove nsd.cfg'
   file:
@@ -81,7 +59,6 @@
     path: "{{file_dst_nsd_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - nsd
 
 - name: 'line remove nsd_enable'
@@ -93,7 +70,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - nsd
 
 - name: 'file remove nsd.conf'
@@ -102,5 +78,4 @@
     path: "{{file_dst_nsd_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - nsd

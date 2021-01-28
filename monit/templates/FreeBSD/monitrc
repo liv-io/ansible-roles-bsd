@@ -154,9 +154,7 @@ set mailserver {{item.address}}
 set mail-format {
      from: {{monit_mail_from}}
   subject: {{monit_mail_subject}}
-  message: --------------------------------------------------------------------------------
-MONIT
---------------------------------------------------------------------------------
+  message: MONIT
 
 Host        : {{monit_mail_message_host}}
 Service     : {{monit_mail_message_service}}
@@ -165,9 +163,7 @@ Action      : {{monit_mail_message_action}}
 Description : {{monit_mail_message_description}}
 Date        : {{monit_mail_message_date}}
 
---------------------------------------------------------------------------------
 SYSTEM
---------------------------------------------------------------------------------
 
 Hostname    : {{ansible_hostname}}
 FQDN        : {{ansible_fqdn}}

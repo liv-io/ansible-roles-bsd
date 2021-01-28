@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - tinc
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status tinc'
   command: "{{command_cmd_status_tinc}}"
@@ -28,7 +19,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - tinc
 
 - name: 'command disable tinc'
@@ -36,7 +26,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_tinc.rc == 0)
   tags:
-    - remove
     - tinc
 
 - name: 'command check tinc'
@@ -47,7 +36,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - tinc
 
 - name: 'command stop tinc'
@@ -55,24 +43,14 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_tinc.rc == 0)
   tags:
-    - remove
     - tinc
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove tinc'
   package:
     state: 'absent'
     name: "{{package_name_tinc}}"
   tags:
-    - remove
     - tinc
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove tinc.cfg'
   file:
@@ -80,5 +58,4 @@
     path: "{{file_dst_tinc_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - tinc

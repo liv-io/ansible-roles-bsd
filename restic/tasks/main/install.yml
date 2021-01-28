@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,24 +9,14 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - restic
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install restic'
   package:
     state: 'present'
     name: "{{package_name_restic}}"
   tags:
-    - install
     - restic
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create restic_etc.dir'
   file:
@@ -40,7 +26,6 @@
     owner: "{{file_owner_restic_etc_dir}}"
     group: "{{file_group_restic_etc_dir}}"
   tags:
-    - install
     - restic
 
 - name: 'file create restic_log.dir'
@@ -51,7 +36,6 @@
     owner: "{{file_owner_restic_log_dir}}"
     group: "{{file_group_restic_log_dir}}"
   tags:
-    - install
     - restic
 
 - name: 'file create exclude.conf'
@@ -62,7 +46,6 @@
     owner: "{{file_owner_exclude_conf}}"
     group: "{{file_group_exclude_conf}}"
   tags:
-    - install
     - restic
 
 - name: 'file create include.conf'
@@ -73,7 +56,6 @@
     owner: "{{file_owner_include_conf}}"
     group: "{{file_group_include_conf}}"
   tags:
-    - install
     - restic
 
 - name: 'file create password.conf'
@@ -85,7 +67,6 @@
     group: "{{file_group_password_conf}}"
   no_log: 'true'
   tags:
-    - install
     - restic
 
 - name: 'file create restic.log'
@@ -97,7 +78,6 @@
     owner: "{{file_owner_restic_log}}"
     group: "{{file_group_restic_log}}"
   tags:
-    - install
     - restic
 
 - name: 'file create restic_run-backup'
@@ -109,5 +89,4 @@
     group: "{{file_group_restic_run_backup}}"
   no_log: 'true'
   tags:
-    - install
     - restic

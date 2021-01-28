@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create config'
   template:
@@ -31,7 +22,6 @@
   notify: 'service restart rsyslogd'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - rsyslog
 
 - name: 'file remove config'
@@ -42,5 +32,4 @@
   notify: 'service restart rsyslogd'
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - rsyslog

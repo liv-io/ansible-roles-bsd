@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,24 +9,14 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - sudo
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install sudo'
   package:
     state: 'present'
     name: "{{package_name_sudo}}"
   tags:
-    - install
     - sudo
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create sudoers.d'
   file:
@@ -40,7 +26,6 @@
     owner: "{{file_owner_sudoers_d}}"
     group: "{{file_group_sudoers_d}}"
   tags:
-    - install
     - sudo
 
 - name: 'file create sudoers'
@@ -52,5 +37,4 @@
     group: "{{file_group_sudoers}}"
     validate: "{{file_validate_sudoers}}"
   tags:
-    - install
     - sudo

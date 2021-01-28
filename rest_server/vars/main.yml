@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # src.dir
 file_dst_src_dir: '/usr/local/src'
 file_mode_src_dir: '0755'
@@ -58,10 +54,6 @@ file_dst_rest_server_cfg: '/etc/monit.d/rest_server.cfg'
 file_mode_rest_server_cfg: '0640'
 file_owner_rest_server_cfg: 'root'
 file_group_rest_server_cfg: 'wheel'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # monit
 service_name_monit: 'monit'

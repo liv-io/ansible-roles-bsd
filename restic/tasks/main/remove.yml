@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,24 +9,14 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - restic
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove restic'
   package:
     state: 'absent'
     name: "{{package_name_restic}}"
   tags:
-    - remove
     - restic
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'cron remove restic_run-backup'
   cron:
@@ -38,7 +24,6 @@
     name: "{{cron_name_restic_run_backup}}"
     user: "{{cron_user_restic_run_backup}}"
   tags:
-    - remove
     - restic
 
 - name: 'file remove restic_run-backup'
@@ -47,7 +32,6 @@
     path: "{{file_dst_restic_run_backup}}"
   no_log: 'true'
   tags:
-    - remove
     - restic
 
 - name: 'file remove restic_etc.dir'
@@ -55,5 +39,4 @@
     state: 'absent'
     path: "{{file_dst_restic_etc_dir}}"
   tags:
-    - remove
     - restic

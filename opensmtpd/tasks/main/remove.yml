@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - opensmtpd
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status opensmtpd'
   command: "{{command_cmd_status_opensmtpd}}"
@@ -28,7 +19,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - opensmtpd
 
 - name: 'command disable opensmtpd'
@@ -36,7 +26,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 0)
   tags:
-    - remove
     - opensmtpd
 
 - name: 'command check opensmtpd'
@@ -47,7 +36,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - opensmtpd
 
 - name: 'command stop opensmtpd'
@@ -55,12 +43,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 0)
   tags:
-    - remove
     - opensmtpd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove opensmtpd.cfg'
   file:
@@ -68,7 +51,6 @@
     path: "{{file_dst_opensmtpd_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - opensmtpd
 
 - name: 'file remove secrets'
@@ -76,5 +58,4 @@
     state: 'absent'
     path: "{{file_dst_secrets}}"
   tags:
-    - remove
     - opensmtpd

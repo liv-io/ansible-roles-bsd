@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # config
 file_src_config: 'templates/main/config'
 file_mode_config: '0640'
@@ -16,10 +12,6 @@ file_dst_mygate: '/etc/mygate'
 file_mode_mygate: '0644'
 file_owner_mygate: 'root'
 file_group_mygate: 'wheel'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # run netstart
 command_cmd_run_netstart: 'sh /etc/netstart'

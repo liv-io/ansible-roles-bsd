@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - nginx
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create nginx.conf'
   template:
@@ -31,7 +22,6 @@
     - 'command check nginx'
     - 'service reload nginx'
   tags:
-    - enable
     - nginx
 
 - name: 'line enable nginx_enable'
@@ -43,7 +33,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - nginx
 
 - name: 'file create nginx.cfg'
@@ -56,12 +45,7 @@
   notify: 'service reload monit'
   when: (nginx_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - nginx
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status nginx'
   command: "{{command_cmd_status_nginx}}"
@@ -71,7 +55,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - nginx
 
 - name: 'command enable nginx'
@@ -79,7 +62,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 1)
   tags:
-    - enable
     - nginx
 
 - name: 'command check nginx'
@@ -90,7 +72,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - nginx
 
 - name: 'command start nginx'
@@ -98,12 +79,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 1)
   tags:
-    - enable
     - nginx
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start nginx'
   service:
@@ -112,5 +88,4 @@
     name: "{{service_name_nginx}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - nginx

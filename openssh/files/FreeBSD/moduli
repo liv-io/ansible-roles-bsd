@@ -1,6 +1,6 @@
-#-------------------------------------------------------------------------------
-# ANSIBLE MANAGED FILE
-#-------------------------------------------------------------------------------
+#
+# This file is managed by Ansible. Do not edit.
+#
 
 #    $OpenBSD: moduli,v 1.22 2018/09/20 08:07:03 dtucker Exp $
 # Time Type Tests Tries Size Generator Modulus

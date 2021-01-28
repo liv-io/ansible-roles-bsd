@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,19 +9,13 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - sysctl
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'stat file sysctl.conf'
   stat:
     path: "{{file_dst_sysctl_conf}}"
   register: register_sysctl_conf
   tags:
-    - install
     - sysctl
 
 - name: 'file create sysctl.conf'
@@ -37,5 +27,4 @@
     group: "{{file_group_sysctl_conf}}"
   when: not (register_sysctl_conf.stat.exists)
   tags:
-    - install
     - sysctl

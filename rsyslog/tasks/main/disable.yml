@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create rsyslog.conf'
   template:
@@ -28,7 +19,6 @@
     owner: "{{file_owner_rsyslog_conf}}"
     group: "{{file_group_rsyslog_conf}}"
   tags:
-    - disable
     - rsyslog
 
 - name: 'file create rsyslog.cfg'
@@ -41,12 +31,7 @@
   notify: 'service reload monit'
   when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - disable
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status rsyslogd'
   command: "{{command_cmd_status_rsyslogd}}"
@@ -56,7 +41,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - rsyslog
 
 - name: 'command disable rsyslogd'
@@ -64,7 +48,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_rsyslogd.rc == 0)
   tags:
-    - disable
     - rsyslog
 
 - name: 'command check rsyslogd'
@@ -75,7 +58,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - rsyslog
 
 - name: 'command stop rsyslogd'
@@ -83,12 +65,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_rsyslogd.rc == 0)
   tags:
-    - disable
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service stop rsyslogd'
   service:
@@ -97,5 +74,4 @@
     name: "{{service_name_rsyslogd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - disable
     - rsyslog

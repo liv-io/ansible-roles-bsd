@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - openntpd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create ntpd.conf'
   template:
@@ -29,7 +20,6 @@
     group: "{{file_group_ntpd_conf}}"
   notify: 'service restart openntpd'
   tags:
-    - enable
     - openntpd
 
 - name: 'file create openntpd_check-time'
@@ -40,7 +30,6 @@
     owner: "{{file_owner_openntpd_check_time}}"
     group: "{{file_group_openntpd_check_time}}"
   tags:
-    - enable
     - openntpd
 
 - name: 'cron create openntpd_check-time'
@@ -56,7 +45,6 @@
     user: "{{cron_user_openntpd_check_time}}"
     job: "{{cron_job_openntpd_check_time}}"
   tags:
-    - enable
     - openntpd
 
 - name: 'line enable openntpd_enable'
@@ -68,7 +56,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - openntpd
 
 - name: 'file create openntpd.cfg'
@@ -81,12 +68,7 @@
   notify: 'service reload monit'
   when: (openntpd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - openntpd
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status openntpd'
   command: "{{command_cmd_status_openntpd}}"
@@ -96,7 +78,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - openntpd
 
 - name: 'command enable openntpd'
@@ -104,7 +85,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 1)
   tags:
-    - enable
     - openntpd
 
 - name: 'command check openntpd'
@@ -115,7 +95,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - openntpd
 
 - name: 'command start openntpd'
@@ -123,12 +102,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 1)
   tags:
-    - enable
     - openntpd
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start openntpd'
   service:
@@ -137,5 +111,4 @@
     name: "{{service_name_openntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - openntpd

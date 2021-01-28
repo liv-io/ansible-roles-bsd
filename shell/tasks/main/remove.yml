@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,19 +9,13 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - shell
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove shell.sh'
   file:
     state: 'absent'
     path: "{{file_dst_shell_shell}}"
   tags:
-    - remove
     - shell
 
 - name: 'file remove z_shell.sh'
@@ -33,5 +23,4 @@
     state: 'absent'
     path: "{{file_dst_z_shell_shell}}"
   tags:
-    - remove
     - shell

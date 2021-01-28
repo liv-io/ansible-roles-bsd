@@ -1,6 +1,4 @@
---------------------------------------------------------------------------------
 INFORMATION
---------------------------------------------------------------------------------
 
 This file lists changes made to the Ansible role. It follows semantic versioning
 guidelines. The content is sorted in reverse chronological order and formatted
@@ -12,7 +10,7 @@ C: change
 E: enhancement
 F: feature
 
---------------------------------------------------------------------------------
+CHANGES
 
 * Version 2.13.0 (2020-12-31)
 C: Add support for FreeBSD 12.2-RELEASE

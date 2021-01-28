@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # cron_enable
 file_line_cron_enable: 'cron_enable'
 file_dst_cron_enable: '/etc/rc.conf'
@@ -13,10 +9,6 @@ file_dst_monit_d: '/usr/local/etc/monit.d'
 
 # cron.cfg
 file_dst_cron_cfg: '/usr/local/etc/monit.d/cron.cfg'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # check service monit
 command_cmd_check_service_monit: 'service -l | grep "^monit$" > /dev/null 2>&1'

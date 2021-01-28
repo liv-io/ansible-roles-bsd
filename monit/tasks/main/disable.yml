@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - monit
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create monitrc'
   template:
@@ -28,7 +19,6 @@
     owner: "{{file_owner_monitrc}}"
     group: "{{file_group_monitrc}}"
   tags:
-    - disable
     - monit
 
 - name: 'line disable monit_enable'
@@ -40,12 +30,7 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - disable
     - monit
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status monit'
   command: "{{command_cmd_status_monit}}"
@@ -55,7 +40,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - monit
 
 - name: 'command disable monit'
@@ -63,7 +47,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_monit.rc == 0)
   tags:
-    - disable
     - monit
 
 - name: 'command check monit'
@@ -74,7 +57,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - monit
 
 - name: 'command stop monit'
@@ -82,12 +64,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_monit.rc == 0)
   tags:
-    - disable
     - monit
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service stop monit'
   service:
@@ -96,5 +73,4 @@
     name: "{{service_name_monit}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - disable
     - monit

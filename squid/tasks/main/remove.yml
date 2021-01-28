@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - squid
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status squid'
   command: "{{command_cmd_status_squid}}"
@@ -28,7 +19,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - squid
 
 - name: 'command disable squid'
@@ -36,7 +26,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_squid.rc == 0)
   tags:
-    - remove
     - squid
 
 - name: 'command check squid'
@@ -47,7 +36,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - squid
 
 - name: 'command stop squid'
@@ -55,24 +43,14 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_squid.rc == 0)
   tags:
-    - remove
     - squid
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove squid'
   package:
     state: 'absent'
     name: "{{package_name_squid}}"
   tags:
-    - remove
     - squid
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove squid.cfg'
   file:
@@ -80,7 +58,6 @@
     path: "{{file_dst_squid_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - squid
 
 - name: 'line remove squid_enable'
@@ -92,7 +69,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - squid
 
 - name: 'file remove squid.conf'
@@ -100,7 +76,6 @@
     state: 'absent'
     path: "{{file_dst_squid_conf}}"
   tags:
-    - remove
     - squid
 
 - name: 'file remove acl.dir'
@@ -108,5 +83,4 @@
     state: 'absent'
     path: "{{file_dst_acl_dir}}"
   tags:
-    - remove
     - squid

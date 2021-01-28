@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # periodic.conf
 file_src_periodic_conf: "templates/{{ansible_os_family}}/periodic.conf"
 file_dst_periodic_conf: '/etc/periodic.conf'

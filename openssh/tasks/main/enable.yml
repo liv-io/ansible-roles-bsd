@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - openssh
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create banner'
   template:
@@ -31,7 +22,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - enable
     - openssh
 
 - name: 'file copy moduli'
@@ -45,7 +35,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - enable
     - openssh
 
 - name: 'file create ssh_config'
@@ -59,7 +48,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - enable
     - openssh
 
 - name: 'file create sshd_config'
@@ -73,7 +61,6 @@
     - 'command validate openssh'
     - 'service reload openssh'
   tags:
-    - enable
     - openssh
 
 - name: 'line enable sshd_enable'
@@ -85,7 +72,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - openssh
 
 - name: 'file create openssh.cfg'
@@ -98,12 +84,7 @@
   notify: 'service reload monit'
   when: (openssh_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - openssh
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status openssh'
   command: "{{command_cmd_status_openssh}}"
@@ -113,7 +94,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - openssh
 
 - name: 'command enable openssh'
@@ -121,7 +101,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openssh.rc == 1)
   tags:
-    - enable
     - openssh
 
 - name: 'command check openssh'
@@ -132,7 +111,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - openssh
 
 - name: 'command start openssh'
@@ -140,12 +118,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openssh.rc == 1)
   tags:
-    - enable
     - openssh
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start openssh'
   service:
@@ -154,5 +127,4 @@
     name: "{{service_name_openssh}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - openssh

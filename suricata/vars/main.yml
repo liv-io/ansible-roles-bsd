@@ -1,15 +1,7 @@
 ---
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # suricata
 package_name_suricata: 'suricata'
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 # config
 file_src_config: 'templates/main/config'
@@ -63,10 +55,6 @@ file_mode_suricata_cfg: '0640'
 file_owner_suricata_cfg: 'root'
 file_group_suricata_cfg: 'wheel'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # enable ruleset
 command_cmd_enable_ruleset: 'suricata-update enable-source'
 
@@ -81,10 +69,6 @@ command_cmd_remove_ruleset: 'suricata-update remove-source'
 
 # update suricata
 command_cmd_update_suricata: 'suricata-update --local /etc/suricata/rules/ --output /var/lib/suricata/rules/ --user-agent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36 Edg/85.0.564.63"'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # monit
 service_name_monit: 'monit'

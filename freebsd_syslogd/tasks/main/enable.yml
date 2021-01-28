@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - freebsd_syslogd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'line config syslogd_flags'
   lineinfile:
@@ -29,7 +20,6 @@
     create: 'yes'
   notify: 'service reload syslogd'
   tags:
-    - enable
     - freebsd_syslogd
 
 - name: 'file create syslog.conf'
@@ -41,7 +31,6 @@
     group: "{{file_group_syslog_conf}}"
   notify: 'service reload syslogd'
   tags:
-    - enable
     - freebsd_syslogd
 
 - name: 'line enable syslogd_enable'
@@ -53,7 +42,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - freebsd_syslogd
 
 - name: 'file create syslogd.cfg'
@@ -66,12 +54,7 @@
   notify: 'service reload monit'
   when: (freebsd_syslogd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - freebsd_syslogd
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start syslogd'
   service:
@@ -80,5 +63,4 @@
     name: "{{service_name_syslogd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - freebsd_syslogd

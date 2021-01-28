@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - nginx
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command info nginx'
   shell: "{{command_cmd_info_nginx}}"
@@ -27,7 +18,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - nginx
 
 - name: 'command disable nginx'
@@ -35,7 +25,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
-    - remove
     - nginx
 
 - name: 'command stop nginx'
@@ -43,24 +32,14 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
-    - remove
     - nginx
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove nginx'
   package:
     state: 'absent'
     name: "{{package_name_nginx}}"
   tags:
-    - remove
     - nginx
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove nginx.cfg'
   file:
@@ -68,7 +47,6 @@
     path: "{{file_dst_nginx_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - nginx
 
 - name: 'line remove nginx_enable'
@@ -80,7 +58,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - nginx
 
 - name: 'file remove nginx.conf'
@@ -88,7 +65,6 @@
     state: 'absent'
     path: "{{file_dst_nginx_conf}}"
   tags:
-    - remove
     - nginx
 
 - name: 'file remove dhparam.pem'
@@ -96,7 +72,6 @@
     state: 'absent'
     path: "{{file_dst_dhparam_pem}}"
   tags:
-    - remove
     - nginx
 
 - name: 'file remove log.dir'
@@ -105,7 +80,6 @@
     path: "{{file_dst_log_dir}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - nginx
 
 - name: 'file remove vhosts.d'
@@ -113,5 +87,4 @@
     state: 'absent'
     path: "{{file_dst_vhosts_d}}"
   tags:
-    - remove
     - nginx

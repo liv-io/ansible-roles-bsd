@@ -6,10 +6,6 @@ cache_effective_user: '_squid'
 # cache_effective_group
 cache_effective_group: '_squid'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check squid
 command_cmd_check_squid: 'rcctl check squid'
 

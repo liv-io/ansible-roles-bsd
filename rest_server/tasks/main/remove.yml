@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - rest_server
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status rest_server'
   command: "{{command_cmd_status_rest_server}}"
@@ -28,7 +19,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - rest_server
 
 - name: 'command disable rest_server'
@@ -36,7 +26,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_rest_server.rc == 0)
   tags:
-    - remove
     - rest_server
 
 - name: 'command check rest_server'
@@ -47,7 +36,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - rest_server
 
 - name: 'command stop rest_server'
@@ -55,12 +43,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_rest_server.rc == 0)
   tags:
-    - remove
     - rest_server
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'user remove rest-server'
   user:
@@ -69,7 +52,6 @@
     remove: "{{user_home_remove_rest_server}}"
     force: "{{user_home_force_rest_server}}"
   tags:
-    - remove
     - rest_server
 
 - name: 'group remove rest-server'
@@ -77,12 +59,7 @@
     state: 'absent'
     name: "{{group_name_rest_server}}"
   tags:
-    - remove
     - rest_server
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove rest_server.cfg'
   file:
@@ -90,7 +67,6 @@
     path: "{{file_dst_rest_server_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - rest_server
 
 - name: 'file remove rest_server.service'
@@ -98,7 +74,6 @@
     state: 'absent'
     path: "{{file_dst_rest_server_service}}"
   tags:
-    - remove
     - rest_server
 
 - name: 'file remove rest-server'
@@ -106,7 +81,6 @@
     state: 'absent'
     path: "{{file_creates_rest_server}}"
   tags:
-    - remove
     - rest_server
 
 - name: 'file remove rest-server.tar.gz'
@@ -114,5 +88,4 @@
     state: 'absent'
     path: "{{file_dst_rest_server_tar_gz}}"
   tags:
-    - remove
     - rest_server

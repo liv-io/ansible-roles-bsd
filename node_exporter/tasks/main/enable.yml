@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'line config node_exporter_flags'
   lineinfile:
@@ -30,7 +21,6 @@
   notify: 'service restart node_exporter'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - node_exporter
 
 - name: 'file create node_exporter.cfg'
@@ -43,12 +33,7 @@
   notify: 'service reload monit'
   when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status node_exporter'
   command: "{{command_cmd_status_node_exporter}}"
@@ -58,7 +43,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - node_exporter
 
 - name: 'command enable node_exporter'
@@ -66,7 +50,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_node_exporter.rc == 1)
   tags:
-    - enable
     - node_exporter
 
 - name: 'command check node_exporter'
@@ -77,7 +60,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - node_exporter
 
 - name: 'command start node_exporter'
@@ -85,12 +67,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_node_exporter.rc == 1)
   tags:
-    - enable
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start node_exporter'
   service:
@@ -99,5 +76,4 @@
     name: "{{service_name_node_exporter}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - node_exporter

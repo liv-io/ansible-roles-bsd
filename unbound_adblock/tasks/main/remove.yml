@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - unbound_adblock
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'cron remove unbound-adblock_update-list'
   cron:
@@ -26,7 +17,6 @@
     name: "{{cron_name_unbound_adblock_update_list}}"
     user: "{{cron_user_unbound_adblock_update_list}}"
   tags:
-    - remove
     - unbound_adblock
 
 - name: 'file remove unbound-adblock_update-list'
@@ -34,7 +24,6 @@
     state: 'absent'
     path: "{{file_dst_unbound_adblock_update_list}}"
   tags:
-    - remove
     - unbound_adblock
 
 - name: 'file remove unbound-adblock.sudo'
@@ -42,7 +31,6 @@
     state: 'absent'
     path: "{{file_dst_unbound_adblock_sudo}}"
   tags:
-    - remove
     - unbound_adblock
 
 - name: 'file remove unbound-adblock_data.dir'
@@ -50,12 +38,7 @@
     state: 'absent'
     path: "{{file_dst_unbound_adblock_data_dir}}"
   tags:
-    - remove
     - unbound_adblock
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'user remove unbound-adblock'
   user:
@@ -64,7 +47,6 @@
     remove: "{{user_home_remove_unbound_adblock}}"
     force: "{{user_home_force_unbound_adblock}}"
   tags:
-    - remove
     - unbound_adblock
 
 - name: 'group remove unbound-adblock'
@@ -72,5 +54,4 @@
     state: 'absent'
     name: "{{group_name_unbound_adblock}}"
   tags:
-    - remove
     - unbound_adblock

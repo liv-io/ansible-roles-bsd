@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # FreeBSD.conf
 file_src_freebsd_conf: 'templates/main/FreeBSD.conf'
 file_dst_freebsd_conf: '/etc/pkg/FreeBSD.conf'

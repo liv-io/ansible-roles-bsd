@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - monit
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create config'
   template:
@@ -33,7 +24,6 @@
     - 'service restart monit'
   when: not (item.state is match('false|no|remove'))
   tags:
-    - config
     - monit
 
 - name: 'file remove config'
@@ -46,5 +36,4 @@
     - 'service restart monit'
   when: (item.state is match('false|no|remove'))
   tags:
-    - config
     - monit

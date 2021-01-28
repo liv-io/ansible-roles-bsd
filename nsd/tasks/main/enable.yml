@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - nsd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'command locate unbound'
   command: "{{command_cmd_locate_unbound}}"
@@ -27,7 +18,6 @@
   failed_when: (register_locate_unbound.rc > 1)
   check_mode: 'no'
   tags:
-    - enable
     - nsd
 
 - name: 'file create nsd.conf'
@@ -41,7 +31,6 @@
   notify: 'service restart nsd'
   when: (register_locate_unbound.rc == 1)
   tags:
-    - enable
     - nsd
 
 - name: 'file create nsd.conf'
@@ -57,7 +46,6 @@
     - 'service restart unbound'
   when: (register_locate_unbound.rc == 0)
   tags:
-    - enable
     - nsd
 
 - name: 'line enable nsd_enable'
@@ -69,7 +57,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - nsd
 
 - name: 'file create nsd.cfg'
@@ -82,12 +69,7 @@
   notify: 'service reload monit'
   when: (nsd_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - nsd
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status nsd'
   command: "{{command_cmd_status_nsd}}"
@@ -97,7 +79,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - nsd
 
 - name: 'command enable nsd'
@@ -105,7 +86,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_nsd.rc == 1)
   tags:
-    - enable
     - nsd
 
 - name: 'command check nsd'
@@ -116,7 +96,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - nsd
 
 - name: 'command start nsd'
@@ -124,12 +103,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_nsd.rc == 1)
   tags:
-    - enable
     - nsd
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start nsd'
   service:
@@ -138,5 +112,4 @@
     name: "{{service_name_nsd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - nsd

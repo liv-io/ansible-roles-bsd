@@ -2,16 +2,12 @@
 
 {{ansible_managed|comment(decoration='#')}}
 
-#-------------------------------------------------------------------------------
 # SHELL VARIABLES
-#-------------------------------------------------------------------------------
 
 SHELL='/bin/sh'
 PATH='/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin'
 
-#-------------------------------------------------------------------------------
 # COMMANDS
-#-------------------------------------------------------------------------------
 
 which='/usr/bin/which' && [ -x ${which} ] || { echo "Error: Command 'which' not found."; exit 127; }
 basename=$(${which} basename) || { echo "Error: Command 'basename' not found."; exit 127; }
@@ -30,9 +26,7 @@ whoami=$(${which} whoami) || { echo "Error: Command 'whoami' not found."; exit 1
 
 restic=$(${which} restic) || { echo "Error: Command 'restic' not found."; exit 127; }
 
-#-------------------------------------------------------------------------------
 # VARIABLES
-#-------------------------------------------------------------------------------
 
 host=$(${hostname} -s) || { echo "Error: Host name unknown."; exit 68; }
 script="$(${basename} $0)[$$]" || { echo "Error: Command invoked cannot execute."; exit 126; }
@@ -70,34 +64,26 @@ mail_to_address='{% for item in restic_monitor_mail_to_address %}{{item}}{% if n
 mail_subject='restic: Run Backup - Error ({{ansible_hostname}})'
 {% endif %}
 
-#-------------------------------------------------------------------------------
 # FUNCTIONS
-#-------------------------------------------------------------------------------
 
 {% if (restic_monitor_mail_state is match('true|yes|enable')) %}
 mail_error() {
   retval=$1
   severity=$2
   message=$3
-  mail_body="--------------------------------------------------------------------------------
-ERROR
---------------------------------------------------------------------------------
+  mail_body="ERROR
 
 Message     : ${message}
 Severity    : ${severity}
 Date & Time : $(${date} '+%Y-%m-%dT%H:%M:%S%z')
 
---------------------------------------------------------------------------------
 SCRIPT
---------------------------------------------------------------------------------
 
 Name        : restic_run-backup
 Type        : Shell script
 PID         : $$
 
---------------------------------------------------------------------------------
 SYSTEM
---------------------------------------------------------------------------------
 
 Hostname    : {{ansible_hostname}}
 FQDN        : {{ansible_fqdn}}"
@@ -215,16 +201,10 @@ add_log_header() {
 
   name_upper=$(${echo} ${name} | ${tr} '[:lower:]' '[:upper:]')
   date_time=$(${date} '+%Y-%m-%dT%H:%M:%S%z')
-  echo "
-#-------------------------------------------------------------------------------
-# ${name_upper} | ${date_time}
-#-------------------------------------------------------------------------------
-" >> ${log_file}
+  echo "# ${name_upper} | ${date_time}" >> ${log_file}
 }
 
-#-------------------------------------------------------------------------------
 # SCRIPT
-#-------------------------------------------------------------------------------
 
 check_script_user
 

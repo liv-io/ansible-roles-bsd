@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,24 +9,14 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - nginx
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install nginx'
   package:
     state: 'present'
     name: "{{package_name_nginx}}"
   tags:
-    - install
     - nginx
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create log.dir'
   file:
@@ -41,7 +27,6 @@
     group: "{{file_group_log_dir}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - install
     - nginx
 
 - name: 'file create vhosts.d'
@@ -52,7 +37,6 @@
     owner: "{{file_owner_vhosts_d}}"
     group: "{{file_group_vhosts_d}}"
   tags:
-    - install
     - nginx
 
 - name: 'stat file dhparam.pem'
@@ -60,7 +44,6 @@
     path: "{{file_dst_dhparam_pem}}"
   register: register_dhparam_pem
   tags:
-    - install
     - nginx
 
 - name: 'stat file monit.d'
@@ -69,7 +52,6 @@
   register: register_monit_d
   when: (nginx_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - nginx
 
 - name: 'file create monit.d'
@@ -81,19 +63,13 @@
     group: "{{file_group_monit_d}}"
   when: (nginx_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - nginx
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command generate dhparam'
   shell: "{{command_cmd_generate_dhparam}}"
   check_mode: 'no'
   when: (register_dhparam_pem.stat.exists == False)
   tags:
-    - install
     - nginx
 
 - name: 'command check service monit'
@@ -104,5 +80,4 @@
   check_mode: 'no'
   when: (nginx_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - nginx

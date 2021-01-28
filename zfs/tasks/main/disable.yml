@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - zfs
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'cron create zfs_check-pools'
   cron:
@@ -33,7 +24,6 @@
     user: "{{cron_user_zfs_check_pools}}"
     job: "{{cron_job_zfs_check_pools}}"
   tags:
-    - disable
     - zfs
 
 - name: 'cron create zfs_scrub-pools'
@@ -49,7 +39,6 @@
     user: "{{cron_user_zfs_scrub_pools}}"
     job: "{{cron_job_zfs_scrub_pools}}"
   tags:
-    - disable
     - zfs
 
 - name: 'cron create zfs_trim-pools'
@@ -65,5 +54,4 @@
     user: "{{cron_user_zfs_trim_pools}}"
     job: "{{cron_job_zfs_trim_pools}}"
   tags:
-    - disable
     - zfs

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - openssh
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create banner'
   template:
@@ -28,7 +19,6 @@
     owner: "{{file_owner_banner}}"
     group: "{{file_group_banner}}"
   tags:
-    - disable
     - openssh
 
 - name: 'file create moduli'
@@ -39,7 +29,6 @@
     owner: "{{file_owner_moduli}}"
     group: "{{file_group_moduli}}"
   tags:
-    - disable
     - openssh
 
 - name: 'file create ssh_config'
@@ -50,7 +39,6 @@
     owner: "{{file_owner_ssh_config}}"
     group: "{{file_group_ssh_config}}"
   tags:
-    - disable
     - openssh
 
 - name: 'file create sshd_config'
@@ -61,7 +49,6 @@
     owner: "{{file_owner_sshd_config}}"
     group: "{{file_group_sshd_config}}"
   tags:
-    - disable
     - openssh
 
 - name: 'line disable sshd_enable'
@@ -73,7 +60,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - disable
     - openssh
 
 - name: 'file create openssh.cfg'
@@ -86,12 +72,7 @@
   notify: 'service reload monit'
   when: (openssh_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - disable
     - openssh
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status openssh'
   command: "{{command_cmd_status_openssh}}"
@@ -101,7 +82,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - openssh
 
 - name: 'command disable openssh'
@@ -109,7 +89,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openssh.rc == 0)
   tags:
-    - disable
     - openssh
 
 - name: 'command check openssh'
@@ -120,7 +99,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - openssh
 
 - name: 'command stop openssh'
@@ -128,12 +106,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openssh.rc == 0)
   tags:
-    - disable
     - openssh
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service stop openssh'
   service:
@@ -142,5 +115,4 @@
     name: "{{service_name_openssh}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - disable
     - openssh

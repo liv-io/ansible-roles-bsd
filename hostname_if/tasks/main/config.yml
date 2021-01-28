@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - hostname_if
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create config'
   template:
@@ -31,7 +22,6 @@
   notify: 'command run netstart'
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - hostname_if
 
 - name: 'file remove config'
@@ -42,12 +32,7 @@
   notify: 'command run netstart'
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
-    - config
     - hostname_if
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command destroy ifconfig'
   shell: "ifconfig {{item.interface}} destroy"
@@ -57,5 +42,4 @@
   loop: "{{hostname_if_config_all + hostname_if_config_group + hostname_if_config_host}}"
   when: (item.state|default('true') is match('false|no|remove')) and (item.interface in ansible_interfaces)
   tags:
-    - config
     - hostname_if

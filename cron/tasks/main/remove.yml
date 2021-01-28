@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - cron
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove cron.cfg'
   file:
@@ -26,7 +17,6 @@
     path: "{{file_dst_cron_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - cron
 
 - name: 'line remove cron_enable'
@@ -38,5 +28,4 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - cron

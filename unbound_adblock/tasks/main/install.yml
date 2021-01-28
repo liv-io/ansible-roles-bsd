@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - unbound_adblock
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create unbound-adblock'
   group:
@@ -26,7 +17,6 @@
     name: "{{group_name_unbound_adblock}}"
     system: "{{group_system_unbound_adblock}}"
   tags:
-    - install
     - unbound_adblock
 
 - name: 'user create unbound-adblock'
@@ -46,12 +36,7 @@
     shell: "{{user_shell_unbound_adblock}}"
     system: "{{user_system_unbound_adblock}}"
   tags:
-    - install
     - unbound_adblock
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create data.dir'
   file:
@@ -61,7 +46,6 @@
     owner: "{{file_owner_data_dir}}"
     group: "{{file_group_data_dir}}"
   tags:
-    - install
     - unbound_adblock
 
 - name: 'file create unbound-adblock_data.dir'
@@ -72,7 +56,6 @@
     owner: "{{file_owner_unbound_adblock_data_dir}}"
     group: "{{file_group_unbound_adblock_data_dir}}"
   tags:
-    - install
     - unbound_adblock
 
 - name: 'file create unbound-adblock.sudo'
@@ -83,5 +66,4 @@
     owner: "{{file_owner_unbound_adblock_sudo}}"
     group: "{{file_group_unbound_adblock_sudo}}"
   tags:
-    - install
     - unbound_adblock

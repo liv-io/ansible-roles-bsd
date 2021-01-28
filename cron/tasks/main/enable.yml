@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - cron
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'line enable cron_enable'
   lineinfile:
@@ -29,7 +20,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - cron
 
 - name: 'file create cron.cfg'
@@ -42,12 +32,7 @@
   notify: 'service reload monit'
   when: (cron_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - cron
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start cron'
   service:
@@ -56,5 +41,4 @@
     name: "{{service_name_cron}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - cron

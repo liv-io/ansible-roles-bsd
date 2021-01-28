@@ -1,6 +1,4 @@
---------------------------------------------------------------------------------
 INFORMATION
---------------------------------------------------------------------------------
 
 This file lists people that have contributed to the Ansible roles. The content
 is sorted by name and formatted to allow easy grepping by scripts.
@@ -13,7 +11,7 @@ P: PGP key ID and fingerprint
 D: description
 S: snail-mail address
 
---------------------------------------------------------------------------------
+CONTRIBUTORS
 
 N: l
 E: l@liv.io

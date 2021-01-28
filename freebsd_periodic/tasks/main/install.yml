@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - freebsd_periodic
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create periodic.conf'
   template:
@@ -28,5 +19,4 @@
     owner: "{{file_owner_periodic_conf}}"
     group: "{{file_group_periodic_conf}}"
   tags:
-    - install
     - freebsd_periodic

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,24 +9,14 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install node_exporter'
   package:
     state: 'present'
     name: "{{package_name_node_exporter}}"
   tags:
-    - install
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create node_exporter_var.dir'
   file:
@@ -40,7 +26,6 @@
     owner: "{{file_owner_node_exporter_var_dir}}"
     group: "{{file_group_node_exporter_var_dir}}"
   tags:
-    - install
     - node_exporter
 
 - name: 'file create textfile_collector.dir'
@@ -51,7 +36,6 @@
     owner: "{{file_owner_textfile_collector_dir}}"
     group: "{{file_group_textfile_collector_dir}}"
   tags:
-    - install
     - node_exporter
 
 - name: 'line config node_exporter_textfile_dir'
@@ -63,7 +47,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - install
     - node_exporter
 
 - name: 'line config node_exporter_flags'
@@ -75,12 +58,7 @@
     create: 'yes'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - install
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'stat file monit.d'
   stat:
@@ -88,7 +66,6 @@
   register: register_monit_d
   when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - node_exporter
 
 - name: 'file create monit.d'
@@ -100,12 +77,7 @@
     group: "{{file_group_monit_d}}"
   when: (node_exporter_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - node_exporter
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -115,5 +87,4 @@
   check_mode: 'no'
   when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - node_exporter

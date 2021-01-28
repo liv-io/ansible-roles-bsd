@@ -1,11 +1,5 @@
 {{ansible_managed|comment(decoration='#')}}
 
-{% if not ((item.name|default('')) == '') %}
-#-------------------------------------------------------------------------------
-# {{(item.name|upper)}}
-#-------------------------------------------------------------------------------
-
-{% endif %}
 {% if not ((item.comment|default('')) == '') %}
 # {{item.comment}}
 {% endif %}

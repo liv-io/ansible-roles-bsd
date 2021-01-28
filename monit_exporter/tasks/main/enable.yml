@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'line config monit_exporter_config'
   lineinfile:
@@ -30,7 +21,6 @@
   notify: 'service restart monit_exporter'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - monit_exporter
 
 - name: 'line config monit_exporter_flags'
@@ -43,7 +33,6 @@
   notify: 'service restart monit_exporter'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - monit_exporter
 
 - name: 'file create config.toml'
@@ -55,7 +44,6 @@
     group: "{{file_group_config_toml}}"
   notify: 'service restart monit_exporter'
   tags:
-    - enable
     - monit_exporter
 
 - name: 'file create monit_exporter.cfg'
@@ -68,12 +56,7 @@
   notify: 'service reload monit'
   when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status monit_exporter'
   command: "{{command_cmd_status_monit_exporter}}"
@@ -83,7 +66,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - monit_exporter
 
 - name: 'command enable monit_exporter'
@@ -91,7 +73,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_monit_exporter.rc == 1)
   tags:
-    - enable
     - monit_exporter
 
 - name: 'command check monit_exporter'
@@ -102,7 +83,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - monit_exporter
 
 - name: 'command start monit_exporter'
@@ -110,12 +90,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_monit_exporter.rc == 1)
   tags:
-    - enable
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start monit_exporter'
   service:
@@ -124,5 +99,4 @@
     name: "{{service_name_monit_exporter}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - monit_exporter

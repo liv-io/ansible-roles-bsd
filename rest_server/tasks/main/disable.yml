@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - rest_server
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create rest_server.service'
   template:
@@ -28,7 +19,6 @@
     owner: "{{file_owner_rest_server_service}}"
     group: "{{file_group_rest_server_service}}"
   tags:
-    - disable
     - rest_server
 
 - name: 'file create rest_server.cfg'
@@ -41,12 +31,7 @@
   notify: 'service reload monit'
   when: (rest_server_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - disable
     - rest_server
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status rest_server'
   command: "{{command_cmd_status_rest_server}}"
@@ -56,7 +41,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - rest_server
 
 - name: 'command disable rest_server'
@@ -64,7 +48,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_rest_server.rc == 0)
   tags:
-    - disable
     - rest_server
 
 - name: 'command check rest_server'
@@ -75,7 +58,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - rest_server
 
 - name: 'command stop rest_server'
@@ -83,12 +65,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_rest_server.rc == 0)
   tags:
-    - disable
     - rest_server
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service stop rest_server'
   service:
@@ -96,5 +73,4 @@
     enabled: 'no'
     name: "{{service_name_rest_server}}"
   tags:
-    - disable
     - rest_server

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # config
 file_dst_config: '/usr/local/etc/nsd'
 
@@ -19,10 +15,6 @@ file_dst_monit_d: '/usr/local/etc/monit.d'
 
 # nsd.cfg
 file_dst_nsd_cfg: '/usr/local/etc/monit.d/nsd.cfg'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # check service monit
 command_cmd_check_service_monit: 'service -l | grep "^monit$" > /dev/null 2>&1'

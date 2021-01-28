@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - openbsd_pf
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create anchors.conf'
   template:
@@ -28,7 +19,6 @@
     owner: "{{file_owner_anchors_conf}}"
     group: "{{file_group_anchors_conf}}"
   tags:
-    - disable
     - openbsd_pf
 
 - name: 'file create filters.conf'
@@ -39,7 +29,6 @@
     owner: "{{file_owner_filters_conf}}"
     group: "{{file_group_filters_conf}}"
   tags:
-    - disable
     - openbsd_pf
 
 - name: 'file create macros.conf'
@@ -50,7 +39,6 @@
     owner: "{{file_owner_macros_conf}}"
     group: "{{file_group_macros_conf}}"
   tags:
-    - disable
     - openbsd_pf
 
 - name: 'file create normalization.conf'
@@ -61,7 +49,6 @@
     owner: "{{file_owner_normalization_conf}}"
     group: "{{file_group_normalization_conf}}"
   tags:
-    - disable
     - openbsd_pf
 
 - name: 'file create options.conf'
@@ -72,7 +59,6 @@
     owner: "{{file_owner_options_conf}}"
     group: "{{file_group_options_conf}}"
   tags:
-    - disable
     - openbsd_pf
 
 - name: 'file create queues.conf'
@@ -83,7 +69,6 @@
     owner: "{{file_owner_queues_conf}}"
     group: "{{file_group_queues_conf}}"
   tags:
-    - disable
     - openbsd_pf
 
 - name: 'file create tables.conf'
@@ -94,7 +79,6 @@
     owner: "{{file_owner_tables_conf}}"
     group: "{{file_group_tables_conf}}"
   tags:
-    - disable
     - openbsd_pf
 
 - name: 'file create pf.conf'
@@ -105,12 +89,7 @@
     owner: "{{file_owner_pf_conf}}"
     group: "{{file_group_pf_conf}}"
   tags:
-    - disable
     - openbsd_pf
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status openbsd_pf'
   command: "{{command_cmd_status_openbsd_pf}}"
@@ -119,7 +98,6 @@
   failed_when: (register_status_openbsd_pf.rc > 1)
   check_mode: 'no'
   tags:
-    - disable
     - openbsd_pf
 
 - name: 'command disable openbsd_pf'
@@ -127,7 +105,6 @@
   when: (register_status_openbsd_pf.rc == 0)
   check_mode: 'no'
   tags:
-    - disable
     - openbsd_pf
 
 - name: 'command check openbsd_pf'
@@ -137,7 +114,6 @@
   failed_when: (register_check_openbsd_pf.rc > 1)
   check_mode: 'no'
   tags:
-    - disable
     - openbsd_pf
 
 - name: 'command stop openbsd_pf'
@@ -145,5 +121,4 @@
   when: (register_check_openbsd_pf.rc == 0)
   check_mode: 'no'
   tags:
-    - disable
     - openbsd_pf

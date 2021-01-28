@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - openbsd_rc
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'line config rc'
   lineinfile:
@@ -29,5 +20,4 @@
     create: 'yes'
   loop: "{{openbsd_rc_config_all + openbsd_rc_config_group + openbsd_rc_config_host}}"
   tags:
-    - config
     - openbsd_rc

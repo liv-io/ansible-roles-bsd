@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - tmux
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove tmux'
   package:
@@ -26,17 +17,11 @@
     name: "{{package_name_tmux}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - tmux
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove tmux.conf'
   file:
     state: 'absent'
     path: "{{file_dst_tmux_conf}}"
   tags:
-    - remove
     - tmux

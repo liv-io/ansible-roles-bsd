@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create rsyslog.conf'
   template:
@@ -29,7 +20,6 @@
     group: "{{file_group_rsyslog_conf}}"
   notify: 'service restart rsyslog'
   tags:
-    - enable
     - rsyslog
 
 - name: 'file create rsyslog.cfg'
@@ -42,12 +32,7 @@
   notify: 'service reload monit'
   when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - enable
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status rsyslogd'
   command: "{{command_cmd_status_rsyslogd}}"
@@ -57,7 +42,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - rsyslog
 
 - name: 'command enable rsyslogd'
@@ -65,7 +49,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_rsyslogd.rc == 1)
   tags:
-    - enable
     - rsyslog
 
 - name: 'command check rsyslogd'
@@ -76,7 +59,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - enable
     - rsyslog
 
 - name: 'command start rsyslogd'
@@ -84,12 +66,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_rsyslogd.rc == 1)
   tags:
-    - enable
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service start rsyslogd'
   service:
@@ -98,5 +75,4 @@
     name: "{{service_name_rsyslogd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - enable
     - rsyslog

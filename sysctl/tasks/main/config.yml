@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - sysctl
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'line config sysctl.conf'
   lineinfile:
@@ -32,12 +23,7 @@
     create: 'yes'
   loop: "{{sysctl_config_all + sysctl_config_dependencies + sysctl_config_group + sysctl_config_host}}"
   tags:
-    - config
     - sysctl
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command config sysctl'
   shell: "sysctl -aq | grep -q '{{item.key}}={{item.value}}' || sysctl -q {{item.key}}={{item.value}} && true"
@@ -46,5 +32,4 @@
   failed_when: (register_config_sysctl.rc > 1)
   loop: "{{sysctl_config_all + sysctl_config_dependencies + sysctl_config_group + sysctl_config_host}}"
   tags:
-    - config
     - sysctl

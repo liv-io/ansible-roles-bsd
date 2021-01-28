@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,24 +9,14 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - suricata
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install suricata'
   package:
     state: 'present'
     name: "{{package_name_suricata}}"
   tags:
-    - install
     - suricata
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create eve.json'
   copy:
@@ -41,7 +27,6 @@
     owner: "{{file_owner_eve_json}}"
     group: "{{file_group_eve_json}}"
   tags:
-    - install
     - suricata
 
 - name: 'file create fast.log'
@@ -53,7 +38,6 @@
     owner: "{{file_owner_fast_log}}"
     group: "{{file_group_fast_log}}"
   tags:
-    - install
     - suricata
 
 - name: 'file create stats.log'
@@ -65,7 +49,6 @@
     owner: "{{file_owner_stats_log}}"
     group: "{{file_group_stats_log}}"
   tags:
-    - install
     - suricata
 
 - name: 'stat file suricata.rules'
@@ -73,7 +56,6 @@
     path: "{{file_dst_suricata_rules}}"
   register: register_suricata_rules
   tags:
-    - install
     - suricata
 
 - name: 'line config eve.json.newsyslog'
@@ -84,7 +66,6 @@
     dest: "{{file_dst_eve_json_newsyslog}}"
     create: 'yes'
   tags:
-    - install
     - suricata
 
 - name: 'line config fast.log.newsyslog'
@@ -95,7 +76,6 @@
     dest: "{{file_dst_fast_log_newsyslog}}"
     create: 'yes'
   tags:
-    - install
     - suricata
 
 - name: 'line config stats.log.newsyslog'
@@ -106,12 +86,7 @@
     dest: "{{file_dst_stats_log_newsyslog}}"
     create: 'yes'
   tags:
-    - install
     - suricata
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'stat file monit.d'
   stat:
@@ -119,7 +94,6 @@
   register: register_monit_d
   when: (suricata_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - suricata
 
 - name: 'file create monit.d'
@@ -131,12 +105,7 @@
     group: "{{file_group_monit_d}}"
   when: (suricata_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - suricata
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -146,7 +115,6 @@
   check_mode: 'no'
   when: (suricata_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - suricata
 
 - name: 'command update suricata'
@@ -154,5 +122,4 @@
   check_mode: 'no'
   when: (register_suricata_rules.stat.exists == False)
   tags:
-    - install
     - suricata

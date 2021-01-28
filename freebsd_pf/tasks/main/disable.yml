@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - freebsd_pf
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create anchors.conf'
   template:
@@ -28,7 +19,6 @@
     owner: "{{file_owner_anchors_conf}}"
     group: "{{file_group_anchors_conf}}"
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'file create filters.conf'
@@ -39,7 +29,6 @@
     owner: "{{file_owner_filters_conf}}"
     group: "{{file_group_filters_conf}}"
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'file create macros.conf'
@@ -50,7 +39,6 @@
     owner: "{{file_owner_macros_conf}}"
     group: "{{file_group_macros_conf}}"
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'file create normalization.conf'
@@ -61,7 +49,6 @@
     owner: "{{file_owner_normalization_conf}}"
     group: "{{file_group_normalization_conf}}"
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'file create options.conf'
@@ -72,7 +59,6 @@
     owner: "{{file_owner_options_conf}}"
     group: "{{file_group_options_conf}}"
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'file create queues.conf'
@@ -83,7 +69,6 @@
     owner: "{{file_owner_queues_conf}}"
     group: "{{file_group_queues_conf}}"
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'file create tables.conf'
@@ -94,7 +79,6 @@
     owner: "{{file_owner_tables_conf}}"
     group: "{{file_group_tables_conf}}"
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'file create translations.conf'
@@ -105,7 +89,6 @@
     owner: "{{file_owner_translations_conf}}"
     group: "{{file_group_translations_conf}}"
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'file create pf.conf'
@@ -116,7 +99,6 @@
     owner: "{{file_owner_pf_conf}}"
     group: "{{file_group_pf_conf}}"
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'line disable pf_enable'
@@ -128,7 +110,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'line enable gateway-ipv4'
@@ -140,7 +121,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'line disable gateway-ipv4'
@@ -152,7 +132,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv4_state is match('true|yes|enable'))
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'line enable gateway-ipv6'
@@ -164,7 +143,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
-    - disable
     - freebsd_pf
 
 - name: 'line disable gateway-ipv6'
@@ -176,12 +154,7 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD') and not (freebsd_pf_gateway_ipv6_state is match('true|yes|enable'))
   tags:
-    - disable
     - freebsd_pf
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'service stop freebsd_pf'
   service:
@@ -189,5 +162,4 @@
     enabled: 'no'
     name: "{{service_name_freebsd_pf}}"
   tags:
-    - disable
     - freebsd_pf

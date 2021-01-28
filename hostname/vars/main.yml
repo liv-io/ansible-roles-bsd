@@ -1,19 +1,11 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # myname
 file_src_myname: 'templates/main/myname'
 file_dst_myname: '/etc/myname'
 file_mode_myname: '0644'
 file_owner_myname: 'root'
 file_group_myname: 'wheel'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # run netstart
 command_cmd_run_netstart: 'sh /etc/netstart'

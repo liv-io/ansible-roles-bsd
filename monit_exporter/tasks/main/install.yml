@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group create monit_exporter'
   group:
@@ -26,7 +17,6 @@
     name: "{{group_name_monit_exporter}}"
     system: "{{group_system_monit_exporter}}"
   tags:
-    - install
     - monit_exporter
 
 - name: 'user create monit_exporter'
@@ -45,12 +35,7 @@
     shell: "{{user_shell_monit_exporter}}"
     system: "{{user_system_monit_exporter}}"
   tags:
-    - install
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create src.dir'
   file:
@@ -60,7 +45,6 @@
     owner: "{{file_owner_src_dir}}"
     group: "{{file_group_src_dir}}"
   tags:
-    - install
     - monit_exporter
 
 - name: 'file create monit_exporter_etc.dir'
@@ -71,7 +55,6 @@
     owner: "{{file_owner_monit_exporter_etc_dir}}"
     group: "{{file_group_monit_exporter_etc_dir}}"
   tags:
-    - install
     - monit_exporter
 
 - name: 'file download monit_exporter.tar.gz'
@@ -83,7 +66,6 @@
     group: "{{file_group_monit_exporter_tar_gz}}"
     checksum: "{{file_checksum_monit_exporter_tar_gz}}"
   tags:
-    - install
     - monit_exporter
 
 - name: 'file unarchive monit_exporter'
@@ -95,7 +77,6 @@
     exclude: "{{file_exclude_monit_exporter}}"
     remote_src: 'yes'
   tags:
-    - install
     - monit_exporter
 
 - name: 'line config monit_exporter_config'
@@ -107,7 +88,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - install
     - monit_exporter
 
 - name: 'line config monit_exporter_flags'
@@ -119,7 +99,6 @@
     create: 'yes'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - install
     - monit_exporter
 
 - name: 'file create monit_exporter.service'
@@ -130,7 +109,6 @@
     owner: "{{file_owner_monit_exporter_service}}"
     group: "{{file_group_monit_exporter_service}}"
   tags:
-    - install
     - monit_exporter
 
 - name: 'stat file monit.d'
@@ -139,7 +117,6 @@
   register: register_monit_d
   when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - monit_exporter
 
 - name: 'file create monit.d'
@@ -151,12 +128,7 @@
     group: "{{file_group_monit_d}}"
   when: (monit_exporter_monitor_monit_state is match('true|yes|enable')) and (register_monit_d.stat.exists == False)
   tags:
-    - install
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command check service monit'
   shell: "{{command_cmd_check_service_monit}}"
@@ -166,15 +138,9 @@
   check_mode: 'no'
   when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - install
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# META
-#-------------------------------------------------------------------------------
 
 - name: 'meta flush handlers'
   meta: 'flush_handlers'
   tags:
-    - install
     - monit_exporter

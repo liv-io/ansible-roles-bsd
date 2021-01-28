@@ -3,8 +3,6 @@
 $TTL		{{(item.ttl|default('1d'))}}		; default TTL
 $ORIGIN		{{item.name}}.		; base domain name
 
-;-------------------------------------------------------------------------------
-
 ; Start Of Authority (SOA)
 @		IN		SOA		{{item.soa_mname}}. {{item.soa_rname}}. (
 						{{item.soa_serial}}	; serial
@@ -13,8 +11,6 @@ $ORIGIN		{{item.name}}.		; base domain name
 						{{(item.soa_expire|default('1w'))}}		; expire
 						{{(item.soa_ttl|default('30m'))}}		; minimum
 						)
-
-;-------------------------------------------------------------------------------
 
 {% for item in (item.records|default([])) %}
 {% if not ((item.comment|default('')) == '') %}

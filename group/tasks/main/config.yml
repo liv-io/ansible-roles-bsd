@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - group
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'group config group'
   group:
@@ -28,5 +19,4 @@
     system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
   loop: "{{group_config_all + group_config_group + group_config_host}}"
   tags:
-    - config
     - group

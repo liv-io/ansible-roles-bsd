@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # adblock.conf
 file_dst_adblock_conf: '/data/unbound-adblock/adblock.conf'
 
@@ -46,10 +42,6 @@ cron_month_unbound_adblock_update_list: "{{unbound_adblock_update_list_month}}"
 cron_weekday_unbound_adblock_update_list: "{{unbound_adblock_update_list_weekday}}"
 cron_user_unbound_adblock_update_list: "{{file_owner_unbound_adblock_update_list}}"
 cron_job_unbound_adblock_update_list: "{{file_dst_unbound_adblock_update_list}}"
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # unbound-adblock
 group_name_unbound_adblock: '_unbound-adblock'

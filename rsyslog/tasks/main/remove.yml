@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command info rsyslog'
   shell: "{{command_cmd_info_rsyslog}}"
@@ -27,7 +18,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - rsyslog
 
 - name: 'command disable rsyslogd'
@@ -35,7 +25,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_rsyslog.rc == 0)
   tags:
-    - remove
     - rsyslog
 
 - name: 'command stop rsyslogd'
@@ -43,24 +32,14 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_rsyslog.rc == 0)
   tags:
-    - remove
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove rsyslog'
   package:
     state: 'absent'
     name: "{{package_name_rsyslog}}"
   tags:
-    - remove
     - rsyslog
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove rsyslog.cfg'
   file:
@@ -68,7 +47,6 @@
     path: "{{file_dst_rsyslog_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - rsyslog
 
 - name: 'file remove rsyslog.conf'
@@ -76,7 +54,6 @@
     state: 'absent'
     path: "{{file_dst_rsyslog_conf}}"
   tags:
-    - remove
     - rsyslog
 
 - name: 'file remove rsyslog.d'
@@ -84,5 +61,4 @@
     state: 'absent'
     path: "{{file_dst_rsyslog_d}}"
   tags:
-    - remove
     - rsyslog

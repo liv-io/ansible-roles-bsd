@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - main_pkg
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create FreeBSD.conf'
   template:
@@ -28,7 +19,6 @@
     owner: "{{file_owner_freebsd_conf}}"
     group: "{{file_group_freebsd_conf}}"
   tags:
-    - install
     - main_pkg
 
 - name: 'file create pkg.conf'
@@ -39,5 +29,4 @@
     owner: "{{file_owner_pkg_conf}}"
     group: "{{file_group_pkg_conf}}"
   tags:
-    - install
     - main_pkg

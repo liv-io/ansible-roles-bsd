@@ -1,6 +1,6 @@
-;-------------------------------------------------------------------------------
-; ANSIBLE MANAGED FILE
-;-------------------------------------------------------------------------------
+;
+; This file is managed by Ansible. Do not edit.
+;
 
 ;       This file holds the information on root name servers needed to 
 ;       initialize cache of Internet domain name servers

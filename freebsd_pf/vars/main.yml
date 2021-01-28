@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # pf.dir
 file_dst_pf_dir: "/etc/{{freebsd_pf_pf_dir_name}}"
 file_mode_pf_dir: '0755'
@@ -85,10 +81,6 @@ file_dst_gateway_ipv4: '/etc/rc.conf'
 file_line_gateway_ipv6: 'ipv6_gateway_enable'
 file_dst_gateway_ipv6: '/etc/rc.conf'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check freebsd_pf
 command_cmd_check_freebsd_pf: 'pfctl -e'
 
@@ -103,10 +95,6 @@ command_cmd_stop_freebsd_pf: 'pfctl -d'
 
 # validate freebsd_pf
 command_cmd_validate_freebsd_pf: "pfctl -nf {{file_dst_pf_conf}}"
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # freebsd_pf
 service_name_freebsd_pf: 'pf'

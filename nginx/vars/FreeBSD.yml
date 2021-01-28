@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # log.dir
 file_dst_log_dir: '/var/log/nginx'
 file_mode_log_dir: '0755'
@@ -25,10 +21,6 @@ file_dst_monit_d: '/usr/local/etc/monit.d'
 
 # nginx.cfg
 file_dst_nginx_cfg: '/usr/local/etc/monit.d/nginx.cfg'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # check service monit
 command_cmd_check_service_monit: 'service -l | grep "^monit$" > /dev/null 2>&1'

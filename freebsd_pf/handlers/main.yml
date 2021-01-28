@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -12,10 +8,6 @@
         - "vars/{{ansible_os_family}}{{ansible_distribution_release}}.yml"
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command validate freebsd_pf'
   command: "{{command_cmd_validate_freebsd_pf}}"

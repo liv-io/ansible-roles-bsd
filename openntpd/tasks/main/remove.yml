@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - openntpd
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status openntpd'
   command: "{{command_cmd_status_openntpd}}"
@@ -28,7 +19,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - openntpd
 
 - name: 'command disable openntpd'
@@ -36,7 +26,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
   tags:
-    - remove
     - openntpd
 
 - name: 'command check openntpd'
@@ -47,7 +36,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - openntpd
 
 - name: 'command stop openntpd'
@@ -55,12 +43,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
   tags:
-    - remove
     - openntpd
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove openntpd'
   package:
@@ -68,12 +51,7 @@
     name: "{{package_name_openntpd}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - openntpd
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove openntpd.cfg'
   file:
@@ -81,7 +59,6 @@
     path: "{{file_dst_openntpd_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - openntpd
 
 - name: 'cron remove openntpd_check-time'
@@ -90,7 +67,6 @@
     name: "{{cron_name_openntpd_check_time}}"
     user: "{{cron_user_openntpd_check_time}}"
   tags:
-    - remove
     - openntpd
 
 - name: 'file remove openntpd_check-time'
@@ -98,7 +74,6 @@
     state: 'absent'
     path: "{{file_dst_openntpd_check_time}}"
   tags:
-    - remove
     - openntpd
 
 - name: 'line remove openntpd_enable'
@@ -110,7 +85,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - openntpd
 
 - name: 'file remove ntpd.conf'
@@ -119,5 +93,4 @@
     path: "{{file_dst_ntpd_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - openntpd

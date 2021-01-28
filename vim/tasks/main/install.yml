@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,24 +9,14 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - install
     - vim
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package install vim'
   package:
     state: 'present'
     name: "{{package_name_vim}}"
   tags:
-    - install
     - vim
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create vimrc'
   template:
@@ -40,5 +26,4 @@
     owner: "{{file_owner_vimrc}}"
     group: "{{file_group_vimrc}}"
   tags:
-    - install
     - vim

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - config
     - user
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'user config user'
   user:
@@ -40,7 +31,6 @@
     system: "{{'yes' if (item.system|default('false') is match('true|yes|enable')) else 'no'}}"
   loop: "{{user_config_all + user_config_group + user_config_host}}"
   tags:
-    - config
     - user
 
 - name: 'user config authorized_key'
@@ -55,5 +45,4 @@
     - flags:
       skip_missing: true
   tags:
-    - config
     - user

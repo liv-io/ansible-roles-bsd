@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # eve.json.newsyslog
 file_line_eve_json_newsyslog: '/var/log/suricata/eve.json  _suricata:_suricata  664  4  *  $D0  Z  "pkill -HUP -u root -U root -x suricata"'
 file_regexp_eve_json_newsyslog: '^\/var\/log\/suricata\/eve.json.*'
@@ -22,10 +18,6 @@ file_dst_stats_log_newsyslog: '/etc/newsyslog.conf'
 # suricata_flags
 file_line_suricata_flags: 'suricata_flags='
 file_dst_suricata_flags: '/etc/rc.conf.local'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # check suricata
 command_cmd_check_suricata: 'rcctl check suricata'
@@ -50,10 +42,6 @@ command_cmd_status_suricata: 'rcctl get suricata status'
 
 # stop suricata
 command_cmd_stop_suricata: 'rcctl stop suricata'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # suricata
 service_name_suricata: 'suricata'

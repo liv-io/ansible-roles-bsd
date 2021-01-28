@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # installurl
 file_src_installurl: 'templates/main/installurl'
 file_dst_installurl: '/etc/installurl'

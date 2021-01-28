@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - enable
     - openbsd_pf
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create anchors.conf'
   template:
@@ -31,7 +22,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - enable
     - openbsd_pf
 
 - name: 'file create filters.conf'
@@ -45,7 +35,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - enable
     - openbsd_pf
 
 - name: 'file create macros.conf'
@@ -59,7 +48,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - enable
     - openbsd_pf
 
 - name: 'file create normalization.conf'
@@ -73,7 +61,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - enable
     - openbsd_pf
 
 - name: 'file create options.conf'
@@ -87,7 +74,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - enable
     - openbsd_pf
 
 - name: 'file create queues.conf'
@@ -101,7 +87,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - enable
     - openbsd_pf
 
 - name: 'file create tables.conf'
@@ -115,7 +100,6 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - enable
     - openbsd_pf
 
 - name: 'file create pf.conf'
@@ -129,12 +113,7 @@
     - 'command validate openbsd_pf'
     - 'command reload openbsd_pf'
   tags:
-    - enable
     - openbsd_pf
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status openbsd_pf'
   command: "{{command_cmd_status_openbsd_pf}}"
@@ -143,7 +122,6 @@
   failed_when: (register_status_openbsd_pf.rc > 1)
   check_mode: 'no'
   tags:
-    - enable
     - openbsd_pf
 
 - name: 'command enable openbsd_pf'
@@ -151,7 +129,6 @@
   when: (register_status_openbsd_pf.rc == 1)
   check_mode: 'no'
   tags:
-    - enable
     - openbsd_pf
 
 - name: 'command check openbsd_pf'
@@ -161,7 +138,6 @@
   failed_when: (register_check_openbsd_pf.rc > 1)
   check_mode: 'no'
   tags:
-    - enable
     - openbsd_pf
 
 - name: 'command start openbsd_pf'
@@ -169,5 +145,4 @@
   when: (register_check_openbsd_pf.rc == 1)
   check_mode: 'no'
   tags:
-    - enable
     - openbsd_pf

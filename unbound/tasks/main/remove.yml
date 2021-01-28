@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - unbound
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status unbound'
   command: "{{command_cmd_status_unbound}}"
@@ -28,7 +19,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - unbound
 
 - name: 'command disable unbound'
@@ -36,7 +26,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_unbound.rc == 0)
   tags:
-    - remove
     - unbound
 
 - name: 'command check unbound'
@@ -47,7 +36,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - unbound
 
 - name: 'command stop unbound'
@@ -55,12 +43,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_unbound.rc == 0)
   tags:
-    - remove
     - unbound
-
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
 
 - name: 'package remove unbound'
   package:
@@ -68,12 +51,7 @@
     name: "{{package_name_unbound}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - unbound
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove unbound.cfg'
   file:
@@ -81,7 +59,6 @@
     path: "{{file_dst_unbound_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - unbound
 
 - name: 'line remove unbound_enable'
@@ -93,7 +70,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - unbound
 
 - name: 'file remove unbound.conf.link'
@@ -102,7 +78,6 @@
     path: "{{file_dst_unbound_conf_link}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - unbound
 
 - name: 'file remove unbound.conf'
@@ -111,7 +86,6 @@
     path: "{{file_dst_unbound_conf}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - unbound
 
 - name: 'file remove root.hints.link'
@@ -120,7 +94,6 @@
     path: "{{file_dst_root_hints_link}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - root
 
 - name: 'file remove root.hints'
@@ -129,5 +102,4 @@
     path: "{{file_dst_root_hints}}"
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - unbound

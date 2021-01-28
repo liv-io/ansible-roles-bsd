@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - disable
     - tinc
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file create tinc.cfg'
   template:
@@ -30,12 +21,7 @@
   notify: 'service reload monit'
   when: (tinc_monitor_monit_state is match('true|yes|enable'))
   tags:
-    - disable
     - tinc
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status tinc'
   command: "{{command_cmd_status_tinc}}"
@@ -45,7 +31,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - tinc
 
 - name: 'command disable tinc'
@@ -53,7 +38,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_tinc.rc == 0)
   tags:
-    - disable
     - tinc
 
 - name: 'command check tinc'
@@ -64,7 +48,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - disable
     - tinc
 
 - name: 'command stop tinc'
@@ -72,5 +55,4 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_tinc.rc == 0)
   tags:
-    - disable
     - tinc

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # syslog.conf
 file_src_syslog_conf: 'templates/main/syslog.conf'
 file_dst_syslog_conf: '/etc/syslog.conf'
@@ -32,16 +28,8 @@ file_mode_syslogd_cfg: '0640'
 file_owner_syslogd_cfg: 'root'
 file_group_syslogd_cfg: 'wheel'
 
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
-
 # check service monit
 command_cmd_check_service_monit: 'service -l | grep "^monit$" > /dev/null 2>&1'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # monit
 service_name_monit: 'monit'

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # node_exporter_var.dir
 file_dst_node_exporter_var_dir: '/var/node_exporter'
 file_mode_node_exporter_var_dir: '0755'
@@ -29,16 +25,8 @@ file_mode_node_exporter_cfg: '0640'
 file_owner_node_exporter_cfg: 'root'
 file_group_node_exporter_cfg: 'wheel'
 
-#-------------------------------------------------------------------------------
-# PACKAGING
-#-------------------------------------------------------------------------------
-
 # node_exporter
 package_name_node_exporter: 'node_exporter'
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 # monit
 service_name_monit: 'monit'

@@ -3,9 +3,7 @@
 scriptencoding utf-8
 " ^^ Please leave the above line at the start of the file.
 
-"-------------------------------------------------------------------------------
 " General settings
-"-------------------------------------------------------------------------------
 
 " The following are some sensible defaults for Vim for most users.
 " We attempt to change as little as possible from Vim's defaults,
@@ -38,18 +36,14 @@ if v:version >= 700
   set numberwidth=3
 endif
 
-"-------------------------------------------------------------------------------
 " Modeline settings
-"-------------------------------------------------------------------------------
 
 " We don't allow modelines by default. See bug #14088 and bug #73715.
 " If you're not concerned about these, you can enable them on a per-user
 " basis by adding "set modeline" to your ~/.vimrc file.
 set nomodeline
 
-"-------------------------------------------------------------------------------
 " Locale settings
-"-------------------------------------------------------------------------------
 
 " Try to come up with some nice sane GUI fonts. Also try to set a sensible
 " value for fileencodings based upon locale. These can all be overridden in
@@ -87,9 +81,7 @@ if &fileencodings !~? "default"
   set fileencodings+=default
 endif
 
-"-------------------------------------------------------------------------------
 " Syntax highlighting settings
-"-------------------------------------------------------------------------------
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -98,18 +90,14 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-"-------------------------------------------------------------------------------
 " Terminal fixes
-"-------------------------------------------------------------------------------
 
 if &term ==? "xterm"
   set t_Sb=^[4%dm
   set t_Sf=^[3%dm
 endif
 
-"-------------------------------------------------------------------------------
 " Filetype plugin settings
-"-------------------------------------------------------------------------------
 
 " Enable plugin-provided filetype settings, but only if the ftplugin
 " directory exists (which it won't on livecds, for example).
@@ -123,9 +111,7 @@ if isdirectory(expand("$VIMRUNTIME/ftplugin"))
   filetype plugin indent off
 endif
 
-"-------------------------------------------------------------------------------
 " Fix &shell, see bug #101665.
-"-------------------------------------------------------------------------------
 
 if "" == &shell
   if executable("/bin/bash")
@@ -141,9 +127,7 @@ if has("eval")
   let is_bash=1
 endif
 
-"-------------------------------------------------------------------------------
 " Autocommands
-"-------------------------------------------------------------------------------
 
 if has("autocmd")
 

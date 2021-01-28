@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # resolv.conf
 file_src_resolv_conf: "templates/{{ansible_os_family}}/resolv.conf"
 file_dst_resolv_conf: '/etc/resolv.conf'

@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # monit_exporter_flags
 file_line_monit_exporter_flags: "monit_exporter_flags=\"-conf='/etc/monit_exporter/config.toml'\""
 file_regexp_monit_exporter_flags: 'monit_exporter_flags'
@@ -11,10 +7,6 @@ file_dest_monit_exporter_flags: '/etc/rc.conf.local'
 
 # monit_exporter.service
 file_dst_monit_exporter_service: '/etc/rc.d/monit_exporter'
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 # check monit_exporter
 command_cmd_check_monit_exporter: 'rcctl check monit_exporter'

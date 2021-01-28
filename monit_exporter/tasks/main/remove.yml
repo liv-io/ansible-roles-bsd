@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# VARIABLES
-#-------------------------------------------------------------------------------
-
 - name: 'include variables'
   include_vars: "{{lookup('first_found', params)}}"
   vars:
@@ -13,12 +9,7 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
   tags:
-    - remove
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# COMMANDS
-#-------------------------------------------------------------------------------
 
 - name: 'command status monit_exporter'
   command: "{{command_cmd_status_monit_exporter}}"
@@ -27,7 +18,6 @@
   failed_when: (register_status_monit_exporter.rc > 2)
   check_mode: 'no'
   tags:
-    - remove
     - monit_exporter
 
 - name: 'command stop monit_exporter'
@@ -35,7 +25,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'FreeBSD') and (register_status_monit_exporter.rc == 0)
   tags:
-    - remove
     - monit_exporter
 
 - name: 'command disable monit_exporter'
@@ -43,7 +32,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_monit_exporter.rc == 0)
   tags:
-    - remove
     - monit_exporter
 
 - name: 'command check monit_exporter'
@@ -54,7 +42,6 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - monit_exporter
 
 - name: 'command stop monit_exporter'
@@ -62,12 +49,7 @@
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_monit_exporter.rc == 0)
   tags:
-    - remove
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# SYSTEM
-#-------------------------------------------------------------------------------
 
 - name: 'user remove monit_exporter'
   user:
@@ -76,7 +58,6 @@
     remove: "{{user_home_remove_monit_exporter}}"
     force: "{{user_home_force_monit_exporter}}"
   tags:
-    - remove
     - monit_exporter
 
 - name: 'group remove monit_exporter'
@@ -84,12 +65,7 @@
     state: 'absent'
     name: "{{group_name_monit_exporter}}"
   tags:
-    - remove
     - monit_exporter
-
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
 
 - name: 'file remove monit_exporter.cfg'
   file:
@@ -97,7 +73,6 @@
     path: "{{file_dst_monit_exporter_cfg}}"
   notify: 'service reload monit'
   tags:
-    - remove
     - monit_exporter
 
 - name: 'line config monit_exporter_config'
@@ -109,7 +84,6 @@
     create: 'yes'
   when: (ansible_os_family == 'FreeBSD')
   tags:
-    - remove
     - monit_exporter
 
 - name: 'line config monit_exporter_flags'
@@ -121,7 +95,6 @@
     create: 'yes'
   when: (ansible_os_family == 'OpenBSD')
   tags:
-    - remove
     - monit_exporter
 
 - name: 'file remove monit_exporter_etc.dir'
@@ -129,7 +102,6 @@
     state: 'absent'
     path: "{{file_dst_monit_exporter_etc_dir}}"
   tags:
-    - remove
     - monit_exporter
 
 - name: 'file remove monit_exporter.service'
@@ -137,7 +109,6 @@
     state: 'absent'
     path: "{{file_dst_monit_exporter_service}}"
   tags:
-    - remove
     - monit_exporter
 
 - name: 'file remove monit_exporter'
@@ -145,7 +116,6 @@
     state: 'absent'
     path: "{{file_creates_monit_exporter}}"
   tags:
-    - remove
     - monit_exporter
 
 - name: 'file remove monit_exporter.tar.gz'
@@ -153,5 +123,4 @@
     state: 'absent'
     path: "{{file_dst_monit_exporter_tar_gz}}"
   tags:
-    - remove
     - monit_exporter

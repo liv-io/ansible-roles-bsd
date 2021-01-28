@@ -1,6 +1,5 @@
 {{ansible_managed|comment(decoration='#')}}
 
-
 #	$OpenBSD: ssh_config,v 1.33 2017/05/07 23:12:57 djm Exp $
 #	$FreeBSD: releng/12.2/crypto/openssh/ssh_config 360313 2020-04-25 15:38:48Z emaste $
 

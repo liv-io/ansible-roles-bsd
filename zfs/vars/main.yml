@@ -1,9 +1,5 @@
 ---
 
-#-------------------------------------------------------------------------------
-# FILES
-#-------------------------------------------------------------------------------
-
 # zfs_check-pools
 file_src_zfs_check_pools: 'templates/main/zfs_check-pools'
 file_dst_zfs_check_pools: '/usr/local/sbin/zfs_check-pools'
