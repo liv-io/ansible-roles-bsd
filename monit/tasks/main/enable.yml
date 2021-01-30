@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - monit
 
-- name: 'file create monitrc'
+- name: create file monitrc
   template:
     src: "{{file_src_monitrc}}"
     dest: "{{file_dst_monitrc}}"
@@ -19,12 +19,12 @@
     owner: "{{file_owner_monitrc}}"
     group: "{{file_group_monitrc}}"
   notify:
-    - 'command validate monit'
-    - 'service restart monit'
+    - validate monit
+    - restart service monit
   tags:
     - monit
 
-- name: 'line enable monit_enable'
+- name: line enable monit_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_monit_enable}}=\"YES\" # Ansible: Enable monit"
@@ -35,7 +35,7 @@
   tags:
     - monit
 
-- name: 'command status monit'
+- name: status monit
   command: "{{command_cmd_status_monit}}"
   register: register_status_monit
   changed_when: (register_status_monit.rc > 1)
@@ -45,14 +45,14 @@
   tags:
     - monit
 
-- name: 'command enable monit'
+- name: enable monit
   command: "{{command_cmd_enable_monit}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_monit.rc == 1)
   tags:
     - monit
 
-- name: 'command check monit'
+- name: check monit
   command: "{{command_cmd_check_monit}}"
   register: register_check_monit
   changed_when: (register_check_monit.rc > 1)
@@ -62,14 +62,14 @@
   tags:
     - monit
 
-- name: 'command start monit'
+- name: start monit
   command: "{{command_cmd_start_monit}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_monit.rc == 1)
   tags:
     - monit
 
-- name: 'service start monit'
+- name: start service monit
   service:
     state: 'started'
     enabled: 'yes'

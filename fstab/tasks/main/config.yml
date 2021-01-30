@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - fstab
 
-- name: 'line config fstab'
+- name: config line fstab
   lineinfile:
     state: "{{'absent' if ((item.state|default('true')) is match('false|no|remove')) else 'present'}}"
     line: "{{item.filesystem}}  {{item.mountpoint}}  {{item.type}}  {{(item.options|join(',')) if not ((item.options|default([])) == []) else 'defaults'}}  {{(item.dump|int(0)) if not ((item.dump|default('')) == '') else 0}} {{(item.pass|int(0)) if not ((item.pass|default('')) == '') else 0}} # {{(item.comment|default(''))}} | Ansible: {{(item.mountpoint|md5)}}"

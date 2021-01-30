@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - openbsd_periodic
 
-- name: 'line enable daily output'
+- name: line enable daily output
   replace:
     path: "{{file_dst_daily}}"
     regexp: "{{file_regexp_enable_daily_output}}"
@@ -20,7 +20,7 @@
   tags:
     - openbsd_periodic
 
-- name: 'line enable daily insecurity output'
+- name: line enable daily insecurity output
   replace:
     path: "{{file_dst_daily}}"
     regexp: "{{file_regexp_enable_daily_insecurity_output}}"
@@ -29,7 +29,7 @@
   tags:
     - openbsd_periodic
 
-- name: 'line enable monthly output'
+- name: line enable monthly output
   replace:
     path: "{{file_dst_monthly}}"
     regexp: "{{file_regexp_enable_monthly_output}}"
@@ -38,7 +38,7 @@
   tags:
     - openbsd_periodic
 
-- name: 'line enable weekly output'
+- name: line enable weekly output
   replace:
     path: "{{file_dst_weekly}}"
     regexp: "{{file_regexp_enable_weekly_output}}"
@@ -47,7 +47,7 @@
   tags:
     - openbsd_periodic
 
-- name: 'line disable daily output'
+- name: line disable daily output
   replace:
     path: "{{file_dst_daily}}"
     regexp: "{{file_regexp_disable_daily_output}}"
@@ -56,7 +56,7 @@
   tags:
     - openbsd_periodic
 
-- name: 'line disable daily insecurity output'
+- name: line disable daily insecurity output
   replace:
     path: "{{file_dst_daily}}"
     regexp: "{{file_regexp_disable_daily_insecurity_output}}"
@@ -65,7 +65,7 @@
   tags:
     - openbsd_periodic
 
-- name: 'line disable monthly output'
+- name: line disable monthly output
   replace:
     path: "{{file_dst_monthly}}"
     regexp: "{{file_regexp_disable_monthly_output}}"
@@ -74,7 +74,7 @@
   tags:
     - openbsd_periodic
 
-- name: 'line disable weekly output'
+- name: line disable weekly output
   replace:
     path: "{{file_dst_weekly}}"
     regexp: "{{file_regexp_disable_weekly_output}}"

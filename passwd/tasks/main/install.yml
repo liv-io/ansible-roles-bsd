@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - passwd
 
-- name: 'file ensure master.passwd'
+- name: ensure file master.passwd
   file:
     state: 'file'
     dest: "{{file_dst_master_passwd}}"
@@ -21,7 +21,7 @@
   tags:
     - passwd
 
-- name: 'file ensure passwd'
+- name: ensure file passwd
   file:
     state: 'file'
     dest: "{{file_dst_passwd}}"
@@ -31,7 +31,7 @@
   tags:
     - passwd
 
-- name: 'file ensure pwd.db'
+- name: ensure file pwd.db
   file:
     state: 'file'
     dest: "{{file_dst_pwd_db}}"
@@ -41,7 +41,7 @@
   tags:
     - passwd
 
-- name: 'file ensure spwd.db'
+- name: ensure file spwd.db
   file:
     state: 'file'
     dest: "{{file_dst_spwd_db}}"

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - node_exporter
 
-- name: 'line config node_exporter_flags'
+- name: config line node_exporter_flags
   lineinfile:
     state: 'present'
     line: "{{file_line_node_exporter_flags}}"
@@ -22,19 +22,19 @@
   tags:
     - node_exporter
 
-- name: 'file create node_exporter.cfg'
+- name: create file node_exporter.cfg
   template:
     src: "{{file_src_node_exporter_cfg}}"
     dest: "{{file_dst_node_exporter_cfg}}"
     mode: "{{file_mode_node_exporter_cfg}}"
     owner: "{{file_owner_node_exporter_cfg}}"
     group: "{{file_group_node_exporter_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (node_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
     - node_exporter
 
-- name: 'command status node_exporter'
+- name: status node_exporter
   command: "{{command_cmd_status_node_exporter}}"
   register: register_status_node_exporter
   changed_when: (register_status_node_exporter.rc > 1)
@@ -44,14 +44,14 @@
   tags:
     - node_exporter
 
-- name: 'command disable node_exporter'
+- name: disable node_exporter
   command: "{{command_cmd_disable_node_exporter}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_node_exporter.rc == 0)
   tags:
     - node_exporter
 
-- name: 'command check node_exporter'
+- name: check node_exporter
   command: "{{command_cmd_check_node_exporter}}"
   register: register_check_node_exporter
   changed_when: (register_check_node_exporter.rc > 1)
@@ -61,14 +61,14 @@
   tags:
     - node_exporter
 
-- name: 'command stop node_exporter'
+- name: stop node_exporter
   command: "{{command_cmd_stop_node_exporter}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_node_exporter.rc == 0)
   tags:
     - node_exporter
 
-- name: 'service stop node_exporter'
+- name: stop service node_exporter
   service:
     state: 'stopped'
     enabled: 'no'

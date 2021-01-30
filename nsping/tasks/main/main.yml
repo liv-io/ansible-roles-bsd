@@ -1,12 +1,12 @@
 ---
 
-- name: 'task include install'
+- name: import tasks install
   import_tasks: install.yml
   when: not (nsping_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - nsping
 
-- name: 'task include remove'
+- name: import tasks remove
   import_tasks: remove.yml
   when: (nsping_state is match('false|no|remove'))
   tags:

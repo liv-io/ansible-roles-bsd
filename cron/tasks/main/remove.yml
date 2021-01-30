@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,15 +11,15 @@
   tags:
     - cron
 
-- name: 'file remove cron.cfg'
+- name: remove file cron.cfg
   file:
     state: 'absent'
     path: "{{file_dst_cron_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - cron
 
-- name: 'line remove cron_enable'
+- name: line remove cron_enable
   lineinfile:
     state: 'absent'
     line: "{{file_line_cron_enable}}=\"NO\" # Ansible: Remove cron"

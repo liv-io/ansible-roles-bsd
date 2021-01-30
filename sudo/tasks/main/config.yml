@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - sudo
 
-- name: 'file create config'
+- name: create file config
   template:
     src: "{{file_src_config}}"
     dest: "{{file_dst_sudoers_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}"
@@ -24,7 +24,7 @@
   tags:
     - sudo
 
-- name: 'file remove config'
+- name: remove file config
   file:
     state: 'absent'
     path: "{{file_dst_sudoers_d}}/{{(item.order|default(''))}}{{'-' if not ((item.order|default('')) == '') else ''}}{{(item.name|default('config'))}}"

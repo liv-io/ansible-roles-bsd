@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,30 +11,30 @@
   tags:
     - rest_server
 
-- name: 'file create rest_server.service'
+- name: create file rest_server.service
   template:
     src: "{{file_src_rest_server_service}}"
     dest: "{{file_dst_rest_server_service}}"
     mode: "{{file_mode_rest_server_service}}"
     owner: "{{file_owner_rest_server_service}}"
     group: "{{file_group_rest_server_service}}"
-  notify: 'service restart rest_server'
+  notify: restart service rest_server
   tags:
     - rest_server
 
-- name: 'file create rest_server.cfg'
+- name: create file rest_server.cfg
   template:
     src: "{{file_src_rest_server_cfg}}"
     dest: "{{file_dst_rest_server_cfg}}"
     mode: "{{file_mode_rest_server_cfg}}"
     owner: "{{file_owner_rest_server_cfg}}"
     group: "{{file_group_rest_server_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (rest_server_monitor_monit_state is match('true|yes|enable'))
   tags:
     - rest_server
 
-- name: 'command status rest_server'
+- name: status rest_server
   command: "{{command_cmd_status_rest_server}}"
   register: register_status_rest_server
   changed_when: (register_status_rest_server.rc > 1)
@@ -44,14 +44,14 @@
   tags:
     - rest_server
 
-- name: 'command enable rest_server'
+- name: enable rest_server
   command: "{{command_cmd_enable_rest_server}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_rest_server.rc == 1)
   tags:
     - rest_server
 
-- name: 'command check rest_server'
+- name: check rest_server
   command: "{{command_cmd_check_rest_server}}"
   register: register_check_rest_server
   changed_when: (register_check_rest_server.rc > 1)
@@ -61,14 +61,14 @@
   tags:
     - rest_server
 
-- name: 'command start rest_server'
+- name: start rest_server
   command: "{{command_cmd_start_rest_server}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_rest_server.rc == 1)
   tags:
     - rest_server
 
-- name: 'service start rest_server'
+- name: start service rest_server
   service:
     state: 'started'
     enabled: 'yes'

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - sysctl
 
-- name: 'line config sysctl.conf'
+- name: config line sysctl.conf
   lineinfile:
     state: "{{'absent' if ((item.state|default('true')) is match('false|no|remove')) else 'present'}}"
     mode: "{{file_mode_sysctl_conf}}"
@@ -25,7 +25,7 @@
   tags:
     - sysctl
 
-- name: 'command config sysctl'
+- name: config sysctl
   shell: "sysctl -aq | grep -q '{{item.key}}={{item.value}}' || sysctl -q {{item.key}}={{item.value}} && true"
   register: "register_config_sysctl"
   changed_when: (register_config_sysctl.rc > 1)

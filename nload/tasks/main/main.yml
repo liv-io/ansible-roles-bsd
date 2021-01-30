@@ -1,12 +1,12 @@
 ---
 
-- name: 'task include install'
+- name: import tasks install
   import_tasks: install.yml
   when: not (nload_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - nload
 
-- name: 'task include remove'
+- name: import tasks remove
   import_tasks: remove.yml
   when: (nload_state is match('false|no|remove'))
   tags:

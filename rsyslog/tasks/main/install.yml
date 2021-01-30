@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,14 +11,14 @@
   tags:
     - rsyslog
 
-- name: 'package install rsyslog'
+- name: install package rsyslog
   package:
     state: 'present'
     name: "{{package_name_rsyslog}}"
   tags:
     - rsyslog
 
-- name: 'file create rsyslog.d'
+- name: create file rsyslog.d
   file:
     state: 'directory'
     path: "{{file_dst_rsyslog_d}}"
@@ -28,7 +28,7 @@
   tags:
     - rsyslog
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -36,7 +36,7 @@
   tags:
     - rsyslog
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -47,7 +47,7 @@
   tags:
     - rsyslog
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 2)

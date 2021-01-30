@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - gnu_diff
 
-- name: 'package install gnu-diff'
+- name: install package gnu-diff
   package:
     state: 'present'
     name: "{{package_name_gnu_diff}}"

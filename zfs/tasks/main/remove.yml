@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - zfs
 
-- name: 'cron remove zfs_check-pools'
+- name: remove cron zfs_check-pools
   cron:
     state: 'absent'
     name: "{{cron_name_zfs_check_pools}}"
@@ -19,14 +19,14 @@
   tags:
     - zfs
 
-- name: 'file remove zfs_check-pools'
+- name: remove file zfs_check-pools
   file:
     state: 'absent'
     path: "{{file_dst_zfs_check_pools}}"
   tags:
     - zfs
 
-- name: 'cron remove zfs_scrub-pools'
+- name: remove cron zfs_scrub-pools
   cron:
     state: 'absent'
     name: "{{cron_name_zfs_scrub_pools}}"
@@ -34,14 +34,14 @@
   tags:
     - zfs
 
-- name: 'file remove zfs_scrub-pools'
+- name: remove file zfs_scrub-pools
   file:
     state: 'absent'
     path: "{{file_dst_zfs_scrub_pools}}"
   tags:
     - zfs
 
-- name: 'cron remove zfs_trim-pools'
+- name: remove cron zfs_trim-pools
   cron:
     state: 'absent'
     name: "{{cron_name_zfs_trim_pools}}"
@@ -49,7 +49,7 @@
   tags:
     - zfs
 
-- name: 'file remove zfs_trim-pools'
+- name: remove file zfs_trim-pools
   file:
     state: 'absent'
     path: "{{file_src_zfs_trim_pools}}"

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - nginx
 
-- name: 'file create nginx.conf'
+- name: create file nginx.conf
   template:
     src: "{{file_src_nginx_conf}}"
     dest: "{{file_dst_nginx_conf}}"
@@ -19,12 +19,12 @@
     owner: "{{file_owner_nginx_conf}}"
     group: "{{file_group_nginx_conf}}"
   notify:
-    - 'command check nginx'
-    - 'service reload nginx'
+    - check nginx
+    - reload service nginx
   tags:
     - nginx
 
-- name: 'line enable nginx_enable'
+- name: line enable nginx_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_nginx_enable}}=\"YES\" # Ansible: Enable nginx"
@@ -35,19 +35,19 @@
   tags:
     - nginx
 
-- name: 'file create nginx.cfg'
+- name: create file nginx.cfg
   template:
     src: "{{file_src_nginx_cfg}}"
     dest: "{{file_dst_nginx_cfg}}"
     mode: "{{file_mode_nginx_cfg}}"
     owner: "{{file_owner_nginx_cfg}}"
     group: "{{file_group_nginx_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (nginx_monitor_monit_state is match('true|yes|enable'))
   tags:
     - nginx
 
-- name: 'command status nginx'
+- name: status nginx
   command: "{{command_cmd_status_nginx}}"
   register: register_status_nginx
   changed_when: (register_status_nginx.rc > 1)
@@ -57,14 +57,14 @@
   tags:
     - nginx
 
-- name: 'command enable nginx'
+- name: enable nginx
   command: "{{command_cmd_enable_nginx}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 1)
   tags:
     - nginx
 
-- name: 'command check nginx'
+- name: check nginx
   command: "{{command_cmd_check_nginx}}"
   register: register_check_nginx
   changed_when: (register_check_nginx.rc > 1)
@@ -74,14 +74,14 @@
   tags:
     - nginx
 
-- name: 'command start nginx'
+- name: start nginx
   command: "{{command_cmd_start_nginx}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 1)
   tags:
     - nginx
 
-- name: 'service start nginx'
+- name: start service nginx
   service:
     state: 'started'
     enabled: 'yes'

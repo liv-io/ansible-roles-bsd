@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,14 +11,14 @@
   tags:
     - sudo
 
-- name: 'package install sudo'
+- name: install package sudo
   package:
     state: 'present'
     name: "{{package_name_sudo}}"
   tags:
     - sudo
 
-- name: 'file create sudoers.d'
+- name: create file sudoers.d
   file:
     state: 'directory'
     path: "{{file_dst_sudoers_d}}"
@@ -28,7 +28,7 @@
   tags:
     - sudo
 
-- name: 'file create sudoers'
+- name: create file sudoers
   template:
     src: "{{file_src_sudoers}}"
     dest: "{{file_dst_sudoers}}"

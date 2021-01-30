@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,77 +11,77 @@
   tags:
     - freebsd_pf
 
-- name: 'file remove anchors.conf'
+- name: remove file anchors.conf
   file:
     state: 'absent'
     path: "{{file_dst_anchors_conf}}"
   tags:
     - freebsd_pf
 
-- name: 'file remove filters.conf'
+- name: remove file filters.conf
   file:
     state: 'absent'
     path: "{{file_dst_filters_conf}}"
   tags:
     - freebsd_pf
 
-- name: 'file remove macros.conf'
+- name: remove file macros.conf
   file:
     state: 'absent'
     path: "{{file_dst_macros_conf}}"
   tags:
     - freebsd_pf
 
-- name: 'file remove normalization.conf'
+- name: remove file normalization.conf
   file:
     state: 'absent'
     path: "{{file_dst_normalization_conf}}"
   tags:
     - freebsd_pf
 
-- name: 'file remove options.conf'
+- name: remove file options.conf
   file:
     state: 'absent'
     path: "{{file_dst_options_conf}}"
   tags:
     - freebsd_pf
 
-- name: 'file remove queues.conf'
+- name: remove file queues.conf
   file:
     state: 'absent'
     path: "{{file_dst_queues_conf}}"
   tags:
     - freebsd_pf
 
-- name: 'file remove tables.conf'
+- name: remove file tables.conf
   file:
     state: 'absent'
     path: "{{file_dst_tables_conf}}"
   tags:
     - freebsd_pf
 
-- name: 'file remove translations.conf'
+- name: remove file translations.conf
   file:
     state: 'absent'
     path: "{{file_dst_translations_conf}}"
   tags:
     - freebsd_pf
 
-- name: 'file remove pf.conf'
+- name: remove file pf.conf
   file:
     state: 'absent'
     path: "{{file_dst_pf_conf}}"
   tags:
     - freebsd_pf
 
-- name: 'file remove pf.dir'
+- name: remove file pf.dir
   file:
     state: 'absent'
     path: "{{file_dst_ntp_script_dir}}"
   tags:
     - freebsd_pf
 
-- name: 'line remove pf_enable'
+- name: line remove pf_enable
   lineinfile:
     state: 'absent'
     line: "{{file_line_pf_enable}}=\"NO\" # Ansible: Remove pf"
@@ -92,7 +92,7 @@
   tags:
     - freebsd_pf
 
-- name: 'line remove gateway-ipv4'
+- name: line remove gateway-ipv4
   lineinfile:
     state: 'absent'
     line: "{{file_line_gateway_ipv4}}=\"NO\" # Ansible: Remove gateway-ipv4"
@@ -103,7 +103,7 @@
   tags:
     - freebsd_pf
 
-- name: 'line remove gateway-ipv6'
+- name: line remove gateway-ipv6
   lineinfile:
     state: 'absent'
     line: "{{file_line_gateway_ipv6}}=\"NO\" # Ansible: Remove gateway-ipv6"

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - suricata
 
-- name: 'line config suricata_flags'
+- name: config line suricata_flags
   lineinfile:
     state: 'present'
     line: "{{file_line_suricata_flags}}-i {{suricata_interface}} # Ansible: Configure suricata"
@@ -21,7 +21,7 @@
   tags:
     - suricata
 
-- name: 'file create suricata.yaml'
+- name: create file suricata.yaml
   template:
     src: "{{file_src_suricata_yaml}}"
     dest: "{{file_dst_suricata_yaml}}"
@@ -32,19 +32,19 @@
   tags:
     - suricata
 
-- name: 'file create suricata.cfg'
+- name: create file suricata.cfg
   template:
     src: "{{file_src_suricata_cfg}}"
     dest: "{{file_dst_suricata_cfg}}"
     mode: "{{file_mode_suricata_cfg}}"
     owner: "{{file_owner_suricata_cfg}}"
     group: "{{file_group_suricata_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (suricata_monitor_monit_state is match('true|yes|enable'))
   tags:
     - suricata
 
-- name: 'command status suricata'
+- name: status suricata
   command: "{{command_cmd_status_suricata}}"
   register: register_status_suricata
   changed_when: (register_status_suricata.rc > 1)
@@ -53,14 +53,14 @@
   tags:
     - suricata
 
-- name: 'command disable suricata'
+- name: disable suricata
   command: "{{command_cmd_disable_suricata}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_suricata.rc == 0)
   tags:
     - suricata
 
-- name: 'command check suricata'
+- name: check suricata
   command: "{{command_cmd_check_suricata}}"
   register: register_check_suricata
   changed_when: (register_check_suricata.rc > 1)
@@ -70,14 +70,14 @@
   tags:
     - suricata
 
-- name: 'command stop suricata'
+- name: stop suricata
   command: "{{command_cmd_stop_suricata}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_suricata.rc == 0)
   tags:
     - suricata
 
-- name: 'service stop suricata'
+- name: stop service suricata
   service:
     state: 'stopped'
     enabled: 'no'

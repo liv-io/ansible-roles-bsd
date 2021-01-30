@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - patchutils
 
-- name: 'package remove patchutils'
+- name: remove package patchutils
   package:
     state: 'absent'
     name: "{{package_name_patchutils}}"

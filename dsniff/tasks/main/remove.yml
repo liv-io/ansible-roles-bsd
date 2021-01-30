@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - dsniff
 
-- name: 'package remove dsniff'
+- name: remove package dsniff
   package:
     state: 'absent'
     name: "{{package_name_dsniff}}"

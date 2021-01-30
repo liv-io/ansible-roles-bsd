@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - opensmtpd
 
-- name: 'command status opensmtpd'
+- name: status opensmtpd
   command: "{{command_cmd_status_opensmtpd}}"
   register: register_status_opensmtpd
   changed_when: (register_status_opensmtpd.rc > 1)
@@ -21,14 +21,14 @@
   tags:
     - opensmtpd
 
-- name: 'command disable opensmtpd'
+- name: disable opensmtpd
   command: "{{command_cmd_disable_opensmtpd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 0)
   tags:
     - opensmtpd
 
-- name: 'command check opensmtpd'
+- name: check opensmtpd
   command: "{{command_cmd_check_opensmtpd}}"
   register: register_check_opensmtpd
   changed_when: (register_check_opensmtpd.rc > 1)
@@ -38,22 +38,22 @@
   tags:
     - opensmtpd
 
-- name: 'command stop opensmtpd'
+- name: stop opensmtpd
   command: "{{command_cmd_stop_opensmtpd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 0)
   tags:
     - opensmtpd
 
-- name: 'file remove opensmtpd.cfg'
+- name: remove file opensmtpd.cfg
   file:
     state: 'absent'
     path: "{{file_dst_opensmtpd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - opensmtpd
 
-- name: 'file remove secrets'
+- name: remove file secrets
   file:
     state: 'absent'
     path: "{{file_dst_secrets}}"

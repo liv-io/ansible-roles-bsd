@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - monit_exporter
 
-- name: 'group create monit_exporter'
+- name: create group monit_exporter
   group:
     state: 'present'
     name: "{{group_name_monit_exporter}}"
@@ -19,7 +19,7 @@
   tags:
     - monit_exporter
 
-- name: 'user create monit_exporter'
+- name: create user monit_exporter
   user:
     state: 'present'
     name: "{{user_name_monit_exporter}}"
@@ -37,7 +37,7 @@
   tags:
     - monit_exporter
 
-- name: 'file create src.dir'
+- name: create file src.dir
   file:
     state: 'directory'
     path: "{{file_dst_src_dir}}"
@@ -47,7 +47,7 @@
   tags:
     - monit_exporter
 
-- name: 'file create monit_exporter_etc.dir'
+- name: create file monit_exporter_etc.dir
   file:
     state: 'directory'
     path: "{{file_dst_monit_exporter_etc_dir}}"
@@ -57,7 +57,7 @@
   tags:
     - monit_exporter
 
-- name: 'file download monit_exporter.tar.gz'
+- name: download file monit_exporter.tar.gz
   get_url:
     url: "{{file_src_monit_exporter_tar_gz}}"
     dest: "{{file_dst_monit_exporter_tar_gz}}"
@@ -68,7 +68,7 @@
   tags:
     - monit_exporter
 
-- name: 'file unarchive monit_exporter'
+- name: unarchive file monit_exporter
   unarchive:
     src: "{{file_src_monit_exporter}}"
     dest: "{{file_dst_monit_exporter}}"
@@ -79,7 +79,7 @@
   tags:
     - monit_exporter
 
-- name: 'line config monit_exporter_config'
+- name: config line monit_exporter_config
   lineinfile:
     state: 'present'
     line: "{{file_line_monit_exporter_config}}"
@@ -90,7 +90,7 @@
   tags:
     - monit_exporter
 
-- name: 'line config monit_exporter_flags'
+- name: config line monit_exporter_flags
   lineinfile:
     state: 'present'
     line: "{{file_line_monit_exporter_flags}}"
@@ -101,7 +101,7 @@
   tags:
     - monit_exporter
 
-- name: 'file create monit_exporter.service'
+- name: create file monit_exporter.service
   template:
     src: "{{file_src_monit_exporter_service}}"
     dest: "{{file_dst_monit_exporter_service}}"
@@ -111,7 +111,7 @@
   tags:
     - monit_exporter
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -119,7 +119,7 @@
   tags:
     - monit_exporter
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -130,7 +130,7 @@
   tags:
     - monit_exporter
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 2)
@@ -140,7 +140,7 @@
   tags:
     - monit_exporter
 
-- name: 'meta flush handlers'
+- name: flush meta handlers
   meta: 'flush_handlers'
   tags:
     - monit_exporter

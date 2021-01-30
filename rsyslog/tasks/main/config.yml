@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - rsyslog
 
-- name: 'file create config'
+- name: create file config
   template:
     src: "{{file_src_config}}"
     dest: "{{file_dst_config}}/{{item.name}}.conf"
@@ -19,17 +19,17 @@
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
   loop: "{{rsyslog_config_all + rsyslog_config_group + rsyslog_config_host}}"
-  notify: 'service restart rsyslogd'
+  notify: restart service rsyslogd
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - rsyslog
 
-- name: 'file remove config'
+- name: remove file config
   file:
     state: 'absent'
     path: "{{file_dst_config}}/{{item.name}}.conf"
   loop: "{{rsyslog_config_all + rsyslog_config_group + rsyslog_config_host}}"
-  notify: 'service restart rsyslogd'
+  notify: restart service rsyslogd
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
     - rsyslog

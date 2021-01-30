@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - bind_tools
 
-- name: 'package install bind-tools'
+- name: install package bind-tools
   package:
     state: 'present'
     name: "{{package_name_bind_tools}}"

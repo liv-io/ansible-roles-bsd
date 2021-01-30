@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,29 +11,29 @@
   tags:
     - freebsd_syslogd
 
-- name: 'line config syslogd_flags'
+- name: config line syslogd_flags
   lineinfile:
     state: 'present'
     line: "{{file_line_syslogd_flags}}=\"-s -v -v\" # Ansible: Configure syslogd"
     regexp: "^{{file_line_syslogd_flags}}=.*"
     dest: "{{file_dst_syslogd_flags}}"
     create: 'yes'
-  notify: 'service reload syslogd'
+  notify: reload service syslogd
   tags:
     - freebsd_syslogd
 
-- name: 'file create syslog.conf'
+- name: create file syslog.conf
   template:
     src: "{{file_src_syslog_conf}}"
     dest: "{{file_dst_syslog_conf}}"
     mode: "{{file_mode_syslog_conf}}"
     owner: "{{file_owner_syslog_conf}}"
     group: "{{file_group_syslog_conf}}"
-  notify: 'service reload syslogd'
+  notify: reload service syslogd
   tags:
     - freebsd_syslogd
 
-- name: 'line enable syslogd_enable'
+- name: line enable syslogd_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_syslogd_enable}}=\"YES\" # Ansible: Enable syslogd"
@@ -44,19 +44,19 @@
   tags:
     - freebsd_syslogd
 
-- name: 'file create syslogd.cfg'
+- name: create file syslogd.cfg
   template:
     src: "{{file_src_syslogd_cfg}}"
     dest: "{{file_dst_syslogd_cfg}}"
     mode: "{{file_mode_syslogd_cfg}}"
     owner: "{{file_owner_syslogd_cfg}}"
     group: "{{file_group_syslogd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (freebsd_syslogd_monitor_monit_state is match('true|yes|enable'))
   tags:
     - freebsd_syslogd
 
-- name: 'service start syslogd'
+- name: start service syslogd
   service:
     state: 'started'
     enabled: 'yes'

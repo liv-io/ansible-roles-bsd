@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - suricata
 
-- name: 'file create config'
+- name: create file config
   template:
     src: "{{file_src_config}}"
     dest: "{{file_dst_config}}/{{item.name}}.rules"
@@ -20,23 +20,23 @@
     group: "{{file_group_config}}"
   loop: "{{suricata_config}}"
   notify:
-    - 'command update suricata'
-    - 'service reload suricata'
+    - update suricata
+    - reload service suricata
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - suricata
 
-- name: 'file remove config'
+- name: remove file config
   file:
     state: 'absent'
     path: "{{file_dst_config}}/{{item.name}}.rules"
   loop: "{{suricata_config}}"
-  notify: 'service reload suricata'
+  notify: reload service suricata
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
     - suricata
 
-- name: 'command list enabled ruleset'
+- name: list enabled ruleset
   shell: "{{command_cmd_list_enabled_rulesets}} | grep '{{item.name}}'"
   register: register_list_enabled_rulesets
   changed_when: (register_list_enabled_rulesets.rc > 1)
@@ -46,35 +46,35 @@
   tags:
     - suricata
 
-- name: 'command install ruleset'
+- name: install ruleset
   shell: "{{command_cmd_install_ruleset}} {{item.item.name}} {{item.item.link}}"
   check_mode: 'no'
   loop: "{{register_list_enabled_rulesets.results}}"
   notify:
-    - 'command update suricata'
-    - 'service reload suricata'
+    - update suricata
+    - reload service suricata
   when: (item.rc != 0) and (item.item.state|default('true') is match('install'))
   tags:
     - suricata
 
-- name: 'command enable ruleset'
+- name: enable ruleset
   shell: "{{command_cmd_enable_ruleset}} {{item.item.name}}"
   check_mode: 'no'
   loop: "{{register_list_enabled_rulesets.results}}"
   notify:
-    - 'command update suricata'
-    - 'service reload suricata'
+    - update suricata
+    - reload service suricata
   when: (item.rc != 0) and not (item.item.state|default('true') is match('false|no|remove|disable|install'))
   tags:
     - suricata
 
-- name: 'command remove ruleset'
+- name: remove ruleset
   shell: "{{command_cmd_remove_ruleset}} {{item.item.name}}"
   check_mode: 'no'
   loop: "{{register_list_enabled_rulesets.results}}"
   notify:
-    - 'command update suricata'
-    - 'service reload suricata'
+    - update suricata
+    - reload service suricata
   when: (item.rc == 0) and (item.item.state|default('true') is match('false|no|remove|disable'))
   tags:
     - suricata

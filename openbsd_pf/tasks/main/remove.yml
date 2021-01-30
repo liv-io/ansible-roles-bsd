@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - openbsd_pf
 
-- name: 'command status openbsd_pf'
+- name: status openbsd_pf
   command: "{{command_cmd_status_openbsd_pf}}"
   register: register_status_openbsd_pf
   changed_when: (register_status_openbsd_pf.rc > 1)
@@ -20,14 +20,14 @@
   tags:
     - openbsd_pf
 
-- name: 'command disable openbsd_pf'
+- name: disable openbsd_pf
   command: "{{command_cmd_disable_openbsd_pf}}"
   when: (register_status_openbsd_pf.rc == 0)
   check_mode: 'no'
   tags:
     - openbsd_pf
 
-- name: 'command check openbsd_pf'
+- name: check openbsd_pf
   shell: "{{command_cmd_check_openbsd_pf}}"
   register: register_check_openbsd_pf
   changed_when: (register_check_openbsd_pf.rc > 1)
@@ -36,70 +36,70 @@
   tags:
     - openbsd_pf
 
-- name: 'command stop openbsd_pf'
+- name: stop openbsd_pf
   command: "{{command_cmd_stop_openbsd_pf}}"
   when: (register_check_openbsd_pf.rc == 0)
   check_mode: 'no'
   tags:
     - openbsd_pf
 
-- name: 'file remove anchors.conf'
+- name: remove file anchors.conf
   file:
     state: 'absent'
     path: "{{file_dst_anchors_conf}}"
   tags:
     - openbsd_pf
 
-- name: 'file remove filters.conf'
+- name: remove file filters.conf
   file:
     state: 'absent'
     path: "{{file_dst_filters_conf}}"
   tags:
     - openbsd_pf
 
-- name: 'file remove macros.conf'
+- name: remove file macros.conf
   file:
     state: 'absent'
     path: "{{file_dst_macros_conf}}"
   tags:
     - openbsd_pf
 
-- name: 'file remove normalization.conf'
+- name: remove file normalization.conf
   file:
     state: 'absent'
     path: "{{file_dst_normalization_conf}}"
   tags:
     - openbsd_pf
 
-- name: 'file remove options.conf'
+- name: remove file options.conf
   file:
     state: 'absent'
     path: "{{file_dst_options_conf}}"
   tags:
     - openbsd_pf
 
-- name: 'file remove queues.conf'
+- name: remove file queues.conf
   file:
     state: 'absent'
     path: "{{file_dst_queues_conf}}"
   tags:
     - openbsd_pf
 
-- name: 'file remove tables.conf'
+- name: remove file tables.conf
   file:
     state: 'absent'
     path: "{{file_dst_tables_conf}}"
   tags:
     - openbsd_pf
 
-- name: 'file remove pf.conf'
+- name: remove file pf.conf
   file:
     state: 'absent'
     path: "{{file_dst_pf_conf}}"
   tags:
     - openbsd_pf
 
-- name: 'file remove pf.dir'
+- name: remove file pf.dir
   file:
     state: 'absent'
     path: "{{file_dst_ntp_script_dir}}"

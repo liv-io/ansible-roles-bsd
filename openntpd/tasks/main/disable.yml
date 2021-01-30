@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - openntpd
 
-- name: 'file create ntpd.conf'
+- name: create file ntpd.conf
   template:
     src: "{{file_src_ntpd_conf}}"
     dest: "{{file_dst_ntpd_conf}}"
@@ -21,14 +21,14 @@
   tags:
     - openntpd
 
-- name: 'file remove openntpd_check-time'
+- name: remove file openntpd_check-time
   file:
     state: 'absent'
     path: "{{file_dst_openntpd_check_time}}"
   tags:
     - openntpd
 
-- name: 'cron create openntpd_check-time'
+- name: create cron openntpd_check-time
   cron:
     state: 'present'
     disabled: 'yes'
@@ -43,7 +43,7 @@
   tags:
     - openntpd
 
-- name: 'line disable openntpd_enable'
+- name: line disable openntpd_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_openntpd_enable}}=\"NO\" # Ansible: Disable openntpd"
@@ -54,19 +54,19 @@
   tags:
     - openntpd
 
-- name: 'file create openntpd.cfg'
+- name: create file openntpd.cfg
   template:
     src: "{{file_src_openntpd_cfg}}"
     dest: "{{file_dst_openntpd_cfg}}"
     mode: "{{file_mode_openntpd_cfg}}"
     owner: "{{file_owner_openntpd_cfg}}"
     group: "{{file_group_openntpd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (openntpd_monitor_monit_state is match('true|yes|enable'))
   tags:
     - openntpd
 
-- name: 'command status openntpd'
+- name: status openntpd
   command: "{{command_cmd_status_openntpd}}"
   register: register_status_openntpd
   changed_when: (register_status_openntpd.rc > 1)
@@ -76,14 +76,14 @@
   tags:
     - openntpd
 
-- name: 'command disable openntpd'
+- name: disable openntpd
   command: "{{command_cmd_disable_openntpd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
   tags:
     - openntpd
 
-- name: 'command check openntpd'
+- name: check openntpd
   command: "{{command_cmd_check_openntpd}}"
   register: register_check_openntpd
   changed_when: (register_check_openntpd.rc > 1)
@@ -93,14 +93,14 @@
   tags:
     - openntpd
 
-- name: 'command stop openntpd'
+- name: stop openntpd
   command: "{{command_cmd_stop_openntpd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
   tags:
     - openntpd
 
-- name: 'service stop openntpd'
+- name: stop service openntpd
   service:
     state: 'stopped'
     enabled: 'no'

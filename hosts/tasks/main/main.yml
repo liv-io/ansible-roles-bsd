@@ -1,6 +1,6 @@
 ---
 
-- name: 'task include config'
+- name: import tasks config
   import_tasks: config.yml
   when: not (hosts_state is match('false|no|remove|quiesce|inactive'))
   tags:

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,21 +11,21 @@
   tags:
     - bash
 
-- name: 'package remove bash'
+- name: remove package bash
   package:
     state: 'absent'
     name: "{{package_name_bash}}"
   tags:
     - bash
 
-- name: 'file remove bash.bash'
+- name: remove file bash.bash
   file:
     state: 'absent'
     path: "{{file_dst_bash_bash}}"
   tags:
     - bash
 
-- name: 'file remove zz_bash.bash'
+- name: remove file zz_bash.bash
   file:
     state: 'absent'
     path: "{{file_dst_zz_bash_bash}}"

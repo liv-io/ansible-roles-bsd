@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - openssh
 
-- name: 'file create banner'
+- name: create file banner
   template:
     src: "{{file_src_banner}}"
     dest: "{{file_dst_banner}}"
@@ -21,7 +21,7 @@
   tags:
     - openssh
 
-- name: 'file create moduli'
+- name: create file moduli
   template:
     src: "{{file_src_moduli}}"
     dest: "{{file_dst_moduli}}"
@@ -31,7 +31,7 @@
   tags:
     - openssh
 
-- name: 'file create ssh_config'
+- name: create file ssh_config
   template:
     src: "{{file_src_ssh_config}}"
     dest: "{{file_dst_ssh_config}}"
@@ -41,7 +41,7 @@
   tags:
     - openssh
 
-- name: 'file create sshd_config'
+- name: create file sshd_config
   template:
     src: "{{file_src_sshd_config}}"
     dest: "{{file_dst_sshd_config}}"
@@ -51,7 +51,7 @@
   tags:
     - openssh
 
-- name: 'line disable sshd_enable'
+- name: line disable sshd_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_sshd_enable}}=\"NO\" # Ansible: Disable openssh"
@@ -62,19 +62,19 @@
   tags:
     - openssh
 
-- name: 'file create openssh.cfg'
+- name: create file openssh.cfg
   template:
     src: "{{file_src_openssh_cfg}}"
     dest: "{{file_dst_openssh_cfg}}"
     mode: "{{file_mode_openssh_cfg}}"
     owner: "{{file_owner_openssh_cfg}}"
     group: "{{file_group_openssh_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (openssh_monitor_monit_state is match('true|yes|enable'))
   tags:
     - openssh
 
-- name: 'command status openssh'
+- name: status openssh
   command: "{{command_cmd_status_openssh}}"
   register: register_status_openssh
   changed_when: (register_status_openssh.rc > 1)
@@ -84,14 +84,14 @@
   tags:
     - openssh
 
-- name: 'command disable openssh'
+- name: disable openssh
   command: "{{command_cmd_disable_openssh}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openssh.rc == 0)
   tags:
     - openssh
 
-- name: 'command check openssh'
+- name: check openssh
   command: "{{command_cmd_check_openssh}}"
   register: register_check_openssh
   changed_when: (register_check_openssh.rc > 1)
@@ -101,14 +101,14 @@
   tags:
     - openssh
 
-- name: 'command stop openssh'
+- name: stop openssh
   command: "{{command_cmd_stop_openssh}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openssh.rc == 0)
   tags:
     - openssh
 
-- name: 'service stop openssh'
+- name: stop service openssh
   service:
     state: 'stopped'
     enabled: 'no'

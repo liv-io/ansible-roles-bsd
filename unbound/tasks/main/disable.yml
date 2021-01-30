@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - unbound
 
-- name: 'file create root.hints'
+- name: create file root.hints
   template:
     src: "{{file_src_root_hints}}"
     dest: "{{file_dst_root_hints}}"
@@ -22,7 +22,7 @@
   tags:
     - unbound
 
-- name: 'file create unbound.conf'
+- name: create file unbound.conf
   template:
     src: "{{file_src_unbound_conf}}"
     dest: "{{file_dst_unbound_conf}}"
@@ -33,7 +33,7 @@
   tags:
     - unbound
 
-- name: 'line disable unbound_enable'
+- name: line disable unbound_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_unbound_enable}}=\"NO\" # Ansible: Disable unbound"
@@ -44,19 +44,19 @@
   tags:
     - unbound
 
-- name: 'file create unbound.cfg'
+- name: create file unbound.cfg
   template:
     src: "{{file_src_unbound_cfg}}"
     dest: "{{file_dst_unbound_cfg}}"
     mode: "{{file_mode_unbound_cfg}}"
     owner: "{{file_owner_unbound_cfg}}"
     group: "{{file_group_unbound_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (unbound_monitor_monit_state is match('true|yes|enable'))
   tags:
     - unbound
 
-- name: 'command status unbound'
+- name: status unbound
   command: "{{command_cmd_status_unbound}}"
   register: register_status_unbound
   changed_when: (register_status_unbound.rc > 1)
@@ -66,14 +66,14 @@
   tags:
     - unbound
 
-- name: 'command disable unbound'
+- name: disable unbound
   command: "{{command_cmd_disable_unbound}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_unbound.rc == 0)
   tags:
     - unbound
 
-- name: 'command check unbound'
+- name: check unbound
   command: "{{command_cmd_check_unbound}}"
   register: register_check_unbound
   changed_when: (register_check_unbound.rc > 1)
@@ -83,14 +83,14 @@
   tags:
     - unbound
 
-- name: 'command stop unbound'
+- name: stop unbound
   command: "{{command_cmd_stop_unbound}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_unbound.rc == 0)
   tags:
     - unbound
 
-- name: 'service stop unbound'
+- name: stop service unbound
   service:
     state: 'stopped'
     enabled: 'no'

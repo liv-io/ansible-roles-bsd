@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - freebsd_pf
 
-- name: 'file create pf.dir'
+- name: create file pf.dir
   file:
     state: 'directory'
     path: "{{file_dst_pf_dir}}"

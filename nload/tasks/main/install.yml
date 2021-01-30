@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - nload
 
-- name: 'package install nload'
+- name: install package nload
   package:
     state: 'present'
     name: "{{package_name_nload}}"

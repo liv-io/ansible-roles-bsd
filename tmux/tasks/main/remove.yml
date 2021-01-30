@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - tmux
 
-- name: 'package remove tmux'
+- name: remove package tmux
   package:
     state: 'absent'
     name: "{{package_name_tmux}}"
@@ -19,7 +19,7 @@
   tags:
     - tmux
 
-- name: 'file remove tmux.conf'
+- name: remove file tmux.conf
   file:
     state: 'absent'
     path: "{{file_dst_tmux_conf}}"

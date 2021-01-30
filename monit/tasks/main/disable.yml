@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - monit
 
-- name: 'file create monitrc'
+- name: create file monitrc
   template:
     src: "{{file_src_monitrc}}"
     dest: "{{file_dst_monitrc}}"
@@ -21,7 +21,7 @@
   tags:
     - monit
 
-- name: 'line disable monit_enable'
+- name: line disable monit_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_monit_enable}}=\"NO\" # Ansible: Disable monit"
@@ -32,7 +32,7 @@
   tags:
     - monit
 
-- name: 'command status monit'
+- name: status monit
   command: "{{command_cmd_status_monit}}"
   register: register_status_monit
   changed_when: (register_status_monit.rc > 1)
@@ -42,14 +42,14 @@
   tags:
     - monit
 
-- name: 'command disable monit'
+- name: disable monit
   command: "{{command_cmd_disable_monit}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_monit.rc == 0)
   tags:
     - monit
 
-- name: 'command check monit'
+- name: check monit
   command: "{{command_cmd_check_monit}}"
   register: register_check_monit
   changed_when: (register_check_monit.rc > 1)
@@ -59,14 +59,14 @@
   tags:
     - monit
 
-- name: 'command stop monit'
+- name: stop monit
   command: "{{command_cmd_stop_monit}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_monit.rc == 0)
   tags:
     - monit
 
-- name: 'service stop monit'
+- name: stop service monit
   service:
     state: 'stopped'
     enabled: 'no'

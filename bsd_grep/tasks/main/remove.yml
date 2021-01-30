@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - bsd_grep
 
-- name: 'package remove bsd-grep'
+- name: remove package bsd-grep
   package:
     state: 'absent'
     name: "{{package_name_bsd_grep}}"

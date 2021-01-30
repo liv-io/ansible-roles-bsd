@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - ltrace
 
-- name: 'package remove ltrace'
+- name: remove package ltrace
   package:
     state: 'absent'
     name: "{{package_name_ltrace}}"

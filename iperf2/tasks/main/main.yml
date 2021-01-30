@@ -1,12 +1,12 @@
 ---
 
-- name: 'task include install'
+- name: import tasks install
   import_tasks: install.yml
   when: not (iperf2_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - iperf2
 
-- name: 'task include remove'
+- name: import tasks remove
   import_tasks: remove.yml
   when: (iperf2_state is match('false|no|remove'))
   tags:

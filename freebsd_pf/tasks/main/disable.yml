@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - freebsd_pf
 
-- name: 'file create anchors.conf'
+- name: create file anchors.conf
   template:
     src: "{{file_src_anchors_conf}}"
     dest: "{{file_dst_anchors_conf}}"
@@ -21,7 +21,7 @@
   tags:
     - freebsd_pf
 
-- name: 'file create filters.conf'
+- name: create file filters.conf
   template:
     src: "{{file_src_filters_conf}}"
     dest: "{{file_dst_filters_conf}}"
@@ -31,7 +31,7 @@
   tags:
     - freebsd_pf
 
-- name: 'file create macros.conf'
+- name: create file macros.conf
   template:
     src: "{{file_src_macros_conf}}"
     dest: "{{file_dst_macros_conf}}"
@@ -41,7 +41,7 @@
   tags:
     - freebsd_pf
 
-- name: 'file create normalization.conf'
+- name: create file normalization.conf
   template:
     src: "{{file_src_normalization_conf}}"
     dest: "{{file_dst_normalization_conf}}"
@@ -51,7 +51,7 @@
   tags:
     - freebsd_pf
 
-- name: 'file create options.conf'
+- name: create file options.conf
   template:
     src: "{{file_src_options_conf}}"
     dest: "{{file_dst_options_conf}}"
@@ -61,7 +61,7 @@
   tags:
     - freebsd_pf
 
-- name: 'file create queues.conf'
+- name: create file queues.conf
   template:
     src: "{{file_src_queues_conf}}"
     dest: "{{file_dst_queues_conf}}"
@@ -71,7 +71,7 @@
   tags:
     - freebsd_pf
 
-- name: 'file create tables.conf'
+- name: create file tables.conf
   template:
     src: "{{file_src_tables_conf}}"
     dest: "{{file_dst_tables_conf}}"
@@ -81,7 +81,7 @@
   tags:
     - freebsd_pf
 
-- name: 'file create translations.conf'
+- name: create file translations.conf
   template:
     src: "{{file_src_translations_conf}}"
     dest: "{{file_dst_translations_conf}}"
@@ -91,7 +91,7 @@
   tags:
     - freebsd_pf
 
-- name: 'file create pf.conf'
+- name: create file pf.conf
   template:
     src: "{{file_src_pf_conf}}"
     dest: "{{file_dst_pf_conf}}"
@@ -101,7 +101,7 @@
   tags:
     - freebsd_pf
 
-- name: 'line disable pf_enable'
+- name: line disable pf_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_pf_enable}}=\"NO\" # Ansible: Disable pf"
@@ -112,7 +112,7 @@
   tags:
     - freebsd_pf
 
-- name: 'line enable gateway-ipv4'
+- name: line enable gateway-ipv4
   lineinfile:
     state: 'present'
     line: "{{file_line_gateway_ipv4}}=\"YES\" # Ansible: Enable gateway-ipv4"
@@ -123,7 +123,7 @@
   tags:
     - freebsd_pf
 
-- name: 'line disable gateway-ipv4'
+- name: line disable gateway-ipv4
   lineinfile:
     state: 'present'
     line: "{{file_line_gateway_ipv4}}=\"NO\" # Ansible: Disable gateway-ipv4"
@@ -134,7 +134,7 @@
   tags:
     - freebsd_pf
 
-- name: 'line enable gateway-ipv6'
+- name: line enable gateway-ipv6
   lineinfile:
     state: 'present'
     line: "{{file_line_gateway_ipv6}}=\"YES\" # Ansible: Enable gateway-ipv6"
@@ -145,7 +145,7 @@
   tags:
     - freebsd_pf
 
-- name: 'line disable gateway-ipv6'
+- name: line disable gateway-ipv6
   lineinfile:
     state: 'present'
     line: "{{file_line_gateway_ipv6}}=\"NO\" # Ansible: Disable gateway-ipv6"
@@ -156,7 +156,7 @@
   tags:
     - freebsd_pf
 
-- name: 'service stop freebsd_pf'
+- name: stop service freebsd_pf
   service:
     state: 'stopped'
     enabled: 'no'

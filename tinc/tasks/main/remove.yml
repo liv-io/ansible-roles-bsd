@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - tinc
 
-- name: 'command status tinc'
+- name: status tinc
   command: "{{command_cmd_status_tinc}}"
   register: register_status_tinc
   changed_when: (register_status_tinc.rc > 1)
@@ -21,14 +21,14 @@
   tags:
     - tinc
 
-- name: 'command disable tinc'
+- name: disable tinc
   command: "{{command_cmd_disable_tinc}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_tinc.rc == 0)
   tags:
     - tinc
 
-- name: 'command check tinc'
+- name: check tinc
   command: "{{command_cmd_check_tinc}}"
   register: register_check_tinc
   changed_when: (register_check_tinc.rc > 1)
@@ -38,24 +38,24 @@
   tags:
     - tinc
 
-- name: 'command stop tinc'
+- name: stop tinc
   command: "{{command_cmd_stop_tinc}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_tinc.rc == 0)
   tags:
     - tinc
 
-- name: 'package remove tinc'
+- name: remove package tinc
   package:
     state: 'absent'
     name: "{{package_name_tinc}}"
   tags:
     - tinc
 
-- name: 'file remove tinc.cfg'
+- name: remove file tinc.cfg
   file:
     state: 'absent'
     path: "{{file_dst_tinc_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - tinc

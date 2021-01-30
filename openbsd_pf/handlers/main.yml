@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -9,8 +9,8 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
 
-- name: 'command validate openbsd_pf'
+- name: validate openbsd_pf
   command: "{{command_cmd_validate_openbsd_pf}}"
 
-- name: 'command reload openbsd_pf'
+- name: reload openbsd_pf
   command: "{{command_cmd_reload_openbsd_pf}}"

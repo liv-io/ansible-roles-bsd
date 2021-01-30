@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - rsyslog
 
-- name: 'command info rsyslog'
+- name: info rsyslog
   shell: "{{command_cmd_info_rsyslog}}"
   register: register_info_rsyslog
   failed_when: (register_info_rsyslog.rc > 1)
@@ -20,43 +20,43 @@
   tags:
     - rsyslog
 
-- name: 'command disable rsyslogd'
+- name: disable rsyslogd
   command: "{{command_cmd_disable_rsyslogd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_rsyslog.rc == 0)
   tags:
     - rsyslog
 
-- name: 'command stop rsyslogd'
+- name: stop rsyslogd
   command: "{{command_cmd_stop_rsyslogd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_rsyslog.rc == 0)
   tags:
     - rsyslog
 
-- name: 'package remove rsyslog'
+- name: remove package rsyslog
   package:
     state: 'absent'
     name: "{{package_name_rsyslog}}"
   tags:
     - rsyslog
 
-- name: 'file remove rsyslog.cfg'
+- name: remove file rsyslog.cfg
   file:
     state: 'absent'
     path: "{{file_dst_rsyslog_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - rsyslog
 
-- name: 'file remove rsyslog.conf'
+- name: remove file rsyslog.conf
   file:
     state: 'absent'
     path: "{{file_dst_rsyslog_conf}}"
   tags:
     - rsyslog
 
-- name: 'file remove rsyslog.d'
+- name: remove file rsyslog.d
   file:
     state: 'absent'
     path: "{{file_dst_rsyslog_d}}"

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - squid
 
-- name: 'command status squid'
+- name: status squid
   command: "{{command_cmd_status_squid}}"
   register: register_status_squid
   changed_when: (register_status_squid.rc > 1)
@@ -21,14 +21,14 @@
   tags:
     - squid
 
-- name: 'command disable squid'
+- name: disable squid
   command: "{{command_cmd_disable_squid}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_squid.rc == 0)
   tags:
     - squid
 
-- name: 'command check squid'
+- name: check squid
   command: "{{command_cmd_check_squid}}"
   register: register_check_squid
   changed_when: (register_check_squid.rc > 1)
@@ -38,29 +38,29 @@
   tags:
     - squid
 
-- name: 'command stop squid'
+- name: stop squid
   command: "{{command_cmd_stop_squid}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_squid.rc == 0)
   tags:
     - squid
 
-- name: 'package remove squid'
+- name: remove package squid
   package:
     state: 'absent'
     name: "{{package_name_squid}}"
   tags:
     - squid
 
-- name: 'file remove squid.cfg'
+- name: remove file squid.cfg
   file:
     state: 'absent'
     path: "{{file_dst_squid_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - squid
 
-- name: 'line remove squid_enable'
+- name: line remove squid_enable
   lineinfile:
     state: 'absent'
     line: "{{file_line_squid_enable}}=\"NO\" # Ansible: Remove squid"
@@ -71,14 +71,14 @@
   tags:
     - squid
 
-- name: 'file remove squid.conf'
+- name: remove file squid.conf
   file:
     state: 'absent'
     path: "{{file_dst_squid_conf}}"
   tags:
     - squid
 
-- name: 'file remove acl.dir'
+- name: remove file acl.dir
   file:
     state: 'absent'
     path: "{{file_dst_acl_dir}}"

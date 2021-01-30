@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,14 +11,14 @@
   tags:
     - shell
 
-- name: 'file remove shell.sh'
+- name: remove file shell.sh
   file:
     state: 'absent'
     path: "{{file_dst_shell_shell}}"
   tags:
     - shell
 
-- name: 'file remove z_shell.sh'
+- name: remove file z_shell.sh
   file:
     state: 'absent'
     path: "{{file_dst_z_shell_shell}}"

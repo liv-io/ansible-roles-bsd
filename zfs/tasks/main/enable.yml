@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - zfs
 
-- name: 'cron create zfs_check-pools'
+- name: create cron zfs_check-pools
   cron:
     state: 'present'
     disabled: "{{'yes' if (zfs_check_pools_state is match('false|no|disable')) else 'no'}}"
@@ -26,7 +26,7 @@
   tags:
     - zfs
 
-- name: 'cron create zfs_scrub-pools'
+- name: create cron zfs_scrub-pools
   cron:
     state: 'present'
     disabled: "{{'yes' if (zfs_scrub_pools_state is match('false|no|disable')) else 'no'}}"
@@ -41,7 +41,7 @@
   tags:
     - zfs
 
-- name: 'cron create zfs_trim-pools'
+- name: create cron zfs_trim-pools
   cron:
     state: 'present'
     disabled: "{{'yes' if (zfs_trim_pools_state is match('false|no|disable')) else 'no'}}"

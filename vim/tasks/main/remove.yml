@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,14 +11,14 @@
   tags:
     - vim
 
-- name: 'package remove vim'
+- name: remove package vim
   package:
     state: 'absent'
     name: "{{package_name_vim}}"
   tags:
     - vim
 
-- name: 'file remove vimrc'
+- name: remove file vimrc
   file:
     state: 'absent'
     path: "{{file_dst_vimrc}}"

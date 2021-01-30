@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - nsd
 
-- name: 'command status nsd'
+- name: status nsd
   command: "{{command_cmd_status_nsd}}"
   register: register_status_nsd
   changed_when: (register_status_nsd.rc > 1)
@@ -21,14 +21,14 @@
   tags:
     - nsd
 
-- name: 'command disable nsd'
+- name: disable nsd
   command: "{{command_cmd_disable_nsd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_nsd.rc == 0)
   tags:
     - nsd
 
-- name: 'command check nsd'
+- name: check nsd
   command: "{{command_cmd_check_nsd}}"
   register: register_check_nsd
   changed_when: (register_check_nsd.rc > 1)
@@ -38,14 +38,14 @@
   tags:
     - nsd
 
-- name: 'command stop nsd'
+- name: stop nsd
   command: "{{command_cmd_stop_nsd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_nsd.rc == 0)
   tags:
     - nsd
 
-- name: 'package remove nsd'
+- name: remove package nsd
   package:
     state: 'absent'
     name: "{{package_name_nsd}}"
@@ -53,15 +53,15 @@
   tags:
     - nsd
 
-- name: 'file remove nsd.cfg'
+- name: remove file nsd.cfg
   file:
     state: 'absent'
     path: "{{file_dst_nsd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - nsd
 
-- name: 'line remove nsd_enable'
+- name: line remove nsd_enable
   lineinfile:
     state: 'absent'
     line: "{{file_line_nsd_enable}}=\"NO\" # Ansible: Remove nsd"
@@ -72,7 +72,7 @@
   tags:
     - nsd
 
-- name: 'file remove nsd.conf'
+- name: remove file nsd.conf
   file:
     state: 'absent'
     path: "{{file_dst_nsd_conf}}"

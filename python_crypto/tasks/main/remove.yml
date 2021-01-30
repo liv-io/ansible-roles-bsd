@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - python_crypto
 
-- name: 'package remove python-crypto'
+- name: remove package python-crypto
   package:
     state: 'absent'
     name: "{{package_name_python_crypto}}"

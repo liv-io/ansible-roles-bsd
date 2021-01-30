@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,19 +11,19 @@
   tags:
     - tinc
 
-- name: 'file create tinc.cfg'
+- name: create file tinc.cfg
   template:
     src: "{{file_src_tinc_cfg}}"
     dest: "{{file_dst_tinc_cfg}}"
     mode: "{{file_mode_tinc_cfg}}"
     owner: "{{file_owner_tinc_cfg}}"
     group: "{{file_group_tinc_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (tinc_monitor_monit_state is match('true|yes|enable'))
   tags:
     - tinc
 
-- name: 'command status tinc'
+- name: status tinc
   command: "{{command_cmd_status_tinc}}"
   register: register_status_tinc
   changed_when: (register_status_tinc.rc > 1)
@@ -33,14 +33,14 @@
   tags:
     - tinc
 
-- name: 'command enable tinc'
+- name: enable tinc
   command: "{{command_cmd_enable_tinc}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_tinc.rc == 1)
   tags:
     - tinc
 
-- name: 'command check tinc'
+- name: check tinc
   command: "{{command_cmd_check_tinc}}"
   register: register_check_tinc
   changed_when: (register_check_tinc.rc > 1)
@@ -50,7 +50,7 @@
   tags:
     - tinc
 
-- name: 'command start tinc'
+- name: start tinc
   command: "{{command_cmd_start_tinc}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_tinc.rc == 1)

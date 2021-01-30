@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - nginx
 
-- name: 'file create config'
+- name: create file config
   template:
     src: "{{file_src_config}}"
     dest: "{{file_dst_vhosts_d}}/{{item.name}}-{{(item.port|int)}}.conf"
@@ -20,20 +20,20 @@
     group: "{{file_group_config}}"
   loop: "{{nginx_config}}"
   notify:
-    - 'command check nginx'
-    - 'service reload nginx'
+    - check nginx
+    - reload service nginx
   when: not (item.state is match('false|no|remove'))
   tags:
     - nginx
 
-- name: 'file remove config'
+- name: remove file config
   file:
     state: 'absent'
     path: "{{file_dst_vhosts_d}}/{{item.name}}-{{(item.port|int)}}.conf"
   loop: "{{nginx_config}}"
   notify:
-    - 'command check nginx'
-    - 'service reload nginx'
+    - check nginx
+    - reload service nginx
   when: (item.state is match('false|no|remove'))
   tags:
     - nginx

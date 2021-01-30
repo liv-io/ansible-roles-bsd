@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - squid
 
-- name: 'file create dst_domain_allowed.acl'
+- name: create file dst_domain_allowed.acl
   template:
     src: "{{file_src_dst_domain_allowed_acl}}"
     dest: "{{file_dst_dst_domain_allowed_acl}}"
@@ -19,12 +19,12 @@
     owner: "{{file_owner_dst_domain_allowed_acl}}"
     group: "{{file_group_dst_domain_allowed_acl}}"
   notify:
-    - 'command parse config'
-    - 'service restart squid'
+    - parse config
+    - restart service squid
   tags:
     - squid
 
-- name: 'file create dst_domain_blocked.acl'
+- name: create file dst_domain_blocked.acl
   template:
     src: "{{file_src_dst_domain_blocked_acl}}"
     dest: "{{file_dst_dst_domain_blocked_acl}}"
@@ -32,12 +32,12 @@
     owner: "{{file_owner_dst_domain_blocked_acl}}"
     group: "{{file_group_dst_domain_blocked_acl}}"
   notify:
-    - 'command parse config'
-    - 'service restart squid'
+    - parse config
+    - restart service squid
   tags:
     - squid
 
-- name: 'file create dst_network_allowed.acl'
+- name: create file dst_network_allowed.acl
   template:
     src: "{{file_src_dst_network_allowed_acl}}"
     dest: "{{file_dst_dst_network_allowed_acl}}"
@@ -45,12 +45,12 @@
     owner: "{{file_owner_dst_network_allowed_acl}}"
     group: "{{file_group_dst_network_allowed_acl}}"
   notify:
-    - 'command parse config'
-    - 'service restart squid'
+    - parse config
+    - restart service squid
   tags:
     - squid
 
-- name: 'file create dst_network_blocked.acl'
+- name: create file dst_network_blocked.acl
   template:
     src: "{{file_src_dst_network_blocked_acl}}"
     dest: "{{file_dst_dst_network_blocked_acl}}"
@@ -58,12 +58,12 @@
     owner: "{{file_owner_dst_network_blocked_acl}}"
     group: "{{file_group_dst_network_blocked_acl}}"
   notify:
-    - 'command parse config'
-    - 'service restart squid'
+    - parse config
+    - restart service squid
   tags:
     - squid
 
-- name: 'file create src_network_unrestricted.acl'
+- name: create file src_network_unrestricted.acl
   template:
     src: "{{file_src_src_network_unrestricted_acl}}"
     dest: "{{file_dst_src_network_unrestricted_acl}}"
@@ -71,12 +71,12 @@
     owner: "{{file_owner_src_network_unrestricted_acl}}"
     group: "{{file_group_src_network_unrestricted_acl}}"
   notify:
-    - 'command parse config'
-    - 'service restart squid'
+    - parse config
+    - restart service squid
   tags:
     - squid
 
-- name: 'file create squid.conf'
+- name: create file squid.conf
   template:
     src: "{{file_src_squid_conf}}"
     dest: "{{file_dst_squid_conf}}"
@@ -85,19 +85,19 @@
     group: "{{file_group_squid_conf}}"
   no_log: 'true'
   notify:
-    - 'command parse config'
-    - 'service restart squid'
+    - parse config
+    - restart service squid
   tags:
     - squid
 
-- name: 'stat file cache.dir'
+- name: stat file cache.dir
   stat:
     path: "{{file_dst_cache_dir}}"
   register: register_cache_dir
   tags:
     - squid
 
-- name: 'line enable squid_enable'
+- name: line enable squid_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_squid_enable}}=\"YES\" # Ansible: Enable squid"
@@ -108,26 +108,26 @@
   tags:
     - squid
 
-- name: 'file create squid.cfg'
+- name: create file squid.cfg
   template:
     src: "{{file_src_squid_cfg}}"
     dest: "{{file_dst_squid_cfg}}"
     mode: "{{file_mode_squid_cfg}}"
     owner: "{{file_owner_squid_cfg}}"
     group: "{{file_group_squid_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (squid_monitor_monit_state is match('true|yes|enable'))
   tags:
     - squid
 
-- name: 'command create cache.dir'
+- name: create cache.dir
   shell: "{{command_cmd_create_cache_dir}}"
   check_mode: 'no'
   when: (register_cache_dir.stat.exists == False)
   tags:
     - squid
 
-- name: 'command status squid'
+- name: status squid
   command: "{{command_cmd_status_squid}}"
   register: register_status_squid
   changed_when: (register_status_squid.rc > 1)
@@ -137,14 +137,14 @@
   tags:
     - squid
 
-- name: 'command enable squid'
+- name: enable squid
   command: "{{command_cmd_enable_squid}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_squid.rc == 1)
   tags:
     - squid
 
-- name: 'command check squid'
+- name: check squid
   command: "{{command_cmd_check_squid}}"
   register: register_check_squid
   changed_when: (register_check_squid.rc > 1)
@@ -154,14 +154,14 @@
   tags:
     - squid
 
-- name: 'command start squid'
+- name: start squid
   command: "{{command_cmd_start_squid}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_squid.rc == 1)
   tags:
     - squid
 
-- name: 'service start squid'
+- name: start service squid
   service:
     state: 'started'
     enabled: 'yes'

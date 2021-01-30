@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - monit
 
-- name: 'file create config'
+- name: create file config
   template:
     src: "{{file_src_config}}"
     dest: "{{file_dst_monit_d}}/{{item.name}}.cfg"
@@ -20,20 +20,20 @@
     group: "{{file_group_config}}"
   loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
   notify:
-    - 'command validate monit'
-    - 'service restart monit'
+    - validate monit
+    - restart service monit
   when: not (item.state is match('false|no|remove'))
   tags:
     - monit
 
-- name: 'file remove config'
+- name: remove file config
   file:
     state: 'absent'
     path: "{{file_dst_monit_d}}/{{item.name}}.cfg"
   loop: "{{monit_config_all + monit_config_group + monit_config_host}}"
   notify:
-    - 'command validate monit'
-    - 'service restart monit'
+    - validate monit
+    - restart service monit
   when: (item.state is match('false|no|remove'))
   tags:
     - monit

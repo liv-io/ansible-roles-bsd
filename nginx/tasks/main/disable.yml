@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,18 +11,18 @@
   tags:
     - nginx
 
-- name: 'file create nginx.conf'
+- name: create file nginx.conf
   template:
     src: "{{file_src_nginx_conf}}"
     dest: "{{file_dst_nginx_conf}}"
     mode: "{{file_mode_nginx_conf}}"
     owner: "{{file_owner_nginx_conf}}"
     group: "{{file_group_nginx_conf}}"
-  notify: 'command check nginx'
+  notify: check nginx
   tags:
     - nginx
 
-- name: 'line disable nginx_enable'
+- name: line disable nginx_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_nginx_enable}}=\"NO\" # Ansible: Disable nginx"
@@ -33,19 +33,19 @@
   tags:
     - nginx
 
-- name: 'file create nginx.cfg'
+- name: create file nginx.cfg
   template:
     src: "{{file_src_nginx_cfg}}"
     dest: "{{file_dst_nginx_cfg}}"
     mode: "{{file_mode_nginx_cfg}}"
     owner: "{{file_owner_nginx_cfg}}"
     group: "{{file_group_nginx_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (nginx_monitor_monit_state is match('true|yes|enable'))
   tags:
     - nginx
 
-- name: 'command status nginx'
+- name: status nginx
   command: "{{command_cmd_status_nginx}}"
   register: register_status_nginx
   changed_when: (register_status_nginx.rc > 1)
@@ -55,14 +55,14 @@
   tags:
     - nginx
 
-- name: 'command disable nginx'
+- name: disable nginx
   command: "{{command_cmd_disable_nginx}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_nginx.rc == 0)
   tags:
     - nginx
 
-- name: 'command check nginx'
+- name: check nginx
   command: "{{command_cmd_check_nginx}}"
   register: register_check_nginx
   changed_when: (register_check_nginx.rc > 1)
@@ -72,14 +72,14 @@
   tags:
     - nginx
 
-- name: 'command stop nginx'
+- name: stop nginx
   command: "{{command_cmd_stop_nginx}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_nginx.rc == 0)
   tags:
     - nginx
 
-- name: 'service stop nginx'
+- name: stop service nginx
   service:
     state: 'stopped'
     enabled: 'no'

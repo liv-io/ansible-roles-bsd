@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - motd
 
-- name: 'file create motd'
+- name: create file motd
   template:
     src: "{{file_src_motd}}"
     dest: "{{file_dst_motd}}"
@@ -21,7 +21,7 @@
   tags:
     - motd
 
-- name: 'line disable motd-patch'
+- name: line disable motd-patch
   lineinfile:
     state: 'present'
     line: "#\t{{file_line_motd_patch}} # Ansible: Disable motd-patch"

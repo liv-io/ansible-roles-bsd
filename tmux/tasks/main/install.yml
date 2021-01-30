@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - tmux
 
-- name: 'package install tmux'
+- name: install package tmux
   package:
     state: 'present'
     name: "{{package_name_tmux}}"
@@ -19,7 +19,7 @@
   tags:
     - tmux
 
-- name: 'file create tmux.conf'
+- name: create file tmux.conf
   template:
     src: "{{file_src_tmux_conf}}"
     dest: "{{file_dst_tmux_conf}}"

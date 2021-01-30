@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -9,16 +9,16 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
 
-- name: 'command update suricata'
+- name: update suricata
   shell: "{{command_cmd_update_suricata}}"
 
-- name: 'service reload monit'
+- name: reload service monit
   service:
     state: 'reloaded'
     name: "{{service_name_monit}}"
   when: (register_check_service_monit.rc == 0)
 
-- name: 'service reload suricata'
+- name: reload service suricata
   service:
     state: 'reloaded'
     name: "{{service_name_suricata}}"

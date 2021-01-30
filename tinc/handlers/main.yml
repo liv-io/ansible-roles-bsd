@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -9,13 +9,13 @@
         - "vars/{{ansible_os_family}}.yml"
         - 'vars/main.yml'
 
-- name: 'service reload monit'
+- name: reload service monit
   service:
     state: 'reloaded'
     name: "{{service_name_monit}}"
   when: (register_check_service_monit.rc == 0)
 
-- name: 'service restart tinc'
+- name: restart service tinc
   service:
     state: 'restarted'
     name: "{{service_name_tinc}}"

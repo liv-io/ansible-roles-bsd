@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - root
 
-- name: 'group create root'
+- name: create group root
   group:
     state: 'present'
     name: "{{group_name_root}}"
@@ -20,7 +20,7 @@
   tags:
     - root
 
-- name: 'user create root'
+- name: create user root
   user:
     state: 'present'
     name: "{{user_name_root}}"
@@ -40,7 +40,7 @@
   tags:
     - root
 
-- name: 'file create root.dir'
+- name: create file root.dir
   file:
     state: 'directory'
     path: "{{file_dst_root_dir}}"
@@ -50,7 +50,7 @@
   tags:
     - root
 
-- name: 'line config .bashrc'
+- name: config line .bashrc
   lineinfile:
     state: 'present'
     line: 'source /etc/profile # Ansible: config .bashrc'

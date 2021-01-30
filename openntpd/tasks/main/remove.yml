@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - openntpd
 
-- name: 'command status openntpd'
+- name: status openntpd
   command: "{{command_cmd_status_openntpd}}"
   register: register_status_openntpd
   changed_when: (register_status_openntpd.rc > 1)
@@ -21,14 +21,14 @@
   tags:
     - openntpd
 
-- name: 'command disable openntpd'
+- name: disable openntpd
   command: "{{command_cmd_disable_openntpd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_openntpd.rc == 0)
   tags:
     - openntpd
 
-- name: 'command check openntpd'
+- name: check openntpd
   command: "{{command_cmd_check_openntpd}}"
   register: register_check_openntpd
   changed_when: (register_check_openntpd.rc > 1)
@@ -38,14 +38,14 @@
   tags:
     - openntpd
 
-- name: 'command stop openntpd'
+- name: stop openntpd
   command: "{{command_cmd_stop_openntpd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_openntpd.rc == 0)
   tags:
     - openntpd
 
-- name: 'package remove openntpd'
+- name: remove package openntpd
   package:
     state: 'absent'
     name: "{{package_name_openntpd}}"
@@ -53,15 +53,15 @@
   tags:
     - openntpd
 
-- name: 'file remove openntpd.cfg'
+- name: remove file openntpd.cfg
   file:
     state: 'absent'
     path: "{{file_dst_openntpd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - openntpd
 
-- name: 'cron remove openntpd_check-time'
+- name: remove cron openntpd_check-time
   cron:
     state: 'absent'
     name: "{{cron_name_openntpd_check_time}}"
@@ -69,14 +69,14 @@
   tags:
     - openntpd
 
-- name: 'file remove openntpd_check-time'
+- name: remove file openntpd_check-time
   file:
     state: 'absent'
     path: "{{file_dst_openntpd_check_time}}"
   tags:
     - openntpd
 
-- name: 'line remove openntpd_enable'
+- name: line remove openntpd_enable
   lineinfile:
     state: 'absent'
     line: "{{file_line_openntpd_enable}}=\"NO\" # Ansible: Remove openntpd"
@@ -87,7 +87,7 @@
   tags:
     - openntpd
 
-- name: 'file remove ntpd.conf'
+- name: remove file ntpd.conf
   file:
     state: 'absent'
     path: "{{file_dst_ntpd_conf}}"

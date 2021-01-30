@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - zfs
 
-- name: 'file create zfs_check-pools'
+- name: create file zfs_check-pools
   template:
     src: "{{file_src_zfs_check_pools}}"
     dest: "{{file_dst_zfs_check_pools}}"
@@ -21,7 +21,7 @@
   tags:
     - zfs
 
-- name: 'file create zfs_scrub-pools'
+- name: create file zfs_scrub-pools
   template:
     src: "{{file_src_zfs_scrub_pools}}"
     dest: "{{file_dst_zfs_scrub_pools}}"
@@ -31,7 +31,7 @@
   tags:
     - zfs
 
-- name: 'file create zfs_trim-pools'
+- name: create file zfs_trim-pools
   template:
     src: "{{file_src_zfs_trim_pools}}"
     dest: "{{file_dst_zfs_trim_pools}}"

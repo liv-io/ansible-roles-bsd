@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,30 +11,30 @@
   tags:
     - unbound
 
-- name: 'file copy root.hints'
+- name: copy file root.hints
   copy:
     src: "{{file_src_root_hints}}"
     dest: "{{file_dst_root_hints}}"
     mode: "{{file_mode_root_hints}}"
     owner: "{{file_owner_root_hints}}"
     group: "{{file_group_root_hints}}"
-  notify: 'service restart unbound'
+  notify: restart service unbound
   tags:
     - unbound
 
-- name: 'file create root.hints.link'
+- name: create file root.hints.link
   file:
     state: 'link'
     src: "{{file_src_root_hints_link}}"
     path: "{{file_dst_root_hints_link}}"
     owner: "{{file_owner_root_hints_link}}"
     group: "{{file_group_root_hints_link}}"
-  notify: 'service restart unbound'
+  notify: restart service unbound
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - unbound
 
-- name: 'file create unbound.conf'
+- name: create file unbound.conf
   template:
     src: "{{file_src_unbound_conf}}"
     dest: "{{file_dst_unbound_conf}}"
@@ -42,23 +42,23 @@
     owner: "{{file_owner_unbound_conf}}"
     group: "{{file_group_unbound_conf}}"
     validate: "{{file_validate_unbound_conf}}"
-  notify: 'service restart unbound'
+  notify: restart service unbound
   tags:
     - unbound
 
-- name: 'file create unbound.conf.link'
+- name: create file unbound.conf.link
   file:
     state: 'link'
     src: "{{file_src_unbound_conf_link}}"
     path: "{{file_dst_unbound_conf_link}}"
     owner: "{{file_owner_unbound_conf_link}}"
     group: "{{file_group_unbound_conf_link}}"
-  notify: 'service restart unbound'
+  notify: restart service unbound
   when: (ansible_os_family == 'FreeBSD')
   tags:
     - unbound
 
-- name: 'line enable unbound_enable'
+- name: line enable unbound_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_unbound_enable}}=\"YES\" # Ansible: Enable unbound"
@@ -69,19 +69,19 @@
   tags:
     - unbound
 
-- name: 'file create unbound.cfg'
+- name: create file unbound.cfg
   template:
     src: "{{file_src_unbound_cfg}}"
     dest: "{{file_dst_unbound_cfg}}"
     mode: "{{file_mode_unbound_cfg}}"
     owner: "{{file_owner_unbound_cfg}}"
     group: "{{file_group_unbound_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (unbound_monitor_monit_state is match('true|yes|enable'))
   tags:
     - unbound
 
-- name: 'command status unbound'
+- name: status unbound
   command: "{{command_cmd_status_unbound}}"
   register: register_status_unbound
   changed_when: (register_status_unbound.rc > 1)
@@ -91,14 +91,14 @@
   tags:
     - unbound
 
-- name: 'command enable unbound'
+- name: enable unbound
   command: "{{command_cmd_enable_unbound}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_unbound.rc == 1)
   tags:
     - unbound
 
-- name: 'command check unbound'
+- name: check unbound
   command: "{{command_cmd_check_unbound}}"
   register: register_check_unbound
   changed_when: (register_check_unbound.rc > 1)
@@ -108,14 +108,14 @@
   tags:
     - unbound
 
-- name: 'command start unbound'
+- name: start unbound
   command: "{{command_cmd_start_unbound}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_unbound.rc == 1)
   tags:
     - unbound
 
-- name: 'service start unbound'
+- name: start service unbound
   service:
     state: 'started'
     enabled: 'yes'

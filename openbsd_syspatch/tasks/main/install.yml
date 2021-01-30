@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - main_syspatch
 
-- name: 'file create installurl'
+- name: create file installurl
   template:
     src: "{{file_src_installurl}}"
     dest: "{{file_dst_installurl}}"

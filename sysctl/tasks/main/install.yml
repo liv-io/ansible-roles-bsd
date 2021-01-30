@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,14 +11,14 @@
   tags:
     - sysctl
 
-- name: 'stat file sysctl.conf'
+- name: stat file sysctl.conf
   stat:
     path: "{{file_dst_sysctl_conf}}"
   register: register_sysctl_conf
   tags:
     - sysctl
 
-- name: 'file create sysctl.conf'
+- name: create file sysctl.conf
   template:
     src: "{{file_src_sysctl_conf}}"
     dest: "{{file_dst_sysctl_conf}}"

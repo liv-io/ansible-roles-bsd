@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,14 +11,14 @@
   tags:
     - nginx
 
-- name: 'package install nginx'
+- name: install package nginx
   package:
     state: 'present'
     name: "{{package_name_nginx}}"
   tags:
     - nginx
 
-- name: 'file create log.dir'
+- name: create file log.dir
   file:
     state: 'directory'
     path: "{{file_dst_log_dir}}"
@@ -29,7 +29,7 @@
   tags:
     - nginx
 
-- name: 'file create vhosts.d'
+- name: create file vhosts.d
   file:
     state: 'directory'
     path: "{{file_dst_vhosts_d}}"
@@ -39,14 +39,14 @@
   tags:
     - nginx
 
-- name: 'stat file dhparam.pem'
+- name: stat file dhparam.pem
   stat:
     path: "{{file_dst_dhparam_pem}}"
   register: register_dhparam_pem
   tags:
     - nginx
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -54,7 +54,7 @@
   tags:
     - nginx
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -65,14 +65,14 @@
   tags:
     - nginx
 
-- name: 'command generate dhparam'
+- name: generate dhparam
   shell: "{{command_cmd_generate_dhparam}}"
   check_mode: 'no'
   when: (register_dhparam_pem.stat.exists == False)
   tags:
     - nginx
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 2)

@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - main_pkg
 
-- name: 'file create FreeBSD.conf'
+- name: create file FreeBSD.conf
   template:
     src: "{{file_src_freebsd_conf}}"
     dest: "{{file_dst_freebsd_conf}}"
@@ -21,7 +21,7 @@
   tags:
     - main_pkg
 
-- name: 'file create pkg.conf'
+- name: create file pkg.conf
   template:
     src: "{{file_src_pkg_conf}}"
     dest: "{{file_dst_pkg_conf}}"

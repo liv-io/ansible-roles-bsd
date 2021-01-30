@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - cron
 
-- name: 'line enable cron_enable'
+- name: line enable cron_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_cron_enable}}=\"YES\" # Ansible: Enable cron"
@@ -22,19 +22,19 @@
   tags:
     - cron
 
-- name: 'file create cron.cfg'
+- name: create file cron.cfg
   template:
     src: "{{file_src_cron_cfg}}"
     dest: "{{file_dst_cron_cfg}}"
     mode: "{{file_mode_cron_cfg}}"
     owner: "{{file_owner_cron_cfg}}"
     group: "{{file_group_cron_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (cron_monitor_monit_state is match('true|yes|enable'))
   tags:
     - cron
 
-- name: 'service start cron'
+- name: start service cron
   service:
     state: 'started'
     enabled: 'yes'

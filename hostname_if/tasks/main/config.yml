@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - hostname_if
 
-- name: 'file create config'
+- name: create file config
   template:
     src: "{{file_src_config}}"
     dest: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
@@ -19,22 +19,22 @@
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
   loop: "{{hostname_if_config_all + hostname_if_config_group + hostname_if_config_host}}"
-  notify: 'command run netstart'
+  notify: run netstart
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - hostname_if
 
-- name: 'file remove config'
+- name: remove file config
   file:
     state: 'absent'
     path: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
   loop: "{{hostname_if_config_all + hostname_if_config_group + hostname_if_config_host}}"
-  notify: 'command run netstart'
+  notify: run netstart
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
     - hostname_if
 
-- name: 'command destroy ifconfig'
+- name: destroy ifconfig
   shell: "ifconfig {{item.interface}} destroy"
   register: "register_check_ifconfig"
   changed_when: (register_check_ifconfig.rc > 1)

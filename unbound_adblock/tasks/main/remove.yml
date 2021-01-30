@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - unbound_adblock
 
-- name: 'cron remove unbound-adblock_update-list'
+- name: remove cron unbound-adblock_update-list
   cron:
     state: 'absent'
     name: "{{cron_name_unbound_adblock_update_list}}"
@@ -19,28 +19,28 @@
   tags:
     - unbound_adblock
 
-- name: 'file remove unbound-adblock_update-list'
+- name: remove file unbound-adblock_update-list
   file:
     state: 'absent'
     path: "{{file_dst_unbound_adblock_update_list}}"
   tags:
     - unbound_adblock
 
-- name: 'file remove unbound-adblock.sudo'
+- name: remove file unbound-adblock.sudo
   file:
     state: 'absent'
     path: "{{file_dst_unbound_adblock_sudo}}"
   tags:
     - unbound_adblock
 
-- name: 'file remove unbound-adblock_data.dir'
+- name: remove file unbound-adblock_data.dir
   file:
     state: 'absent'
     path: "{{file_dst_unbound_adblock_data_dir}}"
   tags:
     - unbound_adblock
 
-- name: 'user remove unbound-adblock'
+- name: remove user unbound-adblock
   user:
     state: 'absent'
     name: "{{user_name_unbound_adblock}}"
@@ -49,7 +49,7 @@
   tags:
     - unbound_adblock
 
-- name: 'group remove unbound-adblock'
+- name: remove group unbound-adblock
   group:
     state: 'absent'
     name: "{{group_name_unbound_adblock}}"

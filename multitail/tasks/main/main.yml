@@ -1,12 +1,12 @@
 ---
 
-- name: 'task include install'
+- name: import tasks install
   import_tasks: install.yml
   when: not (multitail_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - multitail
 
-- name: 'task include remove'
+- name: import tasks remove
   import_tasks: remove.yml
   when: (multitail_state is match('false|no|remove'))
   tags:

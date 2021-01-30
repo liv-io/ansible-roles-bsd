@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - rest_server
 
-- name: 'group create rest-server'
+- name: create group rest-server
   group:
     state: 'present'
     name: "{{group_name_rest_server}}"
@@ -19,7 +19,7 @@
   tags:
     - rest_server
 
-- name: 'user create rest-server'
+- name: create user rest-server
   user:
     state: 'present'
     name: "{{user_name_rest_server}}"
@@ -38,7 +38,7 @@
   tags:
     - rest_server
 
-- name: 'file create src.dir'
+- name: create file src.dir
   file:
     state: 'directory'
     path: "{{file_dst_src_dir}}"
@@ -48,7 +48,7 @@
   tags:
     - rest_server
 
-- name: 'file create data.dir'
+- name: create file data.dir
   file:
     state: 'directory'
     path: "{{file_dst_data_dir}}"
@@ -58,7 +58,7 @@
   tags:
     - rest_server
 
-- name: 'file create rest-server_data.dir'
+- name: create file rest-server_data.dir
   file:
     state: 'directory'
     path: "{{file_dst_rest_server_data_dir}}"
@@ -68,7 +68,7 @@
   tags:
     - rest_server
 
-- name: 'file download rest-server.tar.gz'
+- name: download file rest-server.tar.gz
   get_url:
     url: "{{file_src_rest_server_tar_gz}}"
     dest: "{{file_dst_rest_server_tar_gz}}"
@@ -79,7 +79,7 @@
   tags:
     - rest_server
 
-- name: 'file unarchive rest-server'
+- name: unarchive file rest-server
   unarchive:
     src: "{{file_src_rest_server}}"
     dest: "{{file_dst_rest_server}}"
@@ -91,7 +91,7 @@
   tags:
     - rest_server
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -99,7 +99,7 @@
   tags:
     - rest_server
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -110,7 +110,7 @@
   tags:
     - rest_server
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 2)
@@ -120,7 +120,7 @@
   tags:
     - rest_server
 
-- name: 'meta flush handlers'
+- name: flush meta handlers
   meta: 'flush_handlers'
   tags:
     - rest_server

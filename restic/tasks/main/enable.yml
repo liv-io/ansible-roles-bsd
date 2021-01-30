@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - restic
 
-- name: 'cron create restic_run-backup'
+- name: create cron restic_run-backup
   cron:
     state: 'present'
     disabled: 'no'

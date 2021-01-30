@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - gnu_grep
 
-- name: 'package remove gnu-grep'
+- name: remove package gnu-grep
   package:
     state: 'absent'
     name: "{{package_name_gnu_grep}}"

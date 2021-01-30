@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,30 +11,30 @@
   tags:
     - rsyslog
 
-- name: 'file create rsyslog.conf'
+- name: create file rsyslog.conf
   template:
     src: "{{file_src_rsyslog_conf}}"
     dest: "{{file_dst_rsyslog_conf}}"
     mode: "{{file_mode_rsyslog_conf}}"
     owner: "{{file_owner_rsyslog_conf}}"
     group: "{{file_group_rsyslog_conf}}"
-  notify: 'service restart rsyslog'
+  notify: restart service rsyslog
   tags:
     - rsyslog
 
-- name: 'file create rsyslog.cfg'
+- name: create file rsyslog.cfg
   template:
     src: "{{file_src_rsyslog_cfg}}"
     dest: "{{file_dst_rsyslog_cfg}}"
     mode: "{{file_mode_rsyslog_cfg}}"
     owner: "{{file_owner_rsyslog_cfg}}"
     group: "{{file_group_rsyslog_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (rsyslog_monitor_monit_state is match('true|yes|enable'))
   tags:
     - rsyslog
 
-- name: 'command status rsyslogd'
+- name: status rsyslogd
   command: "{{command_cmd_status_rsyslogd}}"
   register: register_status_rsyslogd
   changed_when: (register_status_rsyslogd.rc > 1)
@@ -44,14 +44,14 @@
   tags:
     - rsyslog
 
-- name: 'command enable rsyslogd'
+- name: enable rsyslogd
   command: "{{command_cmd_enable_rsyslogd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_rsyslogd.rc == 1)
   tags:
     - rsyslog
 
-- name: 'command check rsyslogd'
+- name: check rsyslogd
   command: "{{command_cmd_check_rsyslogd}}"
   register: register_check_rsyslogd
   changed_when: (register_check_rsyslogd.rc > 1)
@@ -61,14 +61,14 @@
   tags:
     - rsyslog
 
-- name: 'command start rsyslogd'
+- name: start rsyslogd
   command: "{{command_cmd_start_rsyslogd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_rsyslogd.rc == 1)
   tags:
     - rsyslog
 
-- name: 'service start rsyslogd'
+- name: start service rsyslogd
   service:
     state: 'started'
     enabled: 'yes'

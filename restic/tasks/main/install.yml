@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,14 +11,14 @@
   tags:
     - restic
 
-- name: 'package install restic'
+- name: install package restic
   package:
     state: 'present'
     name: "{{package_name_restic}}"
   tags:
     - restic
 
-- name: 'file create restic_etc.dir'
+- name: create file restic_etc.dir
   file:
     state: 'directory'
     path: "{{file_dst_restic_etc_dir}}"
@@ -28,7 +28,7 @@
   tags:
     - restic
 
-- name: 'file create restic_log.dir'
+- name: create file restic_log.dir
   file:
     state: 'directory'
     path: "{{file_dst_restic_log_dir}}"
@@ -38,7 +38,7 @@
   tags:
     - restic
 
-- name: 'file create exclude.conf'
+- name: create file exclude.conf
   template:
     src: "{{file_src_exclude_conf}}"
     dest: "{{file_dst_exclude_conf}}"
@@ -48,7 +48,7 @@
   tags:
     - restic
 
-- name: 'file create include.conf'
+- name: create file include.conf
   template:
     src: "{{file_src_include_conf}}"
     dest: "{{file_dst_include_conf}}"
@@ -58,7 +58,7 @@
   tags:
     - restic
 
-- name: 'file create password.conf'
+- name: create file password.conf
   template:
     src: "{{file_src_password_conf}}"
     dest: "{{file_dst_password_conf}}"
@@ -69,7 +69,7 @@
   tags:
     - restic
 
-- name: 'file create restic.log'
+- name: create file restic.log
   copy:
     content: ''
     force: 'no'
@@ -80,7 +80,7 @@
   tags:
     - restic
 
-- name: 'file create restic_run-backup'
+- name: create file restic_run-backup
   template:
     src: "{{file_src_restic_run_backup}}"
     dest: "{{file_dst_restic_run_backup}}"

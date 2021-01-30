@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - nginx
 
-- name: 'command info nginx'
+- name: info nginx
   shell: "{{command_cmd_info_nginx}}"
   register: register_info_nginx
   failed_when: (register_info_nginx.rc > 1)
@@ -20,36 +20,36 @@
   tags:
     - nginx
 
-- name: 'command disable nginx'
+- name: disable nginx
   command: "{{command_cmd_disable_nginx}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
     - nginx
 
-- name: 'command stop nginx'
+- name: stop nginx
   command: "{{command_cmd_stop_nginx}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_nginx.rc == 0)
   tags:
     - nginx
 
-- name: 'package remove nginx'
+- name: remove package nginx
   package:
     state: 'absent'
     name: "{{package_name_nginx}}"
   tags:
     - nginx
 
-- name: 'file remove nginx.cfg'
+- name: remove file nginx.cfg
   file:
     state: 'absent'
     path: "{{file_dst_nginx_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - nginx
 
-- name: 'line remove nginx_enable'
+- name: line remove nginx_enable
   lineinfile:
     state: 'absent'
     line: "{{file_line_nginx_enable}}=\"NO\" # Ansible: Remove nginx"
@@ -60,21 +60,21 @@
   tags:
     - nginx
 
-- name: 'file remove nginx.conf'
+- name: remove file nginx.conf
   file:
     state: 'absent'
     path: "{{file_dst_nginx_conf}}"
   tags:
     - nginx
 
-- name: 'file remove dhparam.pem'
+- name: remove file dhparam.pem
   file:
     state: 'absent'
     path: "{{file_dst_dhparam_pem}}"
   tags:
     - nginx
 
-- name: 'file remove log.dir'
+- name: remove file log.dir
   file:
     state: 'absent'
     path: "{{file_dst_log_dir}}"
@@ -82,7 +82,7 @@
   tags:
     - nginx
 
-- name: 'file remove vhosts.d'
+- name: remove file vhosts.d
   file:
     state: 'absent'
     path: "{{file_dst_vhosts_d}}"

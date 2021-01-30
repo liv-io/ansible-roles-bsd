@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - shell
 
-- name: 'file create profile.d'
+- name: create file profile.d
   file:
     state: 'directory'
     path: "{{file_dst_profile_d}}"
@@ -21,7 +21,7 @@
   tags:
     - shell
 
-- name: 'file create profile'
+- name: create file profile
   template:
     src: "{{file_src_profile}}"
     dest: "{{file_dst_profile}}"
@@ -31,7 +31,7 @@
   tags:
     - shell
 
-- name: 'file create shell.sh'
+- name: create file shell.sh
   template:
     src: "{{file_src_shell_shell}}"
     dest: "{{file_dst_shell_shell}}"
@@ -41,7 +41,7 @@
   tags:
     - shell
 
-- name: 'file create z_shell.sh'
+- name: create file z_shell.sh
   template:
     src: "{{file_src_z_shell_shell}}"
     dest: "{{file_dst_z_shell_shell}}"

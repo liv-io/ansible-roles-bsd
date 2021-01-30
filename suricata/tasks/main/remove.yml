@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - suricata
 
-- name: 'line remove eve.json.newsyslog'
+- name: line remove eve.json.newsyslog
   lineinfile:
     state: 'absent'
     regexp: "{{file_regexp_eve_json_newsyslog}}"
@@ -20,7 +20,7 @@
   tags:
     - suricata
 
-- name: 'line remove fast.log.newsyslog'
+- name: line remove fast.log.newsyslog
   lineinfile:
     state: 'absent'
     regexp: "{{file_regexp_fast_log_newsyslog}}"
@@ -29,7 +29,7 @@
   tags:
     - suricata
 
-- name: 'line remove stats.log.newsyslog'
+- name: line remove stats.log.newsyslog
   lineinfile:
     state: 'absent'
     regexp: "{{file_regexp_stats_log_newsyslog}}"
@@ -38,7 +38,7 @@
   tags:
     - suricata
 
-- name: 'line remove suricata_flags'
+- name: line remove suricata_flags
   lineinfile:
     state: 'absent'
     regexp: "^{{file_line_suricata_flags}}.*"
@@ -47,7 +47,7 @@
   tags:
     - suricata
 
-- name: 'command info suricata'
+- name: info suricata
   shell: "{{command_cmd_info_suricata}}"
   register: register_info_suricata
   failed_when: (register_info_suricata.rc > 1)
@@ -56,43 +56,43 @@
   tags:
     - suricata
 
-- name: 'command disable suricata'
+- name: disable suricata
   command: "{{command_cmd_disable_suricata}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_suricata.rc == 0)
   tags:
     - suricata
 
-- name: 'command stop suricata'
+- name: stop suricata
   command: "{{command_cmd_stop_suricata}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_info_suricata.rc == 0)
   tags:
     - suricata
 
-- name: 'package remove suricata'
+- name: remove package suricata
   package:
     state: 'absent'
     name: "{{package_name_suricata}}"
   tags:
     - suricata
 
-- name: 'file remove suricata.cfg'
+- name: remove file suricata.cfg
   file:
     state: 'absent'
     path: "{{file_dst_suricata_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - suricata
 
-- name: 'file remove suricata.yaml'
+- name: remove file suricata.yaml
   file:
     state: 'absent'
     path: "{{file_dst_suricata_yaml}}"
   tags:
     - suricata
 
-- name: 'file remove suricata.rules'
+- name: remove file suricata.rules
   file:
     state: 'absent'
     path: "{{file_dst_suricata_rules}}"

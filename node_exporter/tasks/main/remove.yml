@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - node_exporter
 
-- name: 'command status node_exporter'
+- name: status node_exporter
   command: "{{command_cmd_status_node_exporter}}"
   register: register_status_node_exporter
   changed_when: (register_status_node_exporter.rc > 1)
@@ -21,14 +21,14 @@
   tags:
     - node_exporter
 
-- name: 'command disable node_exporter'
+- name: disable node_exporter
   command: "{{command_cmd_disable_node_exporter}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_node_exporter.rc == 0)
   tags:
     - node_exporter
 
-- name: 'command check node_exporter'
+- name: check node_exporter
   command: "{{command_cmd_check_node_exporter}}"
   register: register_check_node_exporter
   changed_when: (register_check_node_exporter.rc > 1)
@@ -38,14 +38,14 @@
   tags:
     - node_exporter
 
-- name: 'command stop node_exporter'
+- name: stop node_exporter
   command: "{{command_cmd_stop_node_exporter}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_node_exporter.rc == 0)
   tags:
     - node_exporter
 
-- name: 'package remove node_exporter'
+- name: remove package node_exporter
   package:
     state: 'absent'
     name: "{{package_name_node_exporter}}"
@@ -53,15 +53,15 @@
   tags:
     - node_exporter
 
-- name: 'file remove node_exporter.cfg'
+- name: remove file node_exporter.cfg
   file:
     state: 'absent'
     path: "{{file_dst_node_exporter_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - node_exporter
 
-- name: 'line config node_exporter_textfile_dir'
+- name: config line node_exporter_textfile_dir
   lineinfile:
     state: 'absent'
     line: "{{file_line_node_exporter_textfile_dir}}"
@@ -72,7 +72,7 @@
   tags:
     - node_exporter
 
-- name: 'line config node_exporter_flags'
+- name: config line node_exporter_flags
   lineinfile:
     state: 'absent'
     line: "{{file_line_node_exporter_flags}}"
@@ -83,7 +83,7 @@
   tags:
     - node_exporter
 
-- name: 'file remove node_exporter_var.dir'
+- name: remove file node_exporter_var.dir
   file:
     state: 'absent'
     path: "{{file_dst_node_exporter_var_dir}}"

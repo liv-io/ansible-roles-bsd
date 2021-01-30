@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - http_load
 
-- name: 'package remove http_load'
+- name: remove package http_load
   package:
     state: 'absent'
     name: "{{package_name_http_load}}"

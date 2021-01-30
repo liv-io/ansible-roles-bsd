@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - monit_exporter
 
-- name: 'line config monit_exporter_config'
+- name: config line monit_exporter_config
   lineinfile:
     state: 'present'
     line: "{{file_line_monit_exporter_config}}"
@@ -22,7 +22,7 @@
   tags:
     - monit_exporter
 
-- name: 'line config monit_exporter_flags'
+- name: config line monit_exporter_flags
   lineinfile:
     state: 'present'
     line: "{{file_line_monit_exporter_flags}}"
@@ -33,7 +33,7 @@
   tags:
     - monit_exporter
 
-- name: 'file create config.toml'
+- name: create file config.toml
   template:
     src: "{{file_src_config_toml}}"
     dest: "{{file_dst_config_toml}}"
@@ -43,19 +43,19 @@
   tags:
     - monit_exporter
 
-- name: 'file create monit_exporter.cfg'
+- name: create file monit_exporter.cfg
   template:
     src: "{{file_src_monit_exporter_cfg}}"
     dest: "{{file_dst_monit_exporter_cfg}}"
     mode: "{{file_mode_monit_exporter_cfg}}"
     owner: "{{file_owner_monit_exporter_cfg}}"
     group: "{{file_group_monit_exporter_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (monit_exporter_monitor_monit_state is match('true|yes|enable'))
   tags:
     - monit_exporter
 
-- name: 'command status monit_exporter'
+- name: status monit_exporter
   command: "{{command_cmd_status_monit_exporter}}"
   register: register_status_monit_exporter
   changed_when: (register_status_monit_exporter.rc > 1)
@@ -65,14 +65,14 @@
   tags:
     - monit_exporter
 
-- name: 'command disable monit_exporter'
+- name: disable monit_exporter
   command: "{{command_cmd_disable_monit_exporter}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_monit_exporter.rc == 0)
   tags:
     - monit_exporter
 
-- name: 'command check monit_exporter'
+- name: check monit_exporter
   command: "{{command_cmd_check_monit_exporter}}"
   register: register_check_monit_exporter
   changed_when: (register_check_monit_exporter.rc > 1)
@@ -82,14 +82,14 @@
   tags:
     - monit_exporter
 
-- name: 'command stop monit_exporter'
+- name: stop monit_exporter
   command: "{{command_cmd_stop_monit_exporter}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_monit_exporter.rc == 0)
   tags:
     - monit_exporter
 
-- name: 'service stop monit_exporter'
+- name: stop service monit_exporter
   service:
     state: 'stopped'
     enabled: 'no'

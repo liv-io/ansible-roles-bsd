@@ -1,12 +1,12 @@
 ---
 
-- name: 'task include install'
+- name: import tasks install
   import_tasks: install.yml
   when: not (lsof_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - lsof
 
-- name: 'task include remove'
+- name: import tasks remove
   import_tasks: remove.yml
   when: (lsof_state is match('false|no|remove'))
   tags:

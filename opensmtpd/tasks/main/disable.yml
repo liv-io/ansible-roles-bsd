@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - opensmtpd
 
-- name: 'file create aliases'
+- name: create file aliases
   template:
     src: "{{file_src_aliases}}"
     dest: "{{file_dst_aliases}}"
@@ -21,7 +21,7 @@
   tags:
     - opensmtpd
 
-- name: 'file create secrets'
+- name: create file secrets
   template:
     src: "{{file_src_secrets}}"
     dest: "{{file_dst_secrets}}"
@@ -32,7 +32,7 @@
   tags:
     - opensmtpd
 
-- name: 'file create smtpd.conf'
+- name: create file smtpd.conf
   template:
     src: "{{file_src_smtpd_conf}}"
     dest: "{{file_dst_smtpd_conf}}"
@@ -42,19 +42,19 @@
   tags:
     - opensmtpd
 
-- name: 'file create opensmtpd.cfg'
+- name: create file opensmtpd.cfg
   template:
     src: "{{file_src_opensmtpd_cfg}}"
     dest: "{{file_dst_opensmtpd_cfg}}"
     mode: "{{file_mode_opensmtpd_cfg}}"
     owner: "{{file_owner_opensmtpd_cfg}}"
     group: "{{file_group_opensmtpd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (opensmtpd_monitor_monit_state is match('true|yes|enable'))
   tags:
     - opensmtpd
 
-- name: 'command status opensmtpd'
+- name: status opensmtpd
   command: "{{command_cmd_status_opensmtpd}}"
   register: register_status_opensmtpd
   changed_when: (register_status_opensmtpd.rc > 1)
@@ -64,14 +64,14 @@
   tags:
     - opensmtpd
 
-- name: 'command disable opensmtpd'
+- name: disable opensmtpd
   command: "{{command_cmd_disable_opensmtpd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_opensmtpd.rc == 0)
   tags:
     - opensmtpd
 
-- name: 'command check opensmtpd'
+- name: check opensmtpd
   command: "{{command_cmd_check_opensmtpd}}"
   register: register_check_opensmtpd
   changed_when: (register_check_opensmtpd.rc > 1)
@@ -81,7 +81,7 @@
   tags:
     - opensmtpd
 
-- name: 'command stop opensmtpd'
+- name: stop opensmtpd
   command: "{{command_cmd_stop_opensmtpd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_opensmtpd.rc == 0)

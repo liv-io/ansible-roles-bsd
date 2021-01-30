@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,14 +11,14 @@
   tags:
     - suricata
 
-- name: 'package install suricata'
+- name: install package suricata
   package:
     state: 'present'
     name: "{{package_name_suricata}}"
   tags:
     - suricata
 
-- name: 'file create eve.json'
+- name: create file eve.json
   copy:
     content: ''
     force: 'no'
@@ -29,7 +29,7 @@
   tags:
     - suricata
 
-- name: 'file create fast.log'
+- name: create file fast.log
   copy:
     content: ''
     force: 'no'
@@ -40,7 +40,7 @@
   tags:
     - suricata
 
-- name: 'file create stats.log'
+- name: create file stats.log
   copy:
     content: ''
     force: 'no'
@@ -51,14 +51,14 @@
   tags:
     - suricata
 
-- name: 'stat file suricata.rules'
+- name: stat file suricata.rules
   stat:
     path: "{{file_dst_suricata_rules}}"
   register: register_suricata_rules
   tags:
     - suricata
 
-- name: 'line config eve.json.newsyslog'
+- name: config line eve.json.newsyslog
   lineinfile:
     state: 'present'
     line: "{{file_line_eve_json_newsyslog}}"
@@ -68,7 +68,7 @@
   tags:
     - suricata
 
-- name: 'line config fast.log.newsyslog'
+- name: config line fast.log.newsyslog
   lineinfile:
     state: 'present'
     line: "{{file_line_fast_log_newsyslog}}"
@@ -78,7 +78,7 @@
   tags:
     - suricata
 
-- name: 'line config stats.log.newsyslog'
+- name: config line stats.log.newsyslog
   lineinfile:
     state: 'present'
     line: "{{file_line_stats_log_newsyslog}}"
@@ -88,7 +88,7 @@
   tags:
     - suricata
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -96,7 +96,7 @@
   tags:
     - suricata
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -107,7 +107,7 @@
   tags:
     - suricata
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 2)
@@ -117,7 +117,7 @@
   tags:
     - suricata
 
-- name: 'command update suricata'
+- name: update suricata
   shell: "{{command_cmd_update_suricata}}"
   check_mode: 'no'
   when: (register_suricata_rules.stat.exists == False)

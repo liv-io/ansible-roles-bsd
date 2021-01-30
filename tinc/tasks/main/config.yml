@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - tinc
 
-- name: 'file create config.dir'
+- name: create file config.dir
   file:
     state: 'directory'
     path: "{{file_dst_tinc_dir}}/{{item.name}}"
@@ -19,12 +19,12 @@
     owner: "{{file_owner_config_dir}}"
     group: "{{file_group_config_dir}}"
   loop: "{{tinc_config}}"
-  notify: 'service restart tinc'
+  notify: restart service tinc
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - tinc
 
-- name: 'file create hosts.dir'
+- name: create file hosts.dir
   file:
     state: 'directory'
     path: "{{file_dst_tinc_dir}}/{{item.name}}/hosts"
@@ -32,12 +32,12 @@
     owner: "{{file_owner_hosts_dir}}"
     group: "{{file_group_hosts_dir}}"
   loop: "{{tinc_config}}"
-  notify: 'service restart tinc'
+  notify: restart service tinc
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - tinc
 
-- name: 'file create host'
+- name: create file host
   template:
     src: "{{file_src_host}}"
     dest: "{{file_dst_tinc_dir}}/{{item.0.name}}/hosts/{{item.1.name}}"
@@ -49,12 +49,12 @@
     - hosts
     - flags:
       skip_missing: true
-  notify: 'service restart tinc'
+  notify: restart service tinc
   when: not (item.0.state|default('true') is match('false|no|remove'))
   tags:
     - tinc
 
-- name: 'file copy rsa_key.priv'
+- name: copy file rsa_key.priv
   copy:
     content: "{{item.private_key}}"
     dest: "{{file_dst_tinc_dir}}/{{item.name}}/rsa_key.priv"
@@ -63,12 +63,12 @@
     group: "{{file_group_rsa_key_priv}}"
   no_log: 'true'
   loop: "{{tinc_config}}"
-  notify: 'service restart tinc'
+  notify: restart service tinc
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - tinc
 
-- name: 'file create tinc.conf'
+- name: create file tinc.conf
   template:
     src: "{{file_src_tinc_conf}}"
     dest: "{{file_dst_tinc_dir}}/{{item.name}}/tinc.conf"
@@ -76,12 +76,12 @@
     owner: "{{file_owner_tinc_conf}}"
     group: "{{file_group_tinc_conf}}"
   loop: "{{tinc_config}}"
-  notify: 'service restart tinc'
+  notify: restart service tinc
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - tinc
 
-- name: 'file create tinc-down'
+- name: create file tinc-down
   template:
     src: "{{file_src_tinc_down}}"
     dest: "{{file_dst_tinc_dir}}/{{item.name}}/tinc-down"
@@ -89,12 +89,12 @@
     owner: "{{file_owner_tinc_down}}"
     group: "{{file_group_tinc_down}}"
   loop: "{{tinc_config}}"
-  notify: 'service restart tinc'
+  notify: restart service tinc
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - tinc
 
-- name: 'file create tinc-up'
+- name: create file tinc-up
   template:
     src: "{{file_src_tinc_up}}"
     dest: "{{file_dst_tinc_dir}}/{{item.name}}/tinc-up"
@@ -102,12 +102,12 @@
     owner: "{{file_owner_tinc_up}}"
     group: "{{file_group_tinc_up}}"
   loop: "{{tinc_config}}"
-  notify: 'service restart tinc'
+  notify: restart service tinc
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - tinc
 
-- name: 'line config tincd_flags'
+- name: config line tincd_flags
   lineinfile:
     state: 'present'
     line: "{{file_line_tincd_flags}} --net={{item.name}} # Ansible: Configure tinc"
@@ -115,29 +115,29 @@
     dest: "{{file_dst_tincd_flags}}"
     create: 'yes'
   loop: "{{tinc_config}}"
-  notify: 'service restart tinc'
+  notify: restart service tinc
   when: not (item.state|default('true') is match('false|no|remove'))
   tags:
     - tinc
 
-- name: 'file remove config.dir'
+- name: remove file config.dir
   file:
     state: 'absent'
     path: "{{file_dst_tinc_dir}}/{{item.name}}"
   loop: "{{tinc_config}}"
-  notify: 'service restart tinc'
+  notify: restart service tinc
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
     - tinc
 
-- name: 'line disable tincd_flags'
+- name: line disable tincd_flags
   lineinfile:
     state: 'absent'
     regexp: "^{{file_line_tincd_flags}}.*"
     dest: "{{file_dst_tincd_flags}}"
     create: 'yes'
   loop: "{{tinc_config}}"
-  notify: 'service restart tinc'
+  notify: restart service tinc
   when: (item.state|default('true') is match('false|no|remove'))
   tags:
     - tinc

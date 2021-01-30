@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - freebsd_rc
 
-- name: 'line config rc'
+- name: config line rc
   lineinfile:
     state: "{{'absent' if ((item.state|default('true')) is match('false|no|remove')) else 'present'}}"
     line: "{{item.name}}=\"{{item.value}}\" # Ansible: {{(item.comment|default(''))}}"

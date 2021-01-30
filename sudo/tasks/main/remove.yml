@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,21 +11,21 @@
   tags:
     - sudo
 
-- name: 'package remove sudo'
+- name: remove package sudo
   package:
     state: 'absent'
     name: "{{package_name_sudo}}"
   tags:
     - sudo
 
-- name: 'file remove sudoers'
+- name: remove file sudoers
   file:
     state: 'absent'
     path: "{{file_dst_sudoers}}"
   tags:
     - sudo
 
-- name: 'file remove sudoers.d'
+- name: remove file sudoers.d
   file:
     state: 'absent'
     path: "{{file_dst_sudoers_d}}"

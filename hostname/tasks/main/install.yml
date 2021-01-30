@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,13 +11,13 @@
   tags:
     - hostname
 
-- name: 'file create myname'
+- name: create file myname
   template:
     src: "{{file_src_myname}}"
     dest: "{{file_dst_myname}}"
     mode: "{{file_mode_myname}}"
     owner: "{{file_owner_myname}}"
     group: "{{file_group_myname}}"
-  notify: 'command run netstart'
+  notify: run netstart
   tags:
     - hostname

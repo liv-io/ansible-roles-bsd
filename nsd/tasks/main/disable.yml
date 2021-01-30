@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - nsd
 
-- name: 'file create nsd.conf'
+- name: create file nsd.conf
   template:
     src: "{{file_src_nsd_conf}}"
     dest: "{{file_dst_nsd_conf}}"
@@ -22,7 +22,7 @@
   tags:
     - nsd
 
-- name: 'line disable nsd_enable'
+- name: line disable nsd_enable
   lineinfile:
     state: 'present'
     line: "{{file_line_nsd_enable}}=\"NO\" # Ansible: Disable nsd"
@@ -33,19 +33,19 @@
   tags:
     - nsd
 
-- name: 'file create nsd.cfg'
+- name: create file nsd.cfg
   template:
     src: "{{file_src_nsd_cfg}}"
     dest: "{{file_dst_nsd_cfg}}"
     mode: "{{file_mode_nsd_cfg}}"
     owner: "{{file_owner_nsd_cfg}}"
     group: "{{file_group_nsd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   when: (nsd_monitor_monit_state is match('true|yes|enable'))
   tags:
     - nsd
 
-- name: 'command status nsd'
+- name: status nsd
   command: "{{command_cmd_status_nsd}}"
   register: register_status_nsd
   changed_when: (register_status_nsd.rc > 1)
@@ -55,14 +55,14 @@
   tags:
     - nsd
 
-- name: 'command disable nsd'
+- name: disable nsd
   command: "{{command_cmd_disable_nsd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_nsd.rc == 0)
   tags:
     - nsd
 
-- name: 'command check nsd'
+- name: check nsd
   command: "{{command_cmd_check_nsd}}"
   register: register_check_nsd
   changed_when: (register_check_nsd.rc > 1)
@@ -72,14 +72,14 @@
   tags:
     - nsd
 
-- name: 'command stop nsd'
+- name: stop nsd
   command: "{{command_cmd_stop_nsd}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_nsd.rc == 0)
   tags:
     - nsd
 
-- name: 'service stop nsd'
+- name: stop service nsd
   service:
     state: 'stopped'
     enabled: 'no'

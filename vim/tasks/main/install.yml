@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,14 +11,14 @@
   tags:
     - vim
 
-- name: 'package install vim'
+- name: install package vim
   package:
     state: 'present'
     name: "{{package_name_vim}}"
   tags:
     - vim
 
-- name: 'file create vimrc'
+- name: create file vimrc
   template:
     src: "{{file_src_vimrc}}"
     dest: "{{file_dst_vimrc}}"

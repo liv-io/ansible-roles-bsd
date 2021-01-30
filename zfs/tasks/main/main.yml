@@ -1,24 +1,24 @@
 ---
 
-- name: 'task include install'
+- name: import tasks install
   import_tasks: install.yml
   when: not (zfs_state is match('false|no|remove|quiesce|inactive'))
   tags:
     - zfs
 
-- name: 'task include enable'
+- name: import tasks enable
   import_tasks: enable.yml
   when: (zfs_state is match('start|on|enable'))
   tags:
     - zfs
 
-- name: 'task include disable'
+- name: import tasks disable
   import_tasks: disable.yml
   when: (zfs_state is match('stop|off|disable'))
   tags:
     - zfs
 
-- name: 'task include remove'
+- name: import tasks remove
   import_tasks: remove.yml
   when: (zfs_state is match('false|no|remove'))
   tags:

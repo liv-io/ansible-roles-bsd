@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,14 +11,14 @@
   tags:
     - node_exporter
 
-- name: 'package install node_exporter'
+- name: install package node_exporter
   package:
     state: 'present'
     name: "{{package_name_node_exporter}}"
   tags:
     - node_exporter
 
-- name: 'file create node_exporter_var.dir'
+- name: create file node_exporter_var.dir
   file:
     state: 'directory'
     path: "{{file_dst_node_exporter_var_dir}}"
@@ -28,7 +28,7 @@
   tags:
     - node_exporter
 
-- name: 'file create textfile_collector.dir'
+- name: create file textfile_collector.dir
   file:
     state: 'directory'
     path: "{{file_dst_textfile_collector_dir}}"
@@ -38,7 +38,7 @@
   tags:
     - node_exporter
 
-- name: 'line config node_exporter_textfile_dir'
+- name: config line node_exporter_textfile_dir
   lineinfile:
     state: 'present'
     line: "{{file_line_node_exporter_textfile_dir}}"
@@ -49,7 +49,7 @@
   tags:
     - node_exporter
 
-- name: 'line config node_exporter_flags'
+- name: config line node_exporter_flags
   lineinfile:
     state: 'present'
     line: "{{file_line_node_exporter_flags}}"
@@ -60,7 +60,7 @@
   tags:
     - node_exporter
 
-- name: 'stat file monit.d'
+- name: stat file monit.d
   stat:
     path: "{{file_dst_monit_d}}"
   register: register_monit_d
@@ -68,7 +68,7 @@
   tags:
     - node_exporter
 
-- name: 'file create monit.d'
+- name: create file monit.d
   file:
     state: 'directory'
     path: "{{file_dst_monit_d}}"
@@ -79,7 +79,7 @@
   tags:
     - node_exporter
 
-- name: 'command check service monit'
+- name: check service monit
   shell: "{{command_cmd_check_service_monit}}"
   register: register_check_service_monit
   changed_when: (register_check_service_monit.rc > 2)

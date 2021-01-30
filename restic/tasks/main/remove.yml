@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,14 +11,14 @@
   tags:
     - restic
 
-- name: 'package remove restic'
+- name: remove package restic
   package:
     state: 'absent'
     name: "{{package_name_restic}}"
   tags:
     - restic
 
-- name: 'cron remove restic_run-backup'
+- name: remove cron restic_run-backup
   cron:
     state: 'absent'
     name: "{{cron_name_restic_run_backup}}"
@@ -26,7 +26,7 @@
   tags:
     - restic
 
-- name: 'file remove restic_run-backup'
+- name: remove file restic_run-backup
   file:
     state: 'absent'
     path: "{{file_dst_restic_run_backup}}"
@@ -34,7 +34,7 @@
   tags:
     - restic
 
-- name: 'file remove restic_etc.dir'
+- name: remove file restic_etc.dir
   file:
     state: 'absent'
     path: "{{file_dst_restic_etc_dir}}"

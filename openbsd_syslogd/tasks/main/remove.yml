@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,10 +11,10 @@
   tags:
     - openbsd_syslogd
 
-- name: 'file remove syslogd.cfg'
+- name: remove file syslogd.cfg
   file:
     state: 'absent'
     path: "{{file_dst_syslogd_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - openbsd_syslogd

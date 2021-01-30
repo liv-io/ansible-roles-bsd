@@ -1,6 +1,6 @@
 ---
 
-- name: 'include variables'
+- name: include variables
   include_vars: "{{lookup('first_found', params)}}"
   vars:
     params:
@@ -11,7 +11,7 @@
   tags:
     - unbound
 
-- name: 'command status unbound'
+- name: status unbound
   command: "{{command_cmd_status_unbound}}"
   register: register_status_unbound
   changed_when: (register_status_unbound.rc > 1)
@@ -21,14 +21,14 @@
   tags:
     - unbound
 
-- name: 'command disable unbound'
+- name: disable unbound
   command: "{{command_cmd_disable_unbound}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_status_unbound.rc == 0)
   tags:
     - unbound
 
-- name: 'command check unbound'
+- name: check unbound
   command: "{{command_cmd_check_unbound}}"
   register: register_check_unbound
   changed_when: (register_check_unbound.rc > 1)
@@ -38,14 +38,14 @@
   tags:
     - unbound
 
-- name: 'command stop unbound'
+- name: stop unbound
   command: "{{command_cmd_stop_unbound}}"
   check_mode: 'no'
   when: (ansible_os_family == 'OpenBSD') and (register_check_unbound.rc == 0)
   tags:
     - unbound
 
-- name: 'package remove unbound'
+- name: remove package unbound
   package:
     state: 'absent'
     name: "{{package_name_unbound}}"
@@ -53,15 +53,15 @@
   tags:
     - unbound
 
-- name: 'file remove unbound.cfg'
+- name: remove file unbound.cfg
   file:
     state: 'absent'
     path: "{{file_dst_unbound_cfg}}"
-  notify: 'service reload monit'
+  notify: reload service monit
   tags:
     - unbound
 
-- name: 'line remove unbound_enable'
+- name: line remove unbound_enable
   lineinfile:
     state: 'absent'
     line: "{{file_line_unbound_enable}}=\"NO\" # Ansible: Remove unbound"
@@ -72,7 +72,7 @@
   tags:
     - unbound
 
-- name: 'file remove unbound.conf.link'
+- name: remove file unbound.conf.link
   file:
     state: 'absent'
     path: "{{file_dst_unbound_conf_link}}"
@@ -80,7 +80,7 @@
   tags:
     - unbound
 
-- name: 'file remove unbound.conf'
+- name: remove file unbound.conf
   file:
     state: 'absent'
     path: "{{file_dst_unbound_conf}}"
@@ -88,7 +88,7 @@
   tags:
     - unbound
 
-- name: 'file remove root.hints.link'
+- name: remove file root.hints.link
   file:
     state: 'absent'
     path: "{{file_dst_root_hints_link}}"
@@ -96,7 +96,7 @@
   tags:
     - root
 
-- name: 'file remove root.hints'
+- name: remove file root.hints
   file:
     state: 'absent'
     path: "{{file_dst_root_hints}}"
