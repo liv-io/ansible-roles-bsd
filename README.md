@@ -54,7 +54,7 @@
 
 The following operating systems are supported:
 * FreeBSD 12.2-*
-* OpenBSD 6.8
+* OpenBSD 6.9
 
 ### Dependencies
 

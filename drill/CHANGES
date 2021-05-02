@@ -12,6 +12,10 @@ F: feature
 
 CHANGES
 
+* Version 2.10.0 (2021-05-02)
+C: Add support for OpenBSD 6.9
+C: Drop support for OpenBSD 6.8
+
 * Version 2.9.0 (2020-10-19)
 C: Add support for OpenBSD 6.8
 C: Drop support for OpenBSD 6.7

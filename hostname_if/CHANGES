@@ -12,6 +12,10 @@ F: feature
 
 CHANGES
 
+* Version 1.9.0 (2021-05-02)
+C: Add support for OpenBSD 6.9
+C: Drop support for OpenBSD 6.8
+
 * Version 1.8.1 (2020-10-30)
 E: Simplify Ansible file header (ansible_managed)
 

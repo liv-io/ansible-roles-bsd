@@ -112,7 +112,7 @@ set mailserver {{item.address}}
 #     slots 100           # optionally limit the queue size
 #
 #
-## Send status and events to M/Monit (for more informations about M/Monit
+## Send status and events to M/Monit (for more information about M/Monit
 ## see https://mmonit.com/). By default Monit registers credentials with
 ## M/Monit so M/Monit can smoothly communicate back to Monit and you don't
 ## have to register Monit credentials manually in M/Monit. It is possible to
