@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 1.12.1 (2021-05-06)
+B: Adjust monit check from pidfile to process matching
+
 * Version 1.12.0 (2021-05-02)
 C: Add support for OpenBSD 6.9
 C: Drop support for OpenBSD 6.8
