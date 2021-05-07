@@ -12,6 +12,10 @@ F: feature
 
 CHANGES
 
+* Version 3.7.0 (2021-05-07)
+C: Add support for OpenBSD 6.9
+C: Drop support for OpenBSD 6.8
+
 * Version 3.6.1 (2020-11-29)
 B: Adjust return code for monit service check
 
