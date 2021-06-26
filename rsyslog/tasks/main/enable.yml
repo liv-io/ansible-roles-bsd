@@ -18,7 +18,7 @@
     mode: "{{file_mode_rsyslog_conf}}"
     owner: "{{file_owner_rsyslog_conf}}"
     group: "{{file_group_rsyslog_conf}}"
-  notify: restart service rsyslog
+  notify: restart service rsyslogd
   tags:
     - rsyslog
 
