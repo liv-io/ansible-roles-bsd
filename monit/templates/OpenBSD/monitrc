@@ -204,6 +204,12 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 {% endfor %}
 #
 #
+## Monit can perform act differently regarding services previous state when
+## going back in duty. By default, Monit will 'start' all services. Monit can
+## also takes no action to start services in 'nostart' mode. Monit can try to
+## restore the 'laststate' of the service when Monit was shutdown.
+# set onreboot start # start, nostart, laststart
+
 ###############################################################################
 ## Services
 ###############################################################################
@@ -323,7 +329,7 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 ## and bandwidth usage.
 #
 #  check network public with interface eth0
-#    if failed link then alert
+#    if link down then alert
 #    if changed link then alert
 #    if saturation > 90% then alert
 #    if download > 10 MB/s then alert

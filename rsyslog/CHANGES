@@ -12,6 +12,10 @@ F: feature
 
 CHANGES
 
+* Version 0.4.0 (2021-10-15)
+C: Add support for OpenBSD 7.0
+C: Drop support for OpenBSD 6.9
+
 * Version 0.3.1 (2021-06-26)
 B: Correct handler name
 
