@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 0.7.0 (2022-02-11)
+C: Update rest-server to version 0.11.0
+
 * Version 0.6.0 (2021-10-15)
 C: Add support for OpenBSD 7.0
 C: Drop support for OpenBSD 6.9
