@@ -732,6 +732,8 @@ app-layer:
     mqtt:
       # enabled: no
       # max-msg-length: 1mb
+      # subscribe-topic-match-limit: 100
+      # unsubscribe-topic-match-limit: 100
     krb5:
       enabled: yes
     snmp:
@@ -774,6 +776,8 @@ app-layer:
     # HTTP2: Experimental HTTP 2 support. Disabled by default.
     http2:
       enabled: no
+      # use http keywords on HTTP2 traffic
+      http1-rules: no
     smtp:
       enabled: yes
       raw-extraction: no
@@ -882,8 +886,8 @@ app-layer:
            swf-decompression:
              enabled: yes
              type: both
-             compress-depth: 0
-             decompress-depth: 0
+             compress-depth: 100kb
+             decompress-depth: 100kb
 
            # Use a random value for inspection sizes around the specified value.
            # This lowers the risk of some evasion techniques but could lead
@@ -907,6 +911,8 @@ app-layer:
            # Maximum decompressed size with a compression ratio
            # above 2048 (only LZMA can reach this ratio, deflate cannot)
            #compression-bomb-limit: 1mb
+           # Maximum time spent decompressing a single transaction in usec
+           #decompression-time-limit: 100000
 
          server-config:
 
@@ -1258,7 +1264,7 @@ flow-timeouts:
 # engine is configured.
 #
 # stream:
-#   memcap: 32mb                # Can be specified in kb, mb, gb.  Just a
+#   memcap: 64mb                # Can be specified in kb, mb, gb.  Just a
 #                               # number indicates it's in bytes.
 #   checksum-validation: yes    # To validate the checksum of received
 #                               # packet. If csum validation is specified as
@@ -1280,7 +1286,7 @@ flow-timeouts:
 #                               # the bypass.
 #
 #   reassembly:
-#     memcap: 64mb              # Can be specified in kb, mb, gb.  Just a number
+#     memcap: 256mb             # Can be specified in kb, mb, gb.  Just a number
 #                               # indicates it's in bytes.
 #     depth: 1mb                # Can be specified in kb, mb, gb.  Just a number
 #                               # indicates it's in bytes.
@@ -1363,11 +1369,18 @@ decoder:
     enabled: true
     ports: $VXLAN_PORTS # syntax: '[8472, 4789]' or '4789'.
 
+  # VNTag decode support
+  vntag:
+    enabled: false
+
   # Geneve decoder is assigned to up to 4 UDP ports. By default only the
   # IANA assigned port 6081 is enabled.
   geneve:
     enabled: true
     ports: $GENEVE_PORTS # syntax: '[6081, 1234]' or '6081'.
+
+  # maximum number of decoder layers for a packet
+  # max-layers: 16
 
 ##
 ## Performance tuning and profiling

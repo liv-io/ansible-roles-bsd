@@ -75,8 +75,8 @@ set statefile /var/monit/state
 #
 ## Set the list of mail servers for alert delivery. Multiple servers may be
 ## specified using a comma separator. If the first mail server fails, Monit
-# will use the second mail server in the list and so on. By default Monit uses
-# port 25 - it is possible to override this with the PORT option.
+## will use the second mail server in the list and so on. By default Monit uses
+## port 25 - it is possible to override this with the PORT option.
 #
 {% if not (monit_mail_server == []) %}
 {% for item in monit_mail_server %}
@@ -349,6 +349,6 @@ set httpd port {{(monit_web_server_port|int(2812))}} and
 ## It is possible to include additional configuration parts from other files or
 ## directories.
 #
+#  include /etc/monit.d/*
 include {{monit_include}}
-#
 #

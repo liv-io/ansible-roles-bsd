@@ -12,6 +12,10 @@ F: feature
 
 CHANGES
 
+* Version 1.11.0 (2022-04-24)
+C: Add support for OpenBSD 7.1
+C: Drop support for OpenBSD 7.0
+
 * Version 1.10.0 (2021-10-15)
 C: Add support for OpenBSD 7.0
 C: Drop support for OpenBSD 6.9
