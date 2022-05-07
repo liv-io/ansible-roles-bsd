@@ -23,7 +23,7 @@ user_comment_root: "{{root_comment}}"
 user_uid_root: '0'
 user_group_root: '0'
 user_groups_root: "{{root_groups}}"
-user_append_root: "{{'no' if (root_groups_append is match('false|no|disable')) else 'yes'}}"
+user_append_root: "{{'yes' if (root_groups_append is match('true|yes|enable')) else 'no'}}"
 user_home_create_root: 'no'
 user_home_move_root: 'no'
 user_home_remove_root: 'no'

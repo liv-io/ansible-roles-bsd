@@ -112,6 +112,6 @@ server {
   # CONFIG
 
 {% if not (item.config == '') %}
-{{(item.config|indent(width=2, indentfirst=True))}}
+{{(item.config|indent(width=2, first=True))}}
 {% endif %}
 }

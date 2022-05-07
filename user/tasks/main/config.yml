@@ -19,7 +19,7 @@
     uid: "{{(item.uid|default(omit))}}"
     group: "{{(item.group|default('nobody'))}}"
     groups: "{{(item.groups|default([])|join(','))}}"
-    append: "{{'no' if (item.groups_append|default('true') is match('false|no|disable')) else 'yes'}}"
+    append: "{{'yes' if (item.groups_append|default('false') is match('true|yes|enable')) else 'no'}}"
     home: "{{(item.home|default('/home/'+item.name))}}"
     createhome: "{{'no' if (item.home_create|default('true') is match('false|no|disable')) else 'yes'}}"
     move_home: "{{'yes' if (item.home_move|default('false') is match('true|yes|enable')) else 'no'}}"

@@ -84,7 +84,7 @@ ROLE
     Required   : False
     Value      : Predetermined
     Type       : String
-    Default    : 'true'
+    Default    : 'false'
     Options    :
       Enable : 'true' | 'yes' | 'enable'
       Disable: 'false' | 'no' | 'disable'
