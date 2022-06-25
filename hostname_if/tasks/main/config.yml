@@ -14,7 +14,7 @@
 - name: create file config
   template:
     src: "{{file_src_config}}"
-    dest: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
+    dest: "/etc/hostname.{{(item.device|default(ansible_default_ipv4.device))}}"
     mode: "{{file_mode_config}}"
     owner: "{{file_owner_config}}"
     group: "{{file_group_config}}"
@@ -27,7 +27,7 @@
 - name: remove file config
   file:
     state: 'absent'
-    path: "/etc/hostname.{{(item.interface|default(ansible_default_ipv4.device))}}"
+    path: "/etc/hostname.{{(item.device|default(ansible_default_ipv4.device))}}"
   loop: "{{hostname_if_config_all + hostname_if_config_group + hostname_if_config_host}}"
   notify: run netstart
   when: (item.state|default('true') is match('false|no|remove'))
@@ -35,11 +35,11 @@
     - hostname_if
 
 - name: destroy ifconfig
-  shell: "ifconfig {{item.interface}} destroy"
+  shell: "ifconfig {{item.device}} destroy"
   register: "register_check_ifconfig"
   changed_when: (register_check_ifconfig.rc > 1)
   failed_when: (register_check_ifconfig.rc > 1)
   loop: "{{hostname_if_config_all + hostname_if_config_group + hostname_if_config_host}}"
-  when: (item.state|default('true') is match('false|no|remove')) and (item.interface in ansible_interfaces)
+  when: (item.state|default('true') is match('false|no|remove')) and (item.device in ansible_devices)
   tags:
     - hostname_if

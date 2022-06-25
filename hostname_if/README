@@ -37,44 +37,44 @@ INACTIVE
 CONFIG
   vars:
     hostname_if_config_all:
-      - interface: pfsync0
+      - device: pfsync0
         interfaces:
           - { type: 'pfsync', syncdev: 'vio0', description: 'pfsync' }
-      - interface: vio0
+      - device: vio0
         interfaces:
           - { ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt' }
         routes:
           - { network: 'default', gateway: '10.1.1.1' }
-      - interface: 'vio2'
+      - device: 'vio2'
         description: 'zone'
-      - interface: 'vlan300'
+      - device: 'vlan300'
         interfaces:
           - { ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base' }
-      - interface: 'carp300'
+      - device: 'carp300'
         interfaces:
           - { type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base' }
 
     hostname_if_config_group:
-      - interface: 'vio0'
+      - device: 'vio0'
         interfaces:
           - { ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt' }
         routes:
           - { network: 'default', gateway: '10.1.1.1' }
-      - interface: 'vio1'
+      - device: 'vio1'
         description: 'zone'
-      - interface: 'vlan301'
+      - device: 'vlan301'
         interfaces:
           - { ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio1', description: 'v_w_int_db' }
 
     hostname_if_config_host:
-      - interface: 'vio0'
+      - device: 'vio0'
         interfaces:
           - { ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt' }
         routes:
           - { network: 'default', gateway: '10.1.1.1' }
-      - interface: 'vio1'
+      - device: 'vio1'
         description: 'zone'
-      - interface: 'vlan301'
+      - device: 'vlan301'
         interfaces:
           - { ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio1', description: 'v_w_int_db' }
 
@@ -122,17 +122,17 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{interface: 'pfsync0', interfaces: [{type: 'pfsync', syncdev: 'vio0', description: 'pfsync'}]},
-                 {interface: 'vio0', interfaces: [{ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt'}],
+      Examples: [{device: 'pfsync0', interfaces: [{type: 'pfsync', syncdev: 'vio0', description: 'pfsync'}]},
+                 {device: 'vio0', interfaces: [{ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt'}],
                                      routes: [{network: 'default', gateway: '10.1.1.1'}]},
-                 {interface: 'vio1', description: 'transit'},
-                 {interface: 'vlan1000', interfaces: [{ip: '10.250.0.1', netmask: '255.255.255.0', vnetid: '100', vlandev: 'vio1', description: 'v_z_base_transit'}]},
-                 {interface: 'vlan1001', interfaces: [{ip: '10.250.1.1', netmask: '255.255.255.0', vnetid: '101', vlandev: 'vio1', description: 'v_z_prd_transit'}]},
-                 {interface: 'vio2', description: 'zone'},
-                 {interface: 'vlan300', interfaces: [{ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base'}]},
-                 {interface: 'carp300', interfaces: [{type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base'}]},
-                 {interface: 'vlan301', interfaces: [{ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio2', description: 'v_w_int_db'}]},
-                 {interface: 'vlan302', interfaces: [{ip: '10.13.2.1', netmask: '255.255.255.0', vnetid: '302', vlandev: 'vio2', description: 'v_w_int_app'}]}]
+                 {device: 'vio1', description: 'transit'},
+                 {device: 'vlan1000', interfaces: [{ip: '10.250.0.1', netmask: '255.255.255.0', vnetid: '100', vlandev: 'vio1', description: 'v_z_base_transit'}]},
+                 {device: 'vlan1001', interfaces: [{ip: '10.250.1.1', netmask: '255.255.255.0', vnetid: '101', vlandev: 'vio1', description: 'v_z_prd_transit'}]},
+                 {device: 'vio2', description: 'zone'},
+                 {device: 'vlan300', interfaces: [{ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base'}]},
+                 {device: 'carp300', interfaces: [{type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base'}]},
+                 {device: 'vlan301', interfaces: [{ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio2', description: 'v_w_int_db'}]},
+                 {device: 'vlan302', interfaces: [{ip: '10.13.2.1', netmask: '255.255.255.0', vnetid: '302', vlandev: 'vio2', description: 'v_w_int_app'}]}]
       None    : []
 
   hostname_if_config_group
@@ -143,17 +143,17 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{interface: 'pfsync0', interfaces: [{type: 'pfsync', syncdev: 'vio0', description: 'pfsync'}]},
-                 {interface: 'vio0', interfaces: [{ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt'}],
+      Examples: [{device: 'pfsync0', interfaces: [{type: 'pfsync', syncdev: 'vio0', description: 'pfsync'}]},
+                 {device: 'vio0', interfaces: [{ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt'}],
                                      routes: [{network: 'default', gateway: '10.1.1.1'}]},
-                 {interface: 'vio1', description: 'transit'},
-                 {interface: 'vlan1000', interfaces: [{ip: '10.250.0.1', netmask: '255.255.255.0', vnetid: '100', vlandev: 'vio1', description: 'v_z_base_transit'}]},
-                 {interface: 'vlan1001', interfaces: [{ip: '10.250.1.1', netmask: '255.255.255.0', vnetid: '101', vlandev: 'vio1', description: 'v_z_prd_transit'}]},
-                 {interface: 'vio2', description: 'zone'},
-                 {interface: 'vlan300', interfaces: [{ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base'}]},
-                 {interface: 'carp300', interfaces: [{type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base'}]},
-                 {interface: 'vlan301', interfaces: [{ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio2', description: 'v_w_int_db'}]},
-                 {interface: 'vlan302', interfaces: [{ip: '10.13.2.1', netmask: '255.255.255.0', vnetid: '302', vlandev: 'vio2', description: 'v_w_int_app'}]}]
+                 {device: 'vio1', description: 'transit'},
+                 {device: 'vlan1000', interfaces: [{ip: '10.250.0.1', netmask: '255.255.255.0', vnetid: '100', vlandev: 'vio1', description: 'v_z_base_transit'}]},
+                 {device: 'vlan1001', interfaces: [{ip: '10.250.1.1', netmask: '255.255.255.0', vnetid: '101', vlandev: 'vio1', description: 'v_z_prd_transit'}]},
+                 {device: 'vio2', description: 'zone'},
+                 {device: 'vlan300', interfaces: [{ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base'}]},
+                 {device: 'carp300', interfaces: [{type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base'}]},
+                 {device: 'vlan301', interfaces: [{ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio2', description: 'v_w_int_db'}]},
+                 {device: 'vlan302', interfaces: [{ip: '10.13.2.1', netmask: '255.255.255.0', vnetid: '302', vlandev: 'vio2', description: 'v_w_int_app'}]}]
       None    : []
 
   hostname_if_config_host
@@ -164,17 +164,17 @@ ROLE
     Type       : Array/Hash
     Default    : []
     Options    :
-      Examples: [{interface: 'pfsync0', interfaces: [{type: 'pfsync', syncdev: 'vio0', description: 'pfsync'}]},
-                 {interface: 'vio0', interfaces: [{ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt'}],
+      Examples: [{device: 'pfsync0', interfaces: [{type: 'pfsync', syncdev: 'vio0', description: 'pfsync'}]},
+                 {device: 'vio0', interfaces: [{ip: '10.1.1.10', netmask: '255.255.255.0', broadcast: '10.1.1.255', description: 'n_z_int_mgmt'}],
                                      routes: [{network: 'default', gateway: '10.1.1.1'}]},
-                 {interface: 'vio1', description: 'transit'},
-                 {interface: 'vlan1000', interfaces: [{ip: '10.250.0.1', netmask: '255.255.255.0', vnetid: '100', vlandev: 'vio1', description: 'v_z_base_transit'}]},
-                 {interface: 'vlan1001', interfaces: [{ip: '10.250.1.1', netmask: '255.255.255.0', vnetid: '101', vlandev: 'vio1', description: 'v_z_prd_transit'}]},
-                 {interface: 'vio2', description: 'zone'},
-                 {interface: 'vlan300', interfaces: [{ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base'}]},
-                 {interface: 'carp300', interfaces: [{type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base'}]},
-                 {interface: 'vlan301', interfaces: [{ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio2', description: 'v_w_int_db'}]},
-                 {interface: 'vlan302', interfaces: [{ip: '10.13.2.1', netmask: '255.255.255.0', vnetid: '302', vlandev: 'vio2', description: 'v_w_int_app'}]}]
+                 {device: 'vio1', description: 'transit'},
+                 {device: 'vlan1000', interfaces: [{ip: '10.250.0.1', netmask: '255.255.255.0', vnetid: '100', vlandev: 'vio1', description: 'v_z_base_transit'}]},
+                 {device: 'vlan1001', interfaces: [{ip: '10.250.1.1', netmask: '255.255.255.0', vnetid: '101', vlandev: 'vio1', description: 'v_z_prd_transit'}]},
+                 {device: 'vio2', description: 'zone'},
+                 {device: 'vlan300', interfaces: [{ip: '10.13.0.1', netmask: '255.255.255.0', vnetid: '300', vlandev: 'vio2', description: 'v_z_int_ca_base'}]},
+                 {device: 'carp300', interfaces: [{type: 'carp', ip: '10.13.0.1', netmask: '255.255.255.0', vhid: '3', carpdev: 'vlan300', advskew: '10', pass: 'yWk,jRcX.3X_wGT!9c59', description: 'v_z_int_ca_base'}]},
+                 {device: 'vlan301', interfaces: [{ip: '10.13.1.1', netmask: '255.255.255.0', vnetid: '301', vlandev: 'vio2', description: 'v_w_int_db'}]},
+                 {device: 'vlan302', interfaces: [{ip: '10.13.2.1', netmask: '255.255.255.0', vnetid: '302', vlandev: 'vio2', description: 'v_w_int_app'}]}]
       None    : []
 
   hostname_if_mygate

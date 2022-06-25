@@ -12,6 +12,9 @@ F: feature
 
 CHANGES
 
+* Version 2.0.0 (2022-06-25)
+C: Rename 'interface' parameter to 'device'
+
 * Version 1.11.0 (2022-04-24)
 C: Add support for OpenBSD 7.1
 C: Drop support for OpenBSD 7.0
