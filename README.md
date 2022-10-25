@@ -7,6 +7,10 @@
 [![Issues][issues-shield]][issues-url]
 [![BSD License][license-shield]][license-url]
 
+:warning: This repository is not maintained anymore. Unfortunately, I stopped using and maintaining FreeBSD due to time constraints.
+
+:information_source: For Ansible roles supporting the OpenBSD operating system, please use the new repository called `ansible-roles-openbsd`.
+
 ## Index
 
 * [About](#about)
